@@ -1,0 +1,168 @@
+/* Shared Widget system. Use these primitives for all reusable content cards. */
+.widget,
+.page-card {
+  min-width: 0;
+  border: 1px solid var(--border, #27364f);
+  border-radius: 14px;
+  color: inherit;
+  background: var(--card, rgba(20, 30, 48, 0.86));
+  box-shadow: var(--shadow, 0 12px 30px rgba(0, 0, 0, 0.16));
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.widget-heading {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 11px;
+}
+
+.widget-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  color: #91baff;
+  background: #203451;
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+.widget-title {
+  margin: 0;
+  color: #dce7f6;
+  font-size: 0.92rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.widget-body {
+  min-width: 0;
+}
+
+.widget-value {
+  margin: 0;
+  color: #e7eef8;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.widget-subtitle,
+.widget-description {
+  margin: 0;
+  color: #75859c;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.widget-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 26px;
+  padding: 4px 10px;
+  border: 1px solid #3b4a61;
+  border-radius: 999px;
+  color: #aeb9c9;
+  background: #202b3d;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.widget-info {
+  min-height: 152px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-info .widget-body {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.widget-info .widget-subtitle {
+  margin-top: 5px;
+}
+
+.widget-status-card {
+  padding: 18px;
+}
+
+.widget-status-card .widget-body {
+  margin-top: 14px;
+}
+
+.widget-status-card .widget-description {
+  margin-top: 9px;
+}
+
+.widget-chart {
+  min-height: 250px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-chart .widget-body {
+  flex: 1;
+  display: grid;
+  min-height: 160px;
+  margin-top: 18px;
+  place-items: center;
+  border: 1px dashed #34435a;
+  border-radius: 10px;
+}
+
+.widget-section {
+  padding: 24px;
+}
+
+.widget-section > .widget-body {
+  margin-top: 20px;
+}
+
+body.theme-light .widget-icon {
+  color: #386fac;
+  background: #dceafb;
+}
+
+body.theme-light .widget-title,
+body.theme-light .widget-value {
+  color: #27364c;
+}
+
+body.theme-light .widget-subtitle,
+body.theme-light .widget-description {
+  color: #6f7d91;
+}
+
+body.theme-light .widget-status {
+  border-color: #c6d0dd;
+  color: #657286;
+  background: #edf1f6;
+}
+
+body.theme-light .widget-chart .widget-body {
+  border-color: #c7d2e0;
+}
+
+@media (max-width: 520px) {
+  .widget-section {
+    padding: 18px;
+  }
+
+  .widget-chart {
+    min-height: 220px;
+    padding: 18px;
+  }
+}

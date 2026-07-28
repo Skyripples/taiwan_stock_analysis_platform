@@ -3,86 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>台股事件簿</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta name="description" content="台股投資分析平台功能入口" />
+  <title>台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css" />
+  <link rel="stylesheet" href="./widget.css" />
+  <link rel="stylesheet" href="./platform.css" />
+  <link rel="stylesheet" href="./sidebar.css" />
 </head>
-<body>
-  <div class="app">
-    <header class="topbar">
-      <div class="topbar-left">
-        <h1>台股事件簿</h1>
+<body class="has-sidebar">
+  <header class="layout-header">
+    <a class="layout-brand" href="./index.html" aria-label="台股投資分析平台首頁">
+      <span class="layout-logo" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M7 26V17m7 9V10m7 16V14m7 12V7M6 13l8-6 7 3 9-6" /></svg>
+      </span>
+      <span>台股投資分析平台</span>
+    </a>
+    <div class="layout-header-actions">
+      <label for="themeToggleSwitch" class="layout-theme-label">深色模式</label>
+      <label class="layout-theme-switch" for="themeToggleSwitch">
+        <input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="深色模式">
+        <span></span>
+      </label>
+    </div>
+  </header>
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <aside id="platformSidebar" class="sidebar" aria-label="平台導覽">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-icon" aria-hidden="true">台</span>
+      <div>
+        <strong>台股投資</strong>
+        <span>分析平台</span>
       </div>
-
-      <div class="toolbar">
-        <select id="stockSelect" class="stock-select" aria-label="選擇股票">
-          <option value="__ALL__">全部股票</option>
-        </select>
-        <button id="todayBtn" class="btn btn-light">Today</button>
-        <button id="prevBtn" class="btn btn-light">‹</button>
-        <button id="nextBtn" class="btn btn-light">›</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-item is-active" href="./index.html" aria-current="page">
+        <span class="sidebar-item-icon" aria-hidden="true">⌂</span>
+        <span>首頁</span>
+      </a>
+      <a class="sidebar-item" href="./calendar.html">
+        <span class="sidebar-item-icon" aria-hidden="true">▦</span>
+        <span>台股事件簿</span>
+      </a>
+      <div class="sidebar-item is-disabled" aria-disabled="true">
+        <span class="sidebar-item-icon" aria-hidden="true">⌁</span>
+        <span>隔日行情分析</span>
+        <small>規劃中</small>
       </div>
-
-      <div class="topbar-right">
-        <label for="themeToggleSwitch" class="theme-switch-label">深色模式</label>
-        <label class="theme-switch" for="themeToggleSwitch">
-          <input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="深色模式">
-          <span class="theme-switch-slider"></span>
-        </label>
+      <a class="sidebar-item" href="./market-overview.html">
+        <span class="sidebar-item-icon" aria-hidden="true">◎</span>
+        <span>市場總覽</span>
+      </a>
+      <div class="sidebar-item is-disabled" aria-disabled="true">
+        <span class="sidebar-item-icon" aria-hidden="true">≋</span>
+        <span>籌碼分析</span>
+        <small>規劃中</small>
       </div>
-
-      <div class="month-title-wrap">
-        <h2 id="monthTitle" class="month-title"></h2>
-      </div>
+    </nav>
+  </aside>
+  <main class="layout-main" data-page="home">
+   <div class="page-container platform-shell">
+    <header class="page-header">
+      <p class="page-eyebrow">TAIWAN STOCK MARKET</p>
+      <h1 class="page-title">首頁</h1>
+      <p class="page-description">整合市場事件與投資分析工具的功能入口</p>
     </header>
 
-    <section class="legend">
-      <span class="legend-item">
-        <span class="dot dot-dividend"></span> 除權息
-      </span>
-      <span class="legend-item">
-        <span class="dot dot-earnings-call"></span> 法說會
-      </span>
-      <span class="legend-item">
-        <span class="dot dot-shareholder-meeting"></span> 股東會
-      </span>
-      <span class="legend-item">
-        <span class="dot dot-dividend-payment"></span> 股利發放日
-      </span>
-      <span class="legend-item">
-        <span class="dot dot-delisting"></span> 終止掛牌
-      </span>
-    </section>
-
-    <main class="calendar-card">
-      <div class="weekdays">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
+    <div class="page-body">
+     <section class="page-section" aria-labelledby="functionOverviewTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FUNCTIONS</p>
+          <h2 id="functionOverviewTitle">功能總覽</h2>
+        </div>
+        <p>選擇要使用的分析工具</p>
       </div>
-      <div id="calendarGrid" class="calendar-grid"></div>
-    </main>
 
-    <section class="footer-info">
-      <div id="updateInfo">載入中...</div>
-      <div>資料來源：Yahoo（TWSE API、MOPS 暫停）</div>
-    </section>
-  </div>
+      <div class="feature-grid" aria-label="平台功能">
+        <a class="widget feature-card feature-card-available" href="./calendar.html">
+          <span class="feature-icon" aria-hidden="true">▦</span>
+          <span class="status status-available">可使用</span>
+          <h3>台股事件簿</h3>
+          <p>除權息、股東會、法說會等事件月曆</p>
+          <span class="card-action">進入功能 <span aria-hidden="true">→</span></span>
+        </a>
 
-  <div id="eventModal" class="modal hidden">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-panel">
-      <button id="closeModalBtn" class="modal-close" aria-label="關閉">×</button>
-      <div class="modal-header">
-        <h3 id="modalTitle">事件詳情</h3>
+        <article class="widget feature-card feature-card-planned" aria-disabled="true">
+          <span class="feature-icon" aria-hidden="true">⌁</span>
+          <span class="status">規劃中</span>
+          <h3>隔日行情分析</h3>
+          <p>整合籌碼、期貨與國際市場資料</p>
+        </article>
+
+        <a class="widget feature-card feature-card-available" href="./market-overview.html">
+          <span class="feature-icon" aria-hidden="true">◎</span>
+          <span class="status status-available">可使用</span>
+          <h3>市場總覽</h3>
+          <p>市場趨勢與重要指標彙整</p>
+          <span class="card-action">進入功能 <span aria-hidden="true">→</span></span>
+        </a>
+
+        <article class="widget feature-card feature-card-planned" aria-disabled="true">
+          <span class="feature-icon" aria-hidden="true">≋</span>
+          <span class="status">規劃中</span>
+          <h3>籌碼分析</h3>
+          <p>法人與市場籌碼資訊分析</p>
+        </article>
+
+        <article class="widget feature-card feature-card-planned" aria-disabled="true">
+          <span class="feature-icon" aria-hidden="true">↺</span>
+          <span class="status">規劃中</span>
+          <h3>歷史回測</h3>
+          <p>投資策略的歷史表現驗證</p>
+        </article>
+
+        <article class="widget feature-card feature-card-planned" aria-disabled="true">
+          <span class="feature-icon" aria-hidden="true">⌕</span>
+          <span class="status">規劃中</span>
+          <h3>個股分析</h3>
+          <p>個別股票的資訊與指標分析</p>
+        </article>
       </div>
-      <div id="modalBody" class="modal-body"></div>
+     </section>
+
+    <footer class="platform-footer">台股投資分析平台</footer>
     </div>
-  </div>
-
-  <script src="./app.js"></script>
+   </div>
+  </main>
+  <script src="./sidebar.js"></script>
 </body>
 </html>

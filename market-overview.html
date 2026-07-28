@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="快速掌握台股、籌碼與國際市場的重要指標。" />
+  <title>市場總覽｜台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css" />
+  <link rel="stylesheet" href="./widget.css" />
+  <link rel="stylesheet" href="./platform.css" />
+  <link rel="stylesheet" href="./sidebar.css" />
+  <link rel="stylesheet" href="./market-overview.css" />
+</head>
+<body class="has-sidebar">
+  <header class="layout-header">
+    <a class="layout-brand" href="./index.html" aria-label="台股投資分析平台首頁">
+      <span class="layout-logo" aria-hidden="true">
+        <svg viewBox="0 0 36 36"><path d="M7 26V17m7 9V10m7 16V14m7 12V7M6 13l8-6 7 3 9-6" /></svg>
+      </span>
+      <span>台股投資分析平台</span>
+    </a>
+    <div class="layout-header-actions">
+      <label for="themeToggleSwitch" class="layout-theme-label">深色模式</label>
+      <label class="layout-theme-switch" for="themeToggleSwitch">
+        <input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="深色模式">
+        <span></span>
+      </label>
+    </div>
+  </header>
+
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <aside id="platformSidebar" class="sidebar" aria-label="平台導覽">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-icon" aria-hidden="true">台</span>
+      <div>
+        <strong>台股投資</strong>
+        <span>分析平台</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-item" href="./index.html">
+        <span class="sidebar-item-icon" aria-hidden="true">⌂</span>
+        <span>首頁</span>
+      </a>
+      <a class="sidebar-item" href="./calendar.html">
+        <span class="sidebar-item-icon" aria-hidden="true">▦</span>
+        <span>台股事件簿</span>
+      </a>
+      <div class="sidebar-item is-disabled" aria-disabled="true">
+        <span class="sidebar-item-icon" aria-hidden="true">⌁</span>
+        <span>隔日行情分析</span>
+        <small>規劃中</small>
+      </div>
+      <a class="sidebar-item is-active" href="./market-overview.html" aria-current="page">
+        <span class="sidebar-item-icon" aria-hidden="true">◎</span>
+        <span>市場總覽</span>
+      </a>
+      <div class="sidebar-item is-disabled" aria-disabled="true">
+        <span class="sidebar-item-icon" aria-hidden="true">≋</span>
+        <span>籌碼分析</span>
+        <small>規劃中</small>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="layout-main" data-page="market-overview">
+    <div class="page-container">
+      <header class="page-header">
+        <p class="page-eyebrow">MARKET OVERVIEW</p>
+        <h1 class="page-title">市場總覽</h1>
+        <p class="page-description">快速掌握台股、籌碼與國際市場的重要指標。</p>
+      </header>
+
+      <div class="page-body">
+        <section class="page-section" aria-labelledby="marketIndicatorsTitle">
+          <div class="overview-section-heading">
+            <h2 id="marketIndicatorsTitle">市場指標</h2>
+            <p>主要市場資訊彙整</p>
+          </div>
+          <div class="indicator-grid">
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">加</span><h3 class="widget-title">加權指數</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">台股市場指標</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">櫃</span><h3 class="widget-title">櫃買指數</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">櫃買市場指標</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">額</span><h3 class="widget-title">台股成交金額</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">市場成交資訊</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">↕</span><h3 class="widget-title">上漲／下跌家數</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">市場廣度指標</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">外</span><h3 class="widget-title">外資現貨買賣超</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">法人籌碼資訊</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">期</span><h3 class="widget-title">外資台指期未平倉</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">期貨籌碼資訊</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">夜</span><h3 class="widget-title">台指期夜盤</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">盤後市場資訊</p></div>
+            </article>
+            <article class="widget widget-info">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">ADR</span><h3 class="widget-title">台積電 ADR</h3></div></header>
+              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">國際市場指標</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="marketDirectionTitle">
+          <div class="overview-section-heading">
+            <h2 id="marketDirectionTitle">市場方向</h2>
+            <p>市場狀態摘要</p>
+          </div>
+          <div class="widget widget-section direction-widget">
+            <header class="widget-header"><h3 class="widget-title">市場狀態摘要</h3></header>
+            <div class="widget-body direction-grid">
+              <article class="widget-status-card"><h3 class="widget-title">市場方向</h3><div class="widget-body"><span class="widget-status">等待資料</span><p class="widget-description">尚未建立市場方向判斷</p></div></article>
+              <article class="widget-status-card"><h3 class="widget-title">籌碼狀態</h3><div class="widget-body"><span class="widget-status">等待資料</span><p class="widget-description">尚未建立籌碼狀態判斷</p></div></article>
+              <article class="widget-status-card"><h3 class="widget-title">國際盤勢</h3><div class="widget-body"><span class="widget-status">等待資料</span><p class="widget-description">尚未建立國際盤勢判斷</p></div></article>
+              <article class="widget-status-card"><h3 class="widget-title">更新時間</h3><div class="widget-body"><span class="widget-status">尚未更新</span><p class="widget-description">等待資料更新</p></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="marketChartsTitle">
+          <div class="overview-section-heading">
+            <h2 id="marketChartsTitle">趨勢圖表</h2>
+            <p>圖表區域預留</p>
+          </div>
+          <div class="chart-grid">
+            <article class="widget widget-chart">
+              <header class="widget-header"><h3 class="widget-title">加權指數近期走勢</h3></header>
+              <div class="widget-body"><p class="widget-description">圖表尚未建立</p></div>
+            </article>
+            <article class="widget widget-chart">
+              <header class="widget-header"><h3 class="widget-title">外資買賣超近期變化</h3></header>
+              <div class="widget-body"><p class="widget-description">圖表尚未建立</p></div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="./sidebar.js"></script>
+</body>
+</html>
