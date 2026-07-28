@@ -3,7 +3,7 @@
 整合台股事件月曆與市場資訊的投資分析平台，支援響應式版面與深色模式。
 
 ## 網址
-- GitHub Pages: https://skyripples.github.io/taiwan_stock_market_event/
+- GitHub Pages: https://skyripples.github.io/taiwan_stock_analysis_platform/
 
 ## 目前功能
 - 平台首頁與功能入口
