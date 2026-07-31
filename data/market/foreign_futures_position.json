@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-07-31T07:15:14.097612Z",
+  "provider": "TAIFEX",
+  "dataset": "foreign_futures_position",
+  "version": "1.0",
+  "data": {
+    "records": [
+      {
+        "trade_date": "2026-07-31",
+        "metadata": {
+          "market": "TAIFEX",
+          "product_name": "臺股期貨",
+          "product_code": "TXF",
+          "investor_type": "外資",
+          "position_unit": "口",
+          "contract_amount_currency": "TWD",
+          "contract_amount_unit": "千元",
+          "source": "https://www.taifex.com.tw/cht/3/futContractsDate"
+        },
+        "long_position": {
+          "open_interest": 12704,
+          "contract_amount": 111170593
+        },
+        "short_position": {
+          "open_interest": 95219,
+          "contract_amount": 832927612
+        },
+        "net_position": {
+          "open_interest": -82515,
+          "contract_amount": -721757019
+        }
+      }
+    ]
+  }
+}

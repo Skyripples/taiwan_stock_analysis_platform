@@ -1,0 +1,52 @@
+{
+  "updated_at": "2026-07-31T07:15:14.286766Z",
+  "provider": "TWSE",
+  "dataset": "institutional_investors",
+  "version": "1.0",
+  "data": {
+    "records": [
+      {
+        "trade_date": "2026-07-31",
+        "metadata": {
+          "market": "TWSE",
+          "currency": "TWD",
+          "amount_unit": "元",
+          "source": "https://www.twse.com.tw/rwd/zh/fund/BFI82U",
+          "foreign_scope": "外資及陸資（不含外資自營商）"
+        },
+        "foreign_and_mainland_investors": {
+          "buy": 380735807686,
+          "sell": 313181982525,
+          "net": 67553825161
+        },
+        "investment_trust": {
+          "buy": 37281434249,
+          "sell": 3899300639,
+          "net": 33382133610
+        },
+        "dealers": {
+          "buy": 56905356158,
+          "sell": 73164880748,
+          "net": -16259524590,
+          "breakdown": {
+            "proprietary": {
+              "buy": 11575219543,
+              "sell": 5834500922,
+              "net": 5740718621
+            },
+            "hedging": {
+              "buy": 45330136615,
+              "sell": 67330379826,
+              "net": -22000243211
+            }
+          }
+        },
+        "total": {
+          "buy": 474922598093,
+          "sell": 390246163912,
+          "net": 84676434181
+        }
+      }
+    ]
+  }
+}

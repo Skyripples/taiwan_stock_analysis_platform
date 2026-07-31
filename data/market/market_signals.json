@@ -1,0 +1,14 @@
+{
+  "updated_at": "2026-07-31T07:15:53.403574Z",
+  "version": "1.0",
+  "signals": {
+    "foreign_cash_flow": {
+      "value": 67553825161,
+      "status": "bullish"
+    },
+    "foreign_futures_position": {
+      "value": -82515,
+      "status": "bearish"
+    }
+  }
+}

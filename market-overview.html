@@ -116,6 +116,74 @@
           </div>
         </section>
 
+        <section class="page-section" aria-labelledby="institutionalInvestorsTitle">
+          <div class="widget widget-section market-data-widget institutional-widget">
+            <header class="widget-header">
+              <div class="widget-heading">
+                <span class="widget-icon" aria-hidden="true">法</span>
+                <h2 id="institutionalInvestorsTitle" class="widget-title">三大法人買賣超</h2>
+              </div>
+              <span id="institutionalStatus" class="widget-status" aria-live="polite">資料載入中</span>
+            </header>
+            <div class="widget-body">
+              <p id="institutionalMessage" class="widget-description" role="status">正在讀取三大法人資料…</p>
+              <dl id="institutionalValues" class="market-data-grid" hidden>
+                <div>
+                  <dt>外資及陸資</dt>
+                  <dd id="foreignNet" class="market-data-value">--</dd>
+                </div>
+                <div>
+                  <dt>投信</dt>
+                  <dd id="trustNet" class="market-data-value">--</dd>
+                </div>
+                <div>
+                  <dt>自營商</dt>
+                  <dd id="dealerNet" class="market-data-value">--</dd>
+                </div>
+                <div>
+                  <dt>三大法人合計</dt>
+                  <dd id="institutionalTotalNet" class="market-data-value">--</dd>
+                </div>
+              </dl>
+              <p id="institutionalTradeDate" class="market-data-date" hidden></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="foreignFuturesTitle">
+          <div class="widget widget-section market-data-widget futures-widget">
+            <header class="widget-header">
+              <div class="widget-heading">
+                <span class="widget-icon" aria-hidden="true">期</span>
+                <h2 id="foreignFuturesTitle" class="widget-title">外資台指期未平倉</h2>
+              </div>
+              <span id="futuresStatus" class="widget-status" aria-live="polite">資料載入中</span>
+            </header>
+            <div class="widget-body">
+              <p id="futuresMessage" class="widget-description" role="status">正在讀取外資台指期部位…</p>
+              <dl id="futuresValues" class="market-data-grid" hidden>
+                <div>
+                  <dt>多方未平倉</dt>
+                  <dd id="futuresLongPosition" class="market-data-value">--</dd>
+                </div>
+                <div>
+                  <dt>空方未平倉</dt>
+                  <dd id="futuresShortPosition" class="market-data-value">--</dd>
+                </div>
+                <div>
+                  <dt>淨未平倉</dt>
+                  <dd id="futuresNetPosition" class="market-data-value">--</dd>
+                </div>
+                <div>
+                  <dt>淨契約金額</dt>
+                  <dd id="futuresNetAmount" class="market-data-value">--</dd>
+                </div>
+              </dl>
+              <p id="futuresTradeDate" class="market-data-date" hidden></p>
+            </div>
+          </div>
+        </section>
+
         <section class="page-section" aria-labelledby="marketDirectionTitle">
           <div class="overview-section-heading">
             <h2 id="marketDirectionTitle">市場方向</h2>
@@ -153,5 +221,6 @@
   </main>
 
   <script src="./sidebar.js"></script>
+  <script src="./market-overview.js"></script>
 </body>
 </html>
