@@ -2,12 +2,11 @@
 
 整合台股事件月曆與市場資訊的投資分析平台，支援響應式版面與深色模式。
 
-## V2.1 更新
-- 建立 Market Data Schema 與 Provider Registry
-- 串接 TWSE 三大法人每日買賣超
-- 串接 TAIFEX 外資臺股期貨未平倉部位
-- 市場總覽新增三大法人買賣超與外資台指期未平倉 Widget
-- 建立 Market Analysis Engine，統一產生外資現貨與期貨方向訊號
+## 最新版本：V2.2
+- Market Analysis Engine 新增可擴充的 Market Score 系統
+- 每個市場訊號提供 `value`、`status` 與統一規則產生的 `score`
+- 自動加總所有訊號，換算市場分數百分比與五段市場狀態
+- 維持既有市場訊號 JSON 結構相容
 
 ## 網址
 - GitHub Pages: https://skyripples.github.io/taiwan_stock_analysis_platform/
@@ -99,6 +98,8 @@ data/market/foreign_futures_position.json
 Provider 負責取得並正規化市場資料，Analysis 負責讀取多個 Provider JSON 並產生統一市場訊號。Dashboard 未來只需讀取 Analysis 輸出，不需要各自解析不同來源格式。
 
 目前 `MarketSignalEngine` 讀取三大法人買賣超與外資臺股期貨部位，依外資現貨買賣超及期貨淨未平倉口數的正、負、零，分別產生 `bullish`、`bearish`、`neutral` 狀態；這些規則只描述目前資料方向，不是行情預測。
+
+每個 signal 同時依集中管理的規則取得分數：`bullish` 為 `+1`、`neutral` 為 `0`、`bearish` 為 `-1`。Engine 會加總所有 signal，將 `-max_score～+max_score` 換算為 `0～100%` 的 Market Score，並標示 `Strong Bullish`、`Bullish`、`Neutral`、`Bearish` 或 `Strong Bearish`。既有的 `value` 與 `status` 欄位維持不變。
 
 ```text
 scripts/

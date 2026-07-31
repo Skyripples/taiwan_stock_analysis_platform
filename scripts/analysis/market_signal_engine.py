@@ -13,6 +13,11 @@ class MarketSignalEngine(BaseAnalysis):
     """Analyze foreign cash flow and foreign futures positioning."""
 
     analysis_name = "market_signal_engine"
+    SCORE_BY_STATUS = {
+        "bullish": 1,
+        "neutral": 0,
+        "bearish": -1,
+    }
 
     def __init__(self, market_data_dir: Path) -> None:
         self.market_data_dir = market_data_dir
@@ -59,15 +64,73 @@ class MarketSignalEngine(BaseAnalysis):
         )
 
         return {
-            "foreign_cash_flow": {
-                "value": foreign_cash_flow,
-                "status": self._direction(foreign_cash_flow),
-            },
-            "foreign_futures_position": {
-                "value": foreign_futures_position,
-                "status": self._direction(foreign_futures_position),
-            },
+            "foreign_cash_flow": self._build_signal(foreign_cash_flow),
+            "foreign_futures_position": self._build_signal(foreign_futures_position),
         }
+
+    def export(
+        self,
+        analysis_result: AnalysisResult,
+        *,
+        updated_at: str | None = None,
+    ) -> AnalysisResult:
+        """Export existing signals together with their aggregate Market Score."""
+
+        payload = super().export(analysis_result, updated_at=updated_at)
+        payload["market_score"] = self._calculate_market_score(analysis_result)
+        return payload
+
+    def _build_signal(self, value: int) -> Dict[str, Any]:
+        status = self._direction(value)
+        return {
+            "value": value,
+            "status": status,
+            "score": self.SCORE_BY_STATUS[status],
+        }
+
+    def _calculate_market_score(self, signals: AnalysisResult) -> Dict[str, Any]:
+        scores = [self._signal_score(signal) for signal in signals.values()]
+        maximum_per_signal = max(abs(score) for score in self.SCORE_BY_STATUS.values())
+        max_score = len(scores) * maximum_per_signal
+        score = sum(scores)
+        percentage = self._score_percentage(score, max_score)
+
+        return {
+            "score": score,
+            "max_score": max_score,
+            "percentage": percentage,
+            "status": self._market_status(percentage),
+        }
+
+    def _signal_score(self, signal: Any) -> int:
+        if not isinstance(signal, dict):
+            raise ValueError("Each market signal must be an object")
+
+        status = signal.get("status")
+        score = signal.get("score")
+        if status not in self.SCORE_BY_STATUS or score != self.SCORE_BY_STATUS[status]:
+            raise ValueError(f"Invalid score for market signal status: {status}")
+        return score
+
+    @staticmethod
+    def _score_percentage(score: int, max_score: int) -> int | float:
+        if max_score <= 0:
+            return 50
+
+        percentage = round(((score + max_score) / (2 * max_score)) * 100, 2)
+        return int(percentage) if percentage.is_integer() else percentage
+
+    @staticmethod
+    def _market_status(percentage: int | float) -> str:
+        if percentage >= 70:
+            return "Strong Bullish"
+        if percentage > 50:
+            return "Bullish"
+        if percentage == 50:
+            return "Neutral"
+        if percentage <= 30:
+            return "Strong Bearish"
+        return "Bearish"
 
     @staticmethod
     def _latest_record(payload: Any, source_name: str) -> Dict[str, Any]:

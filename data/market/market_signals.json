@@ -1,14 +1,22 @@
 {
-  "updated_at": "2026-07-31T07:15:53.403574Z",
+  "updated_at": "2026-07-31T07:31:42.957788Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
       "value": 67553825161,
-      "status": "bullish"
+      "status": "bullish",
+      "score": 1
     },
     "foreign_futures_position": {
       "value": -82515,
-      "status": "bearish"
+      "status": "bearish",
+      "score": -1
     }
+  },
+  "market_score": {
+    "score": 0,
+    "max_score": 2,
+    "percentage": 50,
+    "status": "Neutral"
   }
 }
