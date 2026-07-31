@@ -121,6 +121,179 @@
   font-size: 0.78rem;
 }
 
+.market-score-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.market-score-summary > div {
+  min-width: 0;
+}
+
+.market-score-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #8494aa;
+  font-size: 0.78rem;
+}
+
+.market-score-percentage {
+  display: block;
+  color: #aeb9c9;
+  font-size: clamp(2.4rem, 7vw, 4.4rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.market-score-state {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.market-score-status {
+  color: #aeb9c9;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 750;
+}
+
+.market-score-status-zh {
+  margin-top: 5px;
+  color: #8494aa;
+  font-size: 0.82rem;
+}
+
+.market-score-raw {
+  text-align: right;
+}
+
+.market-score-raw strong {
+  color: #dce7f6;
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-score-summary[data-tone="positive"] .market-score-percentage,
+.market-score-summary[data-tone="positive"] .market-score-status {
+  color: #f87171;
+}
+
+.market-score-summary[data-tone="negative"] .market-score-percentage,
+.market-score-summary[data-tone="negative"] .market-score-status {
+  color: #34d399;
+}
+
+.market-score-bar {
+  --score-percentage: 0%;
+  position: relative;
+  height: 12px;
+  margin-top: 24px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #202b3d;
+}
+
+.market-score-fill {
+  display: block;
+  width: var(--score-percentage);
+  height: 100%;
+  border-radius: inherit;
+  background: #8494aa;
+  transition: width 300ms ease;
+}
+
+.market-score-bar[data-tone="positive"] .market-score-fill {
+  background: #f87171;
+}
+
+.market-score-bar[data-tone="negative"] .market-score-fill {
+  background: #34d399;
+}
+
+.market-score-baseline {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: 50%;
+  width: 2px;
+  background: #e7eef8;
+  transform: translateX(-1px);
+}
+
+.market-score-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  color: #75859c;
+  font-size: 0.7rem;
+}
+
+.market-score-factors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.market-score-factor {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--market-data-divider);
+  border-radius: 10px;
+  background: rgba(13, 22, 37, 0.35);
+}
+
+.market-score-factor h3 {
+  margin: 0 0 14px;
+  color: #dce7f6;
+  font-size: 0.9rem;
+}
+
+.market-score-factor dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.market-score-factor dl > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 16px;
+}
+
+.market-score-factor dt {
+  color: #8494aa;
+  font-size: 0.76rem;
+}
+
+.market-score-factor dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #aeb9c9;
+  font-size: 0.86rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.market-score-factor dd.is-positive {
+  color: #f87171;
+}
+
+.market-score-factor dd.is-negative {
+  color: #34d399;
+}
+
+.market-score-factor dd.is-missing {
+  color: #fca5a5;
+}
+
 .market-data-widget[data-state="success"] .widget-status {
   border-color: rgba(69, 204, 141, 0.35);
   color: #72d9aa;
@@ -159,6 +332,48 @@ body.theme-light .market-data-grid dt {
   color: #6f7d91;
 }
 
+body.theme-light .market-score-label,
+body.theme-light .market-score-status-zh,
+body.theme-light .market-score-scale,
+body.theme-light .market-score-factor dt {
+  color: #6f7d91;
+}
+
+body.theme-light .market-score-percentage,
+body.theme-light .market-score-status,
+body.theme-light .market-score-factor dd {
+  color: #526176;
+}
+
+body.theme-light .market-score-raw strong,
+body.theme-light .market-score-factor h3 {
+  color: #27364c;
+}
+
+body.theme-light .market-score-summary[data-tone="positive"] .market-score-percentage,
+body.theme-light .market-score-summary[data-tone="positive"] .market-score-status,
+body.theme-light .market-score-factor dd.is-positive {
+  color: #c62828;
+}
+
+body.theme-light .market-score-summary[data-tone="negative"] .market-score-percentage,
+body.theme-light .market-score-summary[data-tone="negative"] .market-score-status,
+body.theme-light .market-score-factor dd.is-negative {
+  color: #16804a;
+}
+
+body.theme-light .market-score-bar {
+  background: #e1e7ef;
+}
+
+body.theme-light .market-score-baseline {
+  background: #27364c;
+}
+
+body.theme-light .market-score-factor {
+  background: rgba(231, 237, 245, 0.65);
+}
+
 @media (max-width: 1100px) {
   .indicator-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -194,6 +409,20 @@ body.theme-light .market-data-grid dt {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .market-score-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .market-score-state {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .market-score-raw {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
   .market-data-grid > div:first-child {
     padding-left: 20px;
   }
@@ -221,8 +450,27 @@ body.theme-light .market-data-grid dt {
 
   .indicator-grid,
   .direction-grid,
-  .market-data-grid {
+  .market-data-grid,
+  .market-score-factors {
     grid-template-columns: 1fr;
+  }
+
+  .market-score-summary {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .market-score-state {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .market-score-raw {
+    grid-column: auto;
+  }
+
+  .market-score-factor dl > div {
+    align-items: flex-start;
   }
 
   .direction-grid > .widget-status-card,

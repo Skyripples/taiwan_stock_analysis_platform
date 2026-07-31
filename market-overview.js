@@ -9,6 +9,16 @@
   const futuresMessage = document.getElementById("futuresMessage");
   const futuresValues = document.getElementById("futuresValues");
   const futuresTradeDate = document.getElementById("futuresTradeDate");
+  const marketScoreWidget = document.querySelector(".market-score-widget");
+  const marketScoreLoadStatus = document.getElementById("marketScoreLoadStatus");
+  const marketScoreMessage = document.getElementById("marketScoreMessage");
+  const marketScoreContent = document.getElementById("marketScoreContent");
+  const marketScoreSummary = document.getElementById("marketScoreSummary");
+  const marketScorePercentage = document.getElementById("marketScorePercentage");
+  const marketScoreStatus = document.getElementById("marketScoreStatus");
+  const marketScoreStatusZh = document.getElementById("marketScoreStatusZh");
+  const marketScoreRaw = document.getElementById("marketScoreRaw");
+  const marketScoreBar = document.getElementById("marketScoreBar");
 
   if (
     !widget || !status || !message || !values || !tradeDate ||
@@ -27,6 +37,18 @@
     net: document.getElementById("futuresNetPosition"),
     netAmount: document.getElementById("futuresNetAmount"),
   };
+  const signalTargets = {
+    foreignCashFlow: {
+      value: document.getElementById("cashFlowSignalValue"),
+      status: document.getElementById("cashFlowSignalStatus"),
+      score: document.getElementById("cashFlowSignalScore"),
+    },
+    foreignFuturesPosition: {
+      value: document.getElementById("futuresSignalValue"),
+      status: document.getElementById("futuresSignalStatus"),
+      score: document.getElementById("futuresSignalScore"),
+    },
+  };
   const integerFormatter = new Intl.NumberFormat("zh-TW", {
     maximumFractionDigits: 0,
   });
@@ -34,8 +56,24 @@
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+  const percentageFormatter = new Intl.NumberFormat("zh-TW", {
+    maximumFractionDigits: 2,
+  });
 
   class MissingDataError extends Error {}
+
+  const MARKET_STATUS = {
+    "Strong Bullish": { label: "強勢偏多", tone: "positive" },
+    Bullish: { label: "偏多", tone: "positive" },
+    Neutral: { label: "中性", tone: "neutral" },
+    Bearish: { label: "偏空", tone: "negative" },
+    "Strong Bearish": { label: "強勢偏空", tone: "negative" },
+  };
+  const SIGNAL_STATUS = {
+    bullish: { label: "偏多", tone: "positive" },
+    neutral: { label: "中性", tone: "neutral" },
+    bearish: { label: "偏空", tone: "negative" },
+  };
 
   function requireInteger(value, fieldName) {
     if (!Number.isSafeInteger(value)) {
@@ -77,6 +115,143 @@
     target.textContent = text;
     target.classList.remove("is-positive", "is-negative", "is-neutral");
     target.classList.add(valueClass(classificationValue));
+  }
+
+  function formatSignedInteger(value) {
+    const sign = value > 0 ? "+" : "";
+    return `${sign}${integerFormatter.format(value)}`;
+  }
+
+  function readMarketScore(payload) {
+    const score = payload?.market_score;
+    if (!score || typeof score !== "object") {
+      throw new MissingDataError("缺少 market_score");
+    }
+
+    const rawScore = requireInteger(score.score, "市場原始分數");
+    const maxScore = requireInteger(score.max_score, "市場最高分數");
+    if (
+      maxScore <= 0 || Math.abs(rawScore) > maxScore ||
+      typeof score.percentage !== "number" || !Number.isFinite(score.percentage) ||
+      score.percentage < 0 || score.percentage > 100 ||
+      !Object.hasOwn(MARKET_STATUS, score.status)
+    ) {
+      throw new MissingDataError("市場評分欄位格式不完整");
+    }
+
+    return {
+      score: rawScore,
+      maxScore,
+      percentage: score.percentage,
+      status: score.status,
+    };
+  }
+
+  function readSignal(signal) {
+    if (!signal || typeof signal !== "object") {
+      throw new MissingDataError("缺少市場訊號");
+    }
+
+    const value = requireInteger(signal.value, "訊號數值");
+    const score = requireInteger(signal.score, "訊號分數");
+    if (!Object.hasOwn(SIGNAL_STATUS, signal.status)) {
+      throw new MissingDataError("缺少訊號狀態");
+    }
+    return { value, status: signal.status, score };
+  }
+
+  function renderSignal(targets, signal, valueFormatter) {
+    if (!targets.value || !targets.status || !targets.score) {
+      throw new MissingDataError("缺少訊號顯示元件");
+    }
+
+    const statusInfo = SIGNAL_STATUS[signal.status];
+    targets.value.textContent = valueFormatter(signal.value);
+    targets.status.textContent = `${signal.status}（${statusInfo.label}）`;
+    targets.score.textContent = formatSignedInteger(signal.score);
+    [targets.value, targets.status, targets.score].forEach((target) => {
+      target.classList.remove("is-positive", "is-negative", "is-neutral", "is-missing");
+      target.classList.add(`is-${statusInfo.tone}`);
+    });
+  }
+
+  function renderMissingSignal(targets) {
+    if (!targets.value || !targets.status || !targets.score) return;
+    targets.value.textContent = "--";
+    targets.status.textContent = "資料缺漏";
+    targets.score.textContent = "--";
+    [targets.value, targets.status, targets.score].forEach((target) => {
+      target.classList.remove("is-positive", "is-negative", "is-neutral");
+      target.classList.add("is-missing");
+    });
+  }
+
+  function renderSignalSafely(signal, targets, valueFormatter) {
+    try {
+      renderSignal(targets, readSignal(signal), valueFormatter);
+    } catch (error) {
+      renderMissingSignal(targets);
+    }
+  }
+
+  function showMarketScoreError(statusText, messageText) {
+    marketScoreWidget.dataset.state = "error";
+    marketScoreLoadStatus.textContent = statusText;
+    marketScoreMessage.textContent = messageText;
+    marketScoreMessage.hidden = false;
+    marketScoreContent.hidden = true;
+  }
+
+  async function loadMarketScore() {
+    if (
+      !marketScoreWidget || !marketScoreLoadStatus || !marketScoreMessage ||
+      !marketScoreContent || !marketScoreSummary || !marketScorePercentage ||
+      !marketScoreStatus || !marketScoreStatusZh || !marketScoreRaw || !marketScoreBar
+    ) return;
+
+    try {
+      const response = await fetch("./data/market/market_signals.json", {
+        cache: "no-store",
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const score = readMarketScore(payload);
+      const statusInfo = MARKET_STATUS[score.status];
+
+      marketScorePercentage.textContent = `${percentageFormatter.format(score.percentage)}%`;
+      marketScoreStatus.textContent = score.status;
+      marketScoreStatusZh.textContent = statusInfo.label;
+      marketScoreRaw.textContent = `${formatSignedInteger(score.score)} / ${integerFormatter.format(score.maxScore)}`;
+      marketScoreBar.style.setProperty("--score-percentage", `${score.percentage}%`);
+      marketScoreBar.setAttribute("aria-valuenow", String(score.percentage));
+      marketScoreSummary.dataset.tone = statusInfo.tone;
+      marketScoreBar.dataset.tone = statusInfo.tone;
+
+      renderSignalSafely(
+        payload?.signals?.foreign_cash_flow,
+        signalTargets.foreignCashFlow,
+        formatBillions,
+      );
+      renderSignalSafely(
+        payload?.signals?.foreign_futures_position,
+        signalTargets.foreignFuturesPosition,
+        (value) => formatContracts(value, true),
+      );
+
+      marketScoreWidget.dataset.state = "success";
+      marketScoreLoadStatus.textContent = "資料已載入";
+      marketScoreMessage.hidden = true;
+      marketScoreContent.hidden = false;
+    } catch (error) {
+      if (error instanceof MissingDataError) {
+        showMarketScoreError("資料缺漏", "市場評分資料格式不完整，請稍後再試。");
+      } else {
+        showMarketScoreError("讀取失敗", "目前無法讀取市場評分資料，請稍後再試。");
+      }
+    }
   }
 
   function readRecord(payload) {
@@ -215,4 +390,5 @@
 
   loadInstitutionalInvestors();
   loadForeignFuturesPosition();
+  loadMarketScore();
 })();

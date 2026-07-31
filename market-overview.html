@@ -116,6 +116,72 @@
           </div>
         </section>
 
+        <section class="page-section" aria-labelledby="marketScoreTitle">
+          <div class="widget widget-section market-data-widget market-score-widget">
+            <header class="widget-header">
+              <div class="widget-heading">
+                <span class="widget-icon" aria-hidden="true">分</span>
+                <h2 id="marketScoreTitle" class="widget-title">市場綜合評分</h2>
+              </div>
+              <span id="marketScoreLoadStatus" class="widget-status" aria-live="polite">載入中</span>
+            </header>
+            <div class="widget-body">
+              <p id="marketScoreMessage" class="widget-description" role="status">正在讀取市場評分資料…</p>
+              <div id="marketScoreContent" hidden>
+                <div id="marketScoreSummary" class="market-score-summary">
+                  <div>
+                    <span class="market-score-label">市場評分</span>
+                    <strong id="marketScorePercentage" class="market-score-percentage">--%</strong>
+                  </div>
+                  <div class="market-score-state">
+                    <span id="marketScoreStatus" class="market-score-status">--</span>
+                    <span id="marketScoreStatusZh" class="market-score-status-zh">--</span>
+                  </div>
+                  <div class="market-score-raw">
+                    <span class="market-score-label">原始分數</span>
+                    <strong id="marketScoreRaw">-- / --</strong>
+                  </div>
+                </div>
+
+                <div
+                  id="marketScoreBar"
+                  class="market-score-bar"
+                  role="progressbar"
+                  aria-label="市場綜合評分"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0"
+                >
+                  <span class="market-score-fill"></span>
+                  <span class="market-score-baseline" aria-hidden="true"></span>
+                </div>
+                <div class="market-score-scale" aria-hidden="true">
+                  <span>0%</span><span>50% 中性</span><span>100%</span>
+                </div>
+
+                <div class="market-score-factors" aria-label="市場評分因子明細">
+                  <article class="market-score-factor">
+                    <h3>外資現貨</h3>
+                    <dl>
+                      <div><dt>數值</dt><dd id="cashFlowSignalValue">--</dd></div>
+                      <div><dt>狀態</dt><dd id="cashFlowSignalStatus">--</dd></div>
+                      <div><dt>分數</dt><dd id="cashFlowSignalScore">--</dd></div>
+                    </dl>
+                  </article>
+                  <article class="market-score-factor">
+                    <h3>外資期貨</h3>
+                    <dl>
+                      <div><dt>數值</dt><dd id="futuresSignalValue">--</dd></div>
+                      <div><dt>狀態</dt><dd id="futuresSignalStatus">--</dd></div>
+                      <div><dt>分數</dt><dd id="futuresSignalScore">--</dd></div>
+                    </dl>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="page-section" aria-labelledby="institutionalInvestorsTitle">
           <div class="widget widget-section market-data-widget institutional-widget">
             <header class="widget-header">
