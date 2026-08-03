@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-31T07:31:42.957788Z",
+  "updated_at": "2026-08-03T01:22:01.316164Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
@@ -11,12 +11,17 @@
       "value": -82515,
       "status": "bearish",
       "score": -1
+    },
+    "night_futures": {
+      "value": -1077,
+      "status": "bearish",
+      "score": -1
     }
   },
   "market_score": {
-    "score": 0,
-    "max_score": 2,
-    "percentage": 50,
-    "status": "Neutral"
+    "score": -1,
+    "max_score": 3,
+    "percentage": 33.33,
+    "status": "Bearish"
   }
 }

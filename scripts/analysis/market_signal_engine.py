@@ -24,6 +24,7 @@ class MarketSignalEngine(BaseAnalysis):
         self.source_files = {
             "institutional_investors": market_data_dir / "institutional_investors.json",
             "foreign_futures_position": market_data_dir / "foreign_futures_position.json",
+            "night_futures": market_data_dir / "night_futures.json",
         }
 
     def load(self) -> Dict[str, Any]:
@@ -51,6 +52,10 @@ class MarketSignalEngine(BaseAnalysis):
             source_data.get("foreign_futures_position"),
             "foreign_futures_position",
         )
+        night_futures_record = self._latest_record(
+            source_data.get("night_futures"),
+            "night_futures",
+        )
 
         foreign_cash_flow = self._require_integer(
             cash_record,
@@ -62,10 +67,16 @@ class MarketSignalEngine(BaseAnalysis):
             ("net_position", "open_interest"),
             "foreign_futures_position",
         )
+        night_futures_change = self._require_number(
+            night_futures_record,
+            ("change",),
+            "night_futures",
+        )
 
         return {
             "foreign_cash_flow": self._build_signal(foreign_cash_flow),
             "foreign_futures_position": self._build_signal(foreign_futures_position),
+            "night_futures": self._build_signal(night_futures_change),
         }
 
     def export(
@@ -80,7 +91,7 @@ class MarketSignalEngine(BaseAnalysis):
         payload["market_score"] = self._calculate_market_score(analysis_result)
         return payload
 
-    def _build_signal(self, value: int) -> Dict[str, Any]:
+    def _build_signal(self, value: int | float) -> Dict[str, Any]:
         status = self._direction(value)
         return {
             "value": value,
@@ -162,7 +173,25 @@ class MarketSignalEngine(BaseAnalysis):
         return value
 
     @staticmethod
-    def _direction(value: int) -> str:
+    def _require_number(
+        record: Dict[str, Any],
+        field_path: tuple[str, ...],
+        source_name: str,
+    ) -> int | float:
+        value: Any = record
+        for field in field_path:
+            if not isinstance(value, dict) or field not in value:
+                dotted_path = ".".join(field_path)
+                raise ValueError(f"Missing {dotted_path} in {source_name}")
+            value = value[field]
+
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            dotted_path = ".".join(field_path)
+            raise ValueError(f"{dotted_path} in {source_name} must be a number")
+        return value
+
+    @staticmethod
+    def _direction(value: int | float) -> str:
         if value > 0:
             return "bullish"
         if value < 0:

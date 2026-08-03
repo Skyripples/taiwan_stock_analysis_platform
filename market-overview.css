@@ -233,9 +233,47 @@
 
 .market-score-factors {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 24px;
+}
+
+.night-market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.night-market-grid > div {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--market-data-divider);
+  border-radius: 10px;
+  background: rgba(13, 22, 37, 0.35);
+}
+
+.night-market-grid dt {
+  margin-bottom: 8px;
+  color: #8494aa;
+  font-size: 0.76rem;
+}
+
+.night-market-grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #aeb9c9;
+  font-size: 1rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.night-market-grid dd.is-positive {
+  color: #f87171;
+}
+
+.night-market-grid dd.is-negative {
+  color: #34d399;
 }
 
 .market-score-factor {
@@ -374,6 +412,23 @@ body.theme-light .market-score-factor {
   background: rgba(231, 237, 245, 0.65);
 }
 
+body.theme-light .night-market-grid > div {
+  background: rgba(231, 237, 245, 0.65);
+}
+
+body.theme-light .night-market-grid dt,
+body.theme-light .night-market-grid dd.is-neutral {
+  color: #6f7d91;
+}
+
+body.theme-light .night-market-grid dd.is-positive {
+  color: #c62828;
+}
+
+body.theme-light .night-market-grid dd.is-negative {
+  color: #16804a;
+}
+
 @media (max-width: 1100px) {
   .indicator-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -411,6 +466,11 @@ body.theme-light .market-score-factor {
 
   .market-score-summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .market-score-factors,
+  .night-market-grid {
+    grid-template-columns: 1fr;
   }
 
   .market-score-state {

@@ -19,6 +19,11 @@
   const marketScoreStatusZh = document.getElementById("marketScoreStatusZh");
   const marketScoreRaw = document.getElementById("marketScoreRaw");
   const marketScoreBar = document.getElementById("marketScoreBar");
+  const nightMarketWidget = document.querySelector(".night-market-widget");
+  const nightMarketStatus = document.getElementById("nightMarketStatus");
+  const nightMarketMessage = document.getElementById("nightMarketMessage");
+  const nightMarketValues = document.getElementById("nightMarketValues");
+  const nightMarketTradeDate = document.getElementById("nightMarketTradeDate");
 
   if (
     !widget || !status || !message || !values || !tradeDate ||
@@ -48,6 +53,19 @@
       status: document.getElementById("futuresSignalStatus"),
       score: document.getElementById("futuresSignalScore"),
     },
+    nightFutures: {
+      value: document.getElementById("nightFuturesSignalValue"),
+      status: document.getElementById("nightFuturesSignalStatus"),
+      score: document.getElementById("nightFuturesSignalScore"),
+    },
+  };
+  const nightMarketTargets = {
+    close: document.getElementById("nightMarketClose"),
+    change: document.getElementById("nightMarketChange"),
+    changePercent: document.getElementById("nightMarketChangePercent"),
+    volume: document.getElementById("nightMarketVolume"),
+    signalStatus: document.getElementById("nightMarketSignalStatus"),
+    signalScore: document.getElementById("nightMarketSignalScore"),
   };
   const integerFormatter = new Intl.NumberFormat("zh-TW", {
     maximumFractionDigits: 0,
@@ -120,6 +138,16 @@
   function formatSignedInteger(value) {
     const sign = value > 0 ? "+" : "";
     return `${sign}${integerFormatter.format(value)}`;
+  }
+
+  function formatPoints(value, showPositiveSign = false) {
+    const sign = showPositiveSign && value > 0 ? "+" : "";
+    return `${sign}${integerFormatter.format(value)} 點`;
+  }
+
+  function formatPercent(value) {
+    const sign = value > 0 ? "+" : "";
+    return `${sign}${decimalFormatter.format(value)}%`;
   }
 
   function readMarketScore(payload) {
@@ -240,6 +268,11 @@
         signalTargets.foreignFuturesPosition,
         (value) => formatContracts(value, true),
       );
+      renderSignalSafely(
+        payload?.signals?.night_futures,
+        signalTargets.nightFutures,
+        (value) => formatPoints(value, true),
+      );
 
       marketScoreWidget.dataset.state = "success";
       marketScoreLoadStatus.textContent = "資料已載入";
@@ -250,6 +283,114 @@
         showMarketScoreError("資料缺漏", "市場評分資料格式不完整，請稍後再試。");
       } else {
         showMarketScoreError("讀取失敗", "目前無法讀取市場評分資料，請稍後再試。");
+      }
+    }
+  }
+
+  function readNightMarketRecord(payload) {
+    const record = payload?.data?.records?.[0];
+    if (!record || typeof record !== "object") {
+      throw new MissingDataError("缺少台指期夜盤資料紀錄");
+    }
+    if (typeof record.trade_date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(record.trade_date)) {
+      throw new MissingDataError("缺少夜盤交易日期");
+    }
+
+    const metadata = record.metadata;
+    if (
+      !metadata || metadata.product_code !== "TX" || metadata.session !== "after_hours" ||
+      typeof metadata.product_name !== "string" ||
+      typeof metadata.contract_month !== "string" || !/^\d{6}$/.test(metadata.contract_month) ||
+      metadata.price_unit !== "point"
+    ) {
+      throw new MissingDataError("缺少夜盤商品或契約資訊");
+    }
+
+    const requireNumber = (value, fieldName) => {
+      if (typeof value !== "number" || !Number.isFinite(value)) {
+        throw new MissingDataError(`缺少 ${fieldName}`);
+      }
+      return value;
+    };
+
+    return {
+      date: record.trade_date,
+      productName: metadata.product_name,
+      contractMonth: metadata.contract_month,
+      close: requireNumber(record.close, "夜盤收盤價"),
+      change: requireNumber(record.change, "夜盤漲跌點數"),
+      changePercent: requireNumber(record.change_percent, "夜盤漲跌幅"),
+      volume: requireInteger(record.volume, "夜盤成交量"),
+    };
+  }
+
+  function renderNightMarketValue(target, text, classificationValue = 0) {
+    if (!target) throw new MissingDataError("缺少夜盤數值顯示元件");
+    target.textContent = text;
+    target.classList.remove("is-positive", "is-negative", "is-neutral");
+    target.classList.add(valueClass(classificationValue));
+  }
+
+  function showNightMarketError(statusText, messageText) {
+    if (!nightMarketWidget || !nightMarketStatus || !nightMarketMessage || !nightMarketValues || !nightMarketTradeDate) return;
+    nightMarketWidget.dataset.state = "error";
+    nightMarketStatus.textContent = statusText;
+    nightMarketMessage.textContent = messageText;
+    nightMarketMessage.hidden = false;
+    nightMarketValues.hidden = true;
+    nightMarketTradeDate.hidden = true;
+  }
+
+  async function loadNightFutures() {
+    if (
+      !nightMarketWidget || !nightMarketStatus || !nightMarketMessage ||
+      !nightMarketValues || !nightMarketTradeDate
+    ) return;
+
+    try {
+      const [marketResponse, signalsResponse] = await Promise.all([
+        fetch("./data/market/night_futures.json", { cache: "no-store" }),
+        fetch("./data/market/market_signals.json", { cache: "no-store" }),
+      ]);
+      if (!marketResponse.ok || !signalsResponse.ok) {
+        throw new Error(`HTTP ${marketResponse.status}/${signalsResponse.status}`);
+      }
+
+      const [marketPayload, signalsPayload] = await Promise.all([
+        marketResponse.json(),
+        signalsResponse.json(),
+      ]);
+      const record = readNightMarketRecord(marketPayload);
+      const signal = readSignal(signalsPayload?.signals?.night_futures);
+      const signalInfo = SIGNAL_STATUS[signal.status];
+
+      renderNightMarketValue(nightMarketTargets.close, formatPoints(record.close));
+      renderNightMarketValue(nightMarketTargets.change, formatPoints(record.change, true), record.change);
+      renderNightMarketValue(nightMarketTargets.changePercent, formatPercent(record.changePercent), record.changePercent);
+      renderNightMarketValue(nightMarketTargets.volume, `${integerFormatter.format(record.volume)} 口`);
+      renderNightMarketValue(
+        nightMarketTargets.signalStatus,
+        `${signal.status}（${signalInfo.label}）`,
+        signal.score,
+      );
+      renderNightMarketValue(
+        nightMarketTargets.signalScore,
+        formatSignedInteger(signal.score),
+        signal.score,
+      );
+
+      nightMarketMessage.textContent = `${record.productName}（TX）｜契約月份：${record.contractMonth}`;
+      nightMarketTradeDate.textContent = `交易日期：${record.date}`;
+      nightMarketWidget.dataset.state = "success";
+      nightMarketStatus.textContent = "資料已載入";
+      nightMarketMessage.hidden = false;
+      nightMarketValues.hidden = false;
+      nightMarketTradeDate.hidden = false;
+    } catch (error) {
+      if (error instanceof MissingDataError) {
+        showNightMarketError("資料缺漏", "台指期夜盤資料格式不完整，請稍後再試。");
+      } else {
+        showNightMarketError("讀取失敗", "目前無法讀取台指期夜盤資料，請稍後再試。");
       }
     }
   }
@@ -391,4 +532,5 @@
   loadInstitutionalInvestors();
   loadForeignFuturesPosition();
   loadMarketScore();
+  loadNightFutures();
 })();

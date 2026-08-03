@@ -176,6 +176,14 @@
                       <div><dt>分數</dt><dd id="futuresSignalScore">--</dd></div>
                     </dl>
                   </article>
+                  <article class="market-score-factor">
+                    <h3>台指期夜盤</h3>
+                    <dl>
+                      <div><dt>數值</dt><dd id="nightFuturesSignalValue">--</dd></div>
+                      <div><dt>狀態</dt><dd id="nightFuturesSignalStatus">--</dd></div>
+                      <div><dt>分數</dt><dd id="nightFuturesSignalScore">--</dd></div>
+                    </dl>
+                  </article>
                 </div>
               </div>
             </div>
@@ -246,6 +254,30 @@
                 </div>
               </dl>
               <p id="futuresTradeDate" class="market-data-date" hidden></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="nightFuturesTitle">
+          <div class="widget widget-section market-data-widget night-market-widget">
+            <header class="widget-header">
+              <div class="widget-heading">
+                <span class="widget-icon" aria-hidden="true">夜</span>
+                <h2 id="nightFuturesTitle" class="widget-title">台指期夜盤</h2>
+              </div>
+              <span id="nightMarketStatus" class="widget-status" aria-live="polite">載入中</span>
+            </header>
+            <div class="widget-body">
+              <p id="nightMarketMessage" class="widget-description" role="status">正在讀取台指期夜盤資料…</p>
+              <dl id="nightMarketValues" class="night-market-grid" hidden>
+                <div><dt>夜盤收盤價</dt><dd id="nightMarketClose">--</dd></div>
+                <div><dt>漲跌點數</dt><dd id="nightMarketChange">--</dd></div>
+                <div><dt>漲跌幅</dt><dd id="nightMarketChangePercent">--</dd></div>
+                <div><dt>成交量</dt><dd id="nightMarketVolume">--</dd></div>
+                <div><dt>訊號狀態</dt><dd id="nightMarketSignalStatus">--</dd></div>
+                <div><dt>訊號分數</dt><dd id="nightMarketSignalScore">--</dd></div>
+              </dl>
+              <p id="nightMarketTradeDate" class="market-data-date" hidden></p>
             </div>
           </div>
         </section>

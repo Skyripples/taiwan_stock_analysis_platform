@@ -18,17 +18,21 @@ class ProviderRegistry:
         self._discovered = False
 
     def register(self, provider_class: Type[BaseProvider]) -> None:
-        """Register one provider class using its stable provider name."""
+        """Register one provider class using its provider and dataset identity."""
 
         if not issubclass(provider_class, BaseProvider):
             raise TypeError("Provider must inherit from BaseProvider")
         provider_name = str(provider_class.name).strip()
         if not provider_name or provider_name == BaseProvider.name:
             raise ValueError("Provider must define a unique non-empty name")
-        existing = self._provider_classes.get(provider_name)
+        dataset = str(provider_class.dataset).strip()
+        registry_key = str(
+            getattr(provider_class, "registry_name", "") or f"{provider_name}:{dataset}"
+        ).strip()
+        existing = self._provider_classes.get(registry_key)
         if existing is not None and existing is not provider_class:
-            raise ValueError(f"Duplicate provider name: {provider_name}")
-        self._provider_classes[provider_name] = provider_class
+            raise ValueError(f"Duplicate provider registry key: {registry_key}")
+        self._provider_classes[registry_key] = provider_class
 
     def discover(self, package_name: str = "providers") -> None:
         """Import provider modules and register every concrete provider class."""
