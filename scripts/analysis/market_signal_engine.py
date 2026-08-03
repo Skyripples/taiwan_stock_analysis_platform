@@ -25,6 +25,7 @@ class MarketSignalEngine(BaseAnalysis):
             "institutional_investors": market_data_dir / "institutional_investors.json",
             "foreign_futures_position": market_data_dir / "foreign_futures_position.json",
             "night_futures": market_data_dir / "night_futures.json",
+            "tsm_adr": market_data_dir / "tsm_adr.json",
         }
 
     def load(self) -> Dict[str, Any]:
@@ -56,6 +57,10 @@ class MarketSignalEngine(BaseAnalysis):
             source_data.get("night_futures"),
             "night_futures",
         )
+        tsm_adr_record = self._latest_record(
+            source_data.get("tsm_adr"),
+            "tsm_adr",
+        )
 
         foreign_cash_flow = self._require_integer(
             cash_record,
@@ -72,11 +77,17 @@ class MarketSignalEngine(BaseAnalysis):
             ("change",),
             "night_futures",
         )
+        tsm_adr_change = self._require_number(
+            tsm_adr_record,
+            ("change",),
+            "tsm_adr",
+        )
 
         return {
             "foreign_cash_flow": self._build_signal(foreign_cash_flow),
             "foreign_futures_position": self._build_signal(foreign_futures_position),
             "night_futures": self._build_signal(night_futures_change),
+            "tsm_adr": self._build_signal(tsm_adr_change),
         }
 
     def export(

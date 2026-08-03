@@ -24,6 +24,11 @@
   const nightMarketMessage = document.getElementById("nightMarketMessage");
   const nightMarketValues = document.getElementById("nightMarketValues");
   const nightMarketTradeDate = document.getElementById("nightMarketTradeDate");
+  const adrMarketWidget = document.querySelector(".adr-market-widget");
+  const adrMarketStatus = document.getElementById("adrMarketStatus");
+  const adrMarketMessage = document.getElementById("adrMarketMessage");
+  const adrMarketValues = document.getElementById("adrMarketValues");
+  const adrMarketTradeDate = document.getElementById("adrMarketTradeDate");
 
   if (
     !widget || !status || !message || !values || !tradeDate ||
@@ -58,6 +63,11 @@
       status: document.getElementById("nightFuturesSignalStatus"),
       score: document.getElementById("nightFuturesSignalScore"),
     },
+    tsmAdr: {
+      value: document.getElementById("tsmAdrSignalValue"),
+      status: document.getElementById("tsmAdrSignalStatus"),
+      score: document.getElementById("tsmAdrSignalScore"),
+    },
   };
   const nightMarketTargets = {
     close: document.getElementById("nightMarketClose"),
@@ -66,6 +76,18 @@
     volume: document.getElementById("nightMarketVolume"),
     signalStatus: document.getElementById("nightMarketSignalStatus"),
     signalScore: document.getElementById("nightMarketSignalScore"),
+  };
+  const adrMarketTargets = {
+    open: document.getElementById("adrMarketOpen"),
+    high: document.getElementById("adrMarketHigh"),
+    low: document.getElementById("adrMarketLow"),
+    close: document.getElementById("adrMarketClose"),
+    previousClose: document.getElementById("adrMarketPreviousClose"),
+    change: document.getElementById("adrMarketChange"),
+    changePercent: document.getElementById("adrMarketChangePercent"),
+    volume: document.getElementById("adrMarketVolume"),
+    signalStatus: document.getElementById("adrMarketSignalStatus"),
+    signalScore: document.getElementById("adrMarketSignalScore"),
   };
   const integerFormatter = new Intl.NumberFormat("zh-TW", {
     maximumFractionDigits: 0,
@@ -95,6 +117,13 @@
 
   function requireInteger(value, fieldName) {
     if (!Number.isSafeInteger(value)) {
+      throw new MissingDataError(`缺少 ${fieldName}`);
+    }
+    return value;
+  }
+
+  function requireNumber(value, fieldName) {
+    if (typeof value !== "number" || !Number.isFinite(value)) {
       throw new MissingDataError(`缺少 ${fieldName}`);
     }
     return value;
@@ -150,6 +179,11 @@
     return `${sign}${decimalFormatter.format(value)}%`;
   }
 
+  function formatUsd(value, showPositiveSign = false) {
+    const sign = showPositiveSign && value > 0 ? "+" : "";
+    return `${sign}$${decimalFormatter.format(value)}`;
+  }
+
   function readMarketScore(payload) {
     const score = payload?.market_score;
     if (!score || typeof score !== "object") {
@@ -180,7 +214,7 @@
       throw new MissingDataError("缺少市場訊號");
     }
 
-    const value = requireInteger(signal.value, "訊號數值");
+    const value = requireNumber(signal.value, "訊號數值");
     const score = requireInteger(signal.score, "訊號分數");
     if (!Object.hasOwn(SIGNAL_STATUS, signal.status)) {
       throw new MissingDataError("缺少訊號狀態");
@@ -273,6 +307,11 @@
         signalTargets.nightFutures,
         (value) => formatPoints(value, true),
       );
+      renderSignalSafely(
+        payload?.signals?.tsm_adr,
+        signalTargets.tsmAdr,
+        (value) => formatUsd(value, true),
+      );
 
       marketScoreWidget.dataset.state = "success";
       marketScoreLoadStatus.textContent = "資料已載入";
@@ -306,13 +345,6 @@
       throw new MissingDataError("缺少夜盤商品或契約資訊");
     }
 
-    const requireNumber = (value, fieldName) => {
-      if (typeof value !== "number" || !Number.isFinite(value)) {
-        throw new MissingDataError(`缺少 ${fieldName}`);
-      }
-      return value;
-    };
-
     return {
       date: record.trade_date,
       productName: metadata.product_name,
@@ -324,8 +356,8 @@
     };
   }
 
-  function renderNightMarketValue(target, text, classificationValue = 0) {
-    if (!target) throw new MissingDataError("缺少夜盤數值顯示元件");
+  function renderDirectionalValue(target, text, classificationValue = 0) {
+    if (!target) throw new MissingDataError("缺少數值顯示元件");
     target.textContent = text;
     target.classList.remove("is-positive", "is-negative", "is-neutral");
     target.classList.add(valueClass(classificationValue));
@@ -364,16 +396,16 @@
       const signal = readSignal(signalsPayload?.signals?.night_futures);
       const signalInfo = SIGNAL_STATUS[signal.status];
 
-      renderNightMarketValue(nightMarketTargets.close, formatPoints(record.close));
-      renderNightMarketValue(nightMarketTargets.change, formatPoints(record.change, true), record.change);
-      renderNightMarketValue(nightMarketTargets.changePercent, formatPercent(record.changePercent), record.changePercent);
-      renderNightMarketValue(nightMarketTargets.volume, `${integerFormatter.format(record.volume)} 口`);
-      renderNightMarketValue(
+      renderDirectionalValue(nightMarketTargets.close, formatPoints(record.close));
+      renderDirectionalValue(nightMarketTargets.change, formatPoints(record.change, true), record.change);
+      renderDirectionalValue(nightMarketTargets.changePercent, formatPercent(record.changePercent), record.changePercent);
+      renderDirectionalValue(nightMarketTargets.volume, `${integerFormatter.format(record.volume)} 口`);
+      renderDirectionalValue(
         nightMarketTargets.signalStatus,
         `${signal.status}（${signalInfo.label}）`,
         signal.score,
       );
-      renderNightMarketValue(
+      renderDirectionalValue(
         nightMarketTargets.signalScore,
         formatSignedInteger(signal.score),
         signal.score,
@@ -391,6 +423,107 @@
         showNightMarketError("資料缺漏", "台指期夜盤資料格式不完整，請稍後再試。");
       } else {
         showNightMarketError("讀取失敗", "目前無法讀取台指期夜盤資料，請稍後再試。");
+      }
+    }
+  }
+
+  function readAdrMarketRecord(payload) {
+    const record = payload?.data?.records?.[0];
+    if (!record || typeof record !== "object") {
+      throw new MissingDataError("缺少台積電 ADR 資料紀錄");
+    }
+    if (typeof record.trade_date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(record.trade_date)) {
+      throw new MissingDataError("缺少 ADR 交易日期");
+    }
+
+    const metadata = record.metadata;
+    if (
+      !metadata || metadata.symbol !== "TSM" || metadata.currency !== "USD" ||
+      typeof metadata.market !== "string" || typeof metadata.market_timezone !== "string"
+    ) {
+      throw new MissingDataError("缺少 ADR 商品或市場資訊");
+    }
+
+    return {
+      date: record.trade_date,
+      market: metadata.market,
+      currency: metadata.currency,
+      timezone: metadata.market_timezone,
+      open: requireNumber(record.open, "ADR 開盤價"),
+      high: requireNumber(record.high, "ADR 最高價"),
+      low: requireNumber(record.low, "ADR 最低價"),
+      close: requireNumber(record.close, "ADR 收盤價"),
+      previousClose: requireNumber(record.previous_close, "ADR 前一日收盤價"),
+      change: requireNumber(record.change, "ADR 漲跌"),
+      changePercent: requireNumber(record.change_percent, "ADR 漲跌幅"),
+      volume: requireInteger(record.volume, "ADR 成交量"),
+    };
+  }
+
+  function showAdrMarketError(statusText, messageText) {
+    if (!adrMarketWidget || !adrMarketStatus || !adrMarketMessage || !adrMarketValues || !adrMarketTradeDate) return;
+    adrMarketWidget.dataset.state = "error";
+    adrMarketStatus.textContent = statusText;
+    adrMarketMessage.textContent = messageText;
+    adrMarketMessage.hidden = false;
+    adrMarketValues.hidden = true;
+    adrMarketTradeDate.hidden = true;
+  }
+
+  async function loadTsmAdr() {
+    if (
+      !adrMarketWidget || !adrMarketStatus || !adrMarketMessage ||
+      !adrMarketValues || !adrMarketTradeDate
+    ) return;
+
+    try {
+      const [marketResponse, signalsResponse] = await Promise.all([
+        fetch("./data/market/tsm_adr.json", { cache: "no-store" }),
+        fetch("./data/market/market_signals.json", { cache: "no-store" }),
+      ]);
+      if (!marketResponse.ok || !signalsResponse.ok) {
+        throw new Error(`HTTP ${marketResponse.status}/${signalsResponse.status}`);
+      }
+
+      const [marketPayload, signalsPayload] = await Promise.all([
+        marketResponse.json(),
+        signalsResponse.json(),
+      ]);
+      const record = readAdrMarketRecord(marketPayload);
+      const signal = readSignal(signalsPayload?.signals?.tsm_adr);
+      const signalInfo = SIGNAL_STATUS[signal.status];
+
+      renderDirectionalValue(adrMarketTargets.open, formatUsd(record.open));
+      renderDirectionalValue(adrMarketTargets.high, formatUsd(record.high));
+      renderDirectionalValue(adrMarketTargets.low, formatUsd(record.low));
+      renderDirectionalValue(adrMarketTargets.close, formatUsd(record.close));
+      renderDirectionalValue(adrMarketTargets.previousClose, formatUsd(record.previousClose));
+      renderDirectionalValue(adrMarketTargets.change, formatUsd(record.change, true), record.change);
+      renderDirectionalValue(adrMarketTargets.changePercent, formatPercent(record.changePercent), record.changePercent);
+      renderDirectionalValue(adrMarketTargets.volume, integerFormatter.format(record.volume));
+      renderDirectionalValue(
+        adrMarketTargets.signalStatus,
+        `${signal.status}（${signalInfo.label}）`,
+        signal.score,
+      );
+      renderDirectionalValue(
+        adrMarketTargets.signalScore,
+        formatSignedInteger(signal.score),
+        signal.score,
+      );
+
+      adrMarketMessage.textContent = `TSM｜${record.market}｜${record.currency}｜${record.timezone}`;
+      adrMarketTradeDate.textContent = `美股交易日期：${record.date}`;
+      adrMarketWidget.dataset.state = "success";
+      adrMarketStatus.textContent = "資料已載入";
+      adrMarketMessage.hidden = false;
+      adrMarketValues.hidden = false;
+      adrMarketTradeDate.hidden = false;
+    } catch (error) {
+      if (error instanceof MissingDataError) {
+        showAdrMarketError("資料缺漏", "台積電 ADR 資料格式不完整，請稍後再試。");
+      } else {
+        showAdrMarketError("讀取失敗", "目前無法讀取台積電 ADR 資料，請稍後再試。");
       }
     }
   }
@@ -533,4 +666,5 @@
   loadForeignFuturesPosition();
   loadMarketScore();
   loadNightFutures();
+  loadTsmAdr();
 })();

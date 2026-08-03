@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T03:38:50.889689Z",
+  "updated_at": "2026-08-03T03:59:23.516953Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
@@ -16,12 +16,17 @@
       "value": -1077,
       "status": "bearish",
       "score": -1
+    },
+    "tsm_adr": {
+      "value": 0.94,
+      "status": "bullish",
+      "score": 1
     }
   },
   "market_score": {
-    "score": -1,
-    "max_score": 3,
-    "percentage": 33.33,
-    "status": "Bearish"
+    "score": 0,
+    "max_score": 4,
+    "percentage": 50,
+    "status": "Neutral"
   }
 }
