@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T19:16:19.754562Z",
+  "updated_at": "2026-08-04T03:22:33.695406Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
@@ -13,17 +13,17 @@
       "score": -1
     },
     "night_futures": {
-      "value": -1077,
+      "value": -67,
       "status": "bearish",
       "score": -1
     },
     "tsm_adr": {
-      "value": 0.94,
+      "value": 1.86,
       "status": "bullish",
       "score": 1
     },
     "sox_index": {
-      "value": 0.0716,
+      "value": 1.0545,
       "status": "bullish",
       "score": 1
     }
