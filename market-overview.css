@@ -31,6 +31,91 @@
   font-weight: 750;
 }
 
+body.market-overview-page:not(.theme-light) {
+  color: #ffffff;
+  background: linear-gradient(180deg, #0b0c0e 0%, #050607 100%);
+}
+
+body.market-overview-page:not(.theme-light) .layout-header {
+  border-bottom-color: #2d3035;
+  color: #ffffff;
+  background: rgba(9, 10, 12, 0.98);
+}
+
+body.market-overview-page:not(.theme-light) .sidebar {
+  border-right-color: #2d3035;
+  color: #ffffff;
+  background: #0d0f11;
+}
+
+body.market-overview-page:not(.theme-light) .sidebar-brand {
+  border-bottom-color: #2d3035;
+}
+
+body.market-overview-page:not(.theme-light) a.sidebar-item,
+body.market-overview-page:not(.theme-light) a.sidebar-item .sidebar-item-icon,
+body.market-overview-page:not(.theme-light) .layout-theme-label {
+  color: #ffffff;
+}
+
+body.market-overview-page:not(.theme-light) a.sidebar-item:hover,
+body.market-overview-page:not(.theme-light) a.sidebar-item:focus-visible,
+body.market-overview-page:not(.theme-light) .sidebar-item.is-active {
+  color: #ffffff;
+  background: #22252a;
+}
+
+body.market-overview-page:not(.theme-light) .widget,
+body.market-overview-page:not(.theme-light) .page-card {
+  --border: #30343a;
+  --card: #131518;
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+  color: #ffffff;
+}
+
+body.market-overview-page:not(.theme-light) .widget-icon {
+  color: #ffffff;
+  background: #25282c;
+}
+
+body.market-overview-page:not(.theme-light) .widget-status {
+  border-color: #42474e;
+  color: #ffffff;
+  background: #24272b;
+}
+
+body.market-overview-page:not(.theme-light) .page-title,
+body.market-overview-page:not(.theme-light) .page-eyebrow,
+body.market-overview-page:not(.theme-light) .page-description,
+body.market-overview-page:not(.theme-light) .overview-section-heading h2,
+body.market-overview-page:not(.theme-light) .overview-section-heading p,
+body.market-overview-page:not(.theme-light) .widget-title,
+body.market-overview-page:not(.theme-light) .widget-value,
+body.market-overview-page:not(.theme-light) .widget-subtitle,
+body.market-overview-page:not(.theme-light) .widget-description,
+body.market-overview-page:not(.theme-light) .indicator-card-date,
+body.market-overview-page:not(.theme-light) .market-data-date,
+body.market-overview-page:not(.theme-light) .market-data-grid dt,
+body.market-overview-page:not(.theme-light) .market-data-value,
+body.market-overview-page:not(.theme-light) .market-score-label,
+body.market-overview-page:not(.theme-light) .market-score-status,
+body.market-overview-page:not(.theme-light) .market-score-status-zh,
+body.market-overview-page:not(.theme-light) .market-score-raw strong,
+body.market-overview-page:not(.theme-light) .market-score-scale,
+body.market-overview-page:not(.theme-light) .market-score-factor h3,
+body.market-overview-page:not(.theme-light) .market-score-factor dt,
+body.market-overview-page:not(.theme-light) .market-score-factor dd,
+body.market-overview-page:not(.theme-light) .market-quote-grid dt,
+body.market-overview-page:not(.theme-light) .market-quote-grid dd {
+  color: #ffffff;
+}
+
+body.market-overview-page:not(.theme-light) .market-score-factor,
+body.market-overview-page:not(.theme-light) .market-quote-grid > div {
+  border-color: #34383e;
+  background: #1b1e22;
+}
+
 .market-indicator-card {
   min-width: 0;
 }
