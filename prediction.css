@@ -1,0 +1,42 @@
+.prediction-page { overflow-x: hidden; }
+.prediction-kicker { margin: 0 0 5px; color: #aeb5bf; font-size: .7rem; font-weight: 700; letter-spacing: .14em; }
+.prediction-section-title { margin: 0; font-size: 1.12rem; }
+.score-summary { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.score-label { display: block; margin-bottom: 4px; color: #c5cad1; font-size: .8rem; }
+.score-percentage { display: block; font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1; }
+.score-details { display: grid; gap: 5px; text-align: right; font-weight: 700; }
+.score-track, .training-track { position: relative; height: 12px; margin-top: 18px; overflow: hidden; border-radius: 999px; background: #292c30; }
+.score-fill, .training-track span { display: block; height: 100%; border-radius: inherit; background: #a5abb3; transition: width .25s ease; }
+.score-midline { position: absolute; z-index: 1; left: 50%; top: 0; width: 2px; height: 100%; background: #fff; opacity: .75; }
+.tone-bullish { color: #ef5350 !important; }
+.tone-bearish { color: #26a269 !important; }
+.tone-neutral { color: #c5cad1 !important; }
+.score-fill.tone-bullish, .signal-score.tone-bullish { background: #ef5350; }
+.score-fill.tone-bearish, .signal-score.tone-bearish { background: #26a269; }
+.signal-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.signal-item { min-width: 0; padding: 15px; border: 1px solid #34383e; border-radius: 11px; background: #1b1d20; }
+.signal-item span, .prediction-placeholder-grid span { display: block; color: #b5bbc4; font-size: .78rem; }
+.signal-item strong { display: block; margin: 9px 0 5px; overflow-wrap: anywhere; font-size: .95rem; }
+.signal-item small { color: #d3d6db; }
+.prediction-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.training-progress-text { font-size: 1.5rem; }
+.threshold-note { margin: 10px 0 0; color: #aeb5bf; font-size: .78rem; }
+.prediction-placeholder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.prediction-placeholder-grid div { min-width: 0; padding: 13px; border-radius: 10px; background: #1b1d20; }
+.prediction-placeholder-grid strong { display: block; margin-top: 7px; overflow-wrap: anywhere; font-size: .9rem; }
+.prediction-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
+.prediction-heading h2, .prediction-heading p { margin: 0; }
+.prediction-heading p { color: #b5bbc4; font-size: .82rem; }
+.data-status-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.data-status-grid .widget-info { min-height: 130px; }
+.data-status-grid .widget-value { overflow-wrap: anywhere; font-size: .95rem; }
+[data-state="error"] .widget-status { border-color: rgba(239,83,80,.45); color: #ff8c89; }
+body.theme-light .prediction-kicker, body.theme-light .score-label, body.theme-light .threshold-note, body.theme-light .prediction-heading p, body.theme-light .signal-item span, body.theme-light .prediction-placeholder-grid span { color: #66758a; }
+body.theme-light .score-track, body.theme-light .training-track { background: #dfe5ec; }
+body.theme-light .score-midline { background: #34445a; }
+body.theme-light .signal-item, body.theme-light .prediction-placeholder-grid div { border-color: #d8e0ea; background: #f3f6f9; }
+body.theme-light .signal-item small { color: #536277; }
+body.theme-light .tone-neutral { color: #526176 !important; }
+@media (max-width: 1050px) { .signal-grid, .data-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .prediction-two-column { grid-template-columns: 1fr; } .score-summary { align-items: start; } }
+@media (max-width: 520px) { .signal-grid, .data-status-grid, .prediction-placeholder-grid { grid-template-columns: 1fr; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }

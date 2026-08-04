@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="台股投資分析平台隔日行情分析" />
+  <title>隔日行情分析｜台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css" />
+  <link rel="stylesheet" href="./widget.css" />
+  <link rel="stylesheet" href="./platform.css" />
+  <link rel="stylesheet" href="./sidebar.css" />
+  <link rel="stylesheet" href="./prediction.css" />
+</head>
+<body class="has-sidebar prediction-page">
+  <header class="layout-header">
+    <a class="layout-brand" href="./index.html" aria-label="台股投資分析平台首頁">
+      <span class="layout-logo" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M7 26V17m7 9V10m7 16V14m7 12V7M6 13l8-6 7 3 9-6" /></svg></span>
+      <span>台股投資分析平台</span>
+    </a>
+    <div class="layout-header-actions">
+      <label for="themeToggleSwitch" class="layout-theme-label">深色模式</label>
+      <label class="layout-theme-switch" for="themeToggleSwitch">
+        <input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="深色模式">
+        <span></span>
+      </label>
+    </div>
+  </header>
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <aside id="platformSidebar" class="sidebar" aria-label="平台導覽">
+    <div class="sidebar-brand"><span class="sidebar-brand-icon" aria-hidden="true">台</span><div><strong>台股投資</strong><span>分析平台</span></div></div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-item" href="./index.html"><span class="sidebar-item-icon" aria-hidden="true">⌂</span><span>首頁</span></a>
+      <a class="sidebar-item" href="./calendar.html"><span class="sidebar-item-icon" aria-hidden="true">▦</span><span>台股事件簿</span></a>
+      <a class="sidebar-item is-active" href="./prediction.html" aria-current="page"><span class="sidebar-item-icon" aria-hidden="true">⌁</span><span>隔日行情分析</span></a>
+      <a class="sidebar-item" href="./market-overview.html"><span class="sidebar-item-icon" aria-hidden="true">◎</span><span>市場總覽</span></a>
+      <div class="sidebar-item is-disabled" aria-disabled="true"><span class="sidebar-item-icon" aria-hidden="true">≋</span><span>籌碼分析</span><small>規劃中</small></div>
+    </nav>
+  </aside>
+
+  <main class="layout-main" data-page="prediction">
+    <div class="page-container">
+      <header class="page-header">
+        <p class="page-eyebrow">NEXT-DAY MARKET ANALYSIS</p>
+        <h1 class="page-title">隔日行情分析</h1>
+        <p class="page-description">彙整市場訊號與歷史資料進度，為未來模型結果提供統一顯示介面。</p>
+      </header>
+      <div class="page-body">
+        <section class="page-section" aria-labelledby="currentMarketTitle">
+          <article id="marketStateWidget" class="widget widget-section" data-state="loading">
+            <header class="widget-header"><div><p class="prediction-kicker">MARKET STATE</p><h2 id="currentMarketTitle" class="prediction-section-title">目前市場狀態</h2></div><span id="marketLoadStatus" class="widget-status" role="status">載入中</span></header>
+            <div class="widget-body">
+              <div class="score-summary">
+                <div><span class="score-label">Market Score</span><strong id="marketPercentage" class="score-percentage">--%</strong></div>
+                <div class="score-details"><span id="marketStatus">載入中</span><span id="marketRawScore">-- / --</span></div>
+              </div>
+              <div class="score-track" aria-label="市場評分百分比"><span class="score-midline" aria-hidden="true"></span><span id="marketScoreBar" class="score-fill" style="width: 0%"></span></div>
+              <div id="signalGrid" class="signal-grid" aria-label="市場訊號因子"></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="page-section prediction-two-column" aria-label="模型與預測狀態">
+          <article id="modelStatusWidget" class="widget widget-section" data-state="loading">
+            <header class="widget-header"><h2 class="prediction-section-title">模型狀態</h2><span id="datasetLoadStatus" class="widget-status" role="status">載入中</span></header>
+            <div class="widget-body">
+              <strong id="trainingProgressText" class="training-progress-text">-- / 200</strong>
+              <div class="training-track"><span id="trainingProgressBar" style="width: 0%"></span></div>
+              <p id="modelStatusText" class="widget-description">正在讀取訓練資料</p>
+              <p class="threshold-note">最低訓練門檻：200 筆</p>
+            </div>
+          </article>
+          <article class="widget widget-section">
+            <header class="widget-header"><h2 class="prediction-section-title">隔日預測</h2><span class="widget-status">尚無模型</span></header>
+            <div class="widget-body prediction-placeholder-grid">
+              <div><span>上漲機率</span><strong>尚未建立模型</strong></div>
+              <div><span>下跌機率</span><strong>尚未建立模型</strong></div>
+              <div><span>預測方向</span><strong>等待模型</strong></div>
+              <div><span>預測目標日</span><strong>下一個交易日尚未確定</strong></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="page-section" aria-labelledby="dataStatusTitle">
+          <div class="prediction-heading"><h2 id="dataStatusTitle">資料狀態</h2><p>各來源獨立載入，單一來源異常不影響其他內容。</p></div>
+          <div class="data-status-grid">
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最新特徵日期</h3></header><div class="widget-body"><p id="latestFeatureDate" class="widget-value">載入中</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最新市場資料日期</h3></header><div class="widget-body"><p id="latestMarketDate" class="widget-value">載入中</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">歷史資料筆數</h3></header><div class="widget-body"><p id="historyRowCount" class="widget-value">載入中</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">可訓練樣本數</h3></header><div class="widget-body"><p id="trainableRowCount" class="widget-value">載入中</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最後更新時間</h3></header><div class="widget-body"><p id="lastUpdatedAt" class="widget-value">載入中</p></div></article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="./sidebar.js"></script>
+  <script src="./prediction.js"></script>
+</body>
+</html>
