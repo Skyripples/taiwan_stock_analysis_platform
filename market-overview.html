@@ -81,21 +81,21 @@
             <p>主要市場資訊彙整</p>
           </div>
           <div class="indicator-grid">
-            <article class="widget widget-info">
-              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">加</span><h3 class="widget-title">加權指數</h3></div></header>
-              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">台股市場指標</p></div>
+            <article id="taiexCard" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">加</span><h3 class="widget-title">加權指數</h3></div><span id="taiexCardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="taiexCardValue" class="widget-value">載入中</p><p id="taiexCardChange" class="widget-subtitle indicator-card-change">--</p><p id="taiexCardDate" class="indicator-card-date">--</p></div>
             </article>
-            <article class="widget widget-info">
-              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">櫃</span><h3 class="widget-title">櫃買指數</h3></div></header>
-              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">櫃買市場指標</p></div>
+            <article id="tpexCard" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">櫃</span><h3 class="widget-title">櫃買指數</h3></div><span id="tpexCardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="tpexCardValue" class="widget-value">載入中</p><p id="tpexCardChange" class="widget-subtitle indicator-card-change">--</p><p id="tpexCardDate" class="indicator-card-date">--</p></div>
             </article>
-            <article class="widget widget-info">
-              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">額</span><h3 class="widget-title">台股成交金額</h3></div></header>
-              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">市場成交資訊</p></div>
+            <article id="turnoverCard" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">額</span><h3 class="widget-title">台股成交金額</h3></div><span id="turnoverCardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="turnoverCardValue" class="widget-value">載入中</p><p class="widget-subtitle indicator-card-change">上市＋上櫃</p><p id="turnoverCardDate" class="indicator-card-date">--</p></div>
             </article>
-            <article class="widget widget-info">
-              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">↕</span><h3 class="widget-title">上漲／下跌家數</h3></div></header>
-              <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">市場廣度指標</p></div>
+            <article id="breadthCard" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">↕</span><h3 class="widget-title">上漲／下跌家數</h3></div><span id="breadthCardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="breadthCardValue" class="widget-value indicator-breadth-value"><span id="breadthAdvancing">載入中</span><span> / </span><span id="breadthDeclining">--</span><span> / </span><span id="breadthUnchanged">--</span></p><p class="widget-subtitle indicator-card-change">上漲 / 下跌 / 平盤</p><p id="breadthCardDate" class="indicator-card-date">--</p></div>
             </article>
             <article class="widget widget-info">
               <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">外</span><h3 class="widget-title">外資現貨買賣超</h3></div></header>
@@ -112,6 +112,27 @@
             <article class="widget widget-info">
               <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">ADR</span><h3 class="widget-title">台積電 ADR</h3></div></header>
               <div class="widget-body"><p class="widget-value">尚未匯入資料</p><p class="widget-subtitle">國際市場指標</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="internationalIndicatorsTitle">
+          <div class="overview-section-heading">
+            <h2 id="internationalIndicatorsTitle">國際市場</h2>
+            <p>最近已完成交易日</p>
+          </div>
+          <div class="indicator-grid international-indicator-grid">
+            <article id="sp500Card" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">S&amp;P</span><h3 class="widget-title">S&amp;P 500</h3></div><span id="sp500CardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="sp500CardValue" class="widget-value">載入中</p><p id="sp500CardChange" class="widget-subtitle indicator-card-change">--</p><p id="sp500CardDate" class="indicator-card-date">--</p></div>
+            </article>
+            <article id="nasdaqCard" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">NDQ</span><h3 class="widget-title">NASDAQ</h3></div><span id="nasdaqCardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="nasdaqCardValue" class="widget-value">載入中</p><p id="nasdaqCardChange" class="widget-subtitle indicator-card-change">--</p><p id="nasdaqCardDate" class="indicator-card-date">--</p></div>
+            </article>
+            <article id="soxCard" class="widget widget-info market-indicator-card" data-state="loading">
+              <header class="widget-header"><div class="widget-heading"><span class="widget-icon" aria-hidden="true">SOX</span><h3 class="widget-title">費城半導體指數</h3></div><span id="soxCardStatus" class="widget-status">載入中</span></header>
+              <div class="widget-body"><p id="soxCardValue" class="widget-value">載入中</p><p id="soxCardChange" class="widget-subtitle indicator-card-change">--</p><p id="soxCardDate" class="indicator-card-date">--</p></div>
             </article>
           </div>
         </section>

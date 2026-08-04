@@ -266,3 +266,27 @@ class YahooSoxProvider(YahooProvider):
     security_name = "Philadelphia Semiconductor Index"
     source_url = "https://finance.yahoo.com/quote/%5ESOX/history/"
     chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX"
+
+
+class YahooSp500Provider(YahooProvider):
+    """Fetch the latest completed S&P 500 Index candle."""
+
+    dataset = "sp500_index"
+    output_filename = "sp500_index.json"
+
+    symbol = "^GSPC"
+    security_name = "S&P 500 Index"
+    source_url = "https://finance.yahoo.com/quote/%5EGSPC/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC"
+
+
+class YahooNasdaqProvider(YahooProvider):
+    """Fetch the latest completed NASDAQ Composite Index candle."""
+
+    dataset = "nasdaq_index"
+    output_filename = "nasdaq_index.json"
+
+    symbol = "^IXIC"
+    security_name = "NASDAQ Composite Index"
+    source_url = "https://finance.yahoo.com/quote/%5EIXIC/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC"

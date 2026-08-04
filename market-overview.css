@@ -31,6 +31,59 @@
   font-weight: 750;
 }
 
+.market-indicator-card {
+  min-width: 0;
+}
+
+.market-indicator-card .widget-header {
+  gap: 10px;
+}
+
+.market-indicator-card .widget-value,
+.indicator-card-change,
+.indicator-card-date {
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-indicator-card .widget-value {
+  font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+}
+
+.indicator-card-change {
+  min-height: 1.4em;
+  margin-top: 10px;
+}
+
+.indicator-card-change.is-positive,
+.indicator-breadth-value .is-positive {
+  color: #f87171;
+}
+
+.indicator-card-change.is-negative,
+.indicator-breadth-value .is-negative {
+  color: #34d399;
+}
+
+.indicator-card-change.is-neutral,
+.indicator-breadth-value .is-neutral {
+  color: #aeb9c9;
+}
+
+.indicator-card-date {
+  margin: 12px 0 0;
+  color: #75859c;
+  font-size: 0.72rem;
+}
+
+.indicator-breadth-value {
+  white-space: normal;
+}
+
+.international-indicator-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .direction-widget {
   --overview-divider: #27364f;
 }
@@ -426,6 +479,16 @@ body.theme-light .market-quote-grid dd.is-positive {
 }
 
 body.theme-light .market-quote-grid dd.is-negative {
+  color: #16804a;
+}
+
+body.theme-light .indicator-card-change.is-positive,
+body.theme-light .indicator-breadth-value .is-positive {
+  color: #c62828;
+}
+
+body.theme-light .indicator-card-change.is-negative,
+body.theme-light .indicator-breadth-value .is-negative {
   color: #16804a;
 }
 

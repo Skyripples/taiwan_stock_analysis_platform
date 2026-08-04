@@ -34,6 +34,23 @@
   const soxIndexMessage = document.getElementById("soxIndexMessage");
   const soxIndexValues = document.getElementById("soxIndexValues");
   const soxIndexTradeDate = document.getElementById("soxIndexTradeDate");
+  const indicatorCards = {
+    taiex: createIndicatorCardTargets("taiexCard"),
+    tpex: createIndicatorCardTargets("tpexCard"),
+    turnover: createIndicatorCardTargets("turnoverCard"),
+    sp500: createIndicatorCardTargets("sp500Card"),
+    nasdaq: createIndicatorCardTargets("nasdaqCard"),
+    sox: createIndicatorCardTargets("soxCard"),
+  };
+  const breadthCard = {
+    card: document.getElementById("breadthCard"),
+    status: document.getElementById("breadthCardStatus"),
+    value: document.getElementById("breadthCardValue"),
+    advancing: document.getElementById("breadthAdvancing"),
+    declining: document.getElementById("breadthDeclining"),
+    unchanged: document.getElementById("breadthUnchanged"),
+    date: document.getElementById("breadthCardDate"),
+  };
 
   if (
     !widget || !status || !message || !values || !tradeDate ||
@@ -132,6 +149,16 @@
     bearish: { label: "偏空", tone: "negative" },
   };
 
+  function createIndicatorCardTargets(cardId) {
+    return {
+      card: document.getElementById(cardId),
+      status: document.getElementById(`${cardId}Status`),
+      value: document.getElementById(`${cardId}Value`),
+      change: document.getElementById(`${cardId}Change`),
+      date: document.getElementById(`${cardId}Date`),
+    };
+  }
+
   function requireInteger(value, fieldName) {
     if (!Number.isSafeInteger(value)) {
       throw new MissingDataError(`缺少 ${fieldName}`);
@@ -204,6 +231,114 @@
   function formatUsd(value, showPositiveSign = false) {
     const sign = showPositiveSign && value > 0 ? "+" : "";
     return `${sign}$${decimalFormatter.format(value)}`;
+  }
+
+  function setIndicatorCardError(targets, statusText = "讀取失敗") {
+    if (!targets?.card || !targets.status || !targets.value) return;
+    targets.card.dataset.state = "error";
+    targets.status.textContent = statusText;
+    targets.value.textContent = statusText;
+    targets.value.classList.remove("is-positive", "is-negative", "is-neutral");
+    targets.value.classList.add("is-neutral");
+    if (targets.change) targets.change.textContent = "請稍後再試";
+    if (targets.date) targets.date.textContent = "--";
+  }
+
+  function renderIndexCard(targets, record, dateLabel = "交易日期") {
+    if (!targets?.card || !targets.status || !targets.value || !targets.change || !targets.date) {
+      throw new MissingDataError("缺少市場指標卡片元件");
+    }
+    const close = requireNumber(record?.close, "收盤點位");
+    const change = requireNumber(record?.change, "漲跌點數");
+    const changePercent = requireNumber(record?.change_percent, "漲跌幅");
+
+    targets.value.textContent = decimalFormatter.format(close);
+    targets.change.textContent = `${formatDecimalPoints(change, true)} / ${formatPercent(changePercent)}`;
+    targets.change.classList.remove("is-positive", "is-negative", "is-neutral");
+    targets.change.classList.add(valueClass(change));
+    targets.date.textContent = `${dateLabel}：${record.trade_date}`;
+    targets.status.textContent = "資料已載入";
+    targets.card.dataset.state = "success";
+  }
+
+  async function loadTaiwanMarketOverview() {
+    try {
+      const response = await fetch("./data/market/taiwan_market_overview.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const payload = await response.json();
+      const record = payload?.data?.records?.[0];
+      if (!record || typeof record !== "object" || typeof record.trade_date !== "string") {
+        throw new MissingDataError("缺少台股市場總覽資料");
+      }
+
+      for (const [key, source] of [["taiex", record.taiex], ["tpex", record.tpex]]) {
+        try {
+          renderIndexCard(indicatorCards[key], { ...source, trade_date: record.trade_date });
+        } catch (error) {
+          setIndicatorCardError(indicatorCards[key], error instanceof MissingDataError ? "資料缺漏" : "讀取失敗");
+        }
+      }
+
+      try {
+        const turnover = requireInteger(record.turnover, "台股成交金額");
+        const targets = indicatorCards.turnover;
+        if (!targets.card || !targets.status || !targets.value || !targets.date) {
+          throw new MissingDataError("缺少成交金額卡片元件");
+        }
+        targets.value.textContent = `${decimalFormatter.format(turnover / 100000000)} 億`;
+        targets.date.textContent = `交易日期：${record.trade_date}`;
+        targets.status.textContent = "資料已載入";
+        targets.card.dataset.state = "success";
+      } catch (error) {
+        setIndicatorCardError(indicatorCards.turnover, "資料缺漏");
+      }
+
+      try {
+        const advancing = requireInteger(record.advancing, "上漲家數");
+        const declining = requireInteger(record.declining, "下跌家數");
+        const unchanged = requireInteger(record.unchanged, "平盤家數");
+        if (!breadthCard.card || !breadthCard.status || !breadthCard.advancing || !breadthCard.declining || !breadthCard.unchanged || !breadthCard.date) {
+          throw new MissingDataError("缺少市場廣度卡片元件");
+        }
+        breadthCard.advancing.textContent = integerFormatter.format(advancing);
+        breadthCard.advancing.className = "is-positive";
+        breadthCard.declining.textContent = integerFormatter.format(declining);
+        breadthCard.declining.className = "is-negative";
+        breadthCard.unchanged.textContent = integerFormatter.format(unchanged);
+        breadthCard.unchanged.className = "is-neutral";
+        breadthCard.date.textContent = `交易日期：${record.trade_date}`;
+        breadthCard.status.textContent = "資料已載入";
+        breadthCard.card.dataset.state = "success";
+      } catch (error) {
+        if (breadthCard.card) breadthCard.card.dataset.state = "error";
+        if (breadthCard.status) breadthCard.status.textContent = "資料缺漏";
+        if (breadthCard.value) breadthCard.value.textContent = "資料缺漏";
+        if (breadthCard.date) breadthCard.date.textContent = "--";
+      }
+    } catch (error) {
+      for (const targets of [indicatorCards.taiex, indicatorCards.tpex, indicatorCards.turnover]) {
+        setIndicatorCardError(targets, error instanceof MissingDataError ? "資料缺漏" : "讀取失敗");
+      }
+      if (breadthCard.card) breadthCard.card.dataset.state = "error";
+      if (breadthCard.status) breadthCard.status.textContent = error instanceof MissingDataError ? "資料缺漏" : "讀取失敗";
+      if (breadthCard.value) breadthCard.value.textContent = error instanceof MissingDataError ? "資料缺漏" : "讀取失敗";
+      if (breadthCard.date) breadthCard.date.textContent = "--";
+    }
+  }
+
+  async function loadInternationalIndex(path, symbol, targets) {
+    try {
+      const response = await fetch(path, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const payload = await response.json();
+      const record = payload?.data?.records?.[0];
+      if (!record || record?.metadata?.symbol !== symbol || typeof record.trade_date !== "string") {
+        throw new MissingDataError(`缺少 ${symbol} 指數資料`);
+      }
+      renderIndexCard(targets, record, "美股交易日期");
+    } catch (error) {
+      setIndicatorCardError(targets, error instanceof MissingDataError ? "資料缺漏" : "讀取失敗");
+    }
   }
 
   function readMarketScore(payload) {
@@ -782,4 +917,8 @@
   loadNightFutures();
   loadTsmAdr();
   loadSoxIndex();
+  loadTaiwanMarketOverview();
+  loadInternationalIndex("./data/market/sp500_index.json", "^GSPC", indicatorCards.sp500);
+  loadInternationalIndex("./data/market/nasdaq_index.json", "^IXIC", indicatorCards.nasdaq);
+  loadInternationalIndex("./data/market/sox_index.json", "^SOX", indicatorCards.sox);
 })();
