@@ -29,6 +29,11 @@
   const adrMarketMessage = document.getElementById("adrMarketMessage");
   const adrMarketValues = document.getElementById("adrMarketValues");
   const adrMarketTradeDate = document.getElementById("adrMarketTradeDate");
+  const soxIndexWidget = document.querySelector(".sox-index-widget");
+  const soxIndexStatus = document.getElementById("soxIndexStatus");
+  const soxIndexMessage = document.getElementById("soxIndexMessage");
+  const soxIndexValues = document.getElementById("soxIndexValues");
+  const soxIndexTradeDate = document.getElementById("soxIndexTradeDate");
 
   if (
     !widget || !status || !message || !values || !tradeDate ||
@@ -68,6 +73,11 @@
       status: document.getElementById("tsmAdrSignalStatus"),
       score: document.getElementById("tsmAdrSignalScore"),
     },
+    soxIndex: {
+      value: document.getElementById("soxIndexSignalValue"),
+      status: document.getElementById("soxIndexSignalStatus"),
+      score: document.getElementById("soxIndexSignalScore"),
+    },
   };
   const nightMarketTargets = {
     close: document.getElementById("nightMarketClose"),
@@ -88,6 +98,13 @@
     volume: document.getElementById("adrMarketVolume"),
     signalStatus: document.getElementById("adrMarketSignalStatus"),
     signalScore: document.getElementById("adrMarketSignalScore"),
+  };
+  const soxIndexTargets = {
+    close: document.getElementById("soxIndexClose"),
+    change: document.getElementById("soxIndexChange"),
+    changePercent: document.getElementById("soxIndexChangePercent"),
+    signalStatus: document.getElementById("soxIndexSignalStatusDetail"),
+    signalScore: document.getElementById("soxIndexSignalScoreDetail"),
   };
   const integerFormatter = new Intl.NumberFormat("zh-TW", {
     maximumFractionDigits: 0,
@@ -172,6 +189,11 @@
   function formatPoints(value, showPositiveSign = false) {
     const sign = showPositiveSign && value > 0 ? "+" : "";
     return `${sign}${integerFormatter.format(value)} 點`;
+  }
+
+  function formatDecimalPoints(value, showPositiveSign = false) {
+    const sign = showPositiveSign && value > 0 ? "+" : "";
+    return `${sign}${decimalFormatter.format(value)} 點`;
   }
 
   function formatPercent(value) {
@@ -311,6 +333,11 @@
         payload?.signals?.tsm_adr,
         signalTargets.tsmAdr,
         (value) => formatUsd(value, true),
+      );
+      renderSignalSafely(
+        payload?.signals?.sox_index,
+        signalTargets.soxIndex,
+        formatPercent,
       );
 
       marketScoreWidget.dataset.state = "success";
@@ -528,6 +555,93 @@
     }
   }
 
+  function readSoxIndexRecord(payload) {
+    const record = payload?.data?.records?.[0];
+    if (!record || typeof record !== "object") {
+      throw new MissingDataError("缺少費城半導體指數資料紀錄");
+    }
+    if (typeof record.trade_date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(record.trade_date)) {
+      throw new MissingDataError("缺少費城半導體指數交易日期");
+    }
+
+    const metadata = record.metadata;
+    if (
+      !metadata || metadata.symbol !== "^SOX" ||
+      typeof metadata.market !== "string" || typeof metadata.market_timezone !== "string"
+    ) {
+      throw new MissingDataError("缺少費城半導體指數市場資訊");
+    }
+
+    return {
+      date: record.trade_date,
+      market: metadata.market,
+      timezone: metadata.market_timezone,
+      close: requireNumber(record.close, "費城半導體指數收盤點位"),
+      change: requireNumber(record.change, "費城半導體指數漲跌點數"),
+      changePercent: requireNumber(record.change_percent, "費城半導體指數漲跌幅"),
+    };
+  }
+
+  function showSoxIndexError(statusText, messageText) {
+    if (!soxIndexWidget || !soxIndexStatus || !soxIndexMessage || !soxIndexValues || !soxIndexTradeDate) return;
+    soxIndexWidget.dataset.state = "error";
+    soxIndexStatus.textContent = statusText;
+    soxIndexMessage.textContent = messageText;
+    soxIndexMessage.hidden = false;
+    soxIndexValues.hidden = true;
+    soxIndexTradeDate.hidden = true;
+  }
+
+  async function loadSoxIndex() {
+    if (!soxIndexWidget || !soxIndexStatus || !soxIndexMessage || !soxIndexValues || !soxIndexTradeDate) return;
+
+    try {
+      const [marketResponse, signalsResponse] = await Promise.all([
+        fetch("./data/market/sox_index.json", { cache: "no-store" }),
+        fetch("./data/market/market_signals.json", { cache: "no-store" }),
+      ]);
+      if (!marketResponse.ok || !signalsResponse.ok) {
+        throw new Error(`HTTP ${marketResponse.status}/${signalsResponse.status}`);
+      }
+
+      const [marketPayload, signalsPayload] = await Promise.all([
+        marketResponse.json(),
+        signalsResponse.json(),
+      ]);
+      const record = readSoxIndexRecord(marketPayload);
+      const signal = readSignal(signalsPayload?.signals?.sox_index);
+      const signalInfo = SIGNAL_STATUS[signal.status];
+
+      renderDirectionalValue(soxIndexTargets.close, decimalFormatter.format(record.close));
+      renderDirectionalValue(soxIndexTargets.change, formatDecimalPoints(record.change, true), record.change);
+      renderDirectionalValue(soxIndexTargets.changePercent, formatPercent(record.changePercent), record.changePercent);
+      renderDirectionalValue(
+        soxIndexTargets.signalStatus,
+        `${signal.status}（${signalInfo.label}）`,
+        signal.score,
+      );
+      renderDirectionalValue(
+        soxIndexTargets.signalScore,
+        formatSignedInteger(signal.score),
+        signal.score,
+      );
+
+      soxIndexMessage.textContent = `^SOX｜${record.market}｜${record.timezone}`;
+      soxIndexTradeDate.textContent = `美股交易日期：${record.date}`;
+      soxIndexWidget.dataset.state = "success";
+      soxIndexStatus.textContent = "資料已載入";
+      soxIndexMessage.hidden = false;
+      soxIndexValues.hidden = false;
+      soxIndexTradeDate.hidden = false;
+    } catch (error) {
+      if (error instanceof MissingDataError) {
+        showSoxIndexError("資料缺漏", "費城半導體指數資料格式不完整，請稍後再試。");
+      } else {
+        showSoxIndexError("讀取失敗", "目前無法讀取費城半導體指數資料，請稍後再試。");
+      }
+    }
+  }
+
   function readRecord(payload) {
     const record = payload?.data?.records?.[0];
     if (!record || typeof record !== "object") {
@@ -667,4 +781,5 @@
   loadMarketScore();
   loadNightFutures();
   loadTsmAdr();
+  loadSoxIndex();
 })();

@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-08-03T03:59:23.516953Z",
+  "updated_at": "2026-08-03T19:16:19.754562Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
-      "value": 67553825161,
-      "status": "bullish",
-      "score": 1
+      "value": -19190915634,
+      "status": "bearish",
+      "score": -1
     },
     "foreign_futures_position": {
-      "value": -82515,
+      "value": -90038,
       "status": "bearish",
       "score": -1
     },
@@ -21,12 +21,17 @@
       "value": 0.94,
       "status": "bullish",
       "score": 1
+    },
+    "sox_index": {
+      "value": 0.0716,
+      "status": "bullish",
+      "score": 1
     }
   },
   "market_score": {
-    "score": 0,
-    "max_score": 4,
-    "percentage": 50,
-    "status": "Neutral"
+    "score": -1,
+    "max_score": 5,
+    "percentage": 40,
+    "status": "Bearish"
   }
 }

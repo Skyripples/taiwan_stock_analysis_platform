@@ -26,6 +26,7 @@ class MarketSignalEngine(BaseAnalysis):
             "foreign_futures_position": market_data_dir / "foreign_futures_position.json",
             "night_futures": market_data_dir / "night_futures.json",
             "tsm_adr": market_data_dir / "tsm_adr.json",
+            "sox_index": market_data_dir / "sox_index.json",
         }
 
     def load(self) -> Dict[str, Any]:
@@ -61,6 +62,10 @@ class MarketSignalEngine(BaseAnalysis):
             source_data.get("tsm_adr"),
             "tsm_adr",
         )
+        sox_index_record = self._latest_record(
+            source_data.get("sox_index"),
+            "sox_index",
+        )
 
         foreign_cash_flow = self._require_integer(
             cash_record,
@@ -82,12 +87,18 @@ class MarketSignalEngine(BaseAnalysis):
             ("change",),
             "tsm_adr",
         )
+        sox_index_change_percent = self._require_number(
+            sox_index_record,
+            ("change_percent",),
+            "sox_index",
+        )
 
         return {
             "foreign_cash_flow": self._build_signal(foreign_cash_flow),
             "foreign_futures_position": self._build_signal(foreign_futures_position),
             "night_futures": self._build_signal(night_futures_change),
             "tsm_adr": self._build_signal(tsm_adr_change),
+            "sox_index": self._build_signal(sox_index_change_percent),
         }
 
     def export(

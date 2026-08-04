@@ -192,6 +192,14 @@
                       <div><dt>分數</dt><dd id="tsmAdrSignalScore">--</dd></div>
                     </dl>
                   </article>
+                  <article class="market-score-factor">
+                    <h3>費城半導體指數</h3>
+                    <dl>
+                      <div><dt>數值</dt><dd id="soxIndexSignalValue">--</dd></div>
+                      <div><dt>狀態</dt><dd id="soxIndexSignalStatus">--</dd></div>
+                      <div><dt>分數</dt><dd id="soxIndexSignalScore">--</dd></div>
+                    </dl>
+                  </article>
                 </div>
               </div>
             </div>
@@ -314,6 +322,29 @@
                 <div><dt>訊號分數</dt><dd id="adrMarketSignalScore">--</dd></div>
               </dl>
               <p id="adrMarketTradeDate" class="market-data-date" hidden></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="soxIndexTitle">
+          <div class="widget widget-section market-data-widget sox-index-widget">
+            <header class="widget-header">
+              <div class="widget-heading">
+                <span class="widget-icon" aria-hidden="true">SOX</span>
+                <h2 id="soxIndexTitle" class="widget-title">費城半導體指數</h2>
+              </div>
+              <span id="soxIndexStatus" class="widget-status" aria-live="polite">載入中</span>
+            </header>
+            <div class="widget-body">
+              <p id="soxIndexMessage" class="widget-description" role="status">正在讀取費城半導體指數資料…</p>
+              <dl id="soxIndexValues" class="market-quote-grid" hidden>
+                <div><dt>收盤點位</dt><dd id="soxIndexClose">--</dd></div>
+                <div><dt>漲跌點數</dt><dd id="soxIndexChange">--</dd></div>
+                <div><dt>漲跌幅</dt><dd id="soxIndexChangePercent">--</dd></div>
+                <div><dt>訊號狀態</dt><dd id="soxIndexSignalStatusDetail">--</dd></div>
+                <div><dt>訊號分數</dt><dd id="soxIndexSignalScoreDetail">--</dd></div>
+              </dl>
+              <p id="soxIndexTradeDate" class="market-data-date" hidden></p>
             </div>
           </div>
         </section>

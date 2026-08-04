@@ -1,4 +1,4 @@
-"""Yahoo Finance TSM ADR daily market data provider."""
+"""Yahoo Finance daily market data providers."""
 
 from __future__ import annotations
 
@@ -23,6 +23,8 @@ class YahooProvider(BaseProvider):
     enabled = True
 
     symbol = "TSM"
+    security_name = "Taiwan Semiconductor Manufacturing Company Limited ADR"
+    expected_currency = "USD"
     source_url = "https://finance.yahoo.com/quote/TSM/history/"
     chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/TSM"
     request_timeout_seconds = 30
@@ -92,7 +94,9 @@ class YahooProvider(BaseProvider):
         incomplete_date = self._incomplete_market_date(meta, float(fetched_at), utc_offset)
         candles = self._completed_candles(timestamps, quotes[0], utc_offset, incomplete_date)
         if len(candles) < 2:
-            raise ValueError("Yahoo response has fewer than two completed TSM trading days")
+            raise ValueError(
+                f"Yahoo response has fewer than two completed {self.symbol} trading days"
+            )
 
         latest = candles[-1]
         previous = candles[-2]
@@ -105,7 +109,7 @@ class YahooProvider(BaseProvider):
                 "trade_date": latest["trade_date"],
                 "metadata": {
                     "symbol": self.symbol,
-                    "security_name": "Taiwan Semiconductor Manufacturing Company Limited ADR",
+                    "security_name": self.security_name,
                     "market": exchange,
                     "currency": currency,
                     "market_timezone": market_timezone,
@@ -136,7 +140,7 @@ class YahooProvider(BaseProvider):
             metadata = record["metadata"]
             if (
                 metadata.get("symbol") != self.symbol
-                or metadata.get("currency") != "USD"
+                or metadata.get("currency") != self.expected_currency
                 or not isinstance(metadata.get("market_timezone"), str)
                 or not metadata["market_timezone"]
                 or not str(metadata.get("source", "")).startswith("https://finance.yahoo.com/")
@@ -250,3 +254,15 @@ class YahooProvider(BaseProvider):
     @staticmethod
     def _is_number(value: Any) -> bool:
         return not isinstance(value, bool) and isinstance(value, (int, float))
+
+
+class YahooSoxProvider(YahooProvider):
+    """Fetch the latest completed Philadelphia Semiconductor Index candle."""
+
+    dataset = "sox_index"
+    output_filename = "sox_index.json"
+
+    symbol = "^SOX"
+    security_name = "Philadelphia Semiconductor Index"
+    source_url = "https://finance.yahoo.com/quote/%5ESOX/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX"
