@@ -1,7 +1,7 @@
-# 台股投資分析平台 V2.10
+# 台股投資分析平台 V3.0
 
 ## 功能
-- V2.10 隔日行情分析頁
+- V3.0 Baseline Model
 - 平台首頁與功能入口
 - 共用 Header、Sidebar、Page Framework 與 Widget 系統
 - 深色模式與響應式手機版導覽
@@ -25,6 +25,8 @@
   - 顯示 Market Score 與五項市場訊號因子
   - 顯示歷史資料、可訓練樣本及 200 筆最低訓練門檻進度
   - 預留隔日漲跌機率、方向與目標交易日的模型結果區
+  - Logistic Regression Baseline Model 訓練與推論流程
+  - 累積至少 200 筆可訓練樣本後才建立模型，不產生假預測
 
 ## 資料來源
 - Yahoo 台股行事曆
