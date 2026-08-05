@@ -62,22 +62,45 @@
 
         <section class="page-section prediction-two-column" aria-label="模型與預測狀態">
           <article id="modelStatusWidget" class="widget widget-section" data-state="loading">
-            <header class="widget-header"><h2 class="prediction-section-title">模型狀態</h2><span id="datasetLoadStatus" class="widget-status" role="status">載入中</span></header>
+            <header class="widget-header"><h2 class="prediction-section-title">模型資訊</h2><span id="modelFileStatus" class="widget-status" role="status">載入中</span></header>
             <div class="widget-body">
+              <div class="model-state-summary">
+                <strong id="modelStatusText">正在檢查模型</strong>
+                <p id="modelStatusReason" class="widget-description">請稍候</p>
+              </div>
+              <div id="modelInfoGrid" class="model-info-grid" hidden>
+                <div><span>模型名稱</span><strong id="modelName">--</strong></div>
+                <div><span>模型版本</span><strong id="modelVersion">--</strong></div>
+                <div><span>訓練樣本數</span><strong id="modelSampleCount">--</strong></div>
+                <div><span>訓練時間</span><strong id="modelTrainedAt">--</strong></div>
+                <div><span>Accuracy</span><strong id="modelAccuracy">--</strong></div>
+                <div><span>Precision</span><strong id="modelPrecision">--</strong></div>
+                <div><span>Recall</span><strong id="modelRecall">--</strong></div>
+                <div><span>F1</span><strong id="modelF1">--</strong></div>
+                <div class="confusion-matrix-item"><span>Confusion Matrix</span><strong id="modelConfusionMatrix">--</strong></div>
+              </div>
+              <div class="training-summary">
+                <div class="training-summary-heading"><span>資料集進度</span><span id="datasetLoadStatus" class="widget-status">載入中</span></div>
               <strong id="trainingProgressText" class="training-progress-text">-- / 200</strong>
               <div class="training-track"><span id="trainingProgressBar" style="width: 0%"></span></div>
-              <p id="modelStatusText" class="widget-description">正在讀取訓練資料</p>
               <p class="threshold-note">最低訓練門檻：200 筆</p>
+              </div>
             </div>
           </article>
-          <article class="widget widget-section">
-            <header class="widget-header"><h2 class="prediction-section-title">隔日預測</h2><span class="widget-status">尚無模型</span></header>
+          <article id="predictionResultWidget" class="widget widget-section" data-state="loading">
+            <header class="widget-header"><h2 class="prediction-section-title">隔日預測</h2><span id="predictionFileStatus" class="widget-status" role="status">載入中</span></header>
             <div class="widget-body prediction-placeholder-grid">
-              <div><span>上漲機率</span><strong>尚未建立模型</strong></div>
-              <div><span>下跌機率</span><strong>尚未建立模型</strong></div>
-              <div><span>預測方向</span><strong>等待模型</strong></div>
-              <div><span>預測目標日</span><strong>下一個交易日尚未確定</strong></div>
+              <div><span>上漲機率</span><strong id="upProbability">載入中</strong></div>
+              <div><span>下跌機率</span><strong id="downProbability">載入中</strong></div>
+              <div><span>預測方向</span><strong id="predictionDirection">載入中</strong></div>
+              <div><span>信心度</span><strong id="predictionConfidence">載入中</strong><div class="confidence-track"><span id="confidenceBar" style="width: 0%"></span></div></div>
+              <div><span>特徵日期</span><strong id="predictionFeatureDate">載入中</strong></div>
+              <div><span>預測目標日期</span><strong id="predictionTargetDate">載入中</strong></div>
+              <div><span>模型版本</span><strong id="predictionModelVersion">載入中</strong></div>
+              <div><span>產生時間</span><strong id="predictionGeneratedAt">載入中</strong></div>
             </div>
+            <p id="lowConfidenceNote" class="prediction-note" hidden>信心度接近中性區間，結果僅供參考，不代表強烈方向。</p>
+            <p id="modelVersionWarning" class="version-warning" role="alert" hidden>模型資訊與預測結果的版本不一致，請等待資料重新產生。</p>
           </article>
         </section>
 

@@ -21,9 +21,26 @@
 .prediction-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .training-progress-text { font-size: 1.5rem; }
 .threshold-note { margin: 10px 0 0; color: #aeb5bf; font-size: .78rem; }
+.model-state-summary { padding-bottom: 18px; }
+.model-state-summary strong { display: block; margin-bottom: 7px; font-size: 1.05rem; }
+.model-info-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 20px; }
+.model-info-grid[hidden] { display: none; }
+.model-info-grid div { min-width: 0; padding: 11px; border: 1px solid #34383e; border-radius: 9px; background: #1b1d20; }
+.model-info-grid span, .training-summary-heading > span:first-child { display: block; color: #b5bbc4; font-size: .75rem; }
+.model-info-grid strong { display: block; margin-top: 6px; overflow-wrap: anywhere; font-size: .86rem; }
+.confusion-matrix-item { grid-column: 1 / -1; }
+.training-summary { padding-top: 18px; border-top: 1px solid #34383e; }
+.training-summary-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 11px; }
 .prediction-placeholder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .prediction-placeholder-grid div { min-width: 0; padding: 13px; border-radius: 10px; background: #1b1d20; }
 .prediction-placeholder-grid strong { display: block; margin-top: 7px; overflow-wrap: anywhere; font-size: .9rem; }
+.confidence-track { height: 8px; margin-top: 10px; overflow: hidden; border-radius: 999px; background: #292c30; }
+.confidence-track span { display: block; height: 100%; border-radius: inherit; background: #a5abb3; }
+.confidence-track span.tone-bullish { background: #ef5350; }
+.confidence-track span.tone-bearish { background: #26a269; }
+.prediction-note, .version-warning { margin: 15px 0 0; padding: 11px 13px; border-radius: 9px; font-size: .8rem; line-height: 1.55; }
+.prediction-note { color: #ddd3a7; background: rgba(164, 137, 43, .16); }
+.version-warning { color: #ffaaa7; background: rgba(239, 83, 80, .14); }
 .prediction-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
 .prediction-heading h2, .prediction-heading p { margin: 0; }
 .prediction-heading p { color: #b5bbc4; font-size: .82rem; }
@@ -35,8 +52,14 @@ body.theme-light .prediction-kicker, body.theme-light .score-label, body.theme-l
 body.theme-light .score-track, body.theme-light .training-track { background: #dfe5ec; }
 body.theme-light .score-midline { background: #34445a; }
 body.theme-light .signal-item, body.theme-light .prediction-placeholder-grid div { border-color: #d8e0ea; background: #f3f6f9; }
+body.theme-light .model-info-grid div { border-color: #d8e0ea; background: #f3f6f9; }
+body.theme-light .model-info-grid span, body.theme-light .training-summary-heading > span:first-child { color: #66758a; }
+body.theme-light .training-summary { border-color: #d8e0ea; }
+body.theme-light .confidence-track { background: #dfe5ec; }
+body.theme-light .prediction-note { color: #765f13; background: #fff6d8; }
+body.theme-light .version-warning { color: #a63632; background: #fde8e7; }
 body.theme-light .signal-item small { color: #536277; }
 body.theme-light .tone-neutral { color: #526176 !important; }
 @media (max-width: 1050px) { .signal-grid, .data-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .prediction-two-column { grid-template-columns: 1fr; } .score-summary { align-items: start; } }
-@media (max-width: 520px) { .signal-grid, .data-status-grid, .prediction-placeholder-grid { grid-template-columns: 1fr; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }
+@media (max-width: 520px) { .signal-grid, .data-status-grid, .prediction-placeholder-grid, .model-info-grid { grid-template-columns: 1fr; } .confusion-matrix-item { grid-column: auto; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }

@@ -7,6 +7,7 @@ import json
 import logging
 import os
 import pickle
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -47,11 +48,14 @@ def predict_market(
     direction = "up" if up_probability > down_probability else "down"
     payload = {
         "prediction_date": latest["trade_date"],
+        "feature_date": latest["trade_date"],
+        "target_date": None,
         "up_probability": round(up_probability, 6),
         "down_probability": round(down_probability, 6),
         "direction": direction,
         "confidence": round(max(up_probability, down_probability), 6),
         "model_version": str(model_version),
+        "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
     _write_json_atomic(output_path, payload)
     LOGGER.info("Market prediction written: %s", output_path)
