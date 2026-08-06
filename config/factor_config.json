@@ -1,0 +1,32 @@
+{
+  "foreign_cash_flow": {
+    "enabled": true,
+    "weight": 1.0,
+    "display_name": "外資現貨",
+    "description": "外資及陸資每日現貨買賣超"
+  },
+  "foreign_futures_position": {
+    "enabled": true,
+    "weight": 1.0,
+    "display_name": "外資期貨",
+    "description": "外資臺股期貨未平倉淨口數"
+  },
+  "night_futures": {
+    "enabled": true,
+    "weight": 1.0,
+    "display_name": "台指期夜盤",
+    "description": "臺股期貨盤後交易漲跌點數"
+  },
+  "tsm_adr": {
+    "enabled": true,
+    "weight": 1.0,
+    "display_name": "台積電 ADR",
+    "description": "台積電 ADR 已完成交易日漲跌"
+  },
+  "sox_index": {
+    "enabled": true,
+    "weight": 1.0,
+    "display_name": "費城半導體",
+    "description": "費城半導體指數已完成交易日漲跌幅"
+  }
+}

@@ -218,6 +218,11 @@
     return `${sign}${integerFormatter.format(value)} 點`;
   }
 
+  function formatSignedScore(value) {
+    const sign = value > 0 ? "+" : "";
+    return `${sign}${percentageFormatter.format(value)}`;
+  }
+
   function formatDecimalPoints(value, showPositiveSign = false) {
     const sign = showPositiveSign && value > 0 ? "+" : "";
     return `${sign}${decimalFormatter.format(value)} 點`;
@@ -347,8 +352,8 @@
       throw new MissingDataError("缺少 market_score");
     }
 
-    const rawScore = requireInteger(score.score, "市場原始分數");
-    const maxScore = requireInteger(score.max_score, "市場最高分數");
+    const rawScore = requireNumber(score.score, "市場原始分數");
+    const maxScore = requireNumber(score.max_score, "市場最高分數");
     if (
       maxScore <= 0 || Math.abs(rawScore) > maxScore ||
       typeof score.percentage !== "number" || !Number.isFinite(score.percentage) ||
@@ -443,7 +448,7 @@
       marketScorePercentage.textContent = `${percentageFormatter.format(score.percentage)}%`;
       marketScoreStatus.textContent = score.status;
       marketScoreStatusZh.textContent = statusInfo.label;
-      marketScoreRaw.textContent = `${formatSignedInteger(score.score)} / ${integerFormatter.format(score.maxScore)}`;
+      marketScoreRaw.textContent = `${formatSignedScore(score.score)} / ${percentageFormatter.format(score.maxScore)}`;
       marketScoreBar.style.setProperty("--score-percentage", `${score.percentage}%`);
       marketScoreBar.setAttribute("aria-valuenow", String(score.percentage));
       marketScoreSummary.dataset.tone = statusInfo.tone;

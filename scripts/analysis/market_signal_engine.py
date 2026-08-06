@@ -19,8 +19,18 @@ class MarketSignalEngine(BaseAnalysis):
         "bearish": -1,
     }
 
-    def __init__(self, market_data_dir: Path) -> None:
+    FACTOR_NAMES = (
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures",
+        "tsm_adr",
+        "sox_index",
+    )
+
+    def __init__(self, market_data_dir: Path, factor_config_path: Path | None = None) -> None:
         self.market_data_dir = market_data_dir
+        self.factor_config_path = factor_config_path or Path(__file__).resolve().parents[2] / "config" / "factor_config.json"
+        self.factor_config: Dict[str, Dict[str, Any]] = {}
         self.source_files = {
             "institutional_investors": market_data_dir / "institutional_investors.json",
             "foreign_futures_position": market_data_dir / "foreign_futures_position.json",
@@ -41,10 +51,13 @@ class MarketSignalEngine(BaseAnalysis):
                 raise ValueError(f"Required market data file not found: {source_path}") from exc
             except json.JSONDecodeError as exc:
                 raise ValueError(f"Invalid JSON in market data file: {source_path}") from exc
+        loaded_data["factor_config"] = self._load_factor_config()
         return loaded_data
 
     def analyze(self, source_data: Dict[str, Any]) -> AnalysisResult:
         """Create directional signals without forecasting future prices."""
+
+        self.factor_config = self._validate_factor_config(source_data.get("factor_config"))
 
         cash_record = self._latest_record(
             source_data.get("institutional_investors"),
@@ -93,13 +106,19 @@ class MarketSignalEngine(BaseAnalysis):
             "sox_index",
         )
 
-        return {
+        signals = {
             "foreign_cash_flow": self._build_signal(foreign_cash_flow),
             "foreign_futures_position": self._build_signal(foreign_futures_position),
             "night_futures": self._build_signal(night_futures_change),
             "tsm_adr": self._build_signal(tsm_adr_change),
             "sox_index": self._build_signal(sox_index_change_percent),
         }
+        for factor_name, signal in signals.items():
+            setting = self.factor_config[factor_name]
+            signal["enabled"] = setting["enabled"]
+            signal["weight"] = setting["weight"]
+            signal["weighted_score"] = self._clean_number(signal["score"] * setting["weight"])
+        return signals
 
     def export(
         self,
@@ -122,10 +141,15 @@ class MarketSignalEngine(BaseAnalysis):
         }
 
     def _calculate_market_score(self, signals: AnalysisResult) -> Dict[str, Any]:
-        scores = [self._signal_score(signal) for signal in signals.values()]
+        enabled_signals = [signal for signal in signals.values() if signal.get("enabled") is True]
+        if not enabled_signals:
+            raise ValueError("At least one market factor must be enabled")
+        scores = [self._weighted_signal_score(signal) for signal in enabled_signals]
         maximum_per_signal = max(abs(score) for score in self.SCORE_BY_STATUS.values())
-        max_score = len(scores) * maximum_per_signal
-        score = sum(scores)
+        max_score = self._clean_number(sum(signal["weight"] * maximum_per_signal for signal in enabled_signals))
+        if max_score <= 0:
+            raise ValueError("Enabled market factor weights must have a positive total")
+        score = self._clean_number(sum(scores))
         percentage = self._score_percentage(score, max_score)
 
         return {
@@ -145,13 +169,74 @@ class MarketSignalEngine(BaseAnalysis):
             raise ValueError(f"Invalid score for market signal status: {status}")
         return score
 
+    def _weighted_signal_score(self, signal: Any) -> int | float:
+        score = self._signal_score(signal)
+        weight = signal.get("weight")
+        weighted_score = signal.get("weighted_score")
+        if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight < 0:
+            raise ValueError("Market signal weight must be a non-negative number")
+        expected = self._clean_number(score * weight)
+        if weighted_score != expected:
+            raise ValueError("Market signal weighted_score does not match score × weight")
+        return weighted_score
+
     @staticmethod
-    def _score_percentage(score: int, max_score: int) -> int | float:
+    def _score_percentage(score: int | float, max_score: int | float) -> int | float:
         if max_score <= 0:
             return 50
 
         percentage = round(((score + max_score) / (2 * max_score)) * 100, 2)
         return int(percentage) if percentage.is_integer() else percentage
+
+    def _load_factor_config(self) -> Dict[str, Any]:
+        try:
+            with self.factor_config_path.open("r", encoding="utf-8") as config_file:
+                return json.load(config_file)
+        except FileNotFoundError as exc:
+            raise ValueError(f"Factor configuration file not found: {self.factor_config_path}") from exc
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Invalid JSON in factor configuration: {self.factor_config_path}") from exc
+
+    def _validate_factor_config(self, config: Any) -> Dict[str, Dict[str, Any]]:
+        if not isinstance(config, dict):
+            raise ValueError("Factor configuration must be an object")
+        missing = sorted(set(self.FACTOR_NAMES).difference(config))
+        if missing:
+            raise ValueError(f"Factor configuration is missing: {', '.join(missing)}")
+
+        validated: Dict[str, Dict[str, Any]] = {}
+        enabled_count = 0
+        for factor_name in self.FACTOR_NAMES:
+            setting = config[factor_name]
+            if not isinstance(setting, dict):
+                raise ValueError(f"Factor configuration for {factor_name} must be an object")
+            enabled = setting.get("enabled")
+            weight = setting.get("weight")
+            display_name = setting.get("display_name")
+            description = setting.get("description")
+            if not isinstance(enabled, bool):
+                raise ValueError(f"Factor enabled must be boolean: {factor_name}")
+            if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight < 0:
+                raise ValueError(f"Factor weight must be a non-negative number: {factor_name}")
+            if not isinstance(display_name, str) or not display_name.strip():
+                raise ValueError(f"Factor display_name is required: {factor_name}")
+            if not isinstance(description, str) or not description.strip():
+                raise ValueError(f"Factor description is required: {factor_name}")
+            validated[factor_name] = {
+                "enabled": enabled,
+                "weight": self._clean_number(weight),
+                "display_name": display_name.strip(),
+                "description": description.strip(),
+            }
+            enabled_count += int(enabled)
+        if enabled_count == 0:
+            raise ValueError("At least one market factor must be enabled")
+        return validated
+
+    @staticmethod
+    def _clean_number(value: int | float) -> int | float:
+        rounded = round(value, 10)
+        return int(rounded) if float(rounded).is_integer() else rounded
 
     @staticmethod
     def _market_status(percentage: int | float) -> str:

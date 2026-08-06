@@ -5,3 +5,4 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MARKET_DATA_DIR = PROJECT_ROOT / "data" / "market"
+FACTOR_CONFIG_PATH = PROJECT_ROOT / "config" / "factor_config.json"

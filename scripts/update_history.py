@@ -153,6 +153,8 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         raise ValueError("market_signals must contain exactly the configured five signals")
 
     signals_row: Dict[str, Any] = {"trade_date": trade_date, **source_dates}
+    weighted_score_sum = 0.0
+    enabled_weight_sum = 0.0
     for signal_name in SIGNAL_NAMES:
         signal = signals.get(signal_name)
         if not isinstance(signal, dict):
@@ -167,18 +169,29 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         )
         if signal.get("value") != expected_value:
             raise ValueError(f"Signal value is stale or mismatched: {signal_name}")
+        enabled = signal.get("enabled")
+        weight = _required_scalar_number(signal.get("weight"), f"{signal_name}.weight")
+        weighted_score = _required_scalar_number(
+            signal.get("weighted_score"), f"{signal_name}.weighted_score"
+        )
+        if not isinstance(enabled, bool) or weight < 0:
+            raise ValueError(f"Invalid enabled or weight for signal: {signal_name}")
+        if abs(weighted_score - score * weight) > 1e-9:
+            raise ValueError(f"Invalid weighted_score for signal: {signal_name}")
+        if enabled:
+            weighted_score_sum += weighted_score
+            enabled_weight_sum += weight
         signals_row[f"{signal_name}_status"] = status
         signals_row[f"{signal_name}_score"] = score
 
     market_score = signal_payload.get("market_score")
     if not isinstance(market_score, dict):
         raise ValueError("market_signals is missing market_score")
-    score_sum = sum(signals_row[f"{name}_score"] for name in SIGNAL_NAMES)
-    score = _required_scalar_integer(market_score.get("score"), "market_score.score")
-    max_score = _required_scalar_integer(market_score.get("max_score"), "market_score.max_score")
+    score = _required_scalar_number(market_score.get("score"), "market_score.score")
+    max_score = _required_scalar_number(market_score.get("max_score"), "market_score.max_score")
     percentage = _required_scalar_number(market_score.get("percentage"), "market_score.percentage")
     market_status = market_score.get("status")
-    if score != score_sum or max_score != len(SIGNAL_NAMES):
+    if abs(score - weighted_score_sum) > 1e-9 or abs(max_score - enabled_weight_sum) > 1e-9:
         raise ValueError("Market Score does not match its signal scores")
     if not isinstance(market_status, str) or not market_status:
         raise ValueError("market_score.status is missing")

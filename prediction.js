@@ -3,11 +3,11 @@
 
   const TRAINING_THRESHOLD = 200;
   const SIGNALS = [
-    ['foreign_cash_flow', '外資現貨', value => `${formatSigned(value / 100000000, 2)} 億元`],
-    ['foreign_futures_position', '外資期貨', value => `${formatSigned(value, 0)} 口`],
-    ['night_futures', '台指期夜盤', value => `${formatSigned(value, 2)} 點`],
-    ['tsm_adr', '台積電 ADR', value => `${formatSigned(value, 2)} 美元`],
-    ['sox_index', '費城半導體', value => `${formatSigned(value, 2)}%`]
+    ['foreign_cash_flow', value => `${formatSigned(value / 100000000, 2)} 億元`],
+    ['foreign_futures_position', value => `${formatSigned(value, 0)} 口`],
+    ['night_futures', value => `${formatSigned(value, 2)} 點`],
+    ['tsm_adr', value => `${formatSigned(value, 2)} 美元`],
+    ['sox_index', value => `${formatSigned(value, 2)}%`]
   ];
   const STATUS_LABELS = {
     'Strong Bullish': '強勢偏多', Bullish: '偏多', Neutral: '中性', Bearish: '偏空', 'Strong Bearish': '強勢偏空',
@@ -86,7 +86,18 @@
     return value;
   }
 
-  function renderSignals(payload) {
+  function validateFactorConfig(config) {
+    if (!config || typeof config !== 'object') throw new DataFormatError('因子設定格式錯誤');
+    for (const [key] of SIGNALS) {
+      const setting = config[key];
+      if (!setting || typeof setting.enabled !== 'boolean' || !Number.isFinite(Number(setting.weight)) || Number(setting.weight) < 0 || !setting.display_name || !setting.description) {
+        throw new DataFormatError(`因子設定缺漏：${key}`);
+      }
+    }
+    return config;
+  }
+
+  function renderSignals(payload, factorConfig) {
     const score = payload.market_score;
     if (!score || !Number.isFinite(Number(score.score)) || !Number.isFinite(Number(score.max_score)) || !Number.isFinite(Number(score.percentage)) || !score.status) throw new DataFormatError('market_score 欄位缺漏');
     const percentage = Math.max(0, Math.min(100, Number(score.percentage)));
@@ -99,17 +110,22 @@
     byId('marketScoreBar').style.width = `${percentage}%`;
     byId('marketScoreBar').className = `score-fill ${scoreTone}`;
     const signals = payload.signals || {};
-    byId('signalGrid').replaceChildren(...SIGNALS.map(([key, label, formatter]) => {
+    byId('signalGrid').replaceChildren(...SIGNALS.map(([key, formatter]) => {
       const item = document.createElement('div');
       item.className = 'signal-item';
       const signal = signals[key];
-      if (!signal || !Number.isFinite(Number(signal.value)) || !Number.isFinite(Number(signal.score)) || !signal.status) {
-        item.innerHTML = `<span>${label}</span><strong>資料缺漏</strong><small>--</small>`;
+      const setting = factorConfig[key];
+      if (!signal || !Number.isFinite(Number(signal.value)) || !Number.isFinite(Number(signal.score)) || !Number.isFinite(Number(signal.weight)) || !Number.isFinite(Number(signal.weighted_score)) || !signal.status || signal.enabled !== setting.enabled || Number(signal.weight) !== Number(setting.weight)) {
+        item.innerHTML = `<span>${setting.display_name}</span><strong>資料缺漏</strong><small>--</small>`;
         return item;
       }
       const signalTone = tone(signal.status);
       const signedScore = Number(signal.score) > 0 ? `+${signal.score}` : String(signal.score);
-      item.innerHTML = `<span>${label}</span><strong class="${signalTone}">${formatter(Number(signal.value))}</strong><small>${STATUS_LABELS[signal.status] || signal.status} · score ${signedScore}</small>`;
+      const weightedScore = Number(signal.weighted_score) > 0 ? `+${signal.weighted_score}` : String(signal.weighted_score);
+      const stateText = setting.enabled ? `${STATUS_LABELS[signal.status] || signal.status} · score ${signedScore}` : '已停用';
+      item.classList.toggle('is-disabled', !setting.enabled);
+      item.title = setting.description;
+      item.innerHTML = `<span>${setting.display_name}</span><strong class="${setting.enabled ? signalTone : 'tone-neutral'}">${formatter(Number(signal.value))}</strong><small>${stateText}<br>權重 ${signal.weight} · weighted ${weightedScore}</small>`;
       return item;
     }));
     byId('marketLoadStatus').textContent = '已載入';
@@ -120,7 +136,11 @@
 
   async function loadSignals() {
     try {
-      renderSignals(JSON.parse(await fetchText('./data/market/market_signals.json')));
+      const [signalsPayload, factorConfig] = await Promise.all([
+        fetchText('./data/market/market_signals.json').then(text => JSON.parse(text)),
+        fetchText('./config/factor_config.json').then(text => JSON.parse(text))
+      ]);
+      renderSignals(signalsPayload, validateFactorConfig(factorConfig));
     } catch (error) {
       byId('marketLoadStatus').textContent = error instanceof DataFormatError || error instanceof SyntaxError ? '資料格式錯誤' : '讀取失敗';
       byId('marketStateWidget').dataset.state = 'error';
