@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T02:13:38.741854Z",
+  "updated_at": "2026-08-10T02:22:19.218383Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
@@ -19,7 +19,7 @@
       "weighted_score": -1
     },
     "night_futures": {
-      "value": 285,
+      "value": 736,
       "status": "bullish",
       "score": 1,
       "enabled": true,
