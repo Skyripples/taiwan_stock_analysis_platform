@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-08-10T02:22:19.218383Z",
+  "updated_at": "2026-08-11T02:12:36.584343Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
-      "value": -40715743790,
-      "status": "bearish",
-      "score": -1,
+      "value": 51740515132,
+      "status": "bullish",
+      "score": 1,
       "enabled": true,
       "weight": 1,
-      "weighted_score": -1
+      "weighted_score": 1
     },
     "foreign_futures_position": {
-      "value": -87911,
+      "value": -89201,
       "status": "bearish",
       "score": -1,
       "enabled": true,
@@ -19,34 +19,34 @@
       "weighted_score": -1
     },
     "night_futures": {
-      "value": 736,
-      "status": "bullish",
-      "score": 1,
+      "value": -271,
+      "status": "bearish",
+      "score": -1,
       "enabled": true,
       "weight": 1,
-      "weighted_score": 1
+      "weighted_score": -1
     },
     "tsm_adr": {
-      "value": 1.84,
-      "status": "bullish",
-      "score": 1,
+      "value": -1.57,
+      "status": "bearish",
+      "score": -1,
       "enabled": true,
       "weight": 1,
-      "weighted_score": 1
+      "weighted_score": -1
     },
     "sox_index": {
-      "value": 2.5571,
-      "status": "bullish",
-      "score": 1,
+      "value": -2.9371,
+      "status": "bearish",
+      "score": -1,
       "enabled": true,
       "weight": 1,
-      "weighted_score": 1
+      "weighted_score": -1
     }
   },
   "market_score": {
-    "score": 1,
+    "score": -3,
     "max_score": 5,
-    "percentage": 60,
-    "status": "Bullish"
+    "percentage": 20,
+    "status": "Strong Bearish"
   }
 }
