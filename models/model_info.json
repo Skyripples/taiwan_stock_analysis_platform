@@ -1,0 +1,72 @@
+{
+  "model_version": "3.6",
+  "algorithm": "StandardScaler + Logistic Regression",
+  "split_method": "chronological_80_20_no_shuffle",
+  "accuracy": 0.7862068965517242,
+  "precision": 0.8125,
+  "recall": 0.8024691358024691,
+  "f1": 0.8074534161490683,
+  "roc_auc": 0.8317901234567902,
+  "confusion_matrix": [
+    [
+      49,
+      15
+    ],
+    [
+      16,
+      65
+    ]
+  ],
+  "baseline_accuracy": 0.5586206896551724,
+  "baseline_strategy": "always_predict_training_majority_class",
+  "baseline_majority_class": 1,
+  "accuracy_vs_baseline": 0.22758620689655173,
+  "feature_names": [
+    "taiex_close",
+    "taiex_change_percent",
+    "tpex_close",
+    "turnover",
+    "advancing",
+    "declining",
+    "unchanged",
+    "foreign_cash_flow",
+    "foreign_futures_position",
+    "night_futures_change",
+    "tsm_adr_change_percent",
+    "sox_change_percent",
+    "sp500_change_percent",
+    "nasdaq_change_percent"
+  ],
+  "coefficients": {
+    "taiex_close": -0.14471811402958834,
+    "taiex_change_percent": -0.02631734578254093,
+    "tpex_close": -0.057434381591341274,
+    "turnover": 0.09729244518989594,
+    "advancing": -0.27315525012929964,
+    "declining": -0.32274626217538377,
+    "unchanged": -0.1204574440226377,
+    "foreign_cash_flow": 0.07130202418020873,
+    "foreign_futures_position": 0.007818467560662177,
+    "night_futures_change": 1.674241755902543,
+    "tsm_adr_change_percent": -0.07115958175645927,
+    "sox_change_percent": 0.16787145524894184,
+    "sp500_change_percent": 0.13499855226453636,
+    "nasdaq_change_percent": 0.06522759022654814
+  },
+  "trained_at": "2026-08-10T15:06:34.131987Z",
+  "sample_count": 722,
+  "training_sample_count": 577,
+  "test_sample_count": 145,
+  "train_date_range": {
+    "feature_start": "2023-08-10",
+    "feature_end": "2025-12-23",
+    "target_start": "2023-08-11",
+    "target_end": "2025-12-24"
+  },
+  "test_date_range": {
+    "feature_start": "2025-12-24",
+    "feature_end": "2026-08-06",
+    "target_start": "2025-12-26",
+    "target_end": "2026-08-07"
+  }
+}

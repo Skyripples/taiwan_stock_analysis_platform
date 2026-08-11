@@ -34,7 +34,14 @@ def predict_market(
     feature_names = artifact.get("feature_names")
     model = artifact.get("model")
     model_version = artifact.get("model_version")
-    if not isinstance(feature_names, list) or not feature_names or model is None or not model_version:
+    if (
+        not isinstance(feature_names, list)
+        or len(feature_names) != 14
+        or len(set(feature_names)) != 14
+        or any(not isinstance(name, str) or not name for name in feature_names)
+        or model is None
+        or not model_version
+    ):
         raise ValueError("Baseline model artifact is missing required fields")
 
     latest = _load_latest_history_row(history_path, feature_names)
@@ -45,9 +52,10 @@ def predict_market(
         raise ValueError("Baseline model does not contain both direction classes")
     down_probability = class_probabilities[0]
     up_probability = class_probabilities[1]
+    if abs(up_probability + down_probability - 1.0) > 1e-9:
+        raise ValueError("Baseline model probabilities do not sum to one")
     direction = "up" if up_probability > down_probability else "down"
     payload = {
-        "prediction_date": latest["trade_date"],
         "feature_date": latest["trade_date"],
         "target_date": None,
         "up_probability": round(up_probability, 6),

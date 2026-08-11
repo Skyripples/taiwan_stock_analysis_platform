@@ -160,7 +160,7 @@
   function validateModelInfo(data) {
     const requiredText = ['algorithm', 'model_version', 'trained_at'];
     if (requiredText.some(key => !data?.[key])) throw new DataFormatError('模型資訊欄位缺漏');
-    ['sample_count', 'accuracy', 'precision', 'recall', 'f1'].forEach(key => requireNumber(data, key));
+    ['sample_count', 'accuracy', 'baseline_accuracy', 'precision', 'recall', 'f1'].forEach(key => requireNumber(data, key));
     if (!Array.isArray(data.confusion_matrix) || data.confusion_matrix.length !== 2 || data.confusion_matrix.some(row => !Array.isArray(row) || row.length !== 2 || row.some(value => !Number.isFinite(Number(value))))) {
       throw new DataFormatError('confusion_matrix 格式錯誤');
     }
@@ -176,6 +176,7 @@
     byId('modelSampleCount').textContent = `${Number(data.sample_count).toLocaleString('zh-TW')} 筆`;
     byId('modelTrainedAt').textContent = formatDateTime(data.trained_at);
     byId('modelAccuracy').textContent = formatPercent(Number(data.accuracy));
+    byId('modelBaselineAccuracy').textContent = formatPercent(Number(data.baseline_accuracy));
     byId('modelPrecision').textContent = formatPercent(Number(data.precision));
     byId('modelRecall').textContent = formatPercent(Number(data.recall));
     byId('modelF1').textContent = formatPercent(Number(data.f1));

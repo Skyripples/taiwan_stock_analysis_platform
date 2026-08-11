@@ -50,7 +50,7 @@ jobs:
         run: |
           python scripts/train_model.py
 
-      - name: Generate market prediction when model exists
+      - name: Generate Baseline Beta prediction when model exists
         run: |
           if [ -f models/baseline_model.pkl ]; then
             python scripts/predict_market.py

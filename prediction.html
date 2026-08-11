@@ -74,6 +74,7 @@
                 <div><span>訓練樣本數</span><strong id="modelSampleCount">--</strong></div>
                 <div><span>訓練時間</span><strong id="modelTrainedAt">--</strong></div>
                 <div><span>Accuracy</span><strong id="modelAccuracy">--</strong></div>
+                <div><span>Baseline Accuracy</span><strong id="modelBaselineAccuracy">--</strong></div>
                 <div><span>Precision</span><strong id="modelPrecision">--</strong></div>
                 <div><span>Recall</span><strong id="modelRecall">--</strong></div>
                 <div><span>F1</span><strong id="modelF1">--</strong></div>
@@ -88,7 +89,7 @@
             </div>
           </article>
           <article id="predictionResultWidget" class="widget widget-section" data-state="loading">
-            <header class="widget-header"><h2 class="prediction-section-title">隔日預測</h2><span id="predictionFileStatus" class="widget-status" role="status">載入中</span></header>
+            <header class="widget-header"><div><span class="beta-badge">Baseline Beta</span><h2 class="prediction-section-title">隔日預測</h2></div><span id="predictionFileStatus" class="widget-status" role="status">載入中</span></header>
             <div class="widget-body prediction-placeholder-grid">
               <div><span>上漲機率</span><strong id="upProbability">載入中</strong></div>
               <div><span>下跌機率</span><strong id="downProbability">載入中</strong></div>
