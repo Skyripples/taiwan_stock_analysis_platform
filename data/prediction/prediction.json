@@ -1,10 +1,10 @@
 {
-  "feature_date": "2026-08-05",
+  "feature_date": "2026-08-11",
   "target_date": null,
-  "up_probability": 0.061614,
-  "down_probability": 0.938386,
-  "direction": "down",
-  "confidence": 0.938386,
+  "up_probability": 0.660846,
+  "down_probability": 0.339154,
+  "direction": "up",
+  "confidence": 0.660846,
   "model_version": "3.6",
-  "generated_at": "2026-08-11T02:57:05.439949Z"
+  "generated_at": "2026-08-12T02:30:36.402374Z"
 }
