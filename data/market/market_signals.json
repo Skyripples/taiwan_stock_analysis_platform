@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-08-12T02:30:34.779813Z",
+  "updated_at": "2026-08-13T02:31:59.318578Z",
   "version": "1.0",
   "signals": {
     "foreign_cash_flow": {
-      "value": 22328683295,
+      "value": 11020811994,
       "status": "bullish",
       "score": 1,
       "enabled": true,
@@ -11,7 +11,7 @@
       "weighted_score": 1
     },
     "foreign_futures_position": {
-      "value": -88924,
+      "value": -86633,
       "status": "bearish",
       "score": -1,
       "enabled": true,
@@ -19,7 +19,7 @@
       "weighted_score": -1
     },
     "night_futures": {
-      "value": 194,
+      "value": 601,
       "status": "bullish",
       "score": 1,
       "enabled": true,
@@ -27,7 +27,7 @@
       "weighted_score": 1
     },
     "tsm_adr": {
-      "value": 3.59,
+      "value": 7.09,
       "status": "bullish",
       "score": 1,
       "enabled": true,
@@ -35,7 +35,7 @@
       "weighted_score": 1
     },
     "sox_index": {
-      "value": 0.8722,
+      "value": 2.4871,
       "status": "bullish",
       "score": 1,
       "enabled": true,
