@@ -1,16 +1,16 @@
 {
-  "model_version": "3.6",
+  "model_version": "3.4",
   "algorithm": "StandardScaler + Logistic Regression",
   "split_method": "chronological_80_20_no_shuffle",
-  "accuracy": 0.7862068965517242,
-  "precision": 0.8125,
+  "accuracy": 0.7793103448275862,
+  "precision": 0.8024691358024691,
   "recall": 0.8024691358024691,
-  "f1": 0.8074534161490683,
-  "roc_auc": 0.8317901234567902,
+  "f1": 0.8024691358024691,
+  "roc_auc": 0.842013888888889,
   "confusion_matrix": [
     [
-      49,
-      15
+      48,
+      16
     ],
     [
       16,
@@ -20,7 +20,7 @@
   "baseline_accuracy": 0.5586206896551724,
   "baseline_strategy": "always_predict_training_majority_class",
   "baseline_majority_class": 1,
-  "accuracy_vs_baseline": 0.22758620689655173,
+  "accuracy_vs_baseline": 0.2206896551724138,
   "feature_names": [
     "taiex_close",
     "taiex_change_percent",
@@ -28,32 +28,34 @@
     "turnover",
     "advancing",
     "declining",
-    "unchanged",
     "foreign_cash_flow",
     "foreign_futures_position",
     "night_futures_change",
     "tsm_adr_change_percent",
     "sox_change_percent",
     "sp500_change_percent",
-    "nasdaq_change_percent"
+    "nasdaq_change_percent",
+    "vix_change_percent",
+    "kospi_change_percent"
   ],
   "coefficients": {
-    "taiex_close": -0.14471811402958834,
-    "taiex_change_percent": -0.02631734578254093,
-    "tpex_close": -0.057434381591341274,
-    "turnover": 0.09729244518989594,
-    "advancing": -0.27315525012929964,
-    "declining": -0.32274626217538377,
-    "unchanged": -0.1204574440226377,
-    "foreign_cash_flow": 0.07130202418020873,
-    "foreign_futures_position": 0.007818467560662177,
-    "night_futures_change": 1.674241755902543,
-    "tsm_adr_change_percent": -0.07115958175645927,
-    "sox_change_percent": 0.16787145524894184,
-    "sp500_change_percent": 0.13499855226453636,
-    "nasdaq_change_percent": 0.06522759022654814
+    "taiex_close": -0.21493622409317767,
+    "taiex_change_percent": -0.11285645383986963,
+    "tpex_close": -0.007486672618537212,
+    "turnover": 0.11870099919232409,
+    "advancing": -0.0035547910622782107,
+    "declining": -0.016903996072843194,
+    "foreign_cash_flow": 0.05885043696549164,
+    "foreign_futures_position": 0.013311393316087992,
+    "night_futures_change": 1.6997118844297623,
+    "tsm_adr_change_percent": -0.09553348700654006,
+    "sox_change_percent": 0.16852932957230332,
+    "sp500_change_percent": -0.32031994720281926,
+    "nasdaq_change_percent": 0.08898685490744586,
+    "vix_change_percent": -0.592748439253529,
+    "kospi_change_percent": 0.18768076251965193
   },
-  "trained_at": "2026-08-10T15:06:34.131987Z",
+  "trained_at": "2026-08-15T20:47:05.655715Z",
   "sample_count": 722,
   "training_sample_count": 577,
   "test_sample_count": 145,
@@ -68,5 +70,30 @@
     "feature_end": "2026-08-06",
     "target_start": "2025-12-26",
     "target_end": "2026-08-07"
+  },
+  "calibration_method": "platt",
+  "calibration_fit_samples": 330,
+  "calibration_fit_date_range": {
+    "target_start": "2024-08-23",
+    "target_end": "2025-12-30"
+  },
+  "calibration_test_samples": 142,
+  "calibration_test_date_range": {
+    "target_start": "2025-12-31",
+    "target_end": "2026-08-07"
+  },
+  "calibration_metrics": {
+    "uncalibrated": {
+      "brier_score": 0.15906431781291092,
+      "log_loss": 0.6142764265665449,
+      "expected_calibration_error": 0.14466164048359156,
+      "roc_auc": 0.8549326903757284
+    },
+    "platt": {
+      "brier_score": 0.153185099779069,
+      "log_loss": 0.5301742169215393,
+      "expected_calibration_error": 0.09517373120815141,
+      "roc_auc": 0.8549326903757284
+    }
   }
 }

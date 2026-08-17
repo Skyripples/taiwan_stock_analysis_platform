@@ -26,6 +26,8 @@ DATE_FIELDS = (
     "sox_trade_date",
     "sp500_trade_date",
     "nasdaq_trade_date",
+    "vix_trade_date",
+    "kospi_trade_date",
 )
 
 REQUIRED_FEATURE_FIELDS = (
@@ -44,6 +46,8 @@ REQUIRED_FEATURE_FIELDS = (
     "sox_change_percent",
     "sp500_change_percent",
     "nasdaq_change_percent",
+    "vix_change_percent",
+    "kospi_change_percent",
 )
 
 OUTPUT_FIELDS = (
@@ -140,11 +144,25 @@ def _build_rows(history_rows: list[Mapping[str, str]]) -> list[Dict[str, str | i
 
         for field in DATE_FIELDS:
             source_date = _parse_date(feature[field], field)
-            latest_allowed_date = target_date if field == "night_futures_trade_date" else feature_date
-            if source_date > latest_allowed_date:
+            if field == "night_futures_trade_date":
+                valid = source_date == target_date
+                rule = f"equal target date {target_date}"
+            elif field in {
+                "tsm_adr_trade_date",
+                "sox_trade_date",
+                "sp500_trade_date",
+                "nasdaq_trade_date",
+                "vix_trade_date",
+                "kospi_trade_date",
+            }:
+                valid = source_date < target_date
+                rule = f"precede target date {target_date}"
+            else:
+                valid = source_date <= feature_date
+                rule = f"not exceed feature date {feature_date}"
+            if not valid:
                 raise ValueError(
-                    f"Potential data leakage: {field} {source_date} is later than "
-                    f"its allowed date {latest_allowed_date}"
+                    f"Potential data leakage: {field} {source_date} must {rule}"
                 )
         if feature["taiwan_market_trade_date"] != feature_date:
             raise ValueError(
@@ -182,7 +200,12 @@ def _write_atomic(
     temporary_path = output_path.with_suffix(f"{output_path.suffix}.tmp")
     try:
         with temporary_path.open("w", encoding="utf-8", newline="") as output_file:
-            writer = csv.DictWriter(output_file, fieldnames=OUTPUT_FIELDS, extrasaction="raise")
+            writer = csv.DictWriter(
+                output_file,
+                fieldnames=OUTPUT_FIELDS,
+                extrasaction="raise",
+                lineterminator="\n",
+            )
             writer.writeheader()
             writer.writerows(rows)
         os.replace(temporary_path, output_path)

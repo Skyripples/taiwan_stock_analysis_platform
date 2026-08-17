@@ -46,6 +46,10 @@ jobs:
         run: |
           python scripts/build_prediction_dataset.py
 
+      - name: Validate previous market predictions
+        run: |
+          python scripts/update_prediction_history.py
+
       - name: Train baseline model
         run: |
           python scripts/train_model.py
@@ -58,12 +62,16 @@ jobs:
             echo "Baseline model is not available; prediction is skipped"
           fi
 
+      - name: Record latest market prediction
+        run: |
+          python scripts/update_prediction_history.py
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/event.json data/market/*.json data/history/*.csv
-          for file in models/model_info.json models/baseline_model.pkl data/prediction/prediction.json; do
+          for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
             if [ -f "$file" ]; then
               git add "$file"
             fi

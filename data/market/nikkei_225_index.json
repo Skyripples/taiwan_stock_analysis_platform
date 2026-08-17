@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-08-14T04:32:07.431100Z",
+  "provider": "Yahoo",
+  "dataset": "nikkei_225_index",
+  "version": "1.0",
+  "data": {
+    "records": [
+      {
+        "trade_date": "2026-08-13",
+        "metadata": {
+          "symbol": "^N225",
+          "security_name": "Nikkei 225 Index",
+          "market": "Osaka",
+          "currency": "JPY",
+          "market_timezone": "Asia/Tokyo",
+          "interval": "1d",
+          "source": "https://finance.yahoo.com/quote/%5EN225/history/",
+          "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EN225"
+        },
+        "open": 68033.1719,
+        "high": 68799.7109,
+        "low": 68006.1719,
+        "close": 68308.5938,
+        "previous_close": 67524.0625,
+        "change": 784.5313,
+        "change_percent": 1.1619,
+        "volume": 169100000
+      }
+    ]
+  }
+}

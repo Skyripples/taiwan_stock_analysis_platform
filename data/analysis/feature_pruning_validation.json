@@ -1,0 +1,1383 @@
+{
+  "generated_at": "2026-08-15T18:58:00.665968Z",
+  "version": "1.0",
+  "dataset": "historical_prediction_dataset",
+  "algorithm": "StandardScaler + LogisticRegression(max_iter=1000, random_state=42)",
+  "validation_method": "expanding_window_one_step_ahead",
+  "initial_training_size": 250,
+  "total_samples": 722,
+  "prediction_count_per_experiment": 472,
+  "oos_target_start": "2024-08-23",
+  "oos_target_end": "2026-08-07",
+  "volatility_regime": {
+    "definition": "feature-date trailing 20-session TAIEX return population volatility",
+    "median_threshold": 1.144212602764,
+    "used_for_model": false
+  },
+  "calibration": {
+    "method": "platt_logistic_on_raw_probability_logit",
+    "split": "chronological_70_30",
+    "fit_samples": 330,
+    "test_samples": 142
+  },
+  "models": {
+    "A_formal_16": {
+      "feature_count": 16,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "overall": {
+        "sample_count": 472,
+        "accuracy": 0.764830508475,
+        "precision": 0.777777777778,
+        "recall": 0.804597701149,
+        "f1": 0.790960451977,
+        "roc_auc": 0.822556336366,
+        "brier_score": 0.171472484696,
+        "log_loss": 0.562290022987,
+        "recent_50_accuracy": 0.78,
+        "recent_100_accuracy": 0.8
+      },
+      "yearly": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818,
+          "precision": 0.788461538462,
+          "recall": 0.872340425532,
+          "f1": 0.828282828283,
+          "roc_auc": 0.824597820446,
+          "brier_score": 0.17191315257,
+          "log_loss": 0.550485408132
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066,
+          "precision": 0.755395683453,
+          "recall": 0.772058823529,
+          "f1": 0.763636363636,
+          "roc_auc": 0.803394722375,
+          "brier_score": 0.178532814689,
+          "log_loss": 0.535884742489
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135,
+          "precision": 0.810126582278,
+          "recall": 0.820512820513,
+          "f1": 0.815286624204,
+          "roc_auc": 0.854293854294,
+          "brier_score": 0.159029655185,
+          "log_loss": 0.61516441496
+        }
+      },
+      "volatility_regimes": {
+        "high_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.762711864407,
+          "precision": 0.769230769231,
+          "recall": 0.827067669173,
+          "f1": 0.797101449275,
+          "roc_auc": 0.812541061391,
+          "brier_score": 0.180212078253,
+          "log_loss": 0.63196577178
+        },
+        "low_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.766949152542,
+          "precision": 0.787401574803,
+          "recall": 0.78125,
+          "f1": 0.78431372549,
+          "roc_auc": 0.839192708333,
+          "brier_score": 0.162732891139,
+          "log_loss": 0.492614274194
+        }
+      },
+      "platt_calibration": {
+        "fit_samples": 330,
+        "test_samples": 142,
+        "fit_target_start": "2024-08-23",
+        "fit_target_end": "2025-12-30",
+        "test_target_start": "2025-12-31",
+        "test_target_end": "2026-08-07",
+        "brier_score": 0.153547806072,
+        "log_loss": 0.528348796786,
+        "expected_calibration_error": 0.10660105728
+      },
+      "coefficient_stability": {
+        "taiex_close": {
+          "median": -0.171108600183,
+          "mean": -0.174238157168,
+          "min": -0.429306486838,
+          "max": 0.126145414611,
+          "sign_flip_count": 5,
+          "near_zero_ratio": 0.205508474576
+        },
+        "taiex_change_percent": {
+          "median": -0.116211203032,
+          "mean": -0.146187382912,
+          "min": -0.3706728266,
+          "max": 0.035724691655,
+          "sign_flip_count": 4,
+          "near_zero_ratio": 0.042372881356
+        },
+        "tpex_close": {
+          "median": -0.01889032224,
+          "mean": -0.020013525408,
+          "min": -0.412795097321,
+          "max": 0.329113480333,
+          "sign_flip_count": 32,
+          "near_zero_ratio": 0.504237288136
+        },
+        "turnover": {
+          "median": 0.115744724886,
+          "mean": 0.114235896389,
+          "min": -0.155849237176,
+          "max": 0.254648735756,
+          "sign_flip_count": 3,
+          "near_zero_ratio": 0.091101694915
+        },
+        "advancing": {
+          "median": -0.253989752893,
+          "mean": -0.208473976461,
+          "min": -0.396253510997,
+          "max": 0.019563324766,
+          "sign_flip_count": 10,
+          "near_zero_ratio": 0.177966101695
+        },
+        "declining": {
+          "median": -0.278221443306,
+          "mean": -0.228909038026,
+          "min": -0.435855522329,
+          "max": 0.046495667562,
+          "sign_flip_count": 7,
+          "near_zero_ratio": 0.201271186441
+        },
+        "unchanged": {
+          "median": -0.136606171825,
+          "mean": -0.130659669395,
+          "min": -0.303113674021,
+          "max": -0.040033665159,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.110169491525
+        },
+        "foreign_cash_flow": {
+          "median": 0.099697592212,
+          "mean": 0.129736970655,
+          "min": -0.015145910648,
+          "max": 0.302911616646,
+          "sign_flip_count": 4,
+          "near_zero_ratio": 0.197033898305
+        },
+        "foreign_futures_position": {
+          "median": 0.020836384394,
+          "mean": 0.025355505173,
+          "min": -0.095376432077,
+          "max": 0.124833315353,
+          "sign_flip_count": 25,
+          "near_zero_ratio": 0.491525423729
+        },
+        "night_futures_change": {
+          "median": 1.690182965163,
+          "mean": 1.607210054564,
+          "min": 1.260898951467,
+          "max": 1.982144318881,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "tsm_adr_change_percent": {
+          "median": -0.017921096165,
+          "mean": -0.029587559398,
+          "min": -0.17534261737,
+          "max": 0.130269775922,
+          "sign_flip_count": 30,
+          "near_zero_ratio": 0.449152542373
+        },
+        "sox_change_percent": {
+          "median": 0.322281718478,
+          "mean": 0.314624470351,
+          "min": 0.076346042949,
+          "max": 0.682692672308,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sp500_change_percent": {
+          "median": -0.305705150654,
+          "mean": -0.300891940784,
+          "min": -0.523497820492,
+          "max": -0.066114360219,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "nasdaq_change_percent": {
+          "median": 0.008764626765,
+          "mean": -0.004109414343,
+          "min": -0.299677120734,
+          "max": 0.229406996639,
+          "sign_flip_count": 17,
+          "near_zero_ratio": 0.292372881356
+        },
+        "vix_change_percent": {
+          "median": -0.600948186677,
+          "mean": -0.606135721535,
+          "min": -0.756314137742,
+          "max": -0.483294420206,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "kospi_change_percent": {
+          "median": 0.209868964197,
+          "mean": 0.218410636732,
+          "min": 0.087017017357,
+          "max": 0.398617005243,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        }
+      }
+    },
+    "B_remove_tsm_adr": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "overall": {
+        "sample_count": 472,
+        "accuracy": 0.766949152542,
+        "precision": 0.776556776557,
+        "recall": 0.812260536398,
+        "f1": 0.794007490637,
+        "roc_auc": 0.823518730366,
+        "brier_score": 0.170897549598,
+        "log_loss": 0.561097250456,
+        "recent_50_accuracy": 0.78,
+        "recent_100_accuracy": 0.8
+      },
+      "yearly": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818,
+          "precision": 0.788461538462,
+          "recall": 0.872340425532,
+          "f1": 0.828282828283,
+          "roc_auc": 0.824597820446,
+          "brier_score": 0.171323884391,
+          "log_loss": 0.548687026332
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.736625514403,
+          "precision": 0.753521126761,
+          "recall": 0.786764705882,
+          "f1": 0.769784172662,
+          "roc_auc": 0.804494227598,
+          "brier_score": 0.177895217111,
+          "log_loss": 0.534491327775
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135,
+          "precision": 0.810126582278,
+          "recall": 0.820512820513,
+          "f1": 0.815286624204,
+          "roc_auc": 0.854904354904,
+          "brier_score": 0.158571658338,
+          "log_loss": 0.614695398928
+        }
+      },
+      "volatility_regimes": {
+        "high_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.766949152542,
+          "precision": 0.770833333333,
+          "recall": 0.834586466165,
+          "f1": 0.801444043321,
+          "roc_auc": 0.812906051537,
+          "brier_score": 0.17986767635,
+          "log_loss": 0.631443580377
+        },
+        "low_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.766949152542,
+          "precision": 0.782945736434,
+          "recall": 0.7890625,
+          "f1": 0.785992217899,
+          "roc_auc": 0.840856481481,
+          "brier_score": 0.161927422846,
+          "log_loss": 0.490750920536
+        }
+      },
+      "platt_calibration": {
+        "fit_samples": 330,
+        "test_samples": 142,
+        "fit_target_start": "2024-08-23",
+        "fit_target_end": "2025-12-30",
+        "test_target_start": "2025-12-31",
+        "test_target_end": "2026-08-07",
+        "brier_score": 0.153265429191,
+        "log_loss": 0.529042352772,
+        "expected_calibration_error": 0.108183142671
+      },
+      "coefficient_stability": {
+        "taiex_close": {
+          "median": -0.16432261969,
+          "mean": -0.169744501354,
+          "min": -0.413747014346,
+          "max": 0.134569727116,
+          "sign_flip_count": 7,
+          "near_zero_ratio": 0.207627118644
+        },
+        "taiex_change_percent": {
+          "median": -0.133414409806,
+          "mean": -0.153457294586,
+          "min": -0.353153875691,
+          "max": 0.020659164676,
+          "sign_flip_count": 2,
+          "near_zero_ratio": 0.03813559322
+        },
+        "tpex_close": {
+          "median": -0.019939160311,
+          "mean": -0.021720923151,
+          "min": -0.409567010936,
+          "max": 0.322689811489,
+          "sign_flip_count": 26,
+          "near_zero_ratio": 0.502118644068
+        },
+        "turnover": {
+          "median": 0.114098920371,
+          "mean": 0.111740674082,
+          "min": -0.15847175999,
+          "max": 0.245782333937,
+          "sign_flip_count": 3,
+          "near_zero_ratio": 0.101694915254
+        },
+        "advancing": {
+          "median": -0.254178510143,
+          "mean": -0.208373342446,
+          "min": -0.399360885496,
+          "max": 0.018498861907,
+          "sign_flip_count": 14,
+          "near_zero_ratio": 0.173728813559
+        },
+        "declining": {
+          "median": -0.278908301443,
+          "mean": -0.229448595041,
+          "min": -0.431984990909,
+          "max": 0.047792985068,
+          "sign_flip_count": 7,
+          "near_zero_ratio": 0.188559322034
+        },
+        "unchanged": {
+          "median": -0.137969826816,
+          "mean": -0.13217565835,
+          "min": -0.304449169996,
+          "max": -0.038926448504,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.114406779661
+        },
+        "foreign_cash_flow": {
+          "median": 0.099804828326,
+          "mean": 0.130294616176,
+          "min": -0.006656869342,
+          "max": 0.302073784357,
+          "sign_flip_count": 2,
+          "near_zero_ratio": 0.16313559322
+        },
+        "foreign_futures_position": {
+          "median": 0.023552834989,
+          "mean": 0.027358134571,
+          "min": -0.093595122027,
+          "max": 0.123814948445,
+          "sign_flip_count": 27,
+          "near_zero_ratio": 0.493644067797
+        },
+        "night_futures_change": {
+          "median": 1.661805776536,
+          "mean": 1.593634840828,
+          "min": 1.292315069207,
+          "max": 1.958673637047,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sox_change_percent": {
+          "median": 0.289294876118,
+          "mean": 0.298761649467,
+          "min": 0.062340237594,
+          "max": 0.703495135005,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sp500_change_percent": {
+          "median": -0.297546169372,
+          "mean": -0.292750736154,
+          "min": -0.484490215051,
+          "max": -0.054242441006,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "nasdaq_change_percent": {
+          "median": -0.006139344647,
+          "mean": -0.009138199678,
+          "min": -0.292353835435,
+          "max": 0.24493281451,
+          "sign_flip_count": 15,
+          "near_zero_ratio": 0.338983050847
+        },
+        "vix_change_percent": {
+          "median": -0.596942390184,
+          "mean": -0.604678469695,
+          "min": -0.743415383099,
+          "max": -0.486091827439,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "kospi_change_percent": {
+          "median": 0.210522934569,
+          "mean": 0.218535648095,
+          "min": 0.091518630141,
+          "max": 0.393668581143,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.002118644067,
+        "precision": -0.001221001221,
+        "recall": 0.007662835249,
+        "f1": 0.00304703866,
+        "roc_auc": 0.000962394,
+        "brier_score": -0.000574935098,
+        "log_loss": -0.001192772531,
+        "recent_50_accuracy": 0.0,
+        "recent_100_accuracy": 0.0
+      }
+    },
+    "C_remove_taiex_change": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "overall": {
+        "sample_count": 472,
+        "accuracy": 0.771186440678,
+        "precision": 0.782287822878,
+        "recall": 0.812260536398,
+        "f1": 0.796992481203,
+        "roc_auc": 0.823718472517,
+        "brier_score": 0.171104862612,
+        "log_loss": 0.560886117111,
+        "recent_50_accuracy": 0.78,
+        "recent_100_accuracy": 0.8
+      },
+      "yearly": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818,
+          "precision": 0.788461538462,
+          "recall": 0.872340425532,
+          "f1": 0.828282828283,
+          "roc_auc": 0.825635703166,
+          "brier_score": 0.171356734421,
+          "log_loss": 0.549164596944
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.736625514403,
+          "precision": 0.757142857143,
+          "recall": 0.779411764706,
+          "f1": 0.768115942029,
+          "roc_auc": 0.805043980209,
+          "brier_score": 0.178003094619,
+          "log_loss": 0.531203224417
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.808510638298,
+          "precision": 0.822784810127,
+          "recall": 0.833333333333,
+          "f1": 0.828025477707,
+          "roc_auc": 0.853276353276,
+          "brier_score": 0.159059223625,
+          "log_loss": 0.619357299375
+        }
+      },
+      "volatility_regimes": {
+        "high_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.762711864407,
+          "precision": 0.769230769231,
+          "recall": 0.827067669173,
+          "f1": 0.797101449275,
+          "roc_auc": 0.814512008176,
+          "brier_score": 0.17976256309,
+          "log_loss": 0.629578621927
+        },
+        "low_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.779661016949,
+          "precision": 0.796875,
+          "recall": 0.796875,
+          "f1": 0.796875,
+          "roc_auc": 0.840639467593,
+          "brier_score": 0.162447162134,
+          "log_loss": 0.492193612295
+        }
+      },
+      "platt_calibration": {
+        "fit_samples": 330,
+        "test_samples": 142,
+        "fit_target_start": "2024-08-23",
+        "fit_target_end": "2025-12-30",
+        "test_target_start": "2025-12-31",
+        "test_target_end": "2026-08-07",
+        "brier_score": 0.153941498726,
+        "log_loss": 0.533210269732,
+        "expected_calibration_error": 0.112771508645
+      },
+      "coefficient_stability": {
+        "taiex_close": {
+          "median": -0.184003427797,
+          "mean": -0.196610510052,
+          "min": -0.443328002976,
+          "max": 0.063972593088,
+          "sign_flip_count": 11,
+          "near_zero_ratio": 0.131355932203
+        },
+        "tpex_close": {
+          "median": -0.017409908905,
+          "mean": -0.018736742371,
+          "min": -0.415210483954,
+          "max": 0.325662252311,
+          "sign_flip_count": 32,
+          "near_zero_ratio": 0.5
+        },
+        "turnover": {
+          "median": 0.123956684915,
+          "mean": 0.123969305649,
+          "min": -0.150911606255,
+          "max": 0.274259630373,
+          "sign_flip_count": 3,
+          "near_zero_ratio": 0.063559322034
+        },
+        "advancing": {
+          "median": -0.282385046264,
+          "mean": -0.224581173379,
+          "min": -0.424334899793,
+          "max": 0.008378784901,
+          "sign_flip_count": 6,
+          "near_zero_ratio": 0.150423728814
+        },
+        "declining": {
+          "median": -0.245051332179,
+          "mean": -0.202153239981,
+          "min": -0.412572482946,
+          "max": 0.056189227772,
+          "sign_flip_count": 11,
+          "near_zero_ratio": 0.23093220339
+        },
+        "unchanged": {
+          "median": -0.12232418662,
+          "mean": -0.117367980597,
+          "min": -0.299709527171,
+          "max": -0.018130227142,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.173728813559
+        },
+        "foreign_cash_flow": {
+          "median": 0.051845775154,
+          "mean": 0.064670748879,
+          "min": -0.037761781247,
+          "max": 0.170752981033,
+          "sign_flip_count": 8,
+          "near_zero_ratio": 0.487288135593
+        },
+        "foreign_futures_position": {
+          "median": 0.01082935036,
+          "mean": 0.014884475576,
+          "min": -0.100500251284,
+          "max": 0.108549521942,
+          "sign_flip_count": 29,
+          "near_zero_ratio": 0.516949152542
+        },
+        "night_futures_change": {
+          "median": 1.706899627165,
+          "mean": 1.633969478426,
+          "min": 1.311937366588,
+          "max": 1.999415324821,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "tsm_adr_change_percent": {
+          "median": -0.060077515165,
+          "mean": -0.064193821622,
+          "min": -0.194974266649,
+          "max": 0.065821549071,
+          "sign_flip_count": 22,
+          "near_zero_ratio": 0.459745762712
+        },
+        "sox_change_percent": {
+          "median": 0.342164552868,
+          "mean": 0.327372931391,
+          "min": 0.090295156998,
+          "max": 0.684996194827,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sp500_change_percent": {
+          "median": -0.291701216087,
+          "mean": -0.293325296183,
+          "min": -0.51294552515,
+          "max": -0.070998787838,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "nasdaq_change_percent": {
+          "median": 0.008478751186,
+          "mean": -0.007972844309,
+          "min": -0.299154994996,
+          "max": 0.204591360807,
+          "sign_flip_count": 17,
+          "near_zero_ratio": 0.311440677966
+        },
+        "vix_change_percent": {
+          "median": -0.593610123111,
+          "mean": -0.594545890735,
+          "min": -0.749448449401,
+          "max": -0.458397301682,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "kospi_change_percent": {
+          "median": 0.185594610735,
+          "mean": 0.19164980062,
+          "min": 0.070974842127,
+          "max": 0.368075915881,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.006355932203,
+        "precision": 0.0045100451,
+        "recall": 0.007662835249,
+        "f1": 0.006032029226,
+        "roc_auc": 0.001162136151,
+        "brier_score": -0.000367622084,
+        "log_loss": -0.001403905876,
+        "recent_50_accuracy": 0.0,
+        "recent_100_accuracy": 0.0
+      }
+    },
+    "D_remove_unchanged": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "overall": {
+        "sample_count": 472,
+        "accuracy": 0.76906779661,
+        "precision": 0.775362318841,
+        "recall": 0.819923371648,
+        "f1": 0.797020484171,
+        "roc_auc": 0.823936373046,
+        "brier_score": 0.170619900938,
+        "log_loss": 0.559618560628,
+        "recent_50_accuracy": 0.78,
+        "recent_100_accuracy": 0.8
+      },
+      "yearly": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818,
+          "precision": 0.788461538462,
+          "recall": 0.872340425532,
+          "f1": 0.828282828283,
+          "roc_auc": 0.826673585885,
+          "brier_score": 0.169125184324,
+          "log_loss": 0.540955391334
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741,
+          "precision": 0.751724137931,
+          "recall": 0.801470588235,
+          "f1": 0.775800711744,
+          "roc_auc": 0.803738317757,
+          "brier_score": 0.178314498829,
+          "log_loss": 0.535134792345
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135,
+          "precision": 0.810126582278,
+          "recall": 0.820512820513,
+          "f1": 0.815286624204,
+          "roc_auc": 0.856125356125,
+          "brier_score": 0.15829187097,
+          "log_loss": 0.613461926518
+        }
+      },
+      "volatility_regimes": {
+        "high_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.762711864407,
+          "precision": 0.769230769231,
+          "recall": 0.827067669173,
+          "f1": 0.797101449275,
+          "roc_auc": 0.815022994379,
+          "brier_score": 0.178737434468,
+          "log_loss": 0.628577393015
+        },
+        "low_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.775423728814,
+          "precision": 0.781954887218,
+          "recall": 0.8125,
+          "f1": 0.7969348659,
+          "roc_auc": 0.838903356481,
+          "brier_score": 0.162502367409,
+          "log_loss": 0.490659728241
+        }
+      },
+      "platt_calibration": {
+        "fit_samples": 330,
+        "test_samples": 142,
+        "fit_target_start": "2024-08-23",
+        "fit_target_end": "2025-12-30",
+        "test_target_start": "2025-12-31",
+        "test_target_end": "2026-08-07",
+        "brier_score": 0.153185099779,
+        "log_loss": 0.530174216917,
+        "expected_calibration_error": 0.095173731208
+      },
+      "coefficient_stability": {
+        "taiex_close": {
+          "median": -0.229407776031,
+          "mean": -0.212918352447,
+          "min": -0.446492622408,
+          "max": 0.044866298281,
+          "sign_flip_count": 11,
+          "near_zero_ratio": 0.099576271186
+        },
+        "taiex_change_percent": {
+          "median": -0.088556482652,
+          "mean": -0.121408845619,
+          "min": -0.368636343305,
+          "max": 0.102159185479,
+          "sign_flip_count": 2,
+          "near_zero_ratio": 0.16313559322
+        },
+        "tpex_close": {
+          "median": -0.009403422074,
+          "mean": -0.029502736289,
+          "min": -0.396858228311,
+          "max": 0.297698890038,
+          "sign_flip_count": 44,
+          "near_zero_ratio": 0.487288135593
+        },
+        "turnover": {
+          "median": 0.168996840572,
+          "mean": 0.166106801394,
+          "min": -0.022721921319,
+          "max": 0.279394069916,
+          "sign_flip_count": 4,
+          "near_zero_ratio": 0.025423728814
+        },
+        "advancing": {
+          "median": 0.009053260195,
+          "mean": 0.036407835726,
+          "min": -0.202212419508,
+          "max": 0.249172352681,
+          "sign_flip_count": 17,
+          "near_zero_ratio": 0.400423728814
+        },
+        "declining": {
+          "median": 0.013678953712,
+          "mean": 0.046644090887,
+          "min": -0.231565972516,
+          "max": 0.419113678369,
+          "sign_flip_count": 39,
+          "near_zero_ratio": 0.470338983051
+        },
+        "foreign_cash_flow": {
+          "median": 0.076665885539,
+          "mean": 0.09959107608,
+          "min": -0.060058205763,
+          "max": 0.294226516009,
+          "sign_flip_count": 16,
+          "near_zero_ratio": 0.372881355932
+        },
+        "foreign_futures_position": {
+          "median": -0.008839311917,
+          "mean": 0.002343698938,
+          "min": -0.116001091329,
+          "max": 0.117202388413,
+          "sign_flip_count": 21,
+          "near_zero_ratio": 0.419491525424
+        },
+        "night_futures_change": {
+          "median": 1.697101493945,
+          "mean": 1.610035808904,
+          "min": 1.256458161226,
+          "max": 1.987920316874,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "tsm_adr_change_percent": {
+          "median": -0.021487517378,
+          "mean": -0.034968977935,
+          "min": -0.183730630089,
+          "max": 0.130786256221,
+          "sign_flip_count": 34,
+          "near_zero_ratio": 0.423728813559
+        },
+        "sox_change_percent": {
+          "median": 0.314580456207,
+          "mean": 0.31025230557,
+          "min": 0.067806688362,
+          "max": 0.676748498923,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sp500_change_percent": {
+          "median": -0.3111884408,
+          "mean": -0.309875456421,
+          "min": -0.526783812253,
+          "max": -0.083062993402,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "nasdaq_change_percent": {
+          "median": 0.027220065874,
+          "mean": 0.008382706822,
+          "min": -0.284789422199,
+          "max": 0.233421737202,
+          "sign_flip_count": 11,
+          "near_zero_ratio": 0.254237288136
+        },
+        "vix_change_percent": {
+          "median": -0.593872081985,
+          "mean": -0.597929827022,
+          "min": -0.738475139705,
+          "max": -0.478182068615,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "kospi_change_percent": {
+          "median": 0.212995779089,
+          "mean": 0.222329397458,
+          "min": 0.092299201807,
+          "max": 0.398290454322,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.004237288135,
+        "precision": -0.002415458937,
+        "recall": 0.015325670499,
+        "f1": 0.006060032194,
+        "roc_auc": 0.00138003668,
+        "brier_score": -0.000852583758,
+        "log_loss": -0.002671462359,
+        "recent_50_accuracy": 0.0,
+        "recent_100_accuracy": 0.0
+      }
+    },
+    "E_remove_all_three": {
+      "feature_count": 13,
+      "features": [
+        "taiex_close",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "overall": {
+        "sample_count": 472,
+        "accuracy": 0.766949152542,
+        "precision": 0.772563176895,
+        "recall": 0.819923371648,
+        "f1": 0.795539033457,
+        "roc_auc": 0.825189301084,
+        "brier_score": 0.169765492528,
+        "log_loss": 0.556563180545,
+        "recent_50_accuracy": 0.78,
+        "recent_100_accuracy": 0.8
+      },
+      "yearly": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818,
+          "precision": 0.788461538462,
+          "recall": 0.872340425532,
+          "f1": 0.828282828283,
+          "roc_auc": 0.826673585885,
+          "brier_score": 0.168189111165,
+          "log_loss": 0.538260279027
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066,
+          "precision": 0.744827586207,
+          "recall": 0.794117647059,
+          "f1": 0.768683274021,
+          "roc_auc": 0.806280923584,
+          "brier_score": 0.177181450786,
+          "log_loss": 0.529184068312
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716,
+          "precision": 0.8125,
+          "recall": 0.833333333333,
+          "f1": 0.822784810127,
+          "roc_auc": 0.854904354904,
+          "brier_score": 0.157968639358,
+          "log_loss": 0.615171546546
+        }
+      },
+      "volatility_regimes": {
+        "high_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.762711864407,
+          "precision": 0.769230769231,
+          "recall": 0.827067669173,
+          "f1": 0.797101449275,
+          "roc_auc": 0.816190962844,
+          "brier_score": 0.178277730156,
+          "log_loss": 0.624882505147
+        },
+        "low_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.771186440678,
+          "precision": 0.776119402985,
+          "recall": 0.8125,
+          "f1": 0.793893129771,
+          "roc_auc": 0.841435185185,
+          "brier_score": 0.1612532549,
+          "log_loss": 0.488243855942
+        }
+      },
+      "platt_calibration": {
+        "fit_samples": 330,
+        "test_samples": 142,
+        "fit_target_start": "2024-08-23",
+        "fit_target_end": "2025-12-30",
+        "test_target_start": "2025-12-31",
+        "test_target_end": "2026-08-07",
+        "brier_score": 0.153465452021,
+        "log_loss": 0.535213684297,
+        "expected_calibration_error": 0.106101617204
+      },
+      "coefficient_stability": {
+        "taiex_close": {
+          "median": -0.228964770895,
+          "mean": -0.22270737341,
+          "min": -0.43401583,
+          "max": 0.004112119333,
+          "sign_flip_count": 4,
+          "near_zero_ratio": 0.061440677966
+        },
+        "tpex_close": {
+          "median": -0.011016880301,
+          "mean": -0.031555250518,
+          "min": -0.40141607073,
+          "max": 0.288458042643,
+          "sign_flip_count": 42,
+          "near_zero_ratio": 0.491525423729
+        },
+        "turnover": {
+          "median": 0.1697305281,
+          "mean": 0.168968530017,
+          "min": -0.02200587642,
+          "max": 0.291184399154,
+          "sign_flip_count": 4,
+          "near_zero_ratio": 0.025423728814
+        },
+        "advancing": {
+          "median": -0.015605490747,
+          "mean": 0.001406537215,
+          "min": -0.283849571401,
+          "max": 0.286093709981,
+          "sign_flip_count": 9,
+          "near_zero_ratio": 0.309322033898
+        },
+        "declining": {
+          "median": 0.015960775682,
+          "mean": 0.04878389151,
+          "min": -0.230700663814,
+          "max": 0.422522394277,
+          "sign_flip_count": 29,
+          "near_zero_ratio": 0.444915254237
+        },
+        "foreign_cash_flow": {
+          "median": 0.031612894788,
+          "mean": 0.042125276496,
+          "min": -0.074936319092,
+          "max": 0.155463636052,
+          "sign_flip_count": 19,
+          "near_zero_ratio": 0.48093220339
+        },
+        "foreign_futures_position": {
+          "median": -0.012833528925,
+          "mean": -0.003686110355,
+          "min": -0.118546229092,
+          "max": 0.097049114811,
+          "sign_flip_count": 17,
+          "near_zero_ratio": 0.468220338983
+        },
+        "night_futures_change": {
+          "median": 1.671133036535,
+          "mean": 1.606473825736,
+          "min": 1.305703952719,
+          "max": 1.969474794326,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sox_change_percent": {
+          "median": 0.271908953172,
+          "mean": 0.286881612265,
+          "min": 0.048185166271,
+          "max": 0.696161400059,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.004237288136
+        },
+        "sp500_change_percent": {
+          "median": -0.277928136018,
+          "mean": -0.282994517127,
+          "min": -0.473293851404,
+          "max": -0.057655500413,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "nasdaq_change_percent": {
+          "median": 0.003529755989,
+          "mean": -0.008894589903,
+          "min": -0.278894183326,
+          "max": 0.202635748711,
+          "sign_flip_count": 17,
+          "near_zero_ratio": 0.351694915254
+        },
+        "vix_change_percent": {
+          "median": -0.58151430884,
+          "mean": -0.582708492841,
+          "min": -0.718512223619,
+          "max": -0.45917490391,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "kospi_change_percent": {
+          "median": 0.192640722873,
+          "mean": 0.196490845081,
+          "min": 0.075966975489,
+          "max": 0.368805809752,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.002118644067,
+        "precision": -0.005214600883,
+        "recall": 0.015325670499,
+        "f1": 0.00457858148,
+        "roc_auc": 0.002632964718,
+        "brier_score": -0.001706992168,
+        "log_loss": -0.005726842442,
+        "recent_50_accuracy": 0.0,
+        "recent_100_accuracy": 0.0
+      }
+    },
+    "F2_remove_tsm_then_taiex_change": {
+      "feature_count": 14,
+      "features": [
+        "taiex_close",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "overall": {
+        "sample_count": 472,
+        "accuracy": 0.771186440678,
+        "precision": 0.778181818182,
+        "recall": 0.819923371648,
+        "f1": 0.798507462687,
+        "roc_auc": 0.824426649235,
+        "brier_score": 0.170602452072,
+        "log_loss": 0.559616213654,
+        "recent_50_accuracy": 0.78,
+        "recent_100_accuracy": 0.8
+      },
+      "yearly": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818,
+          "precision": 0.788461538462,
+          "recall": 0.872340425532,
+          "f1": 0.828282828283,
+          "roc_auc": 0.825116761806,
+          "brier_score": 0.170978567434,
+          "log_loss": 0.547929000341
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741,
+          "precision": 0.755244755245,
+          "recall": 0.794117647059,
+          "f1": 0.774193548387,
+          "roc_auc": 0.805525013744,
+          "brier_score": 0.177471199111,
+          "log_loss": 0.530445234998
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716,
+          "precision": 0.8125,
+          "recall": 0.833333333333,
+          "f1": 0.822784810127,
+          "roc_auc": 0.85347985348,
+          "brier_score": 0.15853008553,
+          "log_loss": 0.617183749717
+        }
+      },
+      "volatility_regimes": {
+        "high_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.762711864407,
+          "precision": 0.769230769231,
+          "recall": 0.827067669173,
+          "f1": 0.797101449275,
+          "roc_auc": 0.814439010147,
+          "brier_score": 0.179769786265,
+          "log_loss": 0.629205383093
+        },
+        "low_volatility": {
+          "sample_count": 236,
+          "accuracy": 0.779661016949,
+          "precision": 0.787878787879,
+          "recall": 0.8125,
+          "f1": 0.8,
+          "roc_auc": 0.842013888889,
+          "brier_score": 0.161435117878,
+          "log_loss": 0.490027044215
+        }
+      },
+      "platt_calibration": {
+        "fit_samples": 330,
+        "test_samples": 142,
+        "fit_target_start": "2024-08-23",
+        "fit_target_end": "2025-12-30",
+        "test_target_start": "2025-12-31",
+        "test_target_end": "2026-08-07",
+        "brier_score": 0.153703299758,
+        "log_loss": 0.533011012628,
+        "expected_calibration_error": 0.113483739774
+      },
+      "coefficient_stability": {
+        "taiex_close": {
+          "median": -0.179759991388,
+          "mean": -0.192657853174,
+          "min": -0.427794435046,
+          "max": 0.072538463417,
+          "sign_flip_count": 11,
+          "near_zero_ratio": 0.125
+        },
+        "tpex_close": {
+          "median": -0.019429752663,
+          "mean": -0.021510224955,
+          "min": -0.411748765816,
+          "max": 0.320100448594,
+          "sign_flip_count": 24,
+          "near_zero_ratio": 0.502118644068
+        },
+        "turnover": {
+          "median": 0.120477192741,
+          "mean": 0.123126063877,
+          "min": -0.153080585808,
+          "max": 0.27014871252,
+          "sign_flip_count": 3,
+          "near_zero_ratio": 0.069915254237
+        },
+        "advancing": {
+          "median": -0.281592830844,
+          "mean": -0.225439785812,
+          "min": -0.426515628921,
+          "max": 0.007112293751,
+          "sign_flip_count": 6,
+          "near_zero_ratio": 0.152542372881
+        },
+        "declining": {
+          "median": -0.242241244969,
+          "mean": -0.199093291748,
+          "min": -0.402970017262,
+          "max": 0.05481439075,
+          "sign_flip_count": 11,
+          "near_zero_ratio": 0.220338983051
+        },
+        "unchanged": {
+          "median": -0.122840506649,
+          "mean": -0.117692042446,
+          "min": -0.301678844813,
+          "max": -0.018449670791,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.173728813559
+        },
+        "foreign_cash_flow": {
+          "median": 0.045160365688,
+          "mean": 0.060265237715,
+          "min": -0.047160601377,
+          "max": 0.171089911062,
+          "sign_flip_count": 16,
+          "near_zero_ratio": 0.508474576271
+        },
+        "foreign_futures_position": {
+          "median": 0.011637636466,
+          "mean": 0.015576353301,
+          "min": -0.099394949834,
+          "max": 0.10853228817,
+          "sign_flip_count": 33,
+          "near_zero_ratio": 0.508474576271
+        },
+        "night_futures_change": {
+          "median": 1.668634806509,
+          "mean": 1.60633034983,
+          "min": 1.306025150978,
+          "max": 1.96680070484,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sox_change_percent": {
+          "median": 0.288931490942,
+          "mean": 0.293914619828,
+          "min": 0.059403173101,
+          "max": 0.699371887902,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "sp500_change_percent": {
+          "median": -0.270114141978,
+          "mean": -0.273538356317,
+          "min": -0.462316708474,
+          "max": -0.048903758448,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.004237288136
+        },
+        "nasdaq_change_percent": {
+          "median": -0.014573977414,
+          "mean": -0.021294643316,
+          "min": -0.294495892121,
+          "max": 0.202347032314,
+          "sign_flip_count": 9,
+          "near_zero_ratio": 0.419491525424
+        },
+        "vix_change_percent": {
+          "median": -0.588424241183,
+          "mean": -0.589863074088,
+          "min": -0.733272498085,
+          "max": -0.461478250257,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        },
+        "kospi_change_percent": {
+          "median": 0.18179825735,
+          "mean": 0.189008638786,
+          "min": 0.070558048202,
+          "max": 0.36902258074,
+          "sign_flip_count": 0,
+          "near_zero_ratio": 0.0
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.006355932203,
+        "precision": 0.000404040404,
+        "recall": 0.015325670499,
+        "f1": 0.00754701071,
+        "roc_auc": 0.001870312869,
+        "brier_score": -0.000870032624,
+        "log_loss": -0.002673809333,
+        "recent_50_accuracy": 0.0,
+        "recent_100_accuracy": 0.0
+      }
+    }
+  },
+  "progressive_pruning": {
+    "F1_remove_tsm_adr": "same result as B_remove_tsm_adr",
+    "F2_remove_tsm_then_taiex_change": "models.F2_remove_tsm_then_taiex_change",
+    "F3_remove_tsm_then_taiex_change_then_unchanged": "same result as E_remove_all_three"
+  },
+  "near_zero_definition": "absolute standardized coefficient < 0.05",
+  "production_model_modified": false
+}

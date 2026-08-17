@@ -72,27 +72,30 @@
                 <div><span>模型名稱</span><strong id="modelName">--</strong></div>
                 <div><span>模型版本</span><strong id="modelVersion">--</strong></div>
                 <div><span>訓練樣本數</span><strong id="modelSampleCount">--</strong></div>
+                <div><span>正式 Features</span><strong id="modelFeatureCount">--</strong></div>
                 <div><span>訓練時間</span><strong id="modelTrainedAt">--</strong></div>
                 <div><span>Accuracy</span><strong id="modelAccuracy">--</strong></div>
                 <div><span>Baseline Accuracy</span><strong id="modelBaselineAccuracy">--</strong></div>
                 <div><span>Precision</span><strong id="modelPrecision">--</strong></div>
                 <div><span>Recall</span><strong id="modelRecall">--</strong></div>
                 <div><span>F1</span><strong id="modelF1">--</strong></div>
+                <div><span>機率校準</span><strong id="modelCalibrationMethod">--</strong></div>
+                <div><span>校準 Fit 樣本</span><strong id="modelCalibrationSamples">--</strong></div>
                 <div class="confusion-matrix-item"><span>Confusion Matrix</span><strong id="modelConfusionMatrix">--</strong></div>
+                <div class="confusion-matrix-item"><span>Feature 清單</span><strong id="modelFeatureList">--</strong></div>
               </div>
               <div class="training-summary">
-                <div class="training-summary-heading"><span>資料集進度</span><span id="datasetLoadStatus" class="widget-status">載入中</span></div>
-              <strong id="trainingProgressText" class="training-progress-text">-- / 200</strong>
-              <div class="training-track"><span id="trainingProgressBar" style="width: 0%"></span></div>
-              <p class="threshold-note">最低訓練門檻：200 筆</p>
+                <div class="training-summary-heading"><span>歷史訓練資料</span><span id="historicalDatasetLoadStatus" class="widget-status">載入中</span></div>
+                <strong id="historicalTrainingCount" class="training-progress-text">載入中</strong>
+                <p class="threshold-note">模型已使用歷史資料完成訓練，實際訓練樣本數與評估指標請見上方模型資訊。</p>
               </div>
             </div>
           </article>
           <article id="predictionResultWidget" class="widget widget-section" data-state="loading">
             <header class="widget-header"><div><span class="beta-badge">Baseline Beta</span><h2 class="prediction-section-title">隔日預測</h2></div><span id="predictionFileStatus" class="widget-status" role="status">載入中</span></header>
             <div class="widget-body prediction-placeholder-grid">
-              <div><span>上漲機率</span><strong id="upProbability">載入中</strong></div>
-              <div><span>下跌機率</span><strong id="downProbability">載入中</strong></div>
+              <div><span>校準後上漲機率</span><strong id="upProbability">載入中</strong><small id="rawUpProbability" class="raw-probability">原始機率：--</small></div>
+              <div><span>校準後下跌機率</span><strong id="downProbability">載入中</strong><small id="calibrationStatus" class="raw-probability">校準狀態：載入中</small></div>
               <div><span>預測方向</span><strong id="predictionDirection">載入中</strong></div>
               <div><span>信心度</span><strong id="predictionConfidence">載入中</strong><div class="confidence-track"><span id="confidenceBar" style="width: 0%"></span></div></div>
               <div><span>特徵日期</span><strong id="predictionFeatureDate">載入中</strong></div>
@@ -110,10 +113,33 @@
           <div class="data-status-grid">
             <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最新特徵日期</h3></header><div class="widget-body"><p id="latestFeatureDate" class="widget-value">載入中</p></div></article>
             <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最新市場資料日期</h3></header><div class="widget-body"><p id="latestMarketDate" class="widget-value">載入中</p></div></article>
-            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">歷史資料筆數</h3></header><div class="widget-body"><p id="historyRowCount" class="widget-value">載入中</p></div></article>
-            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">可訓練樣本數</h3></header><div class="widget-body"><p id="trainableRowCount" class="widget-value">載入中</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">歷史訓練資料</h3></header><div class="widget-body"><p id="historicalDatasetRowCount" class="widget-value">載入中</p><p class="widget-subtitle">historical_prediction_dataset.csv</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">每日追蹤資料</h3></header><div class="widget-body"><p id="dailyHistoryRowCount" class="widget-value">載入中</p><p class="widget-subtitle">market_daily.csv</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">每日驗證樣本</h3></header><div class="widget-body"><p id="dailyDatasetRowCount" class="widget-value">載入中</p><p class="widget-subtitle">prediction_dataset.csv</p></div></article>
             <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最後更新時間</h3></header><div class="widget-body"><p id="lastUpdatedAt" class="widget-value">載入中</p></div></article>
           </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="validationTitle">
+          <div class="prediction-heading">
+            <div><p class="prediction-kicker">MODEL VALIDATION</p><h2 id="validationTitle">模型驗證</h2></div>
+            <span id="predictionHistoryStatus" class="widget-status" role="status">載入中</span>
+          </div>
+          <div class="accuracy-grid">
+            <article class="widget widget-info accuracy-primary"><header class="widget-header"><h3 class="widget-title">Accuracy</h3></header><div class="widget-body"><p id="accuracySummary" class="widget-value">載入中</p><p id="accuracySampleCount" class="widget-subtitle">--</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最近 20 筆 Accuracy</h3></header><div class="widget-body"><p id="accuracy20" class="widget-value">載入中</p><p class="widget-subtitle">至少需要 20 筆已驗證預測</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最近 60 筆 Accuracy</h3></header><div class="widget-body"><p id="accuracy60" class="widget-value">載入中</p><p class="widget-subtitle">至少需要 60 筆已驗證預測</p></div></article>
+            <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">全部 Accuracy</h3></header><div class="widget-body"><p id="accuracyAll" class="widget-value">載入中</p><p class="widget-subtitle">全部已驗證預測</p></div></article>
+          </div>
+          <article class="widget widget-section prediction-history-widget">
+            <header class="widget-header"><h3 class="prediction-section-title">Prediction History</h3><span class="widget-status">最近 20 筆</span></header>
+            <div class="widget-body prediction-table-wrap">
+              <table class="prediction-history-table">
+                <thead><tr><th>特徵日期</th><th>目標日期</th><th>預測方向</th><th>信心度</th><th>實際報酬</th><th>實際方向</th><th>結果</th></tr></thead>
+                <tbody id="predictionHistoryBody"><tr><td colspan="7">載入中</td></tr></tbody>
+              </table>
+            </div>
+          </article>
         </section>
       </div>
     </div>

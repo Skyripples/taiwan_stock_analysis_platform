@@ -1,0 +1,441 @@
+{
+  "generated_at": "2026-08-15T14:28:19.551208Z",
+  "version": "1.0",
+  "dataset": "historical_prediction_dataset",
+  "source": "Yahoo Finance daily completed candles",
+  "timing_rule": "latest completed U.S. session strictly before target Taiwan trading date",
+  "initial_training_size": 250,
+  "sample_count": 722,
+  "prediction_count_per_experiment": 472,
+  "correlations": {
+    "soxx_change_percent": {
+      "target_direction": 0.4089226262,
+      "next_taiex_return": 0.55997525097,
+      "existing_semiconductor_and_nasdaq": {
+        "sox_change_percent": 0.99708435607,
+        "tsm_adr_change_percent": 0.778486430235,
+        "nasdaq_change_percent": 0.82993621285
+      }
+    },
+    "smh_change_percent": {
+      "target_direction": 0.419925866865,
+      "next_taiex_return": 0.566835810002,
+      "existing_semiconductor_and_nasdaq": {
+        "sox_change_percent": 0.987612275856,
+        "tsm_adr_change_percent": 0.826289692189,
+        "nasdaq_change_percent": 0.862395312063
+      }
+    },
+    "nvda_change_percent": {
+      "target_direction": 0.325502482259,
+      "next_taiex_return": 0.403976256835,
+      "existing_semiconductor_and_nasdaq": {
+        "sox_change_percent": 0.713025510061,
+        "tsm_adr_change_percent": 0.656902199509,
+        "nasdaq_change_percent": 0.75268019855
+      }
+    },
+    "amd_change_percent": {
+      "target_direction": 0.336401723711,
+      "next_taiex_return": 0.464778640552,
+      "existing_semiconductor_and_nasdaq": {
+        "sox_change_percent": 0.769982683591,
+        "tsm_adr_change_percent": 0.603264106472,
+        "nasdaq_change_percent": 0.66503868904
+      }
+    },
+    "avgo_change_percent": {
+      "target_direction": 0.31544449784,
+      "next_taiex_return": 0.376951088007,
+      "existing_semiconductor_and_nasdaq": {
+        "sox_change_percent": 0.738404955616,
+        "tsm_adr_change_percent": 0.631615839218,
+        "nasdaq_change_percent": 0.676883873377
+      }
+    }
+  },
+  "models": {
+    "A_formal_16": {
+      "feature_count": 16,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.764830508475,
+      "precision": 0.777777777778,
+      "recall": 0.804597701149,
+      "f1": 0.790960451977,
+      "roc_auc": 0.822556336366,
+      "brier_score": 0.171472484696,
+      "log_loss": 0.562290022987,
+      "recent_50_accuracy": 0.78,
+      "recent_100_accuracy": 0.8,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      }
+    },
+    "B_16_plus_all_semiconductor": {
+      "feature_count": 21,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent",
+        "soxx_change_percent",
+        "smh_change_percent",
+        "nvda_change_percent",
+        "amd_change_percent",
+        "avgo_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.76906779661,
+      "precision": 0.777372262774,
+      "recall": 0.816091954023,
+      "f1": 0.796261682243,
+      "roc_auc": 0.820431806214,
+      "brier_score": 0.172934423919,
+      "log_loss": 0.566563684491,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.748971193416
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      }
+    },
+    "C_16_plus_soxx": {
+      "feature_count": 17,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent",
+        "soxx_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.776951672862,
+      "recall": 0.800766283525,
+      "f1": 0.788679245283,
+      "roc_auc": 0.822465544479,
+      "brier_score": 0.171670410063,
+      "log_loss": 0.562747824344,
+      "recent_50_accuracy": 0.78,
+      "recent_100_accuracy": 0.8,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.795454545455
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      }
+    },
+    "D_16_plus_smh": {
+      "feature_count": 17,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent",
+        "smh_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.76906779661,
+      "precision": 0.779411764706,
+      "recall": 0.812260536398,
+      "f1": 0.795497185741,
+      "roc_auc": 0.822501861234,
+      "brier_score": 0.171664586822,
+      "log_loss": 0.563014707006,
+      "recent_50_accuracy": 0.78,
+      "recent_100_accuracy": 0.8,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.744855967078
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    },
+    "E_16_plus_nvda": {
+      "feature_count": 17,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent",
+        "nvda_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.774907749077,
+      "recall": 0.804597701149,
+      "f1": 0.789473684211,
+      "roc_auc": 0.822429227724,
+      "brier_score": 0.171913402164,
+      "log_loss": 0.56266620958,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.772727272727
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.736625514403
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    },
+    "F_16_plus_amd": {
+      "feature_count": 17,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent",
+        "amd_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.771186440678,
+      "precision": 0.78021978022,
+      "recall": 0.816091954023,
+      "f1": 0.797752808989,
+      "roc_auc": 0.821884476403,
+      "brier_score": 0.17154287588,
+      "log_loss": 0.563395699135,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.795454545455
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.748971193416
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      }
+    },
+    "G_16_plus_avgo": {
+      "feature_count": 17,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent",
+        "avgo_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.773305084746,
+      "precision": 0.783088235294,
+      "recall": 0.816091954023,
+      "f1": 0.799249530957,
+      "roc_auc": 0.822156852064,
+      "brier_score": 0.172087154479,
+      "log_loss": 0.563877306346,
+      "recent_50_accuracy": 0.78,
+      "recent_100_accuracy": 0.8,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.744855967078
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    }
+  },
+  "deltas_vs_A": {
+    "B_16_plus_all_semiconductor": {
+      "accuracy": 0.004237288135,
+      "precision": -0.000405515004,
+      "recall": 0.011494252874,
+      "f1": 0.005301230266,
+      "roc_auc": -0.002124530152,
+      "brier_score": 0.001461939223,
+      "log_loss": 0.004273661504
+    },
+    "C_16_plus_soxx": {
+      "accuracy": -0.002118644068,
+      "precision": -0.000826104916,
+      "recall": -0.003831417624,
+      "f1": -0.002281206694,
+      "roc_auc": -9.0791887e-05,
+      "brier_score": 0.000197925367,
+      "log_loss": 0.000457801357
+    },
+    "D_16_plus_smh": {
+      "accuracy": 0.004237288135,
+      "precision": 0.001633986928,
+      "recall": 0.007662835249,
+      "f1": 0.004536733764,
+      "roc_auc": -5.4475132e-05,
+      "brier_score": 0.000192102126,
+      "log_loss": 0.000724684019
+    },
+    "E_16_plus_nvda": {
+      "accuracy": -0.002118644068,
+      "precision": -0.002870028701,
+      "recall": 0.0,
+      "f1": -0.001486767766,
+      "roc_auc": -0.000127108642,
+      "brier_score": 0.000440917468,
+      "log_loss": 0.000376186593
+    },
+    "F_16_plus_amd": {
+      "accuracy": 0.006355932203,
+      "precision": 0.002442002442,
+      "recall": 0.011494252874,
+      "f1": 0.006792357012,
+      "roc_auc": -0.000671859963,
+      "brier_score": 7.0391184e-05,
+      "log_loss": 0.001105676148
+    },
+    "G_16_plus_avgo": {
+      "accuracy": 0.008474576271,
+      "precision": 0.005310457516,
+      "recall": 0.011494252874,
+      "f1": 0.00828907898,
+      "roc_auc": -0.000399484302,
+      "brier_score": 0.000614669783,
+      "log_loss": 0.001587283359
+    }
+  },
+  "production_model_modified": false
+}

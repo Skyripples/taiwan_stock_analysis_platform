@@ -1,7 +1,6 @@
 (() => {
   'use strict';
 
-  const TRAINING_THRESHOLD = 200;
   const SIGNALS = [
     ['foreign_cash_flow', value => `${formatSigned(value / 100000000, 2)} 億元`],
     ['foreign_futures_position', value => `${formatSigned(value, 0)} 口`],
@@ -161,6 +160,8 @@
     const requiredText = ['algorithm', 'model_version', 'trained_at'];
     if (requiredText.some(key => !data?.[key])) throw new DataFormatError('模型資訊欄位缺漏');
     ['sample_count', 'accuracy', 'baseline_accuracy', 'precision', 'recall', 'f1'].forEach(key => requireNumber(data, key));
+    if (!Array.isArray(data.feature_names) || data.feature_names.length !== 15 || data.feature_names.includes('unchanged') || !data.feature_names.includes('vix_change_percent') || !data.feature_names.includes('kospi_change_percent')) throw new DataFormatError('feature_names 格式錯誤');
+    if (data.calibration_method && data.calibration_method !== 'platt') throw new DataFormatError('calibration_method 格式錯誤');
     if (!Array.isArray(data.confusion_matrix) || data.confusion_matrix.length !== 2 || data.confusion_matrix.some(row => !Array.isArray(row) || row.length !== 2 || row.some(value => !Number.isFinite(Number(value))))) {
       throw new DataFormatError('confusion_matrix 格式錯誤');
     }
@@ -174,13 +175,21 @@
     byId('modelName').textContent = data.algorithm;
     byId('modelVersion').textContent = data.model_version;
     byId('modelSampleCount').textContent = `${Number(data.sample_count).toLocaleString('zh-TW')} 筆`;
+    byId('modelFeatureCount').textContent = `${data.feature_names.length} Features`;
     byId('modelTrainedAt').textContent = formatDateTime(data.trained_at);
     byId('modelAccuracy').textContent = formatPercent(Number(data.accuracy));
     byId('modelBaselineAccuracy').textContent = formatPercent(Number(data.baseline_accuracy));
     byId('modelPrecision').textContent = formatPercent(Number(data.precision));
     byId('modelRecall').textContent = formatPercent(Number(data.recall));
     byId('modelF1').textContent = formatPercent(Number(data.f1));
+    byId('modelCalibrationMethod').textContent = data.calibration_method === 'platt' ? 'Platt / Sigmoid' : '未校準';
+    byId('modelCalibrationSamples').textContent = Number.isFinite(Number(data.calibration_fit_samples)) ? `${Number(data.calibration_fit_samples).toLocaleString('zh-TW')} 筆` : '--';
     byId('modelConfusionMatrix').textContent = `[[${data.confusion_matrix[0].join(', ')}], [${data.confusion_matrix[1].join(', ')}]]`;
+    byId('modelFeatureList').textContent = data.feature_names.map(name => {
+      if (name === 'vix_change_percent') return 'VIX 漲跌幅';
+      if (name === 'kospi_change_percent') return 'KOSPI 漲跌幅';
+      return name;
+    }).join('、');
     byId('modelInfoGrid').hidden = false;
     byId('modelStatusWidget').dataset.state = 'success';
     modelVersions.info = String(data.model_version);
@@ -205,6 +214,8 @@
     byId('predictionFileStatus').textContent = '尚無模型';
     byId('upProbability').textContent = '尚未建立模型';
     byId('downProbability').textContent = '尚未建立模型';
+    byId('rawUpProbability').textContent = '原始機率：--';
+    byId('calibrationStatus').textContent = '校準狀態：尚未建立模型';
     byId('predictionDirection').textContent = '等待模型';
     byId('predictionConfidence').textContent = '--';
     byId('predictionFeatureDate').textContent = '尚未產生';
@@ -218,11 +229,14 @@
   function validatePrediction(data) {
     const featureDate = data?.feature_date || data?.prediction_date;
     if (!featureDate || !data?.direction || !data?.model_version || !data?.generated_at) throw new DataFormatError('預測欄位缺漏');
-    const up = requireNumber(data, 'up_probability', { probability: true });
-    const down = requireNumber(data, 'down_probability', { probability: true });
+    const rawUp = requireNumber(data, 'raw_up_probability', { probability: true });
+    const isCalibrated = data.calibration_status === 'calibrated';
+    const up = requireNumber(data, isCalibrated ? 'calibrated_up_probability' : 'up_probability', { probability: true });
+    const down = requireNumber(data, isCalibrated ? 'calibrated_down_probability' : 'down_probability', { probability: true });
     const confidence = requireNumber(data, 'confidence', { probability: true });
     if (!['up', 'down'].includes(String(data.direction).toLowerCase()) || Math.abs(up + down - 1) > 0.001) throw new DataFormatError('預測機率或方向格式錯誤');
-    return { featureDate, up, down, confidence };
+    if (isCalibrated && data.calibration_method !== 'platt') throw new DataFormatError('校準方法格式錯誤');
+    return { featureDate, rawUp, up, down, confidence, isCalibrated };
   }
 
   function renderPrediction(data) {
@@ -235,6 +249,8 @@
     byId('upProbability').className = 'tone-bullish';
     byId('downProbability').textContent = formatPercent(values.down);
     byId('downProbability').className = 'tone-bearish';
+    byId('rawUpProbability').textContent = `原始上漲機率：${formatPercent(values.rawUp)}`;
+    byId('calibrationStatus').textContent = values.isCalibrated ? '校準狀態：Platt / Sigmoid' : '校準狀態：未校準（使用原始機率）';
     byId('predictionDirection').textContent = direction === 'up' ? '上漲' : '下跌';
     byId('predictionDirection').className = directionTone;
     byId('predictionConfidence').textContent = `${confidencePercent.toFixed(2)}%`;
@@ -272,15 +288,10 @@
       const validRows = rows.filter(row => row.feature_date && row.target_date && row.next_taiex_close !== '' && row.next_taiex_return !== '' && row.target_direction !== '');
       if (validRows.length !== rows.length) throw new DataFormatError('CSV 含不完整資料列');
       const count = validRows.length;
-      byId('trainingProgressText').textContent = `${count} / ${TRAINING_THRESHOLD}`;
-      byId('trainingProgressBar').style.width = `${Math.min(100, count / TRAINING_THRESHOLD * 100)}%`;
-      byId('datasetLoadStatus').textContent = count === 0 ? '0 筆資料' : '已載入';
-      byId('trainableRowCount').textContent = `${count} 筆`;
+      byId('dailyDatasetRowCount').textContent = `${count} 筆`;
       byId('latestFeatureDate').textContent = count ? validRows.map(row => row.feature_date).sort().at(-1) : '尚無可訓練特徵';
     } catch (error) {
-      byId('datasetLoadStatus').textContent = error instanceof DataFormatError ? '資料格式錯誤' : '讀取失敗';
-      byId('trainingProgressText').textContent = '-- / 200';
-      byId('trainableRowCount').textContent = '讀取失敗';
+      byId('dailyDatasetRowCount').textContent = error instanceof DataFormatError ? '資料格式錯誤' : '讀取失敗';
       byId('latestFeatureDate').textContent = '讀取失敗';
     }
   }
@@ -289,13 +300,110 @@
     try {
       const rows = parseCsv(await fetchText('./data/history/market_daily.csv'));
       if (rows.some(row => !row.trade_date)) throw new DataFormatError('trade_date 缺漏');
-      byId('historyRowCount').textContent = `${rows.length} 筆`;
+      byId('dailyHistoryRowCount').textContent = `${rows.length} 筆`;
       byId('latestMarketDate').textContent = rows.length ? rows.map(row => row.trade_date).sort().at(-1) : '尚無歷史資料';
     } catch (error) {
-      byId('historyRowCount').textContent = '讀取失敗';
+      byId('dailyHistoryRowCount').textContent = '讀取失敗';
       byId('latestMarketDate').textContent = '讀取失敗';
     }
   }
 
-  Promise.allSettled([loadSignals(), loadModelInfo(), loadPrediction(), loadPredictionDataset(), loadMarketHistory()]);
+  function accuracyText(rows, minimumCount = 1) {
+    if (rows.length < minimumCount) return '資料不足';
+    const hits = rows.filter(row => row.hit === 'true').length;
+    return `${(hits / rows.length * 100).toFixed(2)}%`;
+  }
+
+  async function loadHistoricalDataset() {
+    try {
+      const rows = parseCsv(await fetchText('./data/history/historical_prediction_dataset.csv'));
+      if (rows.some(row => !row.feature_date || !row.target_date || row.target_direction === '')) throw new DataFormatError('歷史訓練 CSV 含不完整資料列');
+      const count = rows.length;
+      byId('historicalDatasetRowCount').textContent = `${count} 筆`;
+      byId('historicalTrainingCount').textContent = `${count} 筆歷史樣本`;
+      byId('historicalDatasetLoadStatus').textContent = count ? '已載入' : '0 筆資料';
+    } catch (error) {
+      const status = error instanceof DataFormatError ? '資料格式錯誤' : '讀取失敗';
+      byId('historicalDatasetRowCount').textContent = status;
+      byId('historicalTrainingCount').textContent = status;
+      byId('historicalDatasetLoadStatus').textContent = status;
+    }
+  }
+
+  function createHistoryCell(text, className = '') {
+    const cell = document.createElement('td');
+    cell.textContent = text;
+    if (className) cell.className = className;
+    return cell;
+  }
+
+  function renderPredictionHistory(rows) {
+    const seenDates = new Set();
+    rows.forEach((row, index) => {
+      if (!row.feature_date || seenDates.has(row.feature_date) || !['', 'true', 'false'].includes(row.hit || '')) {
+        throw new DataFormatError(`prediction_history 第 ${index + 2} 列格式錯誤`);
+      }
+      seenDates.add(row.feature_date);
+      if (row.hit) {
+        if (!row.target_date || !['up', 'down'].includes(row.actual_direction) || !Number.isFinite(Number(row.actual_return))) {
+          throw new DataFormatError(`prediction_history 第 ${index + 2} 列驗證資料缺漏`);
+        }
+      }
+    });
+    const ordered = [...rows].sort((left, right) => left.feature_date.localeCompare(right.feature_date));
+    const completed = ordered.filter(row => row.hit === 'true' || row.hit === 'false');
+    byId('accuracySummary').textContent = accuracyText(completed);
+    byId('accuracySampleCount').textContent = completed.length ? `${completed.length.toLocaleString('zh-TW')} 筆已驗證` : '尚無已驗證預測';
+    byId('accuracy20').textContent = accuracyText(completed.slice(-20), 20);
+    byId('accuracy60').textContent = accuracyText(completed.slice(-60), 60);
+    byId('accuracyAll').textContent = accuracyText(completed);
+    byId('predictionHistoryStatus').textContent = rows.length ? '已載入' : '資料不足';
+
+    const recent = ordered.slice(-20).reverse();
+    if (!recent.length) {
+      const row = document.createElement('tr');
+      const cell = createHistoryCell('資料不足');
+      cell.colSpan = 7;
+      row.append(cell);
+      byId('predictionHistoryBody').replaceChildren(row);
+      return;
+    }
+    byId('predictionHistoryBody').replaceChildren(...recent.map(item => {
+      const row = document.createElement('tr');
+      const completedRow = item.hit === 'true' || item.hit === 'false';
+      const directionLabel = item.predicted_direction === 'up' ? '上漲' : item.predicted_direction === 'down' ? '下跌' : '--';
+      const actualLabel = item.actual_direction === 'up' ? '上漲' : item.actual_direction === 'down' ? '下跌' : '等待收盤';
+      const resultLabel = item.hit === 'true' ? '命中' : item.hit === 'false' ? '未命中' : '待驗證';
+      const resultClass = item.hit === 'true' ? 'history-hit' : item.hit === 'false' ? 'history-miss' : 'history-pending';
+      const confidence = Number(item.confidence);
+      row.append(
+        createHistoryCell(item.feature_date),
+        createHistoryCell(item.target_date || '尚未確定'),
+        createHistoryCell(directionLabel, item.predicted_direction === 'up' ? 'tone-bullish' : item.predicted_direction === 'down' ? 'tone-bearish' : ''),
+        createHistoryCell(Number.isFinite(confidence) ? formatPercent(confidence) : '--'),
+        createHistoryCell(completedRow ? `${formatSigned(Number(item.actual_return), 2)}%` : '等待收盤'),
+        createHistoryCell(actualLabel),
+        createHistoryCell(resultLabel, resultClass)
+      );
+      return row;
+    }));
+  }
+
+  async function loadPredictionHistory() {
+    try {
+      const rows = parseCsv(await fetchText('./data/history/prediction_history.csv'));
+      renderPredictionHistory(rows);
+    } catch (error) {
+      byId('predictionHistoryStatus').textContent = error instanceof DataFormatError ? '資料格式錯誤' : '讀取失敗';
+      ['accuracySummary', 'accuracy20', 'accuracy60', 'accuracyAll'].forEach(id => { byId(id).textContent = '資料不足'; });
+      byId('accuracySampleCount').textContent = '歷史資料無法讀取';
+      const row = document.createElement('tr');
+      const cell = createHistoryCell(error instanceof DataFormatError ? '資料格式錯誤' : '讀取失敗');
+      cell.colSpan = 7;
+      row.append(cell);
+      byId('predictionHistoryBody').replaceChildren(row);
+    }
+  }
+
+  Promise.allSettled([loadSignals(), loadModelInfo(), loadPrediction(), loadPredictionDataset(), loadHistoricalDataset(), loadMarketHistory(), loadPredictionHistory()]);
 })();

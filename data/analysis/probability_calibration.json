@@ -1,0 +1,197 @@
+{
+  "generated_at": "2026-08-13T01:31:18.210130Z",
+  "version": "1.0",
+  "source": "walk_forward_validation",
+  "analysis_only": true,
+  "sample_count": 472,
+  "probability_bucket_definition": "left-inclusive, right-exclusive; final bucket includes 1.0",
+  "confidence_definition": "max(up_probability, 1 - up_probability)",
+  "metrics": {
+    "brier_score": 0.175096435671,
+    "log_loss": 0.569564424188,
+    "expected_calibration_error": 0.07277493485,
+    "average_confidence": 0.799479101452,
+    "accuracy": 0.760593220339,
+    "confidence_minus_accuracy": 0.038885881113
+  },
+  "probability_buckets": [
+    {
+      "label": "0-10%",
+      "lower_bound": 0.0,
+      "upper_bound": 0.1,
+      "upper_bound_inclusive": false,
+      "sample_count": 75,
+      "average_predicted_up_probability": 0.03217240276,
+      "actual_up_rate": 0.08,
+      "calibration_error": -0.04782759724,
+      "absolute_calibration_error": 0.04782759724
+    },
+    {
+      "label": "10-20%",
+      "lower_bound": 0.1,
+      "upper_bound": 0.2,
+      "upper_bound_inclusive": false,
+      "sample_count": 33,
+      "average_predicted_up_probability": 0.144395658339,
+      "actual_up_rate": 0.30303030303,
+      "calibration_error": -0.158634644691,
+      "absolute_calibration_error": 0.158634644691
+    },
+    {
+      "label": "20-30%",
+      "lower_bound": 0.2,
+      "upper_bound": 0.3,
+      "upper_bound_inclusive": false,
+      "sample_count": 26,
+      "average_predicted_up_probability": 0.256732598576,
+      "actual_up_rate": 0.269230769231,
+      "calibration_error": -0.012498170655,
+      "absolute_calibration_error": 0.012498170655
+    },
+    {
+      "label": "30-40%",
+      "lower_bound": 0.3,
+      "upper_bound": 0.4,
+      "upper_bound_inclusive": false,
+      "sample_count": 28,
+      "average_predicted_up_probability": 0.3551851876,
+      "actual_up_rate": 0.392857142857,
+      "calibration_error": -0.037671955257,
+      "absolute_calibration_error": 0.037671955257
+    },
+    {
+      "label": "40-50%",
+      "lower_bound": 0.4,
+      "upper_bound": 0.5,
+      "upper_bound_inclusive": false,
+      "sample_count": 34,
+      "average_predicted_up_probability": 0.457963545067,
+      "actual_up_rate": 0.441176470588,
+      "calibration_error": 0.016787074479,
+      "absolute_calibration_error": 0.016787074479
+    },
+    {
+      "label": "50-60%",
+      "lower_bound": 0.5,
+      "upper_bound": 0.6,
+      "upper_bound_inclusive": false,
+      "sample_count": 36,
+      "average_predicted_up_probability": 0.546869511138,
+      "actual_up_rate": 0.611111111111,
+      "calibration_error": -0.064241599973,
+      "absolute_calibration_error": 0.064241599973
+    },
+    {
+      "label": "60-70%",
+      "lower_bound": 0.6,
+      "upper_bound": 0.7,
+      "upper_bound_inclusive": false,
+      "sample_count": 45,
+      "average_predicted_up_probability": 0.641903143317,
+      "actual_up_rate": 0.755555555556,
+      "calibration_error": -0.113652412239,
+      "absolute_calibration_error": 0.113652412239
+    },
+    {
+      "label": "70-80%",
+      "lower_bound": 0.7,
+      "upper_bound": 0.8,
+      "upper_bound_inclusive": false,
+      "sample_count": 40,
+      "average_predicted_up_probability": 0.753939519489,
+      "actual_up_rate": 0.65,
+      "calibration_error": 0.103939519489,
+      "absolute_calibration_error": 0.103939519489
+    },
+    {
+      "label": "80-90%",
+      "lower_bound": 0.8,
+      "upper_bound": 0.9,
+      "upper_bound_inclusive": false,
+      "sample_count": 64,
+      "average_predicted_up_probability": 0.856122249209,
+      "actual_up_rate": 0.796875,
+      "calibration_error": 0.059247249209,
+      "absolute_calibration_error": 0.059247249209
+    },
+    {
+      "label": "90-100%",
+      "lower_bound": 0.9,
+      "upper_bound": 1.0,
+      "upper_bound_inclusive": true,
+      "sample_count": 91,
+      "average_predicted_up_probability": 0.958250193256,
+      "actual_up_rate": 0.868131868132,
+      "calibration_error": 0.090118325124,
+      "absolute_calibration_error": 0.090118325124
+    }
+  ],
+  "confidence_buckets": [
+    {
+      "label": "50-60%",
+      "lower_bound": 0.5,
+      "upper_bound": 0.6,
+      "upper_bound_inclusive": false,
+      "sample_count": 70,
+      "average_confidence": 0.544522026695,
+      "accuracy": 0.585714285714
+    },
+    {
+      "label": "60-70%",
+      "lower_bound": 0.6,
+      "upper_bound": 0.7,
+      "upper_bound_inclusive": false,
+      "sample_count": 73,
+      "average_confidence": 0.643019947897,
+      "accuracy": 0.698630136986
+    },
+    {
+      "label": "70-80%",
+      "lower_bound": 0.7,
+      "upper_bound": 0.8,
+      "upper_bound_inclusive": false,
+      "sample_count": 66,
+      "average_confidence": 0.749735351766,
+      "accuracy": 0.681818181818
+    },
+    {
+      "label": "80-90%",
+      "lower_bound": 0.8,
+      "upper_bound": 0.9,
+      "upper_bound_inclusive": false,
+      "sample_count": 97,
+      "average_confidence": 0.855946053858,
+      "accuracy": 0.762886597938
+    },
+    {
+      "label": "90-100%",
+      "lower_bound": 0.9,
+      "upper_bound": 1.0,
+      "upper_bound_inclusive": true,
+      "sample_count": 166,
+      "average_confidence": 0.96257733361,
+      "accuracy": 0.89156626506
+    }
+  ],
+  "high_confidence_accuracy": {
+    "confidence_at_least_80_percent": {
+      "threshold": 0.8,
+      "sample_count": 263,
+      "average_confidence": 0.923249447162,
+      "accuracy": 0.844106463878
+    },
+    "confidence_at_least_90_percent": {
+      "threshold": 0.9,
+      "sample_count": 166,
+      "average_confidence": 0.96257733361,
+      "accuracy": 0.89156626506
+    }
+  },
+  "calibration_assessment": {
+    "status": "overconfident",
+    "overconfident": true,
+    "underconfident": false,
+    "rule": "average confidence minus actual accuracy; ±0.02 tolerance",
+    "note": "Descriptive out-of-sample analysis only; no calibration model was fitted."
+  }
+}

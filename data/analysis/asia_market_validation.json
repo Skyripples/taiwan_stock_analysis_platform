@@ -1,0 +1,374 @@
+{
+  "generated_at": "2026-08-14T04:32:35.458127Z",
+  "version": "1.0",
+  "dataset": "historical_prediction_dataset",
+  "source": "Yahoo Finance daily completed candles",
+  "timing_rule": "latest completed source session strictly before target Taiwan trading date",
+  "initial_training_size": 250,
+  "sample_count": 722,
+  "prediction_count_per_experiment": 472,
+  "correlations": {
+    "nikkei_change_percent": {
+      "target_direction": 0.04560378844,
+      "next_taiex_return": 0.067369024159,
+      "existing_international": {
+        "sp500_change_percent": 0.108845905493,
+        "nasdaq_change_percent": 0.109960583503,
+        "sox_change_percent": 0.118461999774,
+        "tsm_adr_change_percent": 0.109081055294
+      }
+    },
+    "kospi_change_percent": {
+      "target_direction": 0.105727160469,
+      "next_taiex_return": 0.083069471335,
+      "existing_international": {
+        "sp500_change_percent": 0.119547363192,
+        "nasdaq_change_percent": 0.13266254759,
+        "sox_change_percent": 0.19280696057,
+        "tsm_adr_change_percent": 0.171318098012
+      }
+    },
+    "hang_seng_change_percent": {
+      "target_direction": 0.106451824701,
+      "next_taiex_return": 0.129808002837,
+      "existing_international": {
+        "sp500_change_percent": 0.100704276743,
+        "nasdaq_change_percent": 0.106869805485,
+        "sox_change_percent": 0.123578216687,
+        "tsm_adr_change_percent": 0.119526826767
+      }
+    },
+    "csi300_change_percent": {
+      "target_direction": 0.072274488604,
+      "next_taiex_return": 0.076489345598,
+      "existing_international": {
+        "sp500_change_percent": 0.082514804076,
+        "nasdaq_change_percent": 0.09724509349,
+        "sox_change_percent": 0.144912453138,
+        "tsm_adr_change_percent": 0.079986625026
+      }
+    }
+  },
+  "models": {
+    "A_formal_15": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.768953068592,
+      "recall": 0.816091954023,
+      "f1": 0.791821561338,
+      "roc_auc": 0.819451253836,
+      "brier_score": 0.173054513045,
+      "log_loss": 0.565414672553,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      }
+    },
+    "B_15_plus_all_asia": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "nikkei_change_percent",
+        "kospi_change_percent",
+        "hang_seng_change_percent",
+        "csi300_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.764830508475,
+      "precision": 0.775735294118,
+      "recall": 0.808429118774,
+      "f1": 0.791744840525,
+      "roc_auc": 0.821194458063,
+      "brier_score": 0.172456509721,
+      "log_loss": 0.567478998918,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.772727272727
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    },
+    "C_15_plus_nikkei": {
+      "feature_count": 16,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "nikkei_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.768953068592,
+      "recall": 0.816091954023,
+      "f1": 0.791821561338,
+      "roc_auc": 0.818997294402,
+      "brier_score": 0.173002790793,
+      "log_loss": 0.567591000586,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    },
+    "D_15_plus_kospi": {
+      "feature_count": 16,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "kospi_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.764830508475,
+      "precision": 0.777777777778,
+      "recall": 0.804597701149,
+      "f1": 0.790960451977,
+      "roc_auc": 0.822556336366,
+      "brier_score": 0.171472484696,
+      "log_loss": 0.562290022987,
+      "recent_50_accuracy": 0.78,
+      "recent_100_accuracy": 0.8,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      }
+    },
+    "E_15_plus_hang_seng": {
+      "feature_count": 16,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "hang_seng_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.76906779661,
+      "precision": 0.777372262774,
+      "recall": 0.816091954023,
+      "f1": 0.796261682243,
+      "roc_auc": 0.817925950137,
+      "brier_score": 0.173900673232,
+      "log_loss": 0.566237209198,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.753086419753
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      }
+    },
+    "F_15_plus_csi300": {
+      "feature_count": 16,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "csi300_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.768953068592,
+      "recall": 0.816091954023,
+      "f1": 0.791821561338,
+      "roc_auc": 0.819106244666,
+      "brier_score": 0.17294591919,
+      "log_loss": 0.568342436118,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.795454545455
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      }
+    }
+  },
+  "deltas_vs_A": {
+    "B_15_plus_all_asia": {
+      "accuracy": 0.002118644068,
+      "precision": 0.006782225526,
+      "recall": -0.007662835249,
+      "f1": -7.6720813e-05,
+      "roc_auc": 0.001743204227,
+      "brier_score": -0.000598003324,
+      "log_loss": 0.002064326365
+    },
+    "C_15_plus_nikkei": {
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": -0.000453959434,
+      "brier_score": -5.1722252e-05,
+      "log_loss": 0.002176328033
+    },
+    "D_15_plus_kospi": {
+      "accuracy": 0.002118644068,
+      "precision": 0.008824709186,
+      "recall": -0.011494252874,
+      "f1": -0.000861109361,
+      "roc_auc": 0.00310508253,
+      "brier_score": -0.001582028349,
+      "log_loss": -0.003124649566
+    },
+    "E_15_plus_hang_seng": {
+      "accuracy": 0.006355932203,
+      "precision": 0.008419194182,
+      "recall": 0.0,
+      "f1": 0.004440120905,
+      "roc_auc": -0.001525303699,
+      "brier_score": 0.000846160187,
+      "log_loss": 0.000822536645
+    },
+    "F_15_plus_csi300": {
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": -0.00034500917,
+      "brier_score": -0.000108593855,
+      "log_loss": 0.002927763565
+    }
+  },
+  "production_model_modified": false
+}

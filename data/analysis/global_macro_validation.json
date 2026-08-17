@@ -1,0 +1,892 @@
+{
+  "generated_at": "2026-08-14T02:00:47.636821Z",
+  "version": "1.0",
+  "dataset": "historical_prediction_dataset",
+  "algorithm": "StandardScaler + LogisticRegression(max_iter=1000, random_state=42)",
+  "validation_method": "expanding_window_one_step_ahead",
+  "initial_training_size": 250,
+  "total_dataset_samples": 722,
+  "prediction_count_per_experiment": 472,
+  "prediction_date_range": {
+    "feature_start": "2024-08-22",
+    "feature_end": "2026-08-06",
+    "target_start": "2024-08-23",
+    "target_end": "2026-08-07"
+  },
+  "models": {
+    "A_original_14": {
+      "feature_count": 14,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.760593220339,
+      "precision": 0.768115942029,
+      "recall": 0.812260536398,
+      "f1": 0.7895716946,
+      "roc_auc": 0.814820867607,
+      "brier_score": 0.175096435671,
+      "log_loss": 0.569564424185,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.728395061728
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      }
+    },
+    "B_original_plus_all_macro": {
+      "feature_count": 20,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "us10y_change",
+        "us2y_change",
+        "yield_curve_10y_2y",
+        "usdtwd_change_percent",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.772893772894,
+      "recall": 0.808429118774,
+      "f1": 0.790262172285,
+      "roc_auc": 0.814966134626,
+      "brier_score": 0.174471713682,
+      "log_loss": 0.57346398977,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    },
+    "C_original_plus_vix": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.768953068592,
+      "recall": 0.816091954023,
+      "f1": 0.791821561338,
+      "roc_auc": 0.819451253836,
+      "brier_score": 0.173054513045,
+      "log_loss": 0.565414672553,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      }
+    },
+    "D_original_plus_vix_dxy_us10y": {
+      "feature_count": 17,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "dxy_change_percent",
+        "us10y_change"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.766949152542,
+      "precision": 0.770609318996,
+      "recall": 0.823754789272,
+      "f1": 0.796296296296,
+      "roc_auc": 0.819124403043,
+      "brier_score": 0.172878711349,
+      "log_loss": 0.563671068711,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.772727272727
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.744855967078
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      }
+    }
+  },
+  "B_vs_A_delta": {
+    "accuracy": 0.002118644068,
+    "precision": 0.004777830865,
+    "recall": -0.003831417624,
+    "f1": 0.000690477685,
+    "roc_auc": 0.000145267019,
+    "brier_score": -0.000624721989,
+    "log_loss": 0.003899565585
+  },
+  "C_vs_A_delta": {
+    "accuracy": 0.002118644068,
+    "precision": 0.000837126563,
+    "recall": 0.003831417625,
+    "f1": 0.002249866738,
+    "roc_auc": 0.004630386229,
+    "brier_score": -0.002041922626,
+    "log_loss": -0.004149751632
+  },
+  "D_vs_A_delta": {
+    "accuracy": 0.006355932203,
+    "precision": 0.002493376967,
+    "recall": 0.011494252874,
+    "f1": 0.006724601696,
+    "roc_auc": 0.004303535436,
+    "brier_score": -0.002217724322,
+    "log_loss": -0.005893355474
+  },
+  "single_macro_addition": {
+    "vix_change_percent": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.768953068592,
+      "recall": 0.816091954023,
+      "f1": 0.791821561338,
+      "roc_auc": 0.819451253836,
+      "brier_score": 0.173054513045,
+      "log_loss": 0.565414672553,
+      "recent_50_accuracy": 0.76,
+      "recent_100_accuracy": 0.79,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.002118644068,
+        "precision": 0.000837126563,
+        "recall": 0.003831417625,
+        "f1": 0.002249866738,
+        "roc_auc": 0.004630386229,
+        "brier_score": -0.002041922626,
+        "log_loss": -0.004149751632
+      }
+    },
+    "us10y_change": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "us10y_change"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.754237288136,
+      "precision": 0.759856630824,
+      "recall": 0.812260536398,
+      "f1": 0.785185185185,
+      "roc_auc": 0.812787129342,
+      "brier_score": 0.175334567921,
+      "log_loss": 0.571029429165,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.724279835391
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": -0.006355932203,
+        "precision": -0.008259311205,
+        "recall": 0.0,
+        "f1": -0.004386509415,
+        "roc_auc": -0.002033738265,
+        "brier_score": 0.00023813225,
+        "log_loss": 0.00146500498
+      }
+    },
+    "us2y_change": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "us2y_change"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.758474576271,
+      "precision": 0.763440860215,
+      "recall": 0.816091954023,
+      "f1": 0.788888888889,
+      "roc_auc": 0.814475858437,
+      "brier_score": 0.17501374133,
+      "log_loss": 0.568815011926,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.724279835391
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": -0.002118644068,
+        "precision": -0.004675081814,
+        "recall": 0.003831417625,
+        "f1": -0.000682805711,
+        "roc_auc": -0.00034500917,
+        "brier_score": -8.2694341e-05,
+        "log_loss": -0.000749412259
+      }
+    },
+    "yield_curve_10y_2y": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "yield_curve_10y_2y"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.756355932203,
+      "precision": 0.766423357664,
+      "recall": 0.804597701149,
+      "f1": 0.785046728972,
+      "roc_auc": 0.813749523343,
+      "brier_score": 0.175977754563,
+      "log_loss": 0.57199104379,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.806818181818
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.720164609053
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": -0.004237288136,
+        "precision": -0.001692584365,
+        "recall": -0.007662835249,
+        "f1": -0.004524965628,
+        "roc_auc": -0.001071344264,
+        "brier_score": 0.000881318892,
+        "log_loss": 0.002426619605
+      }
+    },
+    "usdtwd_change_percent": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "usdtwd_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.754237288136,
+      "precision": 0.761732851986,
+      "recall": 0.808429118774,
+      "f1": 0.7843866171,
+      "roc_auc": 0.812097111002,
+      "brier_score": 0.175627297391,
+      "log_loss": 0.577809932012,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.724279835391
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": -0.006355932203,
+        "precision": -0.006383090043,
+        "recall": -0.003831417624,
+        "f1": -0.0051850775,
+        "roc_auc": -0.002723756605,
+        "brier_score": 0.00053086172,
+        "log_loss": 0.008245507827
+      }
+    },
+    "dxy_change_percent": {
+      "feature_count": 15,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.760593220339,
+      "precision": 0.770072992701,
+      "recall": 0.808429118774,
+      "f1": 0.788785046729,
+      "roc_auc": 0.815002451381,
+      "brier_score": 0.174889081731,
+      "log_loss": 0.564716251227,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.736625514403
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_A": {
+        "accuracy": 0.0,
+        "precision": 0.001957050672,
+        "recall": -0.003831417624,
+        "f1": -0.000786647871,
+        "roc_auc": 0.000181583774,
+        "brier_score": -0.00020735394,
+        "log_loss": -0.004848172958
+      }
+    }
+  },
+  "macro_leave_one_out_from_B": {
+    "vix_change_percent": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "us10y_change",
+        "us2y_change",
+        "yield_curve_10y_2y",
+        "usdtwd_change_percent",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.758474576271,
+      "precision": 0.763440860215,
+      "recall": 0.816091954023,
+      "f1": 0.788888888889,
+      "roc_auc": 0.80866517768,
+      "brier_score": 0.17725175007,
+      "log_loss": 0.580060956846,
+      "recent_50_accuracy": 0.72,
+      "recent_100_accuracy": 0.77,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.772727272727
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.736625514403
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.787234042553
+        }
+      },
+      "delta_vs_B": {
+        "accuracy": -0.004237288136,
+        "precision": -0.009452912679,
+        "recall": 0.007662835249,
+        "f1": -0.001373283396,
+        "roc_auc": -0.006300956946,
+        "brier_score": 0.002780036388,
+        "log_loss": 0.006596967076
+      }
+    },
+    "us10y_change": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "us2y_change",
+        "yield_curve_10y_2y",
+        "usdtwd_change_percent",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.766949152542,
+      "precision": 0.774545454545,
+      "recall": 0.816091954023,
+      "f1": 0.794776119403,
+      "roc_auc": 0.817126981533,
+      "brier_score": 0.174178205867,
+      "log_loss": 0.570357362804,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.744855967078
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      },
+      "delta_vs_B": {
+        "accuracy": 0.004237288135,
+        "precision": 0.001651681651,
+        "recall": 0.007662835249,
+        "f1": 0.004513947118,
+        "roc_auc": 0.002160846907,
+        "brier_score": -0.000293507815,
+        "log_loss": -0.003106626966
+      }
+    },
+    "us2y_change": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "us10y_change",
+        "yield_curve_10y_2y",
+        "usdtwd_change_percent",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.764830508475,
+      "precision": 0.771739130435,
+      "recall": 0.816091954023,
+      "f1": 0.793296089385,
+      "roc_auc": 0.815583519457,
+      "brier_score": 0.174349725116,
+      "log_loss": 0.572059035392,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.740740740741
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      },
+      "delta_vs_B": {
+        "accuracy": 0.002118644068,
+        "precision": -0.001154642459,
+        "recall": 0.007662835249,
+        "f1": 0.0030339171,
+        "roc_auc": 0.000617384831,
+        "brier_score": -0.000121988566,
+        "log_loss": -0.001404954378
+      }
+    },
+    "yield_curve_10y_2y": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "us10y_change",
+        "us2y_change",
+        "usdtwd_change_percent",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.771186440678,
+      "precision": 0.776173285199,
+      "recall": 0.823754789272,
+      "f1": 0.799256505576,
+      "roc_auc": 0.81583773674,
+      "brier_score": 0.173513771349,
+      "log_loss": 0.570861393019,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.784090909091
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.748971193416
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      },
+      "delta_vs_B": {
+        "accuracy": 0.008474576271,
+        "precision": 0.003279512305,
+        "recall": 0.015325670498,
+        "f1": 0.008994333291,
+        "roc_auc": 0.000871602114,
+        "brier_score": -0.000957942333,
+        "log_loss": -0.002602596751
+      }
+    },
+    "usdtwd_change_percent": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "us10y_change",
+        "us2y_change",
+        "yield_curve_10y_2y",
+        "dxy_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.760593220339,
+      "precision": 0.770072992701,
+      "recall": 0.808429118774,
+      "f1": 0.788785046729,
+      "roc_auc": 0.817363040439,
+      "brier_score": 0.173939884583,
+      "log_loss": 0.567799723861,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.772727272727
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.801418439716
+        }
+      },
+      "delta_vs_B": {
+        "accuracy": -0.002118644068,
+        "precision": -0.002820780193,
+        "recall": 0.0,
+        "f1": -0.001477125556,
+        "roc_auc": 0.002396905813,
+        "brier_score": -0.000531829099,
+        "log_loss": -0.005664265909
+      }
+    },
+    "dxy_change_percent": {
+      "feature_count": 19,
+      "features": [
+        "taiex_close",
+        "taiex_change_percent",
+        "tpex_close",
+        "turnover",
+        "advancing",
+        "declining",
+        "unchanged",
+        "foreign_cash_flow",
+        "foreign_futures_position",
+        "night_futures_change",
+        "tsm_adr_change_percent",
+        "sox_change_percent",
+        "sp500_change_percent",
+        "nasdaq_change_percent",
+        "vix_change_percent",
+        "us10y_change",
+        "us2y_change",
+        "yield_curve_10y_2y",
+        "usdtwd_change_percent"
+      ],
+      "prediction_count": 472,
+      "accuracy": 0.762711864407,
+      "precision": 0.770909090909,
+      "recall": 0.812260536398,
+      "f1": 0.791044776119,
+      "roc_auc": 0.814875342739,
+      "brier_score": 0.174427442287,
+      "log_loss": 0.576404769807,
+      "recent_50_accuracy": 0.74,
+      "recent_100_accuracy": 0.78,
+      "yearly_accuracy": {
+        "2024": {
+          "sample_count": 88,
+          "accuracy": 0.795454545455
+        },
+        "2025": {
+          "sample_count": 243,
+          "accuracy": 0.732510288066
+        },
+        "2026": {
+          "sample_count": 141,
+          "accuracy": 0.794326241135
+        }
+      },
+      "delta_vs_B": {
+        "accuracy": 0.0,
+        "precision": -0.001984681985,
+        "recall": 0.003831417624,
+        "f1": 0.000782603834,
+        "roc_auc": -9.0791887e-05,
+        "brier_score": -4.4271395e-05,
+        "log_loss": 0.002940780037
+      }
+    }
+  },
+  "selection_warning": "Results are descriptive walk-forward evidence; no production feature selection or model update was performed."
+}

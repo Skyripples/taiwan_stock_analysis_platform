@@ -1,45 +1,28 @@
-# 台股投資分析平台 V3.3
+# 台股投資分析平台 V3.4
 
 ## 功能
-- V3.3 隔日行情預測 Beta
-- 平台首頁與功能入口
-- 共用 Header、Sidebar、Page Framework 與 Widget 系統
-- 深色模式與響應式手機版導覽
-- 台股事件簿：
-  - 事件月曆與股票代號篩選
-  - 除權息、股利發放日、法說會、股東會與終止掛牌
-- 市場總覽：
-  - Market Score 市場評分儀錶板
-  - 外資現貨、外資台指期、台指期夜盤、台積電 ADR 與費城半導體指數五因子
-  - 三大法人買賣超
-  - 外資台指期未平倉部位
-  - 台指期夜盤行情、方向狀態與因子分數
-  - 台積電 ADR 日線行情、方向狀態與因子分數
-  - 費城半導體指數日線行情、方向狀態與因子分數
-  - 加權指數、櫃買指數、台股成交金額與市場漲跌家數
-  - S&P 500、NASDAQ 與費城半導體指數國際市場卡片
-  - 每日市場行情、訊號與 Market Score 歷史紀錄
-  - 依實際相鄰台股交易日產生隔日漲跌監督式學習標籤
-  - 市場方向摘要與趨勢圖表預留區
-- 隔日行情分析：
-  - 顯示 Market Score 與五項市場訊號因子
-  - 顯示歷史資料、可訓練樣本及 200 筆最低訓練門檻進度
-  - 顯示隔日上漲機率、下跌機率、預測方向與信心度
-  - 顯示預測使用的特徵日期、模型名稱、歷史 Accuracy 與 Baseline Accuracy
-  - 每日市場資料更新後自動產生 Baseline Beta 預測結果
-  - Logistic Regression Baseline Model 訓練與推論流程
-  - 累積至少 200 筆可訓練樣本後才建立模型，不產生假預測
-  - 樣本不足時顯示模型狀態；達到門檻後自動訓練、預測並顯示評估與預測結果
-  - 五項市場因子支援啟用／停用、小數權重與加權 Market Score
+
+- 平台首頁、共用 Header、Sidebar、Page Framework 與 Widget 系統
+- 台股事件簿：除權息、股東會、法說會等事件月曆
+- 市場總覽：台股市場指標、國際市場、三大法人、外資台指期與 Market Score
+- 隔日行情預測 Beta：
+  - 使用 15 個正式市場特徵的 Logistic Regression Baseline Model
+  - 依時間序列進行 Walk-forward Validation，避免未來資料洩漏
+  - 使用 Platt Calibration 校準上漲與下跌機率
+  - 顯示模型指標、Feature 清單、預測方向、機率與信心度
+- V3.4 Feature Engineering 與模型定版：
+  - 全球市場、VIX、KOSPI 與半導體產業候選因子分析
+  - Feature Correlation、Ablation、Robustness 與 Pruning Validation
+  - Temporal Leakage Audit 與台股 Trading Calendar
+  - 正式模型移除冗餘的平盤家數，定版為 15 Features
+- 每日市場資料、歷史資料、監督式訓練資料與預測驗證紀錄自動更新
+- 深色／淺色模式與桌面、平板、手機響應式版面
 
 ## 資料來源
-- Yahoo 台股行事曆
-- Yahoo Finance 台積電 ADR（TSM）歷史行情
-- Yahoo Finance 費城半導體指數（^SOX）歷史行情
-- Yahoo Finance S&P 500（^GSPC）與 NASDAQ Composite（^IXIC）歷史行情
-- 臺灣證券交易所（TWSE）三大法人買賣金額統計表
-- 臺灣證券交易所（TWSE）每日收盤行情與大盤統計資訊
-- 臺灣證券櫃檯買賣中心（TPEx）上櫃股票市場現況
-- 臺灣期貨交易所（TAIFEX）三大法人區分各期貨契約統計
-- 臺灣期貨交易所（TAIFEX）期貨每日交易行情查詢
-- 公開資訊觀測站（MOPS）既有事件資料流程（目前停用）
+
+- 臺灣證券交易所（TWSE）：加權指數、成交金額、漲跌家數、三大法人與交易日資訊
+- 證券櫃檯買賣中心（TPEx）：櫃買指數、上櫃成交金額與漲跌家數
+- 臺灣期貨交易所（TAIFEX）：外資臺股期貨未平倉與臺股期貨夜盤
+- Yahoo Finance：TSM ADR、SOX、S&P 500、NASDAQ、VIX、KOSPI，以及研究用國際與半導體候選資料
+- Federal Reserve Economic Data（FRED）：研究用美國公債殖利率候選資料
+- 公開資訊觀測站（MOPS）：台股事件簿公開資訊

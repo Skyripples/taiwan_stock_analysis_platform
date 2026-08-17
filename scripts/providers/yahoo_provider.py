@@ -290,3 +290,116 @@ class YahooNasdaqProvider(YahooProvider):
     security_name = "NASDAQ Composite Index"
     source_url = "https://finance.yahoo.com/quote/%5EIXIC/history/"
     chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC"
+
+
+class YahooVixProvider(YahooProvider):
+    dataset = "vix_index"
+    output_filename = "vix_index.json"
+    symbol = "^VIX"
+    security_name = "CBOE Volatility Index"
+    source_url = "https://finance.yahoo.com/quote/%5EVIX/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX"
+
+
+class YahooNikkeiProvider(YahooProvider):
+    dataset = "nikkei_225_index"
+    output_filename = "nikkei_225_index.json"
+    symbol = "^N225"
+    security_name = "Nikkei 225 Index"
+    expected_currency = "JPY"
+    source_url = "https://finance.yahoo.com/quote/%5EN225/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EN225"
+
+
+class YahooKospiProvider(YahooProvider):
+    dataset = "kospi_index"
+    output_filename = "kospi_index.json"
+    symbol = "^KS11"
+    security_name = "KOSPI Composite Index"
+    expected_currency = "KRW"
+    source_url = "https://finance.yahoo.com/quote/%5EKS11/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11"
+
+
+class YahooHangSengProvider(YahooProvider):
+    dataset = "hang_seng_index"
+    output_filename = "hang_seng_index.json"
+    symbol = "^HSI"
+    security_name = "Hang Seng Index"
+    expected_currency = "HKD"
+    source_url = "https://finance.yahoo.com/quote/%5EHSI/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI"
+
+
+class YahooCsi300Provider(YahooProvider):
+    dataset = "csi_300_index"
+    output_filename = "csi_300_index.json"
+    symbol = "000300.SS"
+    security_name = "CSI 300 Index"
+    expected_currency = "CNY"
+    source_url = "https://finance.yahoo.com/quote/000300.SS/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/000300.SS"
+
+
+class YahooSoxxProvider(YahooProvider):
+    dataset = "soxx_etf"
+    output_filename = "soxx_etf.json"
+    symbol = "SOXX"
+    security_name = "iShares Semiconductor ETF"
+    source_url = "https://finance.yahoo.com/quote/SOXX/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/SOXX"
+
+
+class YahooSmhProvider(YahooProvider):
+    dataset = "smh_etf"
+    output_filename = "smh_etf.json"
+    symbol = "SMH"
+    security_name = "VanEck Semiconductor ETF"
+    source_url = "https://finance.yahoo.com/quote/SMH/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/SMH"
+
+
+class YahooNvdaProvider(YahooProvider):
+    dataset = "nvda_stock"
+    output_filename = "nvda_stock.json"
+    symbol = "NVDA"
+    security_name = "NVIDIA Corporation"
+    source_url = "https://finance.yahoo.com/quote/NVDA/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/NVDA"
+
+
+class YahooAmdProvider(YahooProvider):
+    dataset = "amd_stock"
+    output_filename = "amd_stock.json"
+    symbol = "AMD"
+    security_name = "Advanced Micro Devices, Inc."
+    source_url = "https://finance.yahoo.com/quote/AMD/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/AMD"
+
+
+class YahooAvgoProvider(YahooProvider):
+    dataset = "avgo_stock"
+    output_filename = "avgo_stock.json"
+    symbol = "AVGO"
+    security_name = "Broadcom Inc."
+    source_url = "https://finance.yahoo.com/quote/AVGO/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/AVGO"
+
+
+class YahooUsdtwdProvider(YahooProvider):
+    dataset = "usdtwd"
+    output_filename = "usdtwd.json"
+    symbol = "TWD=X"
+    security_name = "USD/TWD Exchange Rate"
+    expected_currency = "TWD"
+    source_url = "https://finance.yahoo.com/quote/TWD%3DX/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX"
+
+
+class YahooDxyProvider(YahooProvider):
+    dataset = "dxy_index"
+    output_filename = "dxy_index.json"
+    symbol = "DX-Y.NYB"
+    security_name = "U.S. Dollar Index"
+    source_url = "https://finance.yahoo.com/quote/DX-Y.NYB/history/"
+    chart_url = "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB"

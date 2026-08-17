@@ -36,6 +36,7 @@
 .prediction-placeholder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .prediction-placeholder-grid div { min-width: 0; padding: 13px; border-radius: 10px; background: #1b1d20; }
 .prediction-placeholder-grid strong { display: block; margin-top: 7px; overflow-wrap: anywhere; font-size: .9rem; }
+.raw-probability { display: block; margin-top: 6px; color: #9299a4; font-size: .72rem; line-height: 1.45; }
 .confidence-track { height: 8px; margin-top: 10px; overflow: hidden; border-radius: 999px; background: #292c30; }
 .confidence-track span { display: block; height: 100%; border-radius: inherit; background: #a5abb3; }
 .confidence-track span.tone-bullish { background: #ef5350; }
@@ -49,11 +50,25 @@
 .data-status-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
 .data-status-grid .widget-info { min-height: 130px; }
 .data-status-grid .widget-value { overflow-wrap: anywhere; font-size: .95rem; }
+.accuracy-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.accuracy-grid .widget-info { min-height: 140px; }
+.accuracy-primary .widget-value { font-size: 1.45rem; }
+.prediction-history-widget { margin-top: 16px; }
+.prediction-table-wrap { max-width: 100%; overflow-x: auto; }
+.prediction-history-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .82rem; }
+.prediction-history-table th, .prediction-history-table td { padding: 12px 10px; border-bottom: 1px solid #34383e; text-align: left; white-space: nowrap; }
+.prediction-history-table th { color: #b5bbc4; font-size: .75rem; font-weight: 650; }
+.prediction-history-table tbody tr:last-child td { border-bottom: 0; }
+.prediction-history-table td[colspan] { color: #b5bbc4; text-align: center; }
+.history-hit { color: #ef5350; font-weight: 700; }
+.history-miss { color: #26a269; font-weight: 700; }
+.history-pending { color: #b5bbc4; }
 [data-state="error"] .widget-status { border-color: rgba(239,83,80,.45); color: #ff8c89; }
 body.theme-light .prediction-kicker, body.theme-light .score-label, body.theme-light .threshold-note, body.theme-light .prediction-heading p, body.theme-light .signal-item span, body.theme-light .prediction-placeholder-grid span { color: #66758a; }
 body.theme-light .score-track, body.theme-light .training-track { background: #dfe5ec; }
 body.theme-light .score-midline { background: #34445a; }
 body.theme-light .signal-item, body.theme-light .prediction-placeholder-grid div { border-color: #d8e0ea; background: #f3f6f9; }
+body.theme-light .raw-probability { color: #66758a; }
 body.theme-light .model-info-grid div { border-color: #d8e0ea; background: #f3f6f9; }
 body.theme-light .model-info-grid span, body.theme-light .training-summary-heading > span:first-child { color: #66758a; }
 body.theme-light .training-summary { border-color: #d8e0ea; }
@@ -63,6 +78,8 @@ body.theme-light .beta-badge { border-color: #dfcd8d; color: #765f13; background
 body.theme-light .version-warning { color: #a63632; background: #fde8e7; }
 body.theme-light .signal-item small { color: #536277; }
 body.theme-light .tone-neutral { color: #526176 !important; }
-@media (max-width: 1050px) { .signal-grid, .data-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+body.theme-light .prediction-history-table th, body.theme-light .prediction-history-table td { border-color: #d8e0ea; }
+body.theme-light .prediction-history-table th, body.theme-light .prediction-history-table td[colspan], body.theme-light .history-pending { color: #66758a; }
+@media (max-width: 1050px) { .signal-grid, .data-status-grid, .accuracy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .prediction-two-column { grid-template-columns: 1fr; } .score-summary { align-items: start; } }
-@media (max-width: 520px) { .signal-grid, .data-status-grid, .prediction-placeholder-grid, .model-info-grid { grid-template-columns: 1fr; } .confusion-matrix-item { grid-column: auto; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }
+@media (max-width: 520px) { .signal-grid, .data-status-grid, .accuracy-grid, .prediction-placeholder-grid, .model-info-grid { grid-template-columns: 1fr; } .confusion-matrix-item { grid-column: auto; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }

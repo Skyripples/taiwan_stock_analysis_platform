@@ -1,0 +1,1450 @@
+{
+  "generated_at": "2026-08-13T02:35:05.339337Z",
+  "version": "1.0",
+  "source": "walk_forward_validation",
+  "analysis_only": true,
+  "split_method": "chronological_70_30_no_shuffle",
+  "total_oos_predictions": 472,
+  "calibration_fit_sample_count": 330,
+  "calibration_test_sample_count": 142,
+  "calibration_fit_date_range": {
+    "feature_start": "2024-08-22",
+    "feature_end": "2025-12-29",
+    "target_start": "2024-08-23",
+    "target_end": "2025-12-30"
+  },
+  "calibration_test_date_range": {
+    "feature_start": "2025-12-30",
+    "feature_end": "2026-08-06",
+    "target_start": "2025-12-31",
+    "target_end": "2026-08-07"
+  },
+  "fit_configuration": {
+    "platt_sigmoid": "LogisticRegression(max_iter=1000, random_state=42) on original probability log-odds",
+    "isotonic": "IsotonicRegression(y_min=0, y_max=1, out_of_bounds=clip)"
+  },
+  "methods": {
+    "uncalibrated": {
+      "sample_count": 142,
+      "accuracy": 0.781690140845,
+      "roc_auc": 0.842475386779,
+      "brier_score": 0.164869294423,
+      "log_loss": 0.633715920488,
+      "expected_calibration_error": 0.116712270155,
+      "average_confidence": 0.886093652009,
+      "confidence_at_least_80_percent": {
+        "threshold": 0.8,
+        "sample_count": 113,
+        "average_confidence": 0.945752278247,
+        "accuracy": 0.840707964602
+      },
+      "confidence_at_least_90_percent": {
+        "threshold": 0.9,
+        "sample_count": 88,
+        "average_confidence": 0.971610880721,
+        "accuracy": 0.875
+      },
+      "calibration_buckets": [
+        {
+          "label": "0-10%",
+          "sample_count": 36,
+          "average_predicted_probability": 0.020023722852,
+          "actual_up_rate": 0.111111111111,
+          "absolute_calibration_error": 0.091087388259
+        },
+        {
+          "label": "10-20%",
+          "sample_count": 11,
+          "average_predicted_probability": 0.144369678059,
+          "actual_up_rate": 0.272727272727,
+          "absolute_calibration_error": 0.128357594669
+        },
+        {
+          "label": "20-30%",
+          "sample_count": 7,
+          "average_predicted_probability": 0.264766349165,
+          "actual_up_rate": 0.571428571429,
+          "absolute_calibration_error": 0.306662222264
+        },
+        {
+          "label": "30-40%",
+          "sample_count": 1,
+          "average_predicted_probability": 0.336741518774,
+          "actual_up_rate": 0.0,
+          "absolute_calibration_error": 0.336741518774
+        },
+        {
+          "label": "40-50%",
+          "sample_count": 5,
+          "average_predicted_probability": 0.450664559506,
+          "actual_up_rate": 0.6,
+          "absolute_calibration_error": 0.149335440494
+        },
+        {
+          "label": "50-60%",
+          "sample_count": 5,
+          "average_predicted_probability": 0.53552339462,
+          "actual_up_rate": 0.4,
+          "absolute_calibration_error": 0.13552339462
+        },
+        {
+          "label": "60-70%",
+          "sample_count": 5,
+          "average_predicted_probability": 0.651656660059,
+          "actual_up_rate": 0.6,
+          "absolute_calibration_error": 0.051656660059
+        },
+        {
+          "label": "70-80%",
+          "sample_count": 6,
+          "average_predicted_probability": 0.743803271733,
+          "actual_up_rate": 0.833333333333,
+          "absolute_calibration_error": 0.089530061601
+        },
+        {
+          "label": "80-90%",
+          "sample_count": 14,
+          "average_predicted_probability": 0.854022599795,
+          "actual_up_rate": 0.714285714286,
+          "absolute_calibration_error": 0.139736885509
+        },
+        {
+          "label": "90-100%",
+          "sample_count": 52,
+          "average_predicted_probability": 0.965819452426,
+          "actual_up_rate": 0.865384615385,
+          "absolute_calibration_error": 0.100434837041
+        }
+      ]
+    },
+    "platt_sigmoid": {
+      "sample_count": 142,
+      "accuracy": 0.774647887324,
+      "roc_auc": 0.842475386779,
+      "brier_score": 0.159119501317,
+      "log_loss": 0.55197073784,
+      "expected_calibration_error": 0.099616447459,
+      "average_confidence": 0.850888915753,
+      "confidence_at_least_80_percent": {
+        "threshold": 0.8,
+        "sample_count": 98,
+        "average_confidence": 0.931329857769,
+        "accuracy": 0.84693877551
+      },
+      "confidence_at_least_90_percent": {
+        "threshold": 0.9,
+        "sample_count": 68,
+        "average_confidence": 0.963953568506,
+        "accuracy": 0.882352941176
+      },
+      "calibration_buckets": [
+        {
+          "label": "0-10%",
+          "sample_count": 31,
+          "average_predicted_probability": 0.034512633528,
+          "actual_up_rate": 0.129032258065,
+          "absolute_calibration_error": 0.094519624537
+        },
+        {
+          "label": "10-20%",
+          "sample_count": 8,
+          "average_predicted_probability": 0.148907820933,
+          "actual_up_rate": 0.25,
+          "absolute_calibration_error": 0.101092179067
+        },
+        {
+          "label": "20-30%",
+          "sample_count": 9,
+          "average_predicted_probability": 0.24123226571,
+          "actual_up_rate": 0.111111111111,
+          "absolute_calibration_error": 0.130121154599
+        },
+        {
+          "label": "30-40%",
+          "sample_count": 7,
+          "average_predicted_probability": 0.349921927151,
+          "actual_up_rate": 0.571428571429,
+          "absolute_calibration_error": 0.221506644277
+        },
+        {
+          "label": "40-50%",
+          "sample_count": 4,
+          "average_predicted_probability": 0.473243387337,
+          "actual_up_rate": 0.75,
+          "absolute_calibration_error": 0.276756612663
+        },
+        {
+          "label": "50-60%",
+          "sample_count": 6,
+          "average_predicted_probability": 0.540806368952,
+          "actual_up_rate": 0.333333333333,
+          "absolute_calibration_error": 0.207473035619
+        },
+        {
+          "label": "60-70%",
+          "sample_count": 7,
+          "average_predicted_probability": 0.644490805754,
+          "actual_up_rate": 0.714285714286,
+          "absolute_calibration_error": 0.069794908531
+        },
+        {
+          "label": "70-80%",
+          "sample_count": 11,
+          "average_predicted_probability": 0.755740322945,
+          "actual_up_rate": 0.727272727273,
+          "absolute_calibration_error": 0.028467595673
+        },
+        {
+          "label": "80-90%",
+          "sample_count": 22,
+          "average_predicted_probability": 0.859670271382,
+          "actual_up_rate": 0.772727272727,
+          "absolute_calibration_error": 0.086942998655
+        },
+        {
+          "label": "90-100%",
+          "sample_count": 37,
+          "average_predicted_probability": 0.962668494535,
+          "actual_up_rate": 0.891891891892,
+          "absolute_calibration_error": 0.070776602643
+        }
+      ]
+    },
+    "isotonic": {
+      "sample_count": 142,
+      "accuracy": 0.774647887324,
+      "roc_auc": 0.839561985132,
+      "brier_score": 0.168258807564,
+      "log_loss": 2.129904992491,
+      "expected_calibration_error": 0.104927667572,
+      "average_confidence": 0.868933927353,
+      "confidence_at_least_80_percent": {
+        "threshold": 0.8,
+        "sample_count": 105,
+        "average_confidence": 0.933629963281,
+        "accuracy": 0.838095238095
+      },
+      "confidence_at_least_90_percent": {
+        "threshold": 0.9,
+        "sample_count": 67,
+        "average_confidence": 0.982957973292,
+        "accuracy": 0.865671641791
+      },
+      "calibration_buckets": [
+        {
+          "label": "0-10%",
+          "sample_count": 41,
+          "average_predicted_probability": 0.027327833475,
+          "actual_up_rate": 0.146341463415,
+          "absolute_calibration_error": 0.119013629939
+        },
+        {
+          "label": "10-20%",
+          "sample_count": 0,
+          "average_predicted_probability": null,
+          "actual_up_rate": null,
+          "absolute_calibration_error": null
+        },
+        {
+          "label": "20-30%",
+          "sample_count": 13,
+          "average_predicted_probability": 0.275862068966,
+          "actual_up_rate": 0.384615384615,
+          "absolute_calibration_error": 0.10875331565
+        },
+        {
+          "label": "30-40%",
+          "sample_count": 3,
+          "average_predicted_probability": 0.351351351351,
+          "actual_up_rate": 0.666666666667,
+          "absolute_calibration_error": 0.315315315315
+        },
+        {
+          "label": "40-50%",
+          "sample_count": 2,
+          "average_predicted_probability": 0.4,
+          "actual_up_rate": 0.5,
+          "absolute_calibration_error": 0.1
+        },
+        {
+          "label": "50-60%",
+          "sample_count": 5,
+          "average_predicted_probability": 0.578947368421,
+          "actual_up_rate": 0.4,
+          "absolute_calibration_error": 0.178947368421
+        },
+        {
+          "label": "60-70%",
+          "sample_count": 1,
+          "average_predicted_probability": 0.658551203702,
+          "actual_up_rate": 0.0,
+          "absolute_calibration_error": 0.658551203702
+        },
+        {
+          "label": "70-80%",
+          "sample_count": 13,
+          "average_predicted_probability": 0.711111111111,
+          "actual_up_rate": 0.769230769231,
+          "absolute_calibration_error": 0.05811965812
+        },
+        {
+          "label": "80-90%",
+          "sample_count": 38,
+          "average_predicted_probability": 0.846656892999,
+          "actual_up_rate": 0.789473684211,
+          "absolute_calibration_error": 0.057183208789
+        },
+        {
+          "label": "90-100%",
+          "sample_count": 26,
+          "average_predicted_probability": 0.999177899347,
+          "actual_up_rate": 0.884615384615,
+          "absolute_calibration_error": 0.114562514732
+        }
+      ]
+    }
+  },
+  "best_method": {
+    "brier_score": "platt_sigmoid",
+    "log_loss": "platt_sigmoid",
+    "expected_calibration_error": "platt_sigmoid"
+  },
+  "test_predictions": [
+    {
+      "feature_date": "2025-12-30",
+      "target_date": "2025-12-31",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.46291099247,
+      "platt_sigmoid_up_probability": 0.4913033692608844,
+      "isotonic_up_probability": 0.4
+    },
+    {
+      "feature_date": "2025-12-31",
+      "target_date": "2026-01-02",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.404829973004,
+      "platt_sigmoid_up_probability": 0.4472307690516225,
+      "isotonic_up_probability": 0.35135135135135137
+    },
+    {
+      "feature_date": "2026-01-02",
+      "target_date": "2026-01-05",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.943136233714,
+      "platt_sigmoid_up_probability": 0.8981658121515498,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-01-05",
+      "target_date": "2026-01-06",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.536832270251,
+      "platt_sigmoid_up_probability": 0.5465570697409863,
+      "isotonic_up_probability": 0.5789473684210527
+    },
+    {
+      "feature_date": "2026-01-06",
+      "target_date": "2026-01-07",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.551663289622,
+      "platt_sigmoid_up_probability": 0.5576164008257906,
+      "isotonic_up_probability": 0.6585512037018623
+    },
+    {
+      "feature_date": "2026-01-07",
+      "target_date": "2026-01-08",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.138519477577,
+      "platt_sigmoid_up_probability": 0.21575242157584285,
+      "isotonic_up_probability": 0.09090909090909091
+    },
+    {
+      "feature_date": "2026-01-08",
+      "target_date": "2026-01-09",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.497114101106,
+      "platt_sigmoid_up_probability": 0.5169289687206468,
+      "isotonic_up_probability": 0.5789473684210527
+    },
+    {
+      "feature_date": "2026-01-09",
+      "target_date": "2026-01-12",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.967369073414,
+      "platt_sigmoid_up_probability": 0.9315909515136905,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-01-12",
+      "target_date": "2026-01-13",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.957566724768,
+      "platt_sigmoid_up_probability": 0.917382851047412,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-01-13",
+      "target_date": "2026-01-14",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.700255559564,
+      "platt_sigmoid_up_probability": 0.6706255089254843,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-01-14",
+      "target_date": "2026-01-15",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.208104412675,
+      "platt_sigmoid_up_probability": 0.2843133390783289,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-01-15",
+      "target_date": "2026-01-16",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.916917000985,
+      "platt_sigmoid_up_probability": 0.8667259990639002,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-01-16",
+      "target_date": "2026-01-19",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.273305559573,
+      "platt_sigmoid_up_probability": 0.3418528980314421,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-01-19",
+      "target_date": "2026-01-20",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.284318893555,
+      "platt_sigmoid_up_probability": 0.3511295994422526,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-01-20",
+      "target_date": "2026-01-21",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.019048587249,
+      "platt_sigmoid_up_probability": 0.05357251342358488,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-01-21",
+      "target_date": "2026-01-22",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.945623981855,
+      "platt_sigmoid_up_probability": 0.9013609317589398,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-01-22",
+      "target_date": "2026-01-23",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.833887116727,
+      "platt_sigmoid_up_probability": 0.7829816709842683,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-01-23",
+      "target_date": "2026-01-26",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.697984180437,
+      "platt_sigmoid_up_probability": 0.66883910263692,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-01-26",
+      "target_date": "2026-01-27",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.801585451125,
+      "platt_sigmoid_up_probability": 0.7541141800449414,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-01-27",
+      "target_date": "2026-01-28",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.903470622508,
+      "platt_sigmoid_up_probability": 0.8518353910966485,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-01-28",
+      "target_date": "2026-01-29",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.799578293751,
+      "platt_sigmoid_up_probability": 0.7523663948488195,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-01-29",
+      "target_date": "2026-01-30",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.073378460343,
+      "platt_sigmoid_up_probability": 0.13939305446954287,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-01-30",
+      "target_date": "2026-02-02",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.039652937514,
+      "platt_sigmoid_up_probability": 0.09051104899156494,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-02-02",
+      "target_date": "2026-02-03",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.996302993037,
+      "platt_sigmoid_up_probability": 0.9861052426419515,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-02-03",
+      "target_date": "2026-02-04",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.157520867458,
+      "platt_sigmoid_up_probability": 0.23545414646451102,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-02-04",
+      "target_date": "2026-02-05",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.011557788921,
+      "platt_sigmoid_up_probability": 0.03728937084573771,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-02-05",
+      "target_date": "2026-02-06",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.18674373297,
+      "platt_sigmoid_up_probability": 0.2642339471641523,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-02-06",
+      "target_date": "2026-02-09",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.99968327203,
+      "platt_sigmoid_up_probability": 0.997768068264473,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-02-09",
+      "target_date": "2026-02-10",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.929959680894,
+      "platt_sigmoid_up_probability": 0.8819060579075253,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-02-10",
+      "target_date": "2026-02-11",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.437148235943,
+      "platt_sigmoid_up_probability": 0.47186427886016374,
+      "isotonic_up_probability": 0.35135135135135137
+    },
+    {
+      "feature_date": "2026-02-11",
+      "target_date": "2026-02-23",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.93524427365,
+      "platt_sigmoid_up_probability": 0.8883025533059673,
+      "isotonic_up_probability": 0.8490782434126876
+    },
+    {
+      "feature_date": "2026-02-23",
+      "target_date": "2026-02-24",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.664987505978,
+      "platt_sigmoid_up_probability": 0.643173498229388,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-02-24",
+      "target_date": "2026-02-25",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.981166956843,
+      "platt_sigmoid_up_probability": 0.9540466459287408,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-03-02",
+      "target_date": "2026-03-03",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.451319495008,
+      "platt_sigmoid_up_probability": 0.4825751321762121,
+      "isotonic_up_probability": 0.4
+    },
+    {
+      "feature_date": "2026-03-03",
+      "target_date": "2026-03-04",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.000929527976,
+      "platt_sigmoid_up_probability": 0.005799402234548898,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-04",
+      "target_date": "2026-03-05",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.999588711146,
+      "platt_sigmoid_up_probability": 0.9972875342523528,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-03-05",
+      "target_date": "2026-03-06",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.038451253072,
+      "platt_sigmoid_up_probability": 0.08855856977045597,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-03-06",
+      "target_date": "2026-03-09",
+      "actual": 0,
+      "uncalibrated_up_probability": 9.2686036e-05,
+      "platt_sigmoid_up_probability": 0.0010382716645328147,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-09",
+      "target_date": "2026-03-10",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.999998098667,
+      "platt_sigmoid_up_probability": 0.9999512606414865,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-03-10",
+      "target_date": "2026-03-11",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.971587185942,
+      "platt_sigmoid_up_probability": 0.9380905252329788,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-03-11",
+      "target_date": "2026-03-12",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.107813830637,
+      "platt_sigmoid_up_probability": 0.18179610878324445,
+      "isotonic_up_probability": 0.09090909090909091
+    },
+    {
+      "feature_date": "2026-03-12",
+      "target_date": "2026-03-13",
+      "actual": 0,
+      "uncalibrated_up_probability": 6.4343411e-05,
+      "platt_sigmoid_up_probability": 0.000790411322065037,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-13",
+      "target_date": "2026-03-16",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.011915271555,
+      "platt_sigmoid_up_probability": 0.038125863874244735,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-16",
+      "target_date": "2026-03-17",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.979070894072,
+      "platt_sigmoid_up_probability": 0.9503842243515883,
+      "isotonic_up_probability": 0.9786253830233056
+    },
+    {
+      "feature_date": "2026-03-17",
+      "target_date": "2026-03-18",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.947360415221,
+      "platt_sigmoid_up_probability": 0.9036177900619048,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-03-18",
+      "target_date": "2026-03-19",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.003561101312,
+      "platt_sigmoid_up_probability": 0.015710124084613388,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-19",
+      "target_date": "2026-03-20",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.864370550299,
+      "platt_sigmoid_up_probability": 0.8117802710730928,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-03-20",
+      "target_date": "2026-03-23",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.000672063766,
+      "platt_sigmoid_up_probability": 0.004555055869019961,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-23",
+      "target_date": "2026-03-24",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.999856889267,
+      "platt_sigmoid_up_probability": 0.9987668708491891,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-03-24",
+      "target_date": "2026-03-25",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.992238133788,
+      "platt_sigmoid_up_probability": 0.975977438415696,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-03-25",
+      "target_date": "2026-03-26",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.8335186622,
+      "platt_sigmoid_up_probability": 0.7826437245137897,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-03-26",
+      "target_date": "2026-03-27",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.004222476688,
+      "platt_sigmoid_up_probability": 0.01781559014880332,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-27",
+      "target_date": "2026-03-30",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.000635179981,
+      "platt_sigmoid_up_probability": 0.0043674582085907,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-30",
+      "target_date": "2026-03-31",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.01577852104,
+      "platt_sigmoid_up_probability": 0.04675203805908166,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-03-31",
+      "target_date": "2026-04-01",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.999873028529,
+      "platt_sigmoid_up_probability": 0.9988723310959525,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-04-01",
+      "target_date": "2026-04-02",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.820002846358,
+      "platt_sigmoid_up_probability": 0.7703926254017732,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-04-02",
+      "target_date": "2026-04-07",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.918934548797,
+      "platt_sigmoid_up_probability": 0.8690228430283575,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-04-07",
+      "target_date": "2026-04-08",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.868539788436,
+      "platt_sigmoid_up_probability": 0.8158637030878638,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-04-08",
+      "target_date": "2026-04-09",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.936296392251,
+      "platt_sigmoid_up_probability": 0.8895950579742028,
+      "isotonic_up_probability": 0.8528609632898219
+    },
+    {
+      "feature_date": "2026-04-09",
+      "target_date": "2026-04-10",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.91560072258,
+      "platt_sigmoid_up_probability": 0.8652368566089605,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-04-10",
+      "target_date": "2026-04-13",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.532126364291,
+      "platt_sigmoid_up_probability": 0.5430488941011249,
+      "isotonic_up_probability": 0.5789473684210527
+    },
+    {
+      "feature_date": "2026-04-13",
+      "target_date": "2026-04-14",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.982147765619,
+      "platt_sigmoid_up_probability": 0.9558005165749117,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-04-14",
+      "target_date": "2026-04-15",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.961768163805,
+      "platt_sigmoid_up_probability": 0.9233363354388385,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-04-15",
+      "target_date": "2026-04-16",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.895949245509,
+      "platt_sigmoid_up_probability": 0.8437893754001081,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-04-16",
+      "target_date": "2026-04-17",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.029568933138,
+      "platt_sigmoid_up_probability": 0.07346108846007639,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-04-17",
+      "target_date": "2026-04-20",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.9936531277,
+      "platt_sigmoid_up_probability": 0.9792865910573618,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-04-20",
+      "target_date": "2026-04-21",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.919696611716,
+      "platt_sigmoid_up_probability": 0.8698950147275366,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-04-21",
+      "target_date": "2026-04-22",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.268951621398,
+      "platt_sigmoid_up_probability": 0.33815501706220324,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-04-22",
+      "target_date": "2026-04-23",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.98721302917,
+      "platt_sigmoid_up_probability": 0.965352680075442,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-04-23",
+      "target_date": "2026-04-24",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.845068132131,
+      "platt_sigmoid_up_probability": 0.7933450274876899,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-04-24",
+      "target_date": "2026-04-27",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.987530065278,
+      "platt_sigmoid_up_probability": 0.9659831787418383,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-04-27",
+      "target_date": "2026-04-28",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.128121740788,
+      "platt_sigmoid_up_probability": 0.20457719257761844,
+      "isotonic_up_probability": 0.09090909090909091
+    },
+    {
+      "feature_date": "2026-04-28",
+      "target_date": "2026-04-29",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.053559140376,
+      "platt_sigmoid_up_probability": 0.11188258485231886,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-04-29",
+      "target_date": "2026-04-30",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.162309966261,
+      "platt_sigmoid_up_probability": 0.24028800466614803,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-04-30",
+      "target_date": "2026-05-04",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.991652482837,
+      "platt_sigmoid_up_probability": 0.9746573727210796,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-05-04",
+      "target_date": "2026-05-05",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.101217982699,
+      "platt_sigmoid_up_probability": 0.17408443719668207,
+      "isotonic_up_probability": 0.09013814218482351
+    },
+    {
+      "feature_date": "2026-05-05",
+      "target_date": "2026-05-06",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.977138346515,
+      "platt_sigmoid_up_probability": 0.9471010045587805,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-05-06",
+      "target_date": "2026-05-07",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.999256999248,
+      "platt_sigmoid_up_probability": 0.9957838138021803,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-05-07",
+      "target_date": "2026-05-08",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.05680547905,
+      "platt_sigmoid_up_probability": 0.11659570750732326,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-05-08",
+      "target_date": "2026-05-11",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.95480810489,
+      "platt_sigmoid_up_probability": 0.913571231164969,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-05-11",
+      "target_date": "2026-05-12",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.881444411468,
+      "platt_sigmoid_up_probability": 0.8287623598876985,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-05-12",
+      "target_date": "2026-05-13",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.013260322527,
+      "platt_sigmoid_up_probability": 0.04121061840813718,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-05-13",
+      "target_date": "2026-05-14",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.88453261159,
+      "platt_sigmoid_up_probability": 0.8319118678068808,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-05-14",
+      "target_date": "2026-05-15",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.994690557739,
+      "platt_sigmoid_up_probability": 0.9818418844771502,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-05-15",
+      "target_date": "2026-05-18",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.017406840882,
+      "platt_sigmoid_up_probability": 0.05019598258643038,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-05-18",
+      "target_date": "2026-05-19",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.336741518774,
+      "platt_sigmoid_up_probability": 0.39397930775506795,
+      "isotonic_up_probability": 0.35135135135135137
+    },
+    {
+      "feature_date": "2026-05-19",
+      "target_date": "2026-05-20",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.156190089597,
+      "platt_sigmoid_up_probability": 0.23410201871193084,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-05-20",
+      "target_date": "2026-05-21",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.994897117492,
+      "platt_sigmoid_up_probability": 0.9823662100757606,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-05-21",
+      "target_date": "2026-05-22",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.837054636903,
+      "platt_sigmoid_up_probability": 0.785896066580369,
+      "isotonic_up_probability": 0.8181818181818182
+    },
+    {
+      "feature_date": "2026-05-22",
+      "target_date": "2026-05-25",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.801414343202,
+      "platt_sigmoid_up_probability": 0.7539649923712487,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-05-25",
+      "target_date": "2026-05-26",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.968908321614,
+      "platt_sigmoid_up_probability": 0.9339319704502512,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-05-26",
+      "target_date": "2026-05-27",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.979775079556,
+      "platt_sigmoid_up_probability": 0.9516022482276915,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-05-27",
+      "target_date": "2026-05-28",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.901460461511,
+      "platt_sigmoid_up_probability": 0.8496665329973281,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-05-28",
+      "target_date": "2026-05-29",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.989583772231,
+      "platt_sigmoid_up_probability": 0.9701840224520354,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-05-29",
+      "target_date": "2026-06-01",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.113060105491,
+      "platt_sigmoid_up_probability": 0.18781399499007911,
+      "isotonic_up_probability": 0.09090909090909091
+    },
+    {
+      "feature_date": "2026-06-01",
+      "target_date": "2026-06-02",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.933717924666,
+      "platt_sigmoid_up_probability": 0.8864389640528688,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-06-02",
+      "target_date": "2026-06-03",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.976691745854,
+      "platt_sigmoid_up_probability": 0.9463539783479812,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-06-03",
+      "target_date": "2026-06-04",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.092838066212,
+      "platt_sigmoid_up_probability": 0.16403181007208661,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-06-04",
+      "target_date": "2026-06-05",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.17636050394,
+      "platt_sigmoid_up_probability": 0.2541966581259789,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-06-05",
+      "target_date": "2026-06-08",
+      "actual": 0,
+      "uncalibrated_up_probability": 8.23e-10,
+      "platt_sigmoid_up_probability": 1.731488613970209e-07,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-06-08",
+      "target_date": "2026-06-09",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.990543691585,
+      "platt_sigmoid_up_probability": 0.9722257761690716,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-06-09",
+      "target_date": "2026-06-10",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.00100213206,
+      "platt_sigmoid_up_probability": 0.006133249242543432,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-06-10",
+      "target_date": "2026-06-11",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.001996137028,
+      "platt_sigmoid_up_probability": 0.010234138918283783,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-06-11",
+      "target_date": "2026-06-12",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.999244449369,
+      "platt_sigmoid_up_probability": 0.9957308488923365,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-06-12",
+      "target_date": "2026-06-15",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.901510081681,
+      "platt_sigmoid_up_probability": 0.8497199041811564,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-06-15",
+      "target_date": "2026-06-16",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.981759619297,
+      "platt_sigmoid_up_probability": 0.9551031997555612,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-06-16",
+      "target_date": "2026-06-17",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.002869216932,
+      "platt_sigmoid_up_probability": 0.013390714363522885,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-06-17",
+      "target_date": "2026-06-18",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.267409133699,
+      "platt_sigmoid_up_probability": 0.33684064863841023,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-06-18",
+      "target_date": "2026-06-22",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.994692124797,
+      "platt_sigmoid_up_probability": 0.9818458412896192,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-06-22",
+      "target_date": "2026-06-23",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.925508121289,
+      "platt_sigmoid_up_probability": 0.8766334350539032,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-06-23",
+      "target_date": "2026-06-24",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.000259911606,
+      "platt_sigmoid_up_probability": 0.002242735730545851,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-06-24",
+      "target_date": "2026-06-25",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.618170940519,
+      "platt_sigmoid_up_probability": 0.6074791155979334,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-06-25",
+      "target_date": "2026-06-26",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.012541521775,
+      "platt_sigmoid_up_probability": 0.039574023805605506,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-06-26",
+      "target_date": "2026-06-29",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.77149207778,
+      "platt_sigmoid_up_probability": 0.7283837478812433,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-06-29",
+      "target_date": "2026-06-30",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.986447897342,
+      "platt_sigmoid_up_probability": 0.9638488812057986,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-06-30",
+      "target_date": "2026-07-01",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.964686856992,
+      "platt_sigmoid_up_probability": 0.927588870930357,
+      "isotonic_up_probability": 0.8666666666666667
+    },
+    {
+      "feature_date": "2026-07-01",
+      "target_date": "2026-07-02",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.003064848047,
+      "platt_sigmoid_up_probability": 0.014060403939764859,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-02",
+      "target_date": "2026-07-03",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.00104650079,
+      "platt_sigmoid_up_probability": 0.0063341662875653175,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-03",
+      "target_date": "2026-07-06",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.28873308697,
+      "platt_sigmoid_up_probability": 0.35481805658783855,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-07-06",
+      "target_date": "2026-07-07",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.899653602764,
+      "platt_sigmoid_up_probability": 0.8477287238941023,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-07-07",
+      "target_date": "2026-07-08",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.0271751179,
+      "platt_sigmoid_up_probability": 0.0691586326016169,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-08",
+      "target_date": "2026-07-09",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.521854377527,
+      "platt_sigmoid_up_probability": 0.535390886051831,
+      "isotonic_up_probability": 0.5789473684210527
+    },
+    {
+      "feature_date": "2026-07-09",
+      "target_date": "2026-07-13",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.889294998413,
+      "platt_sigmoid_up_probability": 0.8368202414984509,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-07-13",
+      "target_date": "2026-07-14",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.026947511139,
+      "platt_sigmoid_up_probability": 0.06874355111219635,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-14",
+      "target_date": "2026-07-15",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.70625060984,
+      "platt_sigmoid_up_probability": 0.675354166591381,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-07-15",
+      "target_date": "2026-07-16",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.160208161228,
+      "platt_sigmoid_up_probability": 0.23817266302839965,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-07-16",
+      "target_date": "2026-07-17",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.003362108779,
+      "platt_sigmoid_up_probability": 0.015056534246385625,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-17",
+      "target_date": "2026-07-20",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.928414437637,
+      "platt_sigmoid_up_probability": 0.8800643247437215,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-07-20",
+      "target_date": "2026-07-21",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.738709808631,
+      "platt_sigmoid_up_probability": 0.7013409757195286,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-07-21",
+      "target_date": "2026-07-22",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.922288318277,
+      "platt_sigmoid_up_probability": 0.8728806808675441,
+      "isotonic_up_probability": 0.84375
+    },
+    {
+      "feature_date": "2026-07-22",
+      "target_date": "2026-07-23",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.74653328083,
+      "platt_sigmoid_up_probability": 0.7077141465640281,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-07-23",
+      "target_date": "2026-07-24",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.042719174583,
+      "platt_sigmoid_up_probability": 0.09540897996911506,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-07-24",
+      "target_date": "2026-07-27",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.056159328949,
+      "platt_sigmoid_up_probability": 0.11566486959568784,
+      "isotonic_up_probability": 0.08333333333333333
+    },
+    {
+      "feature_date": "2026-07-27",
+      "target_date": "2026-07-28",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.029339230819,
+      "platt_sigmoid_up_probability": 0.07305306848465241,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-28",
+      "target_date": "2026-07-29",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.623551894902,
+      "platt_sigmoid_up_probability": 0.6115484752903758,
+      "isotonic_up_probability": 0.7111111111111111
+    },
+    {
+      "feature_date": "2026-07-29",
+      "target_date": "2026-07-30",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.019473855787,
+      "platt_sigmoid_up_probability": 0.054432728646555906,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-07-30",
+      "target_date": "2026-07-31",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.999640644839,
+      "platt_sigmoid_up_probability": 0.9975474721298054,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-07-31",
+      "target_date": "2026-08-03",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.009498444618,
+      "platt_sigmoid_up_probability": 0.03231513091787783,
+      "isotonic_up_probability": 0.0
+    },
+    {
+      "feature_date": "2026-08-03",
+      "target_date": "2026-08-04",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.53514067141,
+      "platt_sigmoid_up_probability": 0.5452959942730233,
+      "isotonic_up_probability": 0.5789473684210527
+    },
+    {
+      "feature_date": "2026-08-04",
+      "target_date": "2026-08-05",
+      "actual": 1,
+      "uncalibrated_up_probability": 0.996439771639,
+      "platt_sigmoid_up_probability": 0.9864877031884214,
+      "isotonic_up_probability": 1.0
+    },
+    {
+      "feature_date": "2026-08-05",
+      "target_date": "2026-08-06",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.262541736282,
+      "platt_sigmoid_up_probability": 0.33267796254073717,
+      "isotonic_up_probability": 0.27586206896551724
+    },
+    {
+      "feature_date": "2026-08-06",
+      "target_date": "2026-08-07",
+      "actual": 0,
+      "uncalibrated_up_probability": 0.653588778458,
+      "platt_sigmoid_up_probability": 0.6344157730086578,
+      "isotonic_up_probability": 0.7111111111111111
+    }
+  ]
+}

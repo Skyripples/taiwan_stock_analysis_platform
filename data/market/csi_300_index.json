@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-08-14T04:32:08.314514Z",
+  "provider": "Yahoo",
+  "dataset": "csi_300_index",
+  "version": "1.0",
+  "data": {
+    "records": [
+      {
+        "trade_date": "2026-07-17",
+        "metadata": {
+          "symbol": "000300.SS",
+          "security_name": "CSI 300 Index",
+          "market": "Shanghai",
+          "currency": "CNY",
+          "market_timezone": "Asia/Shanghai",
+          "interval": "1d",
+          "source": "https://finance.yahoo.com/quote/000300.SS/history/",
+          "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/000300.SS"
+        },
+        "open": 4661.6201,
+        "high": 4663.5298,
+        "low": 4492.0898,
+        "close": 4529.1001,
+        "previous_close": 4698.4399,
+        "change": -169.3398,
+        "change_percent": -3.6042,
+        "volume": 302600
+      }
+    ]
+  }
+}

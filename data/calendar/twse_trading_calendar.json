@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "market": "TWSE",
+  "timezone": "Asia/Taipei",
+  "source": {
+    "name": "臺灣證券交易所－有價證券集中交易市場開（休）市日期",
+    "url": "https://openapi.twse.com.tw/v1/holidaySchedule/holidaySchedule",
+    "retrieved_at": "2026-08-12"
+  },
+  "years": {
+    "2026": {
+      "coverage_start": "2026-01-01",
+      "coverage_end": "2026-12-31",
+      "regular_trading_weekdays": [1, 2, 3, 4, 5],
+      "closed_dates": [
+        "2026-01-01", "2026-02-12", "2026-02-13", "2026-02-15",
+        "2026-02-16", "2026-02-17", "2026-02-18", "2026-02-19",
+        "2026-02-20", "2026-02-27", "2026-02-28", "2026-04-03",
+        "2026-04-04", "2026-04-05", "2026-04-06", "2026-05-01",
+        "2026-06-19", "2026-09-25", "2026-09-28", "2026-10-09",
+        "2026-10-10", "2026-10-25", "2026-10-26", "2026-12-25"
+      ],
+      "special_open_dates": [],
+      "official_markers": {
+        "first_trading_day": "2026-01-02",
+        "last_trading_day_before_lunar_new_year": "2026-02-11",
+        "first_trading_day_after_lunar_new_year": "2026-02-23"
+      }
+    }
+  }
+}

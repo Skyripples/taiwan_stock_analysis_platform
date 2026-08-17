@@ -27,6 +27,8 @@ SOURCE_FILES = {
     "sox": "sox_index.json",
     "sp500": "sp500_index.json",
     "nasdaq": "nasdaq_index.json",
+    "vix": "vix_index.json",
+    "kospi": "kospi_index.json",
     "signals": "market_signals.json",
 }
 
@@ -40,10 +42,12 @@ SOURCE_DATE_FIELDS = (
     "sp500_trade_date",
     "nasdaq_trade_date",
 )
+MARKET_ONLY_SOURCE_DATE_FIELDS = ("vix_trade_date", "kospi_trade_date")
 
 MARKET_FIELDS = (
     "trade_date",
     *SOURCE_DATE_FIELDS,
+    *MARKET_ONLY_SOURCE_DATE_FIELDS,
     "taiex_close",
     "taiex_change_percent",
     "tpex_close",
@@ -58,6 +62,8 @@ MARKET_FIELDS = (
     "sox_change_percent",
     "sp500_change_percent",
     "nasdaq_change_percent",
+    "vix_change_percent",
+    "kospi_change_percent",
 )
 
 SIGNAL_NAMES = (
@@ -124,7 +130,15 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         "sox_trade_date": dates["sox"],
         "sp500_trade_date": dates["sp500"],
         "nasdaq_trade_date": dates["nasdaq"],
+        "vix_trade_date": dates["vix"],
+        "kospi_trade_date": dates["kospi"],
     }
+    # The night session is attributed to the next Taiwan trading date; VIX
+    # must already be completed before that target session opens.
+    if dates["vix"] >= dates["night_futures"]:
+        raise ValueError("VIX trade date must precede the prediction target date")
+    if dates["kospi"] >= dates["night_futures"]:
+        raise ValueError("KOSPI trade date must precede the prediction target date")
 
     market_row: Dict[str, Any] = {
         "trade_date": trade_date,
@@ -143,6 +157,8 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         "sox_change_percent": _require_number(records["sox"], ("change_percent",), "sox"),
         "sp500_change_percent": _require_number(records["sp500"], ("change_percent",), "sp500"),
         "nasdaq_change_percent": _require_number(records["nasdaq"], ("change_percent",), "nasdaq"),
+        "vix_change_percent": _require_number(records["vix"], ("change_percent",), "vix"),
+        "kospi_change_percent": _require_number(records["kospi"], ("change_percent",), "kospi"),
     }
 
     signal_payload = sources.get("signals")
@@ -152,7 +168,10 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
     if set(signals) != set(SIGNAL_NAMES):
         raise ValueError("market_signals must contain exactly the configured five signals")
 
-    signals_row: Dict[str, Any] = {"trade_date": trade_date, **source_dates}
+    signals_row: Dict[str, Any] = {
+        "trade_date": trade_date,
+        **{field: source_dates[field] for field in SOURCE_DATE_FIELDS},
+    }
     weighted_score_sum = 0.0
     enabled_weight_sum = 0.0
     for signal_name in SIGNAL_NAMES:
@@ -265,7 +284,12 @@ def _write_temporary(
     temporary_path = output_path.with_suffix(f"{output_path.suffix}.tmp")
     try:
         with temporary_path.open("w", encoding="utf-8", newline="") as output_file:
-            writer = csv.DictWriter(output_file, fieldnames=fields, extrasaction="raise")
+            writer = csv.DictWriter(
+                output_file,
+                fieldnames=fields,
+                extrasaction="raise",
+                lineterminator="\n",
+            )
             writer.writeheader()
             writer.writerows(rows)
         return temporary_path

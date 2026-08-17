@@ -1,0 +1,262 @@
+{
+  "generated_at": "2026-08-15T20:47:17.055947Z",
+  "audit_version": "1.0",
+  "dataset": "data/history/historical_prediction_dataset.csv",
+  "total_samples": 722,
+  "leakage_detected": false,
+  "samples_with_leakage": 0,
+  "leakage_safe_samples": 722,
+  "fully_aligned_samples": 722,
+  "samples_with_alignment_issues": 0,
+  "feature_results": {
+    "taiex_close": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "taiex_change_percent": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "tpex_close": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "turnover": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "advancing": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "declining": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "unchanged": {
+      "source_trade_date_field": "taiwan_market_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "foreign_cash_flow": {
+      "source_trade_date_field": "institutional_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "foreign_futures_position": {
+      "source_trade_date_field": "foreign_futures_trade_date",
+      "availability_rule": "feature_close",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "night_futures_change": {
+      "source_trade_date_field": "night_futures_trade_date",
+      "availability_rule": "target_preopen",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "tsm_adr_change_percent": {
+      "source_trade_date_field": "tsm_adr_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "sox_change_percent": {
+      "source_trade_date_field": "sox_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "sp500_change_percent": {
+      "source_trade_date_field": "sp500_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "nasdaq_change_percent": {
+      "source_trade_date_field": "nasdaq_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "nikkei_change_percent": {
+      "source_trade_date_field": "nikkei_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "kospi_change_percent": {
+      "source_trade_date_field": "kospi_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "hang_seng_change_percent": {
+      "source_trade_date_field": "hang_seng_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "csi300_change_percent": {
+      "source_trade_date_field": "csi300_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "soxx_change_percent": {
+      "source_trade_date_field": "soxx_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "smh_change_percent": {
+      "source_trade_date_field": "smh_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "nvda_change_percent": {
+      "source_trade_date_field": "nvda_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "amd_change_percent": {
+      "source_trade_date_field": "amd_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    },
+    "avgo_change_percent": {
+      "source_trade_date_field": "avgo_trade_date",
+      "availability_rule": "us_completed",
+      "passed": 722,
+      "failed": 0,
+      "leakage_failures": 0,
+      "stale_alignment_failures": 0,
+      "missing_failures": 0
+    }
+  },
+  "calendar_edge_cases": {
+    "weekend_or_long_gap_pairs": 154,
+    "long_holiday_pairs_over_three_calendar_days": 19,
+    "us_latest_session_differs_from_feature_date_checks": 666
+  },
+  "flow_comparison": {
+    "same_time_logic": true,
+    "backfill": {
+      "night_rule": "queries and stores the T-close-to-target-preopen session as target_date",
+      "us_rule": "latest completed Yahoo session strictly before target_date",
+      "code_evidence_present": true
+    },
+    "daily": {
+      "rule": "copies each provider trade_date without enforcing a target-open cutoff",
+      "operational_schedule": "workflow runs 00:00 UTC / 08:00 Asia/Taipei before Taiwan open",
+      "code_evidence_present": true,
+      "recent_night_alignment_examples": [
+        {
+          "feature_date": "2026-08-04",
+          "night_futures_trade_date": "2026-08-05"
+        },
+        {
+          "feature_date": "2026-08-05",
+          "night_futures_trade_date": "2026-08-06"
+        },
+        {
+          "feature_date": "2026-08-06",
+          "night_futures_trade_date": "2026-08-07"
+        },
+        {
+          "feature_date": "2026-08-07",
+          "night_futures_trade_date": "2026-08-10"
+        },
+        {
+          "feature_date": "2026-08-10",
+          "night_futures_trade_date": "2026-08-11"
+        }
+      ]
+    },
+    "finding": "Backfill and the scheduled daily pipeline now use the same target-preopen timing: night trade_date equals target_date and US data is the latest completed session before target_date. Daily code copies provider dates, so its 08:00 Asia/Taipei schedule remains part of enforcement."
+  },
+  "issues": []
+}

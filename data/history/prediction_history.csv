@@ -1,0 +1,1 @@
+feature_date,target_date,up_probability,down_probability,predicted_direction,confidence,model_version,generated_at,feature_close,target_close,actual_return,actual_direction,hit,validated_at
