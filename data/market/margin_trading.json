@@ -1,0 +1,50 @@
+{
+  "updated_at": "2026-08-17T05:56:17.385420Z",
+  "provider": "TWSE",
+  "dataset": "margin_trading",
+  "version": "1.0",
+  "data": {
+    "records": [
+      {
+        "trade_date": "2026-08-14",
+        "metadata": {
+          "market": "TWSE",
+          "currency": "TWD",
+          "financing_amount_unit": "thousand_twd",
+          "position_unit": "trading_unit",
+          "source": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN",
+          "source_page": "https://www.twse.com.tw/zh/trading/margin/mi-margn.html",
+          "balance_note": "TWSE publishes preliminary current balances; previous balances reflect final institution adjustments."
+        },
+        "margin_financing": {
+          "amount": {
+            "buy": 32821706,
+            "sell": 35124696,
+            "repayment": 418346,
+            "previous_balance": 549780654,
+            "balance": 547059318,
+            "change": -2721336
+          },
+          "trading_units": {
+            "buy": 366478,
+            "sell": 405240,
+            "repayment": 12793,
+            "previous_balance": 8969839,
+            "balance": 8918284,
+            "change": -51555
+          }
+        },
+        "short_selling": {
+          "trading_units": {
+            "buy": 17159,
+            "sell": 28567,
+            "repayment": 2627,
+            "previous_balance": 214046,
+            "balance": 222827,
+            "change": 8781
+          }
+        }
+      }
+    ]
+  }
+}

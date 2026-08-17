@@ -1,0 +1,62 @@
+.chips-page { overflow-x: hidden; background: #090a0c; color: #fff; }
+.chips-page .layout-main { min-width: 0; }
+.chips-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.chips-section-heading p, .chips-section-heading h2 { margin: 0; }
+.chips-section-heading p { margin-bottom: 5px; color: #9da7b5; font-size: .7rem; font-weight: 700; letter-spacing: .14em; }
+.chips-section-heading h2 { font-size: 1.18rem; }
+.chips-message { margin: 0; padding: 16px; border: 1px dashed #3a3e45; border-radius: 12px; color: #b6bec9; background: #111317; }
+.chips-grid { display: grid; gap: 16px; }
+.chips-grid-wide { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.chips-summary-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.metric-widget { min-width: 0; padding: 18px; }
+.metric-widget span, .status-card span { color: #aeb7c3; font-size: .76rem; }
+.metric-widget strong { display: block; margin-top: 10px; color: #fff; font-size: .98rem; line-height: 1.5; overflow-wrap: anywhere; }
+.chips-status-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.status-card { padding: 18px; }
+.status-card strong { display: block; margin: 8px 0 5px; font-size: 1.2rem; }
+.status-card small { color: #98a3b1; }
+.range-switch { display: flex; gap: 4px; padding: 4px; border: 1px solid #30343a; border-radius: 9px; background: #111317; }
+.range-switch button { border: 0; border-radius: 6px; padding: 6px 10px; color: #aeb7c3; background: transparent; cursor: pointer; }
+.range-switch button.is-active { color: #fff; background: #343a43; }
+.trend-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.trend-widget { min-width: 0; padding: 20px; }
+.trend-widget:first-child { grid-column: 1 / -1; }
+.svg-chart { min-width: 0; height: 220px; margin-top: 14px; overflow: hidden; border: 1px solid #30343a; border-radius: 10px; color: #8f99a7; background: #111317; }
+.svg-chart svg { display: block; width: 100%; height: 100%; }
+.chart-grid { stroke: #30343a; stroke-width: 1; }
+.chart-zero { stroke: #6d7580; stroke-width: 1; stroke-dasharray: 4 4; }
+.chart-line { fill: none; stroke-width: 2.25; vector-effect: non-scaling-stroke; }
+.chart-line.foreign { stroke: #f05b61; }.chart-line.trust { stroke: #e3a63c; }.chart-line.dealer { stroke: #64a7ef; }.chart-line.primary { stroke: #f05b61; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; color: #aeb7c3; font-size: .76rem; }
+.chart-legend span::before { content: ''; display: inline-block; width: 14px; height: 3px; margin-right: 6px; vertical-align: middle; background: currentColor; }.chart-legend .foreign { color: #f05b61; }.chart-legend .trust { color: #e3a63c; }.chart-legend .dealer { color: #64a7ef; }
+.trend-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0 0; }
+.trend-stats > div { min-width: 0; padding: 10px; border-radius: 8px; background: #191c20; }.trend-stats dt { color: #98a3b1; font-size: .72rem; }.trend-stats dd { margin: 5px 0 0; overflow-wrap: anywhere; color: #fff; font-weight: 700; }
+.chip-widget, .chip-summary { min-width: 0; padding: 20px; }
+.chip-date { flex: 0 0 auto; color: #aeb7c3; font-size: .75rem; white-space: nowrap; }
+.chip-values, .summary-grid { margin: 18px 0 0; }
+.chip-values > div, .summary-grid > div { min-width: 0; }
+.chip-values { display: grid; gap: 11px; }
+.chip-values > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 11px; border-top: 1px solid #30343a; }
+.chip-values dt, .summary-grid dt { color: #aeb7c3; font-size: .78rem; }
+.chip-values dd, .summary-grid dd { margin: 0; overflow-wrap: anywhere; color: #fff; font-weight: 750; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.summary-grid > div { padding: 15px; border: 1px solid #30343a; border-radius: 11px; background: #191c20; }
+.summary-grid dd { margin-top: 8px; font-size: 1.05rem; }
+.tone-positive { color: #f05b61 !important; }
+.tone-negative { color: #36b77a !important; }
+.tone-neutral { color: #aeb7c3 !important; }
+body.theme-light.chips-page { background: #f1f4f8; color: #202b3c; }
+body.theme-light .chips-section-heading p, body.theme-light .chip-date, body.theme-light .chip-values dt, body.theme-light .summary-grid dt { color: #66758a; }
+body.theme-light .chips-message { border-color: #cbd5e2; color: #66758a; background: #fff; }
+body.theme-light .chip-values > div, body.theme-light .summary-grid > div { border-color: #d8e0ea; }
+body.theme-light .summary-grid > div { background: #f3f6f9; }
+body.theme-light .chip-values dd, body.theme-light .summary-grid dd { color: #27364c; }
+body.theme-light .metric-widget strong, body.theme-light .trend-stats dd { color: #27364c; }
+body.theme-light .metric-widget span, body.theme-light .status-card span { color: #66758a; }
+body.theme-light .range-switch, body.theme-light .svg-chart { border-color: #d8e0ea; background: #f7f9fc; }
+body.theme-light .range-switch button { color: #66758a; } body.theme-light .range-switch button.is-active { color: #243247; background: #dfe6ef; }
+body.theme-light .chart-grid { stroke: #d8e0ea; } body.theme-light .trend-stats > div { background: #f3f6f9; }
+@media (max-width: 1100px) { .chips-grid-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1100px) { .chips-summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .summary-grid, .chips-summary-grid, .trend-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .trend-widget:first-child { grid-column: auto; }.chips-status-grid { grid-template-columns: 1fr; }.trend-stats { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .chips-grid-wide, .summary-grid, .chips-summary-grid, .trend-grid { grid-template-columns: 1fr; } .chips-section-heading { align-items: start; flex-wrap: wrap; } .chip-widget, .chip-summary, .trend-widget { padding: 17px; } .svg-chart { height: 180px; } }
