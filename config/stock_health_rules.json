@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "minimum_industry_samples": 5,
+  "categories": {
+    "growth": {
+      "revenue_yoy": {"pass_min": 10, "warning_max": 0},
+      "eps_growth": {"pass_min": 10, "warning_max": 0},
+      "roe": {"pass_min": 15, "warning_max": 5},
+      "gross_margin_trend": {"pass_min": 0, "warning_max": -2},
+      "operating_margin_trend": {"pass_min": 0, "warning_max": -2}
+    },
+    "risk": {
+      "consecutive_losses": {"pass_max": 0, "warning_min": 2},
+      "debt_ratio": {"pass_max": 50, "warning_min": 70},
+      "current_ratio": {"pass_min": 150, "warning_max": 100},
+      "gross_margin_trend": {"pass_min": 0, "warning_max": -2},
+      "operating_margin_trend": {"pass_min": 0, "warning_max": -2},
+      "operating_cash_flow": {"pass_min": 0, "warning_max": 0}
+    },
+    "value": {
+      "pe_percentile": {"pass_max": 25, "warning_min": 75},
+      "pb_percentile": {"pass_max": 25, "warning_min": 75},
+      "yield_percentile": {"pass_min": 75, "warning_max": 25}
+    },
+    "quality": {
+      "roe": {"pass_min": 15, "warning_max": 5},
+      "eps": {"pass_min": 0, "warning_max": 0},
+      "revenue_yoy": {"pass_min": 10, "warning_max": 0},
+      "gross_margin": {"pass_min": 20, "warning_max": 0},
+      "debt_ratio": {"pass_max": 50, "warning_min": 70}
+    }
+  }
+}

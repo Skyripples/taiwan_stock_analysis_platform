@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T01:44:32+00:00",
+  "updated_at": "2026-08-18T14:14:08+00:00",
   "provider": "TWSE/TPEx/MOPS",
   "dataset": "stock_analysis",
   "version": "1.0",
@@ -12,11 +12,11 @@
       "instrument_type": "company"
     },
     "quote": {
-      "trade_date": "2026-08-17",
-      "close": 1020,
-      "change": 10,
-      "change_percent": 0.9901,
-      "volume": 10494000,
+      "trade_date": "2026-08-18",
+      "close": 1060,
+      "change": 40,
+      "change_percent": 3.9216,
+      "volume": 13047000,
       "unit": {
         "price": "TWD",
         "volume": "shares"
@@ -24,23 +24,23 @@
     },
     "valuation": {
       "pe": {
-        "value": 49.51,
+        "value": 51.46,
         "unit": "ratio",
-        "data_date": "2026-08-17",
+        "data_date": "2026-08-18",
         "status": null,
         "note": null
       },
       "pb": {
-        "value": 5.04,
+        "value": 5.24,
         "unit": "ratio",
-        "data_date": "2026-08-17",
+        "data_date": "2026-08-18",
         "status": null,
         "note": null
       },
       "dividend_yield": {
-        "value": 0.75,
+        "value": 0.73,
         "unit": "%",
-        "data_date": "2026-08-17",
+        "data_date": "2026-08-18",
         "status": null,
         "note": null
       }
@@ -48,7 +48,7 @@
     "fundamentals": {
       "report_period": "2026 Q2",
       "report_date": "2026-06-30",
-      "source_updated_at": "2026-08-17",
+      "source_updated_at": "2026-08-18",
       "eps": {
         "value": 11.87,
         "unit": "TWD",
@@ -155,6 +155,366 @@
         "margin": "trading_units"
       },
       "history": [
+        {
+          "trade_date": "2026-05-21",
+          "foreign_net": -504207,
+          "investment_trust_net": -680000,
+          "dealer_net": 62189,
+          "institutional_total": -1122018,
+          "margin_balance": 8379,
+          "short_balance": 142
+        },
+        {
+          "trade_date": "2026-05-22",
+          "foreign_net": -2261926,
+          "investment_trust_net": -140612,
+          "dealer_net": 644610,
+          "institutional_total": -1757928,
+          "margin_balance": 9000,
+          "short_balance": 137
+        },
+        {
+          "trade_date": "2026-05-25",
+          "foreign_net": -425510,
+          "investment_trust_net": -71000,
+          "dealer_net": 235153,
+          "institutional_total": -261357,
+          "margin_balance": 9773,
+          "short_balance": 147
+        },
+        {
+          "trade_date": "2026-05-26",
+          "foreign_net": -566747,
+          "investment_trust_net": -84038,
+          "dealer_net": 108914,
+          "institutional_total": -541871,
+          "margin_balance": 10553,
+          "short_balance": 140
+        },
+        {
+          "trade_date": "2026-05-27",
+          "foreign_net": 661896,
+          "investment_trust_net": 4659867,
+          "dealer_net": -25691,
+          "institutional_total": 5296072,
+          "margin_balance": 8538,
+          "short_balance": 178
+        },
+        {
+          "trade_date": "2026-05-28",
+          "foreign_net": -1670205,
+          "investment_trust_net": 2147266,
+          "dealer_net": -250096,
+          "institutional_total": 226965,
+          "margin_balance": 9063,
+          "short_balance": 155
+        },
+        {
+          "trade_date": "2026-05-29",
+          "foreign_net": 344138,
+          "investment_trust_net": 1146000,
+          "dealer_net": 180300,
+          "institutional_total": 1670438,
+          "margin_balance": 10448,
+          "short_balance": 259
+        },
+        {
+          "trade_date": "2026-06-01",
+          "foreign_net": 989046,
+          "investment_trust_net": -792857,
+          "dealer_net": 602449,
+          "institutional_total": 798638,
+          "margin_balance": 10083,
+          "short_balance": 179
+        },
+        {
+          "trade_date": "2026-06-02",
+          "foreign_net": 253787,
+          "investment_trust_net": -422744,
+          "dealer_net": 331206,
+          "institutional_total": 162249,
+          "margin_balance": 9916,
+          "short_balance": 159
+        },
+        {
+          "trade_date": "2026-06-03",
+          "foreign_net": 221342,
+          "investment_trust_net": -444294,
+          "dealer_net": 272889,
+          "institutional_total": 49937,
+          "margin_balance": 9827,
+          "short_balance": 145
+        },
+        {
+          "trade_date": "2026-06-04",
+          "foreign_net": -18335,
+          "investment_trust_net": -66804,
+          "dealer_net": -124460,
+          "institutional_total": -209599,
+          "margin_balance": 9702,
+          "short_balance": 110
+        },
+        {
+          "trade_date": "2026-06-05",
+          "foreign_net": -155241,
+          "investment_trust_net": -392560,
+          "dealer_net": 118733,
+          "institutional_total": -429068,
+          "margin_balance": 9535,
+          "short_balance": 96
+        },
+        {
+          "trade_date": "2026-06-08",
+          "foreign_net": 7775,
+          "investment_trust_net": 10000,
+          "dealer_net": 8986,
+          "institutional_total": 26761,
+          "margin_balance": 8975,
+          "short_balance": 87
+        },
+        {
+          "trade_date": "2026-06-09",
+          "foreign_net": -379444,
+          "investment_trust_net": -79133,
+          "dealer_net": 293385,
+          "institutional_total": -165192,
+          "margin_balance": 8896,
+          "short_balance": 84
+        },
+        {
+          "trade_date": "2026-06-10",
+          "foreign_net": 372974,
+          "investment_trust_net": -771147,
+          "dealer_net": 143490,
+          "institutional_total": -254683,
+          "margin_balance": 8507,
+          "short_balance": 111
+        },
+        {
+          "trade_date": "2026-06-11",
+          "foreign_net": 372380,
+          "investment_trust_net": -6929,
+          "dealer_net": 137112,
+          "institutional_total": 502563,
+          "margin_balance": 8537,
+          "short_balance": 89
+        },
+        {
+          "trade_date": "2026-06-12",
+          "foreign_net": 147549,
+          "investment_trust_net": 0,
+          "dealer_net": 13606,
+          "institutional_total": 161155,
+          "margin_balance": 8523,
+          "short_balance": 90
+        },
+        {
+          "trade_date": "2026-06-15",
+          "foreign_net": 1171749,
+          "investment_trust_net": 269000,
+          "dealer_net": 33799,
+          "institutional_total": 1474548,
+          "margin_balance": 9247,
+          "short_balance": 91
+        },
+        {
+          "trade_date": "2026-06-16",
+          "foreign_net": 2356954,
+          "investment_trust_net": 944382,
+          "dealer_net": -49028,
+          "institutional_total": 3252308,
+          "margin_balance": 9583,
+          "short_balance": 116
+        },
+        {
+          "trade_date": "2026-06-17",
+          "foreign_net": -6606,
+          "investment_trust_net": 3223622,
+          "dealer_net": -611594,
+          "institutional_total": 2605422,
+          "margin_balance": 9506,
+          "short_balance": 195
+        },
+        {
+          "trade_date": "2026-06-18",
+          "foreign_net": 1011599,
+          "investment_trust_net": 177600,
+          "dealer_net": -480784,
+          "institutional_total": 708415,
+          "margin_balance": 9334,
+          "short_balance": 224
+        },
+        {
+          "trade_date": "2026-06-22",
+          "foreign_net": 627697,
+          "investment_trust_net": 29649,
+          "dealer_net": 177804,
+          "institutional_total": 835150,
+          "margin_balance": 9070,
+          "short_balance": 177
+        },
+        {
+          "trade_date": "2026-06-23",
+          "foreign_net": -571651,
+          "investment_trust_net": -91036,
+          "dealer_net": 478038,
+          "institutional_total": -184649,
+          "margin_balance": 8836,
+          "short_balance": 116
+        },
+        {
+          "trade_date": "2026-06-24",
+          "foreign_net": -474343,
+          "investment_trust_net": -6000,
+          "dealer_net": 228045,
+          "institutional_total": -252298,
+          "margin_balance": 8737,
+          "short_balance": 90
+        },
+        {
+          "trade_date": "2026-06-25",
+          "foreign_net": 171441,
+          "investment_trust_net": 11210,
+          "dealer_net": 32600,
+          "institutional_total": 215251,
+          "margin_balance": 8665,
+          "short_balance": 93
+        },
+        {
+          "trade_date": "2026-06-26",
+          "foreign_net": -29333,
+          "investment_trust_net": -746739,
+          "dealer_net": -179176,
+          "institutional_total": -955248,
+          "margin_balance": 8536,
+          "short_balance": 78
+        },
+        {
+          "trade_date": "2026-06-29",
+          "foreign_net": 37787,
+          "investment_trust_net": -807622,
+          "dealer_net": 344383,
+          "institutional_total": -425452,
+          "margin_balance": 8560,
+          "short_balance": 66
+        },
+        {
+          "trade_date": "2026-06-30",
+          "foreign_net": 489300,
+          "investment_trust_net": -789000,
+          "dealer_net": 299033,
+          "institutional_total": -667,
+          "margin_balance": 8560,
+          "short_balance": 60
+        },
+        {
+          "trade_date": "2026-07-01",
+          "foreign_net": 399872,
+          "investment_trust_net": -723000,
+          "dealer_net": -18287,
+          "institutional_total": -341415,
+          "margin_balance": 9288,
+          "short_balance": 68
+        },
+        {
+          "trade_date": "2026-07-02",
+          "foreign_net": 898181,
+          "investment_trust_net": -632000,
+          "dealer_net": 436363,
+          "institutional_total": 702544,
+          "margin_balance": 8934,
+          "short_balance": 84
+        },
+        {
+          "trade_date": "2026-07-03",
+          "foreign_net": 257293,
+          "investment_trust_net": -257154,
+          "dealer_net": 208692,
+          "institutional_total": 208831,
+          "margin_balance": 9038,
+          "short_balance": 67
+        },
+        {
+          "trade_date": "2026-07-06",
+          "foreign_net": 2274381,
+          "investment_trust_net": 1847395,
+          "dealer_net": -2066442,
+          "institutional_total": 2055334,
+          "margin_balance": 9230,
+          "short_balance": 82
+        },
+        {
+          "trade_date": "2026-07-07",
+          "foreign_net": 882339,
+          "investment_trust_net": 91320,
+          "dealer_net": -300523,
+          "institutional_total": 673136,
+          "margin_balance": 9093,
+          "short_balance": 141
+        },
+        {
+          "trade_date": "2026-07-08",
+          "foreign_net": -689457,
+          "investment_trust_net": 774934,
+          "dealer_net": 207712,
+          "institutional_total": 293189,
+          "margin_balance": 9186,
+          "short_balance": 45
+        },
+        {
+          "trade_date": "2026-07-09",
+          "foreign_net": -1294681,
+          "investment_trust_net": 169000,
+          "dealer_net": 128448,
+          "institutional_total": -997233,
+          "margin_balance": 9226,
+          "short_balance": 54
+        },
+        {
+          "trade_date": "2026-07-13",
+          "foreign_net": -175898,
+          "investment_trust_net": -619000,
+          "dealer_net": 146496,
+          "institutional_total": -648402,
+          "margin_balance": 9277,
+          "short_balance": 48
+        },
+        {
+          "trade_date": "2026-07-14",
+          "foreign_net": 2879894,
+          "investment_trust_net": 1275866,
+          "dealer_net": 104689,
+          "institutional_total": 4260449,
+          "margin_balance": 10154,
+          "short_balance": 0
+        },
+        {
+          "trade_date": "2026-07-15",
+          "foreign_net": -903083,
+          "investment_trust_net": 142480,
+          "dealer_net": -22145,
+          "institutional_total": -782748,
+          "margin_balance": 11338,
+          "short_balance": 0
+        },
+        {
+          "trade_date": "2026-07-16",
+          "foreign_net": 980174,
+          "investment_trust_net": 225196,
+          "dealer_net": -68583,
+          "institutional_total": 1136787,
+          "margin_balance": 10750,
+          "short_balance": 86
+        },
+        {
+          "trade_date": "2026-07-17",
+          "foreign_net": 2857549,
+          "investment_trust_net": 400326,
+          "dealer_net": -273271,
+          "institutional_total": 2984604,
+          "margin_balance": 8408,
+          "short_balance": 185
+        },
         {
           "trade_date": "2026-07-20",
           "foreign_net": -1663045,
@@ -337,7 +697,7 @@
         }
       ],
       "summary": {
-        "available_days": 20,
+        "available_days": 60,
         "foreign_streak": {
           "direction": "buy",
           "days": 4
@@ -357,6 +717,35 @@
           "investment_trust_net": -7102161,
           "dealer_net": -1293633,
           "institutional_total": -13481509
+        }
+      },
+      "analysis": {
+        "foreign_sum": {
+          "5d": 2703222,
+          "20d": -5085715,
+          "60d": 5454715
+        },
+        "investment_trust_sum": {
+          "5d": -1784806,
+          "20d": -7102161,
+          "60d": 1819283
+        },
+        "institutional_sum": {
+          "5d": 775243,
+          "20d": -13481509,
+          "60d": 7489409
+        },
+        "foreign_streak": {
+          "direction": "buy",
+          "days": 4
+        },
+        "investment_trust_streak": {
+          "direction": "buy",
+          "days": 1
+        },
+        "margin_change": {
+          "5d": 201,
+          "20d": 2284
         }
       }
     },
@@ -468,27 +857,27 @@
           {
             "key": "pe",
             "label": "PE",
-            "value": 49.51,
+            "value": 51.46,
             "unit": "ratio",
-            "data_date": "2026-08-17",
+            "data_date": "2026-08-18",
             "status": "warning",
             "note": null
           },
           {
             "key": "pb",
             "label": "PB",
-            "value": 5.04,
+            "value": 5.24,
             "unit": "ratio",
-            "data_date": "2026-08-17",
+            "data_date": "2026-08-18",
             "status": "neutral",
             "note": null
           },
           {
             "key": "dividend_yield",
             "label": "殖利率",
-            "value": 0.75,
+            "value": 0.73,
             "unit": "%",
-            "data_date": "2026-08-17",
+            "data_date": "2026-08-18",
             "status": "warning",
             "note": null
           }
@@ -531,6 +920,295 @@
             "note": "缺少可一致對齊的資本支出欄位"
           }
         ]
+      }
+    },
+    "historical_valuation": {
+      "pe": {
+        "current": 51.46,
+        "3y": {
+          "sample_count": 39,
+          "median": 14.13,
+          "p25": 12.02,
+          "p50": 14.13,
+          "p75": 29.845,
+          "current_percentile": 92.3077,
+          "low": 9.54,
+          "high": 62.62
+        },
+        "5y": {
+          "sample_count": 59,
+          "median": 17.95,
+          "p25": 12.665,
+          "p50": 17.95,
+          "p75": 25.68,
+          "current_percentile": 94.9153,
+          "low": 9.54,
+          "high": 62.62
+        },
+        "source_frequency": "monthly_last_available_trading_day"
+      },
+      "pb": {
+        "current": 5.24,
+        "3y": {
+          "sample_count": 39,
+          "median": 2.86,
+          "p25": 2.09,
+          "p50": 2.86,
+          "p75": 3.69,
+          "current_percentile": 100.0,
+          "low": 1.57,
+          "high": 5.2
+        },
+        "5y": {
+          "sample_count": 59,
+          "median": 3.55,
+          "p25": 2.41,
+          "p50": 3.55,
+          "p75": 4.28,
+          "current_percentile": 86.4407,
+          "low": 1.57,
+          "high": 8.15
+        },
+        "source_frequency": "monthly_last_available_trading_day"
+      },
+      "dividend_yield": {
+        "current": 0.73,
+        "3y": {
+          "sample_count": 39,
+          "median": 3.11,
+          "p25": 2.72,
+          "p50": 3.11,
+          "p75": 3.55,
+          "current_percentile": 0.0,
+          "low": 0.76,
+          "high": 5.56
+        },
+        "5y": {
+          "sample_count": 59,
+          "median": 3.11,
+          "p25": 2.59,
+          "p50": 3.11,
+          "p75": 3.53,
+          "current_percentile": 0.0,
+          "low": 0.76,
+          "high": 5.56
+        },
+        "source_frequency": "monthly_last_available_trading_day"
+      }
+    },
+    "health_v2": {
+      "applicable": true,
+      "rules_version": "1.0",
+      "categories": {
+        "growth": [
+          {
+            "key": "revenue_yoy",
+            "label": "月營收 YoY",
+            "value": 19.59207,
+            "status": "pass",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-07"
+          },
+          {
+            "key": "eps_growth",
+            "label": "EPS 成長",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": 11.7347,
+            "status": "neutral",
+            "threshold": "pass ≥ 15；warning < 5",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "gross_margin_trend",
+            "label": "毛利率趨勢",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "operating_margin_trend",
+            "label": "營業利益率趨勢",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          }
+        ],
+        "risk": [
+          {
+            "key": "consecutive_losses",
+            "label": "連續虧損期數",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "debt_ratio",
+            "label": "負債比",
+            "value": 55.8798,
+            "status": "neutral",
+            "threshold": "pass ≤ 50；warning ≥ 70",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "current_ratio",
+            "label": "流動比率",
+            "value": 128.1431,
+            "status": "neutral",
+            "threshold": "pass ≥ 150；warning < 100",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "gross_margin_trend",
+            "label": "毛利率趨勢",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "operating_margin_trend",
+            "label": "營業利益率趨勢",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "operating_cash_flow",
+            "label": "營業現金流",
+            "value": null,
+            "status": "unavailable",
+            "threshold": "pass ≥ 0；warning < 0",
+            "data_date": "2026-06-30"
+          }
+        ],
+        "value": [
+          {
+            "key": "pe_percentile",
+            "label": "PE 歷史百分位",
+            "value": 94.9153,
+            "status": "warning",
+            "threshold": "pass ≤ 25；warning ≥ 75",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "pb_percentile",
+            "label": "PB 歷史百分位",
+            "value": 86.4407,
+            "status": "warning",
+            "threshold": "pass ≤ 25；warning ≥ 75",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "yield_percentile",
+            "label": "殖利率歷史百分位",
+            "value": 0.0,
+            "status": "warning",
+            "threshold": "pass ≥ 75；warning < 25",
+            "data_date": "2026-06-30"
+          }
+        ],
+        "quality": [
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": 11.7347,
+            "status": "neutral",
+            "threshold": "pass ≥ 15；warning < 5",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "eps",
+            "label": "EPS",
+            "value": 11.87,
+            "status": "pass",
+            "threshold": "pass ≥ 0；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "revenue_yoy",
+            "label": "月營收 YoY",
+            "value": 19.59207,
+            "status": "pass",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-07"
+          },
+          {
+            "key": "gross_margin",
+            "label": "毛利率",
+            "value": 20.7333,
+            "status": "pass",
+            "threshold": "pass ≥ 20；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "debt_ratio",
+            "label": "負債比",
+            "value": 55.8798,
+            "status": "neutral",
+            "threshold": "pass ≤ 50；warning ≥ 70",
+            "data_date": "2026-06-30"
+          }
+        ]
+      }
+    },
+    "industry_comparison": {
+      "applicable": true,
+      "industry": "半導體業",
+      "minimum_samples": 5,
+      "metrics": {
+        "pe": {
+          "current": 51.46,
+          "industry_median": 29.13,
+          "percentile": 74.0964,
+          "sample_count": 166,
+          "status": "available"
+        },
+        "pb": {
+          "current": 5.24,
+          "industry_median": 3.175,
+          "percentile": 76.699,
+          "sample_count": 206,
+          "status": "available"
+        },
+        "dividend_yield": {
+          "current": 0.73,
+          "industry_median": 1.415,
+          "percentile": 31.9149,
+          "sample_count": 188,
+          "status": "available"
+        },
+        "roe": {
+          "current": 11.7347,
+          "industry_median": 11.2398,
+          "percentile": 52.2613,
+          "sample_count": 199,
+          "status": "available"
+        },
+        "eps": {
+          "current": 11.87,
+          "industry_median": 2.54,
+          "percentile": 85.9296,
+          "sample_count": 199,
+          "status": "available"
+        },
+        "revenue_yoy": {
+          "current": 19.59207,
+          "industry_median": 30.413173,
+          "percentile": 35.9223,
+          "sample_count": 206,
+          "status": "available"
+        }
       }
     }
   },

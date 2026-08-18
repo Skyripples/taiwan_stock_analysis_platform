@@ -1,0 +1,360 @@
+{
+  "updated_at": "2026-08-18T13:48:56+00:00",
+  "provider": "TWSE",
+  "dataset": "stock_valuation_history",
+  "version": "1.0",
+  "frequency": "monthly_last_available_trading_day",
+  "data": {
+    "symbol": "2330",
+    "observations": [
+      {
+        "trade_date": "2021-09-30",
+        "pe": 27.14,
+        "pb": 7.55,
+        "dividend_yield": 1.72
+      },
+      {
+        "trade_date": "2021-10-29",
+        "pe": 27.61,
+        "pb": 7.68,
+        "dividend_yield": 1.69
+      },
+      {
+        "trade_date": "2021-11-30",
+        "pe": 26.97,
+        "pb": 7.44,
+        "dividend_yield": 1.68
+      },
+      {
+        "trade_date": "2021-12-30",
+        "pe": 27.83,
+        "pb": 7.68,
+        "dividend_yield": 1.63
+      },
+      {
+        "trade_date": "2022-01-26",
+        "pe": 28.78,
+        "pb": 7.94,
+        "dividend_yield": 1.57
+      },
+      {
+        "trade_date": "2022-02-25",
+        "pe": 26.25,
+        "pb": 7.22,
+        "dividend_yield": 1.66
+      },
+      {
+        "trade_date": "2022-03-31",
+        "pe": 25.95,
+        "pb": 7.14,
+        "dividend_yield": 1.84
+      },
+      {
+        "trade_date": "2022-04-29",
+        "pe": 23.38,
+        "pb": 6.43,
+        "dividend_yield": 2.04
+      },
+      {
+        "trade_date": "2022-05-31",
+        "pe": 22.01,
+        "pb": 6.27,
+        "dividend_yield": 1.96
+      },
+      {
+        "trade_date": "2022-06-30",
+        "pe": 18.71,
+        "pb": 5.33,
+        "dividend_yield": 2.31
+      },
+      {
+        "trade_date": "2022-07-29",
+        "pe": 20.01,
+        "pb": 5.7,
+        "dividend_yield": 2.16
+      },
+      {
+        "trade_date": "2022-08-31",
+        "pe": 17.18,
+        "pb": 5.25,
+        "dividend_yield": 2.18
+      },
+      {
+        "trade_date": "2022-09-30",
+        "pe": 14.35,
+        "pb": 4.38,
+        "dividend_yield": 2.61
+      },
+      {
+        "trade_date": "2022-10-31",
+        "pe": 13.27,
+        "pb": 4.05,
+        "dividend_yield": 2.82
+      },
+      {
+        "trade_date": "2022-11-30",
+        "pe": 14.33,
+        "pb": 4.64,
+        "dividend_yield": 2.24
+      },
+      {
+        "trade_date": "2022-12-30",
+        "pe": 13.11,
+        "pb": 4.25,
+        "dividend_yield": 2.45
+      },
+      {
+        "trade_date": "2023-01-31",
+        "pe": 15.26,
+        "pb": 4.94,
+        "dividend_yield": 2.11
+      },
+      {
+        "trade_date": "2023-02-24",
+        "pe": 13.04,
+        "pb": 4.5,
+        "dividend_yield": 2.15
+      },
+      {
+        "trade_date": "2023-03-31",
+        "pe": 13.6,
+        "pb": 4.69,
+        "dividend_yield": 2.06
+      },
+      {
+        "trade_date": "2023-04-28",
+        "pe": 12.81,
+        "pb": 4.42,
+        "dividend_yield": 2.19
+      },
+      {
+        "trade_date": "2023-05-31",
+        "pe": 14.18,
+        "pb": 4.7,
+        "dividend_yield": 1.97
+      },
+      {
+        "trade_date": "2023-06-30",
+        "pe": 14.63,
+        "pb": 4.85,
+        "dividend_yield": 1.91
+      },
+      {
+        "trade_date": "2023-07-31",
+        "pe": 14.35,
+        "pb": 4.76,
+        "dividend_yield": 1.95
+      },
+      {
+        "trade_date": "2023-08-31",
+        "pe": 14.74,
+        "pb": 4.46,
+        "dividend_yield": 2
+      },
+      {
+        "trade_date": "2023-09-28",
+        "pe": 14.04,
+        "pb": 4.25,
+        "dividend_yield": 2.1
+      },
+      {
+        "trade_date": "2023-10-31",
+        "pe": 14.21,
+        "pb": 4.3,
+        "dividend_yield": 2.08
+      },
+      {
+        "trade_date": "2023-11-30",
+        "pe": 16.71,
+        "pb": 4.47,
+        "dividend_yield": 1.91
+      },
+      {
+        "trade_date": "2024-01-29",
+        "pe": 18.76,
+        "pb": 5.02,
+        "dividend_yield": 1.7
+      },
+      {
+        "trade_date": "2024-02-29",
+        "pe": 21.34,
+        "pb": 5.17,
+        "dividend_yield": 1.88
+      },
+      {
+        "trade_date": "2024-03-29",
+        "pe": 24.1,
+        "pb": 5.84,
+        "dividend_yield": 1.67
+      },
+      {
+        "trade_date": "2024-04-30",
+        "pe": 24.44,
+        "pb": 5.92,
+        "dividend_yield": 1.65
+      },
+      {
+        "trade_date": "2024-05-28",
+        "pe": 26.18,
+        "pb": 6.17,
+        "dividend_yield": 1.5
+      },
+      {
+        "trade_date": "2024-06-27",
+        "pe": 29.06,
+        "pb": 6.85,
+        "dividend_yield": 1.35
+      },
+      {
+        "trade_date": "2024-07-31",
+        "pe": 28.27,
+        "pb": 6.66,
+        "dividend_yield": 1.39
+      },
+      {
+        "trade_date": "2024-08-30",
+        "pe": 26.52,
+        "pb": 6.46,
+        "dividend_yield": 1.38
+      },
+      {
+        "trade_date": "2024-09-30",
+        "pe": 26.88,
+        "pb": 6.55,
+        "dividend_yield": 1.36
+      },
+      {
+        "trade_date": "2024-10-30",
+        "pe": 28.93,
+        "pb": 7.04,
+        "dividend_yield": 1.26
+      },
+      {
+        "trade_date": "2024-11-29",
+        "pe": 24.9,
+        "pb": 6.47,
+        "dividend_yield": 1.31
+      },
+      {
+        "trade_date": "2024-12-31",
+        "pe": 26.88,
+        "pb": 6.99,
+        "dividend_yield": 1.21
+      },
+      {
+        "trade_date": "2025-01-22",
+        "pe": 28.38,
+        "pb": 7.38,
+        "dividend_yield": 1.15
+      },
+      {
+        "trade_date": "2025-02-27",
+        "pe": 22.99,
+        "pb": 6.29,
+        "dividend_yield": 1.63
+      },
+      {
+        "trade_date": "2025-03-31",
+        "pe": 20.11,
+        "pb": 5.5,
+        "dividend_yield": 1.87
+      },
+      {
+        "trade_date": "2025-04-30",
+        "pe": 20.07,
+        "pb": 5.49,
+        "dividend_yield": 1.87
+      },
+      {
+        "trade_date": "2025-05-29",
+        "pe": 19.15,
+        "pb": 5.49,
+        "dividend_yield": 1.76
+      },
+      {
+        "trade_date": "2025-06-30",
+        "pe": 20.99,
+        "pb": 6.02,
+        "dividend_yield": 1.6
+      },
+      {
+        "trade_date": "2025-07-31",
+        "pe": 22.97,
+        "pb": 6.59,
+        "dividend_yield": 1.47
+      },
+      {
+        "trade_date": "2025-08-29",
+        "pe": 20.61,
+        "pb": 6.57,
+        "dividend_yield": 1.47
+      },
+      {
+        "trade_date": "2025-09-30",
+        "pe": 23.18,
+        "pb": 7.39,
+        "dividend_yield": 1.3
+      },
+      {
+        "trade_date": "2025-10-31",
+        "pe": 26.65,
+        "pb": 8.49,
+        "dividend_yield": 1.13
+      },
+      {
+        "trade_date": "2025-11-28",
+        "pe": 23.53,
+        "pb": 7.47,
+        "dividend_yield": 1.18
+      },
+      {
+        "trade_date": "2025-12-31",
+        "pe": 25.33,
+        "pb": 8.04,
+        "dividend_yield": 1.1
+      },
+      {
+        "trade_date": "2026-01-30",
+        "pe": 29.01,
+        "pb": 9.21,
+        "dividend_yield": 0.96
+      },
+      {
+        "trade_date": "2026-02-26",
+        "pe": 30.12,
+        "pb": 9.55,
+        "dividend_yield": 1.1
+      },
+      {
+        "trade_date": "2026-03-31",
+        "pe": 26.57,
+        "pb": 8.42,
+        "dividend_yield": 1.25
+      },
+      {
+        "trade_date": "2026-04-30",
+        "pe": 32.23,
+        "pb": 10.22,
+        "dividend_yield": 1.03
+      },
+      {
+        "trade_date": "2026-05-29",
+        "pe": 31.66,
+        "pb": 10.37,
+        "dividend_yield": 0.93
+      },
+      {
+        "trade_date": "2026-06-30",
+        "pe": 32.4,
+        "pb": 10.61,
+        "dividend_yield": 0.91
+      },
+      {
+        "trade_date": "2026-07-31",
+        "pe": 32.6,
+        "pb": 10.67,
+        "dividend_yield": 0.91
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T01:44:32+00:00",
+  "updated_at": "2026-08-18T14:14:08+00:00",
   "provider": "TWSE/TPEx/MOPS",
   "dataset": "stock_analysis",
   "version": "1.0",
@@ -56,6 +56,366 @@
         "margin": "trading_units"
       },
       "history": [
+        {
+          "trade_date": "2026-05-21",
+          "foreign_net": 12025038,
+          "investment_trust_net": 3770000,
+          "dealer_net": 5150553,
+          "institutional_total": 20945591,
+          "margin_balance": 9452,
+          "short_balance": 1272
+        },
+        {
+          "trade_date": "2026-05-22",
+          "foreign_net": 7809303,
+          "investment_trust_net": 85000,
+          "dealer_net": 16868081,
+          "institutional_total": 24762384,
+          "margin_balance": 9255,
+          "short_balance": 1292
+        },
+        {
+          "trade_date": "2026-05-25",
+          "foreign_net": 19246234,
+          "investment_trust_net": 1866000,
+          "dealer_net": 7357472,
+          "institutional_total": 28469706,
+          "margin_balance": 8827,
+          "short_balance": 1311
+        },
+        {
+          "trade_date": "2026-05-26",
+          "foreign_net": -14392651,
+          "investment_trust_net": 2131000,
+          "dealer_net": -9330668,
+          "institutional_total": -21592319,
+          "margin_balance": 9006,
+          "short_balance": 1306
+        },
+        {
+          "trade_date": "2026-05-27",
+          "foreign_net": 3238963,
+          "investment_trust_net": 28000,
+          "dealer_net": 7013813,
+          "institutional_total": 10280776,
+          "margin_balance": 8580,
+          "short_balance": 1519
+        },
+        {
+          "trade_date": "2026-05-28",
+          "foreign_net": -39725344,
+          "investment_trust_net": 688000,
+          "dealer_net": -21961060,
+          "institutional_total": -60998404,
+          "margin_balance": 8629,
+          "short_balance": 1449
+        },
+        {
+          "trade_date": "2026-05-29",
+          "foreign_net": 15009792,
+          "investment_trust_net": 5310000,
+          "dealer_net": 7410925,
+          "institutional_total": 27730717,
+          "margin_balance": 9287,
+          "short_balance": 1539
+        },
+        {
+          "trade_date": "2026-06-01",
+          "foreign_net": -22685351,
+          "investment_trust_net": 2124000,
+          "dealer_net": -36309964,
+          "institutional_total": -56871315,
+          "margin_balance": 9838,
+          "short_balance": 1303
+        },
+        {
+          "trade_date": "2026-06-02",
+          "foreign_net": -33889613,
+          "investment_trust_net": -70000,
+          "dealer_net": -9918981,
+          "institutional_total": -43878594,
+          "margin_balance": 9177,
+          "short_balance": 1329
+        },
+        {
+          "trade_date": "2026-06-03",
+          "foreign_net": 1761586,
+          "investment_trust_net": 1602000,
+          "dealer_net": -8739104,
+          "institutional_total": -5375518,
+          "margin_balance": 9749,
+          "short_balance": 1339
+        },
+        {
+          "trade_date": "2026-06-04",
+          "foreign_net": -38479682,
+          "investment_trust_net": 1150000,
+          "dealer_net": -29520484,
+          "institutional_total": -66850166,
+          "margin_balance": 10101,
+          "short_balance": 1324
+        },
+        {
+          "trade_date": "2026-06-05",
+          "foreign_net": -62925945,
+          "investment_trust_net": 6297000,
+          "dealer_net": -52712839,
+          "institutional_total": -109341784,
+          "margin_balance": 9573,
+          "short_balance": 1433
+        },
+        {
+          "trade_date": "2026-06-08",
+          "foreign_net": -113325019,
+          "investment_trust_net": 8432000,
+          "dealer_net": -95590703,
+          "institutional_total": -200483722,
+          "margin_balance": 11322,
+          "short_balance": 1573
+        },
+        {
+          "trade_date": "2026-06-09",
+          "foreign_net": -21646815,
+          "investment_trust_net": 2450000,
+          "dealer_net": -13468885,
+          "institutional_total": -32665700,
+          "margin_balance": 10753,
+          "short_balance": 1400
+        },
+        {
+          "trade_date": "2026-06-10",
+          "foreign_net": -62998222,
+          "investment_trust_net": 1250000,
+          "dealer_net": -48623328,
+          "institutional_total": -110371550,
+          "margin_balance": 11182,
+          "short_balance": 1422
+        },
+        {
+          "trade_date": "2026-06-11",
+          "foreign_net": -91840299,
+          "investment_trust_net": 2846000,
+          "dealer_net": -78743648,
+          "institutional_total": -167737947,
+          "margin_balance": 12383,
+          "short_balance": 1176
+        },
+        {
+          "trade_date": "2026-06-12",
+          "foreign_net": 5759172,
+          "investment_trust_net": 4830000,
+          "dealer_net": 5552129,
+          "institutional_total": 16141301,
+          "margin_balance": 11438,
+          "short_balance": 1112
+        },
+        {
+          "trade_date": "2026-06-15",
+          "foreign_net": 17368666,
+          "investment_trust_net": 5400000,
+          "dealer_net": 7031351,
+          "institutional_total": 29800017,
+          "margin_balance": 11091,
+          "short_balance": 1156
+        },
+        {
+          "trade_date": "2026-06-16",
+          "foreign_net": 6189831,
+          "investment_trust_net": 4000000,
+          "dealer_net": 3912398,
+          "institutional_total": 14102229,
+          "margin_balance": 11443,
+          "short_balance": 1216
+        },
+        {
+          "trade_date": "2026-06-17",
+          "foreign_net": 3116293,
+          "investment_trust_net": 4700000,
+          "dealer_net": -17372072,
+          "institutional_total": -9555779,
+          "margin_balance": 11748,
+          "short_balance": 1210
+        },
+        {
+          "trade_date": "2026-06-18",
+          "foreign_net": 14338704,
+          "investment_trust_net": 2200000,
+          "dealer_net": -846548,
+          "institutional_total": 15692156,
+          "margin_balance": 11486,
+          "short_balance": 1213
+        },
+        {
+          "trade_date": "2026-06-22",
+          "foreign_net": 878566,
+          "investment_trust_net": 3497000,
+          "dealer_net": 11765187,
+          "institutional_total": 16140753,
+          "margin_balance": 11934,
+          "short_balance": 1224
+        },
+        {
+          "trade_date": "2026-06-23",
+          "foreign_net": -27630722,
+          "investment_trust_net": 1000000,
+          "dealer_net": -18221114,
+          "institutional_total": -44851836,
+          "margin_balance": 11606,
+          "short_balance": 1221
+        },
+        {
+          "trade_date": "2026-06-24",
+          "foreign_net": -126206899,
+          "investment_trust_net": 1100000,
+          "dealer_net": -37036444,
+          "institutional_total": -162143343,
+          "margin_balance": 12613,
+          "short_balance": 1056
+        },
+        {
+          "trade_date": "2026-06-25",
+          "foreign_net": -23490994,
+          "investment_trust_net": 2150000,
+          "dealer_net": -5293767,
+          "institutional_total": -26634761,
+          "margin_balance": 13124,
+          "short_balance": 1265
+        },
+        {
+          "trade_date": "2026-06-26",
+          "foreign_net": -130305489,
+          "investment_trust_net": 4900000,
+          "dealer_net": -71338575,
+          "institutional_total": -196744064,
+          "margin_balance": 13103,
+          "short_balance": 1229
+        },
+        {
+          "trade_date": "2026-06-29",
+          "foreign_net": -21649761,
+          "investment_trust_net": 6270000,
+          "dealer_net": -2319632,
+          "institutional_total": -17699393,
+          "margin_balance": 13117,
+          "short_balance": 1285
+        },
+        {
+          "trade_date": "2026-06-30",
+          "foreign_net": 20819319,
+          "investment_trust_net": 5350000,
+          "dealer_net": 6327855,
+          "institutional_total": 32497174,
+          "margin_balance": 12748,
+          "short_balance": 1063
+        },
+        {
+          "trade_date": "2026-07-01",
+          "foreign_net": 8681068,
+          "investment_trust_net": 6383000,
+          "dealer_net": 4240461,
+          "institutional_total": 19304529,
+          "margin_balance": 12610,
+          "short_balance": 1085
+        },
+        {
+          "trade_date": "2026-07-02",
+          "foreign_net": -17771400,
+          "investment_trust_net": 1980000,
+          "dealer_net": -7710039,
+          "institutional_total": -23501439,
+          "margin_balance": 12985,
+          "short_balance": 1118
+        },
+        {
+          "trade_date": "2026-07-03",
+          "foreign_net": -19986289,
+          "investment_trust_net": 2800000,
+          "dealer_net": -18032953,
+          "institutional_total": -35219242,
+          "margin_balance": 13215,
+          "short_balance": 1074
+        },
+        {
+          "trade_date": "2026-07-06",
+          "foreign_net": -12552150,
+          "investment_trust_net": 0,
+          "dealer_net": -9702514,
+          "institutional_total": -22254664,
+          "margin_balance": 13038,
+          "short_balance": 1077
+        },
+        {
+          "trade_date": "2026-07-07",
+          "foreign_net": -40069324,
+          "investment_trust_net": 970000,
+          "dealer_net": -13561797,
+          "institutional_total": -52661121,
+          "margin_balance": 13075,
+          "short_balance": 1019
+        },
+        {
+          "trade_date": "2026-07-08",
+          "foreign_net": -28290816,
+          "investment_trust_net": 7420000,
+          "dealer_net": -19775543,
+          "institutional_total": -40646359,
+          "margin_balance": 13411,
+          "short_balance": 968
+        },
+        {
+          "trade_date": "2026-07-09",
+          "foreign_net": -9034841,
+          "investment_trust_net": 2875000,
+          "dealer_net": -12708818,
+          "institutional_total": -18868659,
+          "margin_balance": 13306,
+          "short_balance": 942
+        },
+        {
+          "trade_date": "2026-07-13",
+          "foreign_net": -19097461,
+          "investment_trust_net": 838000,
+          "dealer_net": -6006976,
+          "institutional_total": -24266437,
+          "margin_balance": 13013,
+          "short_balance": 868
+        },
+        {
+          "trade_date": "2026-07-14",
+          "foreign_net": -92602009,
+          "investment_trust_net": 5804000,
+          "dealer_net": -76713706,
+          "institutional_total": -163511715,
+          "margin_balance": 15328,
+          "short_balance": 530
+        },
+        {
+          "trade_date": "2026-07-15",
+          "foreign_net": 34254143,
+          "investment_trust_net": 4925000,
+          "dealer_net": 5787479,
+          "institutional_total": 44966622,
+          "margin_balance": 15307,
+          "short_balance": 1
+        },
+        {
+          "trade_date": "2026-07-16",
+          "foreign_net": -22401193,
+          "investment_trust_net": 3435000,
+          "dealer_net": -1144401,
+          "institutional_total": -20110594,
+          "margin_balance": 16048,
+          "short_balance": 0
+        },
+        {
+          "trade_date": "2026-07-17",
+          "foreign_net": -222198166,
+          "investment_trust_net": 2776000,
+          "dealer_net": -197590439,
+          "institutional_total": -417012605,
+          "margin_balance": 18333,
+          "short_balance": 0
+        },
         {
           "trade_date": "2026-07-20",
           "foreign_net": -97368426,
@@ -238,7 +598,7 @@
         }
       ],
       "summary": {
-        "available_days": 20,
+        "available_days": 60,
         "foreign_streak": {
           "direction": "buy",
           "days": 5
@@ -258,6 +618,35 @@
           "investment_trust_net": 53717000,
           "dealer_net": -739855774,
           "institutional_total": -830217360
+        }
+      },
+      "analysis": {
+        "foreign_sum": {
+          "5d": 102893580,
+          "20d": -144078586,
+          "60d": -1288778363
+        },
+        "investment_trust_sum": {
+          "5d": -5085000,
+          "20d": 53717000,
+          "60d": 179279000
+        },
+        "institutional_sum": {
+          "5d": 140164803,
+          "20d": -830217360,
+          "60d": -2681232435
+        },
+        "foreign_streak": {
+          "direction": "buy",
+          "days": 5
+        },
+        "investment_trust_streak": {
+          "direction": "neutral",
+          "days": 1
+        },
+        "margin_change": {
+          "5d": -5690,
+          "20d": 856
         }
       }
     },
@@ -299,6 +688,20 @@
         }
       },
       "categories": {}
+    },
+    "historical_valuation": {
+      "applicable": false,
+      "reason": "ETF 不強制套用公司歷史估值"
+    },
+    "health_v2": {
+      "applicable": false,
+      "reason": "ETF／非一般公司不適用公司健檢",
+      "rules_version": "1.0",
+      "categories": {}
+    },
+    "industry_comparison": {
+      "applicable": false,
+      "reason": "ETF 不適用同產業公司比較"
     }
   },
   "sources": {

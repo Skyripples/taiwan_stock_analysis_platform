@@ -73,7 +73,7 @@ HEALTH_RULES = {
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Update static stock analysis caches")
     parser.add_argument("--symbols", nargs="+", default=list(DEFAULT_SYMBOLS))
-    parser.add_argument("--chips-days", type=int, default=20)
+    parser.add_argument("--chips-days", type=int, default=60)
     parser.add_argument("--delay", type=float, default=0.15)
     return parser.parse_args()
 
@@ -380,6 +380,23 @@ def main() -> int:
             is_company = bool(profile)
             stock_index.append({"symbol": symbol, "name": str(row.get(name_key, "")).strip(), "market": market, "industry": revenue.get("產業別") if is_company else "ETF／其他", "instrument_type": "company" if is_company else "ETF" if symbol.startswith("00") else "other", "cached": symbol in symbols or (OUTPUT_DIR / f"{symbol}.json").exists()})
     atomic_json(OUTPUT_DIR / "index.json", {"updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "version": "1.0", "stocks": sorted(stock_index, key=lambda row: row["symbol"])})
+    industry_snapshot: list[dict[str, Any]] = []
+    for item in stock_index:
+        if item["instrument_type"] != "company":
+            continue
+        try:
+            compact = build_stock(item["symbol"], item["market"], tables, [])["data"]
+            industry_snapshot.append({
+                "symbol": item["symbol"], "name": item["name"], "market": item["market"],
+                "industry": compact["profile"]["industry"], "instrument_type": "company",
+                "pe": compact["valuation"]["pe"]["value"], "pb": compact["valuation"]["pb"]["value"],
+                "dividend_yield": compact["valuation"]["dividend_yield"]["value"],
+                "roe": compact["fundamentals"]["roe"]["value"], "eps": compact["fundamentals"]["eps"]["value"],
+                "revenue_yoy": compact["fundamentals"]["revenue_yoy"]["value"],
+            })
+        except Exception as exc:
+            LOGGER.debug("Industry snapshot skipped %s: %s", item["symbol"], exc)
+    atomic_json(OUTPUT_DIR / "industry_snapshot.json", {"updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "version": "1.0", "stocks": industry_snapshot})
     unknown = symbols - set(markets)
     if unknown:
         LOGGER.error("Unknown symbols: %s", ", ".join(sorted(unknown)))
