@@ -1,0 +1,547 @@
+{
+  "updated_at": "2026-08-18T01:44:32+00:00",
+  "provider": "TWSE/TPEx/MOPS",
+  "dataset": "stock_analysis",
+  "version": "1.0",
+  "data": {
+    "profile": {
+      "symbol": "2317",
+      "name": "鴻海",
+      "market": "TWSE",
+      "industry": "其他電子業",
+      "instrument_type": "company"
+    },
+    "quote": {
+      "trade_date": "2026-08-17",
+      "close": 255,
+      "change": -4.5,
+      "change_percent": -1.7341,
+      "volume": 35551968,
+      "unit": {
+        "price": "TWD",
+        "volume": "shares"
+      }
+    },
+    "valuation": {
+      "pe": {
+        "value": 16.81,
+        "unit": "ratio",
+        "data_date": "2026-08-17",
+        "status": null,
+        "note": null
+      },
+      "pb": {
+        "value": 1.87,
+        "unit": "ratio",
+        "data_date": "2026-08-17",
+        "status": null,
+        "note": null
+      },
+      "dividend_yield": {
+        "value": 2.81,
+        "unit": "%",
+        "data_date": "2026-08-17",
+        "status": null,
+        "note": null
+      }
+    },
+    "fundamentals": {
+      "report_period": "2026 Q2",
+      "report_date": "2026-06-30",
+      "source_updated_at": "2026-08-18",
+      "eps": {
+        "value": 7.84,
+        "unit": "TWD",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "eps_growth": {
+        "value": null,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": "官方最新季度彙總未提供可可靠對齊的去年同期 EPS"
+      },
+      "roe": {
+        "value": 11.9846,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": "累計稅後淨利年化／期末權益"
+      },
+      "revenue": {
+        "value": 946512543,
+        "unit": "thousand_TWD",
+        "data_date": "2026-07",
+        "status": null,
+        "note": null
+      },
+      "revenue_yoy": {
+        "value": 54.189139,
+        "unit": "%",
+        "data_date": "2026-07",
+        "status": null,
+        "note": null
+      },
+      "revenue_mom": {
+        "value": 15.180729,
+        "unit": "%",
+        "data_date": "2026-07",
+        "status": null,
+        "note": null
+      },
+      "gross_margin": {
+        "value": 6.15,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "operating_margin": {
+        "value": 3.67,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "net_margin": {
+        "value": 2.73,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "book_value_per_share": {
+        "value": 136.02,
+        "unit": "TWD",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "debt_ratio": {
+        "value": 62.3022,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "current_ratio": {
+        "value": 142.2748,
+        "unit": "%",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": null
+      },
+      "operating_cash_flow": {
+        "value": null,
+        "unit": "thousand_TWD",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": "目前官方 OpenAPI 未提供一致的現金流量彙總"
+      },
+      "free_cash_flow": {
+        "value": null,
+        "unit": "thousand_TWD",
+        "data_date": "2026-06-30",
+        "status": null,
+        "note": "缺少可一致對齊的資本支出欄位"
+      }
+    },
+    "chips": {
+      "trade_date": "2026-08-14",
+      "unit": {
+        "institutional": "shares",
+        "margin": "trading_units"
+      },
+      "history": [
+        {
+          "trade_date": "2026-07-20",
+          "foreign_net": 60865,
+          "investment_trust_net": 449800,
+          "dealer_net": 3411614,
+          "institutional_total": 3922279,
+          "margin_balance": 56794,
+          "short_balance": 157
+        },
+        {
+          "trade_date": "2026-07-21",
+          "foreign_net": 22635286,
+          "investment_trust_net": 2099832,
+          "dealer_net": 2231085,
+          "institutional_total": 26966203,
+          "margin_balance": 55619,
+          "short_balance": 274
+        },
+        {
+          "trade_date": "2026-07-22",
+          "foreign_net": 17679862,
+          "investment_trust_net": 660951,
+          "dealer_net": -178147,
+          "institutional_total": 18162666,
+          "margin_balance": 54691,
+          "short_balance": 308
+        },
+        {
+          "trade_date": "2026-07-23",
+          "foreign_net": 23754651,
+          "investment_trust_net": 559907,
+          "dealer_net": 639424,
+          "institutional_total": 24953982,
+          "margin_balance": 54448,
+          "short_balance": 368
+        },
+        {
+          "trade_date": "2026-07-24",
+          "foreign_net": -5514932,
+          "investment_trust_net": 75698,
+          "dealer_net": -533989,
+          "institutional_total": -5973223,
+          "margin_balance": 53711,
+          "short_balance": 345
+        },
+        {
+          "trade_date": "2026-07-27",
+          "foreign_net": 522460,
+          "investment_trust_net": 737709,
+          "dealer_net": 655575,
+          "institutional_total": 1915744,
+          "margin_balance": 53037,
+          "short_balance": 281
+        },
+        {
+          "trade_date": "2026-07-28",
+          "foreign_net": -20086427,
+          "investment_trust_net": 1194233,
+          "dealer_net": 1853531,
+          "institutional_total": -17038663,
+          "margin_balance": 52024,
+          "short_balance": 230
+        },
+        {
+          "trade_date": "2026-07-29",
+          "foreign_net": -1315535,
+          "investment_trust_net": 1094229,
+          "dealer_net": 2249454,
+          "institutional_total": 2028148,
+          "margin_balance": 51983,
+          "short_balance": 290
+        },
+        {
+          "trade_date": "2026-07-30",
+          "foreign_net": -33608017,
+          "investment_trust_net": 307892,
+          "dealer_net": 760860,
+          "institutional_total": -32539265,
+          "margin_balance": 52661,
+          "short_balance": 282
+        },
+        {
+          "trade_date": "2026-07-31",
+          "foreign_net": 49858145,
+          "investment_trust_net": 3505375,
+          "dealer_net": 3014711,
+          "institutional_total": 56378231,
+          "margin_balance": 50864,
+          "short_balance": 322
+        },
+        {
+          "trade_date": "2026-08-03",
+          "foreign_net": 10136158,
+          "investment_trust_net": 213516,
+          "dealer_net": -1208356,
+          "institutional_total": 9141318,
+          "margin_balance": 50550,
+          "short_balance": 342
+        },
+        {
+          "trade_date": "2026-08-04",
+          "foreign_net": 2130602,
+          "investment_trust_net": -520491,
+          "dealer_net": -1104101,
+          "institutional_total": 506010,
+          "margin_balance": 50624,
+          "short_balance": 308
+        },
+        {
+          "trade_date": "2026-08-05",
+          "foreign_net": 36977842,
+          "investment_trust_net": -1107959,
+          "dealer_net": 488817,
+          "institutional_total": 36358700,
+          "margin_balance": 49879,
+          "short_balance": 556
+        },
+        {
+          "trade_date": "2026-08-06",
+          "foreign_net": 21743362,
+          "investment_trust_net": 135888,
+          "dealer_net": 147890,
+          "institutional_total": 22027140,
+          "margin_balance": 51547,
+          "short_balance": 669
+        },
+        {
+          "trade_date": "2026-08-07",
+          "foreign_net": -5328129,
+          "investment_trust_net": -800000,
+          "dealer_net": -626408,
+          "institutional_total": -6754537,
+          "margin_balance": 50435,
+          "short_balance": 642
+        },
+        {
+          "trade_date": "2026-08-10",
+          "foreign_net": 7881540,
+          "investment_trust_net": 136726,
+          "dealer_net": 378577,
+          "institutional_total": 8396843,
+          "margin_balance": 50336,
+          "short_balance": 642
+        },
+        {
+          "trade_date": "2026-08-11",
+          "foreign_net": -1139492,
+          "investment_trust_net": 397832,
+          "dealer_net": -78921,
+          "institutional_total": -820581,
+          "margin_balance": 50201,
+          "short_balance": 620
+        },
+        {
+          "trade_date": "2026-08-12",
+          "foreign_net": 29370661,
+          "investment_trust_net": 255973,
+          "dealer_net": 1457539,
+          "institutional_total": 31084173,
+          "margin_balance": 51183,
+          "short_balance": 760
+        },
+        {
+          "trade_date": "2026-08-13",
+          "foreign_net": -33363018,
+          "investment_trust_net": -80555,
+          "dealer_net": -2124627,
+          "institutional_total": -35568200,
+          "margin_balance": 51348,
+          "short_balance": 1231
+        },
+        {
+          "trade_date": "2026-08-14",
+          "foreign_net": 3071895,
+          "investment_trust_net": -2552481,
+          "dealer_net": -819656,
+          "institutional_total": -300242,
+          "margin_balance": 51051,
+          "short_balance": 704
+        }
+      ],
+      "summary": {
+        "available_days": 20,
+        "foreign_streak": {
+          "direction": "buy",
+          "days": 1
+        },
+        "investment_trust_streak": {
+          "direction": "sell",
+          "days": 2
+        },
+        "five_day": {
+          "foreign_net": 5821586,
+          "investment_trust_net": -1842505,
+          "dealer_net": -1187088,
+          "institutional_total": 2791993
+        },
+        "twenty_day": {
+          "foreign_net": 125467779,
+          "investment_trust_net": 6764075,
+          "dealer_net": 10614872,
+          "institutional_total": 142846726
+        }
+      }
+    },
+    "health": {
+      "applicable": true,
+      "rules": {
+        "positive_growth": {
+          "positive_min": 1e-06,
+          "warning_max": -1e-06
+        },
+        "roe": {
+          "positive_min": 15.0,
+          "warning_max": 5.0
+        },
+        "profit_margin": {
+          "positive_min": 10.0,
+          "warning_max": 0.0
+        },
+        "pe": {
+          "positive_max": 20.0,
+          "warning_min": 40.0
+        },
+        "pb": {
+          "positive_max": 3.0,
+          "warning_min": 6.0
+        },
+        "yield": {
+          "positive_min": 4.0,
+          "warning_max": 2.0
+        },
+        "debt_ratio": {
+          "positive_max": 50.0,
+          "warning_min": 70.0
+        },
+        "current_ratio": {
+          "positive_min": 200.0,
+          "warning_max": 100.0
+        }
+      },
+      "categories": {
+        "growth": [
+          {
+            "key": "revenue_yoy",
+            "label": "營收 YoY",
+            "value": 54.189139,
+            "unit": "%",
+            "data_date": "2026-07",
+            "status": "positive",
+            "note": null
+          },
+          {
+            "key": "eps_growth",
+            "label": "EPS 成長",
+            "value": null,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "unavailable",
+            "note": "官方最新季度彙總未提供可可靠對齊的去年同期 EPS"
+          },
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": 11.9846,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": "累計稅後淨利年化／期末權益"
+          }
+        ],
+        "profitability": [
+          {
+            "key": "gross_margin",
+            "label": "毛利率",
+            "value": 6.15,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": null
+          },
+          {
+            "key": "operating_margin",
+            "label": "營業利益率",
+            "value": 3.67,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": null
+          },
+          {
+            "key": "net_margin",
+            "label": "稅後淨利率",
+            "value": 2.73,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": null
+          },
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": 11.9846,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": "累計稅後淨利年化／期末權益"
+          }
+        ],
+        "valuation": [
+          {
+            "key": "pe",
+            "label": "PE",
+            "value": 16.81,
+            "unit": "ratio",
+            "data_date": "2026-08-17",
+            "status": "positive",
+            "note": null
+          },
+          {
+            "key": "pb",
+            "label": "PB",
+            "value": 1.87,
+            "unit": "ratio",
+            "data_date": "2026-08-17",
+            "status": "positive",
+            "note": null
+          },
+          {
+            "key": "dividend_yield",
+            "label": "殖利率",
+            "value": 2.81,
+            "unit": "%",
+            "data_date": "2026-08-17",
+            "status": "neutral",
+            "note": null
+          }
+        ],
+        "financial_risk": [
+          {
+            "key": "debt_ratio",
+            "label": "負債比",
+            "value": 62.3022,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": null
+          },
+          {
+            "key": "current_ratio",
+            "label": "流動比率",
+            "value": 142.2748,
+            "unit": "%",
+            "data_date": "2026-06-30",
+            "status": "neutral",
+            "note": null
+          },
+          {
+            "key": "operating_cash_flow",
+            "label": "營業現金流",
+            "value": null,
+            "unit": "thousand_TWD",
+            "data_date": "2026-06-30",
+            "status": "unavailable",
+            "note": "目前官方 OpenAPI 未提供一致的現金流量彙總"
+          },
+          {
+            "key": "free_cash_flow",
+            "label": "自由現金流",
+            "value": null,
+            "unit": "thousand_TWD",
+            "data_date": "2026-06-30",
+            "status": "unavailable",
+            "note": "缺少可一致對齊的資本支出欄位"
+          }
+        ]
+      }
+    }
+  },
+  "sources": {
+    "twse_profile": "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
+    "twse_quote": "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL",
+    "twse_valuation": "https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL",
+    "twse_revenue": "https://openapi.twse.com.tw/v1/opendata/t187ap05_L",
+    "twse_eps": "https://openapi.twse.com.tw/v1/opendata/t187ap14_L",
+    "twse_profitability": "https://openapi.twse.com.tw/v1/opendata/t187ap17_L",
+    "twse_income": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "twse_balance": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+  }
+}

@@ -39,6 +39,10 @@ jobs:
           python scripts/backfill_chips_history.py
           python scripts/analyze_chips.py
 
+      - name: Update stock analysis caches
+        run: |
+          python scripts/update_stock_data.py
+
       - name: Update market signals
         run: |
           python scripts/update_market_signals.py
@@ -75,7 +79,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/event.json data/market/*.json data/history/*.csv data/analysis/chips_summary.json
+          git add data/event.json data/market/*.json data/history/*.csv data/analysis/chips_summary.json data/stocks/*.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
             if [ -f "$file" ]; then
               git add "$file"

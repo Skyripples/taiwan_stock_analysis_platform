@@ -1,0 +1,314 @@
+{
+  "updated_at": "2026-08-18T01:44:32+00:00",
+  "provider": "TWSE/TPEx/MOPS",
+  "dataset": "stock_analysis",
+  "version": "1.0",
+  "data": {
+    "profile": {
+      "symbol": "0050",
+      "name": "元大台灣50",
+      "market": "TWSE",
+      "industry": "ETF",
+      "instrument_type": "ETF"
+    },
+    "quote": {
+      "trade_date": "2026-08-17",
+      "close": 106.45,
+      "change": 0.05,
+      "change_percent": 0.047,
+      "volume": 58016480,
+      "unit": {
+        "price": "TWD",
+        "volume": "shares"
+      }
+    },
+    "valuation": {
+      "pe": {
+        "value": null,
+        "unit": "ratio",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "pb": {
+        "value": null,
+        "unit": "ratio",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "dividend_yield": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": null
+      }
+    },
+    "fundamentals": {
+      "report_period": null,
+      "report_date": null
+    },
+    "chips": {
+      "trade_date": "2026-08-14",
+      "unit": {
+        "institutional": "shares",
+        "margin": "trading_units"
+      },
+      "history": [
+        {
+          "trade_date": "2026-07-20",
+          "foreign_net": -97368426,
+          "investment_trust_net": 3000000,
+          "dealer_net": -137269316,
+          "institutional_total": -231637742,
+          "margin_balance": 59230,
+          "short_balance": 0
+        },
+        {
+          "trade_date": "2026-07-21",
+          "foreign_net": -4226583,
+          "investment_trust_net": 3248000,
+          "dealer_net": -2495015,
+          "institutional_total": -3473598,
+          "margin_balance": 57630,
+          "short_balance": 48
+        },
+        {
+          "trade_date": "2026-07-22",
+          "foreign_net": 23625381,
+          "investment_trust_net": 1801000,
+          "dealer_net": -9195928,
+          "institutional_total": 16230453,
+          "margin_balance": 48893,
+          "short_balance": 278
+        },
+        {
+          "trade_date": "2026-07-23",
+          "foreign_net": -13975027,
+          "investment_trust_net": 2514000,
+          "dealer_net": 5712598,
+          "institutional_total": -5748429,
+          "margin_balance": 48790,
+          "short_balance": 107
+        },
+        {
+          "trade_date": "2026-07-24",
+          "foreign_net": -37393633,
+          "investment_trust_net": 1000000,
+          "dealer_net": 119570,
+          "institutional_total": -36274063,
+          "margin_balance": 32467,
+          "short_balance": 196
+        },
+        {
+          "trade_date": "2026-07-27",
+          "foreign_net": -4722183,
+          "investment_trust_net": 0,
+          "dealer_net": -32489254,
+          "institutional_total": -37211437,
+          "margin_balance": 19376,
+          "short_balance": 294
+        },
+        {
+          "trade_date": "2026-07-28",
+          "foreign_net": -148153654,
+          "investment_trust_net": 3600000,
+          "dealer_net": -208887397,
+          "institutional_total": -353441051,
+          "margin_balance": 22865,
+          "short_balance": 164
+        },
+        {
+          "trade_date": "2026-07-29",
+          "foreign_net": -104923092,
+          "investment_trust_net": 6350000,
+          "dealer_net": -196851488,
+          "institutional_total": -295424580,
+          "margin_balance": 29290,
+          "short_balance": 258
+        },
+        {
+          "trade_date": "2026-07-30",
+          "foreign_net": -60529603,
+          "investment_trust_net": 5793000,
+          "dealer_net": -66342713,
+          "institutional_total": -121079316,
+          "margin_balance": 33974,
+          "short_balance": 585
+        },
+        {
+          "trade_date": "2026-07-31",
+          "foreign_net": 84169249,
+          "investment_trust_net": 2262000,
+          "dealer_net": 5409137,
+          "institutional_total": 91840386,
+          "margin_balance": 33676,
+          "short_balance": 840
+        },
+        {
+          "trade_date": "2026-08-03",
+          "foreign_net": 55359860,
+          "investment_trust_net": 4604000,
+          "dealer_net": -82996874,
+          "institutional_total": -23033014,
+          "margin_balance": 31491,
+          "short_balance": 909
+        },
+        {
+          "trade_date": "2026-08-04",
+          "foreign_net": 8554454,
+          "investment_trust_net": 8878000,
+          "dealer_net": -42211967,
+          "institutional_total": -24779513,
+          "margin_balance": 29795,
+          "short_balance": 931
+        },
+        {
+          "trade_date": "2026-08-05",
+          "foreign_net": 84036810,
+          "investment_trust_net": 9902000,
+          "dealer_net": -9300365,
+          "institutional_total": 84638445,
+          "margin_balance": 25389,
+          "short_balance": 476
+        },
+        {
+          "trade_date": "2026-08-06",
+          "foreign_net": -8702495,
+          "investment_trust_net": 5800000,
+          "dealer_net": -13608903,
+          "institutional_total": -16511398,
+          "margin_balance": 25191,
+          "short_balance": 573
+        },
+        {
+          "trade_date": "2026-08-07",
+          "foreign_net": -22723224,
+          "investment_trust_net": 50000,
+          "dealer_net": 8195918,
+          "institutional_total": -14477306,
+          "margin_balance": 24879,
+          "short_balance": 434
+        },
+        {
+          "trade_date": "2026-08-10",
+          "foreign_net": 7975074,
+          "investment_trust_net": 50000,
+          "dealer_net": 14832519,
+          "institutional_total": 22857593,
+          "margin_balance": 23533,
+          "short_balance": 545
+        },
+        {
+          "trade_date": "2026-08-11",
+          "foreign_net": 18569031,
+          "investment_trust_net": -300000,
+          "dealer_net": 3750287,
+          "institutional_total": 22019318,
+          "margin_balance": 22632,
+          "short_balance": 561
+        },
+        {
+          "trade_date": "2026-08-12",
+          "foreign_net": 9409336,
+          "investment_trust_net": -450000,
+          "dealer_net": 10906918,
+          "institutional_total": 19866254,
+          "margin_balance": 21014,
+          "short_balance": 486
+        },
+        {
+          "trade_date": "2026-08-13",
+          "foreign_net": 31063004,
+          "investment_trust_net": -4385000,
+          "dealer_net": 20669289,
+          "institutional_total": 47347293,
+          "margin_balance": 20056,
+          "short_balance": 529
+        },
+        {
+          "trade_date": "2026-08-14",
+          "foreign_net": 35877135,
+          "investment_trust_net": 0,
+          "dealer_net": -7802790,
+          "institutional_total": 28074345,
+          "margin_balance": 19189,
+          "short_balance": 569
+        }
+      ],
+      "summary": {
+        "available_days": 20,
+        "foreign_streak": {
+          "direction": "buy",
+          "days": 5
+        },
+        "investment_trust_streak": {
+          "direction": "neutral",
+          "days": 1
+        },
+        "five_day": {
+          "foreign_net": 102893580,
+          "investment_trust_net": -5085000,
+          "dealer_net": 42356223,
+          "institutional_total": 140164803
+        },
+        "twenty_day": {
+          "foreign_net": -144078586,
+          "investment_trust_net": 53717000,
+          "dealer_net": -739855774,
+          "institutional_total": -830217360
+        }
+      }
+    },
+    "health": {
+      "applicable": false,
+      "reason": "ETF／非一般公司不適用公司財報健檢",
+      "rules": {
+        "positive_growth": {
+          "positive_min": 1e-06,
+          "warning_max": -1e-06
+        },
+        "roe": {
+          "positive_min": 15.0,
+          "warning_max": 5.0
+        },
+        "profit_margin": {
+          "positive_min": 10.0,
+          "warning_max": 0.0
+        },
+        "pe": {
+          "positive_max": 20.0,
+          "warning_min": 40.0
+        },
+        "pb": {
+          "positive_max": 3.0,
+          "warning_min": 6.0
+        },
+        "yield": {
+          "positive_min": 4.0,
+          "warning_max": 2.0
+        },
+        "debt_ratio": {
+          "positive_max": 50.0,
+          "warning_min": 70.0
+        },
+        "current_ratio": {
+          "positive_min": 200.0,
+          "warning_max": 100.0
+        }
+      },
+      "categories": {}
+    }
+  },
+  "sources": {
+    "twse_profile": "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
+    "twse_quote": "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL",
+    "twse_valuation": "https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL",
+    "twse_revenue": "https://openapi.twse.com.tw/v1/opendata/t187ap05_L",
+    "twse_eps": "https://openapi.twse.com.tw/v1/opendata/t187ap14_L",
+    "twse_profitability": "https://openapi.twse.com.tw/v1/opendata/t187ap17_L",
+    "twse_income": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "twse_balance": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+  }
+}

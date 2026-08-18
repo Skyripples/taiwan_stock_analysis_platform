@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="台股個股行情、估值、基本面與籌碼分析" />
+  <title>個股分析｜台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css" /><link rel="stylesheet" href="./widget.css" /><link rel="stylesheet" href="./platform.css" /><link rel="stylesheet" href="./sidebar.css" /><link rel="stylesheet" href="./stock-analysis.css" />
+</head>
+<body class="has-sidebar stock-page">
+  <header class="layout-header"><a class="layout-brand" href="./index.html"><span class="layout-logo" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M7 26V17m7 9V10m7 16V14m7 12V7M6 13l8-6 7 3 9-6" /></svg></span><span>台股投資分析平台</span></a><div class="layout-header-actions"><label for="themeToggleSwitch" class="layout-theme-label">深色模式</label><label class="layout-theme-switch" for="themeToggleSwitch"><input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="切換深色模式"><span></span></label></div></header>
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar" aria-expanded="false"><span></span><span></span><span></span></button><div class="sidebar-backdrop" data-sidebar-close></div>
+  <aside id="platformSidebar" class="sidebar" aria-label="平台導覽"><div class="sidebar-brand"><span class="sidebar-brand-icon">台</span><div><strong>台股投資</strong><span>分析平台</span></div></div><nav class="sidebar-nav">
+    <a class="sidebar-item" href="./index.html"><span class="sidebar-item-icon">⌂</span><span>首頁</span></a><a class="sidebar-item" href="./calendar.html"><span class="sidebar-item-icon">▦</span><span>台股事件簿</span></a><a class="sidebar-item" href="./prediction.html"><span class="sidebar-item-icon">⌁</span><span>隔日行情分析</span></a><a class="sidebar-item" href="./market-overview.html"><span class="sidebar-item-icon">◎</span><span>市場總覽</span></a><a class="sidebar-item" href="./chips-analysis.html"><span class="sidebar-item-icon">≋</span><span>籌碼分析</span></a><a class="sidebar-item is-active" href="./stock-analysis.html" aria-current="page"><span class="sidebar-item-icon">⌕</span><span>個股分析</span></a>
+  </nav></aside>
+  <main class="layout-main"><div class="page-container"><header class="page-header"><p class="page-eyebrow">STOCK ANALYSIS BETA</p><h1 class="page-title">個股分析</h1><p class="page-description">搜尋上市或上櫃股票，檢視官方行情、估值、基本面與籌碼資料。</p></header>
+    <div class="page-body">
+      <section class="page-section search-section"><label for="stockSearch">股票代號或公司名稱</label><div class="stock-search"><input id="stockSearch" type="search" placeholder="例如：2330、台積電" autocomplete="off" aria-controls="searchResults"><button id="searchButton" type="button">搜尋</button></div><div id="searchResults" class="search-results" role="listbox" hidden></div><p id="searchHint">目前前端可搜尋全市場清單；個股內容需由每日建置流程建立快取。</p></section>
+      <p id="pageState" class="stock-state" role="status">正在載入股票清單…</p>
+      <div id="stockContent" hidden>
+        <section class="stock-identity"><div><span id="stockSymbol">--</span><h2 id="stockName">--</h2></div><p id="stockMeta">--</p></section>
+        <section class="page-section"><div class="section-heading"><h2>行情與估值</h2><span id="quoteDate">--</span></div><div class="stock-grid stock-grid-4"><article class="widget metric"><span>收盤價</span><strong id="closePrice">--</strong><small id="priceChange">--</small></article><article class="widget metric"><span>成交量</span><strong id="volume">--</strong><small>股</small></article><article class="widget metric"><span>本益比 PE</span><strong id="pe">--</strong><small id="peDate">--</small></article><article class="widget metric"><span>股價淨值比 PB</span><strong id="pb">--</strong><small id="pbDate">--</small></article><article class="widget metric"><span>殖利率</span><strong id="yield">--</strong><small id="yieldDate">--</small></article></div></section>
+        <section id="fundamentalsSection" class="page-section"><div class="section-heading"><h2>基本面</h2><span id="reportPeriod">--</span></div><div id="fundamentalsGrid" class="stock-grid stock-grid-4"></div></section>
+        <section class="page-section"><div class="section-heading"><h2>基本面健檢</h2><span>公開規則式分析</span></div><p id="healthNotice" class="health-notice" hidden></p><div id="healthGrid" class="health-grid"></div></section>
+        <section class="page-section"><div class="section-heading"><h2>個股籌碼</h2><span id="chipsDate">--</span></div><div class="stock-grid stock-grid-4"><article class="widget metric"><span>外資 5／20 日</span><strong id="foreignFlow">--</strong><small id="foreignStreak">--</small></article><article class="widget metric"><span>投信 5／20 日</span><strong id="trustFlow">--</strong><small id="trustStreak">--</small></article><article class="widget metric"><span>自營商 5／20 日</span><strong id="dealerFlow">--</strong></article><article class="widget metric"><span>三大法人 5／20 日</span><strong id="totalFlow">--</strong></article><article class="widget metric"><span>融資餘額</span><strong id="stockMargin">--</strong><small>張</small></article><article class="widget metric"><span>融券餘額</span><strong id="stockShort">--</strong><small>張</small></article></div><div class="table-wrap"><table><thead><tr><th>日期</th><th>外資</th><th>投信</th><th>自營商</th><th>合計</th><th>融資</th><th>融券</th></tr></thead><tbody id="chipsRows"></tbody></table></div></section>
+      </div>
+    </div>
+  </div></main>
+  <script src="./sidebar.js"></script><script src="./stock-analysis.js"></script>
+</body></html>
