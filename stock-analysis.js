@@ -5,6 +5,9 @@
   let stocks = [];
   let currentChips = null;
   let chipsRange = 20;
+  let currentFinancial = null;
+  let financialRange = 8;
+  let currentPeer = null;
 
   const missing = (value) => value === null || value === undefined || value === '';
   const signed = (value, digits = 0) => missing(value) ? '資料不足' : `${value > 0 ? '+' : ''}${Number(value).toLocaleString('zh-TW', { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
@@ -29,7 +32,7 @@
     results(query ? stocks.filter((stock) => stock.symbol.toLowerCase().includes(query) || stock.name.toLowerCase().includes(query)) : stocks.filter((stock) => stock.cached));
   }
   function metricCard(label, item) {
-    const value = missing(item?.value) ? '資料不足' : `${fmt.format(item.value)}${item.unit === '%' ? '%' : item.unit === 'TWD' ? ' 元' : ''}`;
+    const value = missing(item?.value) ? '資料不足' : item.unit === 'thousand_TWD' ? `${fmt.format(item.value / 1000)} 百萬元` : `${fmt.format(item.value)}${item.unit === '%' || item.unit === 'percent' ? '%' : item.unit === 'TWD' ? ' 元' : ''}`;
     return `<article class="widget metric"><span>${label}</span><strong>${value}</strong><small>${item?.data_date || '日期不足'}${item?.note ? `｜${item.note}` : ''}</small></article>`;
   }
   function renderHistorical(history) {
@@ -63,25 +66,34 @@
     notice.hidden = true;
     const names = { growth: '成長股健檢', risk: '地雷股健檢', value: '便宜股健檢', quality: '績優股健檢' };
     const statuses = { pass: '通過', neutral: '中性', warning: '注意', unavailable: '資料不足' };
-    grid.innerHTML = Object.entries(health.categories).map(([key, items]) => `<article class="widget health-card"><h3>${names[key] || key}</h3>${items.map((item) => `<div class="health-item"><span>${item.label}</span><strong class="status-${statusTone(item.status)}">${missing(item.value) ? '資料不足' : fmt.format(item.value)}｜${statuses[item.status]}</strong><small>門檻：${item.threshold || '未設定'}<br>${item.data_date || '日期不足'}${item.note ? `｜${item.note}` : ''}</small></div>`).join('')}</article>`).join('');
+    const healthValue = (item) => missing(item.value) ? '資料不足' : item.unit === 'thousand_TWD' ? `${fmt.format(item.value / 1000)} 百萬元` : `${fmt.format(item.value)}${item.unit === 'percent' ? '%' : item.unit === 'TWD' ? ' 元' : item.unit === 'quarters' ? ' 季' : ''}`;
+    grid.innerHTML = Object.entries(health.categories).map(([key, items]) => `<article class="widget health-card"><h3>${names[key] || key}</h3>${items.map((item) => `<div class="health-item"><span>${item.label}</span><strong class="status-${statusTone(item.status)}">${healthValue(item)}｜${statuses[item.status]}</strong><small>門檻：${item.threshold || '未設定'}<br>${item.data_date || '日期不足'}${item.note ? `｜${item.note}` : ''}</small></div>`).join('')}</article>`).join('');
+  }
+  function peerValue(key, value) {
+    if (missing(value)) return '資料不足';
+    if (key === 'ttm_operating_cash_flow' || key === 'ttm_free_cash_flow') return `${fmt.format(value / 1000)} 百萬元`;
+    return `${fmt.format(value)}${['dividend_yield', 'revenue_yoy', 'eps_yoy', 'roe', 'gross_margin', 'operating_margin', 'net_margin', 'debt_ratio', 'current_ratio'].includes(key) ? '%' : ''}`;
+  }
+  function renderPeerRanking() {
+    const key = $('peerRankingMetric').value, ranking = currentPeer?.rankings?.[key], notice = $('peerRankingNotice'), body = $('peerRankingRows');
+    if (!ranking || ranking.sample_size < 5) { notice.textContent = '同期間有效樣本不足 5 家'; notice.hidden = false; body.innerHTML = ''; return; }
+    notice.hidden = true; const entries = [...ranking.top10];
+    if (ranking.current_company && !entries.some((entry) => entry.symbol === ranking.current_company.symbol)) entries.push({ ...ranking.current_company, separated: true });
+    body.innerHTML = entries.map((entry) => `<tr class="${entry.symbol === $('stockSymbol').textContent ? 'is-current' : ''}${entry.separated ? ' is-separated' : ''}"><td>${entry.rank ?? '--'}</td><td><strong>${entry.symbol}</strong> ${entry.name}${entry.symbol === $('stockSymbol').textContent ? '｜目前公司' : ''}</td><td>${peerValue(key, entry.value)}</td><td>${missing(entry.percentile) ? '--' : `${fmt.format(entry.percentile)}%`}</td></tr>`).join('');
   }
   function renderIndustry(comparison) {
-    const notice = $('industryNotice');
-    const grid = $('industryGrid');
+    const notice = $('industryNotice'), position = $('peerPosition'), groups = $('peerComparisonGroups'); currentPeer = comparison;
     $('industryName').textContent = comparison?.industry || '--';
     if (!comparison?.applicable) {
-      notice.textContent = comparison?.reason || '同產業資料不足';
-      notice.hidden = false;
-      grid.innerHTML = '';
-      return;
+      notice.textContent = comparison?.reason || '同產業資料不足'; notice.hidden = false; position.innerHTML = ''; groups.innerHTML = ''; renderPeerRanking(); return;
     }
     notice.hidden = true;
-    const labels = { pe: 'PE', pb: 'PB', dividend_yield: '殖利率', roe: 'ROE', eps: 'EPS', revenue_yoy: '營收 YoY' };
-    grid.innerHTML = Object.entries(labels).map(([key, label]) => {
-      const metric = comparison.metrics?.[key];
-      if (!metric || metric.status !== 'available') return `<article class="widget industry-card"><span>${label}</span><strong>資料不足</strong><small>同業樣本未達 ${comparison.minimum_samples} 家</small></article>`;
-      return `<article class="widget industry-card"><span>${label}</span><strong>${fmt.format(metric.current)}</strong><small>同業中位數 ${fmt.format(metric.industry_median)}<br>百分位 ${fmt.format(metric.percentile)}%｜樣本 ${metric.sample_count} 家</small></article>`;
-    }).join('');
+    position.innerHTML = `<article class="widget"><span>產業名稱</span><strong>${comparison.industry}</strong></article><article class="widget"><span>同業公司數</span><strong>${whole.format(comparison.industry_company_count)} 家</strong></article><article class="widget"><span>資料日期</span><strong>${comparison.data_date || '日期不足'}</strong></article>`;
+    const categoryNames = { valuation: '估值比較', growth: '成長比較', profitability: '獲利比較', safety: '財務安全' };
+    const labels = { pe: 'PE', pb: 'PB', dividend_yield: '殖利率', revenue_yoy: '營收 YoY', eps_yoy: 'EPS YoY', eps: 'EPS', roe: 'ROE', gross_margin: '毛利率', operating_margin: '營業利益率', net_margin: '淨利率', debt_ratio: '負債比', current_ratio: '流動比率', ttm_operating_cash_flow: 'TTM OCF', ttm_free_cash_flow: 'TTM FCF', ttm_eps: 'TTM EPS' };
+    const statuses = { leading: '領先', above_average: '高於平均', average: '平均', below_average: '低於平均', lagging: '落後', unavailable: '資料不足' };
+    groups.innerHTML = Object.entries(comparison.categories).map(([category, metrics]) => `<section class="peer-category"><h3>${categoryNames[category]}</h3><div class="peer-metric-grid">${Object.entries(metrics).map(([key, metric]) => `<article class="widget peer-metric-card"><div><span>${labels[key] || key}</span><b class="peer-status status-${metric.relative_status}">${statuses[metric.relative_status]}</b></div><strong>${peerValue(key, metric.company_value)}</strong><small>同業中位數 ${peerValue(key, metric.industry_median)}<br>${metric.rank ? `排名 ${metric.rank} / ${metric.total_ranked}` : `有效樣本 ${metric.total_ranked}`}｜${metric.comparison_period || metric.data_date || '日期不足'}</small><div class="peer-percentile"><i style="width:${metric.percentile ?? 0}%"></i></div><em>${missing(metric.percentile) ? '百分位資料不足' : `百分位 ${fmt.format(metric.percentile)}%`}${metric.period_mismatch_excluded ? `｜排除不同期間 ${metric.period_mismatch_excluded} 家` : ''}</em></article>`).join('')}</div></section>`).join('');
+    renderPeerRanking();
   }
   function streak(value) {
     if (!value?.direction) return '資料不足';
@@ -114,6 +126,27 @@
       { className: 'line-short', values: indexed('short_balance') }
     ], labels);
   }
+  function financialValue(value, unit) {
+    if (missing(value)) return '資料不足';
+    if (unit === 'thousand_TWD') return `${Number(value / 1000).toLocaleString('zh-TW', { maximumFractionDigits: 1 })} 百萬元`;
+    return `${fmt.format(value)}${unit === 'percent' ? '%' : unit === 'TWD' ? ' 元' : ''}`;
+  }
+  function renderFinancialTrend() {
+    const notice = $('financialNotice'), grid = $('financialTrendGrid');
+    if (!currentFinancial?.length) {
+      notice.textContent = $('stockMeta').textContent.includes('ETF') ? 'ETF 不適用公司財務分析' : '多期財報讀取失敗或資料不足';
+      notice.hidden = false; grid.innerHTML = ''; $('financialDate').textContent = '--'; return;
+    }
+    notice.hidden = true;
+    const rows = currentFinancial.slice(-financialRange);
+    $('financialDate').textContent = `${rows[0].period_end}～${rows.at(-1).period_end}`;
+    const definitions = [
+      ['eps', 'EPS', 'TWD'], ['revenue', '營業收入', 'thousand_TWD'], ['gross_margin', '毛利率', 'percent'],
+      ['operating_margin', '營業利益率', 'percent'], ['net_margin', '稅後淨利率', 'percent'], ['roe', 'ROE', 'percent'],
+      ['debt_ratio', '負債比', 'percent'], ['operating_cash_flow', 'OCF', 'thousand_TWD'], ['free_cash_flow', 'FCF', 'thousand_TWD']
+    ];
+    grid.innerHTML = definitions.map(([key, label, unit]) => `<article class="widget financial-trend-card"><h3>${label}</h3><div class="financial-mini-chart">${svgChart([{ className: 'line-total', values: rows.map((row) => row[key]) }], rows.map((row) => `${row.fiscal_year}Q${row.quarter}`))}</div><div class="financial-quarter-list">${rows.map((row) => `<span><b>${row.fiscal_year}Q${row.quarter}</b>${financialValue(row[key], unit)}</span>`).join('')}</div></article>`).join('');
+  }
   function render(payload) {
     const data = payload.data, profile = data.profile, quote = data.quote, valuation = data.valuation, fundamentals = data.fundamentals, chips = data.chips, analysis = chips.analysis || {};
     $('stockSymbol').textContent = profile.symbol;
@@ -133,8 +166,9 @@
     $('reportPeriod').textContent = fundamentals.report_period ? `${fundamentals.report_period}｜${fundamentals.report_date}` : '不適用／資料不足';
     const labels = { eps: 'EPS', roe: 'ROE', revenue: '月營收', revenue_yoy: '營收 YoY', revenue_mom: '營收 MoM', gross_margin: '毛利率', operating_margin: '營業利益率', net_margin: '稅後淨利率', book_value_per_share: '每股淨值', debt_ratio: '負債比', current_ratio: '流動比率' };
     $('fundamentalsGrid').innerHTML = profile.instrument_type === 'company' ? Object.entries(labels).map(([key, label]) => metricCard(label, fundamentals[key])).join('') : '<p class="health-notice">ETF／非一般公司不套用公司財報指標。</p>';
+    renderFinancialTrend();
     renderHealth(data.health_v2);
-    renderIndustry(data.industry_comparison);
+    renderIndustry(data.peer_analysis);
     $('chipsDate').textContent = chips.trade_date || '日期不足';
     $('foreignFlow').textContent = sumText(analysis.foreign_sum);
     $('foreignStreak').textContent = streak(analysis.foreign_streak);
@@ -157,7 +191,12 @@
     $('pageState').textContent = `正在載入 ${symbol}…`;
     $('stockContent').hidden = true;
     try {
-      render(await json(`./data/stocks/${encodeURIComponent(symbol)}.json`));
+      const payload = await json(`./data/stocks/${encodeURIComponent(symbol)}.json`);
+      currentFinancial = null;
+      if (payload.data?.profile?.instrument_type === 'company') {
+        try { currentFinancial = (await json(`./data/stocks/financials/${encodeURIComponent(symbol)}.json`)).data?.quarters || null; } catch { currentFinancial = null; }
+      }
+      render(payload);
       history.replaceState(null, '', `?symbol=${encodeURIComponent(symbol)}`);
     } catch (error) {
       $('pageState').textContent = error.message === '尚未建立快取資料' ? `${symbol} 尚無快取資料。靜態網站需先執行 python scripts/update_stock_data.py --symbols ${symbol}` : `${symbol}：${error.message}`;
@@ -175,6 +214,8 @@
   $('stockSearch').addEventListener('keydown', (event) => { if (event.key === 'Enter') select($('stockSearch').value.trim()); });
   $('searchButton').onclick = () => select($('stockSearch').value.trim());
   document.querySelectorAll('[data-chips-range]').forEach((button) => { button.addEventListener('click', () => { chipsRange = Number(button.dataset.chipsRange); document.querySelectorAll('[data-chips-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderChipsTrend(); }); });
+  document.querySelectorAll('[data-financial-range]').forEach((button) => { button.addEventListener('click', () => { financialRange = Number(button.dataset.financialRange); document.querySelectorAll('[data-financial-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderFinancialTrend(); }); });
+  $('peerRankingMetric').addEventListener('change', renderPeerRanking);
   document.addEventListener('click', (event) => { if (!event.target.closest('.search-section')) $('searchResults').hidden = true; });
   init();
 })();

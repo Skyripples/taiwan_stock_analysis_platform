@@ -46,35 +46,31 @@
       }
     },
     "fundamentals": {
-      "report_period": "2026 Q2",
+      "report_period": "2026Q2",
       "report_date": "2026-06-30",
       "source_updated_at": "2026-08-18",
       "eps": {
-        "value": 7.84,
-        "unit": "TWD",
+        "value": 4.27,
         "data_date": "2026-06-30",
-        "status": null,
+        "unit": "TWD",
         "note": null
       },
       "eps_growth": {
-        "value": null,
-        "unit": "%",
+        "value": 33.855799,
         "data_date": "2026-06-30",
-        "status": null,
-        "note": "官方最新季度彙總未提供可可靠對齊的去年同期 EPS"
+        "unit": "percent",
+        "note": null
       },
       "roe": {
-        "value": 11.9846,
-        "unit": "%",
+        "value": 13.641545,
         "data_date": "2026-06-30",
-        "status": null,
-        "note": "累計稅後淨利年化／期末權益"
+        "unit": "percent",
+        "note": null
       },
       "revenue": {
-        "value": 946512543,
+        "value": 2525894433,
+        "data_date": "2026-06-30",
         "unit": "thousand_TWD",
-        "data_date": "2026-07",
-        "status": null,
         "note": null
       },
       "revenue_yoy": {
@@ -92,24 +88,21 @@
         "note": null
       },
       "gross_margin": {
-        "value": 6.15,
-        "unit": "%",
+        "value": 6.117964,
         "data_date": "2026-06-30",
-        "status": null,
+        "unit": "percent",
         "note": null
       },
       "operating_margin": {
-        "value": 3.67,
-        "unit": "%",
+        "value": 3.753246,
         "data_date": "2026-06-30",
-        "status": null,
+        "unit": "percent",
         "note": null
       },
       "net_margin": {
-        "value": 2.73,
-        "unit": "%",
+        "value": 2.773509,
         "data_date": "2026-06-30",
-        "status": null,
+        "unit": "percent",
         "note": null
       },
       "book_value_per_share": {
@@ -120,32 +113,28 @@
         "note": null
       },
       "debt_ratio": {
-        "value": 62.3022,
-        "unit": "%",
+        "value": 62.302201,
         "data_date": "2026-06-30",
-        "status": null,
+        "unit": "percent",
         "note": null
       },
       "current_ratio": {
-        "value": 142.2748,
-        "unit": "%",
+        "value": 142.274777,
         "data_date": "2026-06-30",
-        "status": null,
+        "unit": "percent",
         "note": null
       },
       "operating_cash_flow": {
-        "value": null,
-        "unit": "thousand_TWD",
+        "value": -72339437,
         "data_date": "2026-06-30",
-        "status": null,
-        "note": "目前官方 OpenAPI 未提供一致的現金流量彙總"
+        "unit": "thousand_TWD",
+        "note": "MOPS 多期合併財報；現金流為累計值還原之單季數"
       },
       "free_cash_flow": {
-        "value": null,
-        "unit": "thousand_TWD",
+        "value": -117451411,
         "data_date": "2026-06-30",
-        "status": null,
-        "note": "缺少可一致對齊的資本支出欄位"
+        "unit": "thousand_TWD",
+        "note": "MOPS 多期合併財報；現金流為累計值還原之單季數"
       }
     },
     "chips": {
@@ -998,46 +987,69 @@
     },
     "health_v2": {
       "applicable": true,
-      "rules_version": "1.0",
+      "rules_version": "2.0",
       "categories": {
         "growth": [
           {
             "key": "revenue_yoy",
             "label": "月營收 YoY",
             "value": 54.189139,
+            "unit": "percent",
             "status": "pass",
             "threshold": "pass ≥ 10；warning < 0",
             "data_date": "2026-07"
           },
           {
-            "key": "eps_growth",
-            "label": "EPS 成長",
-            "value": null,
-            "status": "unavailable",
+            "key": "eps_yoy",
+            "label": "EPS YoY",
+            "value": 33.855799,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "eps_growth_streak",
+            "label": "EPS 連續成長期數",
+            "value": 2,
+            "unit": "quarters",
+            "status": "pass",
+            "threshold": "pass ≥ 2；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "quarter_revenue_yoy",
+            "label": "季營收 YoY",
+            "value": 40.838552,
+            "unit": "percent",
+            "status": "pass",
             "threshold": "pass ≥ 10；warning < 0",
             "data_date": "2026-06-30"
           },
           {
             "key": "roe",
             "label": "ROE",
-            "value": 11.9846,
+            "value": 13.641545,
+            "unit": "percent",
             "status": "neutral",
             "threshold": "pass ≥ 15；warning < 5",
             "data_date": "2026-06-30"
           },
           {
             "key": "gross_margin_trend",
-            "label": "毛利率趨勢",
-            "value": null,
-            "status": "unavailable",
+            "label": "毛利率近四季變化",
+            "value": -0.232685,
+            "unit": "percent",
+            "status": "neutral",
             "threshold": "pass ≥ 0；warning < -2",
             "data_date": "2026-06-30"
           },
           {
             "key": "operating_margin_trend",
-            "label": "營業利益率趨勢",
-            "value": null,
-            "status": "unavailable",
+            "label": "營業利益率近四季變化",
+            "value": 0.327411,
+            "unit": "percent",
+            "status": "pass",
             "threshold": "pass ≥ 0；warning < -2",
             "data_date": "2026-06-30"
           }
@@ -1045,16 +1057,27 @@
         "risk": [
           {
             "key": "consecutive_losses",
-            "label": "連續虧損期數",
-            "value": null,
-            "status": "unavailable",
+            "label": "連續虧損季度",
+            "value": 0,
+            "unit": "quarters",
+            "status": "pass",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "eps_decline_streak",
+            "label": "EPS 連續衰退期數",
+            "value": 0,
+            "unit": "quarters",
+            "status": "pass",
             "threshold": "pass ≤ 0；warning ≥ 2",
             "data_date": "2026-06-30"
           },
           {
             "key": "debt_ratio",
             "label": "負債比",
-            "value": 62.3022,
+            "value": 62.302201,
+            "unit": "percent",
             "status": "neutral",
             "threshold": "pass ≤ 50；warning ≥ 70",
             "data_date": "2026-06-30"
@@ -1062,33 +1085,55 @@
           {
             "key": "current_ratio",
             "label": "流動比率",
-            "value": 142.2748,
+            "value": 142.274777,
+            "unit": "percent",
             "status": "neutral",
             "threshold": "pass ≥ 150；warning < 100",
             "data_date": "2026-06-30"
           },
           {
             "key": "gross_margin_trend",
-            "label": "毛利率趨勢",
-            "value": null,
-            "status": "unavailable",
+            "label": "毛利率近四季變化",
+            "value": -0.232685,
+            "unit": "percent",
+            "status": "neutral",
             "threshold": "pass ≥ 0；warning < -2",
             "data_date": "2026-06-30"
           },
           {
             "key": "operating_margin_trend",
-            "label": "營業利益率趨勢",
-            "value": null,
-            "status": "unavailable",
+            "label": "營業利益率近四季變化",
+            "value": 0.327411,
+            "unit": "percent",
+            "status": "pass",
             "threshold": "pass ≥ 0；warning < -2",
             "data_date": "2026-06-30"
           },
           {
-            "key": "operating_cash_flow",
-            "label": "營業現金流",
-            "value": null,
-            "status": "unavailable",
-            "threshold": "pass ≥ 0；warning < 0",
+            "key": "negative_ocf_streak",
+            "label": "連續負 OCF 季數",
+            "value": 1,
+            "unit": "quarters",
+            "status": "neutral",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "negative_fcf_streak",
+            "label": "連續負 FCF 季數",
+            "value": 2,
+            "unit": "quarters",
+            "status": "warning",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "debt_ratio_trend",
+            "label": "負債比近四季變化",
+            "value": -0.473537,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≤ 0；warning ≥ 5",
             "data_date": "2026-06-30"
           }
         ],
@@ -1097,6 +1142,7 @@
             "key": "pe_percentile",
             "label": "PE 歷史百分位",
             "value": 79.3103,
+            "unit": "percent",
             "status": "warning",
             "threshold": "pass ≤ 25；warning ≥ 75",
             "data_date": "2026-06-30"
@@ -1105,6 +1151,7 @@
             "key": "pb_percentile",
             "label": "PB 歷史百分位",
             "value": 79.3103,
+            "unit": "percent",
             "status": "warning",
             "threshold": "pass ≤ 25；warning ≥ 75",
             "data_date": "2026-06-30"
@@ -1113,6 +1160,7 @@
             "key": "yield_percentile",
             "label": "殖利率歷史百分位",
             "value": 18.9655,
+            "unit": "percent",
             "status": "warning",
             "threshold": "pass ≥ 75；warning < 25",
             "data_date": "2026-06-30"
@@ -1122,41 +1170,64 @@
           {
             "key": "roe",
             "label": "ROE",
-            "value": 11.9846,
+            "value": 13.641545,
+            "unit": "percent",
             "status": "neutral",
             "threshold": "pass ≥ 15；warning < 5",
             "data_date": "2026-06-30"
           },
           {
-            "key": "eps",
-            "label": "EPS",
-            "value": 7.84,
+            "key": "ttm_eps",
+            "label": "TTM EPS",
+            "value": 15.22,
+            "unit": "TWD",
             "status": "pass",
-            "threshold": "pass ≥ 0；warning < 0",
+            "threshold": "pass ≥ 1e-06；warning < 0",
             "data_date": "2026-06-30"
           },
           {
-            "key": "revenue_yoy",
-            "label": "月營收 YoY",
-            "value": 54.189139,
+            "key": "profit_margin_stability",
+            "label": "近四季獲利率波動",
+            "value": 1.149221,
+            "unit": "percent",
             "status": "pass",
-            "threshold": "pass ≥ 10；warning < 0",
-            "data_date": "2026-07"
+            "threshold": "pass ≤ 5；warning ≥ 10",
+            "data_date": "2026-06-30"
           },
           {
-            "key": "gross_margin",
-            "label": "毛利率",
-            "value": 6.15,
-            "status": "neutral",
-            "threshold": "pass ≥ 20；warning < 0",
+            "key": "ttm_operating_cash_flow",
+            "label": "TTM OCF",
+            "value": 135854606,
+            "unit": "thousand_TWD",
+            "status": "pass",
+            "threshold": "pass ≥ 1e-06；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "ttm_free_cash_flow",
+            "label": "TTM FCF",
+            "value": -41644456,
+            "unit": "thousand_TWD",
+            "status": "warning",
+            "threshold": "pass ≥ 1e-06；warning < 0",
             "data_date": "2026-06-30"
           },
           {
             "key": "debt_ratio",
             "label": "負債比",
-            "value": 62.3022,
+            "value": 62.302201,
+            "unit": "percent",
             "status": "neutral",
             "threshold": "pass ≤ 50；warning ≥ 70",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "current_ratio",
+            "label": "流動比率",
+            "value": 142.274777,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 150；warning < 100",
             "data_date": "2026-06-30"
           }
         ]
@@ -1189,16 +1260,16 @@
           "status": "available"
         },
         "roe": {
-          "current": 11.9846,
+          "current": 13.641545,
           "industry_median": 9.384,
-          "percentile": 58.2418,
+          "percentile": 61.5385,
           "sample_count": 91,
           "status": "available"
         },
         "eps": {
-          "current": 7.84,
+          "current": 4.27,
           "industry_median": 1.83,
-          "percentile": 86.8132,
+          "percentile": 74.7253,
           "sample_count": 91,
           "status": "available"
         },
@@ -1208,6 +1279,1286 @@
           "percentile": 71.2766,
           "sample_count": 94,
           "status": "available"
+        }
+      }
+    },
+    "financial_trends": {
+      "applicable": true,
+      "period_count": 12,
+      "latest_period": "2026-06-30",
+      "records": [
+        {
+          "fiscal_year": 2023,
+          "quarter": 3,
+          "period_end": "2023-09-30",
+          "published_date": null,
+          "available_date": "2023-11-14",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1543163653,
+          "gross_profit": 102753497,
+          "operating_income": 46149902,
+          "net_income": 47489904,
+          "eps": 3.11,
+          "current_assets": 3150562974,
+          "total_assets": 4063389195,
+          "current_liabilities": 2012985561,
+          "total_liabilities": 2376251282,
+          "total_equity": 1687137913,
+          "operating_cash_flow_cumulative": 286152572,
+          "investing_cash_flow_cumulative": -55112956,
+          "capital_expenditure_cumulative_raw": -71584266,
+          "gross_margin": 6.658626,
+          "operating_margin": 2.990603,
+          "net_margin": 3.077438,
+          "debt_ratio": 58.479539,
+          "current_ratio": 156.511951,
+          "operating_cash_flow": 66027555,
+          "investing_cash_flow": -36346749,
+          "capital_expenditure": 24006809,
+          "free_cash_flow": 42020746,
+          "roe": 11.613217,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": null,
+          "eps_yoy": null,
+          "revenue_qoq": null,
+          "revenue_yoy": null,
+          "gross_margin_qoq": null,
+          "gross_margin_yoy": null,
+          "operating_margin_qoq": null,
+          "operating_margin_yoy": null,
+          "net_margin_qoq": null,
+          "net_margin_yoy": null,
+          "ttm_eps": null,
+          "ttm_operating_cash_flow": null,
+          "ttm_free_cash_flow": null
+        },
+        {
+          "fiscal_year": 2023,
+          "quarter": 4,
+          "period_end": "2023-12-31",
+          "published_date": null,
+          "available_date": "2024-03-31",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1852072177,
+          "gross_profit": 113282333,
+          "operating_income": 48930173,
+          "net_income": 58257039,
+          "eps": 3.83,
+          "current_assets": 3035965951,
+          "total_assets": 3939788977,
+          "current_liabilities": 1909334694,
+          "total_liabilities": 2253545331,
+          "total_equity": 1686243646,
+          "operating_cash_flow_cumulative": 445552717,
+          "investing_cash_flow_cumulative": -137874110,
+          "capital_expenditure_cumulative_raw": -111744970,
+          "gross_margin": 6.116518,
+          "operating_margin": 2.641915,
+          "net_margin": 3.145506,
+          "debt_ratio": 57.199646,
+          "current_ratio": 159.006483,
+          "operating_cash_flow": 159400145,
+          "investing_cash_flow": -82761154,
+          "capital_expenditure": 40160704,
+          "free_cash_flow": 119239441,
+          "roe": 13.815701,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 23.151125,
+          "eps_yoy": null,
+          "revenue_qoq": 20.017872,
+          "revenue_yoy": null,
+          "gross_margin_qoq": -8.141439,
+          "gross_margin_yoy": null,
+          "operating_margin_qoq": -11.659455,
+          "operating_margin_yoy": null,
+          "net_margin_qoq": 2.21184,
+          "net_margin_yoy": null,
+          "ttm_eps": null,
+          "ttm_operating_cash_flow": null,
+          "ttm_free_cash_flow": null
+        },
+        {
+          "fiscal_year": 2024,
+          "quarter": 1,
+          "period_end": "2024-03-31",
+          "published_date": null,
+          "available_date": "2024-05-15",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1323991647,
+          "gross_profit": 83662240,
+          "operating_income": 36750532,
+          "net_income": 24872602,
+          "eps": 1.59,
+          "current_assets": 2848276739,
+          "total_assets": 3773639705,
+          "current_liabilities": 1718150454,
+          "total_liabilities": 2082809079,
+          "total_equity": 1690830626,
+          "operating_cash_flow_cumulative": 18247498,
+          "investing_cash_flow_cumulative": 8693056,
+          "capital_expenditure_cumulative_raw": -33178525,
+          "gross_margin": 6.31894,
+          "operating_margin": 2.775737,
+          "net_margin": 1.878607,
+          "debt_ratio": 55.193639,
+          "current_ratio": 165.775746,
+          "operating_cash_flow": 18247498,
+          "investing_cash_flow": 8693056,
+          "capital_expenditure": 33178525,
+          "free_cash_flow": -14931027,
+          "roe": 5.892107,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": -58.48564,
+          "eps_yoy": null,
+          "revenue_qoq": -28.512956,
+          "revenue_yoy": null,
+          "gross_margin_qoq": 3.309432,
+          "gross_margin_yoy": null,
+          "operating_margin_qoq": 5.065341,
+          "operating_margin_yoy": null,
+          "net_margin_qoq": -40.276477,
+          "net_margin_yoy": null,
+          "ttm_eps": null,
+          "ttm_operating_cash_flow": null,
+          "ttm_free_cash_flow": null
+        },
+        {
+          "fiscal_year": 2024,
+          "quarter": 2,
+          "period_end": "2024-06-30",
+          "published_date": null,
+          "available_date": "2024-08-14",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1550550895,
+          "gross_profit": 99506623,
+          "operating_income": 44604463,
+          "net_income": 38944968,
+          "eps": 2.53,
+          "current_assets": 3006214387,
+          "total_assets": 3966849068,
+          "current_liabilities": 1871443657,
+          "total_liabilities": 2245179005,
+          "total_equity": 1721670063,
+          "operating_cash_flow_cumulative": 43785971,
+          "investing_cash_flow_cumulative": -84180176,
+          "capital_expenditure_cumulative_raw": -63092091,
+          "gross_margin": 6.417501,
+          "operating_margin": 2.876685,
+          "net_margin": 2.511686,
+          "debt_ratio": 56.598549,
+          "current_ratio": 160.636115,
+          "operating_cash_flow": 25538473,
+          "investing_cash_flow": -92873232,
+          "capital_expenditure": 29913566,
+          "free_cash_flow": -4375093,
+          "roe": 9.129954,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 59.119497,
+          "eps_yoy": null,
+          "revenue_qoq": 17.111834,
+          "revenue_yoy": null,
+          "gross_margin_qoq": 1.559771,
+          "gross_margin_yoy": null,
+          "operating_margin_qoq": 3.6368,
+          "operating_margin_yoy": null,
+          "net_margin_qoq": 33.699385,
+          "net_margin_yoy": null,
+          "ttm_eps": 11.06,
+          "ttm_operating_cash_flow": 269213671,
+          "ttm_free_cash_flow": 141954067
+        },
+        {
+          "fiscal_year": 2024,
+          "quarter": 3,
+          "period_end": "2024-09-30",
+          "published_date": null,
+          "available_date": "2024-11-14",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1854569119,
+          "gross_profit": 114733487,
+          "operating_income": 54771374,
+          "net_income": 55344788,
+          "eps": 3.55,
+          "current_assets": 3296224502,
+          "total_assets": 4272282549,
+          "current_liabilities": 2090406315,
+          "total_liabilities": 2474515948,
+          "total_equity": 1797766601,
+          "operating_cash_flow_cumulative": -18633645,
+          "investing_cash_flow_cumulative": -237325081,
+          "capital_expenditure_cumulative_raw": -96090297,
+          "gross_margin": 6.186531,
+          "operating_margin": 2.953321,
+          "net_margin": 2.98424,
+          "debt_ratio": 57.920232,
+          "current_ratio": 157.683436,
+          "operating_cash_flow": -62419616,
+          "investing_cash_flow": -153144905,
+          "capital_expenditure": 32998206,
+          "free_cash_flow": -95417822,
+          "roe": 12.580374,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 40.316206,
+          "eps_yoy": 14.14791,
+          "revenue_qoq": 19.60711,
+          "revenue_yoy": 20.179679,
+          "gross_margin_qoq": -3.599064,
+          "gross_margin_yoy": -7.089976,
+          "operating_margin_qoq": 2.664039,
+          "operating_margin_yoy": -1.246638,
+          "net_margin_qoq": 18.814215,
+          "net_margin_yoy": -3.028428,
+          "ttm_eps": 11.5,
+          "ttm_operating_cash_flow": 140766500,
+          "ttm_free_cash_flow": 4515499
+        },
+        {
+          "fiscal_year": 2024,
+          "quarter": 4,
+          "period_end": "2024-12-31",
+          "published_date": null,
+          "available_date": "2025-03-31",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 2130503832,
+          "gross_profit": 131043568,
+          "operating_income": 64480858,
+          "net_income": 52516877,
+          "eps": 3.34,
+          "current_assets": 3375765076,
+          "total_assets": 4394499511,
+          "current_liabilities": 2174817567,
+          "total_liabilities": 2542911463,
+          "total_equity": 1851588048,
+          "operating_cash_flow_cumulative": 166028839,
+          "investing_cash_flow_cumulative": -300045818,
+          "capital_expenditure_cumulative_raw": -136339059,
+          "gross_margin": 6.150825,
+          "operating_margin": 3.026554,
+          "net_margin": 2.464998,
+          "debt_ratio": 57.865781,
+          "current_ratio": 155.220609,
+          "operating_cash_flow": 184662484,
+          "investing_cash_flow": -62720737,
+          "capital_expenditure": 40248762,
+          "free_cash_flow": 144413722,
+          "roe": 11.512584,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": -5.915493,
+          "eps_yoy": -12.793734,
+          "revenue_qoq": 14.878643,
+          "revenue_yoy": 15.033521,
+          "gross_margin_qoq": -0.577157,
+          "gross_margin_yoy": 0.560891,
+          "operating_margin_qoq": 2.479683,
+          "operating_margin_yoy": 14.559098,
+          "net_margin_qoq": -17.399472,
+          "net_margin_yoy": -21.634293,
+          "ttm_eps": 11.01,
+          "ttm_operating_cash_flow": 166028839,
+          "ttm_free_cash_flow": 29689780
+        },
+        {
+          "fiscal_year": 2025,
+          "quarter": 1,
+          "period_end": "2025-03-31",
+          "published_date": null,
+          "available_date": "2025-05-15",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1644315563,
+          "gross_profit": 100548427,
+          "operating_income": 46499962,
+          "net_income": 45833606,
+          "eps": 3.03,
+          "current_assets": 3533060727,
+          "total_assets": 4586773793,
+          "current_liabilities": 2357187203,
+          "total_liabilities": 2747385466,
+          "total_equity": 1839388327,
+          "operating_cash_flow_cumulative": -51063465,
+          "investing_cash_flow_cumulative": -63552956,
+          "capital_expenditure_cumulative_raw": -43835338,
+          "gross_margin": 6.114911,
+          "operating_margin": 2.827922,
+          "net_margin": 2.787397,
+          "debt_ratio": 59.897993,
+          "current_ratio": 149.884605,
+          "operating_cash_flow": -51063465,
+          "investing_cash_flow": -63552956,
+          "capital_expenditure": 43835338,
+          "free_cash_flow": -94898803,
+          "roe": 9.934197,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": -9.281437,
+          "eps_yoy": 90.566038,
+          "revenue_qoq": -22.820342,
+          "revenue_yoy": 24.193802,
+          "gross_margin_qoq": -0.583889,
+          "gross_margin_yoy": -3.228849,
+          "operating_margin_qoq": -6.562976,
+          "operating_margin_yoy": 1.880041,
+          "net_margin_qoq": 13.079078,
+          "net_margin_yoy": 48.375738,
+          "ttm_eps": 12.45,
+          "ttm_operating_cash_flow": 96717876,
+          "ttm_free_cash_flow": -50277996
+        },
+        {
+          "fiscal_year": 2025,
+          "quarter": 2,
+          "period_end": "2025-06-30",
+          "published_date": null,
+          "available_date": "2025-08-14",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 1793468046,
+          "gross_profit": 113528996,
+          "operating_income": 56596217,
+          "net_income": 49536711,
+          "eps": 3.19,
+          "current_assets": 3159842208,
+          "total_assets": 4138942274,
+          "current_liabilities": 2130491261,
+          "total_liabilities": 2507334694,
+          "total_equity": 1631607580,
+          "operating_cash_flow_cumulative": 21875585,
+          "investing_cash_flow_cumulative": -39355799,
+          "capital_expenditure_cumulative_raw": -77150396,
+          "gross_margin": 6.330138,
+          "operating_margin": 3.155686,
+          "net_margin": 2.762063,
+          "debt_ratio": 60.579117,
+          "current_ratio": 148.315192,
+          "operating_cash_flow": 72939050,
+          "investing_cash_flow": 24197157,
+          "capital_expenditure": 33315058,
+          "free_cash_flow": 39623992,
+          "roe": 11.417291,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 5.280528,
+          "eps_yoy": 26.086957,
+          "revenue_qoq": 9.070794,
+          "revenue_yoy": 15.666506,
+          "gross_margin_qoq": 3.519708,
+          "gross_margin_yoy": -1.361324,
+          "operating_margin_qoq": 11.590277,
+          "operating_margin_yoy": 9.698698,
+          "net_margin_qoq": -0.908877,
+          "net_margin_yoy": 9.968483,
+          "ttm_eps": 13.11,
+          "ttm_operating_cash_flow": 144118453,
+          "ttm_free_cash_flow": -6278911
+        },
+        {
+          "fiscal_year": 2025,
+          "quarter": 3,
+          "period_end": "2025-09-30",
+          "published_date": null,
+          "available_date": "2025-11-14",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 2058949127,
+          "gross_profit": 130756642,
+          "operating_income": 70536196,
+          "net_income": 66030624,
+          "eps": 4.15,
+          "current_assets": 3821839373,
+          "total_assets": 4894454915,
+          "current_liabilities": 2701759537,
+          "total_liabilities": 3072530184,
+          "total_equity": 1821924731,
+          "operating_cash_flow_cumulative": -49535724,
+          "investing_cash_flow_cumulative": -128345223,
+          "capital_expenditure_cumulative_raw": -112799116,
+          "gross_margin": 6.350649,
+          "operating_margin": 3.425835,
+          "net_margin": 3.207006,
+          "debt_ratio": 62.775738,
+          "current_ratio": 141.457421,
+          "operating_cash_flow": -71411309,
+          "investing_cash_flow": -88989424,
+          "capital_expenditure": 35648720,
+          "free_cash_flow": -107060029,
+          "roe": 15.295788,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 30.094044,
+          "eps_yoy": 16.901408,
+          "revenue_qoq": 14.802666,
+          "revenue_yoy": 11.02035,
+          "gross_margin_qoq": 0.324021,
+          "gross_margin_yoy": 2.652828,
+          "operating_margin_qoq": 8.560706,
+          "operating_margin_yoy": 15.999412,
+          "net_margin_qoq": 16.109082,
+          "net_margin_yoy": 7.464748,
+          "ttm_eps": 13.71,
+          "ttm_operating_cash_flow": 135126760,
+          "ttm_free_cash_flow": -17921118
+        },
+        {
+          "fiscal_year": 2025,
+          "quarter": 4,
+          "period_end": "2025-12-31",
+          "published_date": null,
+          "available_date": "2026-03-31",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 2606372027,
+          "gross_profit": 153326971,
+          "operating_income": 85590585,
+          "net_income": 53633545,
+          "eps": 3.24,
+          "current_assets": 3961827499,
+          "total_assets": 5104672223,
+          "current_liabilities": 2710848518,
+          "total_liabilities": 3133908868,
+          "total_equity": 1970763355,
+          "operating_cash_flow_cumulative": 226852474,
+          "investing_cash_flow_cumulative": -304689272,
+          "capital_expenditure_cumulative_raw": -173763139,
+          "gross_margin": 5.882774,
+          "operating_margin": 3.283897,
+          "net_margin": 2.057785,
+          "debt_ratio": 61.39295,
+          "current_ratio": 146.147137,
+          "operating_cash_flow": 276388198,
+          "investing_cash_flow": -176344049,
+          "capital_expenditure": 60964023,
+          "free_cash_flow": 215424175,
+          "roe": 11.313041,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": -21.927711,
+          "eps_yoy": -2.994012,
+          "revenue_qoq": 26.58749,
+          "revenue_yoy": 22.335946,
+          "gross_margin_qoq": -7.367357,
+          "gross_margin_yoy": -4.357968,
+          "operating_margin_qoq": -4.143165,
+          "operating_margin_yoy": 8.502839,
+          "net_margin_qoq": -35.834701,
+          "net_margin_yoy": -16.519811,
+          "ttm_eps": 13.61,
+          "ttm_operating_cash_flow": 226852474,
+          "ttm_free_cash_flow": 53089335
+        },
+        {
+          "fiscal_year": 2026,
+          "quarter": 1,
+          "period_end": "2026-03-31",
+          "published_date": null,
+          "available_date": "2026-05-15",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 2119533391,
+          "gross_profit": 130980560,
+          "operating_income": 75648689,
+          "net_income": 56956277,
+          "eps": 3.56,
+          "current_assets": 4052387707,
+          "total_assets": 5230479067,
+          "current_liabilities": 2792211149,
+          "total_liabilities": 3241680598,
+          "total_equity": 1988798469,
+          "operating_cash_flow_cumulative": 3217154,
+          "investing_cash_flow_cumulative": -29019834,
+          "capital_expenditure_cumulative_raw": -35774345,
+          "gross_margin": 6.179688,
+          "operating_margin": 3.56912,
+          "net_margin": 2.687208,
+          "debt_ratio": 61.976744,
+          "current_ratio": 145.13185,
+          "operating_cash_flow": 3217154,
+          "investing_cash_flow": -29019834,
+          "capital_expenditure": 35774345,
+          "free_cash_flow": -32557191,
+          "roe": 11.507592,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 9.876543,
+          "eps_yoy": 17.491749,
+          "revenue_qoq": -18.678785,
+          "revenue_yoy": 28.900646,
+          "gross_margin_qoq": 5.047177,
+          "gross_margin_yoy": 1.059329,
+          "operating_margin_qoq": 8.685504,
+          "operating_margin_yoy": 26.209987,
+          "net_margin_qoq": 30.587403,
+          "net_margin_yoy": -3.594357,
+          "ttm_eps": 14.14,
+          "ttm_operating_cash_flow": 281133093,
+          "ttm_free_cash_flow": 115430947
+        },
+        {
+          "fiscal_year": 2026,
+          "quarter": 2,
+          "period_end": "2026-06-30",
+          "published_date": null,
+          "available_date": "2026-08-14",
+          "source": "MOPS consolidated IFRS statements",
+          "unit": {
+            "monetary": "thousand_TWD",
+            "eps": "TWD",
+            "ratio": "percent"
+          },
+          "revenue": 2525894433,
+          "gross_profit": 154533321,
+          "operating_income": 94803032,
+          "net_income": 70055915,
+          "eps": 4.27,
+          "current_assets": 4378473822,
+          "total_assets": 5622576474,
+          "current_liabilities": 3077477192,
+          "total_liabilities": 3502988890,
+          "total_equity": 2119587584,
+          "operating_cash_flow_cumulative": -69122283,
+          "investing_cash_flow_cumulative": -25760829,
+          "capital_expenditure_cumulative_raw": -80886319,
+          "gross_margin": 6.117964,
+          "operating_margin": 3.753246,
+          "net_margin": 2.773509,
+          "debt_ratio": 62.302201,
+          "current_ratio": 142.274777,
+          "operating_cash_flow": -72339437,
+          "investing_cash_flow": 3259005,
+          "capital_expenditure": 45111974,
+          "free_cash_flow": -117451411,
+          "roe": 13.641545,
+          "income_period_basis": "standalone_quarter",
+          "eps_qoq": 19.94382,
+          "eps_yoy": 33.855799,
+          "revenue_qoq": 19.172193,
+          "revenue_yoy": 40.838552,
+          "gross_margin_qoq": -0.998821,
+          "gross_margin_yoy": -3.351807,
+          "operating_margin_qoq": 5.158863,
+          "operating_margin_yoy": 18.935978,
+          "net_margin_qoq": 3.211549,
+          "net_margin_yoy": 0.4144,
+          "ttm_eps": 15.22,
+          "ttm_operating_cash_flow": 135854606,
+          "ttm_free_cash_flow": -41644456
+        }
+      ],
+      "summary": {
+        "eps_qoq": 19.94382,
+        "eps_yoy": 33.855799,
+        "ttm_eps": 15.22,
+        "eps_growth_streak": 2,
+        "eps_decline_streak": 0,
+        "quarter_revenue_yoy": 40.838552,
+        "revenue_direction_4q": "mixed",
+        "gross_margin_trend": -0.232685,
+        "gross_margin_direction": "mixed",
+        "operating_margin_trend": 0.327411,
+        "operating_margin_direction": "mixed",
+        "net_margin_trend": -0.433497,
+        "net_margin_direction": "mixed",
+        "debt_ratio_trend": -0.473537,
+        "debt_ratio_direction": "mixed",
+        "current_ratio_trend": 0.817356,
+        "current_ratio_direction": "mixed",
+        "consecutive_losses": 0,
+        "negative_ocf_streak": 1,
+        "negative_fcf_streak": 2,
+        "ttm_operating_cash_flow": 135854606,
+        "ttm_free_cash_flow": -41644456,
+        "profit_margin_stability": 1.149221,
+        "profitability_direction": "stable"
+      }
+    },
+    "peer_analysis": {
+      "applicable": true,
+      "industry": "其他電子業",
+      "industry_company_count": 94,
+      "data_date": "2026-06-30",
+      "minimum_sample_size": 5,
+      "status_rules": {
+        "leading": "percentile >= 90",
+        "above_average": "60 <= percentile < 90",
+        "average": "40 <= percentile < 60",
+        "below_average": "10 <= percentile < 40",
+        "lagging": "percentile < 10",
+        "unavailable": "sample < 5, missing value, period mismatch, or context-only metric"
+      },
+      "categories": {
+        "valuation": {
+          "pe": {
+            "company_value": 16.41,
+            "industry_sample_size": 94,
+            "industry_median": 22.345,
+            "percentile": 68.4211,
+            "rank": 25,
+            "total_ranked": 76,
+            "relative_status": "above_average",
+            "comparison_direction": "lower",
+            "comparison_period": null,
+            "data_date": "2026-08-18",
+            "period_mismatch_excluded": 0
+          },
+          "pb": {
+            "company_value": 1.83,
+            "industry_sample_size": 94,
+            "industry_median": 2.555,
+            "percentile": 67.0213,
+            "rank": 32,
+            "total_ranked": 94,
+            "relative_status": "above_average",
+            "comparison_direction": "lower",
+            "comparison_period": null,
+            "data_date": "2026-08-18",
+            "period_mismatch_excluded": 0
+          },
+          "dividend_yield": {
+            "company_value": 2.88,
+            "industry_sample_size": 94,
+            "industry_median": 2.335,
+            "percentile": 58.1395,
+            "rank": 37,
+            "total_ranked": 86,
+            "relative_status": "average",
+            "comparison_direction": "higher",
+            "comparison_period": null,
+            "data_date": "2026-08-18",
+            "period_mismatch_excluded": 0
+          }
+        },
+        "growth": {
+          "revenue_yoy": {
+            "company_value": 54.189139,
+            "industry_sample_size": 94,
+            "industry_median": 23.871937,
+            "percentile": 71.2766,
+            "rank": 28,
+            "total_ranked": 94,
+            "relative_status": "above_average",
+            "comparison_direction": "higher",
+            "comparison_period": "2026-07",
+            "data_date": "2026-07",
+            "period_mismatch_excluded": 0
+          },
+          "eps_yoy": {
+            "company_value": 33.85579937304074,
+            "industry_sample_size": 94,
+            "industry_median": null,
+            "percentile": null,
+            "rank": null,
+            "total_ranked": 1,
+            "relative_status": "unavailable",
+            "comparison_direction": "higher",
+            "comparison_period": "2026-06-30",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 93
+          }
+        },
+        "profitability": {
+          "eps": {
+            "company_value": 7.83,
+            "industry_sample_size": 94,
+            "industry_median": 1.83,
+            "percentile": 86.8132,
+            "rank": 13,
+            "total_ranked": 91,
+            "relative_status": "above_average",
+            "comparison_direction": "higher",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "roe": {
+            "company_value": 11.984613701152913,
+            "industry_sample_size": 94,
+            "industry_median": 9.384,
+            "percentile": 58.2418,
+            "rank": 39,
+            "total_ranked": 91,
+            "relative_status": "average",
+            "comparison_direction": "higher",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "gross_margin": {
+            "company_value": 6.146126725399318,
+            "industry_sample_size": 94,
+            "industry_median": 23.9433,
+            "percentile": 7.6923,
+            "rank": 85,
+            "total_ranked": 91,
+            "relative_status": "lagging",
+            "comparison_direction": "higher",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "operating_margin": {
+            "company_value": 3.6692362352372223,
+            "industry_sample_size": 94,
+            "industry_median": 7.6785,
+            "percentile": 36.2637,
+            "rank": 59,
+            "total_ranked": 91,
+            "relative_status": "below_average",
+            "comparison_direction": "higher",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "net_margin": {
+            "company_value": 2.7341333632137816,
+            "industry_sample_size": 94,
+            "industry_median": 8.52,
+            "percentile": 28.5714,
+            "rank": 66,
+            "total_ranked": 91,
+            "relative_status": "below_average",
+            "comparison_direction": "higher",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "ttm_eps": {
+            "company_value": 15.22,
+            "industry_sample_size": 94,
+            "industry_median": null,
+            "percentile": null,
+            "rank": null,
+            "total_ranked": 1,
+            "relative_status": "unavailable",
+            "comparison_direction": "higher",
+            "comparison_period": "2026-06-30",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 93
+          }
+        },
+        "safety": {
+          "debt_ratio": {
+            "company_value": 62.302201,
+            "industry_sample_size": 94,
+            "industry_median": 45.8012,
+            "percentile": 18.6813,
+            "rank": 75,
+            "total_ranked": 91,
+            "relative_status": "below_average",
+            "comparison_direction": "lower",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "current_ratio": {
+            "company_value": 142.274777,
+            "industry_sample_size": 94,
+            "industry_median": 182.2561,
+            "percentile": 26.3736,
+            "rank": null,
+            "total_ranked": 91,
+            "relative_status": "unavailable",
+            "comparison_direction": "context",
+            "comparison_period": "2026 Q2",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 3
+          },
+          "ttm_operating_cash_flow": {
+            "company_value": 135854606,
+            "industry_sample_size": 94,
+            "industry_median": null,
+            "percentile": null,
+            "rank": null,
+            "total_ranked": 1,
+            "relative_status": "unavailable",
+            "comparison_direction": "higher",
+            "comparison_period": "2026-06-30",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 93
+          },
+          "ttm_free_cash_flow": {
+            "company_value": -41644456,
+            "industry_sample_size": 94,
+            "industry_median": null,
+            "percentile": null,
+            "rank": null,
+            "total_ranked": 1,
+            "relative_status": "unavailable",
+            "comparison_direction": "higher",
+            "comparison_period": "2026-06-30",
+            "data_date": "2026-06-30",
+            "period_mismatch_excluded": 93
+          }
+        }
+      },
+      "rankings": {
+        "roe": {
+          "metric": "roe",
+          "label": "ROE",
+          "top10": [
+            {
+              "symbol": "2404",
+              "name": "漢唐",
+              "value": 75.3994,
+              "rank": 1,
+              "percentile": 100.0
+            },
+            {
+              "symbol": "6691",
+              "name": "洋基工程",
+              "value": 62.4891,
+              "rank": 2,
+              "percentile": 98.9011
+            },
+            {
+              "symbol": "6739",
+              "name": "竹陞科技",
+              "value": 60.2012,
+              "rank": 3,
+              "percentile": 97.8022
+            },
+            {
+              "symbol": "6139",
+              "name": "亞翔",
+              "value": 54.8108,
+              "rank": 4,
+              "percentile": 96.7033
+            },
+            {
+              "symbol": "2360",
+              "name": "致茂",
+              "value": 54.4519,
+              "rank": 5,
+              "percentile": 95.6044
+            },
+            {
+              "symbol": "6903",
+              "name": "巨漢",
+              "value": 51.146,
+              "rank": 6,
+              "percentile": 94.5055
+            },
+            {
+              "symbol": "3030",
+              "name": "德律",
+              "value": 35.7243,
+              "rank": 7,
+              "percentile": 93.4066
+            },
+            {
+              "symbol": "3324",
+              "name": "雙鴻",
+              "value": 33.2692,
+              "rank": 8,
+              "percentile": 92.3077
+            },
+            {
+              "symbol": "3518",
+              "name": "柏騰",
+              "value": 32.7866,
+              "rank": 9,
+              "percentile": 91.2088
+            },
+            {
+              "symbol": "6196",
+              "name": "帆宣",
+              "value": 32.1262,
+              "rank": 10,
+              "percentile": 90.1099
+            }
+          ],
+          "current_company": {
+            "symbol": "2317",
+            "name": "鴻海",
+            "value": 11.984613701152913,
+            "rank": 39,
+            "percentile": 58.2418
+          },
+          "sample_size": 91,
+          "comparison_period": "2026 Q2"
+        },
+        "eps": {
+          "metric": "eps",
+          "label": "EPS",
+          "top10": [
+            {
+              "symbol": "2404",
+              "name": "漢唐",
+              "value": 36.23,
+              "rank": 1,
+              "percentile": 100.0
+            },
+            {
+              "symbol": "6139",
+              "name": "亞翔",
+              "value": 25.91,
+              "rank": 2,
+              "percentile": 98.9011
+            },
+            {
+              "symbol": "5536",
+              "name": "聖暉*",
+              "value": 23.73,
+              "rank": 3,
+              "percentile": 97.8022
+            },
+            {
+              "symbol": "3324",
+              "name": "雙鴻",
+              "value": 23.01,
+              "rank": 4,
+              "percentile": 96.7033
+            },
+            {
+              "symbol": "2360",
+              "name": "致茂",
+              "value": 21.27,
+              "rank": 5,
+              "percentile": 95.6044
+            },
+            {
+              "symbol": "6691",
+              "name": "洋基工程",
+              "value": 17.46,
+              "rank": 6,
+              "percentile": 94.5055
+            },
+            {
+              "symbol": "6903",
+              "name": "巨漢",
+              "value": 14.14,
+              "rank": 7,
+              "percentile": 93.4066
+            },
+            {
+              "symbol": "6739",
+              "name": "竹陞科技",
+              "value": 13.31,
+              "rank": 8,
+              "percentile": 92.3077
+            },
+            {
+              "symbol": "6196",
+              "name": "帆宣",
+              "value": 13.26,
+              "rank": 9,
+              "percentile": 91.2088
+            },
+            {
+              "symbol": "6409",
+              "name": "旭隼",
+              "value": 12.58,
+              "rank": 10,
+              "percentile": 90.1099
+            }
+          ],
+          "current_company": {
+            "symbol": "2317",
+            "name": "鴻海",
+            "value": 7.83,
+            "rank": 13,
+            "percentile": 86.8132
+          },
+          "sample_size": 91,
+          "comparison_period": "2026 Q2"
+        },
+        "revenue_yoy": {
+          "metric": "revenue_yoy",
+          "label": "營收 YoY",
+          "top10": [
+            {
+              "symbol": "3498",
+              "name": "陽程",
+              "value": 712.576403,
+              "rank": 1,
+              "percentile": 100.0
+            },
+            {
+              "symbol": "6654",
+              "name": "天正國際",
+              "value": 203.543413,
+              "rank": 2,
+              "percentile": 98.9362
+            },
+            {
+              "symbol": "8047",
+              "name": "星雲",
+              "value": 193.647901,
+              "rank": 3,
+              "percentile": 97.8723
+            },
+            {
+              "symbol": "6691",
+              "name": "洋基工程",
+              "value": 177.059287,
+              "rank": 4,
+              "percentile": 96.8085
+            },
+            {
+              "symbol": "2360",
+              "name": "致茂",
+              "value": 175.25829,
+              "rank": 5,
+              "percentile": 95.7447
+            },
+            {
+              "symbol": "6903",
+              "name": "巨漢",
+              "value": 160.932828,
+              "rank": 6,
+              "percentile": 94.6809
+            },
+            {
+              "symbol": "8499",
+              "name": "鼎炫-KY",
+              "value": 135.899073,
+              "rank": 7,
+              "percentile": 93.617
+            },
+            {
+              "symbol": "6658",
+              "name": "聯策",
+              "value": 128.194591,
+              "rank": 8,
+              "percentile": 92.5532
+            },
+            {
+              "symbol": "7631",
+              "name": "聚賢研發-創",
+              "value": 128.152433,
+              "rank": 9,
+              "percentile": 91.4894
+            },
+            {
+              "symbol": "3324",
+              "name": "雙鴻",
+              "value": 116.697139,
+              "rank": 10,
+              "percentile": 90.4255
+            }
+          ],
+          "current_company": {
+            "symbol": "2317",
+            "name": "鴻海",
+            "value": 54.189139,
+            "rank": 28,
+            "percentile": 71.2766
+          },
+          "sample_size": 94,
+          "comparison_period": "2026-07"
+        },
+        "pe": {
+          "metric": "pe",
+          "label": "PE",
+          "top10": [
+            {
+              "symbol": "8183",
+              "name": "精星",
+              "value": 8.51,
+              "rank": 1,
+              "percentile": 100.0
+            },
+            {
+              "symbol": "5225",
+              "name": "東科-KY",
+              "value": 9.04,
+              "rank": 2,
+              "percentile": 98.6842
+            },
+            {
+              "symbol": "2488",
+              "name": "漢平",
+              "value": 10.09,
+              "rank": 3,
+              "percentile": 97.3684
+            },
+            {
+              "symbol": "3303",
+              "name": "岱稜",
+              "value": 10.48,
+              "rank": 4,
+              "percentile": 96.0526
+            },
+            {
+              "symbol": "6192",
+              "name": "巨路",
+              "value": 11.17,
+              "rank": 5,
+              "percentile": 94.7368
+            },
+            {
+              "symbol": "4554",
+              "name": "橙的",
+              "value": 11.28,
+              "rank": 6,
+              "percentile": 93.4211
+            },
+            {
+              "symbol": "6855",
+              "name": "數泓科",
+              "value": 11.82,
+              "rank": 7,
+              "percentile": 92.1053
+            },
+            {
+              "symbol": "2459",
+              "name": "敦吉",
+              "value": 11.88,
+              "rank": 8,
+              "percentile": 90.7895
+            },
+            {
+              "symbol": "3617",
+              "name": "碩天",
+              "value": 12.24,
+              "rank": 9,
+              "percentile": 89.4737
+            },
+            {
+              "symbol": "3518",
+              "name": "柏騰",
+              "value": 13.36,
+              "rank": 10,
+              "percentile": 88.1579
+            }
+          ],
+          "current_company": {
+            "symbol": "2317",
+            "name": "鴻海",
+            "value": 16.41,
+            "rank": 25,
+            "percentile": 68.4211
+          },
+          "sample_size": 76,
+          "comparison_period": null
+        },
+        "pb": {
+          "metric": "pb",
+          "label": "PB",
+          "top10": [
+            {
+              "symbol": "2354",
+              "name": "鴻準",
+              "value": 0.74,
+              "rank": 1,
+              "percentile": 100.0
+            },
+            {
+              "symbol": "2474",
+              "name": "可成",
+              "value": 0.79,
+              "rank": 2,
+              "percentile": 98.9362
+            },
+            {
+              "symbol": "2477",
+              "name": "美隆電",
+              "value": 0.81,
+              "rank": 3,
+              "percentile": 97.8723
+            },
+            {
+              "symbol": "2390",
+              "name": "云辰",
+              "value": 0.84,
+              "rank": 4,
+              "percentile": 96.8085
+            },
+            {
+              "symbol": "8183",
+              "name": "精星",
+              "value": 0.84,
+              "rank": 4,
+              "percentile": 96.8085
+            },
+            {
+              "symbol": "2461",
+              "name": "光群雷",
+              "value": 0.98,
+              "rank": 6,
+              "percentile": 94.6809
+            },
+            {
+              "symbol": "3373",
+              "name": "熱映",
+              "value": 1,
+              "rank": 7,
+              "percentile": 93.617
+            },
+            {
+              "symbol": "3552",
+              "name": "同致",
+              "value": 1,
+              "rank": 7,
+              "percentile": 93.617
+            },
+            {
+              "symbol": "2482",
+              "name": "連宇",
+              "value": 1.11,
+              "rank": 9,
+              "percentile": 91.4894
+            },
+            {
+              "symbol": "8455",
+              "name": "大拓-KY",
+              "value": 1.11,
+              "rank": 9,
+              "percentile": 91.4894
+            }
+          ],
+          "current_company": {
+            "symbol": "2317",
+            "name": "鴻海",
+            "value": 1.83,
+            "rank": 32,
+            "percentile": 67.0213
+          },
+          "sample_size": 94,
+          "comparison_period": null
         }
       }
     }

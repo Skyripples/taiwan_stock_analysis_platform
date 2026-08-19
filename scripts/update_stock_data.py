@@ -393,6 +393,15 @@ def main() -> int:
                 "dividend_yield": compact["valuation"]["dividend_yield"]["value"],
                 "roe": compact["fundamentals"]["roe"]["value"], "eps": compact["fundamentals"]["eps"]["value"],
                 "revenue_yoy": compact["fundamentals"]["revenue_yoy"]["value"],
+                "gross_margin": compact["fundamentals"]["gross_margin"]["value"],
+                "operating_margin": compact["fundamentals"]["operating_margin"]["value"],
+                "net_margin": compact["fundamentals"]["net_margin"]["value"],
+                "debt_ratio": compact["fundamentals"]["debt_ratio"]["value"],
+                "current_ratio": compact["fundamentals"]["current_ratio"]["value"],
+                "financial_period": compact["fundamentals"]["report_period"],
+                "financial_date": compact["fundamentals"]["report_date"],
+                "revenue_period": compact["fundamentals"]["revenue_yoy"]["data_date"],
+                "valuation_date": compact["valuation"]["pe"]["data_date"],
             })
         except Exception as exc:
             LOGGER.debug("Industry snapshot skipped %s: %s", item["symbol"], exc)
