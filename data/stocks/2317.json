@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T14:14:08+00:00",
+  "updated_at": "2026-08-19T10:00:58+00:00",
   "provider": "TWSE/TPEx/MOPS",
   "dataset": "stock_analysis",
   "version": "1.0",
@@ -12,11 +12,11 @@
       "instrument_type": "company"
     },
     "quote": {
-      "trade_date": "2026-08-17",
-      "close": 255,
-      "change": -4.5,
-      "change_percent": -1.7341,
-      "volume": 35551968,
+      "trade_date": "2026-08-18",
+      "close": 249,
+      "change": -6,
+      "change_percent": -2.3529,
+      "volume": 50539577,
       "unit": {
         "price": "TWD",
         "volume": "shares"
@@ -24,23 +24,23 @@
     },
     "valuation": {
       "pe": {
-        "value": 16.81,
+        "value": 16.41,
         "unit": "ratio",
-        "data_date": "2026-08-17",
+        "data_date": "2026-08-18",
         "status": null,
         "note": null
       },
       "pb": {
-        "value": 1.87,
+        "value": 1.83,
         "unit": "ratio",
-        "data_date": "2026-08-17",
+        "data_date": "2026-08-18",
         "status": null,
         "note": null
       },
       "dividend_yield": {
-        "value": 2.81,
+        "value": 2.88,
         "unit": "%",
-        "data_date": "2026-08-17",
+        "data_date": "2026-08-18",
         "status": null,
         "note": null
       }
@@ -48,7 +48,7 @@
     "fundamentals": {
       "report_period": "2026Q2",
       "report_date": "2026-06-30",
-      "source_updated_at": "2026-08-18",
+      "source_updated_at": "2026-08-19",
       "eps": {
         "value": 4.27,
         "data_date": "2026-06-30",
@@ -138,30 +138,12 @@
       }
     },
     "chips": {
-      "trade_date": "2026-08-14",
+      "trade_date": "2026-08-18",
       "unit": {
         "institutional": "shares",
         "margin": "trading_units"
       },
       "history": [
-        {
-          "trade_date": "2026-05-21",
-          "foreign_net": 24043286,
-          "investment_trust_net": -163000,
-          "dealer_net": 992028,
-          "institutional_total": 24872314,
-          "margin_balance": 47198,
-          "short_balance": 848
-        },
-        {
-          "trade_date": "2026-05-22",
-          "foreign_net": 20814724,
-          "investment_trust_net": -84627,
-          "dealer_net": 301256,
-          "institutional_total": 21031353,
-          "margin_balance": 46734,
-          "short_balance": 826
-        },
         {
           "trade_date": "2026-05-25",
           "foreign_net": 52052205,
@@ -683,58 +665,76 @@
           "institutional_total": -300242,
           "margin_balance": 51051,
           "short_balance": 704
+        },
+        {
+          "trade_date": "2026-08-17",
+          "foreign_net": -9036510,
+          "investment_trust_net": -1681106,
+          "dealer_net": 482922,
+          "institutional_total": -10234694,
+          "margin_balance": 51454,
+          "short_balance": 608
+        },
+        {
+          "trade_date": "2026-08-18",
+          "foreign_net": -7859901,
+          "investment_trust_net": -4370881,
+          "dealer_net": -709701,
+          "institutional_total": -12940483,
+          "margin_balance": 51664,
+          "short_balance": 567
         }
       ],
       "summary": {
         "available_days": 60,
         "foreign_streak": {
-          "direction": "buy",
-          "days": 1
-        },
-        "investment_trust_streak": {
           "direction": "sell",
           "days": 2
         },
+        "investment_trust_streak": {
+          "direction": "sell",
+          "days": 4
+        },
         "five_day": {
-          "foreign_net": 5821586,
-          "investment_trust_net": -1842505,
-          "dealer_net": -1187088,
-          "institutional_total": 2791993
+          "foreign_net": -17816873,
+          "investment_trust_net": -8429050,
+          "dealer_net": -1713523,
+          "institutional_total": -27959446
         },
         "twenty_day": {
-          "foreign_net": 125467779,
-          "investment_trust_net": 6764075,
-          "dealer_net": 10614872,
-          "institutional_total": 142846726
+          "foreign_net": 85875217,
+          "investment_trust_net": -1837544,
+          "dealer_net": 4745394,
+          "institutional_total": 88783067
         }
       },
       "analysis": {
         "foreign_sum": {
-          "5d": 5821586,
-          "20d": 125467779,
-          "60d": 126672532
+          "5d": -17816873,
+          "20d": 85875217,
+          "60d": 64918111
         },
         "investment_trust_sum": {
-          "5d": -1842505,
-          "20d": 6764075,
-          "60d": 29611015
+          "5d": -8429050,
+          "20d": -1837544,
+          "60d": 23806655
         },
         "institutional_sum": {
-          "5d": 2791993,
-          "20d": 142846726,
-          "60d": 170633217
+          "5d": -27959446,
+          "20d": 88783067,
+          "60d": 101554373
         },
         "foreign_streak": {
-          "direction": "buy",
-          "days": 1
-        },
-        "investment_trust_streak": {
           "direction": "sell",
           "days": 2
         },
+        "investment_trust_streak": {
+          "direction": "sell",
+          "days": 4
+        },
         "margin_change": {
-          "5d": 616,
-          "20d": -6014
+          "5d": 1463,
+          "20d": -3955
         }
       }
     },
@@ -846,27 +846,27 @@
           {
             "key": "pe",
             "label": "PE",
-            "value": 16.81,
+            "value": 16.41,
             "unit": "ratio",
-            "data_date": "2026-08-17",
+            "data_date": "2026-08-18",
             "status": "positive",
             "note": null
           },
           {
             "key": "pb",
             "label": "PB",
-            "value": 1.87,
+            "value": 1.83,
             "unit": "ratio",
-            "data_date": "2026-08-17",
+            "data_date": "2026-08-18",
             "status": "positive",
             "note": null
           },
           {
             "key": "dividend_yield",
             "label": "殖利率",
-            "value": 2.81,
+            "value": 2.88,
             "unit": "%",
-            "data_date": "2026-08-17",
+            "data_date": "2026-08-18",
             "status": "neutral",
             "note": null
           }
@@ -913,14 +913,14 @@
     },
     "historical_valuation": {
       "pe": {
-        "current": 16.81,
+        "current": 16.41,
         "3y": {
           "sample_count": 36,
           "median": 15.815,
           "p25": 12.925,
           "p50": 15.815,
           "p75": 16.9925,
-          "current_percentile": 66.6667,
+          "current_percentile": 58.3333,
           "low": 10.73,
           "high": 20.53
         },
@@ -930,21 +930,21 @@
           "p25": 10.595,
           "p50": 12.54,
           "p75": 16.4075,
-          "current_percentile": 79.3103,
+          "current_percentile": 74.1379,
           "low": 9.47,
           "high": 20.53
         },
         "source_frequency": "monthly_last_available_trading_day"
       },
       "pb": {
-        "current": 1.87,
+        "current": 1.83,
         "3y": {
           "sample_count": 36,
           "median": 1.64,
           "p25": 1.2975,
           "p50": 1.64,
           "p75": 1.925,
-          "current_percentile": 66.6667,
+          "current_percentile": 63.8889,
           "low": 0.95,
           "high": 2.45
         },
@@ -954,21 +954,21 @@
           "p25": 1.0525,
           "p50": 1.165,
           "p75": 1.7225,
-          "current_percentile": 79.3103,
+          "current_percentile": 77.5862,
           "low": 0.95,
           "high": 2.45
         },
         "source_frequency": "monthly_last_available_trading_day"
       },
       "dividend_yield": {
-        "current": 2.81,
+        "current": 2.88,
         "3y": {
           "sample_count": 36,
           "median": 2.965,
           "p25": 2.72,
           "p50": 2.965,
           "p75": 3.8725,
-          "current_percentile": 30.5556,
+          "current_percentile": 41.6667,
           "low": 2.25,
           "high": 5.49
         },
@@ -978,308 +978,11 @@
           "p25": 2.8875,
           "p50": 3.845,
           "p75": 4.98,
-          "current_percentile": 18.9655,
+          "current_percentile": 25.8621,
           "low": 2.25,
           "high": 5.49
         },
         "source_frequency": "monthly_last_available_trading_day"
-      }
-    },
-    "health_v2": {
-      "applicable": true,
-      "rules_version": "2.0",
-      "categories": {
-        "growth": [
-          {
-            "key": "revenue_yoy",
-            "label": "月營收 YoY",
-            "value": 54.189139,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≥ 10；warning < 0",
-            "data_date": "2026-07"
-          },
-          {
-            "key": "eps_yoy",
-            "label": "EPS YoY",
-            "value": 33.855799,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≥ 10；warning < 0",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "eps_growth_streak",
-            "label": "EPS 連續成長期數",
-            "value": 2,
-            "unit": "quarters",
-            "status": "pass",
-            "threshold": "pass ≥ 2；warning < 0",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "quarter_revenue_yoy",
-            "label": "季營收 YoY",
-            "value": 40.838552,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≥ 10；warning < 0",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "roe",
-            "label": "ROE",
-            "value": 13.641545,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≥ 15；warning < 5",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "gross_margin_trend",
-            "label": "毛利率近四季變化",
-            "value": -0.232685,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≥ 0；warning < -2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "operating_margin_trend",
-            "label": "營業利益率近四季變化",
-            "value": 0.327411,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≥ 0；warning < -2",
-            "data_date": "2026-06-30"
-          }
-        ],
-        "risk": [
-          {
-            "key": "consecutive_losses",
-            "label": "連續虧損季度",
-            "value": 0,
-            "unit": "quarters",
-            "status": "pass",
-            "threshold": "pass ≤ 0；warning ≥ 2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "eps_decline_streak",
-            "label": "EPS 連續衰退期數",
-            "value": 0,
-            "unit": "quarters",
-            "status": "pass",
-            "threshold": "pass ≤ 0；warning ≥ 2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "debt_ratio",
-            "label": "負債比",
-            "value": 62.302201,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≤ 50；warning ≥ 70",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "current_ratio",
-            "label": "流動比率",
-            "value": 142.274777,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≥ 150；warning < 100",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "gross_margin_trend",
-            "label": "毛利率近四季變化",
-            "value": -0.232685,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≥ 0；warning < -2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "operating_margin_trend",
-            "label": "營業利益率近四季變化",
-            "value": 0.327411,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≥ 0；warning < -2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "negative_ocf_streak",
-            "label": "連續負 OCF 季數",
-            "value": 1,
-            "unit": "quarters",
-            "status": "neutral",
-            "threshold": "pass ≤ 0；warning ≥ 2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "negative_fcf_streak",
-            "label": "連續負 FCF 季數",
-            "value": 2,
-            "unit": "quarters",
-            "status": "warning",
-            "threshold": "pass ≤ 0；warning ≥ 2",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "debt_ratio_trend",
-            "label": "負債比近四季變化",
-            "value": -0.473537,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≤ 0；warning ≥ 5",
-            "data_date": "2026-06-30"
-          }
-        ],
-        "value": [
-          {
-            "key": "pe_percentile",
-            "label": "PE 歷史百分位",
-            "value": 79.3103,
-            "unit": "percent",
-            "status": "warning",
-            "threshold": "pass ≤ 25；warning ≥ 75",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "pb_percentile",
-            "label": "PB 歷史百分位",
-            "value": 79.3103,
-            "unit": "percent",
-            "status": "warning",
-            "threshold": "pass ≤ 25；warning ≥ 75",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "yield_percentile",
-            "label": "殖利率歷史百分位",
-            "value": 18.9655,
-            "unit": "percent",
-            "status": "warning",
-            "threshold": "pass ≥ 75；warning < 25",
-            "data_date": "2026-06-30"
-          }
-        ],
-        "quality": [
-          {
-            "key": "roe",
-            "label": "ROE",
-            "value": 13.641545,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≥ 15；warning < 5",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "ttm_eps",
-            "label": "TTM EPS",
-            "value": 15.22,
-            "unit": "TWD",
-            "status": "pass",
-            "threshold": "pass ≥ 1e-06；warning < 0",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "profit_margin_stability",
-            "label": "近四季獲利率波動",
-            "value": 1.149221,
-            "unit": "percent",
-            "status": "pass",
-            "threshold": "pass ≤ 5；warning ≥ 10",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "ttm_operating_cash_flow",
-            "label": "TTM OCF",
-            "value": 135854606,
-            "unit": "thousand_TWD",
-            "status": "pass",
-            "threshold": "pass ≥ 1e-06；warning < 0",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "ttm_free_cash_flow",
-            "label": "TTM FCF",
-            "value": -41644456,
-            "unit": "thousand_TWD",
-            "status": "warning",
-            "threshold": "pass ≥ 1e-06；warning < 0",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "debt_ratio",
-            "label": "負債比",
-            "value": 62.302201,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≤ 50；warning ≥ 70",
-            "data_date": "2026-06-30"
-          },
-          {
-            "key": "current_ratio",
-            "label": "流動比率",
-            "value": 142.274777,
-            "unit": "percent",
-            "status": "neutral",
-            "threshold": "pass ≥ 150；warning < 100",
-            "data_date": "2026-06-30"
-          }
-        ]
-      }
-    },
-    "industry_comparison": {
-      "applicable": true,
-      "industry": "其他電子業",
-      "minimum_samples": 5,
-      "metrics": {
-        "pe": {
-          "current": 16.81,
-          "industry_median": 22.625,
-          "percentile": 32.8947,
-          "sample_count": 76,
-          "status": "available"
-        },
-        "pb": {
-          "current": 1.87,
-          "industry_median": 2.58,
-          "percentile": 35.1064,
-          "sample_count": 94,
-          "status": "available"
-        },
-        "dividend_yield": {
-          "current": 2.81,
-          "industry_median": 2.295,
-          "percentile": 58.1395,
-          "sample_count": 86,
-          "status": "available"
-        },
-        "roe": {
-          "current": 13.641545,
-          "industry_median": 9.384,
-          "percentile": 61.5385,
-          "sample_count": 91,
-          "status": "available"
-        },
-        "eps": {
-          "current": 4.27,
-          "industry_median": 1.83,
-          "percentile": 74.7253,
-          "sample_count": 91,
-          "status": "available"
-        },
-        "revenue_yoy": {
-          "current": 54.189139,
-          "industry_median": 23.871937,
-          "percentile": 71.2766,
-          "sample_count": 94,
-          "status": "available"
-        }
       }
     },
     "financial_trends": {
@@ -1916,651 +1619,262 @@
       }
     },
     "peer_analysis": {
+      "snapshot": "./data/stocks/industry_snapshot.json",
+      "rankings": "./data/stocks/peer_rankings.json",
+      "symbol": "2317"
+    },
+    "health_v2": {
       "applicable": true,
-      "industry": "其他電子業",
-      "industry_company_count": 94,
-      "data_date": "2026-06-30",
-      "minimum_sample_size": 5,
-      "status_rules": {
-        "leading": "percentile >= 90",
-        "above_average": "60 <= percentile < 90",
-        "average": "40 <= percentile < 60",
-        "below_average": "10 <= percentile < 40",
-        "lagging": "percentile < 10",
-        "unavailable": "sample < 5, missing value, period mismatch, or context-only metric"
-      },
+      "rules_version": "2.0",
       "categories": {
-        "valuation": {
-          "pe": {
-            "company_value": 16.41,
-            "industry_sample_size": 94,
-            "industry_median": 22.345,
-            "percentile": 68.4211,
-            "rank": 25,
-            "total_ranked": 76,
-            "relative_status": "above_average",
-            "comparison_direction": "lower",
-            "comparison_period": null,
-            "data_date": "2026-08-18",
-            "period_mismatch_excluded": 0
-          },
-          "pb": {
-            "company_value": 1.83,
-            "industry_sample_size": 94,
-            "industry_median": 2.555,
-            "percentile": 67.0213,
-            "rank": 32,
-            "total_ranked": 94,
-            "relative_status": "above_average",
-            "comparison_direction": "lower",
-            "comparison_period": null,
-            "data_date": "2026-08-18",
-            "period_mismatch_excluded": 0
-          },
-          "dividend_yield": {
-            "company_value": 2.88,
-            "industry_sample_size": 94,
-            "industry_median": 2.335,
-            "percentile": 58.1395,
-            "rank": 37,
-            "total_ranked": 86,
-            "relative_status": "average",
-            "comparison_direction": "higher",
-            "comparison_period": null,
-            "data_date": "2026-08-18",
-            "period_mismatch_excluded": 0
-          }
-        },
-        "growth": {
-          "revenue_yoy": {
-            "company_value": 54.189139,
-            "industry_sample_size": 94,
-            "industry_median": 23.871937,
-            "percentile": 71.2766,
-            "rank": 28,
-            "total_ranked": 94,
-            "relative_status": "above_average",
-            "comparison_direction": "higher",
-            "comparison_period": "2026-07",
-            "data_date": "2026-07",
-            "period_mismatch_excluded": 0
-          },
-          "eps_yoy": {
-            "company_value": 33.85579937304074,
-            "industry_sample_size": 94,
-            "industry_median": null,
-            "percentile": null,
-            "rank": null,
-            "total_ranked": 1,
-            "relative_status": "unavailable",
-            "comparison_direction": "higher",
-            "comparison_period": "2026-06-30",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 93
-          }
-        },
-        "profitability": {
-          "eps": {
-            "company_value": 7.83,
-            "industry_sample_size": 94,
-            "industry_median": 1.83,
-            "percentile": 86.8132,
-            "rank": 13,
-            "total_ranked": 91,
-            "relative_status": "above_average",
-            "comparison_direction": "higher",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "roe": {
-            "company_value": 11.984613701152913,
-            "industry_sample_size": 94,
-            "industry_median": 9.384,
-            "percentile": 58.2418,
-            "rank": 39,
-            "total_ranked": 91,
-            "relative_status": "average",
-            "comparison_direction": "higher",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "gross_margin": {
-            "company_value": 6.146126725399318,
-            "industry_sample_size": 94,
-            "industry_median": 23.9433,
-            "percentile": 7.6923,
-            "rank": 85,
-            "total_ranked": 91,
-            "relative_status": "lagging",
-            "comparison_direction": "higher",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "operating_margin": {
-            "company_value": 3.6692362352372223,
-            "industry_sample_size": 94,
-            "industry_median": 7.6785,
-            "percentile": 36.2637,
-            "rank": 59,
-            "total_ranked": 91,
-            "relative_status": "below_average",
-            "comparison_direction": "higher",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "net_margin": {
-            "company_value": 2.7341333632137816,
-            "industry_sample_size": 94,
-            "industry_median": 8.52,
-            "percentile": 28.5714,
-            "rank": 66,
-            "total_ranked": 91,
-            "relative_status": "below_average",
-            "comparison_direction": "higher",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "ttm_eps": {
-            "company_value": 15.22,
-            "industry_sample_size": 94,
-            "industry_median": null,
-            "percentile": null,
-            "rank": null,
-            "total_ranked": 1,
-            "relative_status": "unavailable",
-            "comparison_direction": "higher",
-            "comparison_period": "2026-06-30",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 93
-          }
-        },
-        "safety": {
-          "debt_ratio": {
-            "company_value": 62.302201,
-            "industry_sample_size": 94,
-            "industry_median": 45.8012,
-            "percentile": 18.6813,
-            "rank": 75,
-            "total_ranked": 91,
-            "relative_status": "below_average",
-            "comparison_direction": "lower",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "current_ratio": {
-            "company_value": 142.274777,
-            "industry_sample_size": 94,
-            "industry_median": 182.2561,
-            "percentile": 26.3736,
-            "rank": null,
-            "total_ranked": 91,
-            "relative_status": "unavailable",
-            "comparison_direction": "context",
-            "comparison_period": "2026 Q2",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 3
-          },
-          "ttm_operating_cash_flow": {
-            "company_value": 135854606,
-            "industry_sample_size": 94,
-            "industry_median": null,
-            "percentile": null,
-            "rank": null,
-            "total_ranked": 1,
-            "relative_status": "unavailable",
-            "comparison_direction": "higher",
-            "comparison_period": "2026-06-30",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 93
-          },
-          "ttm_free_cash_flow": {
-            "company_value": -41644456,
-            "industry_sample_size": 94,
-            "industry_median": null,
-            "percentile": null,
-            "rank": null,
-            "total_ranked": 1,
-            "relative_status": "unavailable",
-            "comparison_direction": "higher",
-            "comparison_period": "2026-06-30",
-            "data_date": "2026-06-30",
-            "period_mismatch_excluded": 93
-          }
-        }
-      },
-      "rankings": {
-        "roe": {
-          "metric": "roe",
-          "label": "ROE",
-          "top10": [
-            {
-              "symbol": "2404",
-              "name": "漢唐",
-              "value": 75.3994,
-              "rank": 1,
-              "percentile": 100.0
-            },
-            {
-              "symbol": "6691",
-              "name": "洋基工程",
-              "value": 62.4891,
-              "rank": 2,
-              "percentile": 98.9011
-            },
-            {
-              "symbol": "6739",
-              "name": "竹陞科技",
-              "value": 60.2012,
-              "rank": 3,
-              "percentile": 97.8022
-            },
-            {
-              "symbol": "6139",
-              "name": "亞翔",
-              "value": 54.8108,
-              "rank": 4,
-              "percentile": 96.7033
-            },
-            {
-              "symbol": "2360",
-              "name": "致茂",
-              "value": 54.4519,
-              "rank": 5,
-              "percentile": 95.6044
-            },
-            {
-              "symbol": "6903",
-              "name": "巨漢",
-              "value": 51.146,
-              "rank": 6,
-              "percentile": 94.5055
-            },
-            {
-              "symbol": "3030",
-              "name": "德律",
-              "value": 35.7243,
-              "rank": 7,
-              "percentile": 93.4066
-            },
-            {
-              "symbol": "3324",
-              "name": "雙鴻",
-              "value": 33.2692,
-              "rank": 8,
-              "percentile": 92.3077
-            },
-            {
-              "symbol": "3518",
-              "name": "柏騰",
-              "value": 32.7866,
-              "rank": 9,
-              "percentile": 91.2088
-            },
-            {
-              "symbol": "6196",
-              "name": "帆宣",
-              "value": 32.1262,
-              "rank": 10,
-              "percentile": 90.1099
-            }
-          ],
-          "current_company": {
-            "symbol": "2317",
-            "name": "鴻海",
-            "value": 11.984613701152913,
-            "rank": 39,
-            "percentile": 58.2418
-          },
-          "sample_size": 91,
-          "comparison_period": "2026 Q2"
-        },
-        "eps": {
-          "metric": "eps",
-          "label": "EPS",
-          "top10": [
-            {
-              "symbol": "2404",
-              "name": "漢唐",
-              "value": 36.23,
-              "rank": 1,
-              "percentile": 100.0
-            },
-            {
-              "symbol": "6139",
-              "name": "亞翔",
-              "value": 25.91,
-              "rank": 2,
-              "percentile": 98.9011
-            },
-            {
-              "symbol": "5536",
-              "name": "聖暉*",
-              "value": 23.73,
-              "rank": 3,
-              "percentile": 97.8022
-            },
-            {
-              "symbol": "3324",
-              "name": "雙鴻",
-              "value": 23.01,
-              "rank": 4,
-              "percentile": 96.7033
-            },
-            {
-              "symbol": "2360",
-              "name": "致茂",
-              "value": 21.27,
-              "rank": 5,
-              "percentile": 95.6044
-            },
-            {
-              "symbol": "6691",
-              "name": "洋基工程",
-              "value": 17.46,
-              "rank": 6,
-              "percentile": 94.5055
-            },
-            {
-              "symbol": "6903",
-              "name": "巨漢",
-              "value": 14.14,
-              "rank": 7,
-              "percentile": 93.4066
-            },
-            {
-              "symbol": "6739",
-              "name": "竹陞科技",
-              "value": 13.31,
-              "rank": 8,
-              "percentile": 92.3077
-            },
-            {
-              "symbol": "6196",
-              "name": "帆宣",
-              "value": 13.26,
-              "rank": 9,
-              "percentile": 91.2088
-            },
-            {
-              "symbol": "6409",
-              "name": "旭隼",
-              "value": 12.58,
-              "rank": 10,
-              "percentile": 90.1099
-            }
-          ],
-          "current_company": {
-            "symbol": "2317",
-            "name": "鴻海",
-            "value": 7.83,
-            "rank": 13,
-            "percentile": 86.8132
-          },
-          "sample_size": 91,
-          "comparison_period": "2026 Q2"
-        },
-        "revenue_yoy": {
-          "metric": "revenue_yoy",
-          "label": "營收 YoY",
-          "top10": [
-            {
-              "symbol": "3498",
-              "name": "陽程",
-              "value": 712.576403,
-              "rank": 1,
-              "percentile": 100.0
-            },
-            {
-              "symbol": "6654",
-              "name": "天正國際",
-              "value": 203.543413,
-              "rank": 2,
-              "percentile": 98.9362
-            },
-            {
-              "symbol": "8047",
-              "name": "星雲",
-              "value": 193.647901,
-              "rank": 3,
-              "percentile": 97.8723
-            },
-            {
-              "symbol": "6691",
-              "name": "洋基工程",
-              "value": 177.059287,
-              "rank": 4,
-              "percentile": 96.8085
-            },
-            {
-              "symbol": "2360",
-              "name": "致茂",
-              "value": 175.25829,
-              "rank": 5,
-              "percentile": 95.7447
-            },
-            {
-              "symbol": "6903",
-              "name": "巨漢",
-              "value": 160.932828,
-              "rank": 6,
-              "percentile": 94.6809
-            },
-            {
-              "symbol": "8499",
-              "name": "鼎炫-KY",
-              "value": 135.899073,
-              "rank": 7,
-              "percentile": 93.617
-            },
-            {
-              "symbol": "6658",
-              "name": "聯策",
-              "value": 128.194591,
-              "rank": 8,
-              "percentile": 92.5532
-            },
-            {
-              "symbol": "7631",
-              "name": "聚賢研發-創",
-              "value": 128.152433,
-              "rank": 9,
-              "percentile": 91.4894
-            },
-            {
-              "symbol": "3324",
-              "name": "雙鴻",
-              "value": 116.697139,
-              "rank": 10,
-              "percentile": 90.4255
-            }
-          ],
-          "current_company": {
-            "symbol": "2317",
-            "name": "鴻海",
+        "growth": [
+          {
+            "key": "revenue_yoy",
+            "label": "月營收 YoY",
             "value": 54.189139,
-            "rank": 28,
-            "percentile": 71.2766
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-07"
           },
-          "sample_size": 94,
-          "comparison_period": "2026-07"
-        },
-        "pe": {
-          "metric": "pe",
-          "label": "PE",
-          "top10": [
-            {
-              "symbol": "8183",
-              "name": "精星",
-              "value": 8.51,
-              "rank": 1,
-              "percentile": 100.0
-            },
-            {
-              "symbol": "5225",
-              "name": "東科-KY",
-              "value": 9.04,
-              "rank": 2,
-              "percentile": 98.6842
-            },
-            {
-              "symbol": "2488",
-              "name": "漢平",
-              "value": 10.09,
-              "rank": 3,
-              "percentile": 97.3684
-            },
-            {
-              "symbol": "3303",
-              "name": "岱稜",
-              "value": 10.48,
-              "rank": 4,
-              "percentile": 96.0526
-            },
-            {
-              "symbol": "6192",
-              "name": "巨路",
-              "value": 11.17,
-              "rank": 5,
-              "percentile": 94.7368
-            },
-            {
-              "symbol": "4554",
-              "name": "橙的",
-              "value": 11.28,
-              "rank": 6,
-              "percentile": 93.4211
-            },
-            {
-              "symbol": "6855",
-              "name": "數泓科",
-              "value": 11.82,
-              "rank": 7,
-              "percentile": 92.1053
-            },
-            {
-              "symbol": "2459",
-              "name": "敦吉",
-              "value": 11.88,
-              "rank": 8,
-              "percentile": 90.7895
-            },
-            {
-              "symbol": "3617",
-              "name": "碩天",
-              "value": 12.24,
-              "rank": 9,
-              "percentile": 89.4737
-            },
-            {
-              "symbol": "3518",
-              "name": "柏騰",
-              "value": 13.36,
-              "rank": 10,
-              "percentile": 88.1579
-            }
-          ],
-          "current_company": {
-            "symbol": "2317",
-            "name": "鴻海",
-            "value": 16.41,
-            "rank": 25,
-            "percentile": 68.4211
+          {
+            "key": "eps_yoy",
+            "label": "EPS YoY",
+            "value": 33.855799,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-06-30"
           },
-          "sample_size": 76,
-          "comparison_period": null
-        },
-        "pb": {
-          "metric": "pb",
-          "label": "PB",
-          "top10": [
-            {
-              "symbol": "2354",
-              "name": "鴻準",
-              "value": 0.74,
-              "rank": 1,
-              "percentile": 100.0
-            },
-            {
-              "symbol": "2474",
-              "name": "可成",
-              "value": 0.79,
-              "rank": 2,
-              "percentile": 98.9362
-            },
-            {
-              "symbol": "2477",
-              "name": "美隆電",
-              "value": 0.81,
-              "rank": 3,
-              "percentile": 97.8723
-            },
-            {
-              "symbol": "2390",
-              "name": "云辰",
-              "value": 0.84,
-              "rank": 4,
-              "percentile": 96.8085
-            },
-            {
-              "symbol": "8183",
-              "name": "精星",
-              "value": 0.84,
-              "rank": 4,
-              "percentile": 96.8085
-            },
-            {
-              "symbol": "2461",
-              "name": "光群雷",
-              "value": 0.98,
-              "rank": 6,
-              "percentile": 94.6809
-            },
-            {
-              "symbol": "3373",
-              "name": "熱映",
-              "value": 1,
-              "rank": 7,
-              "percentile": 93.617
-            },
-            {
-              "symbol": "3552",
-              "name": "同致",
-              "value": 1,
-              "rank": 7,
-              "percentile": 93.617
-            },
-            {
-              "symbol": "2482",
-              "name": "連宇",
-              "value": 1.11,
-              "rank": 9,
-              "percentile": 91.4894
-            },
-            {
-              "symbol": "8455",
-              "name": "大拓-KY",
-              "value": 1.11,
-              "rank": 9,
-              "percentile": 91.4894
-            }
-          ],
-          "current_company": {
-            "symbol": "2317",
-            "name": "鴻海",
-            "value": 1.83,
-            "rank": 32,
-            "percentile": 67.0213
+          {
+            "key": "eps_growth_streak",
+            "label": "EPS 連續成長期數",
+            "value": 2,
+            "unit": "quarters",
+            "status": "pass",
+            "threshold": "pass ≥ 2；warning < 0",
+            "data_date": "2026-06-30"
           },
-          "sample_size": 94,
-          "comparison_period": null
-        }
+          {
+            "key": "quarter_revenue_yoy",
+            "label": "季營收 YoY",
+            "value": 40.838552,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≥ 10；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": 13.641545,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 15；warning < 5",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "gross_margin_trend",
+            "label": "毛利率近四季變化",
+            "value": -0.232685,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "operating_margin_trend",
+            "label": "營業利益率近四季變化",
+            "value": 0.327411,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          }
+        ],
+        "risk": [
+          {
+            "key": "consecutive_losses",
+            "label": "連續虧損季度",
+            "value": 0,
+            "unit": "quarters",
+            "status": "pass",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "eps_decline_streak",
+            "label": "EPS 連續衰退期數",
+            "value": 0,
+            "unit": "quarters",
+            "status": "pass",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "debt_ratio",
+            "label": "負債比",
+            "value": 62.302201,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≤ 50；warning ≥ 70",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "current_ratio",
+            "label": "流動比率",
+            "value": 142.274777,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 150；warning < 100",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "gross_margin_trend",
+            "label": "毛利率近四季變化",
+            "value": -0.232685,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "operating_margin_trend",
+            "label": "營業利益率近四季變化",
+            "value": 0.327411,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≥ 0；warning < -2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "negative_ocf_streak",
+            "label": "連續負 OCF 季數",
+            "value": 1,
+            "unit": "quarters",
+            "status": "neutral",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "negative_fcf_streak",
+            "label": "連續負 FCF 季數",
+            "value": 2,
+            "unit": "quarters",
+            "status": "warning",
+            "threshold": "pass ≤ 0；warning ≥ 2",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "debt_ratio_trend",
+            "label": "負債比近四季變化",
+            "value": -0.473537,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≤ 0；warning ≥ 5",
+            "data_date": "2026-06-30"
+          }
+        ],
+        "value": [
+          {
+            "key": "pe_percentile",
+            "label": "PE 歷史百分位",
+            "value": 74.1379,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≤ 25；warning ≥ 75",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "pb_percentile",
+            "label": "PB 歷史百分位",
+            "value": 77.5862,
+            "unit": "percent",
+            "status": "warning",
+            "threshold": "pass ≤ 25；warning ≥ 75",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "yield_percentile",
+            "label": "殖利率歷史百分位",
+            "value": 25.8621,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 75；warning < 25",
+            "data_date": "2026-06-30"
+          }
+        ],
+        "quality": [
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": 13.641545,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 15；warning < 5",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "ttm_eps",
+            "label": "TTM EPS",
+            "value": 15.22,
+            "unit": "TWD",
+            "status": "pass",
+            "threshold": "pass ≥ 1e-06；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "profit_margin_stability",
+            "label": "近四季獲利率波動",
+            "value": 1.149221,
+            "unit": "percent",
+            "status": "pass",
+            "threshold": "pass ≤ 5；warning ≥ 10",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "ttm_operating_cash_flow",
+            "label": "TTM OCF",
+            "value": 135854606,
+            "unit": "thousand_TWD",
+            "status": "pass",
+            "threshold": "pass ≥ 1e-06；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "ttm_free_cash_flow",
+            "label": "TTM FCF",
+            "value": -41644456,
+            "unit": "thousand_TWD",
+            "status": "warning",
+            "threshold": "pass ≥ 1e-06；warning < 0",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "debt_ratio",
+            "label": "負債比",
+            "value": 62.302201,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≤ 50；warning ≥ 70",
+            "data_date": "2026-06-30"
+          },
+          {
+            "key": "current_ratio",
+            "label": "流動比率",
+            "value": 142.274777,
+            "unit": "percent",
+            "status": "neutral",
+            "threshold": "pass ≥ 150；warning < 100",
+            "data_date": "2026-06-30"
+          }
+        ]
       }
+    },
+    "build_status": {
+      "state": "complete",
+      "mode": "all",
+      "updated_at": "2026-08-19T10:00:58+00:00"
     }
   },
   "sources": {

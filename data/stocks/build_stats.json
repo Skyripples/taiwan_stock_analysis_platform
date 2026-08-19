@@ -1,0 +1,44 @@
+{
+  "updated_at": "2026-08-19T10:03:11+00:00",
+  "mode": "all",
+  "selected": 2390,
+  "universe": {
+    "active": 2390,
+    "companies": 1981,
+    "inactive_retained": 0
+  },
+  "results": {
+    "complete": 411,
+    "partial": 1979,
+    "failed": 0,
+    "unchanged": 2390
+  },
+  "source_timings_seconds": {
+    "tpex_profile": 7.438,
+    "tpex_revenue": 6.883,
+    "tpex_quote": 2.753,
+    "latest_chips_twse_tpex": 1.961,
+    "tpex_valuation": 1.824,
+    "twse_revenue": 0.669,
+    "twse_quote": 0.546,
+    "twse_profile": 0.379,
+    "twse_balance": 0.339,
+    "twse_income": 0.258,
+    "tpex_income": 0.238,
+    "tpex_balance": 0.235,
+    "twse_eps": 0.211,
+    "tpex_eps": 0.2,
+    "twse_profitability": 0.191,
+    "twse_valuation": 0.186
+  },
+  "storage": {
+    "stock_json_files": 2390,
+    "total_bytes": 41024351,
+    "average_bytes": 17165.0,
+    "build_increment_bytes": 0,
+    "build_increment_files": 0,
+    "estimated_annual_full_rewrite_upper_bound_bytes": 10256087750,
+    "note": "Git delta compression normally uses less than the full-rewrite upper bound"
+  },
+  "duration_seconds": 25.96
+}

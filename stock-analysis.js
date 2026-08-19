@@ -8,6 +8,7 @@
   let currentFinancial = null;
   let financialRange = 8;
   let currentPeer = null;
+  let peerSnapshot = null;
 
   const missing = (value) => value === null || value === undefined || value === '';
   const signed = (value, digits = 0) => missing(value) ? '資料不足' : `${value > 0 ? '+' : ''}${Number(value).toLocaleString('zh-TW', { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
@@ -73,6 +74,47 @@
     if (missing(value)) return '資料不足';
     if (key === 'ttm_operating_cash_flow' || key === 'ttm_free_cash_flow') return `${fmt.format(value / 1000)} 百萬元`;
     return `${fmt.format(value)}${['dividend_yield', 'revenue_yoy', 'eps_yoy', 'roe', 'gross_margin', 'operating_margin', 'net_margin', 'debt_ratio', 'current_ratio'].includes(key) ? '%' : ''}`;
+  }
+  function buildPeerFromSnapshot(symbol) {
+    const rows = Array.isArray(peerSnapshot?.stocks) ? peerSnapshot.stocks : [];
+    const current = rows.find((row) => row.symbol === symbol);
+    if (!current) return { applicable: false, reason: '同業 Snapshot 尚未收錄' };
+    const specs = {
+      pe: ['valuation', 'lower', null], pb: ['valuation', 'lower', null], dividend_yield: ['valuation', 'higher', null],
+      revenue_yoy: ['growth', 'higher', 'revenue_period'], eps_yoy: ['growth', 'higher', 'multi_period'],
+      eps: ['profitability', 'higher', 'financial_period'], roe: ['profitability', 'higher', 'financial_period'],
+      gross_margin: ['profitability', 'higher', 'financial_period'], operating_margin: ['profitability', 'higher', 'financial_period'],
+      net_margin: ['profitability', 'higher', 'financial_period'], ttm_eps: ['profitability', 'higher', 'multi_period'],
+      debt_ratio: ['safety', 'lower', 'financial_period'], current_ratio: ['safety', 'context', 'financial_period'],
+      ttm_operating_cash_flow: ['safety', 'higher', 'multi_period'], ttm_free_cash_flow: ['safety', 'higher', 'multi_period']
+    };
+    const peers = rows.filter((row) => row.industry === current.industry);
+    const categories = { valuation: {}, growth: {}, profitability: {}, safety: {} };
+    const compare = (key) => {
+      const [category, direction, periodKey] = specs[key], period = periodKey ? current[periodKey] : null;
+      const valid = (row) => Number.isFinite(row[key]) && !(key === 'pe' && row[key] <= 0) && (!periodKey || row[periodKey] === period);
+      const eligible = peers.filter(valid), values = eligible.map((row) => row[key]).sort((a, b) => a - b), value = current[key];
+      const mismatch = periodKey ? peers.filter((row) => row[periodKey] !== period).length : 0;
+      const item = { company_value: value, industry_sample_size: peers.length, industry_median: null, percentile: null, rank: null, total_ranked: eligible.length, relative_status: 'unavailable', comparison_direction: direction, comparison_period: period, data_date: category === 'valuation' ? current.valuation_date : key === 'revenue_yoy' ? current.revenue_period : current.financial_date, period_mismatch_excluded: mismatch };
+      if (eligible.length < 5 || !valid(current)) return item;
+      const middle = Math.floor(values.length / 2); item.industry_median = values.length % 2 ? values[middle] : (values[middle - 1] + values[middle]) / 2;
+      if (direction === 'higher') { item.rank = 1 + values.filter((number) => number > value).length; item.percentile = values.filter((number) => number <= value).length / values.length * 100; }
+      else if (direction === 'lower') { item.rank = 1 + values.filter((number) => number < value).length; item.percentile = values.filter((number) => number >= value).length / values.length * 100; }
+      else item.percentile = values.filter((number) => number <= value).length / values.length * 100;
+      item.industry_median = Number(item.industry_median.toFixed(6)); item.percentile = Number(item.percentile.toFixed(4));
+      if (direction !== 'context') item.relative_status = item.percentile >= 90 ? 'leading' : item.percentile >= 60 ? 'above_average' : item.percentile >= 40 ? 'average' : item.percentile >= 10 ? 'below_average' : 'lagging';
+      return item;
+    };
+    Object.keys(specs).forEach((key) => { categories[specs[key][0]][key] = compare(key); });
+    const rankings = {};
+    for (const key of ['roe', 'eps', 'revenue_yoy', 'pe', 'pb']) {
+      const metric = categories[specs[key][0]][key], periodKey = specs[key][2], period = periodKey ? current[periodKey] : null;
+      const eligible = peers.filter((row) => Number.isFinite(row[key]) && !(key === 'pe' && row[key] <= 0) && (!periodKey || row[periodKey] === period));
+      eligible.sort((a, b) => specs[key][1] === 'higher' ? b[key] - a[key] : a[key] - b[key]);
+      const entry = (row) => ({ symbol: row.symbol, name: row.name, value: row[key], rank: specs[key][1] === 'higher' ? 1 + eligible.filter((peer) => peer[key] > row[key]).length : 1 + eligible.filter((peer) => peer[key] < row[key]).length, percentile: specs[key][1] === 'higher' ? eligible.filter((peer) => peer[key] <= row[key]).length / eligible.length * 100 : eligible.filter((peer) => peer[key] >= row[key]).length / eligible.length * 100 });
+      rankings[key] = { metric: key, top10: eligible.slice(0, 10).map(entry), current_company: eligible.some((row) => row.symbol === symbol) ? entry(current) : null, sample_size: metric.total_ranked, comparison_period: period };
+    }
+    return { applicable: true, industry: current.industry, industry_company_count: peers.length, data_date: current.financial_date || current.valuation_date, minimum_sample_size: 5, categories, rankings };
   }
   function renderPeerRanking() {
     const key = $('peerRankingMetric').value, ranking = currentPeer?.rankings?.[key], notice = $('peerRankingNotice'), body = $('peerRankingRows');
@@ -149,6 +191,9 @@
   }
   function render(payload) {
     const data = payload.data, profile = data.profile, quote = data.quote, valuation = data.valuation, fundamentals = data.fundamentals, chips = data.chips, analysis = chips.analysis || {};
+    const buildState = data.build_status?.state;
+    $('cacheStatus').hidden = buildState !== 'partial';
+    $('cacheStatus').textContent = buildState === 'partial' ? '資料建置中／部分資料可用；尚未完成的區塊會個別顯示資料不足。' : '';
     $('stockSymbol').textContent = profile.symbol;
     $('stockName').textContent = profile.name;
     $('stockMeta').textContent = `${profile.market === 'TWSE' ? '上市' : '上櫃'}｜${profile.industry}｜${profile.instrument_type === 'company' ? '一般公司' : 'ETF／其他證券'}`;
@@ -195,11 +240,17 @@
       currentFinancial = null;
       if (payload.data?.profile?.instrument_type === 'company') {
         try { currentFinancial = (await json(`./data/stocks/financials/${encodeURIComponent(symbol)}.json`)).data?.quarters || null; } catch { currentFinancial = null; }
+        if (payload.data.peer_analysis?.snapshot) {
+          try {
+            peerSnapshot ||= await json(payload.data.peer_analysis.snapshot);
+            payload.data.peer_analysis = buildPeerFromSnapshot(symbol);
+          } catch { payload.data.peer_analysis = { applicable: false, reason: '同業共用資料讀取失敗' }; }
+        }
       }
       render(payload);
       history.replaceState(null, '', `?symbol=${encodeURIComponent(symbol)}`);
     } catch (error) {
-      $('pageState').textContent = error.message === '尚未建立快取資料' ? `${symbol} 尚無快取資料。靜態網站需先執行 python scripts/update_stock_data.py --symbols ${symbol}` : `${symbol}：${error.message}`;
+      $('pageState').textContent = error.message === '尚未建立快取資料' ? `${symbol} 資料建置中，目前尚無個股快取；其他股票與搜尋功能仍可使用。` : `${symbol}：${error.message}`;
     }
   }
   async function init() {

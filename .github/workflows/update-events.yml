@@ -41,11 +41,19 @@ jobs:
 
       - name: Update stock analysis caches
         run: |
-          python scripts/backfill_stock_valuation.py
-          python scripts/update_stock_data.py
-          python scripts/update_stock_financials.py
-          python scripts/analyze_stock_data.py
-          python scripts/build_peer_analysis.py
+          python scripts/build_all_stocks.py --daily
+          if [ "$(date -u +%d)" = "01" ]; then
+            python scripts/build_all_stocks.py --monthly
+            python scripts/backfill_stock_valuation.py
+          fi
+          case "$(date -u +%m-%d)" in
+            02-15|05-15|08-15|11-15)
+              python scripts/build_all_stocks.py --quarterly
+              python scripts/update_stock_financials.py
+              python scripts/analyze_stock_data.py
+              python scripts/build_peer_analysis.py
+              ;;
+          esac
 
       - name: Update market signals
         run: |

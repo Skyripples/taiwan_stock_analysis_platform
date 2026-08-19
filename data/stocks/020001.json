@@ -1,0 +1,391 @@
+{
+  "updated_at": "2026-08-19T09:54:49+00:00",
+  "provider": "TWSE/TPEx/MOPS",
+  "dataset": "stock_analysis",
+  "version": "1.0",
+  "data": {
+    "profile": {
+      "symbol": "020001",
+      "name": "富邦存股雙十N",
+      "market": "TPEx",
+      "industry": "資料不足",
+      "instrument_type": "ETN"
+    },
+    "quote": {
+      "trade_date": "2026-08-19",
+      "close": null,
+      "change": null,
+      "change_percent": null,
+      "volume": 0,
+      "unit": {
+        "price": "TWD",
+        "volume": "shares"
+      }
+    },
+    "valuation": {
+      "pe": {
+        "value": null,
+        "unit": "ratio",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "pb": {
+        "value": null,
+        "unit": "ratio",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "dividend_yield": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": null
+      }
+    },
+    "fundamentals": {
+      "report_period": null,
+      "report_date": null,
+      "source_updated_at": null,
+      "eps": {
+        "value": null,
+        "unit": "TWD",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "eps_growth": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": "官方最新季度彙總未提供可可靠對齊的去年同期 EPS"
+      },
+      "roe": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": "累計稅後淨利年化／期末權益"
+      },
+      "revenue": {
+        "value": null,
+        "unit": "thousand_TWD",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "revenue_yoy": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "revenue_mom": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "gross_margin": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": "TPEx 標的由同季損益表計算"
+      },
+      "operating_margin": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": "TPEx 標的由同季損益表計算"
+      },
+      "net_margin": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": "TPEx 標的由同季損益表計算"
+      },
+      "book_value_per_share": {
+        "value": null,
+        "unit": "TWD",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "debt_ratio": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "current_ratio": {
+        "value": null,
+        "unit": "%",
+        "data_date": null,
+        "status": null,
+        "note": null
+      },
+      "operating_cash_flow": {
+        "value": null,
+        "unit": "thousand_TWD",
+        "data_date": null,
+        "status": null,
+        "note": "目前官方 OpenAPI 未提供一致的現金流量彙總"
+      },
+      "free_cash_flow": {
+        "value": null,
+        "unit": "thousand_TWD",
+        "data_date": null,
+        "status": null,
+        "note": "缺少可一致對齊的資本支出欄位"
+      }
+    },
+    "chips": {
+      "trade_date": null,
+      "unit": {
+        "institutional": "shares",
+        "margin": "trading_units"
+      },
+      "history": [],
+      "summary": {
+        "available_days": 0,
+        "foreign_streak": {
+          "direction": null,
+          "days": 0
+        },
+        "investment_trust_streak": {
+          "direction": null,
+          "days": 0
+        },
+        "five_day": {
+          "foreign_net": 0,
+          "investment_trust_net": 0,
+          "dealer_net": 0,
+          "institutional_total": 0
+        },
+        "twenty_day": {
+          "foreign_net": 0,
+          "investment_trust_net": 0,
+          "dealer_net": 0,
+          "institutional_total": 0
+        }
+      },
+      "analysis": {
+        "available_days": 0
+      }
+    },
+    "health": {
+      "applicable": true,
+      "rules": {
+        "positive_growth": {
+          "positive_min": 1e-06,
+          "warning_max": -1e-06
+        },
+        "roe": {
+          "positive_min": 15.0,
+          "warning_max": 5.0
+        },
+        "profit_margin": {
+          "positive_min": 10.0,
+          "warning_max": 0.0
+        },
+        "pe": {
+          "positive_max": 20.0,
+          "warning_min": 40.0
+        },
+        "pb": {
+          "positive_max": 3.0,
+          "warning_min": 6.0
+        },
+        "yield": {
+          "positive_min": 4.0,
+          "warning_max": 2.0
+        },
+        "debt_ratio": {
+          "positive_max": 50.0,
+          "warning_min": 70.0
+        },
+        "current_ratio": {
+          "positive_min": 200.0,
+          "warning_max": 100.0
+        }
+      },
+      "categories": {
+        "growth": [
+          {
+            "key": "revenue_yoy",
+            "label": "營收 YoY",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": null
+          },
+          {
+            "key": "eps_growth",
+            "label": "EPS 成長",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "官方最新季度彙總未提供可可靠對齊的去年同期 EPS"
+          },
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "累計稅後淨利年化／期末權益"
+          }
+        ],
+        "profitability": [
+          {
+            "key": "gross_margin",
+            "label": "毛利率",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "TPEx 標的由同季損益表計算"
+          },
+          {
+            "key": "operating_margin",
+            "label": "營業利益率",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "TPEx 標的由同季損益表計算"
+          },
+          {
+            "key": "net_margin",
+            "label": "稅後淨利率",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "TPEx 標的由同季損益表計算"
+          },
+          {
+            "key": "roe",
+            "label": "ROE",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "累計稅後淨利年化／期末權益"
+          }
+        ],
+        "valuation": [
+          {
+            "key": "pe",
+            "label": "PE",
+            "value": null,
+            "unit": "ratio",
+            "data_date": null,
+            "status": "unavailable",
+            "note": null
+          },
+          {
+            "key": "pb",
+            "label": "PB",
+            "value": null,
+            "unit": "ratio",
+            "data_date": null,
+            "status": "unavailable",
+            "note": null
+          },
+          {
+            "key": "dividend_yield",
+            "label": "殖利率",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": null
+          }
+        ],
+        "financial_risk": [
+          {
+            "key": "debt_ratio",
+            "label": "負債比",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": null
+          },
+          {
+            "key": "current_ratio",
+            "label": "流動比率",
+            "value": null,
+            "unit": "%",
+            "data_date": null,
+            "status": "unavailable",
+            "note": null
+          },
+          {
+            "key": "operating_cash_flow",
+            "label": "營業現金流",
+            "value": null,
+            "unit": "thousand_TWD",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "目前官方 OpenAPI 未提供一致的現金流量彙總"
+          },
+          {
+            "key": "free_cash_flow",
+            "label": "自由現金流",
+            "value": null,
+            "unit": "thousand_TWD",
+            "data_date": null,
+            "status": "unavailable",
+            "note": "缺少可一致對齊的資本支出欄位"
+          }
+        ]
+      }
+    },
+    "historical_valuation": {
+      "applicable": false,
+      "reason": "ETF／非一般公司不適用公司歷史估值"
+    },
+    "financial_trends": {
+      "applicable": false,
+      "reason": "ETF／非一般公司不適用公司財務分析"
+    },
+    "peer_analysis": {
+      "applicable": false,
+      "reason": "ETF／非一般公司不適用公司同業排名"
+    },
+    "health_v2": {
+      "applicable": false,
+      "reason": "ETF／非一般公司不適用公司健檢",
+      "rules_version": "2.0",
+      "categories": {}
+    },
+    "build_status": {
+      "state": "partial",
+      "mode": "all",
+      "updated_at": "2026-08-19T09:54:49+00:00"
+    }
+  },
+  "sources": {
+    "tpex_profile": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O",
+    "tpex_quote": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes",
+    "tpex_valuation": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_peratio_analysis",
+    "tpex_revenue": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap05_O",
+    "tpex_eps": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap14_O",
+    "tpex_income": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci",
+    "tpex_balance": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap07_O_ci"
+  }
+}

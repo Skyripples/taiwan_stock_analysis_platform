@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-19T09:30:27+00:00",
-  "version": "1.0",
+  "updated_at": "2026-08-19T09:53:26+00:00",
+  "version": "2.0",
   "rules": {
     "minimum_sample_size": 5,
     "metric_definitions": {
@@ -1054,11 +1054,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1785",
-            "name": "光洋科",
-            "value": 27.1953,
-            "rank": 15,
-            "percentile": 84.6154
+            "symbol": "2312",
+            "name": "金寶",
+            "value": 7.7413,
+            "rank": 50,
+            "percentile": 46.1538
           },
           "sample_size": 91,
           "comparison_period": "2026 Q2"
@@ -1139,11 +1139,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1785",
-            "name": "光洋科",
-            "value": 3.66,
-            "rank": 27,
-            "percentile": 71.4286
+            "symbol": "2312",
+            "name": "金寶",
+            "value": 0.7,
+            "rank": 61,
+            "percentile": 34.0659
           },
           "sample_size": 91,
           "comparison_period": "2026 Q2"
@@ -1224,11 +1224,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1785",
-            "name": "光洋科",
-            "value": 46.432595,
-            "rank": 33,
-            "percentile": 65.9574
+            "symbol": "2312",
+            "name": "金寶",
+            "value": 49.230116,
+            "rank": 32,
+            "percentile": 67.0213
           },
           "sample_size": 94,
           "comparison_period": "2026-07"
@@ -1309,11 +1309,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1785",
-            "name": "光洋科",
-            "value": 14.95,
-            "rank": 19,
-            "percentile": 76.3158
+            "symbol": "2312",
+            "name": "金寶",
+            "value": 26.85,
+            "rank": 49,
+            "percentile": 36.8421
           },
           "sample_size": 76,
           "comparison_period": null
@@ -1394,11 +1394,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1785",
-            "name": "光洋科",
-            "value": 3.68,
-            "rank": 61,
-            "percentile": 36.1702
+            "symbol": "2312",
+            "name": "金寶",
+            "value": 1.98,
+            "rank": 37,
+            "percentile": 61.7021
           },
           "sample_size": 94,
           "comparison_period": null
@@ -1926,11 +1926,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1595",
-            "name": "川寶",
-            "value": -3.956,
-            "rank": 177,
-            "percentile": 11.5578
+            "symbol": "2302",
+            "name": "麗正",
+            "value": 10.9091,
+            "rank": 106,
+            "percentile": 47.2362
           },
           "sample_size": 199,
           "comparison_period": "2026 Q2"
@@ -2011,11 +2011,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1595",
-            "name": "川寶",
-            "value": -0.98,
-            "rank": 188,
-            "percentile": 6.0302
+            "symbol": "2302",
+            "name": "麗正",
+            "value": 0.6,
+            "rank": 143,
+            "percentile": 28.6432
           },
           "sample_size": 199,
           "comparison_period": "2026 Q2"
@@ -2096,11 +2096,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1595",
-            "name": "川寶",
-            "value": 467.994296,
-            "rank": 4,
-            "percentile": 98.5437
+            "symbol": "2302",
+            "name": "麗正",
+            "value": 81.162449,
+            "rank": 33,
+            "percentile": 84.466
           },
           "sample_size": 206,
           "comparison_period": "2026-07"
@@ -2180,7 +2180,13 @@
               "percentile": 94.5783
             }
           ],
-          "current_company": null,
+          "current_company": {
+            "symbol": "2302",
+            "name": "麗正",
+            "value": 42.34,
+            "rank": 106,
+            "percentile": 36.747
+          },
           "sample_size": 166,
           "comparison_period": null
         },
@@ -2260,11 +2266,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1595",
-            "name": "川寶",
-            "value": 1.27,
-            "rank": 13,
-            "percentile": 94.1748
+            "symbol": "2302",
+            "name": "麗正",
+            "value": 4.1,
+            "rank": 135,
+            "percentile": 34.9515
           },
           "sample_size": 206,
           "comparison_period": null
@@ -3728,11 +3734,11 @@
             }
           ],
           "current_company": {
-            "symbol": "2640",
-            "name": "大車隊",
-            "value": 27.6088,
-            "rank": 9,
-            "percentile": 78.9474
+            "symbol": "3130",
+            "name": "一零四",
+            "value": 40.6624,
+            "rank": 1,
+            "percentile": 100.0
           },
           "sample_size": 38,
           "comparison_period": "2026 Q2"
@@ -3813,11 +3819,11 @@
             }
           ],
           "current_company": {
-            "symbol": "2640",
-            "name": "大車隊",
-            "value": 4.86,
-            "rank": 8,
-            "percentile": 81.5789
+            "symbol": "3130",
+            "name": "一零四",
+            "value": 9.6,
+            "rank": 2,
+            "percentile": 97.3684
           },
           "sample_size": 38,
           "comparison_period": "2026 Q2"
@@ -3898,11 +3904,11 @@
             }
           ],
           "current_company": {
-            "symbol": "2640",
-            "name": "大車隊",
-            "value": 15.710724,
-            "rank": 16,
-            "percentile": 62.5
+            "symbol": "3130",
+            "name": "一零四",
+            "value": 12.447146,
+            "rank": 22,
+            "percentile": 47.5
           },
           "sample_size": 40,
           "comparison_period": "2026-07"
@@ -3983,11 +3989,11 @@
             }
           ],
           "current_company": {
-            "symbol": "2640",
-            "name": "大車隊",
-            "value": 16.18,
-            "rank": 13,
-            "percentile": 62.5
+            "symbol": "3130",
+            "name": "一零四",
+            "value": 12.76,
+            "rank": 4,
+            "percentile": 90.625
           },
           "sample_size": 32,
           "comparison_period": null
@@ -4068,11 +4074,11 @@
             }
           ],
           "current_company": {
-            "symbol": "2640",
-            "name": "大車隊",
-            "value": 4.56,
-            "rank": 30,
-            "percentile": 27.5
+            "symbol": "3130",
+            "name": "一零四",
+            "value": 4.49,
+            "rank": 29,
+            "percentile": 30.0
           },
           "sample_size": 40,
           "comparison_period": null
@@ -6481,11 +6487,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1565",
-            "name": "精華",
-            "value": 4.7252,
-            "rank": 75,
-            "percentile": 48.9655
+            "symbol": "1707",
+            "name": "葡萄王",
+            "value": 11.2529,
+            "rank": 45,
+            "percentile": 69.6552
           },
           "sample_size": 145,
           "comparison_period": "2026 Q2"
@@ -6566,11 +6572,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1565",
-            "name": "精華",
-            "value": 3,
-            "rank": 26,
-            "percentile": 82.7586
+            "symbol": "1707",
+            "name": "葡萄王",
+            "value": 2.75,
+            "rank": 31,
+            "percentile": 79.3103
           },
           "sample_size": 145,
           "comparison_period": "2026 Q2"
@@ -6651,11 +6657,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1565",
-            "name": "精華",
-            "value": -10.191871,
-            "rank": 126,
-            "percentile": 19.3548
+            "symbol": "1707",
+            "name": "葡萄王",
+            "value": -5.076321,
+            "rank": 117,
+            "percentile": 25.1613
           },
           "sample_size": 155,
           "comparison_period": "2026-07"
@@ -6736,11 +6742,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1565",
-            "name": "精華",
-            "value": 11.77,
-            "rank": 20,
-            "percentile": 81.1881
+            "symbol": "1707",
+            "name": "葡萄王",
+            "value": 11.51,
+            "rank": 19,
+            "percentile": 82.1782
           },
           "sample_size": 101,
           "comparison_period": null
@@ -6821,11 +6827,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1565",
-            "name": "精華",
-            "value": 0.74,
-            "rank": 5,
-            "percentile": 97.4843
+            "symbol": "1707",
+            "name": "葡萄王",
+            "value": 1.29,
+            "rank": 37,
+            "percentile": 77.3585
           },
           "sample_size": 159,
           "comparison_period": null
@@ -8225,11 +8231,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1259",
-            "name": "安心",
-            "value": 4.6717,
-            "rank": 27,
-            "percentile": 45.8333
+            "symbol": "2701",
+            "name": "萬企",
+            "value": 3.0978,
+            "rank": 31,
+            "percentile": 37.5
           },
           "sample_size": 48,
           "comparison_period": "2026 Q2"
@@ -8310,11 +8316,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1259",
-            "name": "安心",
-            "value": 2.02,
-            "rank": 19,
-            "percentile": 62.5
+            "symbol": "2701",
+            "name": "萬企",
+            "value": 0.29,
+            "rank": 32,
+            "percentile": 35.4167
           },
           "sample_size": 48,
           "comparison_period": "2026 Q2"
@@ -8395,11 +8401,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1259",
-            "name": "安心",
-            "value": 7.762496,
-            "rank": 22,
-            "percentile": 58.0
+            "symbol": "2701",
+            "name": "萬企",
+            "value": -11.00256,
+            "rank": 41,
+            "percentile": 20.0
           },
           "sample_size": 50,
           "comparison_period": "2026-07"
@@ -8480,11 +8486,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1259",
-            "name": "安心",
-            "value": 18.53,
-            "rank": 27,
-            "percentile": 25.7143
+            "symbol": "2701",
+            "name": "萬企",
+            "value": 17.97,
+            "rank": 24,
+            "percentile": 34.2857
           },
           "sample_size": 35,
           "comparison_period": null
@@ -8565,11 +8571,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1259",
-            "name": "安心",
-            "value": 0.76,
-            "rank": 8,
-            "percentile": 86.0
+            "symbol": "2701",
+            "name": "萬企",
+            "value": 0.56,
+            "rank": 3,
+            "percentile": 96.0
           },
           "sample_size": 50,
           "comparison_period": null
@@ -12934,11 +12940,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1336",
-            "name": "台翰",
-            "value": 3.3816,
-            "rank": 130,
-            "percentile": 36.7647
+            "symbol": "1471",
+            "name": "首利",
+            "value": 2.9943,
+            "rank": 136,
+            "percentile": 33.8235
           },
           "sample_size": 204,
           "comparison_period": "2026 Q2"
@@ -13019,11 +13025,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1336",
-            "name": "台翰",
-            "value": 0.41,
-            "rank": 133,
-            "percentile": 35.2941
+            "symbol": "1471",
+            "name": "首利",
+            "value": 0.16,
+            "rank": 146,
+            "percentile": 28.9216
           },
           "sample_size": 204,
           "comparison_period": "2026 Q2"
@@ -13104,11 +13110,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1336",
-            "name": "台翰",
-            "value": 67.074132,
-            "rank": 38,
-            "percentile": 82.381
+            "symbol": "1471",
+            "name": "首利",
+            "value": -42.160555,
+            "rank": 206,
+            "percentile": 2.381
           },
           "sample_size": 210,
           "comparison_period": "2026-07"
@@ -13189,11 +13195,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1336",
-            "name": "台翰",
-            "value": 23.33,
-            "rank": 67,
-            "percentile": 60.7143
+            "symbol": "1471",
+            "name": "首利",
+            "value": 46.8,
+            "rank": 122,
+            "percentile": 27.9762
           },
           "sample_size": 168,
           "comparison_period": null
@@ -13274,11 +13280,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1336",
-            "name": "台翰",
-            "value": 0.72,
-            "rank": 8,
-            "percentile": 96.6667
+            "symbol": "1471",
+            "name": "首利",
+            "value": 0.96,
+            "rank": 17,
+            "percentile": 92.381
           },
           "sample_size": 210,
           "comparison_period": null
@@ -13806,11 +13812,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1569",
-            "name": "濱川",
-            "value": -13.9894,
-            "rank": 97,
-            "percentile": 9.434
+            "symbol": "2301",
+            "name": "光寶科",
+            "value": 22.5532,
+            "rank": 23,
+            "percentile": 79.2453
           },
           "sample_size": 106,
           "comparison_period": "2026 Q2"
@@ -13891,11 +13897,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1569",
-            "name": "濱川",
-            "value": -1.67,
-            "rank": 102,
-            "percentile": 4.717
+            "symbol": "2301",
+            "name": "光寶科",
+            "value": 4.8,
+            "rank": 26,
+            "percentile": 76.4151
           },
           "sample_size": 106,
           "comparison_period": "2026 Q2"
@@ -13976,11 +13982,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1569",
-            "name": "濱川",
-            "value": -14.204329,
-            "rank": 98,
-            "percentile": 11.0092
+            "symbol": "2301",
+            "name": "光寶科",
+            "value": 37.605268,
+            "rank": 47,
+            "percentile": 57.7982
           },
           "sample_size": 109,
           "comparison_period": "2026-07"
@@ -14060,7 +14066,13 @@
               "percentile": 89.5349
             }
           ],
-          "current_company": null,
+          "current_company": {
+            "symbol": "2301",
+            "name": "光寶科",
+            "value": 31.99,
+            "rank": 68,
+            "percentile": 22.093
+          },
           "sample_size": 86,
           "comparison_period": null
         },
@@ -14140,11 +14152,11 @@
             }
           ],
           "current_company": {
-            "symbol": "1569",
-            "name": "濱川",
-            "value": 2.17,
-            "rank": 63,
-            "percentile": 43.1193
+            "symbol": "2301",
+            "name": "光寶科",
+            "value": 6.48,
+            "rank": 101,
+            "percentile": 8.2569
           },
           "sample_size": 109,
           "comparison_period": null

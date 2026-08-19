@@ -166,12 +166,13 @@ def main()->int:
             if period_key=="revenue_period" and revenue_periods:representative[period_key]=revenue_periods.most_common(1)[0][0]
             rankings[key]=ranking(rows,representative,key)
         industries[industry]={"company_count":len(group),"financial_periods":dict(financial_periods),"revenue_periods":dict(revenue_periods),"rankings":rankings}
-    atomic(RANKING_PATH,{"updated_at":updated,"version":"1.0","rules":{"minimum_sample_size":MINIMUM_SAMPLE,"metric_definitions":METRICS},"industries":industries})
-    by_symbol={row["symbol"]:row for row in rows};count=0
+    by_symbol={row["symbol"]:row for row in rows}
+    atomic(RANKING_PATH,{"updated_at":updated,"version":"2.0","rules":{"minimum_sample_size":MINIMUM_SAMPLE,"metric_definitions":METRICS},"industries":industries})
+    count=0
     for path in STOCK_DIR.glob("*.json"):
-        if path.name in {"index.json","industry_snapshot.json","peer_rankings.json"}:continue
+        if path.name in {"index.json","industry_snapshot.json","peer_rankings.json","build_stats.json"}:continue
         payload=json.loads(path.read_text(encoding="utf-8"));data=payload.get("data",{});profile=data.get("profile",{});symbol=profile.get("symbol")
-        data["peer_analysis"]=peer_analysis(rows,by_symbol[symbol]) if profile.get("instrument_type")=="company" and symbol in by_symbol else {"applicable":False,"reason":"ETF／非一般公司不適用公司同業排名"}
+        data["peer_analysis"]={"snapshot":"./data/stocks/industry_snapshot.json","rankings":"./data/stocks/peer_rankings.json","symbol":symbol} if profile.get("instrument_type")=="company" and symbol in by_symbol else {"applicable":False,"reason":"ETF／非一般公司不適用公司同業排名"}
         atomic(path,payload);count+=1
     print(f"Peer analysis updated: stocks={count} industries={len(industries)} snapshot={len(rows)}")
     return 0
