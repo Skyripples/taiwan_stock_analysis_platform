@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-08-21T07:57:16+08:00",
+  "version": "V3.11 Phase 4.1",
+  "status": "passed",
+  "baseline": {
+    "external_single_request_ms": "566-570",
+    "github_page_requirement_ms": 750,
+    "api_transfer_reduction_percent": 91.72
+  },
+  "latency_breakdown": {
+    "method": "20 independent HTTPS requests per endpoint from the development PC, plus direct Linode/Uvicorn and PostgreSQL measurements",
+    "external_warm_p50_ms": {
+      "health": 552.578,
+      "stock_detail": 550.336,
+      "financials": 553.101,
+      "chips": 719.541,
+      "industry_peers": 971.061
+    },
+    "external_components_typical_ms": {
+      "dns": "6-7",
+      "tcp_cumulative": "175-179",
+      "tls_cumulative": "367-383",
+      "request_and_first_byte_after_tls": "183-351",
+      "note": "Independent curl processes intentionally include a fresh TCP/TLS connection. Network conditions varied from the earlier 566-570 ms baseline."
+    },
+    "linode_direct_uvicorn_ms": {
+      "health": {"cold": 8.543, "warm": 2.517},
+      "stock_detail": {"cold": 15.55, "warm": 1.723},
+      "financials": {"cold": 3.374, "warm": 2.879},
+      "chips": {"cold": 3.281, "warm": 3.231},
+      "industry_peers": {"cold": 33.71, "warm": 2.47}
+    },
+    "database_service_warm_p50_ms": {
+      "stock_detail": 3.171,
+      "financials": 0.906,
+      "chips": 1.036,
+      "industry_peers_uncached_before": 23.23,
+      "industry_peers_uncached_after": 13.088
+    },
+    "postgresql_explain_execution_ms": {
+      "stock_lookup": 0.069,
+      "financials": 0.098,
+      "chips": 0.072,
+      "industry_ranking": 0.572,
+      "industry_peer_aggregate_before": 27.255,
+      "industry_peer_aggregate_after": 17.835
+    },
+    "fastapi_middleware_and_serialization_estimate_ms": "approximately 1-4 warm; included in direct Uvicorn figures"
+  },
+  "bottleneck": {
+    "primary": "WAN round trips and fresh TCP/TLS handshakes between Taiwan and the Tokyo Linode",
+    "secondary": "Large industry peer response transfer; application cache already avoids repeated PostgreSQL work",
+    "database_index_required": false,
+    "n_plus_one_detected": false,
+    "connection_pool_reused": true
+  },
+  "changes": {
+    "nginx_http2": true,
+    "nginx_upstream_keepalive_connections": 32,
+    "industry_peer_query": "Limit valuation, revenue and health aggregation to the requested industry's stocks before aggregation; no new index",
+    "response_cache_added": false,
+    "response_cache_reason": "FastAPI/DB warm processing is only 2-5 ms for normal endpoints and existing in-process cache already covers stock detail and peers. Nginx caching would add invalidation/staleness complexity without removing WAN RTT.",
+    "schema_changed": false,
+    "response_contract_changed": false
+  },
+  "full_page_same_condition": {
+    "method": "20 runs from the same development PC; stock detail first, then financials/chips/peers concurrently; new client per run",
+    "http_1_1": {"cold_ms": 1849.43, "p50_ms": 1379.01, "p95_ms": 1895.6, "max_ms": 1951.74},
+    "http_2": {"cold_ms": 807.91, "p50_ms": 752.15, "p95_ms": 916.57, "max_ms": 920.26},
+    "p50_improvement_percent": 45.46,
+    "cold_improvement_percent": 56.32,
+    "response_bytes_uncompressed": 118823,
+    "error_rate": 0
+  },
+  "concurrency_20_requests_200": {
+    "scope": "Direct Uvicorn capacity test on Linode so the intentional public 10 req/s rate limit does not distort backend capacity",
+    "before": {"requests_per_second": 189.63, "p50_ms": 88.718, "p95_ms": 237.075, "ram_after_bytes": 183656448, "cpu_percent": 45.51, "error_rate": 0},
+    "after": {"requests_per_second": 222.24, "p50_ms": 85.843, "p95_ms": 127.551, "max_ms": 170.452, "ram_after_bytes": 182165504, "cpu_percent": 50.0, "error_rate": 0},
+    "note": "HTTP/2 does not affect this direct-Uvicorn test; the before/after difference is runtime variation, not attributed to the Nginx change."
+  },
+  "frontend_concurrency": {
+    "stock_detail_dependency": "required first to obtain industry",
+    "after_profile": ["financials", "chips", "industry_peers"],
+    "execution": "Promise.allSettled in parallel",
+    "unnecessary_serial_requests": false
+  },
+  "security_and_compatibility": {
+    "cors_preserved": true,
+    "rate_limit_preserved": true,
+    "security_headers_preserved": true,
+    "etag_and_cache_control_preserved": true,
+    "null_semantics_preserved": true,
+    "github_fallback_preserved": true
+  }
+}

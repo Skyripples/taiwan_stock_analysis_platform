@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-08-20T02:26:11+00:00",
+  "status": "passed",
+  "json_source_updated_at": "2026-08-19T10:03:11+00:00",
+  "json_expected_rows": {
+    "stocks": 2390,
+    "stock_quotes": 2390,
+    "stock_valuations": 2146,
+    "stock_monthly_revenue": 1971,
+    "stock_financials": 36,
+    "stock_chips": 6660,
+    "stock_health": 51506,
+    "industry_rankings": 1736
+  },
+  "database": {
+    "postgresql_version": "16.14 (Ubuntu 16.14-0ubuntu0.24.04.1)",
+    "size_bytes": 35879959,
+    "table_rows": {
+      "stocks": 2390,
+      "stock_quotes": 2390,
+      "stock_valuations": 2146,
+      "stock_monthly_revenue": 1971,
+      "stock_financials": 36,
+      "stock_chips": 6660,
+      "stock_health": 51506,
+      "industry_rankings": 1736,
+      "pipeline_runs": 7
+    }
+  },
+  "sample_validation": {
+    "symbols": [
+      "2330", "2317", "6488", "2881", "1101", "0050", "3217", "3122",
+      "009806", "6264", "6679", "2030", "3388", "8358", "00849B", "8047",
+      "6214", "4155", "3684", "1110", "2023", "3135", "3508", "00961",
+      "9905", "2882", "3171", "5234", "3686", "6456", "6577", "00773B",
+      "3152", "1517", "00725B", "8040", "911868", "9917", "1309", "6613",
+      "2633", "1583", "00908", "6277", "3564", "00696B", "2542", "020012",
+      "00888", "9926", "2477", "7708", "6670", "00922", "3489"
+    ],
+    "records_checked": 788,
+    "failures": [],
+    "passed": true
+  },
+  "idempotency": {
+    "before": {
+      "stocks": 2390,
+      "stock_quotes": 2390,
+      "stock_valuations": 2146,
+      "stock_monthly_revenue": 1971,
+      "stock_financials": 36,
+      "stock_chips": 6660,
+      "stock_health": 51506,
+      "industry_rankings": 1736,
+      "pipeline_runs": 6
+    },
+    "after": {
+      "stocks": 2390,
+      "stock_quotes": 2390,
+      "stock_valuations": 2146,
+      "stock_monthly_revenue": 1971,
+      "stock_financials": 36,
+      "stock_chips": 6660,
+      "stock_health": 51506,
+      "industry_rankings": 1736,
+      "pipeline_runs": 7
+    },
+    "data_table_counts_unchanged": true
+  },
+  "transaction_tests": {
+    "upsert_update_path": true,
+    "rollback_restores_update": true,
+    "rollback_removes_insert": true
+  },
+  "limitations": [],
+  "duration_seconds": 7.504
+}

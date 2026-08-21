@@ -1,4 +1,4 @@
-# 台股投資分析平台 V3.10
+# 台股投資分析平台 V3.11
 
 ## 功能
 
@@ -36,6 +36,12 @@
   - 全市場官方資料採批次取得並依股票代號分流，支援每日、每月、每季與單一股票增量更新
   - 新上市櫃股票自動加入，下市櫃股票保留既有歷史快取並標記為非 active
   - ETF、ETN、權證等維持可搜尋，但不套用公司財報、健檢與同業排名
+- V3.11 PostgreSQL 與 REST API：
+  - 全市場個股資料以 Linode PostgreSQL 為正式主要資料源，並由 FastAPI 提供 HTTPS REST API
+  - 個股頁優先讀取 API；服務異常時自動切換至 GitHub 白名單備援資料
+  - API 使用 HTTP/2、連線池、短期快取、ETag、Rate Limit、CORS 與安全標頭
+  - GitHub 保留完整搜尋 index 與 6 檔熱門股票 fallback，停止每日提交 2,390 份個股 JSON
+  - 提供資料庫同步、API／JSON 一致性驗證及資料服務狀態 manifest
 - 隔日行情預測 Beta：
   - 使用 15 個正式市場特徵的 Logistic Regression Baseline Model
   - 依時間序列進行 Walk-forward Validation，避免未來資料洩漏

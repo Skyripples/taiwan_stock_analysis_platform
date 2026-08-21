@@ -1,0 +1,30 @@
+[Unit]
+Description=Taiwan Stock Analysis REST API
+After=network-online.target postgresql.service
+Wants=network-online.target
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=stock-sync
+Group=stock-sync
+WorkingDirectory=/opt/taiwan_stock_analysis_platform
+EnvironmentFile=/etc/taiwan-stock-analysis/sync.env
+Environment=PYTHONPATH=/opt/taiwan_stock_analysis_platform/scripts
+ExecStart=/opt/taiwan_stock_analysis_platform/.venv/bin/uvicorn api.app:app --host 127.0.0.1 --port 8000 --workers 2 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=false
+
+[Install]
+WantedBy=multi-user.target

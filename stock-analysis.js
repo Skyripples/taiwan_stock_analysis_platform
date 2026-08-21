@@ -2,7 +2,10 @@
   const $ = (id) => document.getElementById(id);
   const fmt = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 2 });
   const whole = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
-  let stocks = [];
+  const dataService = new StockDataService();
+  const sourceState = new Map();
+  let searchSequence = 0;
+  let searchTimer = null;
   let currentChips = null;
   let chipsRange = 20;
   let currentFinancial = null;
@@ -17,20 +20,28 @@
     node.classList.remove('tone-positive', 'tone-negative', 'tone-neutral');
     node.classList.add(value > 0 ? 'tone-positive' : value < 0 ? 'tone-negative' : 'tone-neutral');
   }
-  async function json(path) {
-    const response = await fetch(path, { cache: 'no-store' });
-    if (!response.ok) throw new Error(response.status === 404 ? '尚未建立快取資料' : '讀取失敗');
-    try { return await response.json(); } catch { throw new Error('資料格式錯誤'); }
+  const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
+  function source(section, result) { sourceState.set(section, result.source); if (result.updatedAt) sourceState.set('updatedAt', result.updatedAt); }
+  function renderSourceStatus() {
+    const values = [...sourceState.entries()].filter(([key]) => key !== 'updatedAt').map(([, value]) => value);
+    const fallback = values.includes('fallback');
+    $('dataSourceStatus').classList.toggle('is-fallback', fallback);
+    $('dataSourceStatus').textContent = `${fallback ? '備援資料' : '即時 API'}${sourceState.get('updatedAt') ? `｜更新：${sourceState.get('updatedAt')}` : ''}`;
   }
   function results(items) {
     const box = $('searchResults');
-    box.innerHTML = items.slice(0, 20).map((stock) => `<button class="search-result" type="button" data-symbol="${stock.symbol}" role="option"><span><strong>${stock.symbol}</strong> ${stock.name}</span><small>${stock.market === 'TWSE' ? '上市' : '上櫃'}｜${stock.industry || '產業資料不足'}${stock.cached ? '' : '｜尚未快取'}</small></button>`).join('');
+    box.innerHTML = items.slice(0, 20).map((stock) => `<button class="search-result" type="button" data-symbol="${escapeHtml(stock.symbol)}" role="option"><span><strong>${escapeHtml(stock.symbol)}</strong> ${escapeHtml(stock.name)}</span><small>${stock.market === 'TWSE' ? '上市' : '上櫃'}｜${escapeHtml(stock.industry || '產業資料不足')}${stock.cached ? '' : '｜資料建置中'}</small></button>`).join('');
     box.hidden = !items.length;
     box.querySelectorAll('button').forEach((button) => { button.onclick = () => select(button.dataset.symbol); });
   }
-  function search() {
-    const query = $('stockSearch').value.trim().toLowerCase();
-    results(query ? stocks.filter((stock) => stock.symbol.toLowerCase().includes(query) || stock.name.toLowerCase().includes(query)) : stocks.filter((stock) => stock.cached));
+  async function search() {
+    const query = $('stockSearch').value.trim(), sequence = ++searchSequence;
+    if (!query) { $('searchResults').hidden = true; return []; }
+    try {
+      const response = await dataService.searchStocks(query, { limit: 20 });
+      if (sequence !== searchSequence) return [];
+      results(response.data); return response.data;
+    } catch { if (sequence === searchSequence) results([]); return []; }
   }
   function metricCard(label, item) {
     const value = missing(item?.value) ? '資料不足' : item.unit === 'thousand_TWD' ? `${fmt.format(item.value / 1000)} 百萬元` : `${fmt.format(item.value)}${item.unit === '%' || item.unit === 'percent' ? '%' : item.unit === 'TWD' ? ' 元' : ''}`;
@@ -235,35 +246,34 @@
     $('pageState').hidden = false;
     $('pageState').textContent = `正在載入 ${symbol}…`;
     $('stockContent').hidden = true;
+    sourceState.clear();
     try {
-      const payload = await json(`./data/stocks/${encodeURIComponent(symbol)}.json`);
-      currentFinancial = null;
-      if (payload.data?.profile?.instrument_type === 'company') {
-        try { currentFinancial = (await json(`./data/stocks/financials/${encodeURIComponent(symbol)}.json`)).data?.quarters || null; } catch { currentFinancial = null; }
-        if (payload.data.peer_analysis?.snapshot) {
-          try {
-            peerSnapshot ||= await json(payload.data.peer_analysis.snapshot);
-            payload.data.peer_analysis = buildPeerFromSnapshot(symbol);
-          } catch { payload.data.peer_analysis = { applicable: false, reason: '同業共用資料讀取失敗' }; }
-        }
-      }
+      const detail = await dataService.getStock(symbol), payload = detail.data;
+      source('detail', detail); currentFinancial = null;
+      const profile = payload.data?.profile || {};
+      const [financial, chips, peers] = await Promise.allSettled([
+        profile.instrument_type === 'company' ? dataService.getFinancials(symbol, 12) : Promise.resolve({ data: [], source: 'api' }),
+        dataService.getChips(symbol, 60),
+        dataService.getIndustryPeers(profile.industry, symbol)
+      ]);
+      if (financial.status === 'fulfilled') { currentFinancial = financial.value.data; source('financials', financial.value); }
+      if (chips.status === 'fulfilled') { payload.data.chips = chips.value.data; source('chips', chips.value); }
+      if (peers.status === 'fulfilled') { payload.data.peer_analysis = peers.value.data; source('peers', peers.value); }
+      else payload.data.peer_analysis = { applicable: false, reason: '同業資料暫時無法使用' };
       render(payload);
+      renderSourceStatus();
       history.replaceState(null, '', `?symbol=${encodeURIComponent(symbol)}`);
     } catch (error) {
-      $('pageState').textContent = error.message === '尚未建立快取資料' ? `${symbol} 資料建置中，目前尚無個股快取；其他股票與搜尋功能仍可使用。` : `${symbol}：${error.message}`;
+      $('pageState').textContent = error.code === 'NOT_FOUND' ? `查無 ${symbol} 的個股資料` : '目前無法載入個股資料，請稍後再試';
     }
   }
   async function init() {
-    try {
-      const index = await json('./data/stocks/index.json');
-      stocks = Array.isArray(index.stocks) ? index.stocks : [];
-      $('pageState').textContent = `已載入 ${whole.format(stocks.length)} 檔證券清單`;
-      await select(new URLSearchParams(location.search).get('symbol') || '2330');
-    } catch (error) { $('pageState').textContent = `初始化失敗：${error.message}`; }
+    await select(new URLSearchParams(location.search).get('symbol') || '2330');
   }
-  $('stockSearch').addEventListener('input', search);
-  $('stockSearch').addEventListener('keydown', (event) => { if (event.key === 'Enter') select($('stockSearch').value.trim()); });
-  $('searchButton').onclick = () => select($('stockSearch').value.trim());
+  const submitSearch = async () => { const query = $('stockSearch').value.trim(); if (/^[0-9A-Za-z]{2,10}$/.test(query)) select(query); else await search(); };
+  $('stockSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(search, 180); });
+  $('stockSearch').addEventListener('keydown', (event) => { if (event.key === 'Enter') submitSearch(); });
+  $('searchButton').onclick = submitSearch;
   document.querySelectorAll('[data-chips-range]').forEach((button) => { button.addEventListener('click', () => { chipsRange = Number(button.dataset.chipsRange); document.querySelectorAll('[data-chips-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderChipsTrend(); }); });
   document.querySelectorAll('[data-financial-range]').forEach((button) => { button.addEventListener('click', () => { financialRange = Number(button.dataset.financialRange); document.querySelectorAll('[data-financial-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderFinancialTrend(); }); });
   $('peerRankingMetric').addEventListener('change', renderPeerRanking);

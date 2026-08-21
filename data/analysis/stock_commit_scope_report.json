@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-08-21T01:20:15+00:00",
+  "status": "passed",
+  "fallback_symbols": [
+    "2330",
+    "2317",
+    "6488",
+    "2881",
+    "1101",
+    "0050"
+  ],
+  "fallback_count": 6,
+  "daily_individual_stock_json_count": 6,
+  "existing_fallback_artifact_count": 12,
+  "daily_candidate_raw_bytes": 2362604,
+  "daily_candidate_independent_gzip_bytes": 223343,
+  "estimated_annual_gzip_upper_bound_bytes": 55835750,
+  "tracked_stock_artifact_count": 2400,
+  "git_directory_bytes": 4181445,
+  "staged_paths": [],
+  "unexpected_staged_stock_paths": [],
+  "history_rewrite_performed": false,
+  "errors": []
+}

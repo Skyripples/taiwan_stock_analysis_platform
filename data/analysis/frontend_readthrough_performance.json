@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-08-21T02:38:15+08:00",
+  "method": "Five external HTTPS requests per resource from the development PC; curl compressed transfer bytes",
+  "resources": {
+    "stock_detail": {
+      "api": {"median_ms": 565.91, "average_ms": 566.12, "bytes": 2445},
+      "github": {"median_ms": 301.84, "average_ms": 348.35, "bytes": 9681},
+      "byte_reduction_percent": 74.74
+    },
+    "financials": {
+      "api": {"median_ms": 569.69, "average_ms": 577.36, "bytes": 1665},
+      "github": {"median_ms": 304.79, "average_ms": 347.61, "bytes": 3055},
+      "byte_reduction_percent": 45.5
+    },
+    "industry_peers": {
+      "api": {"median_ms": 570.15, "average_ms": 578.78, "bytes": 8747},
+      "github": {"median_ms": 449.54, "average_ms": 531.46, "bytes": 142600},
+      "byte_reduction_percent": 93.87
+    }
+  },
+  "combined_transfer": {
+    "api_bytes": 12857,
+    "github_bytes": 155336,
+    "byte_reduction_percent": 91.72
+  },
+  "finding": "The API materially reduces transfer size. In this test it did not beat GitHub CDN latency; API-first estimated critical-path latency was about 1.14 seconds versus 0.75 seconds for GitHub JSON."
+}
