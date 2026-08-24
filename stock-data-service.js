@@ -191,6 +191,7 @@
           fundamentals,
           historical_valuation: this.historicalValuation(api.valuation_history_observations || [], valuation),
           financial_trends: { applicable: (api.profile || {}).instrument_type === 'company' },
+          analysis_summary: api.analysis_summary || null,
           health_v2: api.health_v2 || { applicable: false, categories: {} },
           peer_analysis: api.peer_analysis || { applicable: false },
           chips: this.emptyChips(), build_status: api.build_status || {}

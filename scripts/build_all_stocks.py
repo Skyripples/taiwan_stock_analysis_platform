@@ -24,6 +24,7 @@ from analyze_stock_data import (
     make_health,
 )
 from build_peer_analysis import overlay_multi_period
+from stock_analysis_summary import build_analysis_summary
 from config import PROJECT_ROOT
 from update_stock_data import (
     CHIPS_DAILY,
@@ -46,6 +47,7 @@ INDEX_PATH = OUTPUT_DIR / "index.json"
 SNAPSHOT_PATH = OUTPUT_DIR / "industry_snapshot.json"
 STATS_PATH = OUTPUT_DIR / "build_stats.json"
 RULE_PATH = PROJECT_ROOT / "config" / "stock_health_rules.json"
+SUMMARY_RULE_PATH = PROJECT_ROOT / "config" / "stock_analysis_summary_rules.json"
 CALENDAR_PATH = PROJECT_ROOT / "data" / "calendar" / "twse_trading_calendar.json"
 
 TABLE_KEYS = {
@@ -120,7 +122,7 @@ def merge_history(old_rows: list[dict[str, Any]], new_rows: list[dict[str, Any]]
     return [rows[key] for key in sorted(rows)][-limit:]
 
 
-def enrich(payload: dict[str, Any], snapshot: list[dict[str, Any]], rules: dict[str, Any]) -> str:
+def enrich(payload: dict[str, Any], snapshot: list[dict[str, Any]], rules: dict[str, Any], summary_rules: dict[str, Any]) -> str:
     data = payload["data"]; symbol = data["profile"]["symbol"]
     if data["profile"]["instrument_type"] != "company":
         data["historical_valuation"] = {"applicable": False, "reason": "ETF／非一般公司不適用公司歷史估值"}
@@ -139,6 +141,7 @@ def enrich(payload: dict[str, Any], snapshot: list[dict[str, Any]], rules: dict[
     history = data["chips"].get("history", [])
     data["chips"]["analysis"] = chips_analysis(history) if history else {"available_days": 0}
     data["health_v2"] = make_health(data, rules)
+    data["analysis_summary"] = build_analysis_summary(data, summary_rules, snapshot)
     required = [data["quote"].get("close"), data["valuation"]["pe"].get("value") if data["profile"]["instrument_type"] == "company" else 1]
     if data["profile"]["instrument_type"] == "company" and not data["financial_trends"].get("applicable"): return "partial"
     return "complete" if all(value is not None for value in required) else "partial"
@@ -241,7 +244,8 @@ def main() -> int:
         source_timings["latest_chips_twse_tpex"] = round(time.monotonic() - tick, 3)
     snapshot_payload = load_json(SNAPSHOT_PATH) or {"stocks": []}
     snapshot = refresh_snapshot(current, tables, snapshot_payload.get("stocks", []), mode)
-    rules = json.loads(RULE_PATH.read_text(encoding="utf-8")); complete = partial = failed = unchanged = 0
+    rules = json.loads(RULE_PATH.read_text(encoding="utf-8"))
+    summary_rules = json.loads(SUMMARY_RULE_PATH.read_text(encoding="utf-8")); complete = partial = failed = unchanged = 0
     for symbol in selected:
         path = OUTPUT_DIR / f"{symbol}.json"; existing = load_json(path)
         try:
@@ -249,7 +253,7 @@ def main() -> int:
             history = merge_history(old_history, chips.get(symbol, []))
             fresh = build_stock(symbol, current[symbol]["market"], tables, history)
             fresh["data"]["profile"]["instrument_type"] = current[symbol]["instrument_type"]
-            payload = merge_mode(existing, fresh, mode); state = enrich(payload, snapshot, rules)
+            payload = merge_mode(existing, fresh, mode); state = enrich(payload, snapshot, rules, summary_rules)
             payload["data"]["build_status"] = {"state": state, "mode": mode, "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
             if comparable(existing) == comparable(payload): unchanged += 1
             else: atomic_json(path, payload)

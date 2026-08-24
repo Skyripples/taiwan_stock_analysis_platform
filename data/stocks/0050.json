@@ -691,11 +691,11 @@
     },
     "historical_valuation": {
       "applicable": false,
-      "reason": "ETF／非一般公司不適用公司歷史估值"
+      "reason": "ETF 不強制套用公司歷史估值"
     },
     "financial_trends": {
       "applicable": false,
-      "reason": "ETF／非一般公司不適用公司財務分析"
+      "reason": "ETF 不適用公司財務分析"
     },
     "peer_analysis": {
       "applicable": false,
@@ -711,6 +711,139 @@
       "state": "complete",
       "mode": "all",
       "updated_at": "2026-08-19T10:01:07+00:00"
+    },
+    "industry_comparison": {
+      "applicable": false,
+      "reason": "ETF 不適用同產業公司比較"
+    },
+    "analysis_summary": {
+      "version": "1.0",
+      "generated_at": "2026-08-24T02:12:46+00:00",
+      "data_date": "2026-08-18",
+      "instrument_type": "ETF",
+      "overall_sections": {
+        "fundamentals": {
+          "status": "unavailable",
+          "summary": "ETF 不適用公司基本面、財務趨勢或歷史估值規則。",
+          "evidence": []
+        },
+        "growth": {
+          "status": "unavailable",
+          "summary": "ETF 不適用公司基本面、財務趨勢或歷史估值規則。",
+          "evidence": []
+        },
+        "financial_safety": {
+          "status": "unavailable",
+          "summary": "ETF 不適用公司基本面、財務趨勢或歷史估值規則。",
+          "evidence": []
+        },
+        "valuation": {
+          "status": "unavailable",
+          "summary": "ETF 不適用公司基本面、財務趨勢或歷史估值規則。",
+          "evidence": []
+        },
+        "chips": {
+          "status": "warning",
+          "summary": "籌碼可用指標 4 項：正向 1、中性 0、警示 3。",
+          "evidence": [
+            {
+              "key": "foreign_5d",
+              "label": "外資近 5 日累計",
+              "value": 65414806,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "positive"
+            },
+            {
+              "key": "foreign_20d",
+              "label": "外資近 20 日累計",
+              "value": -53418246,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "warning"
+            },
+            {
+              "key": "investment_trust_5d",
+              "label": "投信近 5 日累計",
+              "value": -7235000,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "warning"
+            },
+            {
+              "key": "institutional_20d",
+              "label": "三大法人近 20 日累計",
+              "value": -610651548,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "warning"
+            }
+          ]
+        },
+        "peer_position": {
+          "status": "unavailable",
+          "summary": "ETF 不適用公司同業財務排名。",
+          "evidence": []
+        }
+      },
+      "strengths": [
+        {
+          "section": "chips",
+          "key": "foreign_5d",
+          "label": "外資近 5 日累計",
+          "value": 65414806,
+          "unit": "股",
+          "threshold": "positive ≥ 1；warning ≤ -1",
+          "date": "2026-08-18",
+          "status": "positive"
+        }
+      ],
+      "risks": [
+        {
+          "section": "chips",
+          "key": "foreign_20d",
+          "label": "外資近 20 日累計",
+          "value": -53418246,
+          "unit": "股",
+          "threshold": "positive ≥ 1；warning ≤ -1",
+          "date": "2026-08-18",
+          "status": "warning"
+        },
+        {
+          "section": "chips",
+          "key": "institutional_20d",
+          "label": "三大法人近 20 日累計",
+          "value": -610651548,
+          "unit": "股",
+          "threshold": "positive ≥ 1；warning ≤ -1",
+          "date": "2026-08-18",
+          "status": "warning"
+        },
+        {
+          "section": "chips",
+          "key": "investment_trust_5d",
+          "label": "投信近 5 日累計",
+          "value": -7235000,
+          "unit": "股",
+          "threshold": "positive ≥ 1；warning ≤ -1",
+          "date": "2026-08-18",
+          "status": "warning"
+        }
+      ],
+      "watch_items": [
+        {
+          "section": "fundamentals",
+          "summary": "ETF 不適用公司基本面、財務趨勢或歷史估值規則。"
+        },
+        {
+          "section": "peer_position",
+          "summary": "ETF 不適用公司同業財務排名。"
+        }
+      ]
     }
   },
   "sources": {

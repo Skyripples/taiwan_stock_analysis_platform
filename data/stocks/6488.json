@@ -1875,6 +1875,468 @@
       "state": "complete",
       "mode": "all",
       "updated_at": "2026-08-19T10:02:09+00:00"
+    },
+    "industry_comparison": {
+      "applicable": true,
+      "industry": "半導體業",
+      "minimum_samples": 5,
+      "metrics": {
+        "pe": {
+          "current": 47.72,
+          "industry_median": 28.105,
+          "percentile": 71.6867,
+          "sample_count": 166,
+          "status": "available"
+        },
+        "pb": {
+          "current": 4.86,
+          "industry_median": 3.08,
+          "percentile": 74.2718,
+          "sample_count": 206,
+          "status": "available"
+        },
+        "dividend_yield": {
+          "current": 0.78,
+          "industry_median": 1.45,
+          "percentile": 34.0426,
+          "sample_count": 188,
+          "status": "available"
+        },
+        "roe": {
+          "current": 15.903579,
+          "industry_median": 11.2398,
+          "percentile": 66.8342,
+          "sample_count": 199,
+          "status": "available"
+        },
+        "eps": {
+          "current": 7.9,
+          "industry_median": 2.54,
+          "percentile": 79.8995,
+          "sample_count": 199,
+          "status": "available"
+        },
+        "revenue_yoy": {
+          "current": 19.59207,
+          "industry_median": 30.413173,
+          "percentile": 35.9223,
+          "sample_count": 206,
+          "status": "available"
+        }
+      }
+    },
+    "analysis_summary": {
+      "version": "1.0",
+      "generated_at": "2026-08-24T02:12:46+00:00",
+      "data_date": "2026-08-19",
+      "instrument_type": "company",
+      "overall_sections": {
+        "fundamentals": {
+          "status": "positive",
+          "summary": "基本面可用指標 5 項：正向 5、中性 0、警示 0。",
+          "evidence": [
+            {
+              "key": "eps",
+              "label": "EPS",
+              "value": 7.9,
+              "unit": "TWD",
+              "threshold": "positive ≥ 1e-06；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "roe",
+              "label": "ROE",
+              "value": 15.903579,
+              "unit": "%",
+              "threshold": "positive ≥ 15；warning ≤ 5",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "gross_margin",
+              "label": "毛利率",
+              "value": 20.64135,
+              "unit": "%",
+              "threshold": "positive ≥ 1e-06；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "operating_margin",
+              "label": "營業利益率",
+              "value": 9.351794,
+              "unit": "%",
+              "threshold": "positive ≥ 1e-06；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "net_margin",
+              "label": "稅後淨利率",
+              "value": 24.83903,
+              "unit": "%",
+              "threshold": "positive ≥ 1e-06；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "positive"
+            }
+          ]
+        },
+        "growth": {
+          "status": "positive",
+          "summary": "成長性可用指標 4 項：正向 4、中性 0、警示 0。",
+          "evidence": [
+            {
+              "key": "revenue_yoy",
+              "label": "月營收 YoY",
+              "value": 19.59207,
+              "unit": "%",
+              "threshold": "positive ≥ 10；warning ≤ 0",
+              "date": "2026-07",
+              "status": "positive"
+            },
+            {
+              "key": "eps_growth",
+              "label": "EPS YoY",
+              "value": 124.431818,
+              "unit": "%",
+              "threshold": "positive ≥ 10；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "gross_margin_trend",
+              "label": "近四季毛利率變化",
+              "value": 2.272115,
+              "unit": "百分點",
+              "threshold": "positive ≥ 1e-06；warning ≤ -2",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "operating_margin_trend",
+              "label": "近四季營業利益率變化",
+              "value": 0.866572,
+              "unit": "百分點",
+              "threshold": "positive ≥ 1e-06；warning ≤ -2",
+              "date": "2026-06-30",
+              "status": "positive"
+            }
+          ]
+        },
+        "financial_safety": {
+          "status": "neutral",
+          "summary": "財務安全可用指標 4 項：正向 1、中性 2、警示 1。",
+          "evidence": [
+            {
+              "key": "debt_ratio",
+              "label": "負債比",
+              "value": 55.879797,
+              "unit": "%",
+              "threshold": "positive ≤ 50；warning ≥ 70",
+              "date": "2026-06-30",
+              "status": "neutral"
+            },
+            {
+              "key": "current_ratio",
+              "label": "流動比率",
+              "value": 128.143081,
+              "unit": "%",
+              "threshold": "positive ≥ 150；warning ≤ 100",
+              "date": "2026-06-30",
+              "status": "neutral"
+            },
+            {
+              "key": "operating_cash_flow",
+              "label": "單季營業現金流",
+              "value": 2138764,
+              "unit": "千元",
+              "threshold": "positive ≥ 1e-06；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "positive"
+            },
+            {
+              "key": "free_cash_flow",
+              "label": "單季自由現金流",
+              "value": -62779,
+              "unit": "千元",
+              "threshold": "positive ≥ 1e-06；warning ≤ 0",
+              "date": "2026-06-30",
+              "status": "warning"
+            }
+          ]
+        },
+        "valuation": {
+          "status": "warning",
+          "summary": "估值位置可用指標 3 項：正向 0、中性 0、警示 3。",
+          "evidence": [
+            {
+              "key": "pe_percentile",
+              "label": "PE 五年百分位",
+              "value": 94.9153,
+              "unit": "%",
+              "threshold": "positive ≤ 30；warning ≥ 75",
+              "date": "2026-08-19",
+              "status": "warning"
+            },
+            {
+              "key": "pb_percentile",
+              "label": "PB 五年百分位",
+              "value": 81.3559,
+              "unit": "%",
+              "threshold": "positive ≤ 30；warning ≥ 75",
+              "date": "2026-08-19",
+              "status": "warning"
+            },
+            {
+              "key": "yield_percentile",
+              "label": "殖利率五年百分位",
+              "value": 3.3898,
+              "unit": "%",
+              "threshold": "positive ≥ 70；warning ≤ 25",
+              "date": "2026-08-19",
+              "status": "warning"
+            }
+          ]
+        },
+        "chips": {
+          "status": "neutral",
+          "summary": "籌碼可用指標 4 項：正向 2、中性 0、警示 2。",
+          "evidence": [
+            {
+              "key": "foreign_5d",
+              "label": "外資近 5 日累計",
+              "value": 1260545,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "positive"
+            },
+            {
+              "key": "foreign_20d",
+              "label": "外資近 20 日累計",
+              "value": -3928190,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "warning"
+            },
+            {
+              "key": "investment_trust_5d",
+              "label": "投信近 5 日累計",
+              "value": 998643,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "positive"
+            },
+            {
+              "key": "institutional_20d",
+              "label": "三大法人近 20 日累計",
+              "value": -11453210,
+              "unit": "股",
+              "threshold": "positive ≥ 1；warning ≤ -1",
+              "date": "2026-08-18",
+              "status": "warning"
+            }
+          ]
+        },
+        "peer_position": {
+          "status": "warning",
+          "summary": "同業位置可用指標 7 項：正向 2、中性 2、警示 3。",
+          "evidence": [
+            {
+              "key": "net_margin",
+              "label": "同業淨利率",
+              "value": 19.435330010766084,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "positive",
+              "percentile": 67.8392,
+              "industry_median": 13.43,
+              "sample_size": 199
+            },
+            {
+              "key": "roe",
+              "label": "同業 ROE",
+              "value": 11.734726714648707,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "neutral",
+              "percentile": 52.2613,
+              "industry_median": 11.2398,
+              "sample_size": 199
+            },
+            {
+              "key": "eps",
+              "label": "同業 EPS",
+              "value": 11.870000000000001,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "positive",
+              "percentile": 85.9296,
+              "industry_median": 2.54,
+              "sample_size": 199
+            },
+            {
+              "key": "pe",
+              "label": "同業 PE",
+              "value": 47.72,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "warning",
+              "percentile": 28.9157,
+              "industry_median": 28.105,
+              "sample_size": 166
+            },
+            {
+              "key": "pb",
+              "label": "同業 PB",
+              "value": 4.86,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "warning",
+              "percentile": 26.699,
+              "industry_median": 3.08,
+              "sample_size": 206
+            },
+            {
+              "key": "revenue_yoy",
+              "label": "同業營收 YoY",
+              "value": 19.59207,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "warning",
+              "percentile": 35.9223,
+              "industry_median": 30.4131725,
+              "sample_size": 206
+            },
+            {
+              "key": "operating_margin",
+              "label": "同業營業利益率",
+              "value": 9.925590877639138,
+              "unit": null,
+              "threshold": "依同產業有效樣本百分位；≥60 positive，<40 warning",
+              "date": "2026-06-30",
+              "status": "neutral",
+              "percentile": 41.7085,
+              "industry_median": 12.8007,
+              "sample_size": 199
+            }
+          ]
+        }
+      },
+      "strengths": [
+        {
+          "section": "fundamentals",
+          "key": "roe",
+          "label": "ROE",
+          "value": 15.903579,
+          "unit": "%",
+          "threshold": "positive ≥ 15；warning ≤ 5",
+          "date": "2026-06-30",
+          "status": "positive"
+        },
+        {
+          "section": "growth",
+          "key": "eps_growth",
+          "label": "EPS YoY",
+          "value": 124.431818,
+          "unit": "%",
+          "threshold": "positive ≥ 10；warning ≤ 0",
+          "date": "2026-06-30",
+          "status": "positive"
+        },
+        {
+          "section": "growth",
+          "key": "revenue_yoy",
+          "label": "月營收 YoY",
+          "value": 19.59207,
+          "unit": "%",
+          "threshold": "positive ≥ 10；warning ≤ 0",
+          "date": "2026-07",
+          "status": "positive"
+        },
+        {
+          "section": "financial_safety",
+          "key": "operating_cash_flow",
+          "label": "單季營業現金流",
+          "value": 2138764,
+          "unit": "千元",
+          "threshold": "positive ≥ 1e-06；warning ≤ 0",
+          "date": "2026-06-30",
+          "status": "positive"
+        },
+        {
+          "section": "fundamentals",
+          "key": "eps",
+          "label": "EPS",
+          "value": 7.9,
+          "unit": "TWD",
+          "threshold": "positive ≥ 1e-06；warning ≤ 0",
+          "date": "2026-06-30",
+          "status": "positive"
+        }
+      ],
+      "risks": [
+        {
+          "section": "financial_safety",
+          "key": "free_cash_flow",
+          "label": "單季自由現金流",
+          "value": -62779,
+          "unit": "千元",
+          "threshold": "positive ≥ 1e-06；warning ≤ 0",
+          "date": "2026-06-30",
+          "status": "warning"
+        },
+        {
+          "section": "chips",
+          "key": "foreign_20d",
+          "label": "外資近 20 日累計",
+          "value": -3928190,
+          "unit": "股",
+          "threshold": "positive ≥ 1；warning ≤ -1",
+          "date": "2026-08-18",
+          "status": "warning"
+        },
+        {
+          "section": "valuation",
+          "key": "pe_percentile",
+          "label": "PE 五年百分位",
+          "value": 94.9153,
+          "unit": "%",
+          "threshold": "positive ≤ 30；warning ≥ 75",
+          "date": "2026-08-19",
+          "status": "warning"
+        },
+        {
+          "section": "chips",
+          "key": "institutional_20d",
+          "label": "三大法人近 20 日累計",
+          "value": -11453210,
+          "unit": "股",
+          "threshold": "positive ≥ 1；warning ≤ -1",
+          "date": "2026-08-18",
+          "status": "warning"
+        },
+        {
+          "section": "valuation",
+          "key": "pb_percentile",
+          "label": "PB 五年百分位",
+          "value": 81.3559,
+          "unit": "%",
+          "threshold": "positive ≤ 30；warning ≥ 75",
+          "date": "2026-08-19",
+          "status": "warning"
+        }
+      ],
+      "watch_items": []
     }
   },
   "sources": {

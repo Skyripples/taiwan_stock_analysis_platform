@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import os
@@ -11,6 +12,7 @@ from statistics import median
 from typing import Any, Iterable
 
 from config import PROJECT_ROOT
+from stock_analysis_summary import build_analysis_summary
 
 
 STOCK_DIR = PROJECT_ROOT / "data" / "stocks"
@@ -18,6 +20,7 @@ HISTORY_DIR = STOCK_DIR / "history"
 FINANCIAL_DIR = STOCK_DIR / "financials"
 RULE_PATH = PROJECT_ROOT / "config" / "stock_health_rules.json"
 SNAPSHOT_PATH = STOCK_DIR / "industry_snapshot.json"
+SUMMARY_RULE_PATH = PROJECT_ROOT / "config" / "stock_analysis_summary_rules.json"
 
 
 def atomic(path: Path, payload: Any) -> None:
@@ -179,11 +182,13 @@ def industry_comparison(data: dict[str, Any], snapshot: list[dict[str, Any]], mi
 
 
 def main() -> int:
-    config=json.loads(RULE_PATH.read_text(encoding="utf-8")); snapshot=json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["stocks"]
+    parser=argparse.ArgumentParser(); parser.add_argument("--symbol", action="append"); options=parser.parse_args()
+    config=json.loads(RULE_PATH.read_text(encoding="utf-8")); summary_rules=json.loads(SUMMARY_RULE_PATH.read_text(encoding="utf-8")); snapshot=json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))["stocks"]
     count=0
     for path in STOCK_DIR.glob("*.json"):
-        if path.name in {"index.json","industry_snapshot.json"}: continue
+        if path.name in {"index.json","industry_snapshot.json","peer_rankings.json","build_stats.json"}: continue
         payload=json.loads(path.read_text(encoding="utf-8")); data=payload["data"]
+        if options.symbol and data["profile"]["symbol"] not in options.symbol: continue
         if data["profile"]["instrument_type"]=="company":
             history_path=HISTORY_DIR/f"{data['profile']['symbol']}_valuation.json"
             observations=json.loads(history_path.read_text(encoding="utf-8"))["data"]["observations"] if history_path.exists() else []
@@ -198,6 +203,7 @@ def main() -> int:
         data["chips"]["analysis"]=chips_analysis(data["chips"]["history"])
         data["health_v2"]=make_health(data,config)
         data["industry_comparison"]=industry_comparison(data,snapshot,config["minimum_industry_samples"])
+        data["analysis_summary"]=build_analysis_summary(data,summary_rules,snapshot)
         atomic(path,payload); count+=1
     print(f"Stock analysis updated: {count} caches")
     return 0

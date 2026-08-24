@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "maximum_strengths": 5,
+  "maximum_risks": 5,
+  "minimum_peer_samples": 5,
+  "sections": {
+    "fundamentals": {
+      "label": "基本面",
+      "metrics": {
+        "eps": {"label": "EPS", "positive_min": 0.000001, "warning_max": 0, "unit": "TWD", "priority": 80},
+        "roe": {"label": "ROE", "positive_min": 15, "warning_max": 5, "unit": "%", "priority": 90},
+        "gross_margin": {"label": "毛利率", "positive_min": 0.000001, "warning_max": 0, "unit": "%", "priority": 50},
+        "operating_margin": {"label": "營業利益率", "positive_min": 0.000001, "warning_max": 0, "unit": "%", "priority": 70},
+        "net_margin": {"label": "稅後淨利率", "positive_min": 0.000001, "warning_max": 0, "unit": "%", "priority": 75}
+      }
+    },
+    "growth": {
+      "label": "成長性",
+      "metrics": {
+        "revenue_yoy": {"label": "月營收 YoY", "positive_min": 10, "warning_max": 0, "unit": "%", "priority": 85},
+        "eps_growth": {"label": "EPS YoY", "positive_min": 10, "warning_max": 0, "unit": "%", "priority": 90},
+        "gross_margin_trend": {"label": "近四季毛利率變化", "positive_min": 0.000001, "warning_max": -2, "unit": "百分點", "priority": 65},
+        "operating_margin_trend": {"label": "近四季營業利益率變化", "positive_min": 0.000001, "warning_max": -2, "unit": "百分點", "priority": 70}
+      }
+    },
+    "financial_safety": {
+      "label": "財務安全",
+      "metrics": {
+        "debt_ratio": {"label": "負債比", "positive_max": 50, "warning_min": 70, "unit": "%", "priority": 75},
+        "current_ratio": {"label": "流動比率", "positive_min": 150, "warning_max": 100, "unit": "%", "priority": 70},
+        "operating_cash_flow": {"label": "單季營業現金流", "positive_min": 0.000001, "warning_max": 0, "unit": "千元", "priority": 85},
+        "free_cash_flow": {"label": "單季自由現金流", "positive_min": 0.000001, "warning_max": 0, "unit": "千元", "priority": 90}
+      }
+    },
+    "valuation": {
+      "label": "估值位置",
+      "metrics": {
+        "pe_percentile": {"label": "PE 五年百分位", "positive_max": 30, "warning_min": 75, "unit": "%", "priority": 80},
+        "pb_percentile": {"label": "PB 五年百分位", "positive_max": 30, "warning_min": 75, "unit": "%", "priority": 75},
+        "yield_percentile": {"label": "殖利率五年百分位", "positive_min": 70, "warning_max": 25, "unit": "%", "priority": 65}
+      }
+    },
+    "chips": {
+      "label": "籌碼",
+      "metrics": {
+        "foreign_5d": {"label": "外資近 5 日累計", "positive_min": 1, "warning_max": -1, "unit": "股", "priority": 75},
+        "foreign_20d": {"label": "外資近 20 日累計", "positive_min": 1, "warning_max": -1, "unit": "股", "priority": 85},
+        "investment_trust_5d": {"label": "投信近 5 日累計", "positive_min": 1, "warning_max": -1, "unit": "股", "priority": 65},
+        "institutional_20d": {"label": "三大法人近 20 日累計", "positive_min": 1, "warning_max": -1, "unit": "股", "priority": 80}
+      }
+    },
+    "peer_position": {
+      "label": "同業位置",
+      "positive_percentile_min": 60,
+      "warning_percentile_max": 40,
+      "metrics": ["roe", "eps", "revenue_yoy", "operating_margin", "net_margin", "pe", "pb"]
+    }
+  },
+  "industry_exclusions": {
+    "金融保險業": {
+      "financial_safety": ["debt_ratio", "current_ratio"],
+      "fundamentals": ["gross_margin", "operating_margin"]
+    }
+  }
+}

@@ -47,6 +47,31 @@
     const value = missing(item?.value) ? '資料不足' : item.unit === 'thousand_TWD' ? `${fmt.format(item.value / 1000)} 百萬元` : `${fmt.format(item.value)}${item.unit === '%' || item.unit === 'percent' ? '%' : item.unit === 'TWD' ? ' 元' : ''}`;
     return `<article class="widget metric"><span>${label}</span><strong>${value}</strong><small>${item?.data_date || '日期不足'}${item?.note ? `｜${item.note}` : ''}</small></article>`;
   }
+  function renderAnalysisSummary(summary) {
+    const notice = $('analysisSummaryNotice'), grid = $('summarySectionGrid');
+    const sectionLabels = { fundamentals: '基本面', valuation: '估值位置', growth: '成長性', financial_safety: '財務安全', chips: '籌碼', peer_position: '同業位置' };
+    const statusLabels = { positive: '正向', neutral: '中性', warning: '警示', unavailable: '資料不足' };
+    const evidenceValue = (item) => missing(item?.value) ? '資料不足' : `${Number(item.value).toLocaleString('zh-TW', { maximumFractionDigits: 2 })}${item.unit ? ` ${item.unit}` : ''}`;
+    const evidenceMeta = (item) => `${evidenceValue(item)}｜門檻：${item.threshold || '不適用'}｜${item.date || '日期不足'}`;
+    const list = (id, items, emptyText) => {
+      $(id).innerHTML = items?.length ? items.map((item) => `<li><strong>${escapeHtml(item.label || item.summary)}</strong>${item.value !== undefined ? `<small>${escapeHtml(evidenceMeta(item))}</small>` : item.date ? `<small>${escapeHtml(item.date)}</small>` : ''}</li>`).join('') : `<li class="summary-empty">${emptyText}</li>`;
+    };
+    if (!summary?.overall_sections) {
+      notice.textContent = '綜合摘要資料尚未建立，其他個股資料仍可正常使用。';
+      notice.hidden = false; grid.innerHTML = '';
+      list('summaryStrengths', [], '尚無可列示優勢'); list('summaryRisks', [], '尚無可列示風險'); list('summaryWatchItems', [], '等待摘要資料更新');
+      $('analysisSummaryDate').textContent = '--'; return;
+    }
+    notice.hidden = true;
+    $('analysisSummaryDate').textContent = summary.data_date || summary.generated_at || '日期不足';
+    grid.innerHTML = Object.entries(summary.overall_sections).map(([key, section]) => {
+      const evidence = (section.evidence || []).filter((item) => item.status !== 'unavailable').slice(0, 2);
+      return `<article class="widget summary-section-card"><header><h3>${sectionLabels[key] || key}</h3><span class="summary-status status-${section.status}">${statusLabels[section.status] || section.status}</span></header><p>${escapeHtml(section.summary)}</p><small>${evidence.length ? evidence.map((item) => `${escapeHtml(item.label)}：${escapeHtml(evidenceValue(item))}（${escapeHtml(item.date || '日期不足')}）`).join('<br>') : '無可用證據'}</small></article>`;
+    }).join('');
+    list('summaryStrengths', summary.strengths, '目前沒有符合正向門檻的主要項目');
+    list('summaryRisks', summary.risks, '目前沒有符合警示門檻的主要項目');
+    list('summaryWatchItems', summary.watch_items, '目前沒有資料不足項目');
+  }
   function renderHistorical(history) {
     const notice = $('valuationHistoryNotice');
     const grid = $('valuationHistoryGrid');
@@ -218,6 +243,7 @@
       $(id).textContent = missing(item.value) ? '資料不足' : `${fmt.format(item.value)}${id === 'yield' ? '%' : ''}`;
       $(`${id}Date`).textContent = item.data_date || '日期不足';
     }
+    renderAnalysisSummary(data.analysis_summary);
     renderHistorical(data.historical_valuation);
     $('reportPeriod').textContent = fundamentals.report_period ? `${fundamentals.report_period}｜${fundamentals.report_date}` : '不適用／資料不足';
     const labels = { eps: 'EPS', roe: 'ROE', revenue: '月營收', revenue_yoy: '營收 YoY', revenue_mom: '營收 MoM', gross_margin: '毛利率', operating_margin: '營業利益率', net_margin: '稅後淨利率', book_value_per_share: '每股淨值', debt_ratio: '負債比', current_ratio: '流動比率' };

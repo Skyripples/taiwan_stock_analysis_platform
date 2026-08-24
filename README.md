@@ -1,4 +1,4 @@
-# 台股投資分析平台 V3.11
+# 台股投資分析平台 V3.12
 
 ## 功能
 
@@ -42,6 +42,11 @@
   - API 使用 HTTP/2、連線池、短期快取、ETag、Rate Limit、CORS 與安全標頭
   - GitHub 保留完整搜尋 index 與 6 檔熱門股票 fallback，停止每日提交 2,390 份個股 JSON
   - 提供資料庫同步、API／JSON 一致性驗證及資料服務狀態 manifest
+- V3.12 個股綜合分析摘要：
+  - 整合基本面、估值、成長、財務安全、籌碼與同業定位六大面向
+  - 以公開規則產生主要優勢、風險與觀察項目，所有結論皆可追溯至實際數值、門檻與資料日期
+  - 不使用黑箱總分；缺漏資料明確標示 unavailable，ETF 自動套用專用摘要
+  - 個股頁與 REST API、GitHub fallback 均支援一致的分析摘要
 - 隔日行情預測 Beta：
   - 使用 15 個正式市場特徵的 Logistic Regression Baseline Model
   - 依時間序列進行 Walk-forward Validation，避免未來資料洩漏

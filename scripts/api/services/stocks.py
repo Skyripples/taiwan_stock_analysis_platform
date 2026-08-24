@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
+import json
 from collections import defaultdict
 from datetime import date, datetime
 from decimal import Decimal
 from typing import Any
 
 from api.db import pool
+from config import PROJECT_ROOT
+from stock_analysis_summary import build_analysis_summary
+
+
+SUMMARY_RULES = json.loads((PROJECT_ROOT / "config" / "stock_analysis_summary_rules.json").read_text(encoding="utf-8"))
 
 
 def value(item: Any) -> Any:
@@ -148,6 +154,7 @@ def get_stock(symbol: str) -> dict[str, Any] | None:
                             "revenue": revenue}
         chronological = list(reversed(chips))
         def total(field: str, days: int) -> int | float | None:
+            if len(chronological) < days: return None
             vals = [row[field] for row in chronological[-days:] if row.get(field) is not None]
             return sum(vals) if vals else None
         chips_summary = {"trade_date": chips[0]["trade_date"] if chips else None,
@@ -155,8 +162,9 @@ def get_stock(symbol: str) -> dict[str, Any] | None:
                          "foreign_5d": total("foreign_net", 5), "foreign_20d": total("foreign_net", 20),
                          "investment_trust_5d": total("investment_trust_net", 5),
                          "investment_trust_20d": total("investment_trust_net", 20),
+                         "institutional_20d": total("institutional_total", 20),
                          "available_days": len(chips)}
-        return {
+        result = {
             "profile": {key: stock.get(key) for key in ("symbol","name","market","industry","instrument_type","active")},
             "quote": quote, "valuation": valuation,
             "valuation_history_observations": valuation_observations,
@@ -166,6 +174,11 @@ def get_stock(symbol: str) -> dict[str, Any] | None:
             "chips": {"summary": chips_summary},
             "build_status": {"state": stock.get("cache_status"), "cached": stock.get("cached"), "updated_at": stock.get("source_updated_at")},
         }
+    peer_snapshot = None
+    if result["profile"]["instrument_type"] == "company" and not result["peer_analysis"]["metrics"]:
+        peer_snapshot = get_industry_peers(result["profile"]["industry"])["stocks"]
+    result["analysis_summary"] = build_analysis_summary(result, SUMMARY_RULES, peer_snapshot)
+    return result
 
 
 def get_industry_peers(industry: str) -> dict[str, Any]:
