@@ -1,0 +1,386 @@
+{
+  "schema_version": "1.0",
+  "status": "candidate_only",
+  "production_integration": false,
+  "cutoff_timezone": "Asia/Taipei",
+  "target_open_time": "09:00:00",
+  "note": "V3.13 Phase 1 design artifact. No entry is connected to the production daily pipeline by this file.",
+  "features": [
+    {
+      "feature_key": "ndx_return_1d",
+      "display_name": "Nasdaq 100 日報酬",
+      "category": "us_market",
+      "source_series": "Yahoo:^NDX",
+      "transform": "pct_change(close,1)",
+      "lag_rule": "latest_completed_session_before_target_open",
+      "availability_rule": "source close timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1985-01-31"
+    },
+    {
+      "feature_key": "russell2000_return_1d",
+      "display_name": "Russell 2000 日報酬",
+      "category": "us_market",
+      "source_series": "Yahoo:^RUT",
+      "transform": "pct_change(close,1)",
+      "lag_rule": "latest_completed_session_before_target_open",
+      "availability_rule": "source close timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1987-09-10"
+    },
+    {
+      "feature_key": "ewt_return_1d",
+      "display_name": "EWT 日報酬",
+      "category": "etf_proxy",
+      "source_series": "Yahoo:EWT",
+      "transform": "pct_change(adjusted_close,1)",
+      "lag_rule": "latest_completed_session_before_target_open",
+      "availability_rule": "source close timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2000-06-20"
+    },
+    {
+      "feature_key": "copper_return_1d",
+      "display_name": "銅期貨日報酬",
+      "category": "commodity",
+      "source_series": "Yahoo:HG=F",
+      "transform": "pct_change(continuous_close,1)",
+      "lag_rule": "latest_completed_settlement_before_target_open",
+      "availability_rule": "available_at < target_open and roll metadata present",
+      "target_scope": [
+        "TAIEX",
+        "industry",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1988-01-01"
+    },
+    {
+      "feature_key": "wti_return_1d",
+      "display_name": "WTI 日報酬",
+      "category": "commodity",
+      "source_series": "Yahoo:CL=F",
+      "transform": "pct_change(continuous_close,1)",
+      "lag_rule": "latest_completed_settlement_before_target_open",
+      "availability_rule": "available_at < target_open and roll metadata present",
+      "target_scope": [
+        "TAIEX",
+        "industry",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1983-03-30"
+    },
+    {
+      "feature_key": "gold_return_1d",
+      "display_name": "黃金日報酬",
+      "category": "commodity",
+      "source_series": "Yahoo:GC=F",
+      "transform": "pct_change(continuous_close,1)",
+      "lag_rule": "latest_completed_settlement_before_target_open",
+      "availability_rule": "available_at < target_open and roll metadata present",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1974-12-31"
+    },
+    {
+      "feature_key": "usdtwd_preopen_return",
+      "display_name": "USD/TWD 開盤前報酬",
+      "category": "fx",
+      "source_series": "Yahoo:TWD=X or official reference",
+      "transform": "pct_change(preopen_snapshot,1d)",
+      "lag_rule": "fixed_preopen_cutoff",
+      "availability_rule": "timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1983-01-01"
+    },
+    {
+      "feature_key": "usdkrw_preopen_return",
+      "display_name": "USD/KRW 開盤前報酬",
+      "category": "fx",
+      "source_series": "Yahoo:KRW=X",
+      "transform": "pct_change(preopen_snapshot,1d)",
+      "lag_rule": "fixed_preopen_cutoff",
+      "availability_rule": "timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "technology_stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1981-01-01"
+    },
+    {
+      "feature_key": "usdjpy_preopen_return",
+      "display_name": "USD/JPY 開盤前報酬",
+      "category": "fx",
+      "source_series": "ECB/Yahoo:JPY=X",
+      "transform": "pct_change(preopen_snapshot,1d)",
+      "lag_rule": "fixed_preopen_cutoff",
+      "availability_rule": "timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1971-01-01"
+    },
+    {
+      "feature_key": "usdcnh_preopen_return",
+      "display_name": "USD/CNH 開盤前報酬",
+      "category": "fx",
+      "source_series": "Yahoo:CNH=X",
+      "transform": "pct_change(preopen_snapshot,1d)",
+      "lag_rule": "fixed_preopen_cutoff",
+      "availability_rule": "timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "china_exposed_stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2010-08-23"
+    },
+    {
+      "feature_key": "us5y_change",
+      "display_name": "美債 5Y 變化",
+      "category": "rates",
+      "source_series": "FRED:DGS5",
+      "transform": "diff(value,1)",
+      "lag_rule": "latest_released_observation",
+      "availability_rule": "ALFRED available_at < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1962-01-02"
+    },
+    {
+      "feature_key": "us30y_change",
+      "display_name": "美債 30Y 變化",
+      "category": "rates",
+      "source_series": "FRED:DGS30",
+      "transform": "diff(value,1)",
+      "lag_rule": "latest_released_observation",
+      "availability_rule": "ALFRED available_at < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1977-02-15"
+    },
+    {
+      "feature_key": "yield_curve_10y_3m",
+      "display_name": "10Y-3M 利差",
+      "category": "rates",
+      "source_series": "FRED:T10Y3M",
+      "transform": "identity",
+      "lag_rule": "latest_released_observation",
+      "availability_rule": "ALFRED available_at < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1982-01-04"
+    },
+    {
+      "feature_key": "vix_close_official",
+      "display_name": "VIX 官方收盤",
+      "category": "volatility",
+      "source_series": "CBOE:VIX",
+      "transform": "pct_change(close,1)",
+      "lag_rule": "latest_completed_session_before_target_open",
+      "availability_rule": "source close timestamp < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1990-01-02"
+    },
+    {
+      "feature_key": "vix_term_9d_3m",
+      "display_name": "VIX9D/VIX3M 期限結構",
+      "category": "volatility",
+      "source_series": "CBOE:VIX9D,CBOE:VIX3M",
+      "transform": "VIX9D/VIX3M-1",
+      "lag_rule": "latest_common_completed_session",
+      "availability_rule": "both source dates complete before target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2011-01-03"
+    },
+    {
+      "feature_key": "btc_return_1h",
+      "display_name": "BTC 開盤前 1 小時報酬",
+      "category": "crypto",
+      "source_series": "Coinbase:BTC-USD",
+      "transform": "return_at_cutoff(1h)",
+      "lag_rule": "target_open_utc_cutoff",
+      "availability_rule": "all candle timestamps < 01:00 UTC target day",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2015-07-20"
+    },
+    {
+      "feature_key": "btc_return_4h",
+      "display_name": "BTC 開盤前 4 小時報酬",
+      "category": "crypto",
+      "source_series": "Coinbase:BTC-USD",
+      "transform": "return_at_cutoff(4h)",
+      "lag_rule": "target_open_utc_cutoff",
+      "availability_rule": "all candle timestamps < 01:00 UTC target day",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2015-07-20"
+    },
+    {
+      "feature_key": "btc_return_12h",
+      "display_name": "BTC 開盤前 12 小時報酬",
+      "category": "crypto",
+      "source_series": "Coinbase:BTC-USD",
+      "transform": "return_at_cutoff(12h)",
+      "lag_rule": "target_open_utc_cutoff",
+      "availability_rule": "all candle timestamps < 01:00 UTC target day",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2015-07-20"
+    },
+    {
+      "feature_key": "btc_return_24h",
+      "display_name": "BTC 開盤前 24 小時報酬",
+      "category": "crypto",
+      "source_series": "Coinbase:BTC-USD",
+      "transform": "return_at_cutoff(24h)",
+      "lag_rule": "target_open_utc_cutoff",
+      "availability_rule": "all candle timestamps < 01:00 UTC target day",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2015-07-20"
+    },
+    {
+      "feature_key": "eth_return_24h",
+      "display_name": "ETH 開盤前 24 小時報酬",
+      "category": "crypto",
+      "source_series": "Coinbase:ETH-USD",
+      "transform": "return_at_cutoff(24h)",
+      "lag_rule": "target_open_utc_cutoff",
+      "availability_rule": "all candle timestamps < 01:00 UTC target day",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "2016-05-18"
+    },
+    {
+      "feature_key": "initial_claims_release",
+      "display_name": "美國初領失業金",
+      "category": "macro",
+      "source_series": "FRED/ALFRED:ICSA",
+      "transform": "pct_change(value,1)",
+      "lag_rule": "release_timestamp",
+      "availability_rule": "initial-release vintage available_at < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1967-01-07"
+    },
+    {
+      "feature_key": "us_cpi_surprise",
+      "display_name": "美國 CPI 公布變化",
+      "category": "macro",
+      "source_series": "FRED/ALFRED:CPIAUCSL",
+      "transform": "released_yoy_minus_prior_known_yoy",
+      "lag_rule": "release_timestamp",
+      "availability_rule": "initial-release vintage available_at < target_open",
+      "target_scope": [
+        "TAIEX",
+        "stocks"
+      ],
+      "enabled": false,
+      "experimental": true,
+      "model_version": null,
+      "inception_date": "1947-01-01"
+    }
+  ]
+}

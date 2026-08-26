@@ -3,6 +3,24 @@ __pycache__/
 *.pyc
 .vscode/.ropeproject/
 .env
+data_lake/
+data/stocks/*.json
+!data/stocks/index.json
+!data/stocks/build_stats.json
+!data/stocks/industry_snapshot.json
+!data/stocks/peer_rankings.json
+data/stocks/financials/
+data/stocks/history/
 .env.*
 !.env.example
+*.log
+*.tmp
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+*.duckdb
+*.duckdb.wal
+*.duckdb.tmp/
+duckdb_temp/
 

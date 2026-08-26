@@ -1,9 +1,10 @@
 # Linode PostgreSQL and API deployment
 
 PostgreSQL and the Linode REST API are the primary full-market data source.
-GitHub retains the complete search index, shared snapshots, and a small fallback
-allowlist. A database failure must never roll back or delete an existing JSON or
-database record.
+GitHub retains the complete search index and shared snapshots. Individual stock
+JSON fallback files are no longer retained; PostgreSQL and the REST API are the
+formal stock-detail source. A database failure must never roll back or delete
+an existing database record.
 
 ## Roles and network boundary
 
@@ -36,7 +37,7 @@ database.
 
 The daily workflow builds all stock caches locally, transfers them to Linode,
 and performs the PostgreSQL UPSERT before staging Git data. If synchronization
-fails, the API keeps its previous valid database state, the fallback files and
-status manifest can still be committed, and the workflow finishes with an
+fails, the API keeps its previous valid database state, the status manifest can
+still be committed, and the workflow finishes with an
 explicit failure. Full-market stock JSON files are never included in the daily
-Git staging scope; only the configured fallback symbols are staged.
+Git staging scope; individual stock JSON files are never staged.

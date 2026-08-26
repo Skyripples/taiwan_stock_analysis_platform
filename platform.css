@@ -27,6 +27,11 @@ body.theme-light {
   background: linear-gradient(180deg, #f7f8fa 0%, #eef1f4 100%);
 }
 
+body.theme-light .layout-brand,
+body.theme-light .layout-main[data-page="home"] .page-description {
+  color: #111111;
+}
+
 body.theme-light .eyebrow {
   color: #5273a3;
 }

@@ -1,4 +1,4 @@
-"""Atomically maintain the operational API/database/fallback manifest."""
+"""Atomically maintain the operational API/database manifest."""
 
 from __future__ import annotations
 
@@ -15,7 +15,6 @@ from config import PROJECT_ROOT
 
 STATUS_PATH = PROJECT_ROOT / "data" / "status" / "data_service_status.json"
 INDEX_PATH = PROJECT_ROOT / "data" / "stocks" / "index.json"
-FALLBACK_PATH = PROJECT_ROOT / "config" / "fallback_stocks.json"
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -46,25 +45,18 @@ def atomic_json(path: Path, payload: dict[str, Any]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--database-sync-status", choices=("success", "failed", "not_configured"), required=True)
-    parser.add_argument("--fallback-updated", action="store_true")
     parser.add_argument("--api-version", default="3.11.0")
     parser.add_argument("--output", type=Path, default=STATUS_PATH)
     parser.add_argument("--index", type=Path, default=INDEX_PATH)
-    parser.add_argument("--fallback-config", type=Path, default=FALLBACK_PATH)
     options = parser.parse_args()
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     previous = read_json(options.output)
     index = read_json(options.index)
-    fallback = read_json(options.fallback_config)
-    symbols = [str(symbol) for symbol in fallback.get("symbols", [])]
     payload = {
         "updated_at": now,
         "last_database_sync": now if options.database_sync_status == "success" else previous.get("last_database_sync"),
-        "last_fallback_update": now if options.fallback_updated else previous.get("last_fallback_update"),
         "database_sync_status": options.database_sync_status,
-        "fallback_count": len(symbols),
-        "fallback_symbols": symbols,
         "universe_count": index.get("active_count", len(index.get("stocks", []))),
         "api_version": options.api_version,
     }

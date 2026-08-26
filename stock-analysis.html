@@ -15,8 +15,8 @@
   </nav></aside>
   <main class="layout-main"><div class="page-container"><header class="page-header"><p class="page-eyebrow">STOCK ANALYSIS BETA</p><h1 class="page-title">個股分析</h1><p class="page-description">搜尋上市或上櫃股票，檢視官方行情、估值、基本面與籌碼資料。</p></header>
     <div class="page-body">
-      <section class="page-section search-section"><label for="stockSearch">股票代號或公司名稱</label><div class="stock-search"><input id="stockSearch" type="search" placeholder="例如：2330、台積電" autocomplete="off" aria-controls="searchResults"><button id="searchButton" type="button">搜尋</button></div><div id="searchResults" class="search-results" role="listbox" hidden></div><p id="searchHint">目前前端可搜尋全市場清單；個股內容需由每日建置流程建立快取。</p></section>
-      <p id="pageState" class="stock-state" role="status">正在載入股票清單…</p>
+      <section class="page-section search-section"><label for="stockSearch">股票代號或公司名稱</label><div class="stock-search"><input id="stockSearch" type="search" placeholder="例如：2330、台積電" autocomplete="off" aria-controls="searchResults"><button id="searchButton" type="button">搜尋</button></div><div id="searchResults" class="search-results" role="listbox" hidden></div><p id="searchHint">可搜尋全市場清單；個股內容由即時 API 提供。</p></section>
+      <p id="pageState" class="stock-state" role="status">請輸入股票代號或公司名稱開始查詢</p>
       <div id="stockContent" hidden>
         <p id="dataSourceStatus" class="data-source-status">即時 API</p>
         <p id="cacheStatus" class="stock-state" hidden></p>

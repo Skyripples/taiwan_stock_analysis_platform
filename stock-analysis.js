@@ -23,10 +23,8 @@
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
   function source(section, result) { sourceState.set(section, result.source); if (result.updatedAt) sourceState.set('updatedAt', result.updatedAt); }
   function renderSourceStatus() {
-    const values = [...sourceState.entries()].filter(([key]) => key !== 'updatedAt').map(([, value]) => value);
-    const fallback = values.includes('fallback');
-    $('dataSourceStatus').classList.toggle('is-fallback', fallback);
-    $('dataSourceStatus').textContent = `${fallback ? '備援資料' : '即時 API'}${sourceState.get('updatedAt') ? `｜更新：${sourceState.get('updatedAt')}` : ''}`;
+    $('dataSourceStatus').classList.remove('is-fallback');
+    $('dataSourceStatus').textContent = `即時 API${sourceState.get('updatedAt') ? `｜更新：${sourceState.get('updatedAt')}` : ''}`;
   }
   function results(items) {
     const box = $('searchResults');
@@ -290,11 +288,18 @@
       renderSourceStatus();
       history.replaceState(null, '', `?symbol=${encodeURIComponent(symbol)}`);
     } catch (error) {
-      $('pageState').textContent = error.code === 'NOT_FOUND' ? `查無 ${symbol} 的個股資料` : '目前無法載入個股資料，請稍後再試';
+      $('pageState').textContent = error.code === 'NOT_FOUND' ? `查無 ${symbol} 的個股資料` : '目前無法取得資料';
     }
   }
   async function init() {
-    await select(new URLSearchParams(location.search).get('symbol') || '2330');
+    const symbol = new URLSearchParams(location.search).get('symbol')?.trim();
+    if (symbol) {
+      await select(symbol);
+      return;
+    }
+    $('pageState').hidden = false;
+    $('pageState').textContent = '請輸入股票代號或公司名稱開始查詢';
+    $('stockContent').hidden = true;
   }
   const submitSearch = async () => { const query = $('stockSearch').value.trim(); if (/^[0-9A-Za-z]{2,10}$/.test(query)) select(query); else await search(); };
   $('stockSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(search, 180); });

@@ -136,9 +136,9 @@ jobs:
           DB_OUTCOME: ${{ steps.db_sync.outcome }}
         run: |
           if [ "$SSH_OUTCOME" = "success" ] && [ "$DB_OUTCOME" = "success" ]; then
-            python scripts/update_data_service_status.py --database-sync-status success --fallback-updated
+            python scripts/update_data_service_status.py --database-sync-status success
           else
-            python scripts/update_data_service_status.py --database-sync-status failed --fallback-updated
+            python scripts/update_data_service_status.py --database-sync-status failed
           fi
 
       - name: Commit updated data
@@ -146,16 +146,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/event.json data/market/*.json data/history/*.csv data/analysis/chips_summary.json
-          git add config/fallback_stocks.json data/status/data_service_status.json
+          git add data/status/data_service_status.json
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
-          mapfile -t fallback_symbols < <(python -c 'import json; print("\n".join(json.load(open("config/fallback_stocks.json", encoding="utf-8"))["symbols"]))')
-          for symbol in "${fallback_symbols[@]}"; do
-            for file in "data/stocks/$symbol.json" "data/stocks/financials/$symbol.json" "data/stocks/history/${symbol}_valuation.json"; do
-              if [ -f "$file" ]; then
-                git add "$file"
-              fi
-            done
-          done
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
             if [ -f "$file" ]; then
               git add "$file"
@@ -167,5 +159,5 @@ jobs:
       - name: Require successful PostgreSQL sync
         if: always() && (steps.linode_ssh.outcome != 'success' || steps.db_sync.outcome != 'success')
         run: |
-          echo "Full-market PostgreSQL sync failed; GitHub fallback data was preserved and updated"
+          echo "Full-market PostgreSQL sync failed; API continues serving the last valid database state"
           exit 1

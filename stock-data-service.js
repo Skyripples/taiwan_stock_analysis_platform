@@ -6,8 +6,7 @@
   'use strict';
 
   const API_BASE_URL = 'https://172-238-20-217.ip.linodeusercontent.com/api/v1';
-  const FALLBACK_BASE_URL = './data/stocks';
-  const FALLBACK_CONFIG_URL = './config/fallback_stocks.json';
+  const SEARCH_INDEX_URL = './data/stocks/index.json';
   const CACHE_TTL_MS = 45000;
 
   class DataServiceError extends Error {
@@ -17,8 +16,7 @@
   class StockDataService {
     constructor(options = {}) {
       this.apiBase = options.apiBase || API_BASE_URL;
-      this.fallbackBase = options.fallbackBase || FALLBACK_BASE_URL;
-      this.fallbackConfigUrl = options.fallbackConfigUrl || FALLBACK_CONFIG_URL;
+      this.searchIndexUrl = options.searchIndexUrl || SEARCH_INDEX_URL;
       this.fetchImpl = options.fetchImpl || globalThis.fetch.bind(globalThis);
       this.timeoutMs = options.timeoutMs || 3000;
       this.networkRetries = options.networkRetries ?? 1;
@@ -42,8 +40,8 @@
       try {
         const response = await this.fetchImpl(url, { cache: 'no-store', signal: controller.signal, headers: { Accept: 'application/json' } });
         if (response.status === 404) throw new DataServiceError('NOT_FOUND', '查無此股票', 404);
-        if (response.status === 429) throw new DataServiceError('FALLBACK_REQUIRED', 'API rate limited', 429);
-        if (response.status >= 500) throw new DataServiceError('FALLBACK_REQUIRED', 'API unavailable', response.status);
+        if (response.status === 429) throw new DataServiceError('SERVICE_UNAVAILABLE', 'API rate limited', 429);
+        if (response.status >= 500) throw new DataServiceError('SERVICE_UNAVAILABLE', 'API unavailable', response.status);
         if (!response.ok) throw new DataServiceError('CLIENT_ERROR', '查詢條件無效', response.status);
         try { return await response.json(); } catch { throw new DataServiceError('INVALID_RESPONSE', '資料格式錯誤', response.status); }
       } catch (error) {
@@ -64,33 +62,17 @@
       }
     }
 
-    async fallback(path) {
-      return this.cached(`fallback-json:${path}`, () => this.fetchJson(`${this.fallbackBase}/${path}`, { timeoutMs: 5000 }));
+    async searchIndex() {
+      return this.cached('search-index', () => this.fetchJson(this.searchIndexUrl, { timeoutMs: 5000 }));
     }
 
-    async fallbackSymbols() {
-      const config = await this.cached('fallback-config', () => this.fetchJson(this.fallbackConfigUrl, { timeoutMs: 5000 }));
-      return new Set((config.symbols || []).map((symbol) => String(symbol).toUpperCase()));
-    }
+    canUseSearchIndex(error) { return ['NETWORK_ERROR', 'TIMEOUT', 'SERVICE_UNAVAILABLE', 'INVALID_RESPONSE'].includes(error?.code); }
 
-    async allowedFallback(symbol) {
-      return (await this.fallbackSymbols()).has(symbol);
-    }
-
-    async stockFallback(symbol, path) {
-      if (!await this.allowedFallback(symbol)) {
-        throw new DataServiceError('SERVICE_UNAVAILABLE', '即時資料服務暫時無法使用', 503);
-      }
-      return this.fallback(path);
-    }
-
-    shouldFallback(error) { return ['NETWORK_ERROR', 'TIMEOUT', 'FALLBACK_REQUIRED', 'INVALID_RESPONSE'].includes(error?.code); }
-
-    async readThrough(apiLoader, fallbackLoader) {
+    async readThrough(apiLoader, indexLoader) {
       try { return { data: await apiLoader(), source: 'api' }; }
       catch (error) {
-        if (!this.shouldFallback(error)) throw error;
-        return { data: await fallbackLoader(), source: 'fallback' };
+        if (!this.canUseSearchIndex(error) || !indexLoader) throw error;
+        return { data: await indexLoader(), source: 'index' };
       }
     }
 
@@ -108,7 +90,7 @@
           return (payload.results || []).map((row) => ({ ...row, cached: true }));
         },
         async () => {
-          const payload = await this.fallback('index.json');
+          const payload = await this.searchIndex();
           const lower = query.toLowerCase();
           return (payload.stocks || []).filter((row) => (!lower || row.symbol.toLowerCase().includes(lower) || row.name.toLowerCase().includes(lower))
             && (!filters.market || row.market === filters.market) && (!filters.industry || row.industry === filters.industry)).slice(0, filters.limit || 20);
@@ -121,7 +103,7 @@
       return this.cached(`stock:${normalized}`, async () => {
         const result = await this.readThrough(
           () => this.api(`/stocks/${encodeURIComponent(normalized)}`).then((data) => this.normalizeApiStock(data)),
-          () => this.stockFallback(normalized, `${encodeURIComponent(normalized)}.json`)
+          null
         );
         result.updatedAt = result.data.updated_at || result.data.data?.build_status?.updated_at || null;
         return result;
@@ -132,7 +114,7 @@
       const normalized = this.symbol(symbol), safeLimit = Math.max(1, Math.min(20, Number(limit) || 12));
       return this.cached(`financials:${normalized}:${safeLimit}`, () => this.readThrough(
         async () => [...((await this.api(`/stocks/${encodeURIComponent(normalized)}/financials?limit=${safeLimit}`)).financials || [])].reverse(),
-        async () => ((await this.stockFallback(normalized, `financials/${encodeURIComponent(normalized)}.json`)).data?.quarters || []).slice(-safeLimit)
+        null
       ));
     }
 
@@ -140,7 +122,7 @@
       const normalized = this.symbol(symbol), safeLimit = Math.max(1, Math.min(250, Number(limit) || 60));
       return this.cached(`chips:${normalized}:${safeLimit}`, () => this.readThrough(
         async () => this.normalizeApiChips((await this.api(`/stocks/${encodeURIComponent(normalized)}/chips?limit=${safeLimit}`)).chips || []),
-        async () => (await this.stockFallback(normalized, `${encodeURIComponent(normalized)}.json`)).data?.chips || this.emptyChips()
+        null
       ));
     }
 
@@ -149,7 +131,7 @@
       if (!name) return { data: { applicable: false, reason: '產業資料不足' }, source: 'api' };
       return this.cached(`peers:${name}:${normalized}`, () => this.readThrough(
         async () => this.buildPeerAnalysis((await this.api(`/industries/${encodeURIComponent(name)}/peers`)).stocks || [], normalized),
-        async () => this.buildPeerAnalysis((await this.fallback('industry_snapshot.json')).stocks || [], normalized)
+        null
       ));
     }
 

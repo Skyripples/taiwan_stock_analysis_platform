@@ -23,7 +23,7 @@ const countedFetch = async (url, options) => {
   else { fallbackRequests += 1; throw new Error(`Unexpected fallback request: ${url}`); }
   return fetch(url, options);
 };
-const service = new StockDataService({ apiBase: 'http://127.0.0.1:8000/api/v1', fallbackBase: 'https://fallback.invalid', fetchImpl: countedFetch });
+const service = new StockDataService({ apiBase: 'http://127.0.0.1:8000/api/v1', searchIndexUrl: 'https://index.invalid', fetchImpl: countedFetch });
 
 (async () => {
   for (const symbol of symbols) {
