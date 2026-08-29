@@ -75,32 +75,8 @@
 - Coinbase：BTC／ETH 小時資料
 - TWSE 年度官方交易日資訊：台股 Trading Calendar
 
-## 執行方式
-
-專案使用 Python 3。建立並啟用虛擬環境後安裝相依套件：
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-
-常用更新入口：
-
-```powershell
-python scripts/update_market_data.py
-python scripts/update_market_signals.py
-python scripts/update_history.py
-python scripts/build_prediction_dataset.py
-python scripts/train_model.py
-python scripts/predict_market.py
-```
-
-V3.14 研究資料使用本機 Data Lake；`data_lake/` 已由 `.gitignore` 排除，不應加入 Git。
-
 ## 使用限制
 
 - 本平台僅供資料整理、研究與技術驗證，不構成投資建議。
 - 市場資料可能受來源延遲、休市、格式調整或服務中斷影響。
-- 隔日行情與個股預測結果不保證準確；V3.14 個股模型仍未 Production 化。
 - 使用者應自行核對官方資料並承擔投資決策風險。
