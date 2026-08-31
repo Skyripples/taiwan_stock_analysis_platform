@@ -7,6 +7,16 @@
   const isCalendarPage = Boolean(document.getElementById("calendarGrid"));
   const themeStorageKey = "taiwan_stock_market_theme";
 
+  const headerActions = document.querySelector(".layout-header-actions");
+  if (headerActions && !headerActions.querySelector(".layout-login-button")) {
+    const loginButton = document.createElement("a");
+    loginButton.className = "layout-login-button";
+    loginButton.href = "./login.html";
+    loginButton.textContent = "登入";
+    loginButton.setAttribute("aria-label", "前往帳號登入頁");
+    headerActions.append(loginButton);
+  }
+
   if (!toggle || !backdrop || !sidebar) return;
 
   if (themeToggle && !isCalendarPage) {

@@ -21,7 +21,7 @@ MODEL_DIR = PROJECT_ROOT / "models"
 MODEL_PATH = MODEL_DIR / "baseline_model.pkl"
 MODEL_INFO_PATH = MODEL_DIR / "model_info.json"
 CALIBRATION_PATH = MODEL_DIR / "platt_calibrator.pkl"
-WALK_FORWARD_PATH = PROJECT_ROOT / "data" / "analysis" / "walk_forward_validation.json"
+WALK_FORWARD_PATH = PROJECT_ROOT / "data" / "analysis" / "current" / "walk_forward_validation.json"
 MINIMUM_SAMPLE_COUNT = 200
 MODEL_VERSION = "3.4"
 

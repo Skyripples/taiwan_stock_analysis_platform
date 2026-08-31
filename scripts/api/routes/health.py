@@ -16,6 +16,6 @@ def health() -> dict:
     return {
         "status": "ok" if database_ok else "degraded",
         "database": {"status": "ok" if database_ok else "unavailable"},
-        "api_version": "3.11.0",
+        "api_version": "3.15.0",
         "server_time": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }

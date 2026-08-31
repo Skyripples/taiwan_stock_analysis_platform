@@ -15,6 +15,7 @@ from fastapi.responses import JSONResponse, Response
 from api.db import DatabaseUnavailable, pool
 from api.routes.health import router as health_router
 from api.routes.stocks import router as stocks_router
+from api.routes.auth import router as auth_router
 
 
 LOGGER = logging.getLogger("taiwan_stock_api")
@@ -31,7 +32,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="Taiwan Stock Analysis API",
-    version="3.11.0",
+    version="3.15.0",
     docs_url="/api/docs",
     openapi_url="/api/openapi.json",
     lifespan=lifespan,
@@ -41,8 +42,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://skyripples.github.io"],
     allow_credentials=False,
-    allow_methods=["GET"],
-    allow_headers=["Accept", "Content-Type", "If-None-Match"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Accept", "Authorization", "Content-Type", "If-None-Match"],
     expose_headers=["ETag", "Last-Modified"],
     max_age=600,
 )
@@ -51,6 +52,9 @@ app.add_middleware(
 @app.middleware("http")
 async def cache_headers(request: Request, call_next):
     response = await call_next(request)
+    if request.url.path.startswith("/api/v1/auth"):
+        response.headers["Cache-Control"] = "no-store"
+        return response
     if request.method != "GET" or response.status_code >= 400:
         return response
     body = b"".join([chunk async for chunk in response.body_iterator])
@@ -91,3 +95,4 @@ async def unhandled_error(_: Request, exc: Exception):
 
 app.include_router(health_router, prefix="/api/v1")
 app.include_router(stocks_router, prefix="/api/v1")
+app.include_router(auth_router, prefix="/api/v1")

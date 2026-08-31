@@ -64,20 +64,42 @@
   </aside>
   <main class="layout-main" data-page="home">
    <div class="page-container platform-shell">
-    <header class="page-header">
-      <p class="page-eyebrow">TAIWAN STOCK MARKET</p>
-      <h1 class="page-title">首頁</h1>
-      <p class="page-description">整合市場事件與投資分析工具的功能入口</p>
-    </header>
-
     <div class="page-body">
+     <section class="page-section reminder-section" aria-labelledby="marketReminderTitle">
+      <div class="reminder-heading">
+        <div>
+          <p class="eyebrow">IMPORTANT EVENTS</p>
+          <h1 id="marketReminderTitle">重要事件提醒</h1>
+        </div>
+      </div>
+      <article class="widget reminder-card">
+        <div>
+          <p class="reminder-type">臺股期貨月契約</p>
+          <h2>台指期結算日</h2>
+        </div>
+        <div class="reminder-date-block">
+          <time id="nextFuturesSettlementDate" datetime="">計算中</time>
+          <span id="nextFuturesSettlementCountdown">讀取日期中</span>
+        </div>
+      </article>
+      <article class="widget reminder-card">
+        <div>
+          <p class="reminder-type">TWSE／TPEx 交易日曆</p>
+          <h2>國定假日休市</h2>
+        </div>
+        <div class="reminder-date-block">
+          <time id="nextMarketHolidayDate" datetime="">載入中</time>
+          <span id="nextMarketHolidayCountdown">讀取官方行事曆中</span>
+        </div>
+      </article>
+     </section>
+
      <section class="page-section" aria-labelledby="functionOverviewTitle">
       <div class="section-heading">
         <div>
           <p class="eyebrow">FUNCTIONS</p>
           <h2 id="functionOverviewTitle">功能總覽</h2>
         </div>
-        <p>選擇要使用的分析工具</p>
       </div>
 
       <div class="feature-grid" aria-label="平台功能">
@@ -115,7 +137,7 @@
 
         <article class="widget feature-card feature-card-planned" aria-disabled="true">
           <span class="feature-icon" aria-hidden="true">↺</span>
-          <span class="status">規劃中</span>
+          <span class="status status-available">可使用</span>
           <h3>歷史回測</h3>
           <p>投資策略的歷史表現驗證</p>
         </article>
@@ -130,10 +152,10 @@
       </div>
      </section>
 
-    <footer class="platform-footer">台股投資分析平台</footer>
     </div>
    </div>
   </main>
   <script src="./sidebar.js"></script>
+  <script src="./home.js"></script>
 </body>
 </html>

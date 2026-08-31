@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "history_years": 5,
+  "timezone": "Asia/Taipei",
+  "compression": {"format": "parquet", "codec": "zstd", "level": 6},
+  "markets": {
+    "twse": {
+      "enabled": true,
+      "source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX",
+      "official_mirrors": ["https://wwwc.twse.com.tw/rwd/zh/afterTrading/MI_INDEX"],
+      "history_registry_source": "https://backend.taiwanindex.com.tw/api/indexes",
+      "history_source_template": "https://backend.taiwanindex.com.tw/api/indexes/{code}/records",
+      "request_type": "ALLBUT0999",
+      "discovery_rule": "official price-index names ending with 類指數",
+      "available_time": "18:00:00"
+    },
+    "tpex": {
+      "enabled": true,
+      "source": "https://www.tpex.org.tw/www/zh-tw/indexInfo/idxsm",
+      "catalog_source": "https://www.tpex.org.tw/zh-tw/indices/stock-index/industrial/idxsm.html",
+      "official_industry_index_available": true,
+      "available_time": "18:00:00",
+      "history_start": "2016-01-01",
+      "note": "Official monthly query returns daily closing values for each TPEx industry classification index."
+    }
+  }
+}

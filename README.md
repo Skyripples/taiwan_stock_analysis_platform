@@ -9,6 +9,7 @@
 - 共用 Header、Sidebar、Page Framework 與 Widget 系統
 - 支援深色／淺色模式與手機響應式版面
 - 首頁作為各功能入口
+- 提供初步帳號登入與裝置驗證入口
 
 ### 台股事件簿
 
@@ -62,6 +63,17 @@
 - 本機 Data Lake：歷史研究資料，採 Parquet + ZSTD level 6 壓縮
 - DuckDB：直接查詢 Parquet，利用欄位與條件下推避免載入完整資料集
 - GitHub 不保存 Data Lake、Parquet 或 2,390 份個股 JSON
+
+## 專案結構
+
+- `scripts/`：Production 資料更新、模型、API 與資料庫入口
+- `scripts/research/`：研究資料集、ablation、walk-forward、validation 與 pilot
+- `scripts/research/common/`：共用 walk-forward 邊界與分類 metrics
+- `scripts/maintenance/`：一次性 repair、cleanup、export 與 benchmark 工具
+- `tests/frontend/`：前端 smoke／integration 測試
+- `data/analysis/current/`：目前流程仍會讀取或更新的報告
+- `data/analysis/archive/`：保留供追溯的歷史研究結果
+- `scripts/database/migrations/`：Production migration；檔案與順序維持不變
 
 ## 資料來源
 

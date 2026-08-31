@@ -13,7 +13,7 @@ from config import PROJECT_ROOT
 
 
 INPUT_PATH = PROJECT_ROOT / "data" / "history" / "chips_daily.csv"
-OUTPUT_PATH = PROJECT_ROOT / "data" / "analysis" / "chips_summary.json"
+OUTPUT_PATH = PROJECT_ROOT / "data" / "analysis" / "current" / "chips_summary.json"
 NUMERIC_FIELDS = (
     "foreign_net", "investment_trust_net", "dealer_net",
     "foreign_futures_long", "foreign_futures_short", "foreign_futures_net",

@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "timezone": "Asia/Taipei",
+  "defaults": {
+    "request_interval_seconds": 1.0,
+    "timeout_connect_seconds": 10.0,
+    "timeout_read_seconds": 45.0,
+    "retries": 4,
+    "backoff_initial_seconds": 2.0,
+    "backoff_max_seconds": 30.0,
+    "throttle_circuit_threshold": 3,
+    "circuit_cooldown_seconds": 120.0,
+    "source_failure_circuit_threshold": 2,
+    "batch_size": 10,
+    "concurrency": 1
+  },
+  "collectors": {
+    "taiwan_industry_indices": {
+      "summary": "data_lake/taiwan_industry_indices/summary.json",
+      "log": "data_lake/taiwan_industry_indices/logs/collector.jsonl"
+    },
+    "taiwan_pit": {
+      "summary": "data_lake/taiwan_pit/summary.json",
+      "log": "data_lake/taiwan_pit/logs/collector.jsonl"
+    }
+  }
+}

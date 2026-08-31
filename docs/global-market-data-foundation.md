@@ -8,7 +8,7 @@ The research target is the direction/return of a Taiwan index or stock from the 
 
 Machine-readable outputs:
 
-- `data/analysis/global_market_data_audit.json`: complete candidate/source audit.
+- `data/analysis/current/global_market_data_audit.json`: complete candidate/source audit.
 - `config/global_market_registry.json`: disabled, experimental candidate feature definitions only.
 
 ## Existing project data

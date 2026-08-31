@@ -120,7 +120,7 @@
 
   async function loadSummary() {
     try {
-      const payload = await loadJson('./data/analysis/chips_summary.json');
+      const payload = await loadJson('./data/analysis/current/chips_summary.json');
       if (!payload || payload.version !== '1.0') throw new DataError('chips_summary 格式錯誤');
       const institutional = requireObject(payload.institutional, 'institutional');
       const futures = requireObject(payload.futures, 'futures');

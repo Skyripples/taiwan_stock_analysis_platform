@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "history_years": 5,
+  "timezone": "Asia/Taipei",
+  "utc_offset": "+08:00",
+  "compression": {"format": "parquet", "codec": "zstd", "level": 6},
+  "source_fallbacks": {
+    "twse_issued_shares": ["https://www.twse.com.tw/rwd/zh/fund/MI_QFIIS"],
+    "twse_corporate_actions": ["https://www.twse.com.tw/rwd/zh/exRight/TWT49U"]
+  },
+  "sources": {
+    "twse_calendar": "https://openapi.twse.com.tw/v1/holidaySchedule/holidaySchedule",
+    "twse_issued_shares": "https://wwwc.twse.com.tw/rwd/zh/fund/MI_QFIIS",
+    "twse_corporate_actions": "https://wwwc.twse.com.tw/rwd/zh/exRight/TWT49U",
+    "tpex_issued_shares": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyMarktVal",
+    "tpex_corporate_actions": "https://www.tpex.org.tw/www/zh-tw/bulletin/exDailyQ"
+  }
+}
