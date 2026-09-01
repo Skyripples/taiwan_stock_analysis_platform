@@ -2,13 +2,21 @@
   "use strict";
 
   const featureCards = [...document.querySelectorAll(".feature-card")];
-  const applyFeatureAccess = (isAdmin) => {
+  const featureByPath = {
+    "calendar.html": "calendar", "prediction.html": "prediction",
+    "market-overview.html": "market_overview", "chips-analysis.html": "chips_analysis",
+    "stock-analysis.html": "stock_analysis",
+  };
+  const applyFeatureAccess = (isAdmin, permissions = {}) => {
     featureCards.forEach((card) => {
       const status = card.querySelector(".status");
       if (!card.dataset.accessHref && card.hasAttribute("href")) {
         card.dataset.accessHref = card.getAttribute("href");
       }
-      if (isAdmin) {
+      const filename = (card.dataset.accessHref || "").split("/").pop();
+      const featureKey = featureByPath[filename] || (card.querySelector("h3")?.textContent === "歷史回測" ? "backtest" : "");
+      const allowed = isAdmin || Boolean(permissions[featureKey]);
+      if (allowed) {
         if (card.dataset.accessHref) card.setAttribute("href", card.dataset.accessHref);
         card.classList.remove("is-access-locked");
         card.removeAttribute("aria-disabled");
@@ -29,7 +37,7 @@
   };
   applyFeatureAccess(document.body.dataset.accessRole === "admin");
   window.addEventListener("platform-access-change", (event) => {
-    applyFeatureAccess(Boolean(event.detail?.isAdmin));
+    applyFeatureAccess(Boolean(event.detail?.isAdmin), event.detail?.permissions || {});
   });
 
   const dateElement = document.getElementById("nextFuturesSettlementDate");

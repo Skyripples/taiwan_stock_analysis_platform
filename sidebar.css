@@ -57,11 +57,52 @@ body.has-sidebar {
 }
 
 .layout-header-actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 9px;
   font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
 }
+
+.layout-account-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 1200;
+  min-width: 130px;
+  padding: 7px;
+  border: 1px solid #3b4047;
+  border-radius: 9px;
+  background: #17191c;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.layout-account-menu[hidden] { display: none; }
+
+.layout-account-menu button {
+  width: 100%;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.layout-account-menu button:hover,
+.layout-account-menu button:focus-visible { background: #292d32; }
+
+body.theme-light .layout-account-menu {
+  border-color: #cbd4df;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(40, 55, 75, 0.16);
+}
+
+body.theme-light .layout-account-menu button { color: #26354a; }
+body.theme-light .layout-account-menu button:hover,
+body.theme-light .layout-account-menu button:focus-visible { background: #edf2f7; }
 
 .layout-theme-label {
   color: #ffffff;

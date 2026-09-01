@@ -42,7 +42,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://skyripples.github.io"],
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "PUT"],
     allow_headers=["Accept", "Authorization", "Content-Type", "If-None-Match"],
     expose_headers=["ETag", "Last-Modified"],
     max_age=600,
