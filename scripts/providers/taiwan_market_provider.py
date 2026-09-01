@@ -3,12 +3,17 @@
 from __future__ import annotations
 
 import re
+import logging
+import time
 from datetime import date, datetime
 from typing import Any, Dict, Iterable, List
 
 import requests
 
 from .base_provider import BaseProvider, NormalizedRecords
+
+
+LOGGER = logging.getLogger("market_data.taiwan_market")
 
 
 class TaiwanMarketOverviewProvider(BaseProvider):
@@ -22,7 +27,11 @@ class TaiwanMarketOverviewProvider(BaseProvider):
     twse_latest_url = "https://openapi.twse.com.tw/v1/exchangeReport/MI_INDEX"
     twse_daily_url = "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX"
     tpex_highlight_url = "https://www.tpex.org.tw/openapi/v1/tpex_mainborad_highlight"
+    tpex_index_url = "https://www.tpex.org.tw/www/zh-tw/afterTrading/tradingIndex"
+    tpex_quotes_url = "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes"
     request_timeout_seconds = 30
+    tpex_max_attempts = 3
+    tpex_backoff_seconds = (1.0, 2.0)
 
     def fetch(self) -> Any:
         latest_rows = self._get_json(self.twse_latest_url)
@@ -51,20 +60,20 @@ class TaiwanMarketOverviewProvider(BaseProvider):
         )
         if not isinstance(twse_daily, dict) or twse_daily.get("stat") != "OK":
             raise ValueError("TWSE daily market overview is unavailable")
+        LOGGER.info("Taiwan market sub-source completed: TWSE | trade_date=%s", twse_date)
 
-        tpex_rows = self._get_json(self.tpex_highlight_url)
-        if not isinstance(tpex_rows, list) or not tpex_rows or not isinstance(tpex_rows[0], dict):
-            raise ValueError("TPEx market highlight response is empty")
-        tpex_date = self._parse_roc_date(tpex_rows[0].get("Date"))
-        if twse_date != tpex_date:
-            raise ValueError(
-                f"TWSE and TPEx dates differ: {twse_date.isoformat()} / {tpex_date.isoformat()}"
-            )
+        tpex_row, tpex_sources = self._fetch_tpex_for_date(twse_date)
+        LOGGER.info(
+            "Taiwan market sub-source completed: TPEx | trade_date=%s | source=%s",
+            twse_date,
+            ",".join(tpex_sources),
+        )
 
         return {
             "trade_date": twse_date.isoformat(),
             "twse": twse_daily,
-            "tpex": tpex_rows[0],
+            "tpex": tpex_row,
+            "tpex_sources": tpex_sources,
         }
 
     def normalize(self, raw_data: Any) -> NormalizedRecords:
@@ -73,8 +82,11 @@ class TaiwanMarketOverviewProvider(BaseProvider):
         trade_date = raw_data.get("trade_date")
         twse = raw_data.get("twse")
         tpex = raw_data.get("tpex")
+        tpex_sources = raw_data.get("tpex_sources")
         if not isinstance(trade_date, str) or not isinstance(twse, dict) or not isinstance(tpex, dict):
             raise ValueError("Taiwan market response is missing required sections")
+        if not isinstance(tpex_sources, list) or not tpex_sources:
+            raise ValueError("Taiwan market response is missing TPEx source status")
 
         tables = twse.get("tables")
         if not isinstance(tables, list):
@@ -127,7 +139,7 @@ class TaiwanMarketOverviewProvider(BaseProvider):
                     "breadth_scope": "TWSE股票＋TPEx上櫃公司",
                     "sources": {
                         "twse": self.twse_daily_url,
-                        "tpex": self.tpex_highlight_url,
+                        "tpex": tpex_sources,
                     },
                     "source_units": {
                         "twse_turnover": "元",
@@ -188,6 +200,161 @@ class TaiwanMarketOverviewProvider(BaseProvider):
         )
         response.raise_for_status()
         return response.json()
+
+    def _fetch_tpex_for_date(self, target_date: date) -> tuple[Dict[str, Any], List[str]]:
+        """Return TPEx data for exactly target_date using official sources only."""
+
+        primary_error: Exception | None = None
+        try:
+            rows = self._get_tpex_json(self.tpex_highlight_url)
+            if not isinstance(rows, list) or not rows or not isinstance(rows[0], dict):
+                raise ValueError("TPEx market highlight response is empty")
+            row = rows[0]
+            returned_date = self._parse_roc_date(row.get("Date"))
+            if returned_date != target_date:
+                raise ValueError(
+                    "TPEx OpenAPI date mismatch: "
+                    f"expected={target_date.isoformat()} returned={returned_date.isoformat()}"
+                )
+            return row, [self.tpex_highlight_url]
+        except (requests.RequestException, ValueError, TypeError) as exc:
+            primary_error = exc
+            LOGGER.warning(
+                "Taiwan market sub-source failed: TPEx primary | target_date=%s | %s",
+                target_date,
+                exc,
+            )
+
+        try:
+            return self._fetch_tpex_fallback(target_date), [self.tpex_index_url, self.tpex_quotes_url]
+        except (requests.RequestException, ValueError, TypeError) as fallback_error:
+            LOGGER.error(
+                "Taiwan market sub-source failed: TPEx fallback | target_date=%s | %s",
+                target_date,
+                fallback_error,
+            )
+            raise ValueError(
+                "All official TPEx sources failed for "
+                f"{target_date.isoformat()}: primary={primary_error}; fallback={fallback_error}"
+            ) from fallback_error
+
+    def _fetch_tpex_fallback(self, target_date: date) -> Dict[str, Any]:
+        expected_date = target_date.strftime("%Y%m%d")
+        params = {"date": target_date.strftime("%Y/%m/%d"), "response": "json"}
+        index_payload = self._get_tpex_json(self.tpex_index_url, params=params)
+        if (
+            not isinstance(index_payload, dict)
+            or index_payload.get("stat") != "ok"
+            or index_payload.get("date") != expected_date
+        ):
+            raise ValueError("TPEx fallback index response is unavailable or date-mismatched")
+        index_row = self._find_tpex_index_row(index_payload, target_date)
+
+        quotes_payload = self._get_tpex_json(self.tpex_quotes_url, params=params)
+        if (
+            not isinstance(quotes_payload, dict)
+            or quotes_payload.get("stat") != "ok"
+            or quotes_payload.get("date") != expected_date
+        ):
+            raise ValueError("TPEx fallback quotes response is unavailable or date-mismatched")
+        quote_table = self._find_tpex_quote_table(quotes_payload)
+        counts = self._count_tpex_companies(quote_table)
+        total_trading_amount = self._parse_integer(quote_table.get("totalTradingAmount"))
+
+        close = self._parse_number(index_row[4])
+        change = self._parse_number(index_row[5])
+        return {
+            "Date": f"{target_date.year - 1911:03d}{target_date:%m%d}",
+            "DailyTradingValue": str(total_trading_amount // 1_000_000),
+            "CloseIndex": str(close),
+            "IndexChange": str(change),
+            "PriceRiseCompanyNumbers": str(counts["advancing"]),
+            "PriceDeclineCompanyNumbers": str(counts["declining"]),
+            "PriceFlatCompanyNumbers": str(counts["unchanged"]),
+        }
+
+    def _get_tpex_json(self, url: str, *, params: Dict[str, str] | None = None) -> Any:
+        last_error: Exception | None = None
+        for attempt in range(self.tpex_max_attempts):
+            try:
+                response = requests.get(
+                    url,
+                    params=params,
+                    headers={
+                        "Accept": "application/json",
+                        "User-Agent": "taiwan-stock-analysis-platform/1.0",
+                    },
+                    timeout=self.request_timeout_seconds,
+                )
+                response.raise_for_status()
+                return response.json()
+            except (requests.RequestException, ValueError) as exc:
+                last_error = exc
+                status = (
+                    exc.response.status_code
+                    if isinstance(exc, requests.HTTPError) and exc.response is not None
+                    else None
+                )
+                retryable = status is None or status == 429 or status >= 500
+                if not retryable or attempt + 1 >= self.tpex_max_attempts:
+                    raise
+                delay = self.tpex_backoff_seconds[min(attempt, len(self.tpex_backoff_seconds) - 1)]
+                LOGGER.warning(
+                    "TPEx request retry: url=%s | attempt=%d/%d | delay=%.1fs | %s",
+                    url,
+                    attempt + 2,
+                    self.tpex_max_attempts,
+                    delay,
+                    exc,
+                )
+                time.sleep(delay)
+        raise RuntimeError(f"TPEx request failed without response: {url}: {last_error}")
+
+    @classmethod
+    def _find_tpex_index_row(cls, payload: Dict[str, Any], target_date: date) -> List[Any]:
+        expected = target_date.strftime("%Y/%m/%d")
+        for table in payload.get("tables", []):
+            if not isinstance(table, dict):
+                continue
+            for row in table.get("data", []):
+                if not isinstance(row, list) or len(row) < 6:
+                    continue
+                try:
+                    if cls._parse_roc_date(row[0]) == target_date:
+                        return row
+                except ValueError:
+                    continue
+        raise ValueError(f"TPEx fallback index is missing target date: {expected}")
+
+    @staticmethod
+    def _find_tpex_quote_table(payload: Dict[str, Any]) -> Dict[str, Any]:
+        for table in payload.get("tables", []):
+            if (
+                isinstance(table, dict)
+                and table.get("totalTradingAmount") not in (None, "")
+                and isinstance(table.get("data"), list)
+            ):
+                return table
+        raise ValueError("TPEx fallback quote table is missing")
+
+    @classmethod
+    def _count_tpex_companies(cls, table: Dict[str, Any]) -> Dict[str, int]:
+        counts = {"advancing": 0, "declining": 0, "unchanged": 0}
+        for row in table.get("data", []):
+            if not isinstance(row, list) or len(row) <= 3:
+                continue
+            code = str(row[0]).strip()
+            if not re.fullmatch(r"[1-9]\d{3}", code):
+                continue
+            try:
+                change = cls._parse_number(row[3])
+            except (TypeError, ValueError):
+                continue
+            key = "advancing" if change > 0 else "declining" if change < 0 else "unchanged"
+            counts[key] += 1
+        if sum(counts.values()) == 0:
+            raise ValueError("TPEx fallback company breadth is empty")
+        return counts
 
     @staticmethod
     def _find_table(tables: Iterable[Any], title: str) -> Dict[str, Any]:
