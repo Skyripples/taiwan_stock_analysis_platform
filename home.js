@@ -1,6 +1,37 @@
 (() => {
   "use strict";
 
+  const featureCards = [...document.querySelectorAll(".feature-card")];
+  const applyFeatureAccess = (isAdmin) => {
+    featureCards.forEach((card) => {
+      const status = card.querySelector(".status");
+      if (!card.dataset.accessHref && card.hasAttribute("href")) {
+        card.dataset.accessHref = card.getAttribute("href");
+      }
+      if (isAdmin) {
+        if (card.dataset.accessHref) card.setAttribute("href", card.dataset.accessHref);
+        card.classList.remove("is-access-locked");
+        card.removeAttribute("aria-disabled");
+        card.removeAttribute("tabindex");
+        status?.classList.remove("status-paid");
+        status?.classList.add("status-available");
+        if (status) status.textContent = "可使用";
+      } else {
+        card.removeAttribute("href");
+        card.classList.add("is-access-locked");
+        card.setAttribute("aria-disabled", "true");
+        card.setAttribute("tabindex", "-1");
+        status?.classList.remove("status-available");
+        status?.classList.add("status-paid");
+        if (status) status.textContent = "付費解鎖";
+      }
+    });
+  };
+  applyFeatureAccess(document.body.dataset.accessRole === "admin");
+  window.addEventListener("platform-access-change", (event) => {
+    applyFeatureAccess(Boolean(event.detail?.isAdmin));
+  });
+
   const dateElement = document.getElementById("nextFuturesSettlementDate");
   const countdownElement = document.getElementById("nextFuturesSettlementCountdown");
   if (!dateElement || !countdownElement) return;

@@ -369,6 +369,20 @@ body.theme-light .reminder-date-block {
   background: rgba(155, 39, 39, 0.22);
 }
 
+.feature-card.is-access-locked {
+  cursor: not-allowed;
+  opacity: 0.72;
+  border-color: #3a3032;
+  transform: none;
+}
+
+.feature-card.is-access-locked:hover,
+.feature-card.is-access-locked:focus-visible {
+  border-color: #3a3032;
+  box-shadow: none;
+  transform: none;
+}
+
 body.theme-light .status-paid {
   border-color: #e5abab;
   color: #9b2929;

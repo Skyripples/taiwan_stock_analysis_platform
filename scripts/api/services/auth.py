@@ -98,8 +98,6 @@ def complete(flow_id: str, credential: dict) -> dict:
                 if cursor.fetchone()["count"]:
                     raise AuthError("DEVICE_ALREADY_BOUND", "此帳號已綁定裝置", 409)
                 result = verify_registration_response(credential=credential, expected_challenge=bytes(flow["challenge"]), expected_rp_id=RP_ID, expected_origin=ORIGIN, require_user_verification=True)
-                if result.credential_device_type.value != "single_device" or result.credential_backed_up:
-                    raise AuthError("DEVICE_BOUND_REQUIRED", "請使用未同步至雲端的本機裝置 Passkey", 400)
                 transports = ((credential.get("response") or {}).get("transports") or [])
                 cursor.execute("INSERT INTO auth_webauthn_credentials(credential_id,user_id,public_key,sign_count,transports,device_type,backed_up) VALUES (%s,%s,%s,%s,%s,%s,%s)",
                                (result.credential_id, flow["user_id"], result.credential_public_key, result.sign_count, transports, str(result.credential_device_type.value), result.credential_backed_up))

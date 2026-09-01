@@ -6,10 +6,12 @@
   const themeToggle = document.getElementById("themeToggleSwitch");
   const isCalendarPage = Boolean(document.getElementById("calendarGrid"));
   const themeStorageKey = "taiwan_stock_market_theme";
+  const authApiBase = "https://172-238-20-217.ip.linodeusercontent.com/api/v1";
 
   const headerActions = document.querySelector(".layout-header-actions");
+  let loginButton = headerActions?.querySelector(".layout-login-button") || null;
   if (headerActions && !headerActions.querySelector(".layout-login-button")) {
-    const loginButton = document.createElement("a");
+    loginButton = document.createElement("a");
     loginButton.className = "layout-login-button";
     loginButton.href = "./login.html";
     loginButton.textContent = "登入";
@@ -18,6 +20,68 @@
   }
 
   if (!toggle || !backdrop || !sidebar) return;
+
+  const protectedItems = [...sidebar.querySelectorAll(".sidebar-item")]
+    .filter((item) => !item.getAttribute("href")?.endsWith("index.html"));
+
+  const applyNavigationAccess = (isAdmin, username = "") => {
+    protectedItems.forEach((item) => {
+      if (!item.dataset.accessHref && item.hasAttribute("href")) {
+        item.dataset.accessHref = item.getAttribute("href");
+      }
+      let label = item.querySelector("small[data-access-label]");
+      if (isAdmin) {
+        if (item.dataset.accessHref) item.setAttribute("href", item.dataset.accessHref);
+        item.classList.remove("is-disabled");
+        item.removeAttribute("aria-disabled");
+        item.removeAttribute("tabindex");
+        label?.remove();
+      } else {
+        item.removeAttribute("href");
+        item.classList.add("is-disabled");
+        item.setAttribute("aria-disabled", "true");
+        item.setAttribute("tabindex", "-1");
+        if (!label) {
+          label = document.createElement("small");
+          label.dataset.accessLabel = "";
+          item.append(label);
+        }
+        label.textContent = "付費解鎖";
+      }
+    });
+    if (loginButton && isAdmin) {
+      loginButton.textContent = username || "admin";
+      loginButton.setAttribute("aria-label", "目前登入的管理者帳號");
+    }
+    body.dataset.accessRole = isAdmin ? "admin" : "restricted";
+    window.dispatchEvent(new CustomEvent("platform-access-change", {
+      detail: { isAdmin, username },
+    }));
+  };
+
+  const verifyAccess = async () => {
+    applyNavigationAccess(false);
+    let token = "";
+    try { token = sessionStorage.getItem("taiwan_stock_access_token") || ""; } catch (error) {}
+    if (!token) return;
+    try {
+      const response = await fetch(`${authApiBase}/auth/me`, {
+        headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (!response.ok) throw new Error("invalid session");
+      const account = await response.json();
+      applyNavigationAccess(account.username === "admin" && account.role === "admin", account.username);
+    } catch (error) {
+      try {
+        sessionStorage.removeItem("taiwan_stock_access_token");
+        sessionStorage.removeItem("taiwan_stock_account");
+      } catch (storageError) {}
+      applyNavigationAccess(false);
+    }
+  };
+
+  verifyAccess();
 
   if (themeToggle && !isCalendarPage) {
     let preferredTheme = "dark";
