@@ -79,7 +79,9 @@ body.has-sidebar {
 
 .layout-account-menu[hidden] { display: none; }
 
+.layout-account-menu a,
 .layout-account-menu button {
+  display: block;
   width: 100%;
   padding: 9px 12px;
   border: 0;
@@ -89,8 +91,11 @@ body.has-sidebar {
   font: inherit;
   text-align: left;
   cursor: pointer;
+  text-decoration: none;
 }
 
+.layout-account-menu a:hover,
+.layout-account-menu a:focus-visible,
 .layout-account-menu button:hover,
 .layout-account-menu button:focus-visible { background: #292d32; }
 
@@ -100,7 +105,10 @@ body.theme-light .layout-account-menu {
   box-shadow: 0 12px 28px rgba(40, 55, 75, 0.16);
 }
 
+body.theme-light .layout-account-menu a,
 body.theme-light .layout-account-menu button { color: #26354a; }
+body.theme-light .layout-account-menu a:hover,
+body.theme-light .layout-account-menu a:focus-visible,
 body.theme-light .layout-account-menu button:hover,
 body.theme-light .layout-account-menu button:focus-visible { background: #edf2f7; }
 

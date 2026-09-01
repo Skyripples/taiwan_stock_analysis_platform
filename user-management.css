@@ -1,3 +1,6 @@
+.page-section.widget { padding: 24px; }
+.page-section.widget h2 { margin: 0 0 20px; color: #fff; }
+.page-header h1, .page-header > p { color: #fff; }
 .user-create-form { display: grid; gap: 18px; }
 .user-create-form > label { display: grid; gap: 7px; color: #fff; font-weight: 700; }
 .user-create-form input[type="text"], .user-create-form input:not([type]) , .user-create-form input[type="password"] { min-height: 42px; padding: 9px 12px; border: 1px solid #454b54; border-radius: 8px; color: #fff; background: #17191c; font: inherit; }
@@ -14,6 +17,12 @@
 .user-table input:disabled { cursor: not-allowed; opacity: 0.65; }
 .user-management-message { min-height: 1.5em; color: #f1bd63; }
 body.theme-light .user-create-form > label { color: #26354a; }
+body.theme-light .page-section.widget h2,
+body.theme-light .page-header h1,
+body.theme-light .page-header > p,
+body.theme-light .permission-toggle,
+body.theme-light .user-create-form legend,
+body.theme-light .user-table { color: #26354a; }
 body.theme-light .user-create-form input[type="text"], body.theme-light .user-create-form input:not([type]), body.theme-light .user-create-form input[type="password"] { border-color: #c9d3df; color: #26354a; background: #fff; }
 body.theme-light .user-create-form fieldset, body.theme-light .user-table th, body.theme-light .user-table td { border-color: #d5dde7; }
 @media (max-width: 640px) { .user-create-form { grid-template-columns: 1fr; } .permission-list { display: grid; grid-template-columns: 1fr 1fr; } }

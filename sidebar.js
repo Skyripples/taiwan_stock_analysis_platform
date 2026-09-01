@@ -29,21 +29,7 @@
   const protectedItems = [...sidebar.querySelectorAll(".sidebar-item")]
     .filter((item) => !item.getAttribute("href")?.endsWith("index.html"));
 
-  const ensureAdminNavigation = (isAdmin) => {
-    let item = sidebar.querySelector("[data-admin-navigation]");
-    if (!isAdmin) { item?.remove(); return; }
-    if (!item) {
-      item = document.createElement("a");
-      item.className = "sidebar-item";
-      item.href = "./user-management.html";
-      item.dataset.adminNavigation = "";
-      item.textContent = "使用者管理";
-      if (window.location.pathname.endsWith("/user-management.html")) item.classList.add("is-active");
-      sidebar.querySelector(".sidebar-nav")?.append(item);
-    }
-  };
-
-  const renderAccountMenu = (username = "", token = "") => {
+  const renderAccountMenu = (username = "", token = "", isAdmin = false) => {
     document.querySelector(".layout-account-menu")?.remove();
     if (!loginButton) return;
     if (!username || !token) {
@@ -59,6 +45,12 @@
     const menu = document.createElement("div");
     menu.className = "layout-account-menu";
     menu.hidden = true;
+    if (isAdmin) {
+      const managementLink = document.createElement("a");
+      managementLink.href = "./user-management.html";
+      managementLink.textContent = "使用者管理";
+      menu.append(managementLink);
+    }
     const logoutButton = document.createElement("button");
     logoutButton.type = "button";
     logoutButton.textContent = "登出";
@@ -111,8 +103,7 @@
         label.textContent = "付費解鎖";
       }
     });
-    ensureAdminNavigation(isAdmin);
-    renderAccountMenu(username, token);
+    renderAccountMenu(username, token, isAdmin);
     body.dataset.accessRole = isAdmin ? "admin" : "restricted";
     window.dispatchEvent(new CustomEvent("platform-access-change", {
       detail: { isAdmin, username, permissions },
