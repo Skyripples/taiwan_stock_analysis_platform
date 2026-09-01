@@ -1,17 +1,7 @@
 {
-  "updated_at": "2026-08-21T01:19:34+00:00",
-  "last_database_sync": "2026-08-21T01:19:34+00:00",
-  "last_fallback_update": "2026-08-20T00:00:00+00:00",
+  "updated_at": "2026-09-01T16:07:05+00:00",
+  "last_database_sync": "2026-09-01T16:07:05+00:00",
   "database_sync_status": "success",
-  "fallback_count": 6,
-  "fallback_symbols": [
-    "2330",
-    "2317",
-    "6488",
-    "2881",
-    "1101",
-    "0050"
-  ],
-  "universe_count": 2390,
+  "universe_count": 2391,
   "api_version": "3.11.0"
 }

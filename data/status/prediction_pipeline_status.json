@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-09-01T16:06:55.652635+00:00",
+  "status": "skipped",
+  "ready": false,
+  "reason": "required_market_provider_failed",
+  "feature_count": 15
+}

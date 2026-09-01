@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-08-19T10:03:11+00:00",
+  "updated_at": "2026-09-01T16:03:03+00:00",
   "version": "2.0",
-  "active_count": 2390,
-  "company_count": 1981,
+  "active_count": 2391,
+  "company_count": 1979,
   "stocks": [
     {
       "symbol": "00400A",
@@ -98,6 +98,16 @@
       "symbol": "00410A",
       "name": "主動永豐科技趨勢",
       "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "00411A",
+      "name": "主動統一前沿科技",
+      "market": "TPEx",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
       "active": true,
@@ -262,7 +272,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00631L",
@@ -752,7 +762,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -962,7 +972,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00708L",
@@ -2842,7 +2852,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "009800",
@@ -3195,6 +3205,16 @@
       "cache_status": "complete"
     },
     {
+      "symbol": "009829",
+      "name": "大華韓國KOSPI50",
+      "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
       "symbol": "00982A",
       "name": "主動群益台灣強棒",
       "market": "TWSE",
@@ -3367,6 +3387,16 @@
     {
       "symbol": "00987B",
       "name": "野村10+澳洲公債",
+      "market": "TPEx",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "00987D",
+      "name": "主動統一美債量化",
       "market": "TPEx",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
@@ -3622,7 +3652,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020012",
@@ -3632,7 +3662,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "02001L",
@@ -3652,7 +3682,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020025",
@@ -3682,7 +3712,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020030",
@@ -3742,7 +3772,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020036",
@@ -3752,7 +3782,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020037",
@@ -3762,7 +3792,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020038",
@@ -3792,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020041",
@@ -5230,7 +5260,7 @@
       "market": "TWSE",
       "industry": "汽車工業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -6972,7 +7002,7 @@
       "instrument_type": "company",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2321",
@@ -7042,7 +7072,7 @@
       "instrument_type": "company",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2331",
@@ -9280,7 +9310,7 @@
       "market": "TWSE",
       "industry": "金融保險業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -13736,7 +13766,7 @@
     },
     {
       "symbol": "4530",
-      "name": "宏易",
+      "name": "天意能創",
       "market": "TPEx",
       "industry": "觀光餐旅",
       "instrument_type": "company",
@@ -14366,7 +14396,7 @@
     },
     {
       "symbol": "4747",
-      "name": "強生",
+      "name": "強生*",
       "market": "TPEx",
       "industry": "生技醫療業",
       "instrument_type": "company",
@@ -15690,7 +15720,7 @@
       "market": "TPEx",
       "industry": "光電業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -17185,6 +17215,16 @@
       "cache_status": "partial"
     },
     {
+      "symbol": "6176",
+      "name": "瑞儀",
+      "market": "TWSE",
+      "industry": "光電業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
       "symbol": "6177",
       "name": "達麗",
       "market": "TWSE",
@@ -17749,6 +17789,16 @@
       "name": "松崗",
       "market": "TPEx",
       "industry": "資訊服務業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "6241",
+      "name": "鑫永洋",
+      "market": "TPEx",
+      "industry": "通信網路業",
       "instrument_type": "company",
       "active": true,
       "cached": true,
@@ -18442,7 +18492,7 @@
       "instrument_type": "company",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6491",
@@ -19022,7 +19072,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6593",
@@ -20720,7 +20770,7 @@
       "market": "TWSE",
       "industry": "生技醫療業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
