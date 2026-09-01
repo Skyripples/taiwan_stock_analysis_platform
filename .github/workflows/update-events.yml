@@ -31,6 +31,8 @@ jobs:
           python scripts/fetch_events.py
 
       - name: Update market data
+        id: market_data
+        continue-on-error: true
         run: |
           python scripts/update_market_data.py
 
@@ -56,26 +58,45 @@ jobs:
           esac
 
       - name: Update market signals
+        id: market_signals
+        if: always() && steps.market_data.outcome == 'success'
         run: |
           python scripts/update_market_signals.py
 
       - name: Update daily history
+        id: market_history
+        if: always() && steps.market_data.outcome == 'success' && steps.market_signals.outcome == 'success'
         run: |
           python scripts/update_history.py
 
       - name: Build prediction dataset
+        id: prediction_dataset
+        if: always() && steps.market_history.outcome == 'success'
         run: |
           python scripts/build_prediction_dataset.py
 
       - name: Validate previous market predictions
+        if: always() && steps.prediction_dataset.outcome == 'success'
         run: |
           python scripts/update_prediction_history.py
 
       - name: Train baseline model
+        id: train_model
+        if: always() && steps.prediction_dataset.outcome == 'success'
         run: |
           python scripts/train_model.py
 
+      - name: Check production prediction inputs
+        id: prediction_readiness
+        if: always()
+        env:
+          MARKET_DATA_OUTCOME: ${{ steps.market_data.outcome }}
+        run: |
+          python scripts/check_prediction_readiness.py
+
       - name: Generate Baseline Beta prediction when model exists
+        id: market_prediction
+        if: steps.prediction_readiness.outputs.ready == 'true'
         run: |
           if [ -f models/baseline_model.pkl ]; then
             python scripts/predict_market.py
@@ -84,6 +105,7 @@ jobs:
           fi
 
       - name: Record latest market prediction
+        if: always() && steps.market_prediction.outcome == 'success'
         run: |
           python scripts/update_prediction_history.py
 
@@ -142,11 +164,13 @@ jobs:
           fi
 
       - name: Commit updated data
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/event.json data/market/*.json data/history/*.csv data/analysis/current/chips_summary.json
           git add data/status/data_service_status.json
+          git add data/status/prediction_pipeline_status.json
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
             if [ -f "$file" ]; then

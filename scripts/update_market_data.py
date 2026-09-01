@@ -17,6 +17,24 @@ from providers.registry import registry
 
 LOGGER = logging.getLogger("market_data")
 
+# These datasets supply the 15 features used by the production TAIEX model.
+# Failures outside this set are isolated so optional research feeds cannot stop
+# the daily signals/history/prediction pipeline.
+REQUIRED_DATASETS = frozenset(
+    {
+        "taiwan_market_overview",
+        "institutional_investors",
+        "foreign_futures_position",
+        "night_futures",
+        "tsm_adr",
+        "sox_index",
+        "sp500_index",
+        "nasdaq_index",
+        "vix_index",
+        "kospi_index",
+    }
+)
+
 
 @dataclass(frozen=True)
 class UpdateSummary:
@@ -24,6 +42,8 @@ class UpdateSummary:
     success: int
     failed: int
     skipped: int
+    required_failed: int
+    optional_failed: int
     duration_seconds: float
 
 
@@ -69,6 +89,8 @@ def run_providers(providers: Iterable[BaseProvider]) -> UpdateSummary:
     success = 0
     failed = 0
     skipped = 0
+    required_failed = 0
+    optional_failed = 0
 
     for provider in provider_list:
         if not provider.enabled:
@@ -85,7 +107,19 @@ def run_providers(providers: Iterable[BaseProvider]) -> UpdateSummary:
             execute_provider(provider)
         except Exception as exc:
             failed += 1
-            LOGGER.error("Provider update failed: %s | %s", provider.name, exc)
+            if provider.dataset in REQUIRED_DATASETS:
+                required_failed += 1
+                failure_kind = "required"
+            else:
+                optional_failed += 1
+                failure_kind = "optional"
+            LOGGER.error(
+                "Provider update failed: %s | dataset=%s | kind=%s | %s",
+                provider.name,
+                provider.dataset,
+                failure_kind,
+                exc,
+            )
             continue
         success += 1
 
@@ -94,6 +128,8 @@ def run_providers(providers: Iterable[BaseProvider]) -> UpdateSummary:
         success=success,
         failed=failed,
         skipped=skipped,
+        required_failed=required_failed,
+        optional_failed=optional_failed,
         duration_seconds=perf_counter() - started_at,
     )
 
@@ -103,6 +139,8 @@ def log_summary(summary: UpdateSummary) -> None:
     LOGGER.info("Providers: %d", summary.providers)
     LOGGER.info("Success: %d", summary.success)
     LOGGER.info("Failed: %d", summary.failed)
+    LOGGER.info("Required failed: %d", summary.required_failed)
+    LOGGER.info("Optional failed: %d", summary.optional_failed)
     LOGGER.info("Skipped: %d", summary.skipped)
     LOGGER.info("Duration: %.2f seconds", summary.duration_seconds)
 
@@ -122,7 +160,11 @@ def main() -> int:
     LOGGER.info("Provider Registry loaded: %d", registry.count)
     summary = run_providers(providers)
     log_summary(summary)
-    return 1 if summary.failed else 0
+    if summary.optional_failed:
+        LOGGER.warning(
+            "Optional provider failures were isolated; successful outputs and the formal prediction pipeline remain usable"
+        )
+    return 1 if summary.required_failed else 0
 
 
 if __name__ == "__main__":

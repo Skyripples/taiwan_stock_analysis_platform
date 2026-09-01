@@ -38,7 +38,7 @@
       loginButton.setAttribute("aria-label", "前往帳號登入頁");
       return;
     }
-    loginButton.textContent = username;
+    loginButton.textContent = isAdmin ? "管理員" : username;
     loginButton.href = "#";
     loginButton.setAttribute("aria-label", "開啟帳號選單");
     loginButton.setAttribute("aria-expanded", "false");
