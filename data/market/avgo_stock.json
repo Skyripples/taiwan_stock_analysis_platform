@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T02:30:26.907795Z",
+  "updated_at": "2026-09-02T04:07:44.807072Z",
   "provider": "Yahoo",
   "dataset": "avgo_stock",
   "version": "1.0",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/AVGO/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO"
         },
-        "open": 364.36,
+        "open": 364.25,
         "high": 371.4,
         "low": 362,
         "close": 369.68,
         "previous_close": 370.34,
         "change": -0.66,
         "change_percent": -0.1782,
-        "volume": 18744535
+        "volume": 19221500
       }
     ]
   }

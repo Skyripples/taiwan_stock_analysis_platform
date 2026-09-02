@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T02:30:27.733851Z",
+  "updated_at": "2026-09-02T04:07:45.465587Z",
   "provider": "Yahoo",
   "dataset": "soxx_etf",
   "version": "1.0",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/SOXX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX"
         },
-        "open": 501.295,
-        "high": 504.715,
-        "low": 495.11,
+        "open": 501.43,
+        "high": 504.72,
+        "low": 495.09,
         "close": 500.31,
         "previous_close": 511.04,
         "change": -10.73,
         "change_percent": -2.0996,
-        "volume": 7921667
+        "volume": 8036000
       }
     ]
   }

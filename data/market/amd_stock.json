@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T02:30:26.850823Z",
+  "updated_at": "2026-09-02T04:07:44.691779Z",
   "provider": "Yahoo",
   "dataset": "amd_stock",
   "version": "1.0",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/AMD/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/AMD"
         },
-        "open": 459.3,
+        "open": 459.91,
         "high": 461.5,
         "low": 452.3,
         "close": 459.61,
         "previous_close": 470.72,
         "change": -11.11,
         "change_percent": -2.3602,
-        "volume": 16112953
+        "volume": 16183600
       }
     ]
   }

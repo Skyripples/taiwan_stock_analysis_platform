@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T02:30:27.495265Z",
+  "updated_at": "2026-09-02T04:07:45.263290Z",
   "provider": "Yahoo",
   "dataset": "nvda_stock",
   "version": "1.0",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/NVDA/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA"
         },
-        "open": 216.61,
+        "open": 216.75,
         "high": 220.41,
         "low": 215.1,
         "close": 217.44,
         "previous_close": 220.78,
         "change": -3.34,
         "change_percent": -1.5128,
-        "volume": 106942626
+        "volume": 109484400
       }
     ]
   }
