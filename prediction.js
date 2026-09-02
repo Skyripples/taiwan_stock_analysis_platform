@@ -127,10 +127,11 @@
       item.innerHTML = `<span>${setting.display_name}</span><strong class="${setting.enabled ? signalTone : 'tone-neutral'}">${formatter(Number(signal.value))}</strong><small>${stateText}<br>權重 ${signal.weight} · weighted ${weightedScore}</small>`;
       return item;
     }));
-    byId('marketLoadStatus').textContent = '已載入';
-    byId('marketStateWidget').dataset.state = 'success';
     const updated = new Date(payload.updated_at);
-    byId('lastUpdatedAt').textContent = Number.isNaN(updated.getTime()) ? (payload.updated_at || '資料缺漏') : updated.toLocaleString('zh-TW');
+    const updatedText = Number.isNaN(updated.getTime()) ? (payload.updated_at || '資料缺漏') : updated.toLocaleString('zh-TW');
+    byId('marketLoadStatus').textContent = `最後更新：${updatedText}`;
+    byId('marketStateWidget').dataset.state = 'success';
+    byId('lastUpdatedAt').textContent = updatedText;
   }
 
   async function loadSignals() {
@@ -404,6 +405,18 @@
       byId('predictionHistoryBody').replaceChildren(row);
     }
   }
+
+  function updateAdminModelVisibility(isAdmin) {
+    ['modelStatusWidget', 'predictionDataStatusSection', 'predictionValidationSection'].forEach(id => {
+      const section = byId(id);
+      if (section) section.hidden = !isAdmin;
+    });
+  }
+
+  updateAdminModelVisibility(document.body.dataset.accessRole === 'admin');
+  window.addEventListener('platform-access-change', event => {
+    updateAdminModelVisibility(Boolean(event.detail?.isAdmin));
+  });
 
   Promise.allSettled([loadSignals(), loadModelInfo(), loadPrediction(), loadPredictionDataset(), loadHistoricalDataset(), loadMarketHistory(), loadPredictionHistory()]);
 })();

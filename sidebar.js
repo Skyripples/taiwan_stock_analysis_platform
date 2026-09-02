@@ -6,9 +6,18 @@
   const themeToggle = document.getElementById("themeToggleSwitch");
   const isCalendarPage = Boolean(document.getElementById("calendarGrid"));
   const themeStorageKey = "taiwan_stock_market_theme";
+  const previewRoleStorageKey = "taiwan_stock_preview_role";
   const authApiBase = "https://172-238-20-217.ip.linodeusercontent.com/api/v1";
 
   const headerActions = document.querySelector(".layout-header-actions");
+  let previewControls = headerActions?.querySelector(".layout-preview-roles") || null;
+  if (headerActions && !previewControls) {
+    previewControls = document.createElement("div");
+    previewControls.className = "layout-preview-roles";
+    previewControls.setAttribute("aria-label", "權限預覽切換");
+    previewControls.innerHTML = '<button type="button" data-preview-role="admin">管理者</button><button type="button" data-preview-role="general">一般</button>';
+    headerActions.prepend(previewControls);
+  }
   let loginButton = headerActions?.querySelector(".layout-login-button") || null;
   if (headerActions && !headerActions.querySelector(".layout-login-button")) {
     loginButton = document.createElement("a");
@@ -26,6 +35,13 @@
     "market-overview.html": "market_overview", "chips-analysis.html": "chips_analysis",
     "stock-analysis.html": "stock_analysis",
   };
+  const previewGeneralPermissions = Object.freeze({
+    calendar: true,
+    prediction: true,
+    market_overview: true,
+    chips_analysis: true,
+    stock_analysis: true,
+  });
   const protectedItems = [...sidebar.querySelectorAll(".sidebar-item")]
     .filter((item) => !item.getAttribute("href")?.endsWith("index.html"));
 
@@ -67,6 +83,7 @@
         await fetch(`${authApiBase}/auth/logout`, { method: "POST", headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
       } catch (error) {} finally {
         try { sessionStorage.removeItem("taiwan_stock_access_token"); sessionStorage.removeItem("taiwan_stock_account"); } catch (error) {}
+        try { localStorage.removeItem(previewRoleStorageKey); } catch (error) {}
         window.location.replace("./index.html");
       }
     });
@@ -100,7 +117,7 @@
           label.dataset.accessLabel = "";
           item.append(label);
         }
-        label.textContent = "付費解鎖";
+        label.textContent = "不可使用";
       }
     });
     renderAccountMenu(username, token, isAdmin);
@@ -116,6 +133,18 @@
 
   const verifyAccess = async () => {
     applyNavigationAccess(false);
+    let previewRole = "";
+    try { previewRole = localStorage.getItem(previewRoleStorageKey) || ""; } catch (error) {}
+    if (previewRole === "admin") {
+      applyNavigationAccess(true, "管理員", {}, "local-preview", true);
+      previewControls?.querySelector('[data-preview-role="admin"]')?.classList.add("is-active");
+      return;
+    }
+    if (previewRole === "general") {
+      applyNavigationAccess(false, "一般使用者", previewGeneralPermissions, "local-preview", true);
+      previewControls?.querySelector('[data-preview-role="general"]')?.classList.add("is-active");
+      return;
+    }
     let token = "";
     try { token = sessionStorage.getItem("taiwan_stock_access_token") || ""; } catch (error) {}
     if (!token) { applyNavigationAccess(false, "", {}, "", true); return; }
@@ -135,6 +164,14 @@
       applyNavigationAccess(false, "", {}, "", true);
     }
   };
+
+  previewControls?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-preview-role]");
+    if (!button) return;
+    const role = button.dataset.previewRole;
+    try { localStorage.setItem(previewRoleStorageKey, role); } catch (error) {}
+    window.location.reload();
+  });
 
   verifyAccess();
 

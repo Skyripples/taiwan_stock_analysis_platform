@@ -14,7 +14,7 @@
         card.dataset.accessHref = card.getAttribute("href");
       }
       const filename = (card.dataset.accessHref || "").split("/").pop();
-      const featureKey = featureByPath[filename] || (card.querySelector("h3")?.textContent === "歷史回測" ? "backtest" : "");
+      const featureKey = featureByPath[filename] || "";
       const allowed = isAdmin || Boolean(permissions[featureKey]);
       if (allowed) {
         if (card.dataset.accessHref) card.setAttribute("href", card.dataset.accessHref);
@@ -31,7 +31,7 @@
         card.setAttribute("tabindex", "-1");
         status?.classList.remove("status-available");
         status?.classList.add("status-paid");
-        if (status) status.textContent = "付費解鎖";
+        if (status) status.textContent = "不可使用";
       }
     });
   };

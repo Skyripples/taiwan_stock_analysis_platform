@@ -64,6 +64,43 @@ body.has-sidebar {
   font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
 }
 
+.layout-preview-roles {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid #3b4047;
+  border-radius: 8px;
+  background: #17191c;
+}
+
+.layout-preview-roles button {
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 6px;
+  color: #c8cdd4;
+  background: transparent;
+  font: inherit;
+  font-size: .75rem;
+  cursor: pointer;
+}
+
+.layout-preview-roles button:hover,
+.layout-preview-roles button:focus-visible,
+.layout-preview-roles button.is-active {
+  color: #fff;
+  background: #3478d4;
+}
+
+body.theme-light .layout-preview-roles {
+  border-color: #cbd4df;
+  background: #edf2f7;
+}
+
+body.theme-light .layout-preview-roles button { color: #526176; }
+body.theme-light .layout-preview-roles button:hover,
+body.theme-light .layout-preview-roles button:focus-visible,
+body.theme-light .layout-preview-roles button.is-active { color: #fff; }
+
 .layout-account-menu {
   position: absolute;
   top: calc(100% + 12px);
@@ -502,6 +539,9 @@ body.theme-light .sidebar-item small {
   .layout-logo {
     display: none;
   }
+
+  .layout-preview-roles { gap: 2px; padding: 2px; }
+  .layout-preview-roles button { padding: 4px 6px; font-size: .68rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

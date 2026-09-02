@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="台股投資分析平台隔日行情分析" />
-  <title>隔日行情分析｜台股投資分析平台</title>
+  <meta name="description" content="台股投資分析平台行情預測" />
+  <title>行情預測｜台股投資分析平台</title>
   <link rel="stylesheet" href="./page.css" />
   <link rel="stylesheet" href="./widget.css" />
   <link rel="stylesheet" href="./platform.css" />
@@ -31,8 +31,8 @@
     <div class="sidebar-brand"><span class="sidebar-brand-icon" aria-hidden="true">台</span><div><strong>台股投資</strong><span>分析平台</span></div></div>
     <nav class="sidebar-nav">
       <a class="sidebar-item" href="./index.html"><span class="sidebar-item-icon" aria-hidden="true">⌂</span><span>首頁</span></a>
-      <a class="sidebar-item" href="./calendar.html"><span class="sidebar-item-icon" aria-hidden="true">▦</span><span>台股事件簿</span></a>
-      <a class="sidebar-item is-active" href="./prediction.html" aria-current="page"><span class="sidebar-item-icon" aria-hidden="true">⌁</span><span>隔日行情分析</span></a>
+      <a class="sidebar-item" href="./calendar.html"><span class="sidebar-item-icon" aria-hidden="true">▦</span><span>事件日曆</span></a>
+      <a class="sidebar-item is-active" href="./prediction.html" aria-current="page"><span class="sidebar-item-icon" aria-hidden="true">⌁</span><span>行情預測</span></a>
       <a class="sidebar-item" href="./market-overview.html"><span class="sidebar-item-icon" aria-hidden="true">◎</span><span>市場總覽</span></a>
       <a class="sidebar-item" href="./chips-analysis.html"><span class="sidebar-item-icon" aria-hidden="true">≋</span><span>籌碼分析</span></a>
       <a class="sidebar-item" href="./stock-analysis.html"><span class="sidebar-item-icon" aria-hidden="true">⌕</span><span>個股分析</span></a>
@@ -43,7 +43,7 @@
     <div class="page-container">
       <header class="page-header">
         <p class="page-eyebrow">NEXT-DAY MARKET ANALYSIS</p>
-        <h1 class="page-title">隔日行情分析</h1>
+        <h1 class="page-title">行情預測</h1>
         <p class="page-description">彙整市場訊號與歷史資料進度，為未來模型結果提供統一顯示介面。</p>
       </header>
       <div class="page-body">
@@ -62,7 +62,7 @@
         </section>
 
         <section class="page-section prediction-two-column" aria-label="模型與預測狀態">
-          <article id="modelStatusWidget" class="widget widget-section" data-state="loading">
+          <article id="modelStatusWidget" class="widget widget-section" data-state="loading" hidden>
             <header class="widget-header"><h2 class="prediction-section-title">模型資訊</h2><span id="modelFileStatus" class="widget-status" role="status">載入中</span></header>
             <div class="widget-body">
               <div class="model-state-summary">
@@ -109,7 +109,7 @@
           </article>
         </section>
 
-        <section class="page-section" aria-labelledby="dataStatusTitle">
+        <section id="predictionDataStatusSection" class="page-section prediction-admin-section" aria-labelledby="dataStatusTitle" hidden>
           <div class="prediction-heading"><h2 id="dataStatusTitle">資料狀態</h2><p>各來源獨立載入，單一來源異常不影響其他內容。</p></div>
           <div class="data-status-grid">
             <article class="widget widget-info"><header class="widget-header"><h3 class="widget-title">最新特徵日期</h3></header><div class="widget-body"><p id="latestFeatureDate" class="widget-value">載入中</p></div></article>
@@ -121,7 +121,7 @@
           </div>
         </section>
 
-        <section class="page-section" aria-labelledby="validationTitle">
+        <section id="predictionValidationSection" class="page-section prediction-admin-section" aria-labelledby="validationTitle" hidden>
           <div class="prediction-heading">
             <div><p class="prediction-kicker">MODEL VALIDATION</p><h2 id="validationTitle">模型驗證</h2></div>
             <span id="predictionHistoryStatus" class="widget-status" role="status">載入中</span>

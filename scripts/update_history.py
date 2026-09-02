@@ -47,7 +47,6 @@ MARKET_ONLY_SOURCE_DATE_FIELDS = ("vix_trade_date", "kospi_trade_date")
 MARKET_FIELDS = (
     "trade_date",
     *SOURCE_DATE_FIELDS,
-    *MARKET_ONLY_SOURCE_DATE_FIELDS,
     "taiex_close",
     "taiex_change_percent",
     "tpex_close",
@@ -62,7 +61,9 @@ MARKET_FIELDS = (
     "sox_change_percent",
     "sp500_change_percent",
     "nasdaq_change_percent",
+    "vix_trade_date",
     "vix_change_percent",
+    "kospi_trade_date",
     "kospi_change_percent",
 )
 

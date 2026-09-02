@@ -1,6 +1,7 @@
 .prediction-page { overflow-x: hidden; }
 .prediction-kicker { margin: 0 0 5px; color: #aeb5bf; font-size: .7rem; font-weight: 700; letter-spacing: .14em; }
 .prediction-section-title { margin: 0; font-size: 1.12rem; }
+#marketLoadStatus { max-width: min(52vw, 360px); white-space: normal; text-align: right; line-height: 1.4; }
 .beta-badge { display: inline-block; margin-bottom: 7px; padding: 4px 8px; border: 1px solid rgba(221, 211, 167, .38); border-radius: 999px; color: #ddd3a7; background: rgba(164, 137, 43, .16); font-size: .68rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 .score-summary { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .score-label { display: block; margin-bottom: 4px; color: #c5cad1; font-size: .8rem; }
@@ -20,7 +21,10 @@
 .signal-item strong { display: block; margin: 9px 0 5px; overflow-wrap: anywhere; font-size: .95rem; }
 .signal-item small { color: #d3d6db; }
 .signal-item.is-disabled { opacity: .58; }
-.prediction-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.prediction-two-column { display: flex; flex-direction: column; gap: 18px; }
+.prediction-two-column #predictionResultWidget { order: 1; }
+.prediction-two-column #modelStatusWidget { order: 2; }
+.prediction-two-column #modelStatusWidget[hidden] { display: none; }
 .training-progress-text { font-size: 1.5rem; }
 .threshold-note { margin: 10px 0 0; color: #aeb5bf; font-size: .78rem; }
 .model-state-summary { padding-bottom: 18px; }
@@ -81,5 +85,5 @@ body.theme-light .tone-neutral { color: #526176 !important; }
 body.theme-light .prediction-history-table th, body.theme-light .prediction-history-table td { border-color: #d8e0ea; }
 body.theme-light .prediction-history-table th, body.theme-light .prediction-history-table td[colspan], body.theme-light .history-pending { color: #66758a; }
 @media (max-width: 1050px) { .signal-grid, .data-status-grid, .accuracy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 700px) { .prediction-two-column { grid-template-columns: 1fr; } .score-summary { align-items: start; } }
+@media (max-width: 700px) { .score-summary { align-items: start; } }
 @media (max-width: 520px) { .signal-grid, .data-status-grid, .accuracy-grid, .prediction-placeholder-grid, .model-info-grid { grid-template-columns: 1fr; } .confusion-matrix-item { grid-column: auto; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }
