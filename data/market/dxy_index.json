@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-01T16:01:51.227435Z",
+  "updated_at": "2026-09-02T02:30:27.024403Z",
   "provider": "Yahoo",
   "dataset": "dxy_index",
   "version": "1.0",
@@ -21,9 +21,9 @@
         "high": 99.71,
         "low": 99.39,
         "close": 99.43,
-        "previous_close": 99.7,
-        "change": -0.27,
-        "change_percent": -0.2708,
+        "previous_close": 99.16,
+        "change": 0.27,
+        "change_percent": 0.2723,
         "volume": 0
       }
     ]
