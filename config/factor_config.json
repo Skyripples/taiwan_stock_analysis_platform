@@ -1,32 +1,35 @@
 {
-  "foreign_cash_flow": {
-    "enabled": true,
-    "weight": 1.0,
-    "display_name": "外資現貨",
-    "description": "外資及陸資每日現貨買賣超"
+  "sources": {
+    "taiwan_market_overview": "taiwan_market_overview.json",
+    "institutional_investors": "institutional_investors.json",
+    "foreign_futures_position": "foreign_futures_position.json",
+    "night_futures": "night_futures.json",
+    "tsm_adr": "tsm_adr.json",
+    "sox_index": "sox_index.json",
+    "nasdaq_index": "nasdaq_index.json",
+    "sp500_index": "sp500_index.json",
+    "vix_index": "vix_index.json",
+    "kospi_index": "kospi_index.json"
   },
-  "foreign_futures_position": {
-    "enabled": true,
-    "weight": 1.0,
-    "display_name": "外資期貨",
-    "description": "外資臺股期貨未平倉淨口數"
+  "modules": {
+    "taiwan_market": { "enabled": true, "weight": 1.0, "display_name": "台灣市場" },
+    "chips": { "enabled": true, "weight": 1.0, "display_name": "籌碼" },
+    "futures": { "enabled": true, "weight": 1.0, "display_name": "期貨" },
+    "us_tech": { "enabled": true, "weight": 1.0, "display_name": "美國科技市場" },
+    "risk_global": { "enabled": true, "weight": 1.0, "display_name": "風險與全球市場" }
   },
-  "night_futures": {
-    "enabled": true,
-    "weight": 1.0,
-    "display_name": "台指期夜盤",
-    "description": "臺股期貨盤後交易漲跌點數"
-  },
-  "tsm_adr": {
-    "enabled": true,
-    "weight": 1.0,
-    "display_name": "台積電 ADR",
-    "description": "台積電 ADR 已完成交易日漲跌"
-  },
-  "sox_index": {
-    "enabled": true,
-    "weight": 1.0,
-    "display_name": "費城半導體",
-    "description": "費城半導體指數已完成交易日漲跌幅"
+  "rules": {
+    "taiex_change": { "enabled": true, "weight": 1.0, "display_name": "加權指數漲跌", "module": "taiwan_market", "source": "taiwan_market_overview", "value_path": ["taiex", "change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -1.0, "bearish_max": -0.2, "bullish_min": 0.2, "strong_bullish_min": 1.0 } },
+    "tpex_change": { "enabled": true, "weight": 1.0, "display_name": "櫃買指數漲跌", "module": "taiwan_market", "source": "taiwan_market_overview", "value_path": ["tpex", "change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -1.2, "bearish_max": -0.25, "bullish_min": 0.25, "strong_bullish_min": 1.2 } },
+    "market_breadth": { "enabled": true, "weight": 1.0, "display_name": "市場廣度", "module": "taiwan_market", "source": "taiwan_market_overview", "formula": "market_breadth", "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -0.3, "bearish_max": -0.1, "bullish_min": 0.1, "strong_bullish_min": 0.3 } },
+    "foreign_cash_flow": { "enabled": true, "weight": 1.0, "display_name": "外資現貨", "module": "chips", "source": "institutional_investors", "value_path": ["foreign_and_mainland_investors", "net"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -20000000000, "bearish_max": -5000000000, "bullish_min": 5000000000, "strong_bullish_min": 20000000000 } },
+    "foreign_futures_position": { "enabled": true, "weight": 1.0, "display_name": "外資期貨部位", "module": "chips", "source": "foreign_futures_position", "value_path": ["net_position", "open_interest"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -20000, "bearish_max": -5000, "bullish_min": 5000, "strong_bullish_min": 20000 } },
+    "night_futures": { "enabled": true, "weight": 1.0, "display_name": "台指期夜盤", "module": "futures", "source": "night_futures", "value_path": ["change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 1, "thresholds": { "strong_bearish_max": -1.0, "bearish_max": -0.3, "bullish_min": 0.3, "strong_bullish_min": 1.0 } },
+    "tsm_adr": { "enabled": true, "weight": 1.0, "display_name": "台積電 ADR", "module": "us_tech", "source": "tsm_adr", "value_path": ["change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -1.5, "bearish_max": -0.3, "bullish_min": 0.3, "strong_bullish_min": 1.5 } },
+    "sox_index": { "enabled": true, "weight": 1.0, "display_name": "費城半導體", "module": "us_tech", "source": "sox_index", "value_path": ["change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -1.5, "bearish_max": -0.3, "bullish_min": 0.3, "strong_bullish_min": 1.5 } },
+    "nasdaq_index": { "enabled": true, "weight": 1.0, "display_name": "NASDAQ", "module": "us_tech", "source": "nasdaq_index", "value_path": ["change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -1.0, "bearish_max": -0.2, "bullish_min": 0.2, "strong_bullish_min": 1.0 } },
+    "sp500_index": { "enabled": true, "weight": 1.0, "display_name": "S&P 500", "module": "us_tech", "source": "sp500_index", "value_path": ["change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -0.8, "bearish_max": -0.15, "bullish_min": 0.15, "strong_bullish_min": 0.8 } },
+    "vix_index": { "enabled": true, "weight": 1.0, "display_name": "VIX", "module": "risk_global", "source": "vix_index", "value_path": ["change_percent"], "direction": -1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -8.0, "bearish_max": -2.0, "bullish_min": 2.0, "strong_bullish_min": 8.0 } },
+    "kospi_index": { "enabled": true, "weight": 1.0, "display_name": "KOSPI", "module": "risk_global", "source": "kospi_index", "value_path": ["change_percent"], "direction": 1, "max_age_days": 4, "max_future_days": 0, "thresholds": { "strong_bearish_max": -1.0, "bearish_max": -0.2, "bullish_min": 0.2, "strong_bullish_min": 1.0 } }
   }
 }

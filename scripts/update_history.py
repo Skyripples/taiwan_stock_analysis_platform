@@ -94,6 +94,13 @@ EXPECTED_SIGNAL_VALUES = {
 }
 
 SCORE_BY_STATUS = {"bullish": 1, "neutral": 0, "bearish": -1}
+RULE_SCORE_BY_STATUS = {
+    "strong_bearish": -2,
+    "bearish": -1,
+    "neutral": 0,
+    "bullish": 1,
+    "strong_bullish": 2,
+}
 
 
 def load_sources(market_data_dir: Path = MARKET_DATA_DIR) -> Dict[str, Any]:
@@ -165,6 +172,7 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
     signal_payload = sources.get("signals")
     if not isinstance(signal_payload, dict) or not isinstance(signal_payload.get("signals"), dict):
         raise ValueError("Invalid market_signals payload")
+    rules = signal_payload.get("rules")
     signals = signal_payload["signals"]
     if set(signals) != set(SIGNAL_NAMES):
         raise ValueError("market_signals must contain exactly the configured five signals")
@@ -173,34 +181,22 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         "trade_date": trade_date,
         **{field: source_dates[field] for field in SOURCE_DATE_FIELDS},
     }
-    weighted_score_sum = 0.0
-    enabled_weight_sum = 0.0
     for signal_name in SIGNAL_NAMES:
-        signal = signals.get(signal_name)
+        signal = rules.get(signal_name) if isinstance(rules, dict) else signals.get(signal_name)
         if not isinstance(signal, dict):
             raise ValueError(f"Invalid signal: {signal_name}")
         status = signal.get("status")
         score = signal.get("score")
-        if status not in SCORE_BY_STATUS or score != SCORE_BY_STATUS[status]:
+        score_map = RULE_SCORE_BY_STATUS if isinstance(rules, dict) else SCORE_BY_STATUS
+        if status not in score_map or score != score_map[status]:
             raise ValueError(f"Invalid status or score for signal: {signal_name}")
-        expected_path = EXPECTED_SIGNAL_VALUES[signal_name]
-        expected_value = _require_number(
-            records[expected_path[0]], expected_path[1:], expected_path[0]
-        )
-        if signal.get("value") != expected_value:
-            raise ValueError(f"Signal value is stale or mismatched: {signal_name}")
-        enabled = signal.get("enabled")
-        weight = _required_scalar_number(signal.get("weight"), f"{signal_name}.weight")
-        weighted_score = _required_scalar_number(
-            signal.get("weighted_score"), f"{signal_name}.weighted_score"
-        )
-        if not isinstance(enabled, bool) or weight < 0:
-            raise ValueError(f"Invalid enabled or weight for signal: {signal_name}")
-        if abs(weighted_score - score * weight) > 1e-9:
-            raise ValueError(f"Invalid weighted_score for signal: {signal_name}")
-        if enabled:
-            weighted_score_sum += weighted_score
-            enabled_weight_sum += weight
+        if not isinstance(rules, dict):
+            expected_path = EXPECTED_SIGNAL_VALUES[signal_name]
+            expected_value = _require_number(records[expected_path[0]], expected_path[1:], expected_path[0])
+            if signal.get("value") != expected_value:
+                raise ValueError(f"Signal value is stale or mismatched: {signal_name}")
+        if signal.get("value") is None or signal.get("available", True) is not True:
+            raise ValueError(f"Required historical signal is unavailable: {signal_name}")
         signals_row[f"{signal_name}_status"] = status
         signals_row[f"{signal_name}_score"] = score
 
@@ -211,8 +207,8 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
     max_score = _required_scalar_number(market_score.get("max_score"), "market_score.max_score")
     percentage = _required_scalar_number(market_score.get("percentage"), "market_score.percentage")
     market_status = market_score.get("status")
-    if abs(score - weighted_score_sum) > 1e-9 or abs(max_score - enabled_weight_sum) > 1e-9:
-        raise ValueError("Market Score does not match its signal scores")
+    if max_score <= 0 or percentage < 0 or percentage > 100 or abs(percentage - ((score + max_score) / (2 * max_score) * 100)) > 0.011:
+        raise ValueError("Market Score normalization is invalid")
     if not isinstance(market_status, str) or not market_status:
         raise ValueError("market_score.status is missing")
     signals_row.update(

@@ -1,37 +1,37 @@
 {
-  "updated_at": "2026-09-03T04:05:55.110889Z",
-  "version": "1.0",
+  "updated_at": "2026-09-03T19:08:42.127384Z",
+  "version": "2.0",
   "signals": {
     "foreign_cash_flow": {
       "value": -91354536093,
-      "status": "bearish",
-      "score": -1,
+      "status": "strong_bearish",
+      "score": -2,
       "enabled": true,
-      "weight": 1,
-      "weighted_score": -1
+      "weight": 1.0,
+      "weighted_score": -2
     },
     "foreign_futures_position": {
       "value": -85329,
-      "status": "bearish",
-      "score": -1,
+      "status": "strong_bearish",
+      "score": -2,
       "enabled": true,
-      "weight": 1,
-      "weighted_score": -1
+      "weight": 1.0,
+      "weighted_score": -2
     },
     "night_futures": {
-      "value": 171,
+      "value": 0.37,
       "status": "bullish",
       "score": 1,
       "enabled": true,
-      "weight": 1,
+      "weight": 1.0,
       "weighted_score": 1
     },
     "tsm_adr": {
-      "value": 1.5,
+      "value": 0.3623,
       "status": "bullish",
       "score": 1,
       "enabled": true,
-      "weight": 1,
+      "weight": 1.0,
       "weighted_score": 1
     },
     "sox_index": {
@@ -39,14 +39,283 @@
       "status": "bullish",
       "score": 1,
       "enabled": true,
-      "weight": 1,
+      "weight": 1.0,
       "weighted_score": 1
     }
   },
+  "rules": {
+    "taiex_change": {
+      "rule_id": "taiex_change",
+      "category": "taiwan_market",
+      "display_name": "加權指數漲跌",
+      "value": -1.67,
+      "score": -2,
+      "weight": 1.0,
+      "status": "strong_bearish",
+      "rationale": "加權指數漲跌=-1.67，依設定門檻評為 strong_bearish（-2）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.2, 'bullish_min': 0.2, 'strong_bullish_min': 1.0}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "tpex_change": {
+      "rule_id": "tpex_change",
+      "category": "taiwan_market",
+      "display_name": "櫃買指數漲跌",
+      "value": -0.9275,
+      "score": -1,
+      "weight": 1.0,
+      "status": "bearish",
+      "rationale": "櫃買指數漲跌=-0.9275，依設定門檻評為 bearish（-1）；門檻={'strong_bearish_max': -1.2, 'bearish_max': -0.25, 'bullish_min': 0.25, 'strong_bullish_min': 1.2}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "market_breadth": {
+      "rule_id": "market_breadth",
+      "category": "taiwan_market",
+      "display_name": "市場廣度",
+      "value": -0.201622248,
+      "score": -1,
+      "weight": 1.0,
+      "status": "bearish",
+      "rationale": "市場廣度=-0.2016，依設定門檻評為 bearish（-1）；門檻={'strong_bearish_max': -0.3, 'bearish_max': -0.1, 'bullish_min': 0.1, 'strong_bullish_min': 0.3}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "foreign_cash_flow": {
+      "rule_id": "foreign_cash_flow",
+      "category": "chips",
+      "display_name": "外資現貨",
+      "value": -91354536093,
+      "score": -2,
+      "weight": 1.0,
+      "status": "strong_bearish",
+      "rationale": "外資現貨=-9.135e+10，依設定門檻評為 strong_bearish（-2）；門檻={'strong_bearish_max': -20000000000, 'bearish_max': -5000000000, 'bullish_min': 5000000000, 'strong_bullish_min': 20000000000}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "foreign_futures_position": {
+      "rule_id": "foreign_futures_position",
+      "category": "chips",
+      "display_name": "外資期貨部位",
+      "value": -85329,
+      "score": -2,
+      "weight": 1.0,
+      "status": "strong_bearish",
+      "rationale": "外資期貨部位=-8.533e+04，依設定門檻評為 strong_bearish（-2）；門檻={'strong_bearish_max': -20000, 'bearish_max': -5000, 'bullish_min': 5000, 'strong_bullish_min': 20000}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "night_futures": {
+      "rule_id": "night_futures",
+      "category": "futures",
+      "display_name": "台指期夜盤",
+      "value": 0.37,
+      "score": 1,
+      "weight": 1.0,
+      "status": "bullish",
+      "rationale": "台指期夜盤=0.37，依設定門檻評為 bullish（+1）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.0}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-03"
+    },
+    "tsm_adr": {
+      "rule_id": "tsm_adr",
+      "category": "us_tech",
+      "display_name": "台積電 ADR",
+      "value": 0.3623,
+      "score": 1,
+      "weight": 1.0,
+      "status": "bullish",
+      "rationale": "台積電 ADR=0.3623，依設定門檻評為 bullish（+1）；門檻={'strong_bearish_max': -1.5, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.5}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "sox_index": {
+      "rule_id": "sox_index",
+      "category": "us_tech",
+      "display_name": "費城半導體",
+      "value": 0.4486,
+      "score": 1,
+      "weight": 1.0,
+      "status": "bullish",
+      "rationale": "費城半導體=0.4486，依設定門檻評為 bullish（+1）；門檻={'strong_bearish_max': -1.5, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.5}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "nasdaq_index": {
+      "rule_id": "nasdaq_index",
+      "category": "us_tech",
+      "display_name": "NASDAQ",
+      "value": 0.4523,
+      "score": 1,
+      "weight": 1.0,
+      "status": "bullish",
+      "rationale": "NASDAQ=0.4523，依設定門檻評為 bullish（+1）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.2, 'bullish_min': 0.2, 'strong_bullish_min': 1.0}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "sp500_index": {
+      "rule_id": "sp500_index",
+      "category": "us_tech",
+      "display_name": "S&P 500",
+      "value": 0.4603,
+      "score": 1,
+      "weight": 1.0,
+      "status": "bullish",
+      "rationale": "S&P 500=0.4603，依設定門檻評為 bullish（+1）；門檻={'strong_bearish_max': -0.8, 'bearish_max': -0.15, 'bullish_min': 0.15, 'strong_bullish_min': 0.8}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "vix_index": {
+      "rule_id": "vix_index",
+      "category": "risk_global",
+      "display_name": "VIX",
+      "value": -6.9767,
+      "score": 1,
+      "weight": 1.0,
+      "status": "bullish",
+      "rationale": "VIX=-6.977，依設定門檻評為 bullish（+1）；門檻={'strong_bearish_max': -8.0, 'bearish_max': -2.0, 'bullish_min': 2.0, 'strong_bullish_min': 8.0}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    },
+    "kospi_index": {
+      "rule_id": "kospi_index",
+      "category": "risk_global",
+      "display_name": "KOSPI",
+      "value": -3.9948,
+      "score": -2,
+      "weight": 1.0,
+      "status": "strong_bearish",
+      "rationale": "KOSPI=-3.995，依設定門檻評為 strong_bearish（-2）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.2, 'bullish_min': 0.2, 'strong_bullish_min': 1.0}",
+      "enabled": true,
+      "available": true,
+      "stale": false,
+      "source_trade_date": "2026-09-02"
+    }
+  },
+  "modules": {
+    "taiwan_market": {
+      "module_id": "taiwan_market",
+      "display_name": "台灣市場",
+      "score": -1.3333333333,
+      "max_score": 2,
+      "percentage": 16.6666666675,
+      "status": "Strong Bearish",
+      "weight": 1.0,
+      "coverage": 100,
+      "available_rules": 3,
+      "enabled_rules": 3,
+      "rule_ids": [
+        "taiex_change",
+        "tpex_change",
+        "market_breadth"
+      ]
+    },
+    "chips": {
+      "module_id": "chips",
+      "display_name": "籌碼",
+      "score": -2,
+      "max_score": 2,
+      "percentage": 0,
+      "status": "Strong Bearish",
+      "weight": 1.0,
+      "coverage": 100,
+      "available_rules": 2,
+      "enabled_rules": 2,
+      "rule_ids": [
+        "foreign_cash_flow",
+        "foreign_futures_position"
+      ]
+    },
+    "futures": {
+      "module_id": "futures",
+      "display_name": "期貨",
+      "score": 1,
+      "max_score": 2,
+      "percentage": 75,
+      "status": "Bullish",
+      "weight": 1.0,
+      "coverage": 100,
+      "available_rules": 1,
+      "enabled_rules": 1,
+      "rule_ids": [
+        "night_futures"
+      ]
+    },
+    "us_tech": {
+      "module_id": "us_tech",
+      "display_name": "美國科技市場",
+      "score": 1,
+      "max_score": 2,
+      "percentage": 75,
+      "status": "Bullish",
+      "weight": 1.0,
+      "coverage": 100,
+      "available_rules": 4,
+      "enabled_rules": 4,
+      "rule_ids": [
+        "tsm_adr",
+        "sox_index",
+        "nasdaq_index",
+        "sp500_index"
+      ]
+    },
+    "risk_global": {
+      "module_id": "risk_global",
+      "display_name": "風險與全球市場",
+      "score": -0.5,
+      "max_score": 2,
+      "percentage": 37.5,
+      "status": "Bearish",
+      "weight": 1.0,
+      "coverage": 100,
+      "available_rules": 2,
+      "enabled_rules": 2,
+      "rule_ids": [
+        "vix_index",
+        "kospi_index"
+      ]
+    }
+  },
   "market_score": {
-    "score": 1,
-    "max_score": 5,
-    "percentage": 60,
-    "status": "Bullish"
-  }
+    "score": -1.8333333333,
+    "max_score": 10,
+    "percentage": 40.8333333335,
+    "status": "Neutral",
+    "available_modules": 5,
+    "enabled_modules": 5
+  },
+  "coverage": {
+    "available_rules": 12,
+    "enabled_rules": 12,
+    "percentage": 100,
+    "excluded_rules": []
+  },
+  "freshness": {
+    "reference_date": "2026-09-02",
+    "status": "complete",
+    "stale_rules": []
+  },
+  "score_type": "market_state_score",
+  "score_disclaimer": "市場狀態分數，不是漲跌機率"
 }

@@ -96,7 +96,93 @@
     return config;
   }
 
+  function validateMarketConfig(config) {
+    if (!config || typeof config !== 'object' || !config.rules || !config.modules) throw new DataFormatError('市場規則設定格式錯誤');
+    return config;
+  }
+
+  function ensureMarketFramework() {
+    if (byId('moduleGrid')) return;
+    const signalGrid = byId('signalGrid');
+    const disclaimer = document.createElement('p');
+    disclaimer.className = 'market-score-disclaimer';
+    disclaimer.textContent = '市場狀態分數，不是漲跌機率';
+    const modules = document.createElement('div');
+    modules.id = 'moduleGrid';
+    modules.className = 'module-grid';
+    const drivers = document.createElement('div');
+    drivers.className = 'market-driver-grid';
+    drivers.innerHTML = '<div><h3>主要正向因素</h3><ul id="positiveDrivers"></ul></div><div><h3>主要負向因素</h3><ul id="negativeDrivers"></ul></div>';
+    const coverage = document.createElement('div');
+    coverage.className = 'market-coverage';
+    coverage.innerHTML = '<span>資料涵蓋率</span><strong id="marketCoverage">--</strong><small id="marketFreshness">--</small>';
+    signalGrid.before(disclaimer, modules, drivers, coverage);
+  }
+
+  function formatRuleValue(ruleId, value) {
+    if (!Number.isFinite(Number(value))) return '資料缺漏';
+    if (ruleId === 'foreign_cash_flow') return `${formatSigned(Number(value) / 100000000, 2)} 億`;
+    if (ruleId === 'foreign_futures_position') return `${formatSigned(Number(value), 0)} 口`;
+    if (ruleId === 'market_breadth') return formatSigned(Number(value) * 100, 2) + '%';
+    return formatSigned(Number(value), 2) + '%';
+  }
+
+  function renderRuleModuleSignals(payload, config) {
+    ensureMarketFramework();
+    const score = payload.market_score;
+    if (!score || !payload.rules || !payload.modules || !payload.coverage || !payload.freshness) throw new DataFormatError('市場狀態資料缺漏');
+    const percentage = Math.max(0, Math.min(100, Number(score.percentage)));
+    if (!Number.isFinite(percentage)) throw new DataFormatError('市場狀態分數格式錯誤');
+    const scoreTone = tone(score.status);
+    byId('marketPercentage').textContent = `${percentage}%`;
+    byId('marketPercentage').className = `score-percentage ${scoreTone}`;
+    byId('marketStatus').textContent = `${score.status}（${STATUS_LABELS[score.status] || score.status}）`;
+    byId('marketStatus').className = scoreTone;
+    byId('marketRawScore').textContent = `${score.score} / ${score.max_score}`;
+    byId('marketScoreBar').style.width = `${percentage}%`;
+    byId('marketScoreBar').className = `score-fill ${scoreTone}`;
+
+    byId('moduleGrid').replaceChildren(...Object.values(payload.modules).map(module => {
+      const item = document.createElement('div');
+      item.className = 'module-item';
+      const moduleTone = tone(module.status);
+      item.innerHTML = `<span>${module.display_name}</span><strong class="${moduleTone}">${module.percentage == null ? '--' : `${module.percentage}%`}</strong><small>${STATUS_LABELS[module.status] || module.status} · coverage ${module.coverage}%</small>`;
+      return item;
+    }));
+
+    const availableRules = Object.values(payload.rules).filter(rule => rule.available && Number.isFinite(Number(rule.score)));
+    const renderDrivers = (id, rules, emptyText) => {
+      const target = byId(id);
+      const selected = rules.sort((left, right) => Math.abs(right.score * right.weight) - Math.abs(left.score * left.weight)).slice(0, 5);
+      target.replaceChildren(...(selected.length ? selected.map(rule => {
+        const item = document.createElement('li');
+        item.textContent = `${rule.display_name}：${formatRuleValue(rule.rule_id, rule.value)}（${rule.score > 0 ? '+' : ''}${rule.score}）`;
+        return item;
+      }) : [Object.assign(document.createElement('li'), { textContent: emptyText })]));
+    };
+    renderDrivers('positiveDrivers', availableRules.filter(rule => rule.score > 0), '目前沒有明顯正向因素');
+    renderDrivers('negativeDrivers', availableRules.filter(rule => rule.score < 0), '目前沒有明顯負向因素');
+    byId('marketCoverage').textContent = `${payload.coverage.percentage}%（${payload.coverage.available_rules} / ${payload.coverage.enabled_rules}）`;
+    byId('marketFreshness').textContent = `資料狀態：${payload.freshness.status}`;
+
+    byId('signalGrid').replaceChildren(...Object.values(payload.rules).map(rule => {
+      const item = document.createElement('div');
+      item.className = `signal-item${rule.available ? '' : ' is-disabled'}`;
+      item.title = rule.rationale;
+      item.innerHTML = `<span>${rule.display_name}</span><strong class="${tone(rule.status)}">${formatRuleValue(rule.rule_id, rule.value)}</strong><small>${rule.status} · score ${rule.score == null ? '--' : rule.score}<span class="signal-weight-rule"><br>權重 ${rule.weight}</span></small>`;
+      return item;
+    }));
+    const updatedText = formatDateTime(payload.updated_at);
+    byId('marketLoadStatus').textContent = `最後更新：${updatedText}`;
+    byId('marketStateWidget').dataset.state = 'success';
+    byId('lastUpdatedAt').textContent = updatedText;
+  }
+
   function renderSignals(payload, factorConfig) {
+    if (payload?.rules && payload?.modules) {
+      renderRuleModuleSignals(payload, factorConfig);
+      return;
+    }
     const score = payload.market_score;
     if (!score || !Number.isFinite(Number(score.score)) || !Number.isFinite(Number(score.max_score)) || !Number.isFinite(Number(score.percentage)) || !score.status) throw new DataFormatError('market_score 欄位缺漏');
     const percentage = Math.max(0, Math.min(100, Number(score.percentage)));
@@ -124,7 +210,7 @@
       const stateText = setting.enabled ? `${STATUS_LABELS[signal.status] || signal.status} · score ${signedScore}` : '已停用';
       item.classList.toggle('is-disabled', !setting.enabled);
       item.title = setting.description;
-      item.innerHTML = `<span>${setting.display_name}</span><strong class="${setting.enabled ? signalTone : 'tone-neutral'}">${formatter(Number(signal.value))}</strong><small>${stateText}<br>權重 ${signal.weight} · weighted ${weightedScore}</small>`;
+      item.innerHTML = `<span>${setting.display_name}</span><strong class="${setting.enabled ? signalTone : 'tone-neutral'}">${formatter(Number(signal.value))}</strong><small>${stateText}<span class="signal-weight-rule"><br>權重 ${signal.weight} · weighted ${weightedScore}</span></small>`;
       return item;
     }));
     const updated = new Date(payload.updated_at);
@@ -140,7 +226,7 @@
         fetchText('./data/market/market_signals.json').then(text => JSON.parse(text)),
         fetchText('./config/factor_config.json').then(text => JSON.parse(text))
       ]);
-      renderSignals(signalsPayload, validateFactorConfig(factorConfig));
+      renderSignals(signalsPayload, validateMarketConfig(factorConfig));
     } catch (error) {
       byId('marketLoadStatus').textContent = error instanceof DataFormatError || error instanceof SyntaxError ? '資料格式錯誤' : '讀取失敗';
       byId('marketStateWidget').dataset.state = 'error';
@@ -245,7 +331,7 @@
     const direction = String(data.direction).toLowerCase();
     const directionTone = tone(direction);
     const confidencePercent = values.confidence * 100;
-    byId('predictionFileStatus').textContent = '已產生';
+    byId('predictionFileStatus').textContent = `最後更新：${formatDateTime(data.generated_at)}`;
     byId('upProbability').textContent = formatPercent(values.up);
     byId('upProbability').className = 'tone-bullish';
     byId('downProbability').textContent = formatPercent(values.down);
