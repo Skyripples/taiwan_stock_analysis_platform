@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:23:37.185056Z",
+  "updated_at": "2026-09-03T04:05:14.851000Z",
   "provider": "Yahoo",
   "dataset": "avgo_stock",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 369.68,
         "change": -2.44,
         "change_percent": -0.66,
-        "volume": 30822042
+        "volume": 37534600
       }
     ]
   }

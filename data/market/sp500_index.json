@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:23:38.615500Z",
+  "updated_at": "2026-09-03T04:05:15.539888Z",
   "provider": "Yahoo",
   "dataset": "sp500_index",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 7631.4702,
         "change": 35.1299,
         "change_percent": 0.4603,
-        "volume": 2720039000
+        "volume": 4738910000
       }
     ]
   }

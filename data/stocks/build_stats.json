@@ -1,35 +1,35 @@
 {
-  "updated_at": "2026-09-02T21:24:08+00:00",
+  "updated_at": "2026-09-03T04:05:55+00:00",
   "mode": "daily",
-  "selected": 1013,
+  "selected": 2393,
   "universe": {
-    "active": 1013,
-    "companies": 887,
-    "inactive_retained": 1382
+    "active": 2393,
+    "companies": 1978,
+    "inactive_retained": 5
   },
   "results": {
-    "complete": 123,
-    "partial": 890,
+    "complete": 404,
+    "partial": 1989,
     "failed": 0,
     "unchanged": 0
   },
   "source_timings_seconds": {
-    "twse_quote": 4.859,
-    "twse_profile": 4.838,
-    "twse_valuation": 4.83,
-    "tpex_profile": 1.724,
-    "latest_chips_twse_tpex": 1.238,
-    "tpex_quote": 0.733,
-    "tpex_valuation": 0.462
+    "twse_profile": 8.405,
+    "latest_chips_twse_tpex": 3.487,
+    "tpex_profile": 2.929,
+    "twse_quote": 2.838,
+    "twse_valuation": 1.286,
+    "tpex_quote": 1.175,
+    "tpex_valuation": 0.597
   },
   "storage": {
-    "stock_json_files": 1013,
-    "total_bytes": 25345342,
-    "average_bytes": 25020.08,
-    "build_increment_bytes": 25345342,
-    "build_increment_files": 1013,
-    "estimated_annual_full_rewrite_upper_bound_bytes": 6336335500,
+    "stock_json_files": 2393,
+    "total_bytes": 58097906,
+    "average_bytes": 24278.27,
+    "build_increment_bytes": 58097906,
+    "build_increment_files": 2393,
+    "estimated_annual_full_rewrite_upper_bound_bytes": 14524476500,
     "note": "Git delta compression normally uses less than the full-rewrite upper bound"
   },
-  "duration_seconds": 20.997
+  "duration_seconds": 26.292
 }

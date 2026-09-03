@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:23:38.740542Z",
+  "updated_at": "2026-09-03T04:05:15.600713Z",
   "provider": "Yahoo",
   "dataset": "tsm_adr",
   "version": "1.0",
@@ -18,13 +18,13 @@
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/TSM"
         },
         "open": 413.2,
-        "high": 416.4,
+        "high": 416.5,
         "low": 411.27,
         "close": 415.5,
         "previous_close": 414,
         "change": 1.5,
         "change_percent": 0.3623,
-        "volume": 6263352
+        "volume": 6284400
       }
     ]
   }

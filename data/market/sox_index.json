@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:23:38.378172Z",
+  "updated_at": "2026-09-03T04:05:15.426837Z",
   "provider": "Yahoo",
   "dataset": "sox_index",
   "version": "1.0",
@@ -17,12 +17,12 @@
           "source": "https://finance.yahoo.com/quote/%5ESOX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX"
         },
-        "open": 11243.5459,
-        "high": 11388.9922,
-        "low": 11154.667,
-        "close": 11339.2539,
+        "open": 11243.5498,
+        "high": 11388.9902,
+        "low": 11154.6699,
+        "close": 11339.25,
         "previous_close": 11288.6104,
-        "change": 50.6435,
+        "change": 50.6396,
         "change_percent": 0.4486,
         "volume": 0
       }

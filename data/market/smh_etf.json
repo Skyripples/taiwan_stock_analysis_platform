@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:23:38.254745Z",
+  "updated_at": "2026-09-03T04:05:15.370374Z",
   "provider": "Yahoo",
   "dataset": "smh_etf",
   "version": "1.0",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/SMH/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/SMH"
         },
-        "open": 545,
+        "open": 545.23,
         "high": 553.19,
-        "low": 541.75,
+        "low": 541.72,
         "close": 550.48,
         "previous_close": 545.22,
         "change": 5.26,
         "change_percent": 0.9647,
-        "volume": 5071467
+        "volume": 5127100
       }
     ]
   }

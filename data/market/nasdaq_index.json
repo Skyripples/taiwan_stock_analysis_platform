@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:23:37.857478Z",
+  "updated_at": "2026-09-03T04:05:15.191704Z",
   "provider": "Yahoo",
   "dataset": "nasdaq_index",
   "version": "1.0",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/%5EIXIC/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC"
         },
-        "open": 26094.0039,
-        "high": 26245.0371,
+        "open": 26094,
+        "high": 26245.0391,
         "low": 26062.6797,
-        "close": 26217.8281,
+        "close": 26217.8301,
         "previous_close": 26099.7695,
-        "change": 118.0586,
+        "change": 118.0606,
         "change_percent": 0.4523,
-        "volume": 6609310000
+        "volume": 7442550000
       }
     ]
   }
