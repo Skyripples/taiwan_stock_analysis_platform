@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-03T04:05:54+00:00",
+  "updated_at": "2026-09-04T04:09:49+00:00",
   "version": "2.0",
   "active_count": 2393,
   "company_count": 1978,
@@ -432,7 +432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00645",
@@ -772,7 +772,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -1942,7 +1942,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00870B",
@@ -3652,7 +3652,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020000",
@@ -3842,7 +3842,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020040",
@@ -12945,6 +12945,16 @@
       "cache_status": "partial"
     },
     {
+      "symbol": "3718",
+      "name": "中光電投控",
+      "market": "TPEx",
+      "industry": null,
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
       "symbol": "4102",
       "name": "永日",
       "market": "TPEx",
@@ -16880,7 +16890,7 @@
       "market": "TPEx",
       "industry": null,
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },

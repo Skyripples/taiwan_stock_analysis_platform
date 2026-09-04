@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-03T04:05:15.191704Z",
+  "updated_at": "2026-09-04T04:09:16.778854Z",
   "provider": "Yahoo",
   "dataset": "nasdaq_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-02",
+        "trade_date": "2026-09-03",
         "metadata": {
           "symbol": "^IXIC",
           "security_name": "NASDAQ Composite Index",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/%5EIXIC/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC"
         },
-        "open": 26094,
-        "high": 26245.0391,
-        "low": 26062.6797,
-        "close": 26217.8301,
-        "previous_close": 26099.7695,
-        "change": 118.0606,
-        "change_percent": 0.4523,
-        "volume": 7442550000
+        "open": 26336.3203,
+        "high": 26644.5703,
+        "low": 26325.0605,
+        "close": 26584.0605,
+        "previous_close": 26217.8301,
+        "change": 366.2304,
+        "change_percent": 1.3969,
+        "volume": 7600140000
       }
     ]
   }
