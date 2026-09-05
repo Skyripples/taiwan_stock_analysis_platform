@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-09-04 04:08:25 UTC",
-  "updated_at_taipei": "2026-09-04 12:08:25 UTC+8",
+  "updated_at_utc": "2026-09-05 04:04:25 UTC",
+  "updated_at_taipei": "2026-09-05 12:04:25 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -85908,6 +85908,19 @@
       "cash_dividend": "0.48"
     },
     {
+      "stock_id": "1477",
+      "stock_name": "聚陽",
+      "type": "earnings_call",
+      "title": "1477 聚陽(法說會)",
+      "date": "2026-09-04",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "11:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "1514",
       "stock_name": "亞力",
       "type": "dividend_payment",
@@ -86610,6 +86623,19 @@
       "cash_dividend": "0.31"
     },
     {
+      "stock_id": "9904",
+      "stock_name": "寶成",
+      "type": "earnings_call",
+      "title": "9904 寶成(法說會)",
+      "date": "2026-09-04",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "9914",
       "stock_name": "美利達",
       "type": "dividend_payment",
@@ -86831,6 +86857,32 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "1563",
+      "stock_name": "巧新",
+      "type": "earnings_call",
+      "title": "1563 巧新(法說會)",
+      "date": "2026-09-07",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "09:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "2072",
+      "stock_name": "世紀風電",
+      "type": "earnings_call",
+      "title": "2072 世紀風電(法說會)",
+      "date": "2026-09-07",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "09:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "2301",
       "stock_name": "光寶科",
       "type": "earnings_call",
@@ -86865,6 +86917,19 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
       "time": "10:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "2887",
+      "stock_name": "台新新光金",
+      "type": "earnings_call",
+      "title": "2887 台新新光金(法說會)",
+      "date": "2026-09-07",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "17:00",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
@@ -86909,19 +86974,6 @@
       "cash_dividend": ""
     },
     {
-      "stock_id": "3529",
-      "stock_name": "力旺",
-      "type": "earnings_call",
-      "title": "3529 力旺(法說會)",
-      "date": "2026-09-07",
-      "source": "Yahoo",
-      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
-      "time": "10:00",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": ""
-    },
-    {
       "stock_id": "4760",
       "stock_name": "勤凱",
       "type": "dividend_payment",
@@ -86932,45 +86984,6 @@
       "time": "",
       "ex_date": "2026-09-01",
       "pay_date": "2026-09-07",
-      "cash_dividend": ""
-    },
-    {
-      "stock_id": "4991",
-      "stock_name": "環宇-KY",
-      "type": "earnings_call",
-      "title": "4991 環宇-KY(法說會)",
-      "date": "2026-09-07",
-      "source": "Yahoo",
-      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
-      "time": "11:00",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": ""
-    },
-    {
-      "stock_id": "5536",
-      "stock_name": "聖暉*",
-      "type": "earnings_call",
-      "title": "5536 聖暉*(法說會)",
-      "date": "2026-09-07",
-      "source": "Yahoo",
-      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
-      "time": "09:00",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": ""
-    },
-    {
-      "stock_id": "6510",
-      "stock_name": "精測",
-      "type": "earnings_call",
-      "title": "6510 精測(法說會)",
-      "date": "2026-09-07",
-      "source": "Yahoo",
-      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
-      "time": "09:00",
-      "ex_date": "",
-      "pay_date": "",
       "cash_dividend": ""
     },
     {
@@ -86998,19 +87011,6 @@
       "ex_date": "2026-09-07",
       "pay_date": "2026-09-24",
       "cash_dividend": "10.00"
-    },
-    {
-      "stock_id": "7750",
-      "stock_name": "新代",
-      "type": "earnings_call",
-      "title": "7750 新代(法說會)",
-      "date": "2026-09-07",
-      "source": "Yahoo",
-      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
-      "time": "10:00",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": ""
     },
     {
       "stock_id": "8099",
@@ -87650,6 +87650,19 @@
       "cash_dividend": "0.06"
     },
     {
+      "stock_id": "1455",
+      "stock_name": "集盛",
+      "type": "earnings_call",
+      "title": "1455 集盛(法說會)",
+      "date": "2026-09-10",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "2062",
       "stock_name": "橋椿",
       "type": "dividend",
@@ -87671,6 +87684,19 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
       "time": "21:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "2379",
+      "stock_name": "瑞昱",
+      "type": "earnings_call",
+      "title": "2379 瑞昱(法說會)",
+      "date": "2026-09-10",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "09:00",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
@@ -87923,6 +87949,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "6173",
+      "stock_name": "信昌電",
+      "type": "earnings_call",
+      "title": "6173 信昌電(法說會)",
+      "date": "2026-09-10",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "6179",
       "stock_name": "亞通",
       "type": "dividend_payment",
@@ -87947,6 +87986,19 @@
       "ex_date": "2026-08-14",
       "pay_date": "2026-09-10",
       "cash_dividend": "0.80"
+    },
+    {
+      "stock_id": "6415",
+      "stock_name": "矽力*-KY",
+      "type": "earnings_call",
+      "title": "6415 矽力*-KY(法說會)",
+      "date": "2026-09-10",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "11:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
     },
     {
       "stock_id": "6504",
@@ -89041,6 +89093,19 @@
       "cash_dividend": "0.46"
     },
     {
+      "stock_id": "3034",
+      "stock_name": "聯詠",
+      "type": "earnings_call",
+      "title": "3034 聯詠(法說會)",
+      "date": "2026-09-14",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "15:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "3529",
       "stock_name": "力旺",
       "type": "earnings_call",
@@ -89077,6 +89142,19 @@
       "time": "",
       "ex_date": "2026-09-08",
       "pay_date": "2026-09-14",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
+      "type": "earnings_call",
+      "title": "4958 臻鼎-KY(法說會)",
+      "date": "2026-09-14",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "09:00",
+      "ex_date": "",
+      "pay_date": "",
       "cash_dividend": ""
     },
     {
@@ -89130,6 +89208,32 @@
       "ex_date": "2026-09-14",
       "pay_date": "2026-10-07",
       "cash_dividend": "0.50"
+    },
+    {
+      "stock_id": "6415",
+      "stock_name": "矽力*-KY",
+      "type": "earnings_call",
+      "title": "6415 矽力*-KY(法說會)",
+      "date": "2026-09-14",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "10:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "6510",
+      "stock_name": "精測",
+      "type": "earnings_call",
+      "title": "6510 精測(法說會)",
+      "date": "2026-09-14",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "10:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
     },
     {
       "stock_id": "6590",
@@ -89418,6 +89522,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "2379",
+      "stock_name": "瑞昱",
+      "type": "earnings_call",
+      "title": "2379 瑞昱(法說會)",
+      "date": "2026-09-15",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "10:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "2420",
       "stock_name": "新巨",
       "type": "dividend_payment",
@@ -89504,6 +89621,19 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/holders-meeting",
       "time": "09:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "4807",
+      "stock_name": "日成-KY",
+      "type": "earnings_call",
+      "title": "4807 日成-KY(法說會)",
+      "date": "2026-09-15",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
@@ -90601,6 +90731,32 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "6415",
+      "stock_name": "矽力*-KY",
+      "type": "earnings_call",
+      "title": "6415 矽力*-KY(法說會)",
+      "date": "2026-09-16",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "11:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "6805",
+      "stock_name": "富世達",
+      "type": "earnings_call",
+      "title": "6805 富世達(法說會)",
+      "date": "2026-09-16",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "8941",
       "stock_name": "關中",
       "type": "dividend_payment",
@@ -91433,6 +91589,32 @@
       "cash_dividend": "1.00"
     },
     {
+      "stock_id": "3260",
+      "stock_name": "威剛",
+      "type": "dividend",
+      "title": "3260 威剛(除權息)",
+      "date": "2026-09-21",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-21",
+      "pay_date": "2026-10-23",
+      "cash_dividend": "18.01"
+    },
+    {
+      "stock_id": "5314",
+      "stock_name": "世紀*",
+      "type": "dividend",
+      "title": "5314 世紀*(除權息)",
+      "date": "2026-09-21",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-21",
+      "pay_date": "2026-10-13",
+      "cash_dividend": "0.05"
+    },
+    {
       "stock_id": "1454",
       "stock_name": "台富",
       "type": "dividend_payment",
@@ -91470,6 +91652,19 @@
       "ex_date": "2026-08-24",
       "pay_date": "2026-09-22",
       "cash_dividend": "0.50"
+    },
+    {
+      "stock_id": "2379",
+      "stock_name": "瑞昱",
+      "type": "earnings_call",
+      "title": "2379 瑞昱(法說會)",
+      "date": "2026-09-22",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "09:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
     },
     {
       "stock_id": "2901",
@@ -92029,6 +92224,19 @@
       "ex_date": "2026-08-27",
       "pay_date": "2026-09-23",
       "cash_dividend": "5.07"
+    },
+    {
+      "stock_id": "5258",
+      "stock_name": "虹堡",
+      "type": "dividend",
+      "title": "5258 虹堡(除權息)",
+      "date": "2026-09-23",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-23",
+      "pay_date": "2026-10-23",
+      "cash_dividend": "1.01"
     },
     {
       "stock_id": "6474",
@@ -94410,6 +94618,19 @@
       "cash_dividend": "0.50"
     },
     {
+      "stock_id": "5314",
+      "stock_name": "世紀*",
+      "type": "dividend_payment",
+      "title": "5314 世紀* 現金股利0.05",
+      "date": "2026-10-13",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-21",
+      "pay_date": "2026-10-13",
+      "cash_dividend": "0.05"
+    },
+    {
       "stock_id": "6924",
       "stock_name": "榮惠-KY創",
       "type": "dividend_payment",
@@ -95606,6 +95827,19 @@
       "cash_dividend": "0.90"
     },
     {
+      "stock_id": "3260",
+      "stock_name": "威剛",
+      "type": "dividend_payment",
+      "title": "3260 威剛 現金股利18.01",
+      "date": "2026-10-23",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-21",
+      "pay_date": "2026-10-23",
+      "cash_dividend": "18.01"
+    },
+    {
       "stock_id": "4109",
       "stock_name": "加捷生醫",
       "type": "dividend_payment",
@@ -95617,6 +95851,19 @@
       "ex_date": "2026-09-23",
       "pay_date": "2026-10-23",
       "cash_dividend": "0.20"
+    },
+    {
+      "stock_id": "5258",
+      "stock_name": "虹堡",
+      "type": "dividend_payment",
+      "title": "5258 虹堡 現金股利1.01",
+      "date": "2026-10-23",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-23",
+      "pay_date": "2026-10-23",
+      "cash_dividend": "1.01"
     },
     {
       "stock_id": "1595",
