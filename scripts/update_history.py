@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping
 
 from config import MARKET_DATA_DIR, PROJECT_ROOT
+from trading_calendar import get_next_trading_day
 
 
 LOGGER = logging.getLogger("market_history")
@@ -141,12 +142,7 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         "vix_trade_date": dates["vix"],
         "kospi_trade_date": dates["kospi"],
     }
-    # The night session is attributed to the next Taiwan trading date; VIX
-    # must already be completed before that target session opens.
-    if dates["vix"] >= dates["night_futures"]:
-        raise ValueError("VIX trade date must precede the prediction target date")
-    if dates["kospi"] >= dates["night_futures"]:
-        raise ValueError("KOSPI trade date must precede the prediction target date")
+    validate_prediction_dates(dates, trade_date)
 
     market_row: Dict[str, Any] = {
         "trade_date": trade_date,
@@ -223,6 +219,21 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
         }
     )
     return market_row, signals_row
+
+
+def validate_prediction_dates(dates: Mapping[str, str], feature_date: str) -> str:
+    """Validate pre-open source dates against the actual next TWSE session."""
+
+    target_date = get_next_trading_day(feature_date)
+    if target_date is None:
+        raise ValueError(f"Prediction target date is unavailable for feature date: {feature_date}")
+    for source_name in ("vix", "kospi"):
+        if dates[source_name] >= target_date:
+            raise ValueError(f"{source_name.upper()} trade date must precede prediction target date")
+    night_date = dates["night_futures"]
+    if not feature_date <= night_date <= target_date:
+        raise ValueError("Night futures trade date must be between feature and target dates")
+    return target_date
 
 
 def update_history(
