@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "initial_training_samples": 250,
+  "rules": {
+    "night_futures_direction": { "display_name": "夜盤方向" },
+    "us_market_direction": { "display_name": "美國市場方向" },
+    "sox_tsm_adr_resonance": { "display_name": "SOX + TSM ADR 共振" },
+    "vix_risk_off": { "display_name": "VIX risk-off" }
+  },
+  "validation": {
+    "oos_samples": 472,
+    "oos_accuracy": 0.7234,
+    "extreme_accuracy": 0.7911,
+    "extreme_coverage": 0.7606,
+    "disclaimer": "歷史統計結果，不代表未來保證"
+  }
+}

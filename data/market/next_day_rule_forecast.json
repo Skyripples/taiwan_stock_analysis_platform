@@ -1,0 +1,92 @@
+{
+  "updated_at": "2026-09-06T11:04:55.002860Z",
+  "version": "1.0",
+  "forecast_type": "statistical_next_day_rule_forecast",
+  "feature_date": "2026-09-04",
+  "target_date": "2026-09-07",
+  "feature_close": 46551.13,
+  "score": 64.81621324816467,
+  "max_score": 100,
+  "direction": "Neutral",
+  "confidence_status": "low_confidence",
+  "training": {
+    "sample_size": 727,
+    "latest_completed_target_date": "2026-08-14",
+    "weight_method": "expanding history only; accuracy edge adjusted by yearly stability",
+    "rule_quality": {
+      "night_futures_direction": {
+        "sample_size": 724,
+        "accuracy": 0.7375690607734806,
+        "stability": 0.9250165100825136,
+        "raw_weight": 0.21975530350026562
+      },
+      "us_market_direction": {
+        "sample_size": 512,
+        "accuracy": 0.755859375,
+        "stability": 0.959911264442521,
+        "raw_weight": 0.24560229617572313
+      },
+      "sox_tsm_adr_resonance": {
+        "sample_size": 503,
+        "accuracy": 0.7495029821073559,
+        "stability": 0.9326450575286709,
+        "raw_weight": 0.23269772310108988
+      },
+      "vix_risk_off": {
+        "sample_size": 513,
+        "accuracy": 0.7037037037037037,
+        "stability": 0.9348234329256311,
+        "raw_weight": 0.1904269955959619
+      }
+    }
+  },
+  "weights": {
+    "night_futures_direction": 24.733784674823273,
+    "us_market_direction": 27.64290195729071,
+    "sox_tsm_adr_resonance": 26.190473157327233,
+    "vix_risk_off": 21.43284021055878
+  },
+  "contributions": {
+    "night_futures_direction": {
+      "signal": 1,
+      "weight": 24.733784674823273,
+      "weighted_vote": 24.733784674823273,
+      "display_name": "夜盤方向"
+    },
+    "us_market_direction": {
+      "signal": -1,
+      "weight": 27.64290195729071,
+      "weighted_vote": -27.64290195729071,
+      "display_name": "美國市場方向"
+    },
+    "sox_tsm_adr_resonance": {
+      "signal": 1,
+      "weight": 26.190473157327233,
+      "weighted_vote": 26.190473157327233,
+      "display_name": "SOX + TSM ADR 共振"
+    },
+    "vix_risk_off": {
+      "signal": 0,
+      "weight": 21.43284021055878,
+      "weighted_vote": 0.0,
+      "display_name": "VIX risk-off"
+    }
+  },
+  "source_dates": {
+    "market": "2026-09-04",
+    "night": "2026-09-04",
+    "sp500": "2026-09-04",
+    "nasdaq": "2026-09-04",
+    "sox": "2026-09-04",
+    "tsm": "2026-09-04",
+    "vix": "2026-09-04"
+  },
+  "historical_validation": {
+    "oos_samples": 472,
+    "oos_accuracy": 0.7234,
+    "extreme_accuracy": 0.7911,
+    "extreme_coverage": 0.7606,
+    "disclaimer": "歷史統計結果，不代表未來保證"
+  },
+  "disclaimer": "歷史統計結果，不代表未來保證"
+}

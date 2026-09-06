@@ -27,6 +27,16 @@
 .market-coverage { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
 .market-coverage strong { font-size: 1rem; }
 .market-coverage small { margin-left: auto; }
+.rule-forecast-summary { display: flex; justify-content: space-between; gap: 20px; }
+.rule-forecast-summary > div:last-child { text-align: right; }
+.rule-forecast-summary span, .rule-contribution-item span { display: block; color: #b5bbc4; font-size: .78rem; }
+.rule-forecast-summary strong { display: block; margin-top: 6px; font-size: 1.5rem; }
+.rule-forecast-summary small { display: block; margin-top: 5px; color: #9299a4; }
+.rule-contribution-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.rule-contribution-item { min-width: 0; padding: 13px; border: 1px solid #34383e; border-radius: 10px; background: #1b1d20; }
+.rule-contribution-item strong { display: block; margin: 7px 0 4px; }
+.rule-contribution-item small { color: #9299a4; }
+.rule-validation-note { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; color: #c5cad1; font-size: .75rem; }
 .signal-grid { display: none; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
 body[data-access-role="admin"] .signal-grid { display: grid; }
 .signal-item { min-width: 0; padding: 15px; border: 1px solid #34383e; border-radius: 11px; background: #1b1d20; }
@@ -88,6 +98,8 @@ body.theme-light .score-track, body.theme-light .training-track { background: #d
 body.theme-light .score-midline { background: #34445a; }
 body.theme-light .signal-item, body.theme-light .prediction-placeholder-grid div { border-color: #d8e0ea; background: #f3f6f9; }
 body.theme-light .module-item, body.theme-light .market-driver-grid > div, body.theme-light .market-coverage { border-color: #d8e0ea; background: #f3f6f9; }
+body.theme-light .rule-contribution-item { border-color: #d8e0ea; background: #f3f6f9; }
+body.theme-light .rule-forecast-summary span, body.theme-light .rule-contribution-item span, body.theme-light .rule-validation-note { color: #66758a; }
 body.theme-light .module-item span, body.theme-light .market-coverage span { color: #66758a; }
 body.theme-light .market-driver-grid ul { color: #35445a; }
 body.theme-light .raw-probability { color: #66758a; }
@@ -102,6 +114,6 @@ body.theme-light .signal-item small { color: #536277; }
 body.theme-light .tone-neutral { color: #526176 !important; }
 body.theme-light .prediction-history-table th, body.theme-light .prediction-history-table td { border-color: #d8e0ea; }
 body.theme-light .prediction-history-table th, body.theme-light .prediction-history-table td[colspan], body.theme-light .history-pending { color: #66758a; }
-@media (max-width: 1050px) { .module-grid, .signal-grid, .data-status-grid, .accuracy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1050px) { .module-grid, .signal-grid, .rule-contribution-grid, .data-status-grid, .accuracy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .score-summary { align-items: start; } }
-@media (max-width: 520px) { .module-grid, .signal-grid, .market-driver-grid, .data-status-grid, .accuracy-grid, .prediction-placeholder-grid, .model-info-grid { grid-template-columns: 1fr; } .market-coverage { align-items: flex-start; flex-direction: column; } .market-coverage small { margin-left: 0; } .confusion-matrix-item { grid-column: auto; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }
+@media (max-width: 520px) { .module-grid, .signal-grid, .market-driver-grid, .rule-contribution-grid, .data-status-grid, .accuracy-grid, .prediction-placeholder-grid, .model-info-grid { grid-template-columns: 1fr; } .rule-forecast-summary { display: block; } .rule-forecast-summary > div:last-child { margin-top: 14px; text-align: left; } .market-coverage { align-items: flex-start; flex-direction: column; } .market-coverage small { margin-left: 0; } .confusion-matrix-item { grid-column: auto; } .score-summary { display: block; } .score-details { margin-top: 14px; text-align: left; } .prediction-heading { display: block; } .prediction-heading p { margin-top: 6px; } }

@@ -75,6 +75,11 @@ jobs:
         run: |
           python scripts/build_prediction_dataset.py
 
+      - name: Generate statistical next-day rule forecast
+        if: always() && steps.prediction_dataset.outcome == 'success'
+        run: |
+          python scripts/update_rule_forecast.py
+
       - name: Validate previous market predictions
         if: always() && steps.prediction_dataset.outcome == 'success'
         run: |

@@ -42,7 +42,7 @@ def generate_market_signals(
     signals = engine.analyze(source_data)
     payload = engine.export(signals)
     write_json(output_path, payload)
-    return len(signals)
+    return len(signals.get("rules", signals))
 
 
 def main() -> int:

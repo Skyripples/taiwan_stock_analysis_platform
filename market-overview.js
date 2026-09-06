@@ -19,6 +19,7 @@
   const marketScoreStatusZh = document.getElementById("marketScoreStatusZh");
   const marketScoreRaw = document.getElementById("marketScoreRaw");
   const marketScoreBar = document.getElementById("marketScoreBar");
+  let currentMarketScore = null;
   const nightMarketWidget = document.querySelector(".night-market-widget");
   const nightMarketStatus = document.getElementById("nightMarketStatus");
   const nightMarketMessage = document.getElementById("nightMarketMessage");
@@ -371,6 +372,12 @@
     };
   }
 
+  function renderMarketScoreNumbers(score, isAdmin) {
+    const digits = isAdmin ? 2 : 0;
+    marketScorePercentage.textContent = `${Number(score.percentage).toFixed(digits)}%`;
+    marketScoreRaw.textContent = `${Number(score.score).toFixed(digits)} / 100`;
+  }
+
   function readSignal(signal) {
     if (!signal || typeof signal !== "object") {
       throw new MissingDataError("缺少市場訊號");
@@ -445,10 +452,10 @@
       const score = readMarketScore(payload);
       const statusInfo = MARKET_STATUS[score.status];
 
-      marketScorePercentage.textContent = `${percentageFormatter.format(score.percentage)}%`;
+      currentMarketScore = score;
+      renderMarketScoreNumbers(score, document.body.dataset.accessRole === "admin");
       marketScoreStatus.textContent = score.status;
       marketScoreStatusZh.textContent = statusInfo.label;
-      marketScoreRaw.textContent = `${formatSignedScore(score.score)} / ${percentageFormatter.format(score.maxScore)}`;
       marketScoreBar.style.setProperty("--score-percentage", `${score.percentage}%`);
       marketScoreBar.setAttribute("aria-valuenow", String(score.percentage));
       marketScoreSummary.dataset.tone = statusInfo.tone;
@@ -917,6 +924,9 @@
   }
 
   loadInstitutionalInvestors();
+  window.addEventListener("platform-access-change", (event) => {
+    if (currentMarketScore) renderMarketScoreNumbers(currentMarketScore, Boolean(event.detail?.isAdmin));
+  });
   loadForeignFuturesPosition();
   loadMarketScore();
   loadNightFutures();

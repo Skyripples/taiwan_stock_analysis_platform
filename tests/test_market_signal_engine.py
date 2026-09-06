@@ -53,6 +53,7 @@ class MarketSignalEngineTests(unittest.TestCase):
         self.assertFalse(result["rules"]["sox_index"]["available"])
         self.assertTrue(result["rules"]["kospi_index"]["stale"])
         self.assertEqual(result["coverage"]["available_rules"], result["coverage"]["enabled_rules"] - 2)
+        self.assertEqual(result["coverage"]["percentage"], 85)
 
     def test_module_aggregation_prevents_duplicate_votes(self):
         sources = self.sources()
@@ -60,9 +61,9 @@ class MarketSignalEngineTests(unittest.TestCase):
             sources[key]["data"]["records"][0]["change_percent"] = 3
         result = MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
         module = result["modules"]["us_tech"]
-        self.assertEqual(module["score"], 2)
-        self.assertEqual(module["max_score"], 2)
-        self.assertEqual(result["market_score"]["max_score"], 10)
+        self.assertEqual(module["score"], 100)
+        self.assertEqual(module["max_score"], 100)
+        self.assertEqual(result["market_score"]["max_score"], 100)
 
     def test_total_score_normalization(self):
         sources = self.sources()
@@ -73,10 +74,27 @@ class MarketSignalEngineTests(unittest.TestCase):
     def test_module_weight_is_config_driven(self):
         sources = self.sources()
         sources["taiwan_market_overview"]["data"]["records"][0]["taiex"]["change_percent"] = 2
-        sources["factor_config"]["modules"]["taiwan_market"]["weight"] = 2.5
+        sources["factor_config"]["modules"]["taiwan_market"]["weight"] = 30
+        sources["factor_config"]["modules"]["risk_global"]["weight"] = 10
         result = MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
-        self.assertEqual(result["market_score"]["max_score"], 13)
+        self.assertEqual(result["market_score"]["max_score"], 100)
         self.assertGreater(result["market_score"]["percentage"], 50)
+
+    def test_weights_must_total_one_hundred(self):
+        sources = self.sources()
+        sources["factor_config"]["modules"]["taiwan_market"]["weight"] = 19
+        with self.assertRaisesRegex(ValueError, "Module weights must total 100"):
+            MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
+
+    def test_legacy_signals_keep_existing_widget_contract(self):
+        sources = self.sources()
+        sources["night_futures"]["data"]["records"][0]["change"] = -120
+        sources["tsm_adr"]["data"]["records"][0]["change"] = 1.25
+        engine = MarketSignalEngine(ROOT / "data" / "market")
+        exported = engine.export(engine.analyze(sources), updated_at="2026-09-01T00:00:00Z")
+        self.assertEqual(exported["signals"]["night_futures"]["value"], -120)
+        self.assertEqual(exported["signals"]["night_futures"]["status"], "bearish")
+        self.assertEqual(exported["signals"]["tsm_adr"]["value"], 1.25)
 
 
 if __name__ == "__main__":

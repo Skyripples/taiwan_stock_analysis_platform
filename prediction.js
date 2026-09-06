@@ -134,11 +134,13 @@
     const percentage = Math.max(0, Math.min(100, Number(score.percentage)));
     if (!Number.isFinite(percentage)) throw new DataFormatError('市場狀態分數格式錯誤');
     const scoreTone = tone(score.status);
-    byId('marketPercentage').textContent = `${percentage}%`;
+    byId('marketPercentage').dataset.marketScoreValue = percentage;
+    byId('marketPercentage').textContent = `${Math.round(percentage)}%`;
     byId('marketPercentage').className = `score-percentage ${scoreTone}`;
     byId('marketStatus').textContent = `${score.status}（${STATUS_LABELS[score.status] || score.status}）`;
     byId('marketStatus').className = scoreTone;
-    byId('marketRawScore').textContent = `${score.score} / ${score.max_score}`;
+    byId('marketRawScore').dataset.marketScoreValue = percentage;
+    byId('marketRawScore').textContent = `${Math.round(percentage)} / 100`;
     byId('marketScoreBar').style.width = `${percentage}%`;
     byId('marketScoreBar').className = `score-fill ${scoreTone}`;
 
@@ -146,7 +148,7 @@
       const item = document.createElement('div');
       item.className = 'module-item';
       const moduleTone = tone(module.status);
-      item.innerHTML = `<span>${module.display_name}</span><strong class="${moduleTone}">${module.percentage == null ? '--' : `${module.percentage}%`}</strong><small>${STATUS_LABELS[module.status] || module.status} · coverage ${module.coverage}%</small>`;
+      item.innerHTML = `<span>${module.display_name}</span><strong class="${moduleTone}" data-module-score="${module.percentage == null ? '' : module.percentage}">${module.percentage == null ? '--' : `${Math.round(module.percentage)} / 100`}</strong><small>${STATUS_LABELS[module.status] || module.status} · coverage ${module.coverage}%</small>`;
       return item;
     }));
 
@@ -176,6 +178,13 @@
     byId('marketLoadStatus').textContent = `最後更新：${updatedText}`;
     byId('marketStateWidget').dataset.state = 'success';
     byId('lastUpdatedAt').textContent = updatedText;
+    const isAdmin = document.body.dataset.accessRole === 'admin';
+    byId('marketPercentage').textContent = `${isAdmin ? percentage.toFixed(2) : Math.round(percentage)}%`;
+    byId('marketRawScore').textContent = `${isAdmin ? percentage.toFixed(2) : Math.round(percentage)} / 100`;
+    document.querySelectorAll('[data-module-score]').forEach(element => {
+      const value = Number(element.dataset.moduleScore);
+      if (Number.isFinite(value)) element.textContent = `${isAdmin ? value.toFixed(2) : Math.round(value)} / 100`;
+    });
   }
 
   function renderSignals(payload, factorConfig) {
@@ -232,6 +241,59 @@
       byId('marketStateWidget').dataset.state = 'error';
       byId('signalGrid').innerHTML = '<p class="widget-description">市場訊號目前無法顯示，其他資料仍可正常載入。</p>';
       byId('lastUpdatedAt').textContent = '讀取失敗';
+    }
+  }
+
+  function ensureRuleForecastWidget() {
+    if (byId('ruleForecastWidget')) return;
+    const widget = document.createElement('article');
+    widget.id = 'ruleForecastWidget';
+    widget.className = 'widget widget-section rule-forecast-widget';
+    widget.dataset.state = 'loading';
+    widget.innerHTML = `
+      <header class="widget-header"><div><p class="prediction-kicker">STATISTICAL RULE FORECAST</p><h2 class="prediction-section-title">隔日統計規則預測</h2></div><span id="ruleForecastStatus" class="widget-status">載入中</span></header>
+      <div class="widget-body">
+        <div class="rule-forecast-summary"><div><span>Rule Forecast Score</span><strong id="ruleForecastScore">-- / 100</strong></div><div><span>方向</span><strong id="ruleForecastDirection">--</strong><small id="ruleForecastConfidence">--</small></div></div>
+        <div id="ruleContributionGrid" class="rule-contribution-grid"></div>
+        <div class="rule-validation-note"><span>歷史 OOS Accuracy：72.34%</span><span>極端區間：79.11%</span><span>Extreme coverage：76.06%</span></div>
+        <p id="ruleForecastDisclaimer" class="market-score-disclaimer">歷史統計結果，不代表未來保證</p>
+      </div>`;
+    byId('predictionResultWidget').before(widget);
+  }
+
+  function renderRuleForecast(payload) {
+    ensureRuleForecastWidget();
+    const score = Number(payload?.score);
+    if (!Number.isFinite(score) || score < 0 || score > 100 || !payload?.direction || !payload?.contributions || !payload?.target_date) throw new DataFormatError('統計規則預測資料缺漏');
+    const isAdmin = document.body.dataset.accessRole === 'admin';
+    byId('ruleForecastScore').dataset.score = score;
+    byId('ruleForecastScore').textContent = `${isAdmin ? score.toFixed(2) : Math.round(score)} / 100`;
+    byId('ruleForecastDirection').textContent = payload.direction;
+    byId('ruleForecastDirection').className = tone(payload.direction);
+    byId('ruleForecastConfidence').textContent = payload.confidence_status === 'extreme' ? '極端訊號' : '低信心／中性區間';
+    byId('ruleContributionGrid').replaceChildren(...Object.values(payload.contributions).map(rule => {
+      const item = document.createElement('div');
+      item.className = 'rule-contribution-item';
+      const signalText = rule.signal > 0 ? '正向' : rule.signal < 0 ? '負向' : '中性／未觸發';
+      item.innerHTML = `<span>${rule.display_name}</span><strong class="${tone(rule.signal > 0 ? 'bullish' : rule.signal < 0 ? 'bearish' : 'neutral')}">${signalText}</strong><small>動態權重 ${Number(rule.weight).toFixed(2)}%</small>`;
+      return item;
+    }));
+    byId('ruleForecastStatus').textContent = `預測 ${payload.target_date} · 更新 ${formatDateTime(payload.updated_at)}`;
+    byId('ruleForecastDisclaimer').textContent = payload.disclaimer || '歷史統計結果，不代表未來保證';
+    byId('ruleForecastWidget').dataset.state = 'success';
+  }
+
+  async function loadRuleForecast() {
+    ensureRuleForecastWidget();
+    try {
+      const result = await fetchOptionalJson('./data/market/next_day_rule_forecast.json');
+      if (result.state === 'missing') {
+        byId('ruleForecastStatus').textContent = '尚未產生';
+        byId('ruleForecastWidget').dataset.state = 'missing';
+      } else renderRuleForecast(result.data);
+    } catch (error) {
+      byId('ruleForecastStatus').textContent = error instanceof DataFormatError ? '資料格式錯誤' : '讀取失敗';
+      byId('ruleForecastWidget').dataset.state = 'error';
     }
   }
 
@@ -502,7 +564,19 @@
   updateAdminModelVisibility(document.body.dataset.accessRole === 'admin');
   window.addEventListener('platform-access-change', event => {
     updateAdminModelVisibility(Boolean(event.detail?.isAdmin));
+    const isAdmin = Boolean(event.detail?.isAdmin);
+    const score = Number(byId('marketRawScore')?.dataset.marketScoreValue);
+    if (Number.isFinite(score)) {
+      byId('marketPercentage').textContent = `${isAdmin ? score.toFixed(2) : Math.round(score)}%`;
+      byId('marketRawScore').textContent = `${isAdmin ? score.toFixed(2) : Math.round(score)} / 100`;
+    }
+    document.querySelectorAll('[data-module-score]').forEach(element => {
+      const value = Number(element.dataset.moduleScore);
+      if (Number.isFinite(value)) element.textContent = `${isAdmin ? value.toFixed(2) : Math.round(value)} / 100`;
+    });
+    const ruleScore = Number(byId('ruleForecastScore')?.dataset.score);
+    if (Number.isFinite(ruleScore)) byId('ruleForecastScore').textContent = `${isAdmin ? ruleScore.toFixed(2) : Math.round(ruleScore)} / 100`;
   });
 
-  Promise.allSettled([loadSignals(), loadModelInfo(), loadPrediction(), loadPredictionDataset(), loadHistoricalDataset(), loadMarketHistory(), loadPredictionHistory()]);
+  Promise.allSettled([loadSignals(), loadRuleForecast(), loadModelInfo(), loadPrediction(), loadPredictionDataset(), loadHistoricalDataset(), loadMarketHistory(), loadPredictionHistory()]);
 })();

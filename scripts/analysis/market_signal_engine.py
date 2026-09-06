@@ -38,16 +38,18 @@ class MarketSignalEngine(BaseAnalysis):
         enabled = [rule for rule in rules.values() if rule["enabled"] and self.config["modules"][rule["category"]]["enabled"]]
         available = [rule for rule in enabled if rule["available"]]
         stale = [rule["rule_id"] for rule in enabled if rule["stale"]]
+        coverage = self._weighted_coverage(rules)
         return {
             "rules": rules,
             "modules": modules,
+            "legacy_signals": self._legacy_source_signals(source_data),
             "market_score": self._aggregate_market(modules),
-            "coverage": {"available_rules": len(available), "enabled_rules": len(enabled), "percentage": self._percent(len(available), len(enabled)), "excluded_rules": [rule["rule_id"] for rule in enabled if not rule["available"]]},
+            "coverage": {"available_rules": len(available), "enabled_rules": len(enabled), "percentage": coverage, "effective_weight": coverage, "total_weight": 100, "excluded_rules": [rule["rule_id"] for rule in enabled if not rule["available"]]},
             "freshness": {"reference_date": reference_date.isoformat(), "status": "stale" if stale else ("complete" if len(available) == len(enabled) else "partial"), "stale_rules": stale},
         }
 
     def export(self, result: AnalysisResult, *, updated_at: str | None = None) -> AnalysisResult:
-        payload = super().export(self._legacy_signals(result["rules"]), updated_at=updated_at)
+        payload = super().export(result["legacy_signals"], updated_at=updated_at)
         payload.update({key: result[key] for key in ("rules", "modules", "market_score", "coverage", "freshness")})
         payload.update({"score_type": "market_state_score", "score_disclaimer": "市場狀態分數，不是漲跌機率"})
         return payload
@@ -81,29 +83,50 @@ class MarketSignalEngine(BaseAnalysis):
         for module_id, setting in self.config["modules"].items():
             configured = [rule for rule in rules.values() if rule["category"] == module_id and rule["enabled"]]
             if not setting["enabled"]:
-                output[module_id] = {"module_id": module_id, "display_name": setting["display_name"], "score": None, "max_score": 2, "percentage": None, "status": "disabled", "weight": setting["weight"], "coverage": 0, "available_rules": 0, "enabled_rules": 0, "rule_ids": [rule["rule_id"] for rule in configured]}
+                output[module_id] = {"module_id": module_id, "display_name": setting["display_name"], "score": None, "max_score": 100, "raw_score": None, "percentage": None, "status": "disabled", "weight": setting["weight"], "coverage": 0, "available_rules": 0, "enabled_rules": 0, "rule_ids": [rule["rule_id"] for rule in configured]}
                 continue
             available = [rule for rule in configured if rule["available"]]
             denominator = sum(rule["weight"] for rule in available)
             score = None if denominator <= 0 else self._clean_number(sum(rule["score"] * rule["weight"] for rule in available) / denominator)
             percentage = None if score is None else self._score_percentage(score, 2)
-            output[module_id] = {"module_id": module_id, "display_name": setting["display_name"], "score": score, "max_score": 2, "percentage": percentage, "status": "unavailable" if percentage is None else self._market_status(percentage), "weight": setting["weight"], "coverage": self._percent(len(available), len(configured)), "available_rules": len(available), "enabled_rules": len(configured), "rule_ids": [rule["rule_id"] for rule in configured]}
+            active_weight = sum(rule["weight"] for rule in configured)
+            available_weight = sum(rule["weight"] for rule in available)
+            output[module_id] = {"module_id": module_id, "display_name": setting["display_name"], "score": percentage, "max_score": 100, "raw_score": score, "percentage": percentage, "status": "unavailable" if percentage is None else self._market_status(percentage), "weight": setting["weight"], "coverage": self._percent(available_weight, active_weight), "available_rules": len(available), "enabled_rules": len(configured), "rule_ids": [rule["rule_id"] for rule in configured]}
         return output
 
     def _aggregate_market(self, modules: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
         available = [module for module in modules.values() if module["score"] is not None and module["weight"] > 0]
         if not available:
             raise ValueError("No market modules have current data")
-        score = self._clean_number(sum(module["score"] * module["weight"] for module in available))
-        maximum = self._clean_number(sum(2 * module["weight"] for module in available))
-        percentage = self._score_percentage(score, maximum)
-        return {"score": score, "max_score": maximum, "percentage": percentage, "status": self._market_status(percentage), "available_modules": len(available), "enabled_modules": len(modules)}
+        active_weight = sum(module["weight"] for module in available)
+        percentage = self._clean_number(sum(module["percentage"] * module["weight"] for module in available) / active_weight)
+        return {"score": percentage, "max_score": 100, "percentage": percentage, "status": self._market_status(percentage), "available_modules": len(available), "enabled_modules": len([module for module in modules.values() if module["status"] != "disabled"])}
 
-    def _legacy_signals(self, rules: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    def _weighted_coverage(self, rules: Dict[str, Dict[str, Any]]) -> int | float:
+        enabled_modules = {key: value for key, value in self.config["modules"].items() if value["enabled"]}
+        total_module_weight = sum(module["weight"] for module in enabled_modules.values())
+        effective = 0.0
+        for module_id, module in enabled_modules.items():
+            active = [rule for rule in rules.values() if rule["category"] == module_id and rule["enabled"]]
+            active_weight = sum(rule["weight"] for rule in active)
+            available_weight = sum(rule["weight"] for rule in active if rule["available"])
+            effective += module["weight"] * (available_weight / active_weight if active_weight else 0)
+        return self._percent(effective, total_module_weight)
+
+    def _legacy_source_signals(self, sources: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+        paths = {
+            "foreign_cash_flow": ("institutional_investors", ["foreign_and_mainland_investors", "net"]),
+            "foreign_futures_position": ("foreign_futures_position", ["net_position", "open_interest"]),
+            "night_futures": ("night_futures", ["change"]),
+            "tsm_adr": ("tsm_adr", ["change"]),
+            "sox_index": ("sox_index", ["change_percent"]),
+        }
         output = {}
-        for key in self.LEGACY_SIGNALS:
-            rule = rules[key]
-            output[key] = {"value": rule["value"], "status": rule["status"], "score": rule["score"], "enabled": rule["enabled"] and rule["available"], "weight": rule["weight"], "weighted_score": None if rule["score"] is None else self._clean_number(rule["score"] * rule["weight"])}
+        for key, (source, path) in paths.items():
+            value = self._number_at(self._record(sources.get(source)) or {}, path)
+            score = 0 if value == 0 else 1 if value is not None and value > 0 else -1
+            status = "neutral" if score == 0 else "bullish" if score > 0 else "bearish"
+            output[key] = {"value": self._clean_number(value) if value is not None else None, "status": status, "score": score, "enabled": value is not None, "weight": 1, "weighted_score": score if value is not None else None}
         return output
 
     def _resolve_value(self, record: Dict[str, Any], setting: Dict[str, Any]) -> float | None:
@@ -148,6 +171,8 @@ class MarketSignalEngine(BaseAnalysis):
             raise ValueError("Factor configuration requires sources, modules, and rules")
         for module_id, module in config["modules"].items():
             self._validate_common(module, f"module {module_id}")
+        if abs(sum(module["weight"] for module in config["modules"].values()) - 100) > 1e-9:
+            raise ValueError("Module weights must total 100")
         for rule_id, rule in config["rules"].items():
             self._validate_common(rule, f"rule {rule_id}")
             if rule.get("module") not in config["modules"] or rule.get("source") not in config["sources"]:
@@ -160,6 +185,10 @@ class MarketSignalEngine(BaseAnalysis):
                 raise ValueError(f"Invalid direction or freshness for rule {rule_id}")
             if not rule.get("formula") and not isinstance(rule.get("value_path"), list):
                 raise ValueError(f"Rule {rule_id} requires value_path or formula")
+        for module_id in config["modules"]:
+            module_rules = [rule for rule in config["rules"].values() if rule.get("module") == module_id]
+            if abs(sum(rule["weight"] for rule in module_rules) - 100) > 1e-9:
+                raise ValueError(f"Rule weights for module {module_id} must total 100")
         return config
 
     @staticmethod

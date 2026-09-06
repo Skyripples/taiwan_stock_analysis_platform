@@ -207,7 +207,10 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
     max_score = _required_scalar_number(market_score.get("max_score"), "market_score.max_score")
     percentage = _required_scalar_number(market_score.get("percentage"), "market_score.percentage")
     market_status = market_score.get("status")
-    if max_score <= 0 or percentage < 0 or percentage > 100 or abs(percentage - ((score + max_score) / (2 * max_score) * 100)) > 0.011:
+    if signal_payload.get("score_type") == "market_state_score":
+        if max_score != 100 or percentage < 0 or percentage > 100 or abs(score - percentage) > 0.011:
+            raise ValueError("100-point Market Score normalization is invalid")
+    elif max_score <= 0 or percentage < 0 or percentage > 100 or abs(percentage - ((score + max_score) / (2 * max_score) * 100)) > 0.011:
         raise ValueError("Market Score normalization is invalid")
     if not isinstance(market_status, str) or not market_status:
         raise ValueError("market_score.status is missing")
