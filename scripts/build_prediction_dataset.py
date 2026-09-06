@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Dict, Iterable, Mapping
 
 from config import PROJECT_ROOT
+from trading_calendar import get_next_trading_day
 
 
 LOGGER = logging.getLogger("prediction_dataset")
@@ -73,7 +74,7 @@ def build_prediction_dataset(
     input_path: Path = INPUT_PATH,
     output_path: Path = OUTPUT_PATH,
 ) -> int:
-    """Validate history, pair adjacent trading sessions, and atomically write CSV."""
+    """Validate history, pair actual consecutive sessions, and atomically write CSV."""
 
     history_rows = _read_history(input_path)
     dataset_rows = _build_rows(history_rows)
@@ -134,19 +135,37 @@ def _validate_feature_values(row: Mapping[str, str], row_number: int) -> None:
 
 def _build_rows(history_rows: list[Mapping[str, str]]) -> list[Dict[str, str | int | float]]:
     dataset_rows: list[Dict[str, str | int | float]] = []
-    for index in range(max(0, len(history_rows) - 1)):
-        feature = history_rows[index]
-        target = history_rows[index + 1]
+    rows_by_date = {row["trade_date"]: row for row in history_rows}
+
+    for feature in history_rows:
         feature_date = _parse_date(feature["trade_date"], "feature_date")
-        target_date = _parse_date(target["trade_date"], "target_date")
-        if target_date <= feature_date:
-            raise ValueError(f"Invalid trading-date pair: {feature_date} -> {target_date}")
+        target_date = get_next_trading_day(feature_date)
+        if target_date is None:
+            LOGGER.info(
+                "Skipping feature date %s: trading calendar has no next trading day",
+                feature_date,
+            )
+            continue
+        target = rows_by_date.get(target_date)
+        if target is None:
+            LOGGER.info(
+                "Skipping feature date %s: expected target date %s is missing",
+                feature_date,
+                target_date,
+            )
+            continue
 
         for field in DATE_FIELDS:
             source_date = _parse_date(feature[field], field)
-            if field == "night_futures_trade_date":
-                valid = source_date == target_date
-                rule = f"equal target date {target_date}"
+            if field == "taiwan_market_trade_date":
+                valid = source_date == feature_date
+                rule = f"equal feature date {feature_date}"
+            elif field in {"institutional_trade_date", "foreign_futures_trade_date"}:
+                valid = source_date <= feature_date
+                rule = f"not exceed feature date {feature_date}"
+            elif field == "night_futures_trade_date":
+                valid = feature_date <= source_date <= target_date
+                rule = f"be between feature date {feature_date} and target date {target_date}"
             elif field in {
                 "tsm_adr_trade_date",
                 "sox_trade_date",
@@ -157,17 +176,10 @@ def _build_rows(history_rows: list[Mapping[str, str]]) -> list[Dict[str, str | i
             }:
                 valid = source_date < target_date
                 rule = f"precede target date {target_date}"
-            else:
-                valid = source_date <= feature_date
-                rule = f"not exceed feature date {feature_date}"
             if not valid:
                 raise ValueError(
                     f"Potential data leakage: {field} {source_date} must {rule}"
                 )
-        if feature["taiwan_market_trade_date"] != feature_date:
-            raise ValueError(
-                f"taiwan_market_trade_date must equal feature_date: {feature_date}"
-            )
 
         taiex_close = float(feature["taiex_close"])
         next_taiex_close = float(target["taiex_close"])
@@ -234,7 +246,10 @@ def main() -> int:
         LOGGER.error("Prediction dataset build failed: %s", exc)
         return 1
     if row_count == 0:
-        LOGGER.warning("Prediction dataset contains only the header: at least two history rows are required")
+        LOGGER.warning(
+            "Prediction dataset contains only the header: "
+            "no complete consecutive trading-session pair is available"
+        )
     else:
         LOGGER.info("Prediction dataset written: %s", OUTPUT_PATH)
     LOGGER.info("Prediction dataset build finished | rows=%d", row_count)
