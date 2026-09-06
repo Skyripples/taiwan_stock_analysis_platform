@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-06T14:44:01.800506Z",
+  "updated_at": "2026-09-06T19:34:49.052475Z",
   "version": "2.0",
   "signals": {
     "foreign_cash_flow": {
@@ -19,7 +19,7 @@
       "weighted_score": -1
     },
     "night_futures": {
-      "value": 668,
+      "value": 473,
       "status": "bullish",
       "score": 1,
       "enabled": true,
@@ -118,15 +118,15 @@
       "rule_id": "night_futures",
       "category": "futures",
       "display_name": "台指期夜盤",
-      "value": 1.46,
-      "score": 2,
+      "value": null,
+      "score": null,
       "weight": 100.0,
-      "status": "strong_bullish",
-      "rationale": "台指期夜盤=1.46，依設定門檻評為 strong_bullish（+2）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.0}",
+      "status": "unavailable",
+      "rationale": "資料日期不符合時效（相差 -3 天），未納入計分",
       "enabled": true,
-      "available": true,
-      "stale": false,
-      "source_trade_date": "2026-09-04"
+      "available": false,
+      "stale": true,
+      "source_trade_date": "2026-09-07"
     },
     "tsm_adr": {
       "rule_id": "tsm_adr",
@@ -252,14 +252,14 @@
     "futures": {
       "module_id": "futures",
       "display_name": "期貨",
-      "score": 100,
+      "score": null,
       "max_score": 100,
-      "raw_score": 2,
-      "percentage": 100,
-      "status": "Strong Bullish",
+      "raw_score": null,
+      "percentage": null,
+      "status": "unavailable",
       "weight": 20.0,
-      "coverage": 100,
-      "available_rules": 1,
+      "coverage": 0,
+      "available_rules": 0,
       "enabled_rules": 1,
       "rule_ids": [
         "night_futures"
@@ -303,25 +303,29 @@
     }
   },
   "market_score": {
-    "score": 77.5,
+    "score": 71.875,
     "max_score": 100,
-    "percentage": 77.5,
+    "percentage": 71.875,
     "status": "Bullish",
-    "available_modules": 5,
+    "available_modules": 4,
     "enabled_modules": 5
   },
   "coverage": {
-    "available_rules": 12,
+    "available_rules": 11,
     "enabled_rules": 12,
-    "percentage": 100,
-    "effective_weight": 100,
+    "percentage": 80,
+    "effective_weight": 80,
     "total_weight": 100,
-    "excluded_rules": []
+    "excluded_rules": [
+      "night_futures"
+    ]
   },
   "freshness": {
     "reference_date": "2026-09-04",
-    "status": "complete",
-    "stale_rules": []
+    "status": "stale",
+    "stale_rules": [
+      "night_futures"
+    ]
   },
   "score_type": "market_state_score",
   "score_disclaimer": "市場狀態分數，不是漲跌機率"
