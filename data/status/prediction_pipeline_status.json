@@ -1,7 +1,8 @@
 {
-  "checked_at": "2026-09-05T04:08:18.057363+00:00",
+  "checked_at": "2026-09-06T04:13:39.653033+00:00",
   "status": "skipped",
   "ready": false,
-  "reason": "required_market_provider_failed",
+  "reason": "prediction_input_validation_failed",
+  "detail": "VIX trade date must precede the prediction target date",
   "feature_count": 15
 }
