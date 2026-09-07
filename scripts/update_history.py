@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping
 
 from config import MARKET_DATA_DIR, PROJECT_ROOT
-from trading_calendar import get_next_trading_day
+from prediction_temporal import prediction_target_date, source_date_is_valid
 
 
 LOGGER = logging.getLogger("market_history")
@@ -224,15 +224,28 @@ def build_history_rows(sources: Mapping[str, Any]) -> tuple[Dict[str, Any], Dict
 def validate_prediction_dates(dates: Mapping[str, str], feature_date: str) -> str:
     """Validate pre-open source dates against the actual next TWSE session."""
 
-    target_date = get_next_trading_day(feature_date)
+    target_date = prediction_target_date(feature_date)
     if target_date is None:
         raise ValueError(f"Prediction target date is unavailable for feature date: {feature_date}")
-    for source_name in ("vix", "kospi"):
-        if dates[source_name] >= target_date:
-            raise ValueError(f"{source_name.upper()} trade date must precede prediction target date")
-    night_date = dates["night_futures"]
-    if not feature_date <= night_date <= target_date:
-        raise ValueError("Night futures trade date must be between feature and target dates")
+    for source_name in (
+        "taiwan_market",
+        "institutional",
+        "foreign_futures",
+        "night_futures",
+        "tsm_adr",
+        "sox",
+        "sp500",
+        "nasdaq",
+        "vix",
+        "kospi",
+    ):
+        if not source_date_is_valid(
+            source_name, dates[source_name], feature_date, target_date
+        ):
+            raise ValueError(
+                f"Invalid prediction source date for {source_name}: {dates[source_name]} "
+                f"(feature={feature_date}, target={target_date})"
+            )
     return target_date
 
 

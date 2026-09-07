@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from config import PROJECT_ROOT
-from trading_calendar import get_next_trading_day
+from prediction_temporal import prediction_target_date
 
 
 LOGGER = logging.getLogger("market_prediction")
@@ -73,7 +73,7 @@ def predict_market(
     direction = "up" if effective_up_probability > effective_down_probability else "down"
     payload = {
         "feature_date": latest["trade_date"],
-        "target_date": get_next_trading_day(latest["trade_date"]),
+        "target_date": prediction_target_date(latest["trade_date"]),
         "raw_up_probability": round(raw_up_probability, 6),
         "calibrated_up_probability": round(calibrated_up_probability, 6) if calibrated_up_probability is not None else None,
         "calibrated_down_probability": round(calibrated_down_probability, 6) if calibrated_down_probability is not None else None,

@@ -13,7 +13,7 @@ from typing import Any, Callable
 from zoneinfo import ZoneInfo
 
 from config import MARKET_DATA_DIR, PROJECT_ROOT
-from trading_calendar import get_next_trading_day
+from prediction_temporal import prediction_target_date, source_date_is_valid
 
 CONFIG_PATH = PROJECT_ROOT / "config" / "rule_forecast_config.json"
 HISTORICAL_PATH = PROJECT_ROOT / "data" / "history" / "historical_prediction_dataset.csv"
@@ -48,7 +48,7 @@ def _record(filename: str) -> dict[str, Any]:
 def current_rule_inputs() -> tuple[str, str, dict[str, int], dict[str, dict[str, Any]]]:
     market = _record("taiwan_market_overview.json")
     feature_date = str(market.get("trade_date", ""))
-    target_date = get_next_trading_day(feature_date)
+    target_date = prediction_target_date(feature_date)
     if not feature_date or not target_date:
         raise ValueError("Official next trading day is unavailable")
     records = {
@@ -57,12 +57,19 @@ def current_rule_inputs() -> tuple[str, str, dict[str, int], dict[str, dict[str,
         "nasdaq": _record("nasdaq_index.json"), "sox": _record("sox_index.json"),
         "tsm": _record("tsm_adr.json"), "vix": _record("vix_index.json"),
     }
+    temporal_sources = {
+        "market": "taiwan_market", "night": "night_futures", "sp500": "sp500",
+        "nasdaq": "nasdaq", "sox": "sox", "tsm": "tsm_adr", "vix": "vix",
+    }
     for key, record in records.items():
         source_date = str(record.get("trade_date", ""))
-        if not source_date or source_date > target_date:
-            raise ValueError(f"Illegal source date for {key}: {source_date} > {target_date}")
-    if not feature_date <= records["night"]["trade_date"] <= target_date:
-        raise ValueError("Night futures date must fall between feature_date and target_date")
+        if not source_date or not source_date_is_valid(
+            temporal_sources[key], source_date, feature_date, target_date
+        ):
+            raise ValueError(
+                f"Illegal source date for {key}: {source_date} "
+                f"(feature={feature_date}, target={target_date})"
+            )
 
     def resonance(left: float | None, right: float | None, left_band: float, right_band: float) -> int:
         values = (direction(left, left_band), direction(right, right_band))

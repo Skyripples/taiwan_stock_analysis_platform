@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from config import PROJECT_ROOT
+from prediction_temporal import prediction_target_date
 
 
 LOGGER = logging.getLogger("prediction_history")
@@ -57,23 +58,32 @@ def update_prediction_history(
             rows_by_date[prediction_row["feature_date"]] = prediction_row
 
     validated_count = 0
-    ordered_dates = [row["trade_date"] for row in market_rows]
     market_by_date = {row["trade_date"]: row for row in market_rows}
     for feature_date, row in rows_by_date.items():
         if row.get("hit") in {"true", "false"}:
             continue
         if feature_date not in market_by_date:
             raise ValueError(f"Prediction feature_date is absent from market history: {feature_date}")
-        feature_index = ordered_dates.index(feature_date)
-        if feature_index + 1 >= len(ordered_dates):
+        target_date = prediction_target_date(feature_date)
+        if target_date is None:
+            LOGGER.info(
+                "Next Taiwan trading day is not covered for %s; prediction remains pending",
+                feature_date,
+            )
             continue
-        target_date = ordered_dates[feature_index + 1]
         configured_target = row.get("target_date", "")
         if configured_target and configured_target != target_date:
             raise ValueError(
                 f"Prediction target_date does not match the next Taiwan trading day: "
                 f"{configured_target} != {target_date}"
             )
+        if target_date not in market_by_date:
+            LOGGER.info(
+                "Expected target date %s is not in market history; prediction for %s remains pending",
+                target_date,
+                feature_date,
+            )
+            continue
         feature_close = float(market_by_date[feature_date]["taiex_close"])
         target_close = float(market_by_date[target_date]["taiex_close"])
         actual_return = round((target_close / feature_close - 1) * 100, 8)

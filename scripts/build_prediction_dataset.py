@@ -10,7 +10,11 @@ from pathlib import Path
 from typing import Dict, Iterable, Mapping
 
 from config import PROJECT_ROOT
-from trading_calendar import get_next_trading_day
+from prediction_temporal import (
+    prediction_target_date,
+    source_date_is_valid,
+    source_date_requirement,
+)
 
 
 LOGGER = logging.getLogger("prediction_dataset")
@@ -30,6 +34,19 @@ DATE_FIELDS = (
     "vix_trade_date",
     "kospi_trade_date",
 )
+
+SOURCE_BY_DATE_FIELD = {
+    "taiwan_market_trade_date": "taiwan_market",
+    "institutional_trade_date": "institutional",
+    "foreign_futures_trade_date": "foreign_futures",
+    "night_futures_trade_date": "night_futures",
+    "tsm_adr_trade_date": "tsm_adr",
+    "sox_trade_date": "sox",
+    "sp500_trade_date": "sp500",
+    "nasdaq_trade_date": "nasdaq",
+    "vix_trade_date": "vix",
+    "kospi_trade_date": "kospi",
+}
 
 REQUIRED_FEATURE_FIELDS = (
     *DATE_FIELDS,
@@ -139,7 +156,7 @@ def _build_rows(history_rows: list[Mapping[str, str]]) -> list[Dict[str, str | i
 
     for feature in history_rows:
         feature_date = _parse_date(feature["trade_date"], "feature_date")
-        target_date = get_next_trading_day(feature_date)
+        target_date = prediction_target_date(feature_date)
         if target_date is None:
             LOGGER.info(
                 "Skipping feature date %s: trading calendar has no next trading day",
@@ -157,25 +174,11 @@ def _build_rows(history_rows: list[Mapping[str, str]]) -> list[Dict[str, str | i
 
         for field in DATE_FIELDS:
             source_date = _parse_date(feature[field], field)
-            if field == "taiwan_market_trade_date":
-                valid = source_date == feature_date
-                rule = f"equal feature date {feature_date}"
-            elif field in {"institutional_trade_date", "foreign_futures_trade_date"}:
-                valid = source_date <= feature_date
-                rule = f"not exceed feature date {feature_date}"
-            elif field == "night_futures_trade_date":
-                valid = feature_date <= source_date <= target_date
-                rule = f"be between feature date {feature_date} and target date {target_date}"
-            elif field in {
-                "tsm_adr_trade_date",
-                "sox_trade_date",
-                "sp500_trade_date",
-                "nasdaq_trade_date",
-                "vix_trade_date",
-                "kospi_trade_date",
-            }:
-                valid = source_date < target_date
-                rule = f"precede target date {target_date}"
+            source_name = SOURCE_BY_DATE_FIELD[field]
+            valid = source_date_is_valid(
+                source_name, source_date, feature_date, target_date
+            )
+            rule = source_date_requirement(source_name, feature_date, target_date)
             if not valid:
                 raise ValueError(
                     f"Potential data leakage: {field} {source_date} must {rule}"

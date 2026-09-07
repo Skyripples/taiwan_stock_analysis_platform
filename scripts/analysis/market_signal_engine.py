@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Dict
 
-from trading_calendar import get_next_trading_day
+from prediction_temporal import prediction_target_date, source_date_is_valid
 
 from .base_analysis import AnalysisResult, BaseAnalysis
 
@@ -70,13 +70,29 @@ class MarketSignalEngine(BaseAnalysis):
             result["rationale"] = "來源日期缺漏，未納入計分"
             return result
         age = (reference - trade_date).days
-        if rule_id == "night_futures":
-            target_date = self._parse_date(get_next_trading_day(reference))
-            fresh = target_date is not None and reference <= trade_date <= target_date
+        source_name = setting["source"]
+        temporal_source = {
+            "taiwan_market_overview": "taiwan_market",
+            "institutional_investors": "institutional",
+            "foreign_futures_position": "foreign_futures",
+            "night_futures": "night_futures",
+            "tsm_adr": "tsm_adr",
+            "sox_index": "sox",
+            "nasdaq_index": "nasdaq",
+            "sp500_index": "sp500",
+            "vix_index": "vix",
+            "kospi_index": "kospi",
+        }[source_name]
+        target_date = prediction_target_date(reference.isoformat())
+        if target_date is None:
+            fresh = False
         else:
-            fresh = not (
-                age > setting["max_age_days"]
-                or age < -setting["max_future_days"]
+            fresh = source_date_is_valid(
+                temporal_source,
+                trade_date.isoformat(),
+                reference.isoformat(),
+                target_date,
+                max_age_days=setting["max_age_days"],
             )
         if not fresh:
             result.update(stale=True, rationale=f"資料日期不符合時效（相差 {age} 天），未納入計分")
