@@ -55,6 +55,40 @@ class MarketSignalEngineTests(unittest.TestCase):
         self.assertEqual(result["coverage"]["available_rules"], result["coverage"]["enabled_rules"] - 2)
         self.assertEqual(result["coverage"]["percentage"], 85)
 
+    def test_friday_target_date_night_futures_is_fresh(self):
+        sources = self.sources()
+        sources["taiwan_market_overview"]["data"]["records"][0]["trade_date"] = "2026-09-04"
+        sources["night_futures"]["data"]["records"][0]["trade_date"] = "2026-09-07"
+        result = MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
+        rule = result["rules"]["night_futures"]
+        self.assertTrue(rule["available"])
+        self.assertFalse(rule["stale"])
+
+    def test_feature_date_night_futures_is_fresh(self):
+        sources = self.sources()
+        sources["taiwan_market_overview"]["data"]["records"][0]["trade_date"] = "2026-09-04"
+        sources["night_futures"]["data"]["records"][0]["trade_date"] = "2026-09-04"
+        result = MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
+        self.assertTrue(result["rules"]["night_futures"]["available"])
+
+    def test_night_futures_after_target_date_is_stale(self):
+        sources = self.sources()
+        sources["taiwan_market_overview"]["data"]["records"][0]["trade_date"] = "2026-09-04"
+        sources["night_futures"]["data"]["records"][0]["trade_date"] = "2026-09-08"
+        result = MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
+        rule = result["rules"]["night_futures"]
+        self.assertFalse(rule["available"])
+        self.assertTrue(rule["stale"])
+
+    def test_non_night_rule_future_tolerance_is_not_relaxed(self):
+        sources = self.sources()
+        sources["taiwan_market_overview"]["data"]["records"][0]["trade_date"] = "2026-09-04"
+        sources["institutional_investors"]["data"]["records"][0]["trade_date"] = "2026-09-07"
+        result = MarketSignalEngine(ROOT / "data" / "market").analyze(sources)
+        rule = result["rules"]["foreign_cash_flow"]
+        self.assertFalse(rule["available"])
+        self.assertTrue(rule["stale"])
+
     def test_module_aggregation_prevents_duplicate_votes(self):
         sources = self.sources()
         for key in ("tsm_adr", "sox_index", "nasdaq_index", "sp500_index"):

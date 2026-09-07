@@ -6,6 +6,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Dict
 
+from trading_calendar import get_next_trading_day
+
 from .base_analysis import AnalysisResult, BaseAnalysis
 
 
@@ -68,7 +70,15 @@ class MarketSignalEngine(BaseAnalysis):
             result["rationale"] = "來源日期缺漏，未納入計分"
             return result
         age = (reference - trade_date).days
-        if age > setting["max_age_days"] or age < -setting["max_future_days"]:
+        if rule_id == "night_futures":
+            target_date = self._parse_date(get_next_trading_day(reference))
+            fresh = target_date is not None and reference <= trade_date <= target_date
+        else:
+            fresh = not (
+                age > setting["max_age_days"]
+                or age < -setting["max_future_days"]
+            )
+        if not fresh:
             result.update(stale=True, rationale=f"資料日期不符合時效（相差 {age} 天），未納入計分")
             return result
         value = self._resolve_value(record, setting)
