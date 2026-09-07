@@ -1,1 +1,3 @@
 feature_date,target_date,up_probability,down_probability,predicted_direction,confidence,model_version,generated_at,feature_close,target_close,actual_return,actual_direction,hit,validated_at
+2026-08-14,2026-08-17,0.918451,0.081549,up,0.918451,3.4,2026-08-17T01:09:47.214903Z,45811.01,,,,,
+2026-09-04,2026-09-07,0.932296,0.067704,up,0.932296,3.4,2026-09-07T03:07:54.529509Z,46551.13,,,,,
