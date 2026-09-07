@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-09-06T19:34:49.183132+00:00",
-  "status": "skipped",
-  "ready": false,
-  "reason": "prediction_input_validation_failed",
-  "detail": "Invalid status or score for signal: night_futures",
+  "checked_at": "2026-09-07T02:21:33.057650+00:00",
+  "status": "ready",
+  "ready": true,
+  "reason": null,
+  "feature_date": "2026-09-04",
   "feature_count": 15
 }
