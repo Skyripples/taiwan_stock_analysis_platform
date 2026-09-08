@@ -268,6 +268,65 @@ body.theme-light .layout-account-menu button:focus-visible { background: #edf2f7
   margin-top: 22px;
 }
 
+.sidebar-group {
+  min-width: 0;
+}
+
+.sidebar-group-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.sidebar-group-toggle {
+  width: 34px;
+  height: 34px;
+  margin-right: 5px;
+  border: 0;
+  border-radius: 8px;
+  color: #aeb7c3;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.sidebar-group-toggle:hover,
+.sidebar-group-toggle:focus-visible {
+  color: #ffffff;
+  background: #22252a;
+  outline: none;
+}
+
+.sidebar-group.is-open .sidebar-group-toggle {
+  transform: rotate(180deg);
+}
+
+.sidebar-subnav {
+  display: none;
+  padding: 2px 0 7px 12px;
+}
+
+.sidebar-group.is-open .sidebar-subnav {
+  display: grid;
+  gap: 3px;
+}
+
+.sidebar-subitem {
+  min-height: 38px;
+  padding-left: 14px;
+  font-size: 0.81rem;
+}
+
+body.theme-light .sidebar-group-toggle {
+  color: #65738a;
+}
+
+body.theme-light .sidebar-group-toggle:hover,
+body.theme-light .sidebar-group-toggle:focus-visible {
+  color: #1d365a;
+  background: #e9eff7;
+}
+
 .sidebar-item {
   position: relative;
   display: grid;

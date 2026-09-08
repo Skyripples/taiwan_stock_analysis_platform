@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const featureCards = [...document.querySelectorAll(".feature-card")];
+  const featureCards = [...document.querySelectorAll(".feature-card[data-feature]")];
   const featureByPath = {
     "calendar.html": "calendar", "prediction.html": "prediction",
     "market-overview.html": "market_overview", "chips-analysis.html": "chips_analysis",

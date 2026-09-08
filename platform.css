@@ -326,6 +326,14 @@ body.theme-light .reminder-date-block {
   display: none;
 }
 
+.layout-main[data-page="home"] .category-card h3 {
+  margin-top: 8px;
+}
+
+.layout-main[data-page="home"] .category-card .card-action {
+  display: block;
+}
+
 .feature-icon {
   display: grid;
   width: 46px;
@@ -367,6 +375,64 @@ body.theme-light .reminder-date-block {
   border-color: rgba(234, 82, 82, 0.45);
   color: #ffaaa5;
   background: rgba(155, 39, 39, 0.22);
+}
+
+.category-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.category-card {
+  min-height: 180px;
+}
+
+.category-card h3 {
+  margin-top: 8px;
+}
+
+.category-card .card-action {
+  display: block;
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hub-card {
+  display: flex;
+  min-height: 160px;
+  flex-direction: column;
+  padding: 22px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hub-card h2,
+.hub-card h3 {
+  margin: 0 0 10px;
+}
+
+.hub-card p {
+  margin: 0 0 18px;
+  color: var(--muted, #aeb7c3);
+  line-height: 1.65;
+}
+
+.hub-card span {
+  margin-top: auto;
+  font-weight: 700;
+}
+
+.placeholder-notice {
+  padding: 28px;
+}
+
+@media (max-width: 700px) {
+  .category-grid,
+  .hub-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .feature-card.is-access-locked {

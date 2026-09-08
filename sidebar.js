@@ -9,6 +9,74 @@
   const previewRoleStorageKey = "taiwan_stock_preview_role";
   const authApiBase = "https://172-238-20-217.ip.linodeusercontent.com/api/v1";
 
+  const navigationGroups = [
+    {
+      key: "market", label: "市場", href: "./market.html",
+      children: [
+        ["市場總覽", "./market-overview.html", "market_overview"],
+        ["籌碼／法人", "./chips-analysis.html", "chips_analysis"],
+        ["全球市場", "./market-overview.html#internationalMarket", "market_overview"],
+        ["市場事件", "./calendar.html", "calendar"],
+        ["行情預測", "./prediction.html", "prediction"],
+      ],
+    },
+    {
+      key: "stocks", label: "股票", href: "./stocks.html",
+      children: [
+        ["股票搜尋／個股分析", "./stock-analysis.html", "stock_analysis"],
+        ["條件選股", "./screener.html", "stock_analysis"],
+      ],
+    },
+    { key: "futures", label: "期貨", href: "./futures.html", children: [] },
+    { key: "funds", label: "基金", href: "./funds.html", children: [] },
+    { key: "bonds", label: "債券", href: "./bonds.html", children: [] },
+    { key: "forex", label: "外匯", href: "./forex.html", children: [] },
+    { key: "deposits", label: "定存", href: "./deposits.html", children: [] },
+  ];
+
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const renderNavigation = () => {
+    const nav = sidebar.querySelector(".sidebar-nav");
+    if (!nav) return;
+    const homeActive = currentPage === "index.html";
+    nav.innerHTML = `<a class="sidebar-item${homeActive ? " is-active" : ""}" href="./index.html"${homeActive ? ' aria-current="page"' : ""}>首頁</a>`;
+    navigationGroups.forEach((group) => {
+      const groupPage = group.href.slice(2);
+      const childActive = group.children.some(([, href]) => href.slice(2) === currentPage);
+      const groupActive = groupPage === currentPage;
+      const wrapper = document.createElement("section");
+      wrapper.className = `sidebar-group${childActive || groupActive ? " is-open" : ""}`;
+      const heading = document.createElement("div");
+      heading.className = "sidebar-group-heading";
+      heading.innerHTML = `<a class="sidebar-item sidebar-category${groupActive ? " is-active" : ""}" href="${group.href}"${groupActive ? ' aria-current="page"' : ""}>${group.label}</a>`;
+      if (group.children.length) {
+        const toggleButton = document.createElement("button");
+        toggleButton.type = "button";
+        toggleButton.className = "sidebar-group-toggle";
+        toggleButton.setAttribute("aria-label", `展開或收合${group.label}功能`);
+        toggleButton.setAttribute("aria-expanded", String(childActive || groupActive));
+        toggleButton.textContent = "⌄";
+        toggleButton.addEventListener("click", () => {
+          const open = wrapper.classList.toggle("is-open");
+          toggleButton.setAttribute("aria-expanded", String(open));
+        });
+        heading.append(toggleButton);
+      }
+      wrapper.append(heading);
+      if (group.children.length) {
+        const children = document.createElement("div");
+        children.className = "sidebar-subnav";
+        group.children.forEach(([label, href, feature]) => {
+          const active = href.slice(2) === currentPage;
+          children.insertAdjacentHTML("beforeend", `<a class="sidebar-item sidebar-subitem${active ? " is-active" : ""}" href="${href}" data-feature="${feature}"${active ? ' aria-current="page"' : ""}>${label}</a>`);
+        });
+        wrapper.append(children);
+      }
+      nav.append(wrapper);
+    });
+  };
+  renderNavigation();
+
   const headerActions = document.querySelector(".layout-header-actions");
   let previewControls = headerActions?.querySelector(".layout-preview-roles") || null;
   if (headerActions && !previewControls) {
@@ -42,8 +110,7 @@
     chips_analysis: true,
     stock_analysis: true,
   });
-  const protectedItems = [...sidebar.querySelectorAll(".sidebar-item")]
-    .filter((item) => !item.getAttribute("href")?.endsWith("index.html"));
+  const protectedItems = [...sidebar.querySelectorAll(".sidebar-item[data-feature]")];
 
   const renderAccountMenu = (username = "", token = "", isAdmin = false) => {
     document.querySelector(".layout-account-menu")?.remove();
@@ -98,7 +165,7 @@
         item.dataset.accessHref = item.getAttribute("href");
       }
       const filename = (item.dataset.accessHref || "").split("/").pop();
-      const featureKey = featureByPath[filename];
+      const featureKey = item.dataset.feature || featureByPath[filename];
       const allowed = isAdmin || Boolean(featureKey && permissions[featureKey]);
       let label = item.querySelector("small[data-access-label]");
       if (allowed) {
