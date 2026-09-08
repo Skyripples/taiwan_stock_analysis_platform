@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-08T00:48:51+00:00",
+  "updated_at": "2026-09-08T04:14:30+00:00",
   "mode": "daily",
   "selected": 2395,
   "universe": {
@@ -14,13 +14,13 @@
     "unchanged": 0
   },
   "source_timings_seconds": {
-    "latest_chips_twse_tpex": 3.163,
-    "tpex_profile": 3.147,
-    "twse_profile": 1.634,
-    "tpex_quote": 1.01,
-    "tpex_valuation": 0.621,
-    "twse_quote": 0.345,
-    "twse_valuation": 0.342
+    "latest_chips_twse_tpex": 29.387,
+    "tpex_profile": 8.837,
+    "twse_profile": 2.68,
+    "twse_quote": 0.563,
+    "tpex_quote": 0.362,
+    "tpex_valuation": 0.326,
+    "twse_valuation": 0.3
   },
   "storage": {
     "stock_json_files": 2395,
@@ -31,5 +31,5 @@
     "estimated_annual_full_rewrite_upper_bound_bytes": 14541320250,
     "note": "Git delta compression normally uses less than the full-rewrite upper bound"
   },
-  "duration_seconds": 15.868
+  "duration_seconds": 48.302
 }
