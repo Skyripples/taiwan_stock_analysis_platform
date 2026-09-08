@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-07T04:13:05+00:00",
+  "updated_at": "2026-09-08T00:48:51+00:00",
   "version": "2.0",
-  "active_count": 2393,
-  "company_count": 1978,
+  "active_count": 2395,
+  "company_count": 1980,
   "stocks": [
     {
       "symbol": "00400A",
@@ -432,7 +432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00645",
@@ -772,7 +772,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -982,7 +982,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00708L",
@@ -2942,7 +2942,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "009808",
@@ -3762,7 +3762,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020032",
@@ -3812,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020037",
@@ -5092,7 +5092,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1524",
@@ -5288,9 +5288,9 @@
       "symbol": "1563",
       "name": "巧新",
       "market": "TWSE",
-      "industry": "汽車工業",
+      "industry": null,
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -5726,7 +5726,7 @@
     },
     {
       "symbol": "1721",
-      "name": "三晃",
+      "name": "國慶科技",
       "market": "TWSE",
       "industry": null,
       "instrument_type": "company",
@@ -20806,11 +20806,11 @@
     },
     {
       "symbol": "6949",
-      "name": "沛爾生醫-創",
+      "name": "沛爾生醫*-創",
       "market": "TWSE",
-      "industry": "生技醫療業",
+      "industry": null,
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -22702,7 +22702,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "8354",

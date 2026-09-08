@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-07T04:12:23.903540Z",
+  "updated_at": "2026-09-08T00:48:24.024846Z",
   "provider": "Yahoo",
   "dataset": "nikkei_225_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-04",
+        "trade_date": "2026-09-07",
         "metadata": {
           "symbol": "^N225",
           "security_name": "Nikkei 225 Index",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/%5EN225/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EN225"
         },
-        "open": 64498.9414,
-        "high": 65182.4492,
-        "low": 64228.4688,
-        "close": 65020.9414,
-        "previous_close": 64214.4805,
-        "change": 806.4609,
-        "change_percent": 1.2559,
-        "volume": 155800000
+        "open": 65600.4219,
+        "high": 66668.7109,
+        "low": 65600.4219,
+        "close": 66399.8438,
+        "previous_close": 65020.9414,
+        "change": 1378.9024,
+        "change_percent": 2.1207,
+        "volume": 141300000
       }
     ]
   }

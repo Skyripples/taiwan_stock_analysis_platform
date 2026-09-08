@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-07T04:12:23.735566Z",
+  "updated_at": "2026-09-08T00:48:23.853478Z",
   "provider": "Yahoo",
   "dataset": "hang_seng_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-04",
+        "trade_date": "2026-09-07",
         "metadata": {
           "symbol": "^HSI",
           "security_name": "Hang Seng Index",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/%5EHSI/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI"
         },
-        "open": 25515.7402,
-        "high": 25791.3809,
-        "low": 25515.7402,
-        "close": 25650.8691,
-        "previous_close": 25213.3105,
-        "change": 437.5586,
-        "change_percent": 1.7354,
-        "volume": 3576700000
+        "open": 25652.9707,
+        "high": 25664.9805,
+        "low": 25362.9805,
+        "close": 25413.1191,
+        "previous_close": 25650.8691,
+        "change": -237.75,
+        "change_percent": -0.9269,
+        "volume": 2421900000
       }
     ]
   }

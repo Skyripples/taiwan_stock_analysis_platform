@@ -1,85 +1,85 @@
 {
-  "updated_at": "2026-09-06T11:04:55.002860Z",
+  "updated_at": "2026-09-08T00:48:51.593188Z",
   "version": "1.0",
   "forecast_type": "statistical_next_day_rule_forecast",
-  "feature_date": "2026-09-04",
-  "target_date": "2026-09-07",
-  "feature_close": 46551.13,
-  "score": 64.81621324816467,
+  "feature_date": "2026-09-07",
+  "target_date": "2026-09-08",
+  "feature_close": 47326.27,
+  "score": 26.13043479692084,
   "max_score": 100,
   "direction": "Neutral",
   "confidence_status": "low_confidence",
   "training": {
-    "sample_size": 727,
-    "latest_completed_target_date": "2026-08-14",
+    "sample_size": 743,
+    "latest_completed_target_date": "2026-09-07",
     "weight_method": "expanding history only; accuracy edge adjusted by yearly stability",
     "rule_quality": {
       "night_futures_direction": {
-        "sample_size": 724,
-        "accuracy": 0.7375690607734806,
-        "stability": 0.9250165100825136,
-        "raw_weight": 0.21975530350026562
+        "sample_size": 740,
+        "accuracy": 0.7378378378378379,
+        "stability": 0.9262391823453129,
+        "raw_weight": 0.22029472444969606
       },
       "us_market_direction": {
-        "sample_size": 512,
-        "accuracy": 0.755859375,
-        "stability": 0.959911264442521,
-        "raw_weight": 0.24560229617572313
+        "sample_size": 525,
+        "accuracy": 0.7504761904761905,
+        "stability": 0.9713788030602536,
+        "raw_weight": 0.24330726209985404
       },
       "sox_tsm_adr_resonance": {
-        "sample_size": 503,
-        "accuracy": 0.7495029821073559,
-        "stability": 0.9326450575286709,
-        "raw_weight": 0.23269772310108988
+        "sample_size": 515,
+        "accuracy": 0.7456310679611651,
+        "stability": 0.9381388870478186,
+        "raw_weight": 0.23043605672145448
       },
       "vix_risk_off": {
-        "sample_size": 513,
-        "accuracy": 0.7037037037037037,
-        "stability": 0.9348234329256311,
-        "raw_weight": 0.1904269955959619
+        "sample_size": 526,
+        "accuracy": 0.7015209125475285,
+        "stability": 0.9320640253952847,
+        "raw_weight": 0.1878303929503805
       }
     }
   },
   "weights": {
-    "night_futures_direction": 24.733784674823273,
-    "us_market_direction": 27.64290195729071,
-    "sox_tsm_adr_resonance": 26.190473157327233,
-    "vix_risk_off": 21.43284021055878
+    "night_futures_direction": 24.980452344298786,
+    "us_market_direction": 27.58997284701252,
+    "sox_tsm_adr_resonance": 26.130434796920838,
+    "vix_risk_off": 21.299140011767854
   },
   "contributions": {
     "night_futures_direction": {
-      "signal": 1,
-      "weight": 24.733784674823273,
-      "weighted_vote": 24.733784674823273,
+      "signal": -1,
+      "weight": 24.980452344298786,
+      "weighted_vote": -24.980452344298786,
       "display_name": "夜盤方向"
     },
     "us_market_direction": {
       "signal": -1,
-      "weight": 27.64290195729071,
-      "weighted_vote": -27.64290195729071,
+      "weight": 27.58997284701252,
+      "weighted_vote": -27.58997284701252,
       "display_name": "美國市場方向"
     },
     "sox_tsm_adr_resonance": {
       "signal": 1,
-      "weight": 26.190473157327233,
-      "weighted_vote": 26.190473157327233,
+      "weight": 26.130434796920838,
+      "weighted_vote": 26.130434796920838,
       "display_name": "SOX + TSM ADR 共振"
     },
     "vix_risk_off": {
-      "signal": 0,
-      "weight": 21.43284021055878,
-      "weighted_vote": 0.0,
+      "signal": -1,
+      "weight": 21.299140011767854,
+      "weighted_vote": -21.299140011767854,
       "display_name": "VIX risk-off"
     }
   },
   "source_dates": {
-    "market": "2026-09-04",
-    "night": "2026-09-04",
+    "market": "2026-09-07",
+    "night": "2026-09-08",
     "sp500": "2026-09-04",
     "nasdaq": "2026-09-04",
     "sox": "2026-09-04",
     "tsm": "2026-09-04",
-    "vix": "2026-09-04"
+    "vix": "2026-09-07"
   },
   "historical_validation": {
     "oos_samples": 472,
