@@ -33,7 +33,7 @@
   const featureByPath = {
     "calendar.html": "calendar", "prediction.html": "prediction",
     "market-overview.html": "market_overview", "chips-analysis.html": "chips_analysis",
-    "stock-analysis.html": "stock_analysis",
+    "stock-analysis.html": "stock_analysis", "screener.html": "stock_analysis",
   };
   const previewGeneralPermissions = Object.freeze({
     calendar: true,

@@ -98,6 +98,25 @@
       ));
     }
 
+    async screenStocks(filters = {}) {
+      const params = new URLSearchParams();
+      Object.entries(filters).forEach(([key, item]) => {
+        if (item !== '' && item !== null && item !== undefined) params.set(key, String(item));
+      });
+      const key = `screener:${params.toString()}`;
+      return this.cached(key, async () => ({
+        data: await this.api(`/stocks/screener?${params.toString()}`),
+        source: 'api'
+      }));
+    }
+
+    async getScreenerOptions() {
+      return this.cached('screener:options', async () => ({
+        data: await this.api('/stocks/screener/options'),
+        source: 'api'
+      }));
+    }
+
     async getStock(symbol) {
       const normalized = this.symbol(symbol);
       return this.cached(`stock:${normalized}`, async () => {

@@ -59,7 +59,10 @@ TABLE_KEYS = {
     "tpex_eps": "SecuritiesCompanyCode", "tpex_income": "SecuritiesCompanyCode",
     "tpex_balance": "SecuritiesCompanyCode",
 }
-DAILY_TABLES = {"twse_profile", "tpex_profile", "twse_quote", "tpex_quote", "twse_valuation", "tpex_valuation"}
+DAILY_TABLES = {
+    "twse_profile", "tpex_profile", "twse_quote", "tpex_quote",
+    "twse_valuation", "tpex_valuation", "twse_revenue", "tpex_revenue",
+}
 MONTHLY_TABLES = {"twse_profile", "tpex_profile", "twse_quote", "tpex_quote", "twse_revenue", "tpex_revenue"}
 QUARTERLY_TABLES = set(URLS) - {"twse_valuation", "tpex_valuation"}
 
@@ -83,6 +86,49 @@ def instrument(symbol: str, name: str, is_company: bool) -> str:
     if symbol.startswith("020") or "ETN" in upper: return "ETN"
     if len(symbol) > 4 or any(token in name for token in ("購", "售", "權證")): return "warrant"
     return "other"
+
+
+def industry_code(profile: Mapping[str, Any], market: str) -> str:
+    return str(profile.get("產業別" if market == "TWSE" else "SecuritiesIndustryCode") or "").strip()
+
+
+def build_industry_code_map(
+    profiles: Mapping[str, Mapping[str, Any]],
+    revenues: Mapping[str, Mapping[str, Any]],
+    market: str,
+) -> dict[str, str]:
+    """Derive official code -> canonical name only from matching official rows."""
+    candidates: dict[str, set[str]] = {}
+    for symbol, revenue in revenues.items():
+        name = str(revenue.get("產業別") or "").strip()
+        code = industry_code(profiles.get(symbol, {}), market)
+        if code and name:
+            candidates.setdefault(code, set()).add(name)
+    return {code: next(iter(names)) for code, names in candidates.items() if len(names) == 1}
+
+
+def official_industry(
+    revenue: Mapping[str, Any],
+    previous: Mapping[str, Any] | None = None,
+    profile: Mapping[str, Any] | None = None,
+    market: str = "TWSE",
+    code_names: Mapping[str, str] | None = None,
+) -> str | None:
+    """Return the official canonical industry name without erasing a known value on source failure.
+
+    TWSE t187ap03_L and TPEx mopsfin_t187ap03_O expose industry codes, while
+    the matching official monthly-revenue tables expose the canonical names
+    already used by peer rankings. Daily runs therefore load those two batch
+    tables and preserve the prior value if either source is temporarily empty.
+    """
+    current = str(revenue.get("產業別") or "").strip()
+    if current and current != "資料不足":
+        return current
+    mapped = (code_names or {}).get(industry_code(profile or {}, market))
+    if mapped:
+        return mapped
+    prior = str((previous or {}).get("industry") or "").strip()
+    return prior if prior and prior != "資料不足" else None
 
 
 def latest_market_date() -> str:
@@ -209,6 +255,10 @@ def main() -> int:
         tick = time.monotonic(); raw[key] = safe_table(client, key) if key in requested_tables else []
         if key in requested_tables: source_timings[key] = round(time.monotonic() - tick, 3)
     tables = {name: index_rows(rows, TABLE_KEYS[name]) for name, rows in raw.items()}
+    industry_codes = {
+        market: build_industry_code_map(tables[f"{prefix}_profile"], tables[f"{prefix}_revenue"], market)
+        for market, prefix in (("TWSE", "twse"), ("TPEx", "tpex"))
+    }
     old_index = load_json(INDEX_PATH) or {}; old_by_symbol = {row["symbol"]: row for row in old_index.get("stocks", [])}
     current: dict[str, dict[str, Any]] = {}
     for market, key, code_key, name_key in (("TWSE", "twse_quote", "Code", "Name"), ("TPEx", "tpex_quote", "SecuritiesCompanyCode", "CompanyName")):
@@ -217,7 +267,10 @@ def main() -> int:
             symbol = str(row.get(code_key, "")).strip(); name = str(row.get(name_key, "")).strip()
             if not symbol: continue
             profile = tables[f"{prefix}_profile"].get(symbol, {}); revenue = tables[f"{prefix}_revenue"].get(symbol, {})
-            kind = instrument(symbol, name, bool(profile)); current[symbol] = {"symbol": symbol, "name": name, "market": market, "industry": revenue.get("產業別") if kind == "company" else "ETF／其他", "instrument_type": kind, "active": True}
+            kind = instrument(symbol, name, bool(profile))
+            prior = old_by_symbol.get(symbol)
+            industry = official_industry(revenue, prior, profile, market, industry_codes[market]) if kind == "company" else "ETF／其他"
+            current[symbol] = {"symbol": symbol, "name": name, "market": market, "industry": industry, "instrument_type": kind, "active": True}
     universe = list(current.values()) + [{**row, "active": False} for symbol, row in old_by_symbol.items() if symbol not in current]
     # A limited batch prioritizes analyzable companies; the unlimited run still
     # includes ETFs/ETNs/warrants so every active instrument remains searchable.
@@ -253,6 +306,7 @@ def main() -> int:
             history = merge_history(old_history, chips.get(symbol, []))
             fresh = build_stock(symbol, current[symbol]["market"], tables, history)
             fresh["data"]["profile"]["instrument_type"] = current[symbol]["instrument_type"]
+            fresh["data"]["profile"]["industry"] = current[symbol]["industry"] or "資料不足"
             payload = merge_mode(existing, fresh, mode); state = enrich(payload, snapshot, rules, summary_rules)
             payload["data"]["build_status"] = {"state": state, "mode": mode, "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
             if comparable(existing) == comparable(payload): unchanged += 1

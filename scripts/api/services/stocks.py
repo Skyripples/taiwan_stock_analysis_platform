@@ -15,6 +15,31 @@ from stock_analysis_summary import build_analysis_summary
 
 SUMMARY_RULES = json.loads((PROJECT_ROOT / "config" / "stock_analysis_summary_rules.json").read_text(encoding="utf-8"))
 
+SCREENER_SORT_COLUMNS = {
+    "symbol": "symbol",
+    "close": "close",
+    "change_percent": "change_percent",
+    "pe": "pe",
+    "pb": "pb",
+    "dividend_yield": "dividend_yield",
+    "revenue_yoy": "revenue_yoy",
+    "roe": "roe",
+    "debt_ratio": "debt_ratio",
+    "foreign_5d": "foreign_5d",
+}
+
+SCREENER_FILTER_COLUMNS = {
+    "price": "close",
+    "change_percent": "change_percent",
+    "pe": "pe",
+    "pb": "pb",
+    "dividend_yield": "dividend_yield",
+    "revenue_yoy": "revenue_yoy",
+    "roe": "roe",
+    "debt_ratio": "debt_ratio",
+    "foreign_5d": "foreign_5d",
+}
+
 
 def value(item: Any) -> Any:
     if isinstance(item, Decimal):
@@ -55,6 +80,143 @@ def search_stocks(search: str | None, market: str | None, industry: str | None, 
             tuple(parameters[:-1] + ([search, parameters[-1]] if search else [parameters[-1]])),
         )
         return [clean(row) for row in cursor.fetchall()]
+
+
+def _screener_cte(universe_where: str = "") -> str:
+    """Return the one-query screener projection shared by count and page selection."""
+    return f"""
+        WITH universe AS MATERIALIZED (
+            SELECT stock_id,symbol,name,market,industry,instrument_type
+            FROM stocks WHERE active=true{universe_where}
+        ), latest_quote AS (
+            SELECT DISTINCT ON (q.stock_id)
+                   q.stock_id,q.trade_date AS quote_date,q.close,q.change_percent
+            FROM stock_quotes q JOIN universe u USING(stock_id)
+            ORDER BY q.stock_id,q.trade_date DESC
+        ), latest_valuation AS (
+            SELECT DISTINCT ON (v.stock_id)
+                   v.stock_id,v.valuation_date,v.pe,v.pb,v.dividend_yield
+            FROM stock_valuations v JOIN universe u USING(stock_id)
+            ORDER BY v.stock_id,v.valuation_date DESC
+        ), latest_revenue AS (
+            SELECT DISTINCT ON (r.stock_id)
+                   r.stock_id,r.revenue_month,r.revenue_yoy
+            FROM stock_monthly_revenue r JOIN universe u USING(stock_id)
+            ORDER BY r.stock_id,r.revenue_month DESC
+        ), latest_health_metric AS (
+            SELECT DISTINCT ON (h.stock_id,h.metric_key)
+                   h.stock_id,h.metric_key,h.value_numeric,h.source_date,h.as_of_date
+            FROM stock_health h JOIN universe u USING(stock_id)
+            WHERE h.metric_key IN ('roe','debt_ratio')
+            ORDER BY h.stock_id,h.metric_key,h.as_of_date DESC,h.source_date DESC
+        ), latest_health AS (
+            SELECT stock_id,
+                   max(value_numeric) FILTER (WHERE metric_key='roe') AS roe,
+                   max(source_date) FILTER (WHERE metric_key='roe') AS roe_date,
+                   max(value_numeric) FILTER (WHERE metric_key='debt_ratio') AS debt_ratio,
+                   max(source_date) FILTER (WHERE metric_key='debt_ratio') AS debt_ratio_date
+            FROM latest_health_metric GROUP BY stock_id
+        ), foreign_flow AS (
+            SELECT u.stock_id,f.foreign_5d,f.foreign_5d_start_date,f.foreign_5d_end_date
+            FROM universe u
+            LEFT JOIN LATERAL (
+                SELECT sum(recent.foreign_net) AS foreign_5d,
+                       min(recent.trade_date) AS foreign_5d_start_date,
+                       max(recent.trade_date) AS foreign_5d_end_date
+                FROM (
+                    SELECT c.trade_date,c.foreign_net
+                    FROM stock_chips c
+                    WHERE c.stock_id=u.stock_id AND c.foreign_net IS NOT NULL
+                    ORDER BY c.trade_date DESC LIMIT 5
+                ) recent
+            ) f ON true
+        ), projected AS (
+            SELECT u.symbol,u.name,u.market,u.industry,u.instrument_type,
+                   q.close,q.change_percent,q.quote_date,
+                   v.pe,v.pb,v.dividend_yield,v.valuation_date,
+                   r.revenue_yoy,r.revenue_month,
+                   h.roe,h.roe_date,h.debt_ratio,h.debt_ratio_date,
+                   f.foreign_5d,f.foreign_5d_start_date,f.foreign_5d_end_date
+            FROM universe u
+            LEFT JOIN latest_quote q USING(stock_id)
+            LEFT JOIN latest_valuation v USING(stock_id)
+            LEFT JOIN latest_revenue r USING(stock_id)
+            LEFT JOIN latest_health h USING(stock_id)
+            LEFT JOIN foreign_flow f USING(stock_id)
+        )
+    """
+
+
+def _build_screener_where(filters: dict[str, Any], *, basic: bool) -> tuple[str, list[Any]]:
+    clauses: list[str] = []
+    parameters: list[Any] = []
+    if basic and filters.get("search"):
+        clauses.append("(symbol ILIKE %s OR name ILIKE %s)")
+        pattern = f"%{filters['search']}%"
+        parameters.extend((pattern, pattern))
+    for key in (("market", "industry", "instrument_type") if basic else ()):
+        if filters.get(key):
+            clauses.append(f"{key}=%s")
+            parameters.append(filters[key])
+    for prefix, column in (SCREENER_FILTER_COLUMNS.items() if not basic else ()):
+        minimum = filters.get(f"{prefix}_min")
+        maximum = filters.get(f"{prefix}_max")
+        if minimum is not None:
+            clauses.append(f"{column}>=%s")
+            parameters.append(minimum)
+        if maximum is not None:
+            clauses.append(f"{column}<=%s")
+            parameters.append(maximum)
+    if not clauses:
+        return "", parameters
+    # The universe already has active=true, while projected has no WHERE clause yet.
+    return ((" AND " if basic else " WHERE ") + " AND ".join(clauses)), parameters
+
+
+def screen_stocks(filters: dict[str, Any], sort: str, order: str, limit: int, offset: int) -> dict[str, Any]:
+    """Filter the full universe in PostgreSQL and return one paginated result set."""
+    universe_where, universe_parameters = _build_screener_where(filters, basic=True)
+    metric_where, metric_parameters = _build_screener_where(filters, basic=False)
+    parameters = universe_parameters + metric_parameters
+    sort_column = SCREENER_SORT_COLUMNS[sort]
+    order_sql = "DESC" if order == "desc" else "ASC"
+    # Identifiers above only come from fixed allowlists; all user values remain bound parameters.
+    query = _screener_cte(universe_where) + f"""
+        , filtered AS (
+            SELECT * FROM projected{metric_where}
+        ), page AS (
+            SELECT * FROM filtered
+            ORDER BY {sort_column} {order_sql} NULLS LAST,symbol ASC
+            LIMIT %s OFFSET %s
+        )
+        SELECT (SELECT count(*) FROM filtered) AS total,
+               coalesce(jsonb_agg(to_jsonb(page) ORDER BY {sort_column} {order_sql} NULLS LAST,symbol ASC)
+                        FILTER (WHERE page.symbol IS NOT NULL),'[]'::jsonb) AS results
+        FROM page
+    """
+    with pool.connection() as connection, connection.cursor() as cursor:
+        cursor.execute(query, tuple(parameters + [limit, offset]))
+        row = cursor.fetchone()
+    results = row["results"] if row else []
+    return {
+        "total": int(row["total"] if row else 0),
+        "count": len(results),
+        "limit": limit,
+        "offset": offset,
+        "results": [clean(result) for result in results],
+    }
+
+
+def get_screener_options() -> dict[str, list[str]]:
+    with pool.connection() as connection, connection.cursor() as cursor:
+        cursor.execute(
+            """SELECT
+                 ARRAY(SELECT DISTINCT market FROM stocks WHERE active=true AND market IS NOT NULL ORDER BY market) AS markets,
+                 ARRAY(SELECT DISTINCT industry FROM stocks WHERE active=true AND industry IS NOT NULL ORDER BY industry) AS industries,
+                 ARRAY(SELECT DISTINCT instrument_type FROM stocks WHERE active=true AND instrument_type IS NOT NULL ORDER BY instrument_type) AS instrument_types"""
+        )
+        row = cursor.fetchone()
+    return {key: list(row.get(key) or []) for key in ("markets", "industries", "instrument_types")}
 
 
 def stock_exists(cursor, symbol: str) -> dict[str, Any] | None:

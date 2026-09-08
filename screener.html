@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="依行情、估值、基本面與籌碼條件篩選台灣上市櫃股票。" />
+  <title>條件選股｜台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css" />
+  <link rel="stylesheet" href="./widget.css" />
+  <link rel="stylesheet" href="./platform.css" />
+  <link rel="stylesheet" href="./sidebar.css" />
+  <link rel="stylesheet" href="./screener.css" />
+</head>
+<body class="has-sidebar screener-page">
+  <header class="layout-header">
+    <a class="layout-brand" href="./index.html">台股投資分析平台</a>
+    <div class="layout-header-actions">
+      <label for="themeToggleSwitch" class="layout-theme-label">深色模式</label>
+      <label class="layout-theme-switch" for="themeToggleSwitch">
+        <input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="深色模式"><span></span>
+      </label>
+    </div>
+  </header>
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <aside id="platformSidebar" class="sidebar" aria-label="平台導覽">
+    <nav class="sidebar-nav">
+      <a class="sidebar-item" href="./index.html"><span>首頁</span></a>
+      <a class="sidebar-item" href="./calendar.html"><span>事件日曆</span></a>
+      <a class="sidebar-item" href="./prediction.html"><span>行情預測</span></a>
+      <a class="sidebar-item" href="./market-overview.html"><span>市場總覽</span></a>
+      <a class="sidebar-item" href="./chips-analysis.html"><span>籌碼分析</span></a>
+      <a class="sidebar-item" href="./stock-analysis.html"><span>個股分析</span></a>
+      <a class="sidebar-item is-active" href="./screener.html" aria-current="page"><span>條件選股</span></a>
+    </nav>
+  </aside>
+  <main class="layout-main" data-page="screener">
+    <div class="page-container">
+      <header class="page-header">
+        <p class="page-eyebrow">STOCK SCREENER</p>
+        <h1 class="page-title">條件選股</h1>
+        <p class="page-description">依行情、估值、基本面與籌碼條件，從上市櫃市場快速找出符合條件的股票。</p>
+      </header>
+      <div class="page-body">
+        <form id="screenerForm" class="widget screener-filters">
+          <fieldset><legend>基本條件</legend><div class="filter-grid filter-grid-4">
+            <label>關鍵字<input name="search" type="search" placeholder="股票代號或名稱"></label>
+            <label>市場<select name="market"><option value="">全部市場</option></select></label>
+            <label>產業<select name="industry"><option value="">全部產業</option></select></label>
+            <label>商品類型<select name="instrument_type"><option value="">全部類型</option></select></label>
+          </div></fieldset>
+          <fieldset><legend>行情</legend><div class="filter-grid">
+            <label><span class="filter-label">股價</span><span class="range-inputs"><input name="price_min" type="number" step="any" placeholder="最低"><span>至</span><input name="price_max" type="number" step="any" placeholder="最高"></span></label>
+            <label><span class="filter-label">漲跌幅 (%)</span><span class="range-inputs"><input name="change_percent_min" type="number" step="any" placeholder="最低"><span>至</span><input name="change_percent_max" type="number" step="any" placeholder="最高"></span></label>
+          </div></fieldset>
+          <fieldset><legend>估值</legend><div class="filter-grid filter-grid-3">
+            <label><span class="filter-label">PE</span><span class="range-inputs"><input name="pe_min" type="number" step="any" placeholder="最低"><span>至</span><input name="pe_max" type="number" step="any" placeholder="最高"></span></label>
+            <label><span class="filter-label">PB</span><span class="range-inputs"><input name="pb_min" type="number" step="any" placeholder="最低"><span>至</span><input name="pb_max" type="number" step="any" placeholder="最高"></span></label>
+            <label><span class="filter-label">殖利率 (%)</span><span class="range-inputs"><input name="dividend_yield_min" type="number" step="any" placeholder="最低"><span>至</span><input name="dividend_yield_max" type="number" step="any" placeholder="最高"></span></label>
+          </div></fieldset>
+          <fieldset><legend>基本面</legend><div class="filter-grid filter-grid-3">
+            <label><span class="filter-label">營收 YoY (%)</span><span class="range-inputs"><input name="revenue_yoy_min" type="number" step="any" placeholder="最低"><span>至</span><input name="revenue_yoy_max" type="number" step="any" placeholder="最高"></span></label>
+            <label><span class="filter-label">ROE (%)</span><span class="range-inputs"><input name="roe_min" type="number" step="any" placeholder="最低"><span>至</span><input name="roe_max" type="number" step="any" placeholder="最高"></span></label>
+            <label><span class="filter-label">負債比 (%)</span><span class="range-inputs"><input name="debt_ratio_min" type="number" step="any" placeholder="最低"><span>至</span><input name="debt_ratio_max" type="number" step="any" placeholder="最高"></span></label>
+          </div></fieldset>
+          <fieldset><legend>籌碼</legend><div class="filter-grid">
+            <label><span class="filter-label">外資近 5 日買賣超</span><span class="range-inputs"><input name="foreign_5d_min" type="number" step="any" placeholder="最低"><span>至</span><input name="foreign_5d_max" type="number" step="any" placeholder="最高"></span></label>
+          </div></fieldset>
+          <div class="filter-actions"><button type="submit">篩選</button><button id="resetFilters" class="secondary" type="reset">清除條件</button></div>
+          <p id="filterError" class="filter-error" role="alert" hidden></p>
+        </form>
+
+        <section class="page-section screener-results" aria-labelledby="resultTitle">
+          <div class="screener-result-heading"><h2 id="resultTitle">篩選結果</h2><p id="resultCount" aria-live="polite">載入中</p></div>
+          <p id="resultState" class="result-state" role="status">正在取得全市場資料…</p>
+          <div id="resultTableWrap" class="screener-table-wrap" hidden>
+            <table><thead><tr>
+              <th data-sort="symbol">代號 / 名稱</th><th>市場 / 產業</th><th data-sort="close">收盤價</th><th data-sort="change_percent">漲跌幅</th>
+              <th data-sort="pe">PE</th><th data-sort="pb">PB</th><th data-sort="dividend_yield">殖利率</th><th data-sort="revenue_yoy">營收 YoY</th>
+              <th data-sort="roe">ROE</th><th data-sort="debt_ratio">負債比</th><th data-sort="foreign_5d">外資 5 日</th>
+            </tr></thead><tbody id="resultRows"></tbody></table>
+          </div>
+          <nav class="pagination" aria-label="選股結果分頁"><button id="previousPage" type="button">上一頁</button><span id="pageInfo">第 1 頁</span><button id="nextPage" type="button">下一頁</button></nav>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="./sidebar.js"></script>
+  <script src="./stock-data-service.js"></script>
+  <script src="./screener.js"></script>
+</body>
+</html>

@@ -85,7 +85,9 @@ def refresh_snapshot(delay:float)->list[dict[str,Any]]:
         if item.get("instrument_type")!="company":continue
         try:
             compact=build_stock(item["symbol"],item["market"],tables,[])["data"]; f=compact["fundamentals"];v=compact["valuation"]
-            row={"symbol":item["symbol"],"name":item["name"],"market":item["market"],"industry":compact["profile"]["industry"],"instrument_type":"company",
+            source_industry=compact["profile"]["industry"]
+            industry=source_industry if source_industry and source_industry!="資料不足" else item.get("industry")
+            row={"symbol":item["symbol"],"name":item["name"],"market":item["market"],"industry":industry,"instrument_type":"company",
                 "pe":v["pe"]["value"],"pb":v["pb"]["value"],"dividend_yield":v["dividend_yield"]["value"],"valuation_date":v["pe"]["data_date"],
                 **{key:f[key]["value"] for key in ("eps","roe","revenue_yoy","gross_margin","operating_margin","net_margin","debt_ratio","current_ratio")},
                 "financial_period":f["report_period"],"financial_date":f["report_date"],"revenue_period":f["revenue_yoy"]["data_date"]}

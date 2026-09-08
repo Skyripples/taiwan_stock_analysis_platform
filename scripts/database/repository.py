@@ -44,10 +44,21 @@ class StockRepository:
 
         conflict = CONFLICT_KEYS[table]
         updates = [name for name in columns if name not in conflict and name != "created_at"]
-        assignments = [
-            sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(name), sql.Identifier(name))
-            for name in updates
-        ]
+        assignments = []
+        for name in updates:
+            if table == "stocks" and name == "industry":
+                # A transient upstream gap must never erase a previously known
+                # official classification during daily synchronization.
+                assignments.append(
+                    sql.SQL("{} = COALESCE(EXCLUDED.{}, {}.{})").format(
+                        sql.Identifier(name), sql.Identifier(name),
+                        sql.Identifier(table), sql.Identifier(name),
+                    )
+                )
+            else:
+                assignments.append(
+                    sql.SQL("{} = EXCLUDED.{}").format(sql.Identifier(name), sql.Identifier(name))
+                )
         assignments.append(sql.SQL("updated_at = now()"))
         comparable = [name for name in updates if name != "updated_at"]
         change_guard = sql.SQL("({current}) IS DISTINCT FROM ({incoming})").format(

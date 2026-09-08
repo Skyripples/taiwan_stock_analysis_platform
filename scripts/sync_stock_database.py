@@ -120,7 +120,8 @@ def build_batches(mode: str, symbols: set[str] | None = None) -> tuple[dict[str,
         symbol = str(item["symbol"])
         batches["stocks"].append({
             "symbol": symbol, "name": item.get("name") or symbol,
-            "market": item.get("market") or "unknown", "industry": item.get("industry"),
+            "market": item.get("market") or "unknown",
+            "industry": str(item.get("industry") or "").strip() or None,
             "instrument_type": item.get("instrument_type") or "other",
             "active": bool(item.get("active", True)), "cached": item.get("cached"),
             "cache_status": item.get("cache_status"), "source_updated_at": source_updated_at,

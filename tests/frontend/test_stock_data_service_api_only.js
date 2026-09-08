@@ -14,6 +14,8 @@ const stock = (item) => ({ profile: item, quote: {}, valuation: {}, fundamentals
 async function run() {
   const normal = create(async (url) => {
     if (url.includes('/stocks?')) return response(200, { results: [profile] });
+    if (url.includes('/stocks/screener/options')) return response(200, { markets: ['TWSE'], industries: ['半導體業'], instrument_types: ['company'] });
+    if (url.includes('/stocks/screener?')) return response(200, { total: 1, count: 1, limit: 50, offset: 0, results: [profile] });
     if (url.endsWith('/stocks/2330')) return response(200, stock(profile));
     if (url.endsWith('/stocks/0050')) return response(200, stock(etfProfile));
     if (url.includes('/financials')) return response(200, { financials: [] });
@@ -24,6 +26,8 @@ async function run() {
   assert.equal((await normal.getStock('2330')).source, 'api');
   assert.equal((await normal.getStock('0050')).data.data.profile.instrument_type, 'ETF');
   assert.equal((await normal.searchStocks('台積電')).source, 'api');
+  assert.equal((await normal.screenStocks({ market: 'TWSE', pe_min: 10 })).data.total, 1);
+  assert.deepEqual((await normal.getScreenerOptions()).data.markets, ['TWSE']);
 
   for (const status of [429, 500]) {
     const unavailable = create(async () => response(status, {}));
@@ -39,6 +43,6 @@ async function run() {
   const result = await indexSearch.searchStocks('0050');
   assert.equal(result.source, 'index');
   assert.equal(result.data[0].instrument_type, 'ETF');
-  console.log(JSON.stringify({ status: 'passed', scenarios: ['api', 'offline', '429', '500', '404', 'index-search', 'ETF'] }));
+  console.log(JSON.stringify({ status: 'passed', scenarios: ['api', 'offline', '429', '500', '404', 'index-search', 'ETF', 'screener'] }));
 }
 run().catch((error) => { console.error(error); process.exit(1); });
