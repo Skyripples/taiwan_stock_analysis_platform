@@ -1,0 +1,4693 @@
+{
+  "updated_at": "2026-09-08T18:57:59+00:00",
+  "provider": "CBC",
+  "dataset": "bank_deposit_rates",
+  "version": "1.0",
+  "status": "success",
+  "source_date": "2026-09-09",
+  "fetched_at": "2026-09-08T18:57:59+00:00",
+  "source": "https://cpx.cbc.gov.tw/BIRWEB/",
+  "unit": "percent_per_annum",
+  "banks": [
+    {
+      "bank_name": "一銀",
+      "bank_code": "007",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.855
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.715,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.715,
+          "variable": 1.715
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.755,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.76,
+          "variable": 1.895
+        },
+        "3Y": {
+          "fixed": 1.77,
+          "variable": 1.895
+        }
+      }
+    },
+    {
+      "bank_name": "三井住友",
+      "bank_code": "321",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.07,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.07,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.07,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "三信銀",
+      "bank_code": "147",
+      "demand": {
+        "demand_deposit": 0.535,
+        "savings_deposit": 0.725
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.275,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.44,
+          "variable": 1.43
+        },
+        "9M": {
+          "fixed": 1.555,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.715,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.74,
+          "variable": 1.73
+        },
+        "3Y": {
+          "fixed": 1.75,
+          "variable": 1.74
+        }
+      }
+    },
+    {
+      "bank_name": "三菱日聯",
+      "bank_code": "098",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.15,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "9M": {
+          "fixed": null,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "上海商銀",
+      "bank_code": "011",
+      "demand": {
+        "demand_deposit": 0.635,
+        "savings_deposit": 0.745
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.425,
+          "variable": 1.415
+        },
+        "9M": {
+          "fixed": 1.535,
+          "variable": 1.525
+        },
+        "1Y": {
+          "fixed": 1.645,
+          "variable": 1.645
+        },
+        "2Y": {
+          "fixed": 1.66,
+          "variable": 1.66
+        },
+        "3Y": {
+          "fixed": 1.66,
+          "variable": 1.66
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.735,
+          "variable": 1.72
+        },
+        "3Y": {
+          "fixed": 1.745,
+          "variable": 1.725
+        }
+      }
+    },
+    {
+      "bank_name": "中國信託",
+      "bank_code": "822",
+      "demand": {
+        "demand_deposit": 0.645,
+        "savings_deposit": 0.725
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.215,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.245,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.375,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.495,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.65,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.655,
+          "variable": 1.695
+        },
+        "3Y": {
+          "fixed": 1.655,
+          "variable": 1.695
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.675,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.68,
+          "variable": 1.72
+        },
+        "3Y": {
+          "fixed": 1.68,
+          "variable": 1.72
+        }
+      }
+    },
+    {
+      "bank_name": "中國台北",
+      "bank_code": "380",
+      "demand": {
+        "demand_deposit": 0.645,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.21,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.25,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.4,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.5,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.65,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.65,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.65,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "中國建設",
+      "bank_code": "382",
+      "demand": {
+        "demand_deposit": 0.675,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.7,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.7,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "中小企銀",
+      "bank_code": "050",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.825
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.555,
+          "variable": 1.555
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.695
+        },
+        "3Y": {
+          "fixed": 1.71,
+          "variable": 1.7
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.76,
+          "variable": 1.745
+        },
+        "3Y": {
+          "fixed": 1.765,
+          "variable": 1.82
+        }
+      }
+    },
+    {
+      "bank_name": "中華郵政",
+      "bank_code": "701",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.83
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.215,
+          "variable": 1.215
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.45,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.48,
+          "variable": 1.45
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.685
+        },
+        "2Y": {
+          "fixed": 1.74,
+          "variable": 1.72
+        },
+        "3Y": {
+          "fixed": 1.74,
+          "variable": 1.74
+        }
+      }
+    },
+    {
+      "bank_name": "交銀台北",
+      "bank_code": "381",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.7,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "京城銀",
+      "bank_code": "054",
+      "demand": {
+        "demand_deposit": 0.59,
+        "savings_deposit": 0.695
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.2,
+          "variable": 1.215
+        },
+        "3M": {
+          "fixed": 1.25,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.42,
+          "variable": 1.415
+        },
+        "9M": {
+          "fixed": 1.53,
+          "variable": 1.495
+        },
+        "1Y": {
+          "fixed": 1.68,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.7,
+          "variable": 1.675
+        },
+        "3Y": {
+          "fixed": 1.725,
+          "variable": 1.7
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.72,
+          "variable": 1.695
+        },
+        "2Y": {
+          "fixed": 1.735,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": 1.745,
+          "variable": 1.72
+        }
+      }
+    },
+    {
+      "bank_name": "元大銀",
+      "bank_code": "806",
+      "demand": {
+        "demand_deposit": 0.655,
+        "savings_deposit": 0.725
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.255
+        },
+        "6M": {
+          "fixed": 1.385,
+          "variable": 1.385
+        },
+        "9M": {
+          "fixed": 1.505,
+          "variable": 1.505
+        },
+        "1Y": {
+          "fixed": 1.655,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.665,
+          "variable": 1.665
+        },
+        "3Y": {
+          "fixed": 1.67,
+          "variable": 1.67
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.675,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.68,
+          "variable": 1.68
+        },
+        "3Y": {
+          "fixed": 1.68,
+          "variable": 1.68
+        }
+      }
+    },
+    {
+      "bank_name": "兆豐",
+      "bank_code": "017",
+      "demand": {
+        "demand_deposit": 0.675,
+        "savings_deposit": 0.805
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.445,
+          "variable": 1.445
+        },
+        "9M": {
+          "fixed": 1.565,
+          "variable": 1.565
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.7,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.7,
+          "variable": 1.705
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "3Y": {
+          "fixed": 1.725,
+          "variable": 1.73
+        }
+      }
+    },
+    {
+      "bank_name": "凱基銀",
+      "bank_code": "809",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.805
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.44,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.555,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": 1.71
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.73,
+          "variable": 1.735
+        },
+        "3Y": {
+          "fixed": 1.73,
+          "variable": 1.735
+        }
+      }
+    },
+    {
+      "bank_name": "匯豐(台灣)",
+      "bank_code": "081",
+      "demand": {
+        "demand_deposit": 0.655,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.265,
+          "variable": 1.265
+        },
+        "6M": {
+          "fixed": 1.395,
+          "variable": 1.395
+        },
+        "9M": {
+          "fixed": 1.445,
+          "variable": 1.445
+        },
+        "1Y": {
+          "fixed": 1.655,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.655,
+          "variable": 1.655
+        },
+        "3Y": {
+          "fixed": 1.655,
+          "variable": 1.655
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "印尼人民",
+      "bank_code": "329",
+      "demand": {
+        "demand_deposit": 0.03,
+        "savings_deposit": 0.08
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.965,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.035,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.29,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.185,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.485,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.485,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.485,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "台中二信",
+      "bank_code": "146",
+      "demand": {
+        "demand_deposit": 0.45,
+        "savings_deposit": 0.5
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.075,
+          "variable": 1.055
+        },
+        "3M": {
+          "fixed": 1.155,
+          "variable": 1.135
+        },
+        "6M": {
+          "fixed": 1.255,
+          "variable": 1.235
+        },
+        "9M": {
+          "fixed": 1.375,
+          "variable": 1.355
+        },
+        "1Y": {
+          "fixed": 1.66,
+          "variable": 1.64
+        },
+        "2Y": {
+          "fixed": 1.66,
+          "variable": 1.64
+        },
+        "3Y": {
+          "fixed": 1.66,
+          "variable": 1.64
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.665,
+          "variable": 1.645
+        },
+        "2Y": {
+          "fixed": 1.72,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": 1.72,
+          "variable": 1.71
+        }
+      }
+    },
+    {
+      "bank_name": "台中銀",
+      "bank_code": "053",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.825
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.29,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.465,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.58,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.715,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.715,
+          "variable": 1.705
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.755,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.755,
+          "variable": 1.725
+        },
+        "3Y": {
+          "fixed": 1.755,
+          "variable": 1.725
+        }
+      }
+    },
+    {
+      "bank_name": "台北五信",
+      "bank_code": "104",
+      "demand": {
+        "demand_deposit": 0.33,
+        "savings_deposit": 0.35
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.115,
+          "variable": 1.115
+        },
+        "3M": {
+          "fixed": 1.16,
+          "variable": 1.16
+        },
+        "6M": {
+          "fixed": 1.265,
+          "variable": 1.265
+        },
+        "9M": {
+          "fixed": null,
+          "variable": 1.445
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": 1.605
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": 1.605
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "台北富邦",
+      "bank_code": "012",
+      "demand": {
+        "demand_deposit": 0.635,
+        "savings_deposit": 0.695
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.195,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.415,
+          "variable": 1.455
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.585
+        },
+        "1Y": {
+          "fixed": 1.65,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.65,
+          "variable": 1.69
+        },
+        "3Y": {
+          "fixed": 1.65,
+          "variable": 1.69
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.675,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.675,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.675,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "台南三信",
+      "bank_code": "188",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": 0.1
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.155,
+          "variable": 1.145
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.245
+        },
+        "6M": {
+          "fixed": 1.375,
+          "variable": 1.365
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.535
+        },
+        "1Y": {
+          "fixed": 1.675,
+          "variable": 1.665
+        },
+        "2Y": {
+          "fixed": 1.665,
+          "variable": 1.675
+        },
+        "3Y": {
+          "fixed": 1.665,
+          "variable": 1.685
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.715,
+          "variable": 1.705
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": 1.735
+        }
+      }
+    },
+    {
+      "bank_name": "台新銀",
+      "bank_code": "812",
+      "demand": {
+        "demand_deposit": 0.655,
+        "savings_deposit": 0.725
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.215,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.235,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.365,
+          "variable": 1.425
+        },
+        "9M": {
+          "fixed": 1.505,
+          "variable": 1.555
+        },
+        "1Y": {
+          "fixed": 1.635,
+          "variable": 1.685
+        },
+        "2Y": {
+          "fixed": 1.635,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.635,
+          "variable": 1.66
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.665,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.665,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.665,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "合庫",
+      "bank_code": "006",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.825
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.465,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.58,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.71,
+          "variable": 1.71
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.73,
+          "variable": 1.73
+        },
+        "3Y": {
+          "fixed": 1.745,
+          "variable": 1.745
+        }
+      }
+    },
+    {
+      "bank_name": "嘉義三信",
+      "bank_code": "178",
+      "demand": {
+        "demand_deposit": 0.17,
+        "savings_deposit": 0.3
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.11,
+          "variable": 1.2
+        },
+        "3M": {
+          "fixed": 1.17,
+          "variable": 1.25
+        },
+        "6M": {
+          "fixed": 1.26,
+          "variable": 1.35
+        },
+        "9M": {
+          "fixed": 1.37,
+          "variable": 1.45
+        },
+        "1Y": {
+          "fixed": 1.65,
+          "variable": 1.5
+        },
+        "2Y": {
+          "fixed": 1.65,
+          "variable": 1.5
+        },
+        "3Y": {
+          "fixed": 1.65,
+          "variable": 1.5
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.65,
+          "variable": 1.5
+        },
+        "2Y": {
+          "fixed": 1.65,
+          "variable": 1.5
+        },
+        "3Y": {
+          "fixed": 1.65,
+          "variable": 1.5
+        }
+      }
+    },
+    {
+      "bank_name": "國泰世華",
+      "bank_code": "013",
+      "demand": {
+        "demand_deposit": 0.635,
+        "savings_deposit": 0.695
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.205,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.245,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.375,
+          "variable": 1.425
+        },
+        "9M": {
+          "fixed": 1.495,
+          "variable": 1.56
+        },
+        "1Y": {
+          "fixed": 1.645,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.645,
+          "variable": 1.69
+        },
+        "3Y": {
+          "fixed": 1.645,
+          "variable": 1.69
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.665,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.665,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.665,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "土銀",
+      "bank_code": "005",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.825
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.46,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.575,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.7
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": 1.715,
+          "variable": 1.72
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "2Y": {
+          "fixed": 1.735,
+          "variable": 1.74
+        },
+        "3Y": {
+          "fixed": 1.745,
+          "variable": 1.75
+        }
+      }
+    },
+    {
+      "bank_name": "基隆一信",
+      "bank_code": "114",
+      "demand": {
+        "demand_deposit": 0.02,
+        "savings_deposit": 0.05
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.0,
+          "variable": 0.98
+        },
+        "3M": {
+          "fixed": 1.05,
+          "variable": 1.03
+        },
+        "6M": {
+          "fixed": 1.2,
+          "variable": 1.18
+        },
+        "9M": {
+          "fixed": 1.23,
+          "variable": 1.21
+        },
+        "1Y": {
+          "fixed": 1.5,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.52,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.55,
+          "variable": 1.7
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.5,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.52,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.55,
+          "variable": 1.7
+        }
+      }
+    },
+    {
+      "bank_name": "基隆二信",
+      "bank_code": "115",
+      "demand": {
+        "demand_deposit": 0.02,
+        "savings_deposit": 0.05
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.965,
+          "variable": 0.955
+        },
+        "3M": {
+          "fixed": 1.025,
+          "variable": 1.005
+        },
+        "6M": {
+          "fixed": 1.175,
+          "variable": 1.155
+        },
+        "9M": {
+          "fixed": 1.205,
+          "variable": 1.185
+        },
+        "1Y": {
+          "fixed": 1.46,
+          "variable": 1.625
+        },
+        "2Y": {
+          "fixed": 1.49,
+          "variable": 1.655
+        },
+        "3Y": {
+          "fixed": 1.52,
+          "variable": 1.685
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.49,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.52,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.55,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "大華銀",
+      "bank_code": "029",
+      "demand": {
+        "demand_deposit": 0.2,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.15,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.2,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.2,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.25,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.3,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "安智銀",
+      "bank_code": "093",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.35,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "安泰銀行",
+      "bank_code": "816",
+      "demand": {
+        "demand_deposit": 0.65,
+        "savings_deposit": 0.8
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.235,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.295,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.455,
+          "variable": 1.415
+        },
+        "9M": {
+          "fixed": 1.575,
+          "variable": 1.535
+        },
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.665
+        },
+        "2Y": {
+          "fixed": 1.735,
+          "variable": 1.675
+        },
+        "3Y": {
+          "fixed": 1.755,
+          "variable": 1.675
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.745,
+          "variable": 1.695
+        },
+        "2Y": {
+          "fixed": 1.75,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.755,
+          "variable": 1.725
+        }
+      }
+    },
+    {
+      "bank_name": "宜蘭信合",
+      "bank_code": "124",
+      "demand": {
+        "demand_deposit": 0.22,
+        "savings_deposit": 0.285
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.14,
+          "variable": 1.145
+        },
+        "3M": {
+          "fixed": 1.19,
+          "variable": 1.205
+        },
+        "6M": {
+          "fixed": 1.26,
+          "variable": 1.285
+        },
+        "9M": {
+          "fixed": 1.46,
+          "variable": 1.485
+        },
+        "1Y": {
+          "fixed": 1.575,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.59,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.61,
+          "variable": 1.71
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.6,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.625,
+          "variable": 1.73
+        },
+        "3Y": {
+          "fixed": 1.69,
+          "variable": 1.745
+        }
+      }
+    },
+    {
+      "bank_name": "富國銀",
+      "bank_code": "097",
+      "demand": {
+        "demand_deposit": 0.1,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.1,
+          "variable": 0.1
+        },
+        "3M": {
+          "fixed": 0.1,
+          "variable": 0.1
+        },
+        "6M": {
+          "fixed": 0.1,
+          "variable": 0.1
+        },
+        "9M": {
+          "fixed": 0.1,
+          "variable": 0.1
+        },
+        "1Y": {
+          "fixed": 0.1,
+          "variable": 0.1
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "將來銀",
+      "bank_code": "823",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.875
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.235,
+          "variable": 1.235
+        },
+        "3M": {
+          "fixed": 1.3,
+          "variable": 1.3
+        },
+        "6M": {
+          "fixed": 1.475,
+          "variable": 1.475
+        },
+        "9M": {
+          "fixed": 1.6,
+          "variable": 1.6
+        },
+        "1Y": {
+          "fixed": 1.81,
+          "variable": 1.81
+        },
+        "2Y": {
+          "fixed": 1.81,
+          "variable": 1.81
+        },
+        "3Y": {
+          "fixed": 1.81,
+          "variable": 1.81
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "彰化一信",
+      "bank_code": "158",
+      "demand": {
+        "demand_deposit": 0.08,
+        "savings_deposit": 0.09
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.765,
+          "variable": 0.765
+        },
+        "3M": {
+          "fixed": 0.845,
+          "variable": 0.845
+        },
+        "6M": {
+          "fixed": 0.985,
+          "variable": 0.985
+        },
+        "9M": {
+          "fixed": 1.095,
+          "variable": 1.095
+        },
+        "1Y": {
+          "fixed": 1.47,
+          "variable": 1.47
+        },
+        "2Y": {
+          "fixed": 1.495,
+          "variable": 1.495
+        },
+        "3Y": {
+          "fixed": 1.52,
+          "variable": 1.52
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.525,
+          "variable": 1.525
+        },
+        "2Y": {
+          "fixed": 1.55,
+          "variable": 1.55
+        },
+        "3Y": {
+          "fixed": 1.57,
+          "variable": 1.57
+        }
+      }
+    },
+    {
+      "bank_name": "彰化五信",
+      "bank_code": "161",
+      "demand": {
+        "demand_deposit": 0.1,
+        "savings_deposit": 0.14
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.845,
+          "variable": 0.845
+        },
+        "3M": {
+          "fixed": 0.925,
+          "variable": 0.925
+        },
+        "6M": {
+          "fixed": 1.025,
+          "variable": 1.025
+        },
+        "9M": {
+          "fixed": 1.255,
+          "variable": 1.255
+        },
+        "1Y": {
+          "fixed": 1.575,
+          "variable": 1.58
+        },
+        "2Y": {
+          "fixed": 1.605,
+          "variable": 1.61
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.63
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.605,
+          "variable": 1.615
+        },
+        "2Y": {
+          "fixed": 1.615,
+          "variable": 1.625
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.64
+        }
+      }
+    },
+    {
+      "bank_name": "彰化六信",
+      "bank_code": "162",
+      "demand": {
+        "demand_deposit": 0.1,
+        "savings_deposit": 0.14
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.82,
+          "variable": 0.82
+        },
+        "3M": {
+          "fixed": 0.91,
+          "variable": 0.91
+        },
+        "6M": {
+          "fixed": 1.04,
+          "variable": 1.04
+        },
+        "9M": {
+          "fixed": 1.28,
+          "variable": 1.28
+        },
+        "1Y": {
+          "fixed": 1.575,
+          "variable": 1.575
+        },
+        "2Y": {
+          "fixed": 1.605,
+          "variable": 1.615
+        },
+        "3Y": {
+          "fixed": 1.605,
+          "variable": 1.615
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.615,
+          "variable": 1.615
+        },
+        "2Y": {
+          "fixed": 1.65,
+          "variable": 1.66
+        },
+        "3Y": {
+          "fixed": 1.65,
+          "variable": 1.66
+        }
+      }
+    },
+    {
+      "bank_name": "彰化十信",
+      "bank_code": "163",
+      "demand": {
+        "demand_deposit": 0.12,
+        "savings_deposit": 0.155
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.825,
+          "variable": 0.825
+        },
+        "3M": {
+          "fixed": 0.925,
+          "variable": 0.925
+        },
+        "6M": {
+          "fixed": 1.025,
+          "variable": 1.045
+        },
+        "9M": {
+          "fixed": 1.125,
+          "variable": 1.185
+        },
+        "1Y": {
+          "fixed": 1.245,
+          "variable": 1.425
+        },
+        "2Y": {
+          "fixed": 1.255,
+          "variable": 1.435
+        },
+        "3Y": {
+          "fixed": 1.265,
+          "variable": 1.445
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.355,
+          "variable": 1.565
+        },
+        "2Y": {
+          "fixed": 1.365,
+          "variable": 1.575
+        },
+        "3Y": {
+          "fixed": 1.375,
+          "variable": 1.585
+        }
+      }
+    },
+    {
+      "bank_name": "彰銀",
+      "bank_code": "009",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.855
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.71,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.715,
+          "variable": 1.715
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.755,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.76,
+          "variable": 1.795
+        },
+        "3Y": {
+          "fixed": 1.77,
+          "variable": 1.895
+        }
+      }
+    },
+    {
+      "bank_name": "德意志",
+      "bank_code": "072",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": 0.01
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.06,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.06,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.09,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "摩根大通",
+      "bank_code": "076",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.01,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.01,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.01,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.01,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.01,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "新光銀",
+      "bank_code": "103",
+      "demand": {
+        "demand_deposit": 0.65,
+        "savings_deposit": 0.725
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.29,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.465,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.58,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.74,
+          "variable": 1.73
+        },
+        "3Y": {
+          "fixed": 1.755,
+          "variable": 1.745
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.755,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.745,
+          "variable": 1.75
+        },
+        "3Y": {
+          "fixed": 1.775,
+          "variable": 1.775
+        }
+      }
+    },
+    {
+      "bank_name": "新北淡水",
+      "bank_code": "120",
+      "demand": {
+        "demand_deposit": 0.585,
+        "savings_deposit": 0.645
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.095,
+          "variable": 1.095
+        },
+        "3M": {
+          "fixed": 1.195,
+          "variable": 1.195
+        },
+        "6M": {
+          "fixed": 1.325,
+          "variable": 1.4
+        },
+        "9M": {
+          "fixed": 1.375,
+          "variable": 1.445
+        },
+        "1Y": {
+          "fixed": 1.585,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.585,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.585,
+          "variable": 1.705
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.615,
+          "variable": 1.695
+        },
+        "2Y": {
+          "fixed": 1.615,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.615,
+          "variable": 1.705
+        }
+      }
+    },
+    {
+      "bank_name": "新竹一信",
+      "bank_code": "130",
+      "demand": {
+        "demand_deposit": 0.505,
+        "savings_deposit": 0.64
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.125,
+          "variable": 1.125
+        },
+        "3M": {
+          "fixed": 1.185,
+          "variable": 1.185
+        },
+        "6M": {
+          "fixed": 1.365,
+          "variable": 1.36
+        },
+        "9M": {
+          "fixed": 1.56,
+          "variable": 1.535
+        },
+        "1Y": {
+          "fixed": 1.62,
+          "variable": 1.59
+        },
+        "2Y": {
+          "fixed": 1.69,
+          "variable": 1.68
+        },
+        "3Y": {
+          "fixed": 1.69,
+          "variable": 1.695
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "3Y": {
+          "fixed": 1.73,
+          "variable": 1.73
+        }
+      }
+    },
+    {
+      "bank_name": "新竹三信",
+      "bank_code": "132",
+      "demand": {
+        "demand_deposit": 0.45,
+        "savings_deposit": 0.5
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.025,
+          "variable": 1.025
+        },
+        "3M": {
+          "fixed": 1.145,
+          "variable": 1.145
+        },
+        "6M": {
+          "fixed": 1.34,
+          "variable": 1.335
+        },
+        "9M": {
+          "fixed": 1.485,
+          "variable": 1.48
+        },
+        "1Y": {
+          "fixed": 1.6,
+          "variable": 1.59
+        },
+        "2Y": {
+          "fixed": 1.668,
+          "variable": 1.665
+        },
+        "3Y": {
+          "fixed": 1.675,
+          "variable": 1.675
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.72,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "3Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        }
+      }
+    },
+    {
+      "bank_name": "日商瑞穗銀行",
+      "bank_code": "020",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.05,
+          "variable": 0.05
+        },
+        "3M": {
+          "fixed": 0.05,
+          "variable": 0.05
+        },
+        "6M": {
+          "fixed": 0.05,
+          "variable": 0.05
+        },
+        "9M": {
+          "fixed": 0.08,
+          "variable": 0.08
+        },
+        "1Y": {
+          "fixed": 0.08,
+          "variable": 0.08
+        },
+        "2Y": {
+          "fixed": 0.08,
+          "variable": 0.08
+        },
+        "3Y": {
+          "fixed": 0.08,
+          "variable": 0.08
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "星展(台灣)",
+      "bank_code": "810",
+      "demand": {
+        "demand_deposit": 0.655,
+        "savings_deposit": 0.705
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.225
+        },
+        "6M": {
+          "fixed": 1.395,
+          "variable": 1.335
+        },
+        "9M": {
+          "fixed": 1.425,
+          "variable": 1.465
+        },
+        "1Y": {
+          "fixed": 1.65,
+          "variable": 1.585
+        },
+        "2Y": {
+          "fixed": 1.65,
+          "variable": 1.595
+        },
+        "3Y": {
+          "fixed": 1.65,
+          "variable": 1.605
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.705,
+          "variable": 1.705
+        },
+        "2Y": {
+          "fixed": 1.685,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.685,
+          "variable": 1.685
+        }
+      }
+    },
+    {
+      "bank_name": "東方匯理",
+      "bank_code": "086",
+      "demand": {
+        "demand_deposit": 0.2,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.24,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.33,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.33,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.33,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.33,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "板信銀",
+      "bank_code": "118",
+      "demand": {
+        "demand_deposit": 0.4,
+        "savings_deposit": 0.75
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.275,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.425,
+          "variable": 1.415
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.535
+        },
+        "1Y": {
+          "fixed": 1.68,
+          "variable": 1.66
+        },
+        "2Y": {
+          "fixed": 1.68,
+          "variable": 1.66
+        },
+        "3Y": {
+          "fixed": 1.68,
+          "variable": 1.66
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.765,
+          "variable": 1.695
+        },
+        "2Y": {
+          "fixed": 1.765,
+          "variable": 1.695
+        },
+        "3Y": {
+          "fixed": 1.765,
+          "variable": 1.695
+        }
+      }
+    },
+    {
+      "bank_name": "桃園信合",
+      "bank_code": "127",
+      "demand": {
+        "demand_deposit": 0.405,
+        "savings_deposit": 0.465
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": null,
+          "variable": 1.2
+        },
+        "3M": {
+          "fixed": null,
+          "variable": 1.26
+        },
+        "6M": {
+          "fixed": null,
+          "variable": 1.35
+        },
+        "9M": {
+          "fixed": null,
+          "variable": 1.38
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": 1.55
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.635
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.635
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": 1.55
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.685
+        }
+      }
+    },
+    {
+      "bank_name": "樂天銀",
+      "bank_code": "826",
+      "demand": {
+        "demand_deposit": 0.635,
+        "savings_deposit": 0.65
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.25,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.375,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.475,
+          "variable": null
+        },
+        "9M": {
+          "fixed": null,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.775,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.785,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.805,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "永豐銀",
+      "bank_code": "807",
+      "demand": {
+        "demand_deposit": 0.655,
+        "savings_deposit": 0.705
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.205,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.365,
+          "variable": 1.445
+        },
+        "9M": {
+          "fixed": 1.505,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.635,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.635,
+          "variable": 1.69
+        },
+        "3Y": {
+          "fixed": 1.635,
+          "variable": 1.69
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.705,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "法國外貿",
+      "bank_code": "328",
+      "demand": {
+        "demand_deposit": 0.63,
+        "savings_deposit": 0.63
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": null,
+          "variable": null
+        },
+        "3M": {
+          "fixed": null,
+          "variable": null
+        },
+        "6M": {
+          "fixed": null,
+          "variable": null
+        },
+        "9M": {
+          "fixed": null,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "法國巴黎",
+      "bank_code": "082",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": 0.01
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.05,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.06,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.08,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.13,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 0.13,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 0.13,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 0.13,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 0.13,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 0.13,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "淡水一信",
+      "bank_code": "119",
+      "demand": {
+        "demand_deposit": 0.585,
+        "savings_deposit": 0.645
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.09,
+          "variable": 1.095
+        },
+        "3M": {
+          "fixed": 1.165,
+          "variable": 1.195
+        },
+        "6M": {
+          "fixed": 1.365,
+          "variable": 1.4
+        },
+        "9M": {
+          "fixed": 1.39,
+          "variable": 1.445
+        },
+        "1Y": {
+          "fixed": 1.585,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.585,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": 1.585,
+          "variable": 1.71
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.615,
+          "variable": 1.695
+        },
+        "2Y": {
+          "fixed": 1.615,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.615,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "渣打銀",
+      "bank_code": "052",
+      "demand": {
+        "demand_deposit": 0.625,
+        "savings_deposit": 0.625
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.12,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.99,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.12,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.99,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.04,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.36,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.39,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.32,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.36,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.43,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "澎湖一信",
+      "bank_code": "222",
+      "demand": {
+        "demand_deposit": 0.105,
+        "savings_deposit": 0.135
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.905,
+          "variable": 0.88
+        },
+        "3M": {
+          "fixed": 0.95,
+          "variable": 0.925
+        },
+        "6M": {
+          "fixed": 1.07,
+          "variable": 1.045
+        },
+        "9M": {
+          "fixed": 1.18,
+          "variable": 1.155
+        },
+        "1Y": {
+          "fixed": 1.28,
+          "variable": 1.255
+        },
+        "2Y": {
+          "fixed": 1.28,
+          "variable": 1.255
+        },
+        "3Y": {
+          "fixed": 1.28,
+          "variable": 1.255
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.47,
+          "variable": 1.445
+        },
+        "2Y": {
+          "fixed": 1.61,
+          "variable": 1.585
+        },
+        "3Y": {
+          "fixed": 1.62,
+          "variable": 1.595
+        }
+      }
+    },
+    {
+      "bank_name": "澎湖二信",
+      "bank_code": "223",
+      "demand": {
+        "demand_deposit": 0.105,
+        "savings_deposit": 0.135
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.905,
+          "variable": 0.88
+        },
+        "3M": {
+          "fixed": 0.95,
+          "variable": 0.925
+        },
+        "6M": {
+          "fixed": 1.07,
+          "variable": 1.045
+        },
+        "9M": {
+          "fixed": 1.18,
+          "variable": 1.155
+        },
+        "1Y": {
+          "fixed": 1.28,
+          "variable": 1.255
+        },
+        "2Y": {
+          "fixed": 1.28,
+          "variable": 1.255
+        },
+        "3Y": {
+          "fixed": 1.28,
+          "variable": 1.255
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.47,
+          "variable": 1.445
+        },
+        "2Y": {
+          "fixed": 1.61,
+          "variable": 1.585
+        },
+        "3Y": {
+          "fixed": 1.62,
+          "variable": 1.595
+        }
+      }
+    },
+    {
+      "bank_name": "澳盛台北",
+      "bank_code": "039",
+      "demand": {
+        "demand_deposit": 0.03,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.21,
+          "variable": 1.21
+        },
+        "3M": {
+          "fixed": 1.21,
+          "variable": 1.21
+        },
+        "6M": {
+          "fixed": 0.4,
+          "variable": 0.4
+        },
+        "9M": {
+          "fixed": 0.4,
+          "variable": 0.4
+        },
+        "1Y": {
+          "fixed": 0.3,
+          "variable": 0.3
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "玉山銀",
+      "bank_code": "808",
+      "demand": {
+        "demand_deposit": 0.635,
+        "savings_deposit": 0.715
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.28,
+          "variable": 1.28
+        },
+        "6M": {
+          "fixed": 1.445,
+          "variable": 1.425
+        },
+        "9M": {
+          "fixed": 1.585,
+          "variable": 1.565
+        },
+        "1Y": {
+          "fixed": 1.705,
+          "variable": 1.685
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": 1.685
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.735,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.735,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.735,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "王道銀",
+      "bank_code": "048",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.875
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.255
+        },
+        "6M": {
+          "fixed": 1.455,
+          "variable": 1.455
+        },
+        "9M": {
+          "fixed": 1.515,
+          "variable": 1.515
+        },
+        "1Y": {
+          "fixed": 1.675,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.68,
+          "variable": 1.68
+        },
+        "3Y": {
+          "fixed": 1.68,
+          "variable": 1.68
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.715,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.72,
+          "variable": 1.72
+        },
+        "3Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        }
+      }
+    },
+    {
+      "bank_name": "瑞興銀",
+      "bank_code": "101",
+      "demand": {
+        "demand_deposit": 0.415,
+        "savings_deposit": 0.6
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.415,
+          "variable": 1.455
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.555
+        },
+        "1Y": {
+          "fixed": 1.645,
+          "variable": 1.645
+        },
+        "2Y": {
+          "fixed": 1.67,
+          "variable": 1.675
+        },
+        "3Y": {
+          "fixed": 1.67,
+          "variable": 1.675
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.7
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.705
+        },
+        "3Y": {
+          "fixed": 1.71,
+          "variable": 1.71
+        }
+      }
+    },
+    {
+      "bank_name": "瑞銀",
+      "bank_code": "092",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": 0.01
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.06,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.27,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.4,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.48,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.57,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "盤谷銀",
+      "bank_code": "023",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.15,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.1,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "美國紐約",
+      "bank_code": "028",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.01,
+          "variable": 0.01
+        },
+        "3M": {
+          "fixed": 0.01,
+          "variable": 0.01
+        },
+        "6M": {
+          "fixed": 0.01,
+          "variable": 0.01
+        },
+        "9M": {
+          "fixed": null,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "美國銀",
+      "bank_code": "022",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.3,
+          "variable": 0.3
+        },
+        "3M": {
+          "fixed": 0.34,
+          "variable": 0.34
+        },
+        "6M": {
+          "fixed": 0.35,
+          "variable": 0.35
+        },
+        "9M": {
+          "fixed": 0.36,
+          "variable": 0.36
+        },
+        "1Y": {
+          "fixed": 0.2,
+          "variable": 0.2
+        },
+        "2Y": {
+          "fixed": 0.2,
+          "variable": 0.2
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "聯邦銀",
+      "bank_code": "803",
+      "demand": {
+        "demand_deposit": 0.635,
+        "savings_deposit": 0.695
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.215,
+          "variable": 1.215
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.255
+        },
+        "6M": {
+          "fixed": 1.405,
+          "variable": 1.405
+        },
+        "9M": {
+          "fixed": 1.54,
+          "variable": 1.505
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.725,
+          "variable": 1.675
+        },
+        "3Y": {
+          "fixed": 1.75,
+          "variable": 1.69
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.73,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.705,
+          "variable": 1.795
+        },
+        "3Y": {
+          "fixed": 1.735,
+          "variable": 1.895
+        }
+      }
+    },
+    {
+      "bank_name": "臺銀",
+      "bank_code": "004",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.825
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.29,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.465,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.58,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.73,
+          "variable": 1.73
+        },
+        "3Y": {
+          "fixed": 1.745,
+          "variable": 1.745
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.75,
+          "variable": 1.75
+        },
+        "3Y": {
+          "fixed": 1.785,
+          "variable": 1.785
+        }
+      }
+    },
+    {
+      "bank_name": "興業銀",
+      "bank_code": "037",
+      "demand": {
+        "demand_deposit": 0.81,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.07,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.17,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.17,
+          "variable": null
+        },
+        "9M": {
+          "fixed": null,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.18,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "花旗(台灣)",
+      "bank_code": "021",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.16,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.17,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.19,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.19,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "花蓮一信",
+      "bank_code": "215",
+      "demand": {
+        "demand_deposit": 0.365,
+        "savings_deposit": 0.425
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": null,
+          "variable": 1.125
+        },
+        "3M": {
+          "fixed": 1.5,
+          "variable": 1.225
+        },
+        "6M": {
+          "fixed": 1.5,
+          "variable": 1.425
+        },
+        "9M": {
+          "fixed": 1.525,
+          "variable": 1.525
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.69
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.69
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.715
+        }
+      }
+    },
+    {
+      "bank_name": "花蓮二信",
+      "bank_code": "216",
+      "demand": {
+        "demand_deposit": 0.51,
+        "savings_deposit": 0.57
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.045,
+          "variable": 1.045
+        },
+        "3M": {
+          "fixed": 1.125,
+          "variable": 1.125
+        },
+        "6M": {
+          "fixed": 1.195,
+          "variable": 1.225
+        },
+        "9M": {
+          "fixed": 1.315,
+          "variable": 1.345
+        },
+        "1Y": {
+          "fixed": 1.455,
+          "variable": 1.535
+        },
+        "2Y": {
+          "fixed": 1.455,
+          "variable": 1.535
+        },
+        "3Y": {
+          "fixed": 1.455,
+          "variable": 1.535
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.555,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.555,
+          "variable": 1.675
+        },
+        "3Y": {
+          "fixed": 1.555,
+          "variable": 1.675
+        }
+      }
+    },
+    {
+      "bank_name": "英商渣打",
+      "bank_code": "083",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": null,
+          "variable": null
+        },
+        "3M": {
+          "fixed": null,
+          "variable": null
+        },
+        "6M": {
+          "fixed": null,
+          "variable": null
+        },
+        "9M": {
+          "fixed": null,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "華僑銀",
+      "bank_code": "085",
+      "demand": {
+        "demand_deposit": 0.65,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.45,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.528,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.55,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.58,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.605,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "華泰銀",
+      "bank_code": "102",
+      "demand": {
+        "demand_deposit": 0.375,
+        "savings_deposit": 0.625
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.275,
+          "variable": 1.275
+        },
+        "6M": {
+          "fixed": 1.425,
+          "variable": 1.425
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.69,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.695,
+          "variable": 1.695
+        },
+        "3Y": {
+          "fixed": 1.7,
+          "variable": 1.7
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.705
+        },
+        "2Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "3Y": {
+          "fixed": 1.735,
+          "variable": 1.735
+        }
+      }
+    },
+    {
+      "bank_name": "華銀",
+      "bank_code": "008",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.855
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.545,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.7,
+          "variable": 1.7
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": 1.705
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.76,
+          "variable": 1.72
+        },
+        "2Y": {
+          "fixed": 1.76,
+          "variable": 1.76
+        },
+        "3Y": {
+          "fixed": 1.76,
+          "variable": 1.895
+        }
+      }
+    },
+    {
+      "bank_name": "西班牙對外",
+      "bank_code": "326",
+      "demand": {
+        "demand_deposit": 0.1,
+        "savings_deposit": 0.1
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.23,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.25,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.35,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.36,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.38,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 0.39,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 0.35,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "農金",
+      "bank_code": "018",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.825
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.28,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.425,
+          "variable": 1.425
+        },
+        "9M": {
+          "fixed": 1.495,
+          "variable": 1.48
+        },
+        "1Y": {
+          "fixed": 1.635,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.683,
+          "variable": 1.682
+        },
+        "3Y": {
+          "fixed": 1.687,
+          "variable": 1.69
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.64,
+          "variable": 1.655
+        },
+        "2Y": {
+          "fixed": 1.688,
+          "variable": 1.71
+        },
+        "3Y": {
+          "fixed": 1.708,
+          "variable": 1.717
+        }
+      }
+    },
+    {
+      "bank_name": "連線銀",
+      "bank_code": "824",
+      "demand": {
+        "demand_deposit": 0.705,
+        "savings_deposit": 0.755
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.29,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.485,
+          "variable": 1.48
+        },
+        "9M": {
+          "fixed": 1.6,
+          "variable": 1.605
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.81,
+          "variable": 1.77
+        },
+        "2Y": {
+          "fixed": 1.82,
+          "variable": 1.78
+        },
+        "3Y": {
+          "fixed": 1.82,
+          "variable": 1.78
+        }
+      }
+    },
+    {
+      "bank_name": "道富銀",
+      "bank_code": "030",
+      "demand": {
+        "demand_deposit": 0.0,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": null,
+          "variable": 0.001
+        },
+        "3M": {
+          "fixed": null,
+          "variable": 0.001
+        },
+        "6M": {
+          "fixed": null,
+          "variable": null
+        },
+        "9M": {
+          "fixed": null,
+          "variable": 0.001
+        },
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "遠東銀",
+      "bank_code": "805",
+      "demand": {
+        "demand_deposit": 0.725,
+        "savings_deposit": 0.845
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.215,
+          "variable": 1.215
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.435,
+          "variable": 1.435
+        },
+        "9M": {
+          "fixed": 1.575,
+          "variable": 1.545
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.675
+        },
+        "2Y": {
+          "fixed": 1.7,
+          "variable": 1.685
+        },
+        "3Y": {
+          "fixed": 1.705,
+          "variable": 1.685
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.715
+        },
+        "2Y": {
+          "fixed": 1.74,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.76,
+          "variable": 1.735
+        }
+      }
+    },
+    {
+      "bank_name": "金門信合",
+      "bank_code": "224",
+      "demand": {
+        "demand_deposit": 0.655,
+        "savings_deposit": 0.705
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": 1.255
+        },
+        "6M": {
+          "fixed": 1.46,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.575,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.7
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "陽信銀",
+      "bank_code": "108",
+      "demand": {
+        "demand_deposit": 0.61,
+        "savings_deposit": 0.65
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.465,
+          "variable": 1.46
+        },
+        "9M": {
+          "fixed": 1.58,
+          "variable": 1.575
+        },
+        "1Y": {
+          "fixed": 1.7,
+          "variable": 1.69
+        },
+        "2Y": {
+          "fixed": 1.715,
+          "variable": 1.715
+        },
+        "3Y": {
+          "fixed": 1.715,
+          "variable": 1.715
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.725,
+          "variable": 1.725
+        },
+        "2Y": {
+          "fixed": 1.76,
+          "variable": 1.76
+        },
+        "3Y": {
+          "fixed": 1.77,
+          "variable": 1.77
+        }
+      }
+    },
+    {
+      "bank_name": "韓商韓亞",
+      "bank_code": "330",
+      "demand": {
+        "demand_deposit": 0.01,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.2,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 0.22,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 0.23,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 0.25,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 0.27,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "首都銀",
+      "bank_code": "025",
+      "demand": {
+        "demand_deposit": 0.625,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.15,
+          "variable": null
+        },
+        "3M": {
+          "fixed": 1.255,
+          "variable": null
+        },
+        "6M": {
+          "fixed": 1.3,
+          "variable": null
+        },
+        "9M": {
+          "fixed": 1.4,
+          "variable": null
+        },
+        "1Y": {
+          "fixed": 1.5,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": 1.5,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": 1.5,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "香港東亞",
+      "bank_code": "075",
+      "demand": {
+        "demand_deposit": 0.05,
+        "savings_deposit": null
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 0.72,
+          "variable": 0.72
+        },
+        "3M": {
+          "fixed": 0.75,
+          "variable": 0.75
+        },
+        "6M": {
+          "fixed": 0.76,
+          "variable": 0.76
+        },
+        "9M": {
+          "fixed": 0.83,
+          "variable": 0.83
+        },
+        "1Y": {
+          "fixed": 0.83,
+          "variable": 0.83
+        },
+        "2Y": {
+          "fixed": 0.89,
+          "variable": 0.89
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": null
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": null
+        }
+      }
+    },
+    {
+      "bank_name": "高雄三信",
+      "bank_code": "204",
+      "demand": {
+        "demand_deposit": 0.2,
+        "savings_deposit": 0.3
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.225,
+          "variable": 1.225
+        },
+        "3M": {
+          "fixed": 1.285,
+          "variable": 1.285
+        },
+        "6M": {
+          "fixed": 1.445,
+          "variable": 1.44
+        },
+        "9M": {
+          "fixed": 1.57,
+          "variable": 1.565
+        },
+        "1Y": {
+          "fixed": 1.69,
+          "variable": 1.68
+        },
+        "2Y": {
+          "fixed": 1.715,
+          "variable": 1.695
+        },
+        "3Y": {
+          "fixed": 1.72,
+          "variable": 1.7
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.71,
+          "variable": 1.705
+        },
+        "2Y": {
+          "fixed": 1.74,
+          "variable": 1.725
+        },
+        "3Y": {
+          "fixed": 1.75,
+          "variable": 1.74
+        }
+      }
+    },
+    {
+      "bank_name": "高雄銀",
+      "bank_code": "016",
+      "demand": {
+        "demand_deposit": 0.6,
+        "savings_deposit": 0.7
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.215,
+          "variable": 1.185
+        },
+        "3M": {
+          "fixed": 1.245,
+          "variable": 1.215
+        },
+        "6M": {
+          "fixed": 1.395,
+          "variable": 1.365
+        },
+        "9M": {
+          "fixed": 1.505,
+          "variable": 1.475
+        },
+        "1Y": {
+          "fixed": 1.64,
+          "variable": 1.61
+        },
+        "2Y": {
+          "fixed": 1.665,
+          "variable": 1.635
+        },
+        "3Y": {
+          "fixed": 1.675,
+          "variable": 1.645
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.695,
+          "variable": 1.665
+        },
+        "2Y": {
+          "fixed": 1.695,
+          "variable": 1.665
+        },
+        "3Y": {
+          "fixed": 1.715,
+          "variable": 1.685
+        }
+      }
+    },
+    {
+      "bank_name": "鹿港信合",
+      "bank_code": "165",
+      "demand": {
+        "demand_deposit": 0.25,
+        "savings_deposit": 0.55
+      },
+      "time_deposit": {
+        "1M": {
+          "fixed": 1.15,
+          "variable": 1.19
+        },
+        "3M": {
+          "fixed": 1.18,
+          "variable": 1.22
+        },
+        "6M": {
+          "fixed": 1.28,
+          "variable": 1.32
+        },
+        "9M": {
+          "fixed": 1.32,
+          "variable": 1.36
+        },
+        "1Y": {
+          "fixed": 1.5,
+          "variable": 1.54
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.555
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.57
+        }
+      },
+      "time_savings_deposit": {
+        "1Y": {
+          "fixed": 1.5,
+          "variable": 1.54
+        },
+        "2Y": {
+          "fixed": null,
+          "variable": 1.555
+        },
+        "3Y": {
+          "fixed": null,
+          "variable": 1.57
+        }
+      }
+    }
+  ]
+}

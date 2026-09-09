@@ -7,6 +7,7 @@
   const isCalendarPage = Boolean(document.getElementById("calendarGrid"));
   const themeStorageKey = "taiwan_stock_market_theme";
   const previewRoleStorageKey = "taiwan_stock_preview_role";
+  const navigationStateStorageKey = "taiwan_stock_navigation_groups";
   const authApiBase = "https://172-238-20-217.ip.linodeusercontent.com/api/v1";
 
   const navigationGroups = [
@@ -35,6 +36,18 @@
   ];
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const loadNavigationState = () => {
+    try {
+      const value = JSON.parse(localStorage.getItem(navigationStateStorageKey) || "{}");
+      return value && typeof value === "object" ? value : {};
+    } catch (error) {
+      return {};
+    }
+  };
+  const navigationState = loadNavigationState();
+  const saveNavigationState = () => {
+    try { localStorage.setItem(navigationStateStorageKey, JSON.stringify(navigationState)); } catch (error) {}
+  };
   const renderNavigation = () => {
     const nav = sidebar.querySelector(".sidebar-nav");
     if (!nav) return;
@@ -44,8 +57,11 @@
       const groupPage = group.href.slice(2);
       const childActive = group.children.some(([, href]) => href.slice(2) === currentPage);
       const groupActive = groupPage === currentPage;
+      const open = Object.prototype.hasOwnProperty.call(navigationState, group.key)
+        ? Boolean(navigationState[group.key])
+        : childActive || groupActive;
       const wrapper = document.createElement("section");
-      wrapper.className = `sidebar-group${childActive || groupActive ? " is-open" : ""}`;
+      wrapper.className = `sidebar-group${open ? " is-open" : ""}`;
       const heading = document.createElement("div");
       heading.className = "sidebar-group-heading";
       heading.innerHTML = `<a class="sidebar-item sidebar-category${groupActive ? " is-active" : ""}" href="${group.href}"${groupActive ? ' aria-current="page"' : ""}>${group.label}</a>`;
@@ -54,11 +70,13 @@
         toggleButton.type = "button";
         toggleButton.className = "sidebar-group-toggle";
         toggleButton.setAttribute("aria-label", `展開或收合${group.label}功能`);
-        toggleButton.setAttribute("aria-expanded", String(childActive || groupActive));
+        toggleButton.setAttribute("aria-expanded", String(open));
         toggleButton.textContent = "⌄";
         toggleButton.addEventListener("click", () => {
-          const open = wrapper.classList.toggle("is-open");
-          toggleButton.setAttribute("aria-expanded", String(open));
+          const isOpen = wrapper.classList.toggle("is-open");
+          navigationState[group.key] = isOpen;
+          saveNavigationState();
+          toggleButton.setAttribute("aria-expanded", String(isOpen));
         });
         heading.append(toggleButton);
       }

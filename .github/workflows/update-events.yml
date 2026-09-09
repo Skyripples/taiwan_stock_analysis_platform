@@ -30,6 +30,11 @@ jobs:
         run: |
           python scripts/fetch_events.py
 
+      - name: Update CBC bank deposit rates
+        continue-on-error: true
+        run: |
+          python scripts/update_bank_rates.py
+
       - name: Update market data
         id: market_data
         continue-on-error: true
@@ -176,6 +181,9 @@ jobs:
           git add data/event.json data/market/*.json data/history/*.csv data/analysis/current/chips_summary.json
           git add data/status/data_service_status.json
           git add data/status/prediction_pipeline_status.json
+          if [ -f data/deposits/bank_rates.json ]; then
+            git add data/deposits/bank_rates.json
+          fi
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
             if [ -f "$file" ]; then

@@ -1,1 +1,29 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>定存｜台股投資分析平台</title><link rel="stylesheet" href="./page.css"><link rel="stylesheet" href="./widget.css"><link rel="stylesheet" href="./platform.css"><link rel="stylesheet" href="./sidebar.css"></head><body class="has-sidebar"><header class="layout-header"><a class="layout-brand" href="./index.html">台股投資分析平台</a><div class="layout-header-actions"><label for="themeToggleSwitch" class="layout-theme-label">深色模式</label><label class="layout-theme-switch" for="themeToggleSwitch"><input id="themeToggleSwitch" type="checkbox" role="switch"><span></span></label></div></header><button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar"><span></span><span></span><span></span></button><div class="sidebar-backdrop" data-sidebar-close></div><aside id="platformSidebar" class="sidebar"><nav class="sidebar-nav"></nav></aside><main class="layout-main"><div class="page-container"><header class="page-header"><p class="page-eyebrow">DEPOSITS</p><h1 class="page-title">定存</h1><p class="page-description">定存資訊與比較工具的未來入口。</p></header><section class="widget placeholder-notice"><h2>未來功能區域</h2><p>目前尚未建立定存比較功能，可使用 Sidebar 前往其他分類。</p><a href="./index.html">返回首頁</a></section></div></main><script src="./sidebar.js"></script></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="台灣銀行存款牌告利率比較">
+  <title>定存｜台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css"><link rel="stylesheet" href="./widget.css"><link rel="stylesheet" href="./platform.css"><link rel="stylesheet" href="./sidebar.css"><link rel="stylesheet" href="./deposits.css">
+</head>
+<body class="has-sidebar">
+  <header class="layout-header"><a class="layout-brand" href="./index.html">台股投資分析平台</a><div class="layout-header-actions"><label for="themeToggleSwitch" class="layout-theme-label">深色模式</label><label class="layout-theme-switch" for="themeToggleSwitch"><input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="深色模式"><span></span></label></div></header>
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar"><span></span><span></span><span></span></button><div class="sidebar-backdrop" data-sidebar-close></div><aside id="platformSidebar" class="sidebar"><nav class="sidebar-nav"></nav></aside>
+  <main class="layout-main" data-page="deposits"><div class="page-container">
+    <header class="page-header"><p class="page-eyebrow">DEPOSITS</p><h1 class="page-title">定存</h1><p class="page-description">銀行存款牌告利率比較</p></header>
+    <div class="page-body deposit-page">
+      <section class="widget deposit-controls">
+        <label for="bankSearch">銀行名稱搜尋</label>
+        <input id="bankSearch" type="search" placeholder="輸入銀行名稱" autocomplete="off">
+        <fieldset><legend>利率類型</legend><label><input type="radio" name="rateType" value="fixed" checked> 固定利率</label><label><input type="radio" name="rateType" value="variable"> 機動利率</label></fieldset>
+        <p id="depositState" role="status">載入中</p>
+      </section>
+      <section class="page-section"><h2>活期存款</h2><div class="deposit-table-wrap"><table id="demandTable"><thead><tr><th data-sort="bank_name">銀行</th><th data-sort="demand_deposit">活期存款</th><th data-sort="savings_deposit">活期儲蓄存款</th></tr></thead><tbody></tbody></table></div></section>
+      <section class="page-section"><h2>定期存款</h2><div class="deposit-table-wrap"><table id="timeDepositTable"><thead><tr><th data-sort="bank_name">銀行</th><th data-sort="1M">1M</th><th data-sort="3M">3M</th><th data-sort="6M">6M</th><th data-sort="9M">9M</th><th data-sort="1Y">1Y</th><th data-sort="2Y">2Y</th><th data-sort="3Y">3Y</th></tr></thead><tbody></tbody></table></div></section>
+      <section class="page-section"><h2>定期儲蓄存款</h2><div class="deposit-table-wrap"><table id="timeSavingsTable"><thead><tr><th data-sort="bank_name">銀行</th><th data-sort="1Y">1Y</th><th data-sort="2Y">2Y</th><th data-sort="3Y">3Y</th></tr></thead><tbody></tbody></table></div></section>
+      <footer class="deposit-source"><p>資料日期：<time id="sourceDate">—</time></p><p>資料來源：<a href="https://cpx.cbc.gov.tw/BIRWEB/" target="_blank" rel="noopener noreferrer">中央銀行牌告利率資訊網</a></p><p>註記：實際利率以各銀行最新公告為準。</p></footer>
+    </div>
+  </div></main>
+  <script src="./sidebar.js"></script><script src="./deposits.js"></script>
+</body></html>

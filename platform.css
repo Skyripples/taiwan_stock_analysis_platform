@@ -330,10 +330,6 @@ body.theme-light .reminder-date-block {
   margin-top: 8px;
 }
 
-.layout-main[data-page="home"] .category-card .card-action {
-  display: block;
-}
-
 .feature-icon {
   display: grid;
   width: 46px;

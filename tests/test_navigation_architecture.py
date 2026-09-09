@@ -22,6 +22,9 @@ class NavigationArchitectureTests(unittest.TestCase):
             self.assertIn(f'href="./{href}"', html)
             self.assertIn(f"<h3>{label}</h3>", html)
         self.assertEqual(html.count("category-card"), 7)
+        self.assertEqual(html.count("data-category="), 7)
+        self.assertNotIn("進入分類", html)
+        self.assertEqual(html.count("status status-available"), 7)
 
     def test_sidebar_defines_hierarchy_and_existing_links(self):
         script = self.read("sidebar.js")
@@ -32,6 +35,9 @@ class NavigationArchitectureTests(unittest.TestCase):
         self.assertIn("全球市場", script)
         self.assertIn("sidebar-group-toggle", script)
         self.assertIn("aria-expanded", script)
+        self.assertIn("taiwan_stock_navigation_groups", script)
+        self.assertIn("navigationState[group.key] = isOpen", script)
+        self.assertNotIn("querySelectorAll(\".sidebar-group.is-open\")", script)
 
     def test_market_hub_links_existing_market_features(self):
         html = self.read("market.html")
@@ -48,11 +54,16 @@ class NavigationArchitectureTests(unittest.TestCase):
         self.assertIn("screener.html", html)
 
     def test_placeholder_hubs_have_no_fake_data(self):
-        for name in ("futures.html", "funds.html", "bonds.html", "forex.html", "deposits.html"):
+        for name in ("futures.html", "funds.html", "bonds.html", "forex.html"):
             html = self.read(name)
             self.assertIn("未來功能區域", html)
             self.assertIn('href="./index.html"', html)
             self.assertNotIn("尚未匯入資料", html)
+
+    def test_deposits_hub_is_now_bank_rate_comparison(self):
+        html = self.read("deposits.html")
+        self.assertIn("銀行存款牌告利率比較", html)
+        self.assertNotIn("未來功能區域", html)
 
 
 if __name__ == "__main__":

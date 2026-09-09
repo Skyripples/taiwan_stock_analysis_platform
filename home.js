@@ -2,6 +2,7 @@
   "use strict";
 
   const featureCards = [...document.querySelectorAll(".feature-card[data-feature]")];
+  const categoryCards = [...document.querySelectorAll(".category-card[data-category]")];
   const featureByPath = {
     "calendar.html": "calendar", "prediction.html": "prediction",
     "market-overview.html": "market_overview", "chips-analysis.html": "chips_analysis",
@@ -35,9 +36,44 @@
       }
     });
   };
-  applyFeatureAccess(document.body.dataset.accessRole === "admin");
+  const categoryPermissions = {
+    market: ["calendar", "prediction", "market_overview", "chips_analysis"],
+    stocks: ["stock_analysis"],
+    futures: [], funds: [], bonds: [], forex: [], deposits: [],
+  };
+  const applyCategoryAccess = (isAdmin, permissions = {}) => {
+    categoryCards.forEach((card) => {
+      const status = card.querySelector(".status");
+      if (!card.dataset.accessHref && card.hasAttribute("href")) {
+        card.dataset.accessHref = card.getAttribute("href");
+      }
+      const required = categoryPermissions[card.dataset.category] || [];
+      const allowed = isAdmin || required.some((feature) => Boolean(permissions[feature]));
+      if (allowed) {
+        card.setAttribute("href", card.dataset.accessHref);
+        card.classList.remove("is-access-locked");
+        card.removeAttribute("aria-disabled");
+        card.removeAttribute("tabindex");
+        status?.classList.remove("status-paid");
+        status?.classList.add("status-available");
+        if (status) status.textContent = "可使用";
+      } else {
+        card.removeAttribute("href");
+        card.classList.add("is-access-locked");
+        card.setAttribute("aria-disabled", "true");
+        card.setAttribute("tabindex", "-1");
+        status?.classList.remove("status-available");
+        status?.classList.add("status-paid");
+        if (status) status.textContent = "不可使用";
+      }
+    });
+  };
+  const initialAdmin = document.body.dataset.accessRole === "admin";
+  applyFeatureAccess(initialAdmin);
+  applyCategoryAccess(initialAdmin);
   window.addEventListener("platform-access-change", (event) => {
     applyFeatureAccess(Boolean(event.detail?.isAdmin), event.detail?.permissions || {});
+    applyCategoryAccess(Boolean(event.detail?.isAdmin), event.detail?.permissions || {});
   });
 
   const dateElement = document.getElementById("nextFuturesSettlementDate");

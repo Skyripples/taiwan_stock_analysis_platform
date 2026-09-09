@@ -287,6 +287,7 @@ body.theme-light .layout-account-menu button:focus-visible { background: #edf2f7
   color: #aeb7c3;
   background: transparent;
   cursor: pointer;
+  transform: rotate(180deg);
   transition: transform 160ms ease, background 160ms ease;
 }
 
@@ -298,7 +299,7 @@ body.theme-light .layout-account-menu button:focus-visible { background: #edf2f7
 }
 
 .sidebar-group.is-open .sidebar-group-toggle {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .sidebar-subnav {
