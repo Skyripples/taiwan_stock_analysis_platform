@@ -39,23 +39,23 @@
     "kospi_change_percent"
   ],
   "coefficients": {
-    "taiex_close": -0.21493622409317986,
-    "taiex_change_percent": -0.11285645383987185,
-    "tpex_close": -0.0074866726185387105,
-    "turnover": 0.11870099919232047,
-    "advancing": -0.0035547910622768355,
-    "declining": -0.01690399607284309,
-    "foreign_cash_flow": 0.058850436965493746,
-    "foreign_futures_position": 0.013311393316089009,
-    "night_futures_change": 1.6997118844297618,
-    "tsm_adr_change_percent": -0.09553348700654282,
-    "sox_change_percent": 0.16852932957230995,
-    "sp500_change_percent": -0.3203199472028211,
-    "nasdaq_change_percent": 0.08898685490744578,
-    "vix_change_percent": -0.5927484392535283,
-    "kospi_change_percent": 0.18768076251965085
+    "taiex_close": -0.21493622409323007,
+    "taiex_change_percent": -0.11285645383986663,
+    "tpex_close": -0.007486672618555847,
+    "turnover": 0.11870099919225915,
+    "advancing": -0.0035547910622704907,
+    "declining": -0.016903996072829514,
+    "foreign_cash_flow": 0.058850436965499325,
+    "foreign_futures_position": 0.013311393316091987,
+    "night_futures_change": 1.6997118844297645,
+    "tsm_adr_change_percent": -0.09553348700655673,
+    "sox_change_percent": 0.16852932957235722,
+    "sp500_change_percent": -0.3203199472028195,
+    "nasdaq_change_percent": 0.08898685490743764,
+    "vix_change_percent": -0.5927484392535628,
+    "kospi_change_percent": 0.1876807625196392
   },
-  "trained_at": "2026-09-08T04:14:32.479265Z",
+  "trained_at": "2026-09-09T04:20:40.035374Z",
   "sample_count": 722,
   "training_sample_count": 577,
   "test_sample_count": 145,
@@ -91,7 +91,7 @@
     },
     "platt": {
       "brier_score": 0.153185099779069,
-      "log_loss": 0.5301742169215393,
+      "log_loss": 0.5301742169215394,
       "expected_calibration_error": 0.09517373120815141,
       "roc_auc": 0.8549326903757284
     }

@@ -1,15 +1,15 @@
 {
-  "feature_date": "2026-09-07",
-  "target_date": "2026-09-08",
-  "raw_up_probability": 0.195144,
-  "calibrated_up_probability": 0.276317,
-  "calibrated_down_probability": 0.723683,
-  "up_probability": 0.276317,
-  "down_probability": 0.723683,
+  "feature_date": "2026-09-08",
+  "target_date": "2026-09-09",
+  "raw_up_probability": 0.467309,
+  "calibrated_up_probability": 0.494129,
+  "calibrated_down_probability": 0.505871,
+  "up_probability": 0.494129,
+  "down_probability": 0.505871,
   "direction": "down",
-  "confidence": 0.723683,
+  "confidence": 0.505871,
   "calibration_method": "platt",
   "calibration_status": "calibrated",
   "model_version": "3.4",
-  "generated_at": "2026-09-08T04:14:33.702462Z"
+  "generated_at": "2026-09-09T04:20:41.105088Z"
 }
