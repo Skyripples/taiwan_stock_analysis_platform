@@ -35,6 +35,11 @@ jobs:
         run: |
           python scripts/update_bank_rates.py
 
+      - name: Update CBC exchange rates
+        continue-on-error: true
+        run: |
+          python scripts/update_exchange_rates.py
+
       - name: Update market data
         id: market_data
         continue-on-error: true
@@ -183,6 +188,9 @@ jobs:
           git add data/status/prediction_pipeline_status.json
           if [ -f data/deposits/bank_rates.json ]; then
             git add data/deposits/bank_rates.json
+          fi
+          if [ -f data/forex/exchange_rates.json ]; then
+            git add data/forex/exchange_rates.json
           fi
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
