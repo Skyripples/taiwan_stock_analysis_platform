@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-09T04:19:59.381426Z",
+  "updated_at": "2026-09-10T04:17:37.585355Z",
   "provider": "Yahoo",
   "dataset": "kospi_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-08",
+        "trade_date": "2026-09-09",
         "metadata": {
           "symbol": "^KS11",
           "security_name": "KOSPI Composite Index",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/%5EKS11/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11"
         },
-        "open": 7045.79,
-        "high": 7171.52,
-        "low": 6951.7798,
-        "close": 6954.52,
-        "previous_close": 6995.3901,
-        "change": -40.8701,
-        "change_percent": -0.5842,
-        "volume": 335200
+        "open": 6972.8701,
+        "high": 7112.48,
+        "low": 6968.0601,
+        "close": 7051.6401,
+        "previous_close": 6954.52,
+        "change": 97.1201,
+        "change_percent": 1.3965,
+        "volume": 322200
       }
     ]
   }
