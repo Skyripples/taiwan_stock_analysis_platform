@@ -49,6 +49,10 @@ jobs:
         continue-on-error: true
         run: python scripts/update_funds.py
 
+      - name: Update TX futures quote
+        continue-on-error: true
+        run: python scripts/update_tx_futures.py
+
       - name: Update market data
         id: market_data
         continue-on-error: true
@@ -206,6 +210,9 @@ jobs:
           fi
           if [ -f data/funds/funds.json ]; then
             git add data/funds/funds.json
+          fi
+          if [ -f data/futures/tx_futures.json ]; then
+            git add data/futures/tx_futures.json
           fi
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
