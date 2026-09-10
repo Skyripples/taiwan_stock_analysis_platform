@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./widget.css" />
   <link rel="stylesheet" href="./platform.css" />
   <link rel="stylesheet" href="./sidebar.css" />
+  <link rel="stylesheet" href="./product-integration.css" />
 </head>
 <body class="has-sidebar">
   <header class="layout-header">
@@ -104,13 +105,13 @@
       </div>
 
       <div class="feature-grid category-grid" aria-label="平台七大分類">
-        <a class="widget feature-card feature-card-available category-card" href="./market.html" data-category="market"><span class="status status-available">可使用</span><h3>市場</h3><p>掌握台股、籌碼、全球市場、事件與行情預測。</p></a>
-        <a class="widget feature-card feature-card-available category-card" href="./stocks.html" data-category="stocks"><span class="status status-available">可使用</span><h3>股票</h3><p>搜尋股票、研究個股，並依條件篩選全市場標的。</p></a>
-        <a class="widget feature-card feature-card-available category-card" href="./futures.html" data-category="futures"><span class="status status-available">可使用</span><h3>期貨</h3><p>集中未來的期貨市場資料與分析工具。</p></a>
-        <a class="widget feature-card feature-card-available category-card" href="./funds.html" data-category="funds"><span class="status status-available">可使用</span><h3>基金</h3><p>集中未來的基金資料與研究工具。</p></a>
-        <a class="widget feature-card feature-card-available category-card" href="./bonds.html" data-category="bonds"><span class="status status-available">可使用</span><h3>債券</h3><p>集中未來的債券與利率研究工具。</p></a>
-        <a class="widget feature-card feature-card-available category-card" href="./forex.html" data-category="forex"><span class="status status-available">可使用</span><h3>外匯</h3><p>集中未來的匯率資料與分析工具。</p></a>
-        <a class="widget feature-card feature-card-available category-card" href="./deposits.html" data-category="deposits"><span class="status status-available">可使用</span><h3>定存</h3><p>集中未來的定存資訊與比較工具。</p></a>
+        <a class="widget feature-card feature-card-available category-card" href="./market.html" data-category="market" data-product-summary="market"><span class="status status-available">可使用</span><h3>市場</h3><p>掌握台股、籌碼、全球市場、事件與行情預測。</p><span class="category-summary"><span data-summary-a-label>TAIEX</span><strong data-summary-a>載入中</strong><span data-summary-b-label>Market State</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./stocks.html" data-category="stocks" data-product-summary="stocks"><span class="status status-available">可使用</span><h3>股票</h3><p>搜尋股票、研究個股，並依條件篩選全市場標的。</p><span class="category-summary"><span data-summary-a-label>可搜尋商品</span><strong data-summary-a>載入中</strong><span data-summary-b-label>普通股票</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./futures.html" data-category="futures" data-product-summary="futures"><span class="status status-available">可使用</span><h3>期貨</h3><p>查看台指期 TX 近月與次月完成行情。</p><span class="category-summary"><span data-summary-a-label>TX 近月</span><strong data-summary-a>載入中</strong><span data-summary-b-label>漲跌幅</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./funds.html" data-category="funds" data-product-summary="funds"><span class="status status-available">可使用</span><h3>基金</h3><p>搜尋並比較臺灣上市、上櫃 ETF。</p><span class="category-summary"><span data-summary-a-label>ETF 數量</span><strong data-summary-a>載入中</strong><span data-summary-b-label>資料範圍</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./bonds.html" data-category="bonds" data-product-summary="bonds"><span class="status status-available">可使用</span><h3>債券</h3><p>比較台灣與美國政府公債殖利率。</p><span class="category-summary"><span data-summary-a-label>台灣 10Y</span><strong data-summary-a>載入中</strong><span data-summary-b-label>美國 10Y</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./forex.html" data-category="forex" data-product-summary="forex"><span class="status status-available">可使用</span><h3>外匯</h3><p>查詢主要貨幣對新台幣匯率與換算。</p><span class="category-summary"><span data-summary-a-label>USD / TWD</span><strong data-summary-a>載入中</strong><span data-summary-b-label>支援貨幣</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./deposits.html" data-category="deposits" data-product-summary="deposits"><span class="status status-available">可使用</span><h3>定存</h3><p>比較臺灣銀行存款牌告利率。</p><span class="category-summary"><span data-summary-a-label>銀行數量</span><strong data-summary-a>載入中</strong><span data-summary-b-label>1Y 固定最高</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
       </div>
      </section>
 
@@ -119,5 +120,6 @@
   </main>
   <script src="./sidebar.js"></script>
   <script src="./home.js"></script>
+  <script src="./product-integration.js"></script>
 </body>
 </html>

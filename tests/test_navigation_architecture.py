@@ -53,12 +53,29 @@ class NavigationArchitectureTests(unittest.TestCase):
         self.assertIn("stock-analysis.html", html)
         self.assertIn("screener.html", html)
 
-    def test_placeholder_hubs_have_no_fake_data(self):
-        for name in ("futures.html", "funds.html"):
+    def test_all_product_hubs_have_formal_content(self):
+        expected = {
+            "futures.html": "台指期 TX",
+            "funds.html": "ETF 比較",
+            "bonds.html": "政府公債殖利率比較",
+            "forex.html": "主要貨幣對 TWD 匯率",
+            "deposits.html": "銀行存款牌告利率比較",
+        }
+        for name, content in expected.items():
             html = self.read(name)
-            self.assertIn("未來功能區域", html)
-            self.assertIn('href="./index.html"', html)
-            self.assertNotIn("尚未匯入資料", html)
+            self.assertIn(content, html)
+            self.assertNotIn("未來功能區域", html)
+            self.assertIn("product-integration.js", html)
+
+    def test_product_summary_integration_covers_seven_categories(self):
+        home = self.read("index.html")
+        script = self.read("product-integration.js")
+        for category in ("market", "stocks", "futures", "funds", "bonds", "forex", "deposits"):
+            self.assertIn(f'data-product-summary="{category}"', home)
+            self.assertIn(f'{category}:', script)
+        for state in ("is-loading", "is-ready", "is-stale", "is-error", "is-empty"):
+            self.assertIn(state, self.read("product-integration.css") + script)
+        self.assertIn("返回分類總覽", script)
 
     def test_deposits_hub_is_now_bank_rate_comparison(self):
         html = self.read("deposits.html")
