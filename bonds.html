@@ -1,1 +1,45 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>債券｜台股投資分析平台</title><link rel="stylesheet" href="./page.css"><link rel="stylesheet" href="./widget.css"><link rel="stylesheet" href="./platform.css"><link rel="stylesheet" href="./sidebar.css"></head><body class="has-sidebar"><header class="layout-header"><a class="layout-brand" href="./index.html">台股投資分析平台</a><div class="layout-header-actions"><label for="themeToggleSwitch" class="layout-theme-label">深色模式</label><label class="layout-theme-switch" for="themeToggleSwitch"><input id="themeToggleSwitch" type="checkbox" role="switch"><span></span></label></div></header><button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar"><span></span><span></span><span></span></button><div class="sidebar-backdrop" data-sidebar-close></div><aside id="platformSidebar" class="sidebar"><nav class="sidebar-nav"></nav></aside><main class="layout-main"><div class="page-container"><header class="page-header"><p class="page-eyebrow">BONDS</p><h1 class="page-title">債券</h1><p class="page-description">債券與利率資訊的未來入口。</p></header><section class="widget placeholder-notice"><h2>未來功能區域</h2><p>目前尚未建立債券分析功能，可使用 Sidebar 前往其他分類。</p><a href="./index.html">返回首頁</a></section></div></main><script src="./sidebar.js"></script></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="台灣與美國政府公債殖利率比較">
+  <title>債券｜台股投資分析平台</title>
+  <link rel="stylesheet" href="./page.css"><link rel="stylesheet" href="./widget.css"><link rel="stylesheet" href="./platform.css"><link rel="stylesheet" href="./sidebar.css"><link rel="stylesheet" href="./bonds.css">
+</head>
+<body class="has-sidebar">
+  <header class="layout-header"><a class="layout-brand" href="./index.html">台股投資分析平台</a><div class="layout-header-actions"><label for="themeToggleSwitch" class="layout-theme-label">深色模式</label><label class="layout-theme-switch" for="themeToggleSwitch"><input id="themeToggleSwitch" type="checkbox" role="switch" aria-label="切換深色模式"><span></span></label></div></header>
+  <button class="sidebar-toggle" type="button" aria-label="開啟導覽列" aria-controls="platformSidebar"><span></span><span></span><span></span></button><div class="sidebar-backdrop" data-sidebar-close></div><aside id="platformSidebar" class="sidebar"><nav class="sidebar-nav"></nav></aside>
+  <main class="layout-main" data-page="bonds"><div class="page-container">
+    <header class="page-header"><p class="page-eyebrow">BONDS</p><h1 class="page-title">債券</h1><p class="page-description">政府公債殖利率比較</p></header>
+    <div class="page-body bond-page">
+      <section class="widget bond-controls">
+        <div class="bond-market-tabs" role="group" aria-label="選擇公債市場">
+          <button type="button" class="is-active" data-market="taiwan" aria-pressed="true">台灣</button>
+          <button type="button" data-market="united_states" aria-pressed="false">美國</button>
+        </div>
+        <p id="bondState" role="status">載入中</p>
+      </section>
+      <section class="page-section bond-summary">
+        <div><span>市場</span><strong id="marketName">—</strong></div>
+        <div><span>資料日期</span><strong id="dataDate">—</strong></div>
+        <div><span>2Y–10Y Spread</span><strong id="yieldSpread">—</strong></div>
+      </section>
+      <section class="page-section">
+        <h2>殖利率曲線</h2>
+        <div class="widget bond-chart-wrap"><svg id="yieldCurve" viewBox="0 0 720 300" role="img" aria-label="政府公債殖利率曲線"></svg></div>
+      </section>
+      <section class="page-section">
+        <h2>期限殖利率</h2>
+        <div class="bond-table-wrap"><table id="bondTable"><thead><tr><th data-sort="tenor_months">期限</th><th data-sort="yield">殖利率</th><th data-sort="source_date">資料日期</th></tr></thead><tbody></tbody></table></div>
+      </section>
+      <footer class="bond-source">
+        <p>最後更新：<time id="fetchedAt">—</time></p>
+        <p>台灣來源：<a href="https://www.tpex.org.tw/zh-tw/bond/info/statistics-gb/day/yield.html" target="_blank" rel="noopener noreferrer">證券櫃檯買賣中心公債殖利率曲線</a></p>
+        <p>美國來源：<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml" target="_blank" rel="noopener noreferrer">U.S. Treasury Daily Par Yield Curve Rates</a></p>
+      </footer>
+    </div>
+  </div></main>
+  <script src="./sidebar.js"></script><script src="./bonds.js"></script>
+</body>
+</html>

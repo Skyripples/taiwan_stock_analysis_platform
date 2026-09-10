@@ -40,6 +40,11 @@ jobs:
         run: |
           python scripts/update_exchange_rates.py
 
+      - name: Update government bond yields
+        continue-on-error: true
+        run: |
+          python scripts/update_bond_yields.py
+
       - name: Update market data
         id: market_data
         continue-on-error: true
@@ -191,6 +196,9 @@ jobs:
           fi
           if [ -f data/forex/exchange_rates.json ]; then
             git add data/forex/exchange_rates.json
+          fi
+          if [ -f data/bonds/bond_yields.json ]; then
+            git add data/bonds/bond_yields.json
           fi
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do

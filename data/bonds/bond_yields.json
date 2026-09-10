@@ -1,0 +1,105 @@
+{
+  "updated_at": "2026-09-10T01:24:47.887471+00:00",
+  "fetched_at": "2026-09-10T01:24:47.887471+00:00",
+  "provider": "TPEx / U.S. Treasury",
+  "dataset": "government_bond_yields",
+  "version": "1.0",
+  "unit": "percent",
+  "markets": {
+    "taiwan": {
+      "name": "台灣政府公債",
+      "data_date": "2026-09-09",
+      "source": "https://www.tpex.org.tw/zh-tw/bond/info/statistics-gb/day/yield.html",
+      "download": "https://www.tpex.org.tw/storage/bond_zone/tradeinfo/govbond/2026/202609/Curve.20260909-C.xls",
+      "yields": [
+        {
+          "tenor": "2Y",
+          "tenor_months": 24,
+          "yield": 1.69,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "5Y",
+          "tenor_months": 60,
+          "yield": 1.8223,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "10Y",
+          "tenor_months": 120,
+          "yield": 1.9205,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "20Y",
+          "tenor_months": 240,
+          "yield": 2.101,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "30Y",
+          "tenor_months": 360,
+          "yield": 1.886,
+          "source_date": "2026-09-09"
+        }
+      ],
+      "spread_10y_2y": 0.2305
+    },
+    "united_states": {
+      "name": "美國政府公債",
+      "data_date": "2026-09-09",
+      "source": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml",
+      "yields": [
+        {
+          "tenor": "3M",
+          "tenor_months": 3,
+          "yield": 3.95,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "6M",
+          "tenor_months": 6,
+          "yield": 4.01,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "1Y",
+          "tenor_months": 12,
+          "yield": 4.17,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "2Y",
+          "tenor_months": 24,
+          "yield": 4.43,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "5Y",
+          "tenor_months": 60,
+          "yield": 4.61,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "10Y",
+          "tenor_months": 120,
+          "yield": 4.83,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "20Y",
+          "tenor_months": 240,
+          "yield": 5.28,
+          "source_date": "2026-09-09"
+        },
+        {
+          "tenor": "30Y",
+          "tenor_months": 360,
+          "yield": 5.28,
+          "source_date": "2026-09-09"
+        }
+      ],
+      "spread_10y_2y": 0.4
+    }
+  }
+}

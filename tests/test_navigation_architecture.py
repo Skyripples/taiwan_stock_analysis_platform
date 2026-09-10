@@ -54,7 +54,7 @@ class NavigationArchitectureTests(unittest.TestCase):
         self.assertIn("screener.html", html)
 
     def test_placeholder_hubs_have_no_fake_data(self):
-        for name in ("futures.html", "funds.html", "bonds.html"):
+        for name in ("futures.html", "funds.html"):
             html = self.read(name)
             self.assertIn("未來功能區域", html)
             self.assertIn('href="./index.html"', html)
@@ -68,6 +68,11 @@ class NavigationArchitectureTests(unittest.TestCase):
     def test_forex_hub_is_now_exchange_rate_page(self):
         html = self.read("forex.html")
         self.assertIn("主要貨幣對 TWD 匯率", html)
+        self.assertNotIn("未來功能區域", html)
+
+    def test_bonds_hub_is_now_government_yield_page(self):
+        html = self.read("bonds.html")
+        self.assertIn("政府公債殖利率比較", html)
         self.assertNotIn("未來功能區域", html)
 
 
