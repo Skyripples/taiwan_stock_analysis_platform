@@ -45,6 +45,10 @@ jobs:
         run: |
           python scripts/update_bond_yields.py
 
+      - name: Update Taiwan ETF comparison
+        continue-on-error: true
+        run: python scripts/update_funds.py
+
       - name: Update market data
         id: market_data
         continue-on-error: true
@@ -199,6 +203,9 @@ jobs:
           fi
           if [ -f data/bonds/bond_yields.json ]; then
             git add data/bonds/bond_yields.json
+          fi
+          if [ -f data/funds/funds.json ]; then
+            git add data/funds/funds.json
           fi
           git add data/stocks/index.json data/stocks/build_stats.json data/stocks/industry_snapshot.json data/stocks/peer_rankings.json
           for file in models/model_info.json models/baseline_model.pkl models/platt_calibrator.pkl data/prediction/prediction.json; do
