@@ -1,4 +1,11 @@
 (() => {
+  if (!document.querySelector('link[href="./ux-polish.css"]')) {
+    const polishStyles = document.createElement("link");
+    polishStyles.rel = "stylesheet";
+    polishStyles.href = "./ux-polish.css";
+    document.head.append(polishStyles);
+  }
+
   const body = document.body;
   const toggle = document.querySelector(".sidebar-toggle");
   const backdrop = document.querySelector("[data-sidebar-close]");
@@ -9,6 +16,83 @@
   const previewRoleStorageKey = "taiwan_stock_preview_role";
   const navigationStateStorageKey = "taiwan_stock_navigation_groups";
   const authApiBase = "https://172-238-20-217.ip.linodeusercontent.com/api/v1";
+
+  const missingValue = "—";
+  window.PlatformUI = Object.freeze({
+    missingValue,
+    formatNumber(value, digits = 2) {
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return missingValue;
+      return Number(value).toLocaleString("zh-TW", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+    },
+    formatSigned(value, digits = 2, suffix = "") {
+      if (value === null || value === undefined || value === "" || !Number.isFinite(Number(value))) return missingValue;
+      const number = Number(value);
+      return `${number > 0 ? "+" : ""}${number.toLocaleString("zh-TW", { minimumFractionDigits: digits, maximumFractionDigits: digits })}${suffix}`;
+    },
+    formatDate(value) {
+      if (!value) return missingValue;
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? String(value) : new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
+    },
+    formatDateTime(value) {
+      if (!value) return missingValue;
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? String(value) : new Intl.DateTimeFormat("zh-TW", { dateStyle: "medium", timeStyle: "short" }).format(date);
+    },
+  });
+
+  const polishPageChrome = () => {
+    const main = document.querySelector("main");
+    const container = main?.querySelector(":scope > .page-container");
+    const header = container?.querySelector(":scope > .page-header");
+    const title = header?.querySelector(".page-title")?.textContent?.trim();
+    if (!main || !container || !header || !title) return;
+
+    document.title = main.dataset.page === "home" ? "台股投資分析平台" : `${title}｜台股投資分析平台`;
+    if (main.dataset.page === "home" || container.querySelector(":scope > .page-breadcrumb")) return;
+
+    const path = window.location.pathname.split("/").pop() || "index.html";
+    const categoryByPage = {
+      "market.html": ["市場", "market.html"],
+      "market-overview.html": ["市場", "market.html"],
+      "chips-analysis.html": ["市場", "market.html"],
+      "calendar.html": ["市場", "market.html"],
+      "prediction.html": ["市場", "market.html"],
+      "stocks.html": ["股票", "stocks.html"],
+      "stock-analysis.html": ["股票", "stocks.html"],
+      "screener.html": ["股票", "stocks.html"],
+      "futures.html": ["期貨", "futures.html"],
+      "funds.html": ["基金", "funds.html"],
+      "bonds.html": ["債券", "bonds.html"],
+      "forex.html": ["外匯", "forex.html"],
+      "deposits.html": ["定存", "deposits.html"],
+    };
+    const category = categoryByPage[path];
+    if (!category) return;
+    const breadcrumb = document.createElement("nav");
+    breadcrumb.className = "page-breadcrumb";
+    breadcrumb.setAttribute("aria-label", "麵包屑導覽");
+    const parts = ['<a href="./index.html">首頁</a>'];
+    if (category[1] !== path) parts.push(`<span class="page-breadcrumb-separator" aria-hidden="true">/</span><a href="./${category[1]}">${category[0]}</a>`);
+    parts.push(`<span class="page-breadcrumb-separator" aria-hidden="true">/</span><span aria-current="page">${title}</span>`);
+    breadcrumb.innerHTML = parts.join("");
+    container.insertBefore(breadcrumb, container.firstChild);
+  };
+
+  polishPageChrome();
+
+  document.querySelectorAll('.table-wrap, [class$="-table-wrap"], [class*="-table-wrap "]').forEach((wrapper) => {
+    if (!wrapper.hasAttribute("tabindex")) wrapper.tabIndex = 0;
+    if (!wrapper.hasAttribute("role")) wrapper.setAttribute("role", "region");
+    if (!wrapper.hasAttribute("aria-label")) {
+      const heading = wrapper.closest("section, article")?.querySelector("h2, h3")?.textContent?.trim();
+      wrapper.setAttribute("aria-label", `${heading || "資料表"}（可水平捲動）`);
+    }
+  });
+
+  document.querySelectorAll('[role="status"], .product-data-state').forEach((status) => {
+    if (!status.hasAttribute("aria-live")) status.setAttribute("aria-live", "polite");
+  });
 
   const navigationGroups = [
     {
@@ -115,6 +199,9 @@
   }
 
   if (!toggle || !backdrop || !sidebar) return;
+
+  if (!toggle.hasAttribute("aria-expanded")) toggle.setAttribute("aria-expanded", "false");
+  if (!sidebar.hasAttribute("aria-label")) sidebar.setAttribute("aria-label", "平台導覽");
 
   const featureByPath = {
     "calendar.html": "calendar", "prediction.html": "prediction",

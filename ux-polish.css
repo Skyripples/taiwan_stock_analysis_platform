@@ -1,0 +1,62 @@
+/* V3.26 shared production polish. Keep this layer small and page-framework agnostic. */
+.page-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+  margin: 0 0 1rem;
+  color: var(--muted-text, var(--muted, #aeb7c3));
+  font-size: .84rem;
+}
+
+.page-breadcrumb a {
+  color: var(--accent-color, #70aaf2);
+  text-decoration: none;
+}
+
+.page-breadcrumb a:hover { text-decoration: underline; }
+.page-breadcrumb [aria-current="page"] { overflow-wrap: anywhere; }
+.page-breadcrumb-separator { opacity: .65; }
+
+/* The breadcrumb supersedes the older one-way hub back link. */
+.page-container > .hub-back-link { display: none; }
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid #72aef7;
+  outline-offset: 3px;
+}
+
+:where(button, input, select, textarea) { font: inherit; }
+:where(button, select, input[type="checkbox"], input[type="radio"]) { cursor: pointer; }
+:where(button:disabled, input:disabled, select:disabled) { cursor: not-allowed; }
+
+.table-wrap,
+[class$="-table-wrap"],
+[class*="-table-wrap "] {
+  max-width: 100%;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-source-status,
+[class$="-source"],
+[class*="-source "] {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 430px) {
+  .page-container { width: min(100% - 20px, 1280px); }
+  .page-breadcrumb { font-size: .78rem; }
+  .layout-header-actions { gap: .4rem; }
+  .layout-main :where(.widget, .page-section) { min-width: 0; }
+  .layout-main :where(button, input, select) { max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

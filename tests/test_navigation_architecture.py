@@ -77,6 +77,16 @@ class NavigationArchitectureTests(unittest.TestCase):
             self.assertIn(state, self.read("product-integration.css") + script)
         self.assertIn("返回分類總覽", script)
 
+    def test_market_context_covers_non_market_hubs(self):
+        script = self.read("product-integration.js")
+        for category in ("stocks", "futures", "funds", "bonds", "forex", "deposits"):
+            self.assertIn(f"{category}:[", script)
+        for label in ("外資現貨", "TX 近月漲跌", "市場狀態", "美國 2Y–10Y", "USD / TWD", "1Y 定存最高"):
+            self.assertIn(label, script)
+        self.assertIn('href="./market.html">查看市場詳情', script)
+        self.assertIn("market-context.css", script)
+        self.assertIn("is-stale", self.read("product-integration.css"))
+
     def test_deposits_hub_is_now_bank_rate_comparison(self):
         html = self.read("deposits.html")
         self.assertIn("銀行存款牌告利率比較", html)

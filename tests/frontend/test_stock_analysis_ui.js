@@ -34,7 +34,7 @@ const waitFor = async (predicate, timeout = 15000) => {
   await waitFor(() => elements.get('stockContent')?.hidden === false);
   assert.equal(elements.get('stockSymbol').textContent, '2330');
   assert.equal(elements.get('stockName').textContent, '台積電');
-  assert(elements.get('dataSourceStatus').textContent.startsWith('即時 API'));
+  assert(elements.get('dataSourceStatus').textContent.startsWith('線上 API 資料'));
   assert(elements.get('summarySectionGrid').innerHTML.includes('基本面'));
   assert(elements.get('summaryStrengths').innerHTML.length > 0);
   const input = elements.get('stockSearch'); input.value = '0050';

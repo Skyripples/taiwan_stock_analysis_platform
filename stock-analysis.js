@@ -24,7 +24,7 @@
   function source(section, result) { sourceState.set(section, result.source); if (result.updatedAt) sourceState.set('updatedAt', result.updatedAt); }
   function renderSourceStatus() {
     $('dataSourceStatus').classList.remove('is-fallback');
-    $('dataSourceStatus').textContent = `即時 API${sourceState.get('updatedAt') ? `｜更新：${sourceState.get('updatedAt')}` : ''}`;
+    $('dataSourceStatus').textContent = `線上 API 資料${sourceState.get('updatedAt') ? `｜更新：${sourceState.get('updatedAt')}` : ''}`;
   }
   function results(items) {
     const box = $('searchResults');
