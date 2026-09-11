@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-10T04:17:38.090099Z",
+  "updated_at": "2026-09-11T04:17:48.562786Z",
   "provider": "Yahoo",
   "dataset": "sp500_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-09",
+        "trade_date": "2026-09-10",
         "metadata": {
           "symbol": "^GSPC",
           "security_name": "S&P 500 Index",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/%5EGSPC/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC"
         },
-        "open": 7660.6802,
-        "high": 7660.6802,
-        "low": 7624.1602,
-        "close": 7636.3599,
-        "previous_close": 7673.52,
-        "change": -37.1601,
-        "change_percent": -0.4843,
-        "volume": 4896940000
+        "open": 7594.7402,
+        "high": 7612.8599,
+        "low": 7580.0601,
+        "close": 7591.7002,
+        "previous_close": 7636.3599,
+        "change": -44.6597,
+        "change_percent": -0.5848,
+        "volume": 4893500000
       }
     ]
   }

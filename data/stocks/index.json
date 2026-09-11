@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-10T04:18:30+00:00",
+  "updated_at": "2026-09-11T04:18:18+00:00",
   "version": "2.0",
-  "active_count": 2396,
-  "company_count": 1981,
+  "active_count": 2391,
+  "company_count": 1976,
   "stocks": [
     {
       "symbol": "00400A",
@@ -982,7 +982,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00708L",
@@ -1602,7 +1602,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00788B",
@@ -3392,7 +3392,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00986D",
@@ -3672,7 +3672,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020011",
@@ -3692,7 +3692,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "02001L",
@@ -3762,7 +3762,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020032",
@@ -3772,7 +3772,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020033",
@@ -3812,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020037",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020038",
@@ -7040,7 +7040,7 @@
       "market": "TWSE",
       "industry": "通信網路業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -11440,7 +11440,7 @@
       "market": "TWSE",
       "industry": "光電業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -12340,7 +12340,7 @@
       "market": "TWSE",
       "industry": "光電業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -12870,7 +12870,7 @@
       "market": "TPEx",
       "industry": "電子零組件業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -21695,6 +21695,16 @@
       "cache_status": "partial"
     },
     {
+      "symbol": "7825",
+      "name": "和亞智慧",
+      "market": "TPEx",
+      "industry": "其他電子業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
       "symbol": "7827",
       "name": "漢康-KY創",
       "market": "TWSE",
@@ -21980,7 +21990,7 @@
       "market": "TPEx",
       "industry": "通信網路業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -22610,7 +22620,7 @@
       "market": "TPEx",
       "industry": "半導體業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
