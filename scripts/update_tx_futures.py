@@ -1,6 +1,6 @@
 """Fetch completed regular-session TX futures quotes from official TAIFEX data."""
 from __future__ import annotations
-import json, logging, math, os, re, tempfile
+import logging, math, re
 from calendar import monthcalendar
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -10,6 +10,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 from providers.taifex_night_futures_provider import _NightMarketParser
+from io_utils import atomic_write_json
 
 ROOT=Path(__file__).resolve().parents[1]; OUTPUT=ROOT/"data"/"futures"/"tx_futures.json"
 SOURCE="https://www.taifex.com.tw/cht/3/futDailyMarketReport"; TAIPEI=timezone(timedelta(hours=8)); LOGGER=logging.getLogger("tx-futures")
@@ -79,14 +80,7 @@ def validate(payload):
         if any(value is None for value in required) or item["high"]<max(item["open"],item["close"]) or item["low"]>min(item["open"],item["close"]): raise ValueError("invalid TX OHLC or activity")
 
 def atomic_write(payload,output=OUTPUT):
-    output.parent.mkdir(parents=True,exist_ok=True); fd,temp=tempfile.mkstemp(prefix=output.name,suffix=".tmp",dir=output.parent)
-    try:
-        with os.fdopen(fd,"w",encoding="utf-8") as stream: json.dump(payload,stream,ensure_ascii=False,indent=2); stream.write("\n")
-        os.replace(temp,output)
-    except Exception:
-        try: os.unlink(temp)
-        except FileNotFoundError: pass
-        raise
+    atomic_write_json(output,payload)
 
 def main():
     logging.basicConfig(level=logging.INFO,format="%(levelname)s | %(message)s")

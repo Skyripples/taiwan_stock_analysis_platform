@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import json
 import logging
-import os
 from dataclasses import dataclass
 from pathlib import Path
 from time import perf_counter
@@ -13,6 +11,7 @@ from typing import Iterable
 from config import MARKET_DATA_DIR
 from providers.base_provider import BaseProvider
 from providers.registry import registry
+from io_utils import atomic_write_json
 
 
 LOGGER = logging.getLogger("market_data")
@@ -49,17 +48,7 @@ class UpdateSummary:
 
 def write_json(output_path: Path, payload: object) -> None:
     """Write JSON atomically so an existing valid file survives failures."""
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    temporary_path = output_path.with_suffix(f"{output_path.suffix}.tmp")
-    try:
-        with temporary_path.open("w", encoding="utf-8", newline="\n") as output_file:
-            json.dump(payload, output_file, ensure_ascii=False, indent=2)
-            output_file.write("\n")
-        os.replace(temporary_path, output_path)
-    finally:
-        if temporary_path.exists():
-            temporary_path.unlink()
+    atomic_write_json(output_path, payload)
 
 
 def execute_provider(provider: BaseProvider) -> Path:

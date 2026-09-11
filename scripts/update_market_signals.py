@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-import json
 import logging
-import os
 from pathlib import Path
 
 from analysis.market_signal_engine import MarketSignalEngine
 from config import FACTOR_CONFIG_PATH, MARKET_DATA_DIR
+from io_utils import atomic_write_json
 
 
 LOGGER = logging.getLogger("market_analysis")
@@ -17,17 +16,7 @@ OUTPUT_PATH = MARKET_DATA_DIR / "market_signals.json"
 
 def write_json(output_path: Path, payload: object) -> None:
     """Write JSON atomically so failed runs preserve the previous output."""
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    temporary_path = output_path.with_suffix(f"{output_path.suffix}.tmp")
-    try:
-        with temporary_path.open("w", encoding="utf-8", newline="\n") as output_file:
-            json.dump(payload, output_file, ensure_ascii=False, indent=2)
-            output_file.write("\n")
-        os.replace(temporary_path, output_path)
-    finally:
-        if temporary_path.exists():
-            temporary_path.unlink()
+    atomic_write_json(output_path, payload)
 
 
 def generate_market_signals(

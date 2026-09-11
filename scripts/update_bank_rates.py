@@ -3,10 +3,8 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import re
 import ssl
-import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -14,6 +12,8 @@ from typing import Any
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+
+from io_utils import atomic_write_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -141,19 +141,7 @@ def validate(payload: dict[str, Any]) -> None:
 
 
 def write_atomic(payload: dict[str, Any], output: Path = OUTPUT) -> None:
-    output.parent.mkdir(parents=True, exist_ok=True)
-    fd, temporary = tempfile.mkstemp(prefix=f".{output.name}.", suffix=".tmp", dir=output.parent)
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
-            json.dump(payload, handle, ensure_ascii=False, indent=2)
-            handle.write("\n")
-        os.replace(temporary, output)
-    except Exception:
-        try:
-            os.unlink(temporary)
-        except FileNotFoundError:
-            pass
-        raise
+    atomic_write_json(output, payload)
 
 
 def main() -> int:

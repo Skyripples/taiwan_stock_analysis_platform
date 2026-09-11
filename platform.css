@@ -420,10 +420,6 @@ body.theme-light .reminder-date-block {
   font-weight: 700;
 }
 
-.placeholder-notice {
-  padding: 28px;
-}
-
 @media (max-width: 700px) {
   .category-grid,
   .hub-grid {

@@ -1,12 +1,9 @@
 """Fetch Taiwan and U.S. government bond yield curves from official sources."""
 from __future__ import annotations
 
-import json
 import logging
 import math
-import os
 import re
-import tempfile
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -16,6 +13,8 @@ import requests
 import xlrd
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+
+from io_utils import atomic_write_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -133,18 +132,7 @@ def validate(payload: dict[str, Any]) -> None:
 
 
 def write_atomic(payload: dict[str, Any], output: Path = OUTPUT) -> None:
-    output.parent.mkdir(parents=True, exist_ok=True)
-    handle, temporary_name = tempfile.mkstemp(prefix=f".{output.name}.", suffix=".tmp", dir=output.parent)
-    temporary = Path(temporary_name)
-    try:
-        with os.fdopen(handle, "w", encoding="utf-8", newline="\n") as stream:
-            json.dump(payload, stream, ensure_ascii=False, indent=2)
-            stream.write("\n")
-            stream.flush()
-            os.fsync(stream.fileno())
-        os.replace(temporary, output)
-    finally:
-        temporary.unlink(missing_ok=True)
+    atomic_write_json(output, payload)
 
 
 def main() -> int:

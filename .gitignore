@@ -15,6 +15,7 @@ data/stocks/history/
 !.env.example
 *.log
 *.tmp
+*.bak
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/

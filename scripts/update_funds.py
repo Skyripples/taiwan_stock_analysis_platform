@@ -1,6 +1,6 @@
 """Build a lightweight Taiwan ETF comparison snapshot from official exchanges."""
 from __future__ import annotations
-import calendar, json, logging, math, os, tempfile
+import calendar, json, logging, math
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -8,6 +8,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import urllib3
+from io_utils import atomic_write_json
 
 ROOT=Path(__file__).resolve().parents[1]; INDEX=ROOT/"data"/"stocks"/"index.json"; OUTPUT=ROOT/"data"/"funds"/"funds.json"
 TWSE_LATEST="https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL"; TPEX_LATEST="https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes"
@@ -108,14 +109,7 @@ def validate(payload):
         if any(value is not None and not math.isfinite(value) for value in fund.get("returns",{}).values()): raise ValueError("invalid ETF return")
 
 def atomic_write(payload,output=OUTPUT):
-    output.parent.mkdir(parents=True,exist_ok=True); fd,temporary=tempfile.mkstemp(prefix=output.name,suffix=".tmp",dir=output.parent)
-    try:
-        with os.fdopen(fd,"w",encoding="utf-8") as stream: json.dump(payload,stream,ensure_ascii=False,indent=2); stream.write("\n")
-        os.replace(temporary,output)
-    except Exception:
-        try: os.unlink(temporary)
-        except FileNotFoundError: pass
-        raise
+    atomic_write_json(output,payload)
 
 def main():
     logging.basicConfig(level=logging.INFO,format="%(levelname)s | %(message)s")
