@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T04:18:18+00:00",
+  "updated_at": "2026-09-12T04:17:12+00:00",
   "version": "2.0",
   "active_count": 2391,
   "company_count": 1976,
@@ -282,7 +282,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00631L",
@@ -432,7 +432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00645",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00685L",
@@ -982,7 +982,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00708L",
@@ -1602,7 +1602,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00788B",
@@ -1842,7 +1842,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00857B",
@@ -3652,7 +3652,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020000",
@@ -3672,7 +3672,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020011",
@@ -3712,7 +3712,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020025",
@@ -3732,7 +3732,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020029",
@@ -3812,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020037",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020038",
@@ -4302,7 +4302,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1313",
@@ -9582,7 +9582,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2891C",
@@ -10318,7 +10318,7 @@
       "symbol": "3054",
       "name": "立萬利",
       "market": "TWSE",
-      "industry": "食品工業",
+      "industry": "電子通路業",
       "instrument_type": "company",
       "active": true,
       "cached": true,
@@ -22712,7 +22712,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "8354",
@@ -23882,7 +23882,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "9942",

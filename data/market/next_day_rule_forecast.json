@@ -1,85 +1,85 @@
 {
-  "updated_at": "2026-09-08T00:48:51.593188Z",
+  "updated_at": "2026-09-12T04:17:12.931867Z",
   "version": "1.0",
   "forecast_type": "statistical_next_day_rule_forecast",
-  "feature_date": "2026-09-07",
-  "target_date": "2026-09-08",
-  "feature_close": 47326.27,
-  "score": 26.13043479692084,
+  "feature_date": "2026-09-11",
+  "target_date": "2026-09-14",
+  "feature_close": 46184.85,
+  "score": 74.98664008309468,
   "max_score": 100,
   "direction": "Neutral",
   "confidence_status": "low_confidence",
   "training": {
-    "sample_size": 743,
-    "latest_completed_target_date": "2026-09-07",
+    "sample_size": 747,
+    "latest_completed_target_date": "2026-09-11",
     "weight_method": "expanding history only; accuracy edge adjusted by yearly stability",
     "rule_quality": {
       "night_futures_direction": {
-        "sample_size": 740,
-        "accuracy": 0.7378378378378379,
-        "stability": 0.9262391823453129,
-        "raw_weight": 0.22029472444969606
+        "sample_size": 744,
+        "accuracy": 0.739247311827957,
+        "stability": 0.9231266899631404,
+        "raw_weight": 0.22085557905032124
       },
       "us_market_direction": {
-        "sample_size": 525,
-        "accuracy": 0.7504761904761905,
-        "stability": 0.9713788030602536,
-        "raw_weight": 0.24330726209985404
+        "sample_size": 529,
+        "accuracy": 0.7504725897920604,
+        "stability": 0.9714223183289646,
+        "raw_weight": 0.24331466385366313
       },
       "sox_tsm_adr_resonance": {
-        "sample_size": 515,
-        "accuracy": 0.7456310679611651,
-        "stability": 0.9381388870478186,
-        "raw_weight": 0.23043605672145448
+        "sample_size": 518,
+        "accuracy": 0.7451737451737451,
+        "stability": 0.9384582369291579,
+        "raw_weight": 0.2300853206370715
       },
       "vix_risk_off": {
-        "sample_size": 526,
-        "accuracy": 0.7015209125475285,
-        "stability": 0.9320640253952847,
-        "raw_weight": 0.1878303929503805
+        "sample_size": 530,
+        "accuracy": 0.7018867924528301,
+        "stability": 0.934657015305605,
+        "raw_weight": 0.18869490686358437
       }
     }
   },
   "weights": {
-    "night_futures_direction": 24.980452344298786,
-    "us_market_direction": 27.58997284701252,
-    "sox_tsm_adr_resonance": 26.130434796920838,
-    "vix_risk_off": 21.299140011767854
+    "night_futures_direction": 25.01335991690532,
+    "us_market_direction": 27.55700030854012,
+    "sox_tsm_adr_resonance": 26.058689399828683,
+    "vix_risk_off": 21.37095037472588
   },
   "contributions": {
     "night_futures_direction": {
       "signal": -1,
-      "weight": 24.980452344298786,
-      "weighted_vote": -24.980452344298786,
+      "weight": 25.01335991690532,
+      "weighted_vote": -25.01335991690532,
       "display_name": "夜盤方向"
     },
     "us_market_direction": {
-      "signal": -1,
-      "weight": 27.58997284701252,
-      "weighted_vote": -27.58997284701252,
+      "signal": 1,
+      "weight": 27.55700030854012,
+      "weighted_vote": 27.55700030854012,
       "display_name": "美國市場方向"
     },
     "sox_tsm_adr_resonance": {
       "signal": 1,
-      "weight": 26.130434796920838,
-      "weighted_vote": 26.130434796920838,
+      "weight": 26.058689399828683,
+      "weighted_vote": 26.058689399828683,
       "display_name": "SOX + TSM ADR 共振"
     },
     "vix_risk_off": {
-      "signal": -1,
-      "weight": 21.299140011767854,
-      "weighted_vote": -21.299140011767854,
+      "signal": 1,
+      "weight": 21.37095037472588,
+      "weighted_vote": 21.37095037472588,
       "display_name": "VIX risk-off"
     }
   },
   "source_dates": {
-    "market": "2026-09-07",
-    "night": "2026-09-08",
-    "sp500": "2026-09-04",
-    "nasdaq": "2026-09-04",
-    "sox": "2026-09-04",
-    "tsm": "2026-09-04",
-    "vix": "2026-09-07"
+    "market": "2026-09-11",
+    "night": "2026-09-11",
+    "sp500": "2026-09-11",
+    "nasdaq": "2026-09-11",
+    "sox": "2026-09-11",
+    "tsm": "2026-09-11",
+    "vix": "2026-09-11"
   },
   "historical_validation": {
     "oos_samples": 472,

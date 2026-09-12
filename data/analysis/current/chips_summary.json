@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-11T04:17:58+00:00",
+  "updated_at": "2026-09-12T04:16:51+00:00",
   "version": "1.0",
-  "trade_date": "2026-09-10",
-  "sample_count": 269,
+  "trade_date": "2026-09-11",
+  "sample_count": 270,
   "units": {
     "institutional_amount": "TWD",
     "futures_position": "contracts",
@@ -12,36 +12,36 @@
   "institutional": {
     "foreign_streak": {
       "direction": "sell",
-      "days": 1
+      "days": 2
     },
     "investment_trust_streak": {
       "direction": "buy",
-      "days": 2
+      "days": 3
     },
-    "foreign_5d_sum": 140379478058,
-    "foreign_20d_sum": 196929465470,
-    "investment_trust_5d_sum": 6005479690,
-    "investment_trust_20d_sum": -8963407162,
-    "foreign_20d_zscore": -1.147102
+    "foreign_5d_sum": -5103920671,
+    "foreign_20d_sum": 62307690123,
+    "investment_trust_5d_sum": 15130071895,
+    "investment_trust_20d_sum": -8722281302,
+    "foreign_20d_zscore": -1.993815
   },
   "futures": {
-    "current_net_position": -83918,
-    "net_change_1d": -2852,
-    "net_change_5d": -2343,
-    "net_change_20d": 2331,
+    "current_net_position": -85067,
+    "net_change_1d": -1149,
+    "net_change_5d": -2678,
+    "net_change_20d": 112,
     "position_action": "increasing_shorts",
-    "net_position_20d_zscore": -0.64062
+    "net_position_20d_zscore": -1.305329
   },
   "margin": {
-    "current_margin_balance": 591897687,
-    "current_short_balance": 197447,
-    "margin_change_1d": 4730876,
-    "margin_change_5d": 13158380,
-    "margin_change_20d": 42117033,
-    "short_change_1d": -6163,
-    "short_change_5d": -25396,
-    "short_change_20d": -16599,
-    "margin_balance_20d_zscore": 1.537331
+    "current_margin_balance": 587871180,
+    "current_short_balance": 197926,
+    "margin_change_1d": -4026507,
+    "margin_change_5d": 5976592,
+    "margin_change_20d": 40811862,
+    "short_change_1d": 479,
+    "short_change_5d": -21234,
+    "short_change_20d": -24901,
+    "margin_balance_20d_zscore": 1.176416
   },
   "statuses": {
     "institutional_status": "bullish",
@@ -67,19 +67,6 @@
   },
   "history": {
     "last_20": [
-      {
-        "trade_date": "2026-08-14",
-        "foreign_net": 45351330421,
-        "investment_trust_net": 7972599882,
-        "dealer_net": -1661188109,
-        "foreign_futures_long": 12934,
-        "foreign_futures_short": 98113,
-        "foreign_futures_net": -85179,
-        "margin_balance": 547059318,
-        "margin_change": -2721336,
-        "short_balance": 222827,
-        "short_change": 8781
-      },
       {
         "trade_date": "2026-08-17",
         "foreign_net": 45447285026,
@@ -326,22 +313,22 @@
         "margin_change": 4730876,
         "short_balance": 197447,
         "short_change": -6163
+      },
+      {
+        "trade_date": "2026-09-11",
+        "foreign_net": -89270444926,
+        "investment_trust_net": 8213725742,
+        "dealer_net": -30201800886,
+        "foreign_futures_long": 8242,
+        "foreign_futures_short": 93309,
+        "foreign_futures_net": -85067,
+        "margin_balance": 587871180,
+        "margin_change": -4026507,
+        "short_balance": 197926,
+        "short_change": 479
       }
     ],
     "last_60": [
-      {
-        "trade_date": "2026-06-17",
-        "foreign_net": -20683737771,
-        "investment_trust_net": -206062001,
-        "dealer_net": -4268862356,
-        "foreign_futures_long": 9996,
-        "foreign_futures_short": 77390,
-        "foreign_futures_net": -67394,
-        "margin_balance": 583911936,
-        "margin_change": 12604287,
-        "short_balance": 191375,
-        "short_change": -3150
-      },
       {
         "trade_date": "2026-06-18",
         "foreign_net": 21146738929,
@@ -1108,6 +1095,19 @@
         "margin_change": 4730876,
         "short_balance": 197447,
         "short_change": -6163
+      },
+      {
+        "trade_date": "2026-09-11",
+        "foreign_net": -89270444926,
+        "investment_trust_net": 8213725742,
+        "dealer_net": -30201800886,
+        "foreign_futures_long": 8242,
+        "foreign_futures_short": 93309,
+        "foreign_futures_net": -85067,
+        "margin_balance": 587871180,
+        "margin_change": -4026507,
+        "short_balance": 197926,
+        "short_change": 479
       }
     ]
   }
