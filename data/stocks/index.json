@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15T04:35:35+00:00",
+  "updated_at": "2026-09-16T04:31:39+00:00",
   "version": "2.0",
   "active_count": 2392,
   "company_count": 1977,
@@ -1942,7 +1942,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00870B",
@@ -3392,7 +3392,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00986D",
@@ -3832,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020039",

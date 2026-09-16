@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-15T04:35:01.427216Z",
+  "updated_at": "2026-09-16T04:31:03.030229Z",
   "provider": "Yahoo",
   "dataset": "dxy_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-14",
+        "trade_date": "2026-09-15",
         "metadata": {
           "symbol": "DX-Y.NYB",
           "security_name": "U.S. Dollar Index",
@@ -17,13 +17,13 @@
           "source": "https://finance.yahoo.com/quote/DX-Y.NYB/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB"
         },
-        "open": 99.1,
-        "high": 99.74,
-        "low": 99.07,
-        "close": 99.46,
-        "previous_close": 99.12,
-        "change": 0.34,
-        "change_percent": 0.343,
+        "open": 99.48,
+        "high": 99.69,
+        "low": 99.48,
+        "close": 99.65,
+        "previous_close": 99.46,
+        "change": 0.19,
+        "change_percent": 0.191,
         "volume": 0
       }
     ]
