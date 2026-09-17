@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-16T04:31:03.720517Z",
+  "updated_at": "2026-09-17T04:36:53.572676Z",
   "provider": "Yahoo",
   "dataset": "tsm_adr",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-15",
+        "trade_date": "2026-09-16",
         "metadata": {
           "symbol": "TSM",
           "security_name": "Taiwan Semiconductor Manufacturing Company Limited ADR",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/TSM/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/TSM"
         },
-        "open": 421.94,
-        "high": 421.94,
-        "low": 412.55,
-        "close": 413.75,
-        "previous_close": 418.01,
-        "change": -4.26,
-        "change_percent": -1.0191,
-        "volume": 9452600
+        "open": 418.2,
+        "high": 419.85,
+        "low": 413.88,
+        "close": 417.72,
+        "previous_close": 413.75,
+        "change": 3.97,
+        "change_percent": 0.9595,
+        "volume": 10454100
       }
     ]
   }

@@ -1,31 +1,31 @@
 {
-  "updated_at": "2026-09-16T04:30:55.906993Z",
+  "updated_at": "2026-09-17T04:36:47.049463Z",
   "provider": "TAIFEX",
   "dataset": "night_futures",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-16",
+        "trade_date": "2026-09-17",
         "metadata": {
           "market": "TAIFEX",
           "product_name": "臺股期貨",
           "product_code": "TX",
           "session": "after_hours",
-          "contract_month": "202609",
+          "contract_month": "202610",
           "currency": "TWD",
           "price_unit": "point",
           "volume_unit": "contract",
           "change_basis": "previous_regular_session_settlement_price",
           "source": "https://www.taifex.com.tw/cht/3/futDailyMarketReport"
         },
-        "open": 45533,
-        "high": 45736,
-        "low": 45330,
-        "close": 45529,
-        "change": -63,
-        "change_percent": -0.14,
-        "volume": 22905
+        "open": 46153,
+        "high": 46626,
+        "low": 46056,
+        "close": 46382,
+        "change": 322,
+        "change_percent": 0.7,
+        "volume": 32283
       }
     ]
   }

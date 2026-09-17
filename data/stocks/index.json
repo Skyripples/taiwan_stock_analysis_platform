@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-16T04:31:39+00:00",
+  "updated_at": "2026-09-17T04:37:24+00:00",
   "version": "2.0",
-  "active_count": 2392,
-  "company_count": 1977,
+  "active_count": 2393,
+  "company_count": 1978,
   "stocks": [
     {
       "symbol": "00400A",
@@ -282,7 +282,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00631L",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00685L",
@@ -3392,7 +3392,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00986D",
@@ -3602,7 +3602,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "01002T",
@@ -3782,7 +3782,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020034",
@@ -3812,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020037",
@@ -3832,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020039",
@@ -9787,6 +9787,16 @@
     {
       "symbol": "2937",
       "name": "集雅社",
+      "market": "TPEx",
+      "industry": "居家生活",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "2938",
+      "name": "床的世界",
       "market": "TPEx",
       "industry": "居家生活",
       "instrument_type": "company",
@@ -19112,7 +19122,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6593",
@@ -22712,7 +22722,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "8354",

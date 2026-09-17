@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-16T04:29:29+00:00",
+  "updated_at": "2026-09-17T04:35:17+00:00",
   "provider": "CBC",
   "dataset": "bank_deposit_rates",
   "version": "1.0",
   "status": "success",
-  "source_date": "2026-09-16",
-  "fetched_at": "2026-09-16T04:29:29+00:00",
+  "source_date": "2026-09-17",
+  "fetched_at": "2026-09-17T04:35:17+00:00",
   "source": "https://cpx.cbc.gov.tw/BIRWEB/",
   "unit": "percent_per_annum",
   "banks": [
@@ -70,7 +70,7 @@
       },
       "time_deposit": {
         "1M": {
-          "fixed": 0.07,
+          "fixed": 1.25,
           "variable": null
         },
         "3M": {
@@ -2774,32 +2774,32 @@
       },
       "time_deposit": {
         "1M": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.22,
+          "variable": 1.22
         },
         "3M": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.24,
+          "variable": 1.24
         },
         "6M": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.24,
+          "variable": 1.24
         },
         "9M": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.24,
+          "variable": 1.24
         },
         "1Y": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.24,
+          "variable": 1.24
         },
         "2Y": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.24,
+          "variable": 1.24
         },
         "3Y": {
-          "fixed": null,
-          "variable": null
+          "fixed": 1.24,
+          "variable": 1.24
         }
       },
       "time_savings_deposit": {
