@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-19T04:19:38.291068Z",
+  "updated_at": "2026-09-21T04:35:41.829092Z",
   "version": "2.0",
   "signals": {
     "foreign_cash_flow": {
@@ -19,12 +19,12 @@
       "weighted_score": -1
     },
     "night_futures": {
-      "value": 701,
-      "status": "bullish",
-      "score": 1,
+      "value": -23,
+      "status": "bearish",
+      "score": -1,
       "enabled": true,
       "weight": 1,
-      "weighted_score": 1
+      "weighted_score": -1
     },
     "tsm_adr": {
       "value": 4.41,
@@ -118,15 +118,15 @@
       "rule_id": "night_futures",
       "category": "futures",
       "display_name": "台指期夜盤",
-      "value": 1.51,
-      "score": 2,
+      "value": -0.05,
+      "score": 0,
       "weight": 100.0,
-      "status": "strong_bullish",
-      "rationale": "台指期夜盤=1.51，依設定門檻評為 strong_bullish（+2）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.0}",
+      "status": "neutral",
+      "rationale": "台指期夜盤=-0.05，依設定門檻評為 neutral（+0）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.0}",
       "enabled": true,
       "available": true,
       "stale": false,
-      "source_trade_date": "2026-09-18"
+      "source_trade_date": "2026-09-21"
     },
     "tsm_adr": {
       "rule_id": "tsm_adr",
@@ -252,11 +252,11 @@
     "futures": {
       "module_id": "futures",
       "display_name": "期貨",
-      "score": 100,
+      "score": 50,
       "max_score": 100,
-      "raw_score": 2,
-      "percentage": 100,
-      "status": "Strong Bullish",
+      "raw_score": 0,
+      "percentage": 50,
+      "status": "Neutral",
       "weight": 20.0,
       "coverage": 100,
       "available_rules": 1,
@@ -303,10 +303,10 @@
     }
   },
   "market_score": {
-    "score": 83.75,
+    "score": 73.75,
     "max_score": 100,
-    "percentage": 83.75,
-    "status": "Strong Bullish",
+    "percentage": 73.75,
+    "status": "Bullish",
     "available_modules": 5,
     "enabled_modules": 5
   },
