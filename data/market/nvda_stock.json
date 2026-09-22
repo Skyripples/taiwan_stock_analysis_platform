@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-21T04:35:14.197382Z",
+  "updated_at": "2026-09-22T04:31:25.472405Z",
   "provider": "Yahoo",
   "dataset": "nvda_stock",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-18",
+        "trade_date": "2026-09-21",
         "metadata": {
           "symbol": "NVDA",
           "security_name": "NVIDIA Corporation",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/NVDA/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA"
         },
-        "open": 219.35,
-        "high": 222.73,
-        "low": 218.03,
-        "close": 222.27,
-        "previous_close": 219.34,
-        "change": 2.93,
-        "change_percent": 1.3358,
-        "volume": 189683500
+        "open": 222.94,
+        "high": 228.5,
+        "low": 221.56,
+        "close": 227.38,
+        "previous_close": 222.27,
+        "change": 5.11,
+        "change_percent": 2.299,
+        "volume": 109479900
       }
     ]
   }
