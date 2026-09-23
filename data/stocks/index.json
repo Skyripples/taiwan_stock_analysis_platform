@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-22T04:32:12+00:00",
+  "updated_at": "2026-09-23T04:28:36+00:00",
   "version": "2.0",
-  "active_count": 2396,
-  "company_count": 1982,
+  "active_count": 2398,
+  "company_count": 1984,
   "stocks": [
     {
       "symbol": "00400A",
@@ -432,7 +432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00645",
@@ -542,7 +542,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00657",
@@ -982,7 +982,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00708L",
@@ -1942,7 +1942,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00870B",
@@ -3392,7 +3392,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00986D",
@@ -3672,7 +3672,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020011",
@@ -3692,7 +3692,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "02001L",
@@ -3852,7 +3852,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020041",
@@ -9592,7 +9592,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2892",
@@ -19112,7 +19112,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6592B",
@@ -21635,6 +21635,16 @@
       "cache_status": "partial"
     },
     {
+      "symbol": "7812",
+      "name": "稜研科技*-創",
+      "market": "TWSE",
+      "industry": "通信網路業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
       "symbol": "7814",
       "name": "海昌生技",
       "market": "TPEx",
@@ -21769,6 +21779,16 @@
       "name": "和運租車",
       "market": "TWSE",
       "industry": "其他",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "7856",
+      "name": "漢測",
+      "market": "TPEx",
+      "industry": "半導體業",
       "instrument_type": "company",
       "active": true,
       "cached": true,

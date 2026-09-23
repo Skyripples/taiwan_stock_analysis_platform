@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T04:31:25.862941Z",
+  "updated_at": "2026-09-23T04:27:59.783201Z",
   "provider": "Yahoo",
   "dataset": "soxx_etf",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 533.07,
         "change": 26.27,
         "change_percent": 4.9281,
-        "volume": 7727300
+        "volume": 7966100
       }
     ]
   }

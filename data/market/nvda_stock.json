@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T04:31:25.472405Z",
+  "updated_at": "2026-09-23T04:27:59.241470Z",
   "provider": "Yahoo",
   "dataset": "nvda_stock",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 222.27,
         "change": 5.11,
         "change_percent": 2.299,
-        "volume": 109479900
+        "volume": 109806100
       }
     ]
   }

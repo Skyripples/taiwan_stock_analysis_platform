@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T04:31:26.086570Z",
+  "updated_at": "2026-09-23T04:28:00.160191Z",
   "provider": "Yahoo",
   "dataset": "tsm_adr",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 434.67,
         "change": 10.47,
         "change_percent": 2.4087,
-        "volume": 9917100
+        "volume": 9943100
       }
     ]
   }

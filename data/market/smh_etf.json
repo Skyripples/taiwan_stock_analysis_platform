@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T04:31:25.588885Z",
+  "updated_at": "2026-09-23T04:27:59.445694Z",
   "provider": "Yahoo",
   "dataset": "smh_etf",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 573,
         "change": 23.03,
         "change_percent": 4.0192,
-        "volume": 9785000
+        "volume": 9886000
       }
     ]
   }
