@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-09-19T04:19:38.459792Z",
+  "updated_at": "2026-09-26T04:40:38.314775Z",
   "version": "1.0",
   "forecast_type": "statistical_next_day_rule_forecast",
-  "feature_date": "2026-09-18",
-  "target_date": "2026-09-21",
-  "feature_close": 47180.75,
-  "score": 100.0,
+  "feature_date": "2026-09-24",
+  "target_date": "2026-09-29",
+  "feature_close": 48024.6,
+  "score": 66.17133275854138,
   "max_score": 100,
-  "direction": "Strong Bullish",
-  "confidence_status": "extreme",
+  "direction": "Neutral",
+  "confidence_status": "low_confidence",
   "training": {
     "sample_size": 747,
     "latest_completed_target_date": "2026-09-11",
@@ -48,9 +48,9 @@
   },
   "contributions": {
     "night_futures_direction": {
-      "signal": 1,
+      "signal": -1,
       "weight": 25.01335991690532,
-      "weighted_vote": 25.01335991690532,
+      "weighted_vote": -25.01335991690532,
       "display_name": "夜盤方向"
     },
     "us_market_direction": {
@@ -60,9 +60,9 @@
       "display_name": "美國市場方向"
     },
     "sox_tsm_adr_resonance": {
-      "signal": 1,
+      "signal": 0,
       "weight": 26.058689399828683,
-      "weighted_vote": 26.058689399828683,
+      "weighted_vote": 0.0,
       "display_name": "SOX + TSM ADR 共振"
     },
     "vix_risk_off": {
@@ -73,13 +73,13 @@
     }
   },
   "source_dates": {
-    "market": "2026-09-18",
-    "night": "2026-09-18",
-    "sp500": "2026-09-18",
-    "nasdaq": "2026-09-18",
-    "sox": "2026-09-18",
-    "tsm": "2026-09-18",
-    "vix": "2026-09-18"
+    "market": "2026-09-24",
+    "night": "2026-09-24",
+    "sp500": "2026-09-25",
+    "nasdaq": "2026-09-25",
+    "sox": "2026-09-25",
+    "tsm": "2026-09-25",
+    "vix": "2026-09-25"
   },
   "historical_validation": {
     "oos_samples": 472,
