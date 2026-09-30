@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-29T05:26:55+00:00",
+  "updated_at": "2026-09-30T05:16:26+00:00",
   "version": "2.0",
-  "active_count": 2395,
-  "company_count": 1981,
+  "active_count": 2397,
+  "company_count": 1983,
   "stocks": [
     {
       "symbol": "00400A",
@@ -432,7 +432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00645",
@@ -982,7 +982,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00708L",
@@ -3662,7 +3662,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020001",
@@ -3752,7 +3752,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020031",
@@ -3832,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020039",
@@ -4660,7 +4660,7 @@
       "market": "TWSE",
       "industry": "紡織纖維",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -9592,7 +9592,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2892",
@@ -18870,7 +18870,7 @@
       "market": "TWSE",
       "industry": "生技醫療業",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -19112,7 +19112,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6592B",
@@ -19122,7 +19122,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6593",
@@ -22742,7 +22742,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "8354",
