@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-09-30T05:15:33.034223Z",
+  "updated_at": "2026-10-01T05:29:07.177461Z",
   "provider": "Yahoo",
   "dataset": "avgo_stock",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-29",
+        "trade_date": "2026-09-30",
         "metadata": {
           "symbol": "AVGO",
           "security_name": "Broadcom Inc.",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/AVGO/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO"
         },
-        "open": 357,
-        "high": 361.86,
-        "low": 354,
-        "close": 355.1,
-        "previous_close": 349.57,
-        "change": 5.53,
-        "change_percent": 1.5819,
-        "volume": 19144700
+        "open": 356.9,
+        "high": 357.9,
+        "low": 350.69,
+        "close": 351.19,
+        "previous_close": 355.1,
+        "change": -3.91,
+        "change_percent": -1.1011,
+        "volume": 19694200
       }
     ]
   }
