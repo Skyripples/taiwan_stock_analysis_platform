@@ -1,26 +1,26 @@
 {
-  "updated_at": "2026-10-01T05:29:05.586855Z",
+  "updated_at": "2026-10-02T05:17:18.798474Z",
   "provider": "TWSE/TPEx",
   "dataset": "taiwan_market_overview",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-09-30",
+        "trade_date": "2026-10-01",
         "taiex": {
-          "close": 47940.13,
-          "change": 308.17,
-          "change_percent": 0.65
+          "close": 48353.49,
+          "change": 413.36,
+          "change_percent": 0.86
         },
         "tpex": {
-          "close": 417.07,
-          "change": 4.82,
-          "change_percent": 1.1692
+          "close": 418.82,
+          "change": 1.75,
+          "change_percent": 0.4196
         },
-        "turnover": 1153854702613,
-        "advancing": 1343,
-        "declining": 456,
-        "unchanged": 158,
+        "turnover": 1129900252416,
+        "advancing": 755,
+        "declining": 968,
+        "unchanged": 221,
         "metadata": {
           "currency": "TWD",
           "turnover_unit": "元",

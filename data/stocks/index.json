@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-01T05:30:21+00:00",
+  "updated_at": "2026-10-02T05:19:15+00:00",
   "version": "2.0",
-  "active_count": 2395,
-  "company_count": 1981,
+  "active_count": 2392,
+  "company_count": 1979,
   "stocks": [
     {
       "symbol": "00400A",
@@ -632,7 +632,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00668",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00685L",
@@ -3692,7 +3692,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "02001L",
@@ -3812,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020037",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020038",
@@ -3832,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020039",
@@ -4302,7 +4302,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "1313",
@@ -5090,7 +5090,7 @@
       "market": "TWSE",
       "industry": "ETF／其他",
       "instrument_type": "warrant",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "complete"
     },
@@ -7050,7 +7050,7 @@
       "market": "TWSE",
       "industry": "光電業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -9622,7 +9622,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2901",
@@ -10490,7 +10490,7 @@
       "market": "TPEx",
       "industry": "數位雲端",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -22742,7 +22742,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "8354",
