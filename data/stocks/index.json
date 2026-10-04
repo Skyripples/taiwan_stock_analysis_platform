@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-02T05:19:15+00:00",
+  "updated_at": "2026-10-04T05:33:07+00:00",
   "version": "2.0",
-  "active_count": 2392,
-  "company_count": 1979,
+  "active_count": 2393,
+  "company_count": 1980,
   "stocks": [
     {
       "symbol": "00400A",
@@ -632,7 +632,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00668",
@@ -3692,7 +3692,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "02001L",
@@ -3722,7 +3722,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020028",
@@ -3802,7 +3802,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020036",
@@ -3832,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020039",
@@ -3852,7 +3852,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020041",
@@ -4302,7 +4302,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1313",
@@ -9622,7 +9622,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2901",
@@ -14580,7 +14580,7 @@
       "market": "TPEx",
       "industry": "文化創意業",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -19112,7 +19112,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6592B",
