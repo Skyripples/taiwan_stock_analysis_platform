@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-04T05:31:14.212476+00:00",
+  "updated_at": "2026-10-05T05:14:17.286486+00:00",
   "provider": "CBC",
   "dataset": "twd_exchange_rates",
   "version": "1.0",
   "data_date": "2026-09-30",
   "latest_source_date": "2026-09-30",
-  "fetched_at": "2026-10-04T05:31:14.212476+00:00",
+  "fetched_at": "2026-10-05T05:14:17.286486+00:00",
   "source": "https://www.cbc.gov.tw/Public/Data/economic/statistic/fx/%E6%97%A5%E8%B3%87%E6%96%99%20(2002%E5%B9%B4%E8%BF%84%E4%BB%8A).xls",
   "sources": [
     "https://cpx.cbc.gov.tw/API/DataAPI/Get?FileName=BP01D01",
