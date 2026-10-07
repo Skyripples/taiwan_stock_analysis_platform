@@ -55,7 +55,7 @@
     "vix_change_percent": -0.5927484392535628,
     "kospi_change_percent": 0.1876807625196392
   },
-  "trained_at": "2026-10-05T05:17:07.461831Z",
+  "trained_at": "2026-10-07T05:36:36.578350Z",
   "sample_count": 722,
   "training_sample_count": 577,
   "test_sample_count": 145,
