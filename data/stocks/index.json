@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-07T05:36:35+00:00",
+  "updated_at": "2026-10-08T05:43:59+00:00",
   "version": "2.0",
-  "active_count": 2394,
-  "company_count": 1982,
+  "active_count": 2391,
+  "company_count": 1979,
   "stocks": [
     {
       "symbol": "00400A",
@@ -772,7 +772,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -1202,7 +1202,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00735",
@@ -1842,7 +1842,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00857B",
@@ -3662,7 +3662,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020001",
@@ -3742,7 +3742,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020030",
@@ -3772,7 +3772,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020033",
@@ -3802,7 +3802,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020036",
@@ -3812,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020037",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020038",
@@ -3882,7 +3882,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1102",
@@ -6550,7 +6550,7 @@
       "market": "TPEx",
       "industry": "電機機械",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -12550,7 +12550,7 @@
       "market": "TPEx",
       "industry": "通信網路業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -13260,7 +13260,7 @@
       "market": "TWSE",
       "industry": "生技醫療業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -13790,7 +13790,7 @@
       "market": "TPEx",
       "industry": "電機機械",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -15560,7 +15560,7 @@
       "market": "TPEx",
       "industry": "觀光餐旅",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -17190,7 +17190,7 @@
       "market": "TPEx",
       "industry": "光電業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -17240,7 +17240,7 @@
       "market": "TPEx",
       "industry": "電子零組件業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -19112,7 +19112,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6592B",
@@ -19122,7 +19122,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6593",
