@@ -148,7 +148,7 @@
       wrapper.className = `sidebar-group${open ? " is-open" : ""}`;
       const heading = document.createElement("div");
       heading.className = "sidebar-group-heading";
-      heading.innerHTML = `<a class="sidebar-item sidebar-category${groupActive ? " is-active" : ""}" href="${group.href}"${groupActive ? ' aria-current="page"' : ""}>${group.label}</a>`;
+      heading.innerHTML = `<a class="sidebar-item sidebar-category${groupActive ? " is-active" : ""}" href="${group.href}" data-category="${group.key}"${groupActive ? ' aria-current="page"' : ""}>${group.label}</a>`;
       if (group.children.length) {
         const toggleButton = document.createElement("button");
         toggleButton.type = "button";
@@ -216,6 +216,16 @@
     stock_analysis: true,
   });
   const protectedItems = [...sidebar.querySelectorAll(".sidebar-item[data-feature]")];
+  const protectedCategories = [...sidebar.querySelectorAll(".sidebar-category[data-category]")];
+  const categoryPermissions = Object.freeze({
+    market: ["calendar", "prediction", "market_overview", "chips_analysis"],
+    stocks: ["stock_analysis"],
+    futures: [],
+    funds: [],
+    bonds: [],
+    forex: [],
+    deposits: [],
+  });
 
   const renderAccountMenu = (username = "", token = "", isAdmin = false) => {
     document.querySelector(".layout-account-menu")?.remove();
@@ -265,13 +275,10 @@
   };
 
   const applyNavigationAccess = (isAdmin, username = "", permissions = {}, token = "", resolved = false) => {
-    protectedItems.forEach((item) => {
+    const applyItemAccess = (item, allowed) => {
       if (!item.dataset.accessHref && item.hasAttribute("href")) {
         item.dataset.accessHref = item.getAttribute("href");
       }
-      const filename = (item.dataset.accessHref || "").split("/").pop();
-      const featureKey = item.dataset.feature || featureByPath[filename];
-      const allowed = isAdmin || Boolean(featureKey && permissions[featureKey]);
       let label = item.querySelector("small[data-access-label]");
       if (allowed) {
         if (item.dataset.accessHref) item.setAttribute("href", item.dataset.accessHref);
@@ -291,6 +298,16 @@
         }
         label.textContent = "不可使用";
       }
+    };
+    protectedItems.forEach((item) => {
+      const filename = (item.dataset.accessHref || item.getAttribute("href") || "").split("/").pop();
+      const featureKey = item.dataset.feature || featureByPath[filename];
+      applyItemAccess(item, isAdmin || Boolean(featureKey && permissions[featureKey]));
+    });
+    protectedCategories.forEach((item) => {
+      const required = categoryPermissions[item.dataset.category] || [];
+      const allowed = isAdmin || required.some((featureKey) => Boolean(permissions[featureKey]));
+      applyItemAccess(item, allowed);
     });
     renderAccountMenu(username, token, isAdmin);
     body.dataset.accessRole = isAdmin ? "admin" : "restricted";
@@ -398,6 +415,10 @@
   });
 
   sidebar.addEventListener("click", (event) => {
+    if (event.target.closest(".sidebar-item.is-disabled")) {
+      event.preventDefault();
+      return;
+    }
     if (event.target.closest("a")) setSidebarOpen(false);
   });
 
