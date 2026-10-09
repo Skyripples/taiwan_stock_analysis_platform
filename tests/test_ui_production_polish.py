@@ -60,6 +60,23 @@ class ProductionUxPolishTests(unittest.TestCase):
         self.assertIn('sidebar.setAttribute("aria-label", "平台導覽")', script)
         self.assertIn('status.setAttribute("aria-live", "polite")', script)
 
+    def test_section_and_card_heading_icons_are_hidden(self):
+        css = self.read("platform.css")
+        self.assertRegex(css, r"\.widget-icon,\s*\.feature-icon\s*\{\s*display:\s*none\s*!important")
+
+    def test_product_leading_cards_have_consistent_inner_spacing(self):
+        css = self.read("platform.css")
+        self.assertIn(".market-context {", css)
+        self.assertIn('.layout-main:is([data-page="futures"]', css)
+        self.assertGreaterEqual(css.count("padding: 1.25rem"), 2)
+
+    def test_page_framework_has_consistent_section_spacing(self):
+        css = self.read("page.css")
+        self.assertIn('.page-body > :is(.widget, .page-section) + :is(.widget, .page-section)', css)
+        self.assertIn("margin-top: 28px", css)
+        self.assertIn("margin-top: 22px", css)
+        self.assertIn(".page-body:is(.tx-page, .funds-page, .hub-grid)", css)
+
 
 if __name__ == "__main__":
     unittest.main()

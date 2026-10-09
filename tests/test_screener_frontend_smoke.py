@@ -38,6 +38,12 @@ class ScreenerFrontendSmokeTests(unittest.TestCase):
         self.assertIn("async getScreenerOptions", self.service)
         self.assertEqual(self.script.count("172-238-20-217"), 0)
 
+    def test_watchlist_and_preferences_are_loaded(self):
+        self.assertIn("stock-preferences.js", self.html)
+        self.assertIn('id="watchlistItems"', self.html)
+        self.assertIn("saveScreenerSettings", self.script)
+        self.assertIn("clearScreenerSettings", self.script)
+
 
 if __name__ == "__main__":
     unittest.main()

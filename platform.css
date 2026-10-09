@@ -367,6 +367,46 @@ body.theme-light .reminder-date-block {
 }
 
 /* Reserved for the future account/permission layer. */
+
+.watchlist-section small { color: #8f9aa8; }
+.watchlist-items { display: flex; flex-wrap: wrap; gap: 9px; }
+.watchlist-item { display: inline-flex; max-width: 100%; align-items: center; overflow: hidden; border: 1px solid #343a43; border-radius: 999px; background: #15181c; }
+.watchlist-item a { min-width: 0; overflow: hidden; padding: 8px 10px 8px 12px; color: #e7ebf0; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
+.watchlist-item button,.watchlist-toggle { border: 0; border-left: 1px solid #343a43; padding: 8px 11px; color: #aeb7c3; background: transparent; font: inherit; font-size: .76rem; cursor: pointer; }
+.watchlist-toggle { border: 1px solid #424852; border-radius: 8px; white-space: nowrap; }
+.watchlist-toggle.is-watched { border-color: #bd343b; color: #fff; background: #bd343b; }
+.watchlist-item button:hover,.watchlist-item button:focus-visible,.watchlist-toggle:hover,.watchlist-toggle:focus-visible { outline: 2px solid #70aaf2; outline-offset: 2px; }
+body.theme-light .watchlist-item { border-color: #ccd6e2; background: #fff; }
+body.theme-light .watchlist-item a { color: #243247; }
+body.theme-light .watchlist-item button,body.theme-light .watchlist-toggle { border-color: #ccd6e2; color: #536176; }
+body.theme-light .watchlist-toggle.is-watched { border-color: #bd343b; color: #fff; background: #bd343b; }
+@media (max-width: 680px) { .watchlist-section .section-heading,.watchlist-section .screener-result-heading { align-items: flex-start; flex-direction: column; } }
+
+/* Section/card headings use text only across the platform. */
+.widget-icon,
+.feature-icon {
+  display: none !important;
+}
+
+/* Keep the product hubs' leading cards away from their borders. */
+.market-context {
+  padding: 1.25rem;
+}
+
+.layout-main:is([data-page="futures"], [data-page="funds"], [data-page="bonds"], [data-page="forex"], [data-page="deposits"]) .page-body > .widget {
+  padding: 1.25rem;
+}
+
+.layout-main:is([data-page="futures"], [data-page="funds"], [data-page="bonds"], [data-page="forex"], [data-page="deposits"]) .page-body > .widget :is(h2, p) {
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .market-context,
+  .layout-main:is([data-page="futures"], [data-page="funds"], [data-page="bonds"], [data-page="forex"], [data-page="deposits"]) .page-body > .widget {
+    padding: 1rem;
+  }
+}
 .status-paid {
   border-color: rgba(234, 82, 82, 0.45);
   color: #ffaaa5;

@@ -41,6 +41,7 @@
     stocks: ["stock_analysis"],
     futures: [], funds: [], bonds: [], forex: [], deposits: [],
   };
+  const publicCategories = new Set(["stocks"]);
   const applyCategoryAccess = (isAdmin, permissions = {}) => {
     categoryCards.forEach((card) => {
       const status = card.querySelector(".status");
@@ -48,7 +49,7 @@
         card.dataset.accessHref = card.getAttribute("href");
       }
       const required = categoryPermissions[card.dataset.category] || [];
-      const allowed = isAdmin || required.some((feature) => Boolean(permissions[feature]));
+      const allowed = publicCategories.has(card.dataset.category) || isAdmin || required.some((feature) => Boolean(permissions[feature]));
       if (allowed) {
         card.setAttribute("href", card.dataset.accessHref);
         card.classList.remove("is-access-locked");

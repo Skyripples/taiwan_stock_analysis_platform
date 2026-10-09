@@ -42,6 +42,11 @@
         <p class="page-description">依行情、估值、基本面與籌碼條件，從上市櫃市場快速找出符合條件的股票。</p>
       </header>
       <div class="page-body">
+        <section class="page-section watchlist-section" aria-labelledby="watchlistTitle">
+          <div class="screener-result-heading"><h2 id="watchlistTitle">自選股</h2><small id="preferenceStorageStatus" role="status" aria-live="polite"></small></div>
+          <div id="watchlistItems" class="watchlist-items"></div>
+          <p id="watchlistEmpty" class="result-state">尚未加入自選股。</p>
+        </section>
         <form id="screenerForm" class="widget screener-filters">
           <fieldset><legend>基本條件</legend><div class="filter-grid filter-grid-4">
             <label>關鍵字<input name="search" type="search" placeholder="股票代號或名稱"></label>
@@ -77,7 +82,7 @@
             <table><thead><tr>
               <th data-sort="symbol">代號 / 名稱</th><th>市場 / 產業</th><th data-sort="close">收盤價</th><th data-sort="change_percent">漲跌幅</th>
               <th data-sort="pe">PE</th><th data-sort="pb">PB</th><th data-sort="dividend_yield">殖利率</th><th data-sort="revenue_yoy">營收 YoY</th>
-              <th data-sort="roe">ROE</th><th data-sort="debt_ratio">負債比</th><th data-sort="foreign_5d">外資 5 日</th>
+              <th data-sort="roe">ROE</th><th data-sort="debt_ratio">負債比</th><th data-sort="foreign_5d">外資 5 日</th><th>自選</th>
             </tr></thead><tbody id="resultRows"></tbody></table>
           </div>
           <nav class="pagination" aria-label="選股結果分頁"><button id="previousPage" type="button">上一頁</button><span id="pageInfo">第 1 頁</span><button id="nextPage" type="button">下一頁</button></nav>
@@ -87,6 +92,7 @@
   </main>
   <script src="./sidebar.js"></script>
   <script src="./stock-data-service.js"></script>
+  <script src="./stock-preferences.js"></script>
   <script src="./screener.js"></script>
 </body>
 </html>

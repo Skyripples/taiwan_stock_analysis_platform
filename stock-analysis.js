@@ -3,6 +3,7 @@
   const fmt = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 2 });
   const whole = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
   const dataService = new StockDataService();
+  const preferences = new StockPreferences();
   const sourceState = new Map();
   let searchSequence = 0;
   let searchTimer = null;
@@ -12,6 +13,7 @@
   let financialRange = 8;
   let currentPeer = null;
   let peerSnapshot = null;
+  let currentStock = null;
 
   const missing = (value) => value === null || value === undefined || value === '';
   const signed = (value, digits = 0) => missing(value) ? '資料不足' : `${value > 0 ? '+' : ''}${Number(value).toLocaleString('zh-TW', { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
@@ -21,6 +23,15 @@
     node.classList.add(value > 0 ? 'tone-positive' : value < 0 ? 'tone-negative' : 'tone-neutral');
   }
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
+  function renderWatchlist(items = preferences.getWatchlist()) {
+    $('preferenceStorageStatus').textContent = preferences.statusMessage();
+    $('watchlistItems').innerHTML = items.map((item) => `<span class="watchlist-item"><a href="./stock-analysis.html?symbol=${encodeURIComponent(item.symbol)}"><strong>${escapeHtml(item.symbol)}</strong> ${escapeHtml(item.name)}</a><button type="button" data-remove-watchlist="${escapeHtml(item.symbol)}" aria-label="從自選股移除 ${escapeHtml(item.symbol)} ${escapeHtml(item.name)}">移除</button></span>`).join('');
+    $('watchlistEmpty').hidden = items.length > 0;
+    const watched = currentStock && items.some((item) => item.symbol === currentStock.symbol);
+    $('stockWatchlistToggle').classList.toggle('is-watched', Boolean(watched));
+    $('stockWatchlistToggle').setAttribute('aria-pressed', String(Boolean(watched)));
+    $('stockWatchlistToggle').textContent = watched ? '移除自選股' : '加入自選股';
+  }
   function source(section, result) { sourceState.set(section, result.source); if (result.updatedAt) sourceState.set('updatedAt', result.updatedAt); }
   function renderSourceStatus() {
     $('dataSourceStatus').classList.remove('is-fallback');
@@ -230,6 +241,8 @@
     $('cacheStatus').textContent = buildState === 'partial' ? '資料建置中／部分資料可用；尚未完成的區塊會個別顯示資料不足。' : '';
     $('stockSymbol').textContent = profile.symbol;
     $('stockName').textContent = profile.name;
+    currentStock = { symbol: profile.symbol, name: profile.name || profile.symbol };
+    renderWatchlist();
     $('stockMeta').textContent = `${profile.market === 'TWSE' ? '上市' : '上櫃'}｜${profile.industry}｜${profile.instrument_type === 'company' ? '一般公司' : 'ETF／其他證券'}`;
     $('quoteDate').textContent = quote.trade_date || '日期不足';
     $('closePrice').textContent = missing(quote.close) ? '資料不足' : `${fmt.format(quote.close)} 元`;
@@ -308,6 +321,10 @@
   document.querySelectorAll('[data-chips-range]').forEach((button) => { button.addEventListener('click', () => { chipsRange = Number(button.dataset.chipsRange); document.querySelectorAll('[data-chips-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderChipsTrend(); }); });
   document.querySelectorAll('[data-financial-range]').forEach((button) => { button.addEventListener('click', () => { financialRange = Number(button.dataset.financialRange); document.querySelectorAll('[data-financial-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderFinancialTrend(); }); });
   $('peerRankingMetric').addEventListener('change', renderPeerRanking);
+  $('stockWatchlistToggle').addEventListener('click', () => { if (currentStock) preferences.toggle(currentStock); });
+  $('watchlistItems').addEventListener('click', (event) => { const button = event.target.closest('[data-remove-watchlist]'); if (button) preferences.removeStock(button.dataset.removeWatchlist); });
+  preferences.subscribe(renderWatchlist);
   document.addEventListener('click', (event) => { if (!event.target.closest('.search-section')) $('searchResults').hidden = true; });
+  renderWatchlist();
   init();
 })();

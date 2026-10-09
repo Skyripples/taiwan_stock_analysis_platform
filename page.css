@@ -39,8 +39,12 @@
   min-width: 0;
 }
 
-.page-section + .page-section {
+.page-body > :is(.widget, .page-section) + :is(.widget, .page-section) {
   margin-top: 28px;
+}
+
+.page-body:is(.tx-page, .funds-page, .hub-grid) > :is(.widget, .page-section) + :is(.widget, .page-section) {
+  margin-top: 0;
 }
 
 body.theme-light .page-header {
@@ -60,5 +64,13 @@ body.theme-light .page-eyebrow {
   .page-header {
     margin-bottom: 22px;
     padding-bottom: 18px;
+  }
+
+  .page-body > :is(.widget, .page-section) + :is(.widget, .page-section) {
+    margin-top: 22px;
+  }
+
+  .page-body:is(.tx-page, .funds-page, .hub-grid) > :is(.widget, .page-section) + :is(.widget, .page-section) {
+    margin-top: 0;
   }
 }

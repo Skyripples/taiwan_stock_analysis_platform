@@ -11,6 +11,7 @@ class ClassList {
 class Element {
   constructor(id) { this.id = id; this.hidden = false; this.value = ''; this.textContent = ''; this.innerHTML = ''; this.dataset = {}; this.classList = new ClassList(); }
   addEventListener() {}
+  setAttribute(name, value) { this[name] = String(value); }
   querySelectorAll() { return []; }
   closest() { return null; }
 }
@@ -23,6 +24,7 @@ global.document = {
 global.location = { search: '?symbol=2330' };
 global.history = { replaceState() {} };
 require('../../stock-data-service.js');
+require('../../stock-preferences.js');
 require('../../stock-analysis.js');
 
 const waitFor = async (predicate, timeout = 15000) => {

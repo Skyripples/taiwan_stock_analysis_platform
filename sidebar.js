@@ -99,9 +99,9 @@
       key: "market", label: "市場", href: "./market.html",
       children: [
         ["市場總覽", "./market-overview.html", "market_overview"],
-        ["籌碼／法人", "./chips-analysis.html", "chips_analysis"],
-        ["全球市場", "./market-overview.html#internationalMarket", "market_overview"],
-        ["市場事件", "./calendar.html", "calendar"],
+        ["籌碼分析", "./chips-analysis.html", "chips_analysis"],
+        ["國際市場", "./market-overview.html#internationalMarket", "market_overview"],
+        ["事件日曆", "./calendar.html", "calendar"],
         ["行情預測", "./prediction.html", "prediction"],
       ],
     },
@@ -217,6 +217,8 @@
   });
   const protectedItems = [...sidebar.querySelectorAll(".sidebar-item[data-feature]")];
   const protectedCategories = [...sidebar.querySelectorAll(".sidebar-category[data-category]")];
+  const publicFeatures = new Set(["stock_analysis"]);
+  const publicCategories = new Set(["stocks"]);
   const categoryPermissions = Object.freeze({
     market: ["calendar", "prediction", "market_overview", "chips_analysis"],
     stocks: ["stock_analysis"],
@@ -302,11 +304,11 @@
     protectedItems.forEach((item) => {
       const filename = (item.dataset.accessHref || item.getAttribute("href") || "").split("/").pop();
       const featureKey = item.dataset.feature || featureByPath[filename];
-      applyItemAccess(item, isAdmin || Boolean(featureKey && permissions[featureKey]));
+      applyItemAccess(item, publicFeatures.has(featureKey) || isAdmin || Boolean(featureKey && permissions[featureKey]));
     });
     protectedCategories.forEach((item) => {
       const required = categoryPermissions[item.dataset.category] || [];
-      const allowed = isAdmin || required.some((featureKey) => Boolean(permissions[featureKey]));
+      const allowed = publicCategories.has(item.dataset.category) || isAdmin || required.some((featureKey) => Boolean(permissions[featureKey]));
       applyItemAccess(item, allowed);
     });
     renderAccountMenu(username, token, isAdmin);
@@ -315,7 +317,7 @@
       detail: { isAdmin, username, permissions },
     }));
     const currentFeature = featureByPath[window.location.pathname.split("/").pop()];
-    if (resolved && currentFeature && !(isAdmin || permissions[currentFeature])) {
+    if (resolved && currentFeature && !(publicFeatures.has(currentFeature) || isAdmin || permissions[currentFeature])) {
       window.location.replace("./index.html");
     }
   };

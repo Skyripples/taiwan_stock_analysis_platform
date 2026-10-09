@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><title>Stock preferences browser test</title>
+<p id="result">running</p>
+<script src="../../stock-preferences.js"></script>
+<script>
+(async () => {
+  const assert = (condition, message) => { if (!condition) throw new Error(message); };
+  class MemoryStorage {
+    constructor() { this.values = new Map(); }
+    getItem(key) { return this.values.get(key) ?? null; }
+    setItem(key, value) { this.values.set(key, String(value)); }
+    removeItem(key) { this.values.delete(key); }
+  }
+  const events = { callback: null, addEventListener(type, callback) { if (type === 'storage') this.callback = callback; } };
+  const storage = new MemoryStorage(), first = new StockPreferences({ storage, eventTarget: events });
+  first.add({ symbol: '2330', name: '台積電' }); first.add({ symbol: '2330', name: '重複資料' });
+  assert(first.getWatchlist().length === 1, 'watchlist dedupe');
+  first.saveScreenerSettings({ market: 'TWSE', pe_min: '10' }, 'pe', 'desc');
+  const reopened = new StockPreferences({ storage, eventTarget: events });
+  assert(reopened.isWatched('2330'), 'watchlist restore');
+  assert(reopened.getScreenerSettings().sort === 'pe', 'settings restore');
+  storage.setItem('taiwan_stock_analysis_platform:v1:screener', '{broken');
+  assert(reopened.getScreenerSettings() === null, 'corrupt settings isolation');
+  let synchronized = false; reopened.subscribe((items) => { synchronized = items.some((item) => item.symbol === '2317'); });
+  const crossTabValue = JSON.stringify({ schema: 1, items: [{ symbol: '2317', name: '鴻海' }] });
+  storage.setItem('taiwan_stock_analysis_platform:v1:watchlist', crossTabValue);
+  events.callback({ key: 'taiwan_stock_analysis_platform:v1:watchlist', newValue: crossTabValue });
+  assert(synchronized, 'storage event sync');
+  const unavailable = new StockPreferences({ storage: { setItem() { throw new Error('quota'); }, getItem() { throw new Error('blocked'); }, removeItem() {} }, eventTarget: events });
+  unavailable.add({ symbol: '6488', name: '環球晶' });
+  assert(unavailable.isWatched('6488'), 'memory fallback');
+  assert(unavailable.statusMessage() === '目前僅於本頁暫存', 'fallback message');
+  reopened.clearScreenerSettings();
+  assert(reopened.isWatched('2317'), 'clear settings keeps watchlist');
+  document.getElementById('result').textContent = 'passed';
+})().catch((error) => { document.getElementById('result').textContent = `failed: ${error.message}`; });
+</script>

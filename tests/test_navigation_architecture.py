@@ -32,7 +32,8 @@ class NavigationArchitectureTests(unittest.TestCase):
             self.assertIn(f'./{hub}.html', script)
         for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "prediction.html", "stock-analysis.html", "screener.html"):
             self.assertIn(page, script)
-        self.assertIn("全球市場", script)
+        for label in ("市場總覽", "籌碼分析", "國際市場", "事件日曆", "行情預測"):
+            self.assertIn(label, script)
         self.assertIn("sidebar-group-toggle", script)
         self.assertIn("aria-expanded", script)
         self.assertIn("taiwan_stock_navigation_groups", script)
@@ -41,8 +42,10 @@ class NavigationArchitectureTests(unittest.TestCase):
 
     def test_market_hub_links_existing_market_features(self):
         html = self.read("market.html")
-        for label in ("台股市場摘要", "法人／外資", "全球市場", "市場事件", "大盤預測"):
+        for label in ("市場總覽", "籌碼分析", "國際市場", "事件日曆", "行情預測"):
             self.assertIn(label, html)
+        for legacy_label in ("台股市場摘要", "法人／外資", "全球市場", "市場事件", "大盤預測"):
+            self.assertNotIn(f"<h2>{legacy_label}</h2>", html)
         for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "prediction.html"):
             self.assertIn(page, html)
 
