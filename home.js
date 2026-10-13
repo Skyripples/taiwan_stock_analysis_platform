@@ -39,7 +39,7 @@
   const categoryPermissions = {
     market: ["calendar", "prediction", "market_overview", "chips_analysis"],
     stocks: ["stock_analysis"],
-    futures: [], funds: [], bonds: [], forex: [], deposits: [],
+    futures: [], funds: [], bonds: [], forex: [], deposits: [], crypto: [],
   };
   const publicCategories = new Set(["stocks"]);
   const applyCategoryAccess = (isAdmin, permissions = {}) => {
@@ -163,4 +163,95 @@
   };
 
   renderNextMarketHoliday();
+
+  const dividendState = document.getElementById("dividendReminderState");
+  const dividendList = document.getElementById("dividendReminderList");
+  const dividendCount = document.getElementById("dividendReminderCount");
+
+  const renderDividendReminders = async () => {
+    if (!dividendState || !dividendList || !dividendCount) return;
+    try {
+      const [eventResponse, calendarResponse, stockIndexResponse] = await Promise.all([
+        fetch("./data/event.json", { cache: "no-cache" }),
+        fetch("./data/calendar/twse_trading_calendar.json", { cache: "no-cache" }),
+        fetch("./data/stocks/index.json", { cache: "no-cache" }),
+      ]);
+      if (!eventResponse.ok) throw new Error(`event status ${eventResponse.status}`);
+      if (!calendarResponse.ok) throw new Error(`calendar status ${calendarResponse.status}`);
+      if (!stockIndexResponse.ok) throw new Error(`stock index status ${stockIndexResponse.status}`);
+      const [eventData, calendar, stockIndex] = await Promise.all([
+        eventResponse.json(), calendarResponse.json(), stockIndexResponse.json(),
+      ]);
+      const companyBySymbol = new Map((Array.isArray(stockIndex.stocks) ? stockIndex.stocks : [])
+        .filter((stock) => stock.active !== false && stock.instrument_type === "company")
+        .map((stock) => [String(stock.symbol), stock]));
+
+      const toIso = (date) => date.toISOString().slice(0, 10);
+      const isTradingDay = (date) => {
+        const config = calendar.years?.[String(date.getUTCFullYear())];
+        if (!config) return false;
+        const iso = toIso(date);
+        if ((config.special_open_dates || []).includes(iso)) return true;
+        return date.getUTCDay() >= 1
+          && date.getUTCDay() <= 5
+          && !(config.closed_dates || []).includes(iso);
+      };
+      const previousTradingDay = (exDate) => {
+        const candidate = new Date(exDate);
+        for (let attempts = 0; attempts < 15; attempts += 1) {
+          candidate.setUTCDate(candidate.getUTCDate() - 1);
+          if (isTradingDay(candidate)) return new Date(candidate);
+        }
+        return null;
+      };
+      const windowEnd = new Date(today);
+      windowEnd.setUTCDate(windowEnd.getUTCDate() + 5);
+      const seen = new Set();
+      const reminders = (Array.isArray(eventData.events) ? eventData.events : [])
+        .filter((event) => event.type === "dividend" && event.ex_date && companyBySymbol.has(String(event.stock_id)))
+        .map((event) => {
+          const exDate = new Date(`${event.ex_date}T00:00:00Z`);
+          return { event, exDate, deadline: Number.isNaN(exDate.getTime()) ? null : previousTradingDay(exDate) };
+        })
+        .filter(({ event, deadline }) => {
+          const key = `${event.stock_id}:${event.ex_date}`;
+          if (!deadline || deadline < today || deadline > windowEnd || seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        })
+        .sort((left, right) => left.deadline - right.deadline || left.event.stock_id.localeCompare(right.event.stock_id));
+
+      dividendCount.textContent = `${reminders.length} 檔`;
+      dividendList.replaceChildren();
+      if (!reminders.length) {
+        dividendState.textContent = "未來 5 日內沒有配息股票截止。";
+        dividendList.hidden = true;
+        return;
+      }
+
+      const shortDate = new Intl.DateTimeFormat("zh-TW", { timeZone: "UTC", month: "2-digit", day: "2-digit" });
+      reminders.forEach(({ event, exDate, deadline }) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `./stock-analysis.html?symbol=${encodeURIComponent(event.stock_id)}`;
+        const stock = companyBySymbol.get(String(event.stock_id));
+        link.textContent = `${event.stock_id} ${stock?.name || event.stock_name || ""}`.trim();
+        const detail = document.createElement("span");
+        const cashDividend = event.cash_dividend && Number(event.cash_dividend) > 0
+          ? ` · 現金股利 ${Number(event.cash_dividend).toLocaleString("zh-TW", { maximumFractionDigits: 4 })} 元`
+          : "";
+        detail.textContent = `最後買進 ${shortDate.format(deadline)} · 除權息 ${shortDate.format(exDate)}${cashDividend}`;
+        item.append(link, detail);
+        dividendList.append(item);
+      });
+      dividendState.textContent = `共有 ${reminders.length} 檔於 5 日內截止。`;
+      dividendList.hidden = false;
+    } catch (error) {
+      dividendCount.textContent = "讀取失敗";
+      dividendState.textContent = "目前無法取得配息截止資訊。";
+      dividendList.hidden = true;
+    }
+  };
+
+  renderDividendReminders();
 })();

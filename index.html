@@ -94,6 +94,18 @@
           <span id="nextMarketHolidayCountdown">讀取官方行事曆中</span>
         </div>
       </article>
+      <article class="widget reminder-card dividend-reminder-card">
+        <div class="dividend-reminder-body">
+          <p class="reminder-type">未來 5 日內最後買進日</p>
+          <h2>配息股票截止提醒</h2>
+          <p id="dividendReminderState" class="reminder-note" role="status">載入配息資訊中</p>
+          <ul id="dividendReminderList" class="dividend-reminder-list" hidden></ul>
+        </div>
+        <div class="reminder-date-block">
+          <strong id="dividendReminderCount">—</strong>
+          <span>依除權息日前一交易日計算</span>
+        </div>
+      </article>
      </section>
 
      <section class="page-section" aria-labelledby="functionOverviewTitle">
@@ -104,7 +116,7 @@
         </div>
       </div>
 
-      <div class="feature-grid category-grid" aria-label="平台七大分類">
+      <div class="feature-grid category-grid" aria-label="平台八大分類">
         <a class="widget feature-card feature-card-available category-card" href="./market.html" data-category="market" data-product-summary="market"><span class="status status-available">可使用</span><h3>市場</h3><p>掌握台股、籌碼、全球市場、事件與行情預測。</p><span class="category-summary"><span data-summary-a-label>TAIEX</span><strong data-summary-a>載入中</strong><span data-summary-b-label>Market State</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./stocks.html" data-category="stocks" data-product-summary="stocks"><span class="status status-available">可使用</span><h3>股票</h3><p>搜尋股票、研究個股，並依條件篩選全市場標的。</p><span class="category-summary"><span data-summary-a-label>可搜尋商品</span><strong data-summary-a>載入中</strong><span data-summary-b-label>普通股票</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./futures.html" data-category="futures" data-product-summary="futures"><span class="status status-available">可使用</span><h3>期貨</h3><p>查看台指期 TX 近月與次月完成行情。</p><span class="category-summary"><span data-summary-a-label>TX 近月</span><strong data-summary-a>載入中</strong><span data-summary-b-label>漲跌幅</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
@@ -112,6 +124,7 @@
         <a class="widget feature-card feature-card-available category-card" href="./bonds.html" data-category="bonds" data-product-summary="bonds"><span class="status status-available">可使用</span><h3>債券</h3><p>比較台灣與美國政府公債殖利率。</p><span class="category-summary"><span data-summary-a-label>台灣 10Y</span><strong data-summary-a>載入中</strong><span data-summary-b-label>美國 10Y</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./forex.html" data-category="forex" data-product-summary="forex"><span class="status status-available">可使用</span><h3>外匯</h3><p>查詢主要貨幣對新台幣匯率與換算。</p><span class="category-summary"><span data-summary-a-label>USD / TWD</span><strong data-summary-a>載入中</strong><span data-summary-b-label>支援貨幣</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./deposits.html" data-category="deposits" data-product-summary="deposits"><span class="status status-available">可使用</span><h3>定存</h3><p>比較臺灣銀行存款牌告利率。</p><span class="category-summary"><span data-summary-a-label>銀行數量</span><strong data-summary-a>載入中</strong><span data-summary-b-label>1Y 固定最高</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./crypto.html" data-category="crypto"><span class="status status-available">可使用</span><h3>加密貨幣</h3><p>查看 BTC 與 ETH 美元現貨行情。</p><span class="category-summary"><span>支援市場</span><strong>BTC-USD / ETH-USD</strong><span>主要粒度</span><strong>5 分鐘</strong><small class="product-data-state is-ready">正式功能</small></span></a>
       </div>
      </section>
 

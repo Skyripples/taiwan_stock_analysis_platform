@@ -54,15 +54,6 @@ MARKET_FIELDS = (
     "sox_trade_date",
     "sp500_trade_date",
     "nasdaq_trade_date",
-    "nikkei_trade_date",
-    "kospi_trade_date",
-    "hang_seng_trade_date",
-    "csi300_trade_date",
-    "soxx_trade_date",
-    "smh_trade_date",
-    "nvda_trade_date",
-    "amd_trade_date",
-    "avgo_trade_date",
     "taiex_close",
     "taiex_change_percent",
     "tpex_close",
@@ -77,16 +68,41 @@ MARKET_FIELDS = (
     "sox_change_percent",
     "sp500_change_percent",
     "nasdaq_change_percent",
+    "vix_trade_date",
+    "us_treasury_observation_date",
+    "usdtwd_trade_date",
+    "dxy_trade_date",
+    "vix_change_percent",
+    "us10y_change",
+    "us2y_change",
+    "yield_curve_10y_2y",
+    "usdtwd_change_percent",
+    "dxy_change_percent",
+    "nikkei_trade_date",
+    "kospi_trade_date",
+    "hang_seng_trade_date",
+    "csi300_trade_date",
     "nikkei_change_percent",
     "kospi_change_percent",
     "hang_seng_change_percent",
     "csi300_change_percent",
+    "soxx_trade_date",
+    "smh_trade_date",
+    "nvda_trade_date",
+    "amd_trade_date",
+    "avgo_trade_date",
     "soxx_change_percent",
     "smh_change_percent",
     "nvda_change_percent",
     "amd_change_percent",
     "avgo_change_percent",
 )
+POST_PROCESS_FIELDS = {
+    "vix_trade_date", "us_treasury_observation_date", "usdtwd_trade_date", "dxy_trade_date",
+    "vix_change_percent", "us10y_change", "us2y_change", "yield_curve_10y_2y",
+    "usdtwd_change_percent", "dxy_change_percent",
+}
+DIRECT_BACKFILL_FIELDS = tuple(field for field in MARKET_FIELDS if field not in POST_PROCESS_FIELDS)
 FAILURE_FIELDS = ("trade_date", "source", "error", "attempted_at")
 YAHOO_SYMBOLS = {
     "tsm_adr": "TSM",
@@ -176,6 +192,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--retries", type=int, default=2)
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--checkpoint", type=int, default=10)
+    parser.add_argument("--dry-run", action="store_true", help="fetch and validate gaps without writing CSV files")
     parser.add_argument(
         "--refresh", action="store_true", help="refetch dates already completed"
     )
@@ -632,7 +649,7 @@ def build_row(
         "amd_change_percent": us_values["amd"][1]["change_percent"],
         "avgo_change_percent": us_values["avgo"][1]["change_percent"],
     }
-    if any(row[field] in (None, "") for field in MARKET_FIELDS):
+    if any(row[field] in (None, "") for field in DIRECT_BACKFILL_FIELDS):
         return None, {"validation": SourceError("row contains missing values")}
     for source_field in (
         "tsm_adr_trade_date",
@@ -656,10 +673,11 @@ def build_row(
                     f"{source_field} is not completed before target_date"
                 )
             }
-    if date.fromisoformat(str(row["night_futures_trade_date"])) != target_date:
+    night_date = date.fromisoformat(str(row["night_futures_trade_date"]))
+    if not trade_date <= night_date <= target_date:
         return None, {
             "leakage_validation": SourceError(
-                "night_futures_trade_date must equal prediction_target_date"
+                "night_futures_trade_date must be between feature and target dates"
             )
         }
     return row, {}
@@ -721,9 +739,10 @@ def run(args: argparse.Namespace) -> int:
                 LOGGER.warning("%s | %s | %s", key, source, exc)
                 record_failure(failure_rows, trade_date, source, exc)
         processed += 1
-        if processed % max(args.checkpoint, 1) == 0:
+        if not args.dry_run and processed % max(args.checkpoint, 1) == 0:
             write_checkpoint(completed, failure_rows)
-    write_checkpoint(completed, failure_rows)
+    if not args.dry_run:
+        write_checkpoint(completed, failure_rows)
     duration = time.monotonic() - started
     LOGGER.info(
         "Backfill finished | trading_days=%d processed=%d new_or_updated=%d "
@@ -731,6 +750,16 @@ def run(args: argparse.Namespace) -> int:
         len(trading_days), processed, succeeded, failed_dates, len(completed),
         len(failure_rows), duration,
     )
+    if args.dry_run:
+        print(json.dumps({
+            "mode": "dry-run", "missing_sessions_checked": processed,
+            "fully_recoverable": succeeded, "partially_recoverable": 0,
+            "unrecoverable": failed_dates,
+            "missing_by_source": dict(sorted({
+                source: sum(1 for item in failure_rows.values() if item["source"] == source)
+                for source in {item["source"] for item in failure_rows.values()}
+            }.items())),
+        }, ensure_ascii=False, indent=2))
     return 0
 
 

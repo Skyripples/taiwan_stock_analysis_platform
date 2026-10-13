@@ -11,30 +11,31 @@ class NavigationArchitectureTests(unittest.TestCase):
     def read(self, name: str) -> str:
         return (ROOT / name).read_text(encoding="utf-8")
 
-    def test_home_has_exactly_seven_category_entries(self):
+    def test_home_has_market_and_seven_financial_product_entries(self):
         html = self.read("index.html")
         for label, href in (
             ("市場", "market.html"), ("股票", "stocks.html"),
             ("期貨", "futures.html"), ("基金", "funds.html"),
             ("債券", "bonds.html"), ("外匯", "forex.html"),
-            ("定存", "deposits.html"),
+            ("定存", "deposits.html"), ("加密貨幣", "crypto.html"),
         ):
             self.assertIn(f'href="./{href}"', html)
             self.assertIn(f"<h3>{label}</h3>", html)
-        self.assertEqual(html.count("category-card"), 7)
-        self.assertEqual(html.count("data-category="), 7)
+        self.assertEqual(html.count("category-card"), 8)
+        self.assertEqual(html.count("data-category="), 8)
         self.assertNotIn("進入分類", html)
-        self.assertEqual(html.count("status status-available"), 7)
+        self.assertEqual(html.count("status status-available"), 8)
 
     def test_sidebar_defines_hierarchy_and_existing_links(self):
         script = self.read("sidebar.js")
-        for hub in ("market", "stocks", "futures", "funds", "bonds", "forex", "deposits"):
+        for hub in ("market", "stocks", "futures", "funds", "bonds", "forex", "deposits", "crypto"):
             self.assertIn(f'./{hub}.html', script)
         for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "prediction.html", "stock-analysis.html", "screener.html"):
             self.assertIn(page, script)
         for label in ("市場總覽", "籌碼分析", "國際市場", "事件日曆", "行情預測"):
             self.assertIn(label, script)
         self.assertIn("sidebar-group-toggle", script)
+        self.assertIn('toggleButton.textContent = "▼"', script)
         self.assertIn("aria-expanded", script)
         self.assertIn("taiwan_stock_navigation_groups", script)
         self.assertIn("navigationState[group.key] = isOpen", script)
@@ -63,6 +64,7 @@ class NavigationArchitectureTests(unittest.TestCase):
             "bonds.html": "政府公債殖利率比較",
             "forex.html": "主要貨幣對 TWD 匯率",
             "deposits.html": "銀行存款牌告利率比較",
+            "crypto.html": "BTC-USD",
         }
         for name, content in expected.items():
             html = self.read(name)

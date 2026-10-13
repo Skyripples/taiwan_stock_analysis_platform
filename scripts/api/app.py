@@ -16,6 +16,7 @@ from api.db import DatabaseUnavailable, pool
 from api.routes.health import router as health_router
 from api.routes.stocks import router as stocks_router
 from api.routes.auth import router as auth_router
+from api.routes.crypto import router as crypto_router
 
 
 LOGGER = logging.getLogger("taiwan_stock_api")
@@ -40,7 +41,11 @@ app = FastAPI(
 app.add_middleware(GZipMiddleware, minimum_size=700)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://skyripples.github.io"],
+    allow_origins=[
+        "https://skyripples.github.io",
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+    ],
     allow_credentials=False,
     allow_methods=["GET", "POST", "PUT"],
     allow_headers=["Accept", "Authorization", "Content-Type", "If-None-Match"],
@@ -96,3 +101,4 @@ async def unhandled_error(_: Request, exc: Exception):
 app.include_router(health_router, prefix="/api/v1")
 app.include_router(stocks_router, prefix="/api/v1")
 app.include_router(auth_router, prefix="/api/v1")
+app.include_router(crypto_router, prefix="/api/v1")

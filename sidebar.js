@@ -66,6 +66,7 @@
       "bonds.html": ["債券", "bonds.html"],
       "forex.html": ["外匯", "forex.html"],
       "deposits.html": ["定存", "deposits.html"],
+      "crypto.html": ["加密貨幣", "crypto.html"],
     };
     const category = categoryByPage[path];
     if (!category) return;
@@ -117,6 +118,7 @@
     { key: "bonds", label: "債券", href: "./bonds.html", children: [] },
     { key: "forex", label: "外匯", href: "./forex.html", children: [] },
     { key: "deposits", label: "定存", href: "./deposits.html", children: [] },
+    { key: "crypto", label: "加密貨幣", href: "./crypto.html", children: [] },
   ];
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
@@ -155,7 +157,7 @@
         toggleButton.className = "sidebar-group-toggle";
         toggleButton.setAttribute("aria-label", `展開或收合${group.label}功能`);
         toggleButton.setAttribute("aria-expanded", String(open));
-        toggleButton.textContent = "⌄";
+        toggleButton.textContent = "▼";
         toggleButton.addEventListener("click", () => {
           const isOpen = wrapper.classList.toggle("is-open");
           navigationState[group.key] = isOpen;
@@ -227,6 +229,7 @@
     bonds: [],
     forex: [],
     deposits: [],
+    crypto: [],
   });
 
   const renderAccountMenu = (username = "", token = "", isAdmin = false) => {

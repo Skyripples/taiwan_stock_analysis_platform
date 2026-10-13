@@ -12,7 +12,7 @@ import logging
 import re
 import sys
 import time
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -105,7 +105,9 @@ def valuation_row(symbol: str, item: dict[str, Any]) -> dict[str, Any] | None:
         "symbol": symbol, "valuation_date": valuation_date,
         "pe": val("pe"), "pb": val("pb"), "dividend_yield": val("dividend_yield"),
         "pe_date": pe_date or valuation_date, "pb_date": pb_date or valuation_date,
-        "dividend_yield_date": yield_date or valuation_date, "source_payload": item,
+        "dividend_yield_date": yield_date or valuation_date,
+        "source": item.get("source"), "source_date": valuation_date,
+        "fetched_at": datetime.now(timezone.utc).isoformat(), "source_payload": item,
     }
 
 
@@ -168,6 +170,8 @@ def build_batches(mode: str, symbols: set[str] | None = None) -> tuple[dict[str,
                     "revenue_yoy": numeric(metric(fundamentals, "revenue_yoy")),
                     "revenue_mom": numeric(metric(fundamentals, "revenue_mom")),
                     "unit": revenue_item.get("unit") if same_month_revenue and isinstance(revenue_item, dict) else None,
+                    "source": f"{item.get('market')} official monthly revenue",
+                    "source_date": None, "fetched_at": datetime.now(timezone.utc).isoformat(),
                     "source_payload": {key: fundamentals.get(key) for key in ("revenue", "revenue_yoy", "revenue_mom")},
                 })
         if mode in {"full", "daily"}:
@@ -189,6 +193,8 @@ def build_batches(mode: str, symbols: set[str] | None = None) -> tuple[dict[str,
                     "short_balance": numeric(row.get("short_balance")),
                     "short_change": numeric(row.get("short_change")),
                     "institutional_unit": units.get("institutional"), "margin_unit": units.get("margin"),
+                    "source": f"{item.get('market')} official institutional and margin",
+                    "source_date": iso_date(row["trade_date"]), "fetched_at": datetime.now(timezone.utc).isoformat(),
                     "source_payload": row,
                 })
         if mode in {"full", "quarterly"}:
@@ -205,6 +211,7 @@ def build_batches(mode: str, symbols: set[str] | None = None) -> tuple[dict[str,
                     "statement_scope": scope, "period_end": period_end,
                     "published_date": iso_date(row.get("published_date")), "available_date": available,
                     "eps": numeric(row.get("eps")), "revenue": numeric(row.get("revenue")),
+                    "net_income": numeric(row.get("net_income")),
                     "gross_margin": numeric(row.get("gross_margin")), "operating_margin": numeric(row.get("operating_margin")),
                     "net_margin": numeric(row.get("net_margin")), "roe": numeric(row.get("roe")),
                     "total_assets": numeric(row.get("total_assets")), "total_liabilities": numeric(row.get("total_liabilities")),
@@ -213,6 +220,7 @@ def build_batches(mode: str, symbols: set[str] | None = None) -> tuple[dict[str,
                     "investing_cash_flow": numeric(row.get("investing_cash_flow")),
                     "capital_expenditure": numeric(row.get("capital_expenditure")), "free_cash_flow": numeric(row.get("free_cash_flow")),
                     "monetary_unit": unit.get("monetary"), "source": row.get("source"), "source_payload": row,
+                    "source_date": available, "fetched_at": datetime.now(timezone.utc).isoformat(),
                 })
             health = data.get("health_v2") or {}
             rules_version = str(health.get("rules_version") or "")

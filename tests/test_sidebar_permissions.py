@@ -17,7 +17,7 @@ class SidebarPermissionTests(unittest.TestCase):
 
     def test_empty_categories_are_admin_only(self):
         script = (ROOT / "sidebar.js").read_text(encoding="utf-8")
-        for category in ("futures", "funds", "bonds", "forex", "deposits"):
+        for category in ("futures", "funds", "bonds", "forex", "deposits", "crypto"):
             self.assertIn(f'{category}: []', script)
 
 

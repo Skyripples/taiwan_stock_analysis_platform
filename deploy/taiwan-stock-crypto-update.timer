@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Coinbase 5-minute updater every five minutes
+
+[Timer]
+OnCalendar=*:0/5
+AccuracySec=10s
+RandomizedDelaySec=20s
+Persistent=true
+Unit=taiwan-stock-crypto-update.service
+
+[Install]
+WantedBy=timers.target

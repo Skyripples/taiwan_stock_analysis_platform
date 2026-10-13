@@ -239,9 +239,11 @@ def crypto_windows(start: datetime, end: datetime, hours: int = 300) -> Iterable
         cursor = stop
 
 
-def fetch_crypto_chunk(client: Client, product: str, start: datetime, end: datetime) -> list[dict[str, Any]]:
+def fetch_crypto_chunk(client: Client, product: str, start: datetime, end: datetime, granularity: int = 3600) -> list[dict[str, Any]]:
+    if granularity not in (60, 300, 900, 3600, 21600, 86400):
+        raise ValueError(f"Unsupported Coinbase candle granularity: {granularity}")
     response = client.get(COINBASE.format(product=product), params={
-        "start": start.isoformat().replace("+00:00", "Z"), "end": end.isoformat().replace("+00:00", "Z"), "granularity": 3600,
+        "start": start.isoformat().replace("+00:00", "Z"), "end": end.isoformat().replace("+00:00", "Z"), "granularity": granularity,
     }, min_interval=0.27)
     output = []
     for raw in response.json():
@@ -249,9 +251,9 @@ def fetch_crypto_chunk(client: Client, product: str, start: datetime, end: datet
         if not start <= timestamp < end:
             continue
         low, high, opening, close, volume = map(_number, raw[1:6])
-        output.append({"timestamp_utc": timestamp.isoformat(), "interval_seconds": 3600,
+        output.append({"timestamp_utc": timestamp.isoformat(), "interval_seconds": granularity,
             "open": opening, "high": high, "low": low, "close": close, "volume": volume,
-            "timezone": "UTC", "available_at": _iso(crypto_available_at(timestamp)),
+            "timezone": "UTC", "available_at": _iso(crypto_available_at(timestamp, granularity)),
             "quality_flags": {}, "metadata": {"product": product}})
     return sorted(output, key=lambda row: row["timestamp_utc"])
 

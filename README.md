@@ -8,8 +8,8 @@
 
 - 共用 Header、Sidebar、Page Framework 與 Widget 系統
 - 支援深色／淺色模式與手機響應式版面
-- 首頁以市場、股票、期貨、基金、債券、外匯、定存七大分類作為入口
-- 首頁與七大分類 Hub 顯示一致的關鍵資料摘要、資料狀態、日期及來源
+- 首頁以市場、股票、期貨、基金、債券、外匯、定存、加密貨幣八大分類作為入口
+- 首頁與各分類 Hub 顯示一致的關鍵資料摘要、資料狀態、日期及來源
 - Sidebar 採大分類與小功能的階層式導覽，各分類可進入獨立 Hub
 - Hub 與功能頁使用一致的麵包屑、頁面標題、載入狀態與資料限制說明
 - 支援鍵盤焦點、狀態朗讀及手機版表格水平操作等基本無障礙體驗
@@ -92,6 +92,13 @@
 - 支援銀行名稱搜尋、欄位排序及固定／機動利率切換
 - 資料取自中央銀行牌告利率資訊網，每日自動更新並保留最近有效資料
 
+### 加密貨幣
+
+- 顯示 Coinbase BTC-USD／ETH-USD 美元現貨 5 分鐘完成 K 線行情
+- 提供最新價格、1h／4h／24h 漲跌、24h 高低價與成交量
+- 支援 BTC／ETH 與 1H／4H／24H／7D／30D 趨勢切換
+- Linode 每 5 分鐘增量更新，保留官方缺漏且不進行補值或插值
+
 ### 全市場個股預測研究基礎
 
 - 全市場歷史 OHLCV、技術、產業、籌碼、事件與全球市場特徵
@@ -99,14 +106,6 @@
 - 本機 Parquet Data Lake 與 DuckDB research query layer
 - 已完成 50 檔股票的跨股票 Logistic Regression feasibility pilot
 - 個股預測目前仍屬研究驗證階段，尚未 Production 化，也不會在前端顯示正式個股預測
-
-## 資料架構
-
-- GitHub Pages：前端、程式碼、設定、輕量搜尋 index 與必要文件
-- Linode PostgreSQL：全市場個股正式資料與 REST API
-- 本機 Data Lake：歷史研究資料，採 Parquet + ZSTD level 6 壓縮
-- DuckDB：直接查詢 Parquet，利用欄位與條件下推避免載入完整資料集
-- GitHub 不保存 Data Lake、Parquet 或 2,390 份個股 JSON
 
 ## 資料來源
 
@@ -117,7 +116,7 @@
 - Yahoo Finance：TSM ADR、SOX、美股指數、亞洲市場、商品、匯率與研究候選資料
 - Cboe：VIX 官方歷史資料
 - FRED：美國利率與總體經濟序列
-- Coinbase：BTC／ETH 小時資料
+- Coinbase：BTC／ETH 五分鐘現貨 OHLCV 與歷史研究資料
 - TWSE 年度官方交易日資訊：台股 Trading Calendar
 
 ## 使用限制

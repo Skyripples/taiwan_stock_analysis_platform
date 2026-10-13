@@ -1,7 +1,10 @@
 (function (root, factory) {
   const exported = factory();
   if (typeof module === 'object' && module.exports) module.exports = exported;
-  if (root) root.StockDataService = exported.StockDataService;
+  if (root) {
+    root.StockDataService = exported.StockDataService;
+    root.PlatformApiBase = exported.API_BASE_URL;
+  }
 })(typeof globalThis !== 'undefined' ? globalThis : this, () => {
   'use strict';
 

@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = (
     "index.html", "market.html", "stocks.html", "futures.html", "funds.html",
-    "bonds.html", "forex.html", "deposits.html", "market-overview.html",
+    "bonds.html", "forex.html", "deposits.html", "crypto.html", "market-overview.html",
     "chips-analysis.html", "calendar.html", "prediction.html",
     "stock-analysis.html", "screener.html",
 )
@@ -76,6 +76,21 @@ class ProductionUxPolishTests(unittest.TestCase):
         self.assertIn("margin-top: 28px", css)
         self.assertIn("margin-top: 22px", css)
         self.assertIn(".page-body:is(.tx-page, .funds-page, .hub-grid)", css)
+
+    def test_home_shows_upcoming_dividend_deadlines(self):
+        html = self.read("index.html")
+        script = self.read("home.js")
+        css = self.read("platform.css")
+        for element_id in ("dividendReminderState", "dividendReminderList", "dividendReminderCount"):
+            self.assertIn(f'id="{element_id}"', html)
+        self.assertIn('./data/event.json', script)
+        self.assertIn('./data/calendar/twse_trading_calendar.json', script)
+        self.assertIn('./data/stocks/index.json', script)
+        self.assertIn('event.type === "dividend"', script)
+        self.assertIn('stock.instrument_type === "company"', script)
+        self.assertIn('windowEnd.setUTCDate(windowEnd.getUTCDate() + 5)', script)
+        self.assertIn('previousTradingDay(exDate)', script)
+        self.assertIn('.dividend-reminder-list', css)
 
 
 if __name__ == "__main__":

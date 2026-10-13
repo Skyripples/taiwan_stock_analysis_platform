@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 import threading
 import time
+from datetime import date
 from typing import Any, Callable
 
 from fastapi import APIRouter, HTTPException, Path, Query
@@ -11,6 +12,9 @@ from api.services.stocks import (
     SCREENER_SORT_COLUMNS,
     get_chips,
     get_financials,
+    get_revenue_history,
+    get_valuation_history,
+    get_chips_history,
     get_industry_peers,
     get_screener_options,
     get_stock,
@@ -103,11 +107,48 @@ def screener(
 
 
 @router.get("/stocks/{symbol}/financials")
-def financials(symbol: str = Path(...), limit: int = Query(default=12, ge=1, le=20)) -> dict:
+def financials(symbol: str = Path(...), start: date | None = None, end: date | None = None, limit: int = Query(default=12, ge=1, le=40)) -> dict:
     symbol = valid_symbol(symbol)
-    result = get_financials(symbol, limit)
+    if start and end and start > end: raise HTTPException(status_code=422, detail={"code":"INVALID_RANGE","message":"start cannot exceed end"})
+    result = get_financials(symbol, limit, start, end)
     if result is None:
         raise HTTPException(status_code=404, detail={"code": "STOCK_NOT_FOUND", "message": "Stock was not found"})
+    return result
+
+
+@router.get("/stocks/{symbol}/revenue")
+def revenue_history(symbol: str = Path(...), start: date | None = None, end: date | None = None, limit: int = Query(default=60, ge=1, le=240)) -> dict:
+    symbol = valid_symbol(symbol)
+    if start and end and start > end: raise HTTPException(status_code=422, detail={"code":"INVALID_RANGE","message":"start cannot exceed end"})
+    result = get_revenue_history(symbol, start, end, limit)
+    if result is None: raise HTTPException(status_code=404, detail={"code":"STOCK_NOT_FOUND","message":"Stock was not found"})
+    return result
+
+
+@router.get("/stocks/{symbol}/valuation/history")
+def valuation_history(symbol: str = Path(...), start: date | None = None, end: date | None = None, limit: int = Query(default=252, ge=1, le=1300)) -> dict:
+    symbol = valid_symbol(symbol)
+    if start and end and start > end: raise HTTPException(status_code=422, detail={"code":"INVALID_RANGE","message":"start cannot exceed end"})
+    result = get_valuation_history(symbol, start, end, limit)
+    if result is None: raise HTTPException(status_code=404, detail={"code":"STOCK_NOT_FOUND","message":"Stock was not found"})
+    return result
+
+
+@router.get("/stocks/{symbol}/chips/history")
+def chips_history(symbol: str = Path(...), start: date | None = None, end: date | None = None, limit: int = Query(default=60, ge=1, le=1300)) -> dict:
+    symbol = valid_symbol(symbol)
+    if start and end and start > end: raise HTTPException(status_code=422, detail={"code":"INVALID_RANGE","message":"start cannot exceed end"})
+    result = get_chips_history(symbol, start, end, limit)
+    if result is None: raise HTTPException(status_code=404, detail={"code":"STOCK_NOT_FOUND","message":"Stock was not found"})
+    return result
+
+
+@router.get("/stocks/{symbol}/margin/history")
+def margin_history(symbol: str = Path(...), start: date | None = None, end: date | None = None, limit: int = Query(default=60, ge=1, le=1300)) -> dict:
+    symbol = valid_symbol(symbol)
+    if start and end and start > end: raise HTTPException(status_code=422, detail={"code":"INVALID_RANGE","message":"start cannot exceed end"})
+    result = get_chips_history(symbol, start, end, limit, margin_only=True)
+    if result is None: raise HTTPException(status_code=404, detail={"code":"STOCK_NOT_FOUND","message":"Stock was not found"})
     return result
 
 

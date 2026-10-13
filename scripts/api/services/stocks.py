@@ -11,6 +11,8 @@ from typing import Any
 from api.db import pool
 from config import PROJECT_ROOT
 from stock_analysis_summary import build_analysis_summary
+from stock_history_metrics import chips_summary as derive_chips_summary
+from stock_history_metrics import revenue_metrics, valuation_percentiles
 
 
 SUMMARY_RULES = json.loads((PROJECT_ROOT / "config" / "stock_analysis_summary_rules.json").read_text(encoding="utf-8"))
@@ -225,16 +227,24 @@ def stock_exists(cursor, symbol: str) -> dict[str, Any] | None:
                            FROM stocks WHERE symbol=%s""", (symbol,))
 
 
-def financial_rows(cursor, stock_id: int, limit: int) -> list[dict[str, Any]]:
+def financial_rows(cursor, stock_id: int, limit: int, start: date | None = None, end: date | None = None) -> list[dict[str, Any]]:
     cursor.execute(
         """SELECT fiscal_year,quarter,statement_scope,period_end,published_date,available_date,
-                  eps,revenue,gross_margin,operating_margin,net_margin,roe,total_assets,
+                  eps,revenue,net_income,gross_margin,operating_margin,net_margin,roe,total_assets,
                   total_liabilities,debt_ratio,current_ratio,operating_cash_flow,
                   investing_cash_flow,capital_expenditure,free_cash_flow,monetary_unit,source
            FROM stock_financials WHERE stock_id=%s
-           ORDER BY period_end DESC LIMIT %s""", (stock_id, limit),
+             AND (%s::date IS NULL OR period_end >= %s::date)
+             AND (%s::date IS NULL OR period_end <= %s::date)
+           ORDER BY period_end DESC LIMIT %s""", (stock_id, start, start, end, end, limit),
     )
-    return [clean(row) for row in cursor.fetchall()]
+    rows = [clean(row) for row in cursor.fetchall()]
+    for index, row in enumerate(rows):
+        row["announcement_date"] = row.get("published_date")
+        prior_assets = rows[index + 1].get("total_assets") if index + 1 < len(rows) else None
+        average_assets = (row["total_assets"] + prior_assets) / 2 if row.get("total_assets") is not None and prior_assets is not None else row.get("total_assets")
+        row["roa"] = round(row["net_income"] / average_assets * 400, 6) if row.get("net_income") is not None and average_assets not in {None, 0} else None
+    return rows
 
 
 def chips_rows(cursor, stock_id: int, limit: int) -> list[dict[str, Any]]:
@@ -248,11 +258,11 @@ def chips_rows(cursor, stock_id: int, limit: int) -> list[dict[str, Any]]:
     return [clean(row) for row in cursor.fetchall()]
 
 
-def get_financials(symbol: str, limit: int) -> dict[str, Any] | None:
+def get_financials(symbol: str, limit: int, start: date | None = None, end: date | None = None) -> dict[str, Any] | None:
     with pool.connection() as connection, connection.cursor() as cursor:
         stock = stock_exists(cursor, symbol)
         if not stock: return None
-        rows = financial_rows(cursor, stock["stock_id"], limit)
+        rows = financial_rows(cursor, stock["stock_id"], limit, start, end)
         return {"symbol": symbol, "count": len(rows), "financials": rows}
 
 
@@ -262,6 +272,51 @@ def get_chips(symbol: str, limit: int) -> dict[str, Any] | None:
         if not stock: return None
         rows = chips_rows(cursor, stock["stock_id"], limit)
         return {"symbol": symbol, "count": len(rows), "chips": rows}
+
+
+def get_revenue_history(symbol: str, start: date | None, end: date | None, limit: int) -> dict[str, Any] | None:
+    with pool.connection() as connection, connection.cursor() as cursor:
+        stock = stock_exists(cursor, symbol)
+        if not stock: return None
+        cursor.execute("""SELECT revenue_month,revenue,revenue_yoy,revenue_mom,unit,source,source_date
+                          FROM stock_monthly_revenue WHERE stock_id=%s ORDER BY revenue_month""", (stock["stock_id"],))
+        rows = revenue_metrics([clean(row) for row in cursor.fetchall()])
+        rows = [row for row in rows if (start is None or date.fromisoformat(str(row["revenue_month"])) >= start) and (end is None or date.fromisoformat(str(row["revenue_month"])) <= end)]
+        rows = rows[-limit:]
+        return {"symbol": symbol, "count": len(rows), "revenue": list(reversed(rows))}
+
+
+def get_valuation_history(symbol: str, start: date | None, end: date | None, limit: int) -> dict[str, Any] | None:
+    with pool.connection() as connection, connection.cursor() as cursor:
+        stock = stock_exists(cursor, symbol)
+        if not stock: return None
+        cursor.execute("""SELECT valuation_date,pe,pb,dividend_yield,source,source_date
+                          FROM stock_valuations WHERE stock_id=%s
+                            AND (%s::date IS NULL OR valuation_date >= %s::date)
+                            AND (%s::date IS NULL OR valuation_date <= %s::date)
+                          ORDER BY valuation_date DESC LIMIT %s""",
+                       (stock["stock_id"], start, start, end, end, limit))
+        rows = [clean(row) for row in cursor.fetchall()]
+        return {"symbol": symbol, "count": len(rows), "percentiles": valuation_percentiles(rows), "valuations": rows}
+
+
+def get_chips_history(symbol: str, start: date | None, end: date | None, limit: int, margin_only: bool = False) -> dict[str, Any] | None:
+    with pool.connection() as connection, connection.cursor() as cursor:
+        stock = stock_exists(cursor, symbol)
+        if not stock: return None
+        cursor.execute("""SELECT trade_date,foreign_net,investment_trust_net,dealer_net,institutional_total,
+                                 margin_balance,margin_change,short_balance,short_change,source,source_date
+                          FROM stock_chips WHERE stock_id=%s
+                            AND (%s::date IS NULL OR trade_date >= %s::date)
+                            AND (%s::date IS NULL OR trade_date <= %s::date)
+                          ORDER BY trade_date DESC LIMIT %s""",
+                       (stock["stock_id"], start, start, end, end, limit))
+        rows = [clean(row) for row in cursor.fetchall()]
+        summary = derive_chips_summary(list(reversed(rows)))
+        if margin_only:
+            rows = [{key: row.get(key) for key in ("trade_date","margin_balance","margin_change","short_balance","short_change","source","source_date")} for row in rows]
+            summary = {key: value for key, value in summary.items() if key.startswith(("margin_", "short_"))}
+        return {"symbol": symbol, "count": len(rows), "summary": summary, "history": rows}
 
 
 def get_stock(symbol: str) -> dict[str, Any] | None:
