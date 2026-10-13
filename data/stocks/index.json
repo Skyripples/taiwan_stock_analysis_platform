@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-12T05:38:08+00:00",
+  "updated_at": "2026-10-13T06:35:50+00:00",
   "version": "2.0",
-  "active_count": 2391,
-  "company_count": 1978,
+  "active_count": 2393,
+  "company_count": 1980,
   "stocks": [
     {
       "symbol": "00400A",
@@ -156,7 +156,7 @@
     },
     {
       "symbol": "0053",
-      "name": "元大電子",
+      "name": "元大科技市值",
       "market": "TWSE",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
@@ -432,7 +432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00645",
@@ -772,7 +772,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00683L",
@@ -3672,7 +3672,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020001",
@@ -3682,7 +3682,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020011",
@@ -3742,7 +3742,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020029",
@@ -3752,7 +3752,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020030",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020037",
@@ -3832,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020038",
@@ -3842,7 +3842,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020039",
@@ -7060,7 +7060,7 @@
       "market": "TWSE",
       "industry": "光電業",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -10500,7 +10500,7 @@
       "market": "TPEx",
       "industry": "數位雲端",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
