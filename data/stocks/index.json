@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-13T06:35:50+00:00",
+  "updated_at": "2026-10-14T04:36:55+00:00",
   "version": "2.0",
-  "active_count": 2393,
+  "active_count": 2394,
   "company_count": 1980,
   "stocks": [
     {
@@ -118,6 +118,16 @@
       "symbol": "00411A",
       "name": "主動統一前沿科技",
       "market": "TPEx",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "00412A",
+      "name": "主動安聯亞半導體",
+      "market": "TWSE",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
       "active": true,
@@ -632,7 +642,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00668",
@@ -772,7 +782,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -1942,7 +1952,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00870B",
@@ -3722,7 +3732,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020025",
@@ -3742,7 +3752,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020029",
@@ -3772,7 +3782,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020032",
@@ -3812,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020036",
@@ -9392,7 +9402,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2881C",
