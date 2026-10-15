@@ -11,6 +11,7 @@ class FuturesFrontendSourceTests(unittest.TestCase):
         cls.integration = (ROOT / "product-integration.js").read_text(encoding="utf-8")
         cls.dashboard = (ROOT / "futures.js").read_text(encoding="utf-8")
         cls.html = (ROOT / "futures.html").read_text(encoding="utf-8")
+        cls.css = (ROOT / "futures.css").read_text(encoding="utf-8")
 
     def test_summary_and_context_use_production_api(self):
         self.assertIn("`${globalThis.PlatformApiBase}/futures/summary`", self.integration)
@@ -37,6 +38,10 @@ class FuturesFrontendSourceTests(unittest.TestCase):
         self.assertIn("productRank(left.product) - productRank(right.product)", self.dashboard)
         self.assertLess(self.html.index('data-product="TX"'), self.html.index('data-product="MTX"'))
         self.assertLess(self.html.index('data-product="MTX"'), self.html.index('data-product="TMF"'))
+
+    def test_chart_empty_message_stays_hidden_when_chart_has_data(self):
+        self.assertIn(".chart-wrap p[hidden]{display:none}", self.css)
+        self.assertIn("empty.hidden = points.length > 1", self.dashboard)
 
 
 if __name__ == "__main__":

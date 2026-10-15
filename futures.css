@@ -20,6 +20,7 @@
 .chart-wrap{position:relative;width:100%;min-height:280px}
 .chart-wrap canvas{display:block;width:100%;max-width:100%}
 .chart-wrap p{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted-text)}
+.chart-wrap p[hidden]{display:none}
 .chart-note{color:var(--muted-text);font-size:.88rem}
 .tx-positive{color:var(--market-up,#d63b3b)}
 .tx-negative{color:var(--market-down,#168a58)}
