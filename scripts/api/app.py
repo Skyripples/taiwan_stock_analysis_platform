@@ -17,6 +17,7 @@ from api.routes.health import router as health_router
 from api.routes.stocks import router as stocks_router
 from api.routes.auth import router as auth_router
 from api.routes.crypto import router as crypto_router
+from api.routes.futures import router as futures_router
 
 
 LOGGER = logging.getLogger("taiwan_stock_api")
@@ -102,3 +103,4 @@ app.include_router(health_router, prefix="/api/v1")
 app.include_router(stocks_router, prefix="/api/v1")
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(crypto_router, prefix="/api/v1")
+app.include_router(futures_router, prefix="/api/v1")

@@ -32,7 +32,7 @@ def number(value:Any,integer=False):
 def third_wednesday(year:int,month:int):
     days=[week[2] for week in monthcalendar(year,month) if week[2]]; return date(year,month,days[2])
 
-def select_contracts(rows:list[list[str]],trade_date:date,limit=2):
+def select_contracts(rows:list[list[str]],trade_date:date,limit=2,product="TX"):
     indexes={"product":0,"month":1,"open":2,"high":3,"low":4,"close":5,"change":6,"change_percent":7,"volume":10,"settlement":11,"open_interest":12}
     for row in rows:
         headers=[re.sub(r"[\s*]+","",cell) for cell in row]
@@ -42,7 +42,7 @@ def select_contracts(rows:list[list[str]],trade_date:date,limit=2):
         indexes={"product":position("契約"),"month":position("到期月份(週別)"),"open":position("開盤價"),"high":position("最高價"),"low":position("最低價"),"close":position("最後成交價"),"change":position("漲跌價"),"change_percent":position("漲跌%"),"volume":position(volume_name),"settlement":position("結算價"),"open_interest":position("未沖銷契約量")}; break
     contracts=[]
     for row in rows:
-        if len(row)<=max(indexes.values()) or row[indexes["product"]].strip()!="TX" or not re.fullmatch(r"\d{6}",row[indexes["month"]].strip()): continue
+        if len(row)<=max(indexes.values()) or row[indexes["product"]].strip()!=product or not re.fullmatch(r"\d{6}",row[indexes["month"]].strip()): continue
         month=row[indexes["month"]].strip(); expiry=third_wednesday(int(month[:4]),int(month[4:]));
         if expiry<trade_date: continue
         contract={"contract_month":f"{month[:4]}-{month[4:]}","contract_code":month,"expiry_date":expiry.isoformat(),"open":number(row[indexes["open"]]),"high":number(row[indexes["high"]]),"low":number(row[indexes["low"]]),"close":number(row[indexes["close"]]),"change":number(row[indexes["change"]]),"change_percent":number(row[indexes["change_percent"]]),"volume":number(row[indexes["volume"]],True),"settlement_price":number(row[indexes["settlement"]]),"open_interest":number(row[indexes["open_interest"]],True)}
@@ -52,14 +52,14 @@ def select_contracts(rows:list[list[str]],trade_date:date,limit=2):
     if not contracts: raise ValueError("TAIFEX response contains no unexpired monthly TX contract")
     return contracts[:limit]
 
-def fetch(session,now=None):
+def fetch(session,now=None,product="TX"):
     today=(now or datetime.now(TAIPEI)).astimezone(TAIPEI).date()
     for offset in range(15):
         query=today-timedelta(days=offset); query_text=query.strftime("%Y/%m/%d")
-        response=session.post(SOURCE,data={"queryType":"2","marketCode":"0","MarketCode":"0","dateaddcnt":"","commodity_id":"TX","commodity_id2":"","queryDate":query_text},timeout=(10,40)); response.raise_for_status(); response.encoding="utf-8"
+        response=session.post(SOURCE,data={"queryType":"2","marketCode":"0","MarketCode":"0","dateaddcnt":"","commodity_id":product,"commodity_id2":"","queryDate":query_text},timeout=(10,40)); response.raise_for_status(); response.encoding="utf-8"
         parser=_NightMarketParser(); parser.feed(response.text)
         if parser.query_date!=query_text: continue
-        try: contracts=select_contracts(parser.rows,query)
+        try: contracts=select_contracts(parser.rows,query,product=product)
         except ValueError: continue
         return {"trade_date":query.isoformat(),"contracts":contracts}
     raise ValueError("TAIFEX returned no completed TX regular-session quote in lookback")
