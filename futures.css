@@ -2,7 +2,7 @@
 .futures-status{display:flex;justify-content:space-between;gap:1rem;align-items:center}
 .futures-status p,.futures-status small{color:var(--muted-text)}
 .futures-products,.futures-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
-.futures-products>.widget,.futures-grid>.widget{box-sizing:border-box;padding:1.5rem}
+.futures-products>.product-card,.futures-grid>article.widget{box-sizing:border-box;padding:1.5rem!important}
 .futures-products>.widget h2,.futures-grid>.widget h2{margin:0 0 .875rem}
 .futures-grid>.widget>p{margin:0;line-height:1.65}
 .futures-grid>.widget>small{display:block;margin-top:.75rem;line-height:1.55}
@@ -38,5 +38,5 @@
   .segmented button{flex:1 1 auto}
 }
 @media(max-width:560px){
-  .futures-products>.widget,.futures-grid>.widget{padding:1.125rem}
+  .futures-products>.product-card,.futures-grid>article.widget{padding:1.125rem!important}
 }

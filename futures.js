@@ -4,6 +4,8 @@
   const value = (v, d = 0) => v == null ? '—' : Number(v).toLocaleString('zh-TW', { maximumFractionDigits: d });
   const signed = (v, suffix = '') => v == null ? '—' : `${v > 0 ? '+' : ''}${value(v, 2)}${suffix}`;
   const tone = v => v > 0 ? 'tx-positive' : v < 0 ? 'tx-negative' : '';
+  const PRODUCT_ORDER = ['TX', 'MTX', 'TMF'];
+  const productRank = product => { const rank = PRODUCT_ORDER.indexOf(product); return rank < 0 ? PRODUCT_ORDER.length : rank; };
   let selectedProduct = 'TX', selectedRange = '3M', summary = null, requestId = 0;
   const front = product => summary?.products?.find(row => row.product === product && row.contract_rank === 'front');
 
@@ -16,8 +18,8 @@
     card.querySelector('[data-metrics]').innerHTML = `<div><dt>成交量</dt><dd>${value(row.volume)}</dd></div><div><dt>未平倉量</dt><dd>${value(row.open_interest)}</dd></div><div><dt>結算價</dt><dd>${value(row.settlement_price, 2)}</dd></div><div><dt>到期</dt><dd>${row.days_to_expiry == null ? '—' : `${row.days_to_expiry} 天`}</dd></div>`;
   }
   function renderSummary(data) {
-    summary = data; ['TMF', 'MTX', 'TX'].forEach(renderCard);
-    const rows = data.products || [], current = front(selectedProduct), tx = front('TX');
+    summary = data; PRODUCT_ORDER.forEach(renderCard);
+    const rows = [...(data.products || [])].sort((left, right) => productRank(left.product) - productRank(right.product) || String(left.contract).localeCompare(String(right.contract))), current = front(selectedProduct), tx = front('TX');
     $('spotIndex').textContent = value(data.taiex, 2); $('basisFuture').textContent = value(tx?.close, 2);
     $('txBasis').textContent = tx?.basis == null ? '資料日期無法可靠對齊' : `${signed(tx.basis)}（${signed(tx.basis_pct, '%')}）`;
     $('priceOiState').textContent = current?.price_oi_state || '資料不足';
@@ -37,7 +39,7 @@
     try { const response = await fetch(`${api}/futures/history?product=${selectedProduct}&range=${selectedRange}&limit=1500`, { headers: { Accept: 'application/json' } }); if (!response.ok) throw Error(response.status); const data = await response.json(); if (current === requestId) draw(data.results || []); }
     catch { if (current === requestId) { draw([]); $('chartEmpty').textContent = '目前無法取得歷史資料'; $('chartEmpty').hidden = false; } }
   }
-  async function load() { try { const response = await fetch(`${api}/futures/summary`, { headers: { Accept: 'application/json' }, cache: 'no-store' }); if (!response.ok) throw Error(response.status); renderSummary(await response.json()); await loadHistory(); } catch { $('futuresState').textContent = '目前無法取得資料'; $('futuresTable').tBodies[0].innerHTML = '<tr><td colspan="9">目前無法取得資料</td></tr>'; } }
+  async function load() { try { const url = `${api}/futures/summary`, data = globalThis.PlatformProductDataGet ? await globalThis.PlatformProductDataGet(url) : await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-store' }).then(response => { if (!response.ok) throw Error(response.status); return response.json(); }); renderSummary(data); await loadHistory(); } catch { $('futuresState').textContent = '目前無法取得資料'; $('futuresUpdated').textContent = '最近完成交易日行情：—'; $('futuresTable').tBodies[0].innerHTML = '<tr><td colspan="9">目前無法取得資料</td></tr>'; } }
   document.querySelectorAll('#productSelector button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('#productSelector button').forEach(x => x.classList.toggle('active', x === button)); selectedProduct = button.dataset.product; $('priceOiState').textContent = front(selectedProduct)?.price_oi_state || '資料不足'; loadHistory(); }));
   document.querySelectorAll('#rangeSelector button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('#rangeSelector button').forEach(x => x.classList.toggle('active', x === button)); selectedRange = button.dataset.range; loadHistory(); }));
   let resizeTimer; addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(loadHistory, 150); }); load();
