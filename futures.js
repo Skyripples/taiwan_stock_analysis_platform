@@ -4,7 +4,7 @@
   const value = (v, d = 0) => v == null ? '—' : Number(v).toLocaleString('zh-TW', { maximumFractionDigits: d });
   const signed = (v, suffix = '') => v == null ? '—' : `${v > 0 ? '+' : ''}${value(v, 2)}${suffix}`;
   const tone = v => v > 0 ? 'tx-positive' : v < 0 ? 'tx-negative' : '';
-  let selectedProduct = 'TMF', selectedRange = '3M', summary = null, requestId = 0;
+  let selectedProduct = 'TX', selectedRange = '3M', summary = null, requestId = 0;
   const front = product => summary?.products?.find(row => row.product === product && row.contract_rank === 'front');
 
   function renderCard(product) {
