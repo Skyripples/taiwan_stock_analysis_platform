@@ -1,0 +1,24 @@
+[Unit]
+Description=Taiwan Stock Platform TAIFEX daily futures updater
+After=network-online.target postgresql.service
+Wants=network-online.target
+Requires=postgresql.service
+
+[Service]
+Type=oneshot
+User=stock-sync
+Group=stock-sync
+WorkingDirectory=/opt/taiwan_stock_analysis_platform
+EnvironmentFile=/etc/taiwan-stock-analysis/sync.env
+Environment=PYTHONPATH=/opt/taiwan_stock_analysis_platform/scripts
+ExecStart=/opt/taiwan_stock_analysis_platform/.venv/bin/python scripts/update_futures_daily.py --products TX MTX TMF --lookback-days 14 --delay 2.5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
