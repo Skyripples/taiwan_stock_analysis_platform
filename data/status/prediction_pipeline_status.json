@@ -1,7 +1,8 @@
 {
-  "checked_at": "2026-10-14T04:36:55.400845+00:00",
-  "status": "skipped",
-  "ready": false,
-  "reason": "required_market_provider_failed",
+  "checked_at": "2026-10-15T04:17:47.972343+00:00",
+  "status": "ready",
+  "ready": true,
+  "reason": null,
+  "feature_date": "2026-10-14",
   "feature_count": 15
 }

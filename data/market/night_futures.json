@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-14T04:34:51.879828Z",
+  "updated_at": "2026-10-15T04:16:56.099811Z",
   "provider": "TAIFEX",
   "dataset": "night_futures",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-14",
+        "trade_date": "2026-10-15",
         "metadata": {
           "market": "TAIFEX",
           "product_name": "臺股期貨",
@@ -19,13 +19,13 @@
           "change_basis": "previous_regular_session_settlement_price",
           "source": "https://www.taifex.com.tw/cht/3/futDailyMarketReport"
         },
-        "open": 48433,
-        "high": 48873,
-        "low": 48357,
-        "close": 48755,
-        "change": 363,
-        "change_percent": 0.75,
-        "volume": 21801
+        "open": 48801,
+        "high": 49000,
+        "low": 47850,
+        "close": 47945,
+        "change": -853,
+        "change_percent": -1.75,
+        "volume": 38271
       }
     ]
   }
