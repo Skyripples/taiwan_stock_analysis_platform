@@ -53,13 +53,15 @@ def get_futures_summary() -> dict[str, Any]:
         )
         products = cursor.fetchall()
         spot = None
+        tx_trade_date = next((row["trade_date"] for row in products if row["product"] == "TX"), None)
         try:
             cursor.execute(
                 """SELECT p.close FROM market_daily_prices p
                      JOIN market_instruments i USING(instrument_id)
                     WHERE i.canonical_symbol=ANY(%s)
-                    ORDER BY p.trade_date DESC LIMIT 1""",
-                (["TAIEX", "^TWII"],),
+                      AND p.trade_date=%s
+                    LIMIT 1""",
+                (["TAIEX", "^TWII"], tx_trade_date),
             )
             spot_row = cursor.fetchone()
             spot = float(spot_row["close"]) if spot_row and spot_row["close"] is not None else None
