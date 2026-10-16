@@ -4,7 +4,7 @@ import argparse
 import sys
 import tempfile
 import unittest
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -38,6 +38,37 @@ class OfficialReconstructionTests(unittest.TestCase):
         self.assertEqual(session_for_file_tick(item("2026-10-16T02:00:00+08:00"), day), "after_hours")
         self.assertEqual(session_for_file_tick(item("2026-10-16T08:45:00+08:00"), day), "regular")
         with self.assertRaises(ValueError): session_for_file_tick(item("2026-10-16T14:00:00+08:00"), day)
+
+    def test_monday_uses_previous_friday_night_window(self):
+        day = date(2026, 9, 7)
+        self.assertEqual(session_for_file_tick(item("2026-09-04T15:00:00+08:00"), day), "after_hours")
+        self.assertEqual(session_for_file_tick(item("2026-09-05T05:00:00+08:00"), day), "after_hours")
+        with self.assertRaises(ValueError):
+            session_for_file_tick(item("2026-09-07T02:00:00+08:00"), day)
+
+    def test_normal_tuesday_and_regular_session(self):
+        day = date(2026, 9, 8)
+        self.assertEqual(session_for_file_tick(item("2026-09-07T15:00:00+08:00"), day), "after_hours")
+        self.assertEqual(session_for_file_tick(item("2026-09-08T08:45:00+08:00"), day), "regular")
+        self.assertEqual(session_for_file_tick(item("2026-09-08T13:45:59+08:00"), day), "regular")
+
+    def test_long_weekend_first_session_uses_last_official_session(self):
+        day = date(2026, 9, 29)
+        self.assertEqual(session_for_file_tick(item("2026-09-24T15:00:00+08:00"), day), "after_hours")
+        self.assertEqual(session_for_file_tick(item("2026-09-25T05:00:00+08:00"), day), "after_hours")
+        with self.assertRaises(ValueError):
+            session_for_file_tick(item("2026-09-28T15:00:00+08:00"), day)
+
+    def test_six_failed_dates_resolve_their_previous_session(self):
+        expected = {
+            date(2026, 9, 7): date(2026, 9, 4), date(2026, 9, 14): date(2026, 9, 11),
+            date(2026, 9, 21): date(2026, 9, 18), date(2026, 9, 29): date(2026, 9, 24),
+            date(2026, 10, 5): date(2026, 10, 2), date(2026, 10, 12): date(2026, 10, 8),
+        }
+        for trading_day, prior in expected.items():
+            with self.subTest(trading_day=trading_day):
+                self.assertEqual(session_for_file_tick(item(f"{prior.isoformat()}T15:00:00+08:00"), trading_day), "after_hours")
+                self.assertEqual(session_for_file_tick(item(f"{(prior + timedelta(days=1)).isoformat()}T05:00:00+08:00"), trading_day), "after_hours")
 
     def test_actual_contract_and_three_products_preserved(self):
         ticks = [item("2026-10-16T08:45:00+08:00", p, p + "202611") for p in ("TX", "MTX", "TMF")]

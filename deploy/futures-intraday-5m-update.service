@@ -11,7 +11,7 @@ Group=stock-sync
 WorkingDirectory=/opt/taiwan_stock_analysis_platform
 EnvironmentFile=/etc/taiwan-stock-analysis/sync.env
 Environment=PYTHONPATH=/opt/taiwan_stock_analysis_platform/scripts
-ExecStart=/opt/taiwan_stock_analysis_platform/.venv/bin/python scripts/update_futures_intraday_5m.py --lookback-days 45 --delay 2
+ExecStart=/opt/taiwan_stock_analysis_platform/.venv/bin/python scripts/update_futures_intraday_5m.py --lookback-days 30 --delay 2
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict

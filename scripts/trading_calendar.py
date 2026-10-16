@@ -118,3 +118,21 @@ def get_next_trading_day(value: str | date, calendar: dict[str, Any] | None = No
         if status:
             return candidate.isoformat()
         candidate += timedelta(days=1)
+
+
+def get_previous_trading_day(value: str | date) -> str | None:
+    """Return the previous PIT-aware Taiwan trading session, failing closed."""
+
+    try:
+        current = date.fromisoformat(value) if isinstance(value, str) else value
+    except (TypeError, ValueError):
+        return None
+    if not isinstance(current, date):
+        return None
+    # Fourteen calendar days safely covers ordinary long weekends while every
+    # intervening date still has to be covered by an official calendar store.
+    try:
+        sessions, _ = get_trading_days_in_range(current - timedelta(days=14), current - timedelta(days=1))
+    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        return None
+    return sessions[-1].isoformat() if sessions else None

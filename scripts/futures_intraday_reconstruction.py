@@ -3,12 +3,12 @@ from __future__ import annotations
 
 import os
 import tempfile
-from datetime import date, datetime, time, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from typing import Iterable
 
 from futures_intraday import FuturesCandle, FuturesTick, INTERVAL_SECONDS, TAIPEI, bucket_start
-from trading_calendar import get_trading_days_in_range
+from trading_calendar import get_previous_trading_day, get_trading_days_in_range
 
 SOURCE = "TAIFEX official daily tick CSV"
 REGULAR_START, REGULAR_END = time(8, 45), time(13, 45, 59)
@@ -25,11 +25,18 @@ def contract_expiry(contract: str) -> date:
     return sessions[-1]
 
 
-def session_for_file_tick(tick: FuturesTick, trading_date: date) -> str:
+def session_for_file_tick(tick: FuturesTick, trading_date: date, previous_trading_day: date | None = None) -> str:
     local = tick.timestamp.astimezone(TAIPEI); wall = local.time().replace(tzinfo=None)
     if local.date() == trading_date and REGULAR_START <= wall <= REGULAR_END:
         return "regular"
-    if (local.date() < trading_date and wall >= AFTER_START) or (local.date() == trading_date and wall <= AFTER_END):
+    if previous_trading_day is None:
+        resolved = get_previous_trading_day(trading_date)
+        if resolved is None:
+            raise ValueError(f"trading calendar cannot resolve previous session for {trading_date}")
+        previous_trading_day = date.fromisoformat(resolved)
+    after_hours_end_date = previous_trading_day + timedelta(days=1)
+    if ((local.date() == previous_trading_day and wall >= AFTER_START) or
+            (local.date() == after_hours_end_date and wall <= AFTER_END)):
         return "after_hours"
     raise ValueError(f"tick timestamp is inconsistent with TAIFEX trading date {trading_date}")
 
@@ -37,9 +44,13 @@ def session_for_file_tick(tick: FuturesTick, trading_date: date) -> str:
 def aggregate_ticks(ticks: Iterable[FuturesTick], trading_date: date, *,
                     available_at: datetime, fetched_at: datetime | None = None) -> list[FuturesCandle]:
     fetched = (fetched_at or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    resolved = get_previous_trading_day(trading_date)
+    if resolved is None:
+        raise ValueError(f"trading calendar cannot resolve previous session for {trading_date}")
+    previous_trading_day = date.fromisoformat(resolved)
     buckets: dict[tuple, dict] = {}
     for sequence, tick in enumerate(ticks):
-        session = session_for_file_tick(tick, trading_date); stamp = bucket_start(tick.timestamp)
+        session = session_for_file_tick(tick, trading_date, previous_trading_day); stamp = bucket_start(tick.timestamp)
         key = (tick.product, tick.contract, session, stamp); item = buckets.get(key)
         if tick.volume is None: raise ValueError("TAIFEX tick volume is unavailable")
         if item is None:
