@@ -22,6 +22,13 @@
 .chart-wrap p{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted-text)}
 .chart-wrap p[hidden]{display:none}
 .chart-note{color:var(--muted-text);font-size:.88rem}
+.intraday-panel{padding:1.5rem}
+.intraday-panel .futures-toolbar{align-items:flex-start}
+.intraday-panel .futures-toolbar h2,.intraday-panel .futures-toolbar p{margin:0}
+.intraday-panel .futures-toolbar p{margin-top:.45rem;color:var(--muted-text)}
+.intraday-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;margin:1.25rem 0}
+.intraday-meta>div{padding:.8rem;border:1px solid var(--border-color);border-radius:.65rem;min-width:0}
+.intraday-meta dt{color:var(--muted-text);font-size:.8rem}.intraday-meta dd{margin:.35rem 0 0;font-weight:700;overflow-wrap:anywhere}
 .tx-positive{color:var(--market-up,#d63b3b)}
 .tx-negative{color:var(--market-down,#168a58)}
 .tx-table-wrap{overflow-x:auto}
@@ -37,7 +44,9 @@
   .futures-toolbar{align-items:stretch}
   .segmented{width:100%}
   .segmented button{flex:1 1 auto}
+  .intraday-meta{grid-template-columns:1fr 1fr}
 }
 @media(max-width:560px){
   .futures-products>.product-card,.futures-grid>article.widget{padding:1.125rem!important}
+  .intraday-panel{padding:1.125rem}.intraday-meta{grid-template-columns:1fr}
 }

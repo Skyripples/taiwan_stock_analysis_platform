@@ -43,10 +43,13 @@ class FuturesMarketExpansionTests(unittest.TestCase):
     def test_dashboard_and_api(self):
         html = (ROOT / "futures.html").read_text(encoding="utf-8")
         js = (ROOT / "futures.js").read_text(encoding="utf-8")
-        for token in ("TMF 微型臺指", "期現貨價差", "價格 × 未平倉量", "契約結構", "尚未提供"):
+        for token in ("TMF 微型臺指", "5 分鐘行情", "契約結構"):
             self.assertIn(token, html)
+        for removed in ("期現貨價差", "價格 × 未平倉量", "<h2>尚未提供</h2>"):
+            self.assertNotIn(removed, html)
         self.assertIn("/futures/summary", js)
         self.assertIn("/futures/history", js)
+        self.assertIn("/futures/intraday", js)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+[Unit]
+Description=Check TAIFEX official daily tick files after publication
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 16:30:00 Asia/Taipei
+OnCalendar=Mon..Fri *-*-* 19:30:00 Asia/Taipei
+OnCalendar=Mon..Fri *-*-* 23:30:00 Asia/Taipei
+AccuracySec=1min
+RandomizedDelaySec=3min
+Persistent=true
+Unit=futures-intraday-5m-update.service
+
+[Install]
+WantedBy=timers.target

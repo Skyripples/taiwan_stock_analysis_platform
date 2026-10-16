@@ -1,14 +1,17 @@
 """Read-only futures dashboard queries."""
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from api.db import pool
 from futures_market import basis, price_oi_state
 
 RANGE_MONTHS = {"1M": 1, "3M": 3, "6M": 6, "1Y": 12, "3Y": 36, "5Y": 60}
+INTRADAY_RANGES = {"1H": timedelta(hours=1), "4H": timedelta(hours=4),
+                   "1D": timedelta(days=1), "3D": timedelta(days=3), "7D": timedelta(days=7)}
 
 
 def _clean(value: Any) -> Any:
@@ -106,3 +109,35 @@ def get_futures_history(product: str, contract: str | None, range_key: str,
     rows.reverse()
     return {"product": product, "contract": contract, "range": range_key,
             "count": len(rows), "results": rows}
+
+
+def get_futures_intraday(product: str, range_key: str, limit: int) -> dict[str, Any]:
+    with pool.connection() as connection, connection.cursor() as cursor:
+        cursor.execute(
+            """WITH latest AS (
+                   SELECT max(timestamp_utc) AS stamp FROM futures_intraday_prices
+                    WHERE product=%s AND interval_seconds=300
+               ) SELECT * FROM (
+                   SELECT i.product,i.contract,i.session,i.timestamp_utc AS timestamp,i.trading_date,
+                          i.open,i.high,i.low,i.close,i.volume,i.source,i.available_at,i.fetched_at
+                     FROM futures_intraday_prices i
+                     JOIN futures_daily_prices d
+                       ON d.product=i.product AND d.contract=i.contract AND d.trade_date=i.trading_date
+                      AND d.session='regular' AND d.contract_rank='front'
+                     CROSS JOIN latest
+                    WHERE i.product=%s AND i.interval_seconds=300
+                      AND i.timestamp_utc >= latest.stamp - %s
+                    ORDER BY timestamp_utc DESC LIMIT %s
+               ) recent ORDER BY timestamp ASC""",
+            (product, product, INTRADAY_RANGES[range_key], limit),
+        )
+        rows = [_row(row) for row in cursor.fetchall()]
+    latest = rows[-1] if rows else None
+    latest_timestamp = latest.get("timestamp") if latest else None
+    latest_trading_date = latest.get("trading_date") if latest else None
+    taipei_today = datetime.now(timezone.utc).astimezone(ZoneInfo("Asia/Taipei")).date()
+    stale = not latest_trading_date or (taipei_today - date.fromisoformat(latest_trading_date)).days > 4
+    return {"product": product, "interval": "5m", "range": range_key, "count": len(rows),
+            "results": rows, "latest_timestamp": latest_timestamp, "latest_session": latest.get("session") if latest else None,
+            "latest_trading_date": latest_trading_date, "source": "TAIFEX",
+            "update_mode": "daily_official_reconstruction", "stale": stale}

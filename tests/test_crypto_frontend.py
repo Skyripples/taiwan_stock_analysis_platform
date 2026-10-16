@@ -19,6 +19,8 @@ class CryptoFrontendTests(unittest.TestCase):
         self.assertIn("AbortController",script); self.assertIn("5 分鐘歷史行情建置中",script)
         self.assertIn("@media(max-width:430px)",css); self.assertIn("overflow:hidden",css)
         self.assertIn("crypto.html",(ROOT/"sidebar.js").read_text(encoding="utf-8"))
+        self.assertIn("stroke:var(--accent-color,#4d91f7)",css)
+        self.assertIn("crypto.css?v=4.3.5",html)
 
 
 if __name__=="__main__": unittest.main()
