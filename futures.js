@@ -25,12 +25,9 @@
     $('futuresState').textContent = rows.length ? '資料已更新' : '目前無法取得資料'; $('futuresUpdated').textContent = `最近完成交易日：${data.latest_trade_date || '—'}`;
   }
   function draw(rows) {
-    const canvas = $('futuresChart'), empty = $('chartEmpty'), context = canvas.getContext('2d'), scale = devicePixelRatio || 1, width = canvas.clientWidth || 800, height = 280;
-    canvas.width = width * scale; canvas.height = height * scale; context.scale(scale, scale); context.clearRect(0, 0, width, height);
-    const points = rows.filter(row => row.close != null); empty.hidden = points.length > 1; if (points.length < 2) return;
-    const all = points.flatMap(row => [Number(row.close), Number(row.settlement_price ?? row.close)]), min = Math.min(...all), max = Math.max(...all), span = max - min || 1, pad = 24;
-    const line = (field, color) => { context.beginPath(); points.forEach((row, i) => { const x = pad + i * (width - pad * 2) / (points.length - 1), y = pad + (max - Number(row[field] ?? row.close)) / span * (height - pad * 2); i ? context.lineTo(x, y) : context.moveTo(x, y); }); context.strokeStyle = color; context.lineWidth = 2; context.stroke(); };
-    line('close', '#3b82f6'); line('settlement_price', '#f59e0b');
+    const canvas = $('futuresChart'), empty = $('chartEmpty');
+    const points = rows.filter(row => row.close != null); empty.hidden = points.length > 1; if (points.length < 2) { PlatformXYChart.canvas(canvas,{series:[]}); return; }
+    PlatformXYChart.canvas(canvas,{series:[{values:points.map(row=>Number(row.close)),color:'#3b82f6'},{values:points.map(row=>Number(row.settlement_price??row.close)),color:'#f59e0b'}],xValues:points.map(row=>row.trade_date),xLabel:'交易日期',yLabel:'指數點'});
   }
   async function loadHistory() {
     const current = ++requestId; $('chartTitle').textContent = `${selectedProduct} 歷史價格`;
@@ -38,13 +35,10 @@
     catch { if (current === requestId) { draw([]); $('chartEmpty').textContent = '目前無法取得歷史資料'; $('chartEmpty').hidden = false; } }
   }
   function drawIntraday(rows) {
-    const canvas = $('intradayChart'), empty = $('intradayEmpty'), context = canvas.getContext('2d'), scale = devicePixelRatio || 1, width = canvas.clientWidth || 800, height = 280;
-    canvas.width = width * scale; canvas.height = height * scale; context.scale(scale, scale); context.clearRect(0, 0, width, height);
+    const canvas = $('intradayChart'), empty = $('intradayEmpty');
     const points = rows.filter(row => row.close != null); empty.hidden = points.length > 1;
-    if (points.length < 2) return;
-    const prices = points.map(row => Number(row.close)), min = Math.min(...prices), max = Math.max(...prices), span = max - min || 1, pad = 24;
-    context.beginPath(); points.forEach((row, index) => { const x = pad + index * (width - pad * 2) / (points.length - 1), y = pad + (max - Number(row.close)) / span * (height - pad * 2); index ? context.lineTo(x, y) : context.moveTo(x, y); });
-    context.strokeStyle = '#3b82f6'; context.lineWidth = 2; context.stroke();
+    if (points.length < 2) { PlatformXYChart.canvas(canvas,{series:[]}); return; }
+    PlatformXYChart.canvas(canvas,{series:[{values:points.map(row=>Number(row.close)),color:'#3b82f6'}],xValues:points.map(row=>row.timestamp),xLabel:'時間（台北）',yLabel:'指數點'});
   }
   async function loadIntraday() {
     const current = ++intradayRequestId;

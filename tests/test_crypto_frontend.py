@@ -20,7 +20,11 @@ class CryptoFrontendTests(unittest.TestCase):
         self.assertIn("@media(max-width:430px)",css); self.assertIn("overflow:hidden",css)
         self.assertIn("crypto.html",(ROOT/"sidebar.js").read_text(encoding="utf-8"))
         self.assertIn("stroke:var(--accent-color,#4d91f7)",css)
-        self.assertIn("crypto.css?v=4.3.5",html)
+        self.assertIn("crypto.css?v=4.3.6",html)
+        self.assertIn("xy-chart.css",html)
+        self.assertIn("xy-chart.js",html)
+        self.assertIn('xLabel:"時間（台北）"',script)
+        self.assertIn('yLabel:"價格（USD）"',script)
 
 
 if __name__=="__main__": unittest.main()

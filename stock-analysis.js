@@ -188,14 +188,12 @@
   }
   function sumText(values) { return `5日 ${signed(values?.['5d'])}｜20日 ${signed(values?.['20d'])}｜60日 ${signed(values?.['60d'])}`; }
   function svgChart(series, labels) {
-    const width = 640, height = 220, pad = 22;
     const all = series.flatMap((entry) => entry.values).filter(Number.isFinite);
     if (all.length < 2) return '<p>趨勢資料不足</p>';
-    let min = Math.min(...all), max = Math.max(...all);
-    if (min === max) { min -= 1; max += 1; }
-    const points = (values) => values.map((value, index) => `${pad + index * (width - pad * 2) / Math.max(1, values.length - 1)},${height - pad - (value - min) * (height - pad * 2) / (max - min)}`).join(' ');
-    const zero = min <= 0 && max >= 0 ? height - pad - (0 - min) * (height - pad * 2) / (max - min) : null;
-    return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${labels[0]} 至 ${labels.at(-1)}趨勢圖" preserveAspectRatio="none">${zero === null ? '' : `<line class="chart-zero" x1="${pad}" x2="${width - pad}" y1="${zero}" y2="${zero}"/>`}${series.map((entry) => `<polyline class="${entry.className}" points="${points(entry.values)}"/>`).join('')}</svg>`;
+    const chart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    chart.setAttribute('role', 'img'); chart.setAttribute('aria-label', `${labels[0]} 至 ${labels.at(-1)}趨勢圖`); chart.setAttribute('preserveAspectRatio', 'none');
+    PlatformXYChart.svg(chart, { width: 640, height: 220, compact: true, series, xValues: labels, xLabel: '期間', yLabel: '數值' });
+    return chart.outerHTML;
   }
   function renderChipsTrend() {
     if (!currentChips?.history?.length) return;

@@ -22,21 +22,7 @@
   const renderCurve = (observations) => {
     if (!observations.length) { svg.innerHTML = ""; return; }
     const values = [...observations].sort((a, b) => a.tenor_months - b.tenor_months);
-    const width = 720, height = 300, left = 62, right = 25, top = 28, bottom = 48;
-    const yields = values.map((item) => item.yield);
-    let minimum = Math.min(...yields), maximum = Math.max(...yields);
-    const padding = Math.max((maximum - minimum) * 0.18, 0.1);
-    minimum -= padding; maximum += padding;
-    const x = (index) => left + index * (width - left - right) / Math.max(values.length - 1, 1);
-    const y = (value) => top + (maximum - value) * (height - top - bottom) / (maximum - minimum);
-    const grid = [0, 1, 2, 3].map((step) => {
-      const value = minimum + (maximum - minimum) * step / 3;
-      const position = y(value);
-      return `<line class="bond-grid-line" x1="${left}" y1="${position}" x2="${width - right}" y2="${position}"/><text class="bond-axis-label" x="${left - 9}" y="${position + 4}" text-anchor="end">${value.toFixed(2)}%</text>`;
-    }).join("");
-    const points = values.map((item, index) => `${x(index)},${y(item.yield)}`).join(" ");
-    const labels = values.map((item, index) => `<circle class="bond-curve-point" cx="${x(index)}" cy="${y(item.yield)}" r="5"/><text class="bond-point-label" x="${x(index)}" y="${height - 18}" text-anchor="middle">${escapeHtml(item.tenor)}</text><text class="bond-point-label" x="${x(index)}" y="${y(item.yield) - 12}" text-anchor="middle">${item.yield.toFixed(3)}%</text>`).join("");
-    svg.innerHTML = `${grid}<polyline class="bond-curve-line" points="${points}"/>${labels}`;
+    PlatformXYChart.svg(svg, { width: 720, height: 300, series: [{ values: values.map((item) => item.yield), className: "bond-curve-line" }], xValues: values.map((item) => item.tenor), xFormatter: String, yFormatter: (value) => `${value.toFixed(2)}%`, xLabel: "期限", yLabel: "殖利率（%）" });
   };
   const render = () => {
     const current = market();

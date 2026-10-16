@@ -98,9 +98,10 @@
   function drawLines(container, series) {
     const all = series.flatMap(item => item.values);
     if (!all.length || all.some(value => !Number.isFinite(value))) throw new DataError('趨勢資料缺漏');
-    const min = Math.min(...all, 0); const max = Math.max(...all, 0); const span = max - min || 1;
-    const zeroY = 12 + (max / span) * 196;
-    container.innerHTML = `<svg viewBox="0 0 800 220" preserveAspectRatio="none" aria-hidden="true"><line class="chart-grid" x1="0" y1="55" x2="800" y2="55"/><line class="chart-grid" x1="0" y1="110" x2="800" y2="110"/><line class="chart-grid" x1="0" y1="165" x2="800" y2="165"/><line class="chart-zero" x1="0" y1="${zeroY.toFixed(1)}" x2="800" y2="${zeroY.toFixed(1)}"/>${series.map(item => `<polyline class="chart-line ${item.className}" points="${polyline(item.values, min, max)}"/>`).join('')}</svg>`;
+    const chart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    chart.setAttribute('preserveAspectRatio', 'none'); chart.setAttribute('role', 'img'); chart.setAttribute('aria-label', '籌碼歷史趨勢');
+    PlatformXYChart.svg(chart, { width: 800, height: 220, compact: true, series: series.map(item => ({ ...item, className: `chart-line ${item.className}` })), xLabel: '期間', yLabel: '數值', xFormatter: String });
+    container.replaceChildren(chart);
   }
   function setToneValue(id, text, value) { const node = byId(id); node.textContent = text; tone(node, value); }
   function actionText(value) { return ({ increasing_shorts: '外資正在增加空單', covering_shorts: '外資正在回補空單', increasing_longs: '外資正在增加多單' })[value] || '狀態缺漏'; }
