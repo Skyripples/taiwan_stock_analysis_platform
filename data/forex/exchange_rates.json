@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-16T04:11:53.478645+00:00",
+  "updated_at": "2026-10-17T04:01:16.001573+00:00",
   "provider": "CBC",
   "dataset": "twd_exchange_rates",
   "version": "1.0",
-  "data_date": "2026-10-15",
-  "latest_source_date": "2026-10-15",
-  "fetched_at": "2026-10-16T04:11:53.478645+00:00",
+  "data_date": "2026-10-16",
+  "latest_source_date": "2026-10-16",
+  "fetched_at": "2026-10-17T04:01:16.001573+00:00",
   "source": "https://www.cbc.gov.tw/Public/Data/economic/statistic/fx/%E6%97%A5%E8%B3%87%E6%96%99%20(2002%E5%B9%B4%E8%BF%84%E4%BB%8A).xls",
   "sources": [
     "https://cpx.cbc.gov.tw/API/DataAPI/Get?FileName=BP01D01",
@@ -17,62 +17,62 @@
     {
       "currency": "USD",
       "name": "美元",
-      "twd_rate": 32.265,
-      "source_date": "2026-10-15"
+      "twd_rate": 32.338,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "JPY",
       "name": "日圓",
-      "twd_rate": 0.20437702,
-      "source_date": "2026-10-15"
+      "twd_rate": 0.20465793,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "EUR",
       "name": "歐元",
-      "twd_rate": 36.17067825,
-      "source_date": "2026-10-15"
+      "twd_rate": 36.3446782,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "CNY",
       "name": "人民幣",
-      "twd_rate": 4.82171678,
-      "source_date": "2026-10-15"
+      "twd_rate": 4.83609499,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "GBP",
       "name": "英鎊",
-      "twd_rate": 42.73015275,
-      "source_date": "2026-10-15"
+      "twd_rate": 43.0467287,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "AUD",
       "name": "澳幣",
-      "twd_rate": 22.372551,
-      "source_date": "2026-10-15"
+      "twd_rate": 22.507248,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "CAD",
       "name": "加拿大幣",
-      "twd_rate": 22.70504205,
-      "source_date": "2026-10-15"
+      "twd_rate": 22.82870354,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "SGD",
       "name": "新加坡幣",
-      "twd_rate": 25.15495264,
-      "source_date": "2026-10-15"
+      "twd_rate": 25.26702348,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "HKD",
       "name": "港幣",
-      "twd_rate": 4.11157907,
-      "source_date": "2026-10-15"
+      "twd_rate": 4.12072404,
+      "source_date": "2026-10-16"
     },
     {
       "currency": "KRW",
       "name": "韓元",
-      "twd_rate": 0.02402636,
-      "source_date": "2026-10-15"
+      "twd_rate": 0.02425229,
+      "source_date": "2026-10-16"
     }
   ]
 }

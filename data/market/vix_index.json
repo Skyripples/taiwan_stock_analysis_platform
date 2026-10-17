@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-16T04:14:18.354441Z",
+  "updated_at": "2026-10-17T04:03:10.571958Z",
   "provider": "Yahoo",
   "dataset": "vix_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-15",
+        "trade_date": "2026-10-16",
         "metadata": {
           "symbol": "^VIX",
           "security_name": "CBOE Volatility Index",
@@ -17,13 +17,13 @@
           "source": "https://finance.yahoo.com/quote/%5EVIX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX"
         },
-        "open": 17.55,
-        "high": 18.01,
-        "low": 16.34,
-        "close": 16.46,
-        "previous_close": 16.87,
-        "change": -0.41,
-        "change_percent": -2.4303,
+        "open": 16.02,
+        "high": 22.31,
+        "low": 15.72,
+        "close": 19.99,
+        "previous_close": 16.46,
+        "change": 3.53,
+        "change_percent": 21.4459,
         "volume": 0
       }
     ]
