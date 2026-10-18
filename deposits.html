@@ -14,14 +14,14 @@
     <header class="page-header"><p class="page-eyebrow">DEPOSITS</p><h1 class="page-title">定存</h1><p class="page-description">銀行存款牌告利率比較</p></header>
     <div class="page-body deposit-page">
       <section class="widget deposit-controls">
-        <label for="bankSearch">銀行名稱搜尋</label>
-        <input id="bankSearch" type="search" placeholder="輸入銀行名稱" autocomplete="off">
+        <label for="bankSearch">銀行名稱或代號搜尋</label>
+        <input id="bankSearch" type="search" placeholder="輸入銀行名稱或銀行代號" autocomplete="off">
         <fieldset><legend>利率類型</legend><label><input type="radio" name="rateType" value="fixed" checked> 固定利率</label><label><input type="radio" name="rateType" value="variable"> 機動利率</label></fieldset>
         <p id="depositState" role="status">載入中</p>
       </section>
-      <section class="page-section"><h2>活期存款</h2><div class="deposit-table-wrap"><table id="demandTable"><thead><tr><th data-sort="bank_name">銀行</th><th data-sort="demand_deposit">活期存款</th><th data-sort="savings_deposit">活期儲蓄存款</th></tr></thead><tbody></tbody></table></div></section>
-      <section class="page-section"><h2>定期存款</h2><div class="deposit-table-wrap"><table id="timeDepositTable"><thead><tr><th data-sort="bank_name">銀行</th><th data-sort="1M">1M</th><th data-sort="3M">3M</th><th data-sort="6M">6M</th><th data-sort="9M">9M</th><th data-sort="1Y">1Y</th><th data-sort="2Y">2Y</th><th data-sort="3Y">3Y</th></tr></thead><tbody></tbody></table></div></section>
-      <section class="page-section"><h2>定期儲蓄存款</h2><div class="deposit-table-wrap"><table id="timeSavingsTable"><thead><tr><th data-sort="bank_name">銀行</th><th data-sort="1Y">1Y</th><th data-sort="2Y">2Y</th><th data-sort="3Y">3Y</th></tr></thead><tbody></tbody></table></div></section>
+      <section class="page-section"><h2>活期存款</h2><div class="deposit-table-wrap"><table id="demandTable"><thead><tr><th data-sort="bank_code">銀行代號</th><th data-sort="bank_name">銀行</th><th data-sort="demand_deposit">活期存款</th><th data-sort="savings_deposit">活期儲蓄存款</th></tr></thead><tbody></tbody></table></div></section>
+      <section class="page-section"><h2>定期存款</h2><div class="deposit-table-wrap"><table id="timeDepositTable"><thead><tr><th data-sort="bank_code">銀行代號</th><th data-sort="bank_name">銀行</th><th data-sort="1M">1M</th><th data-sort="3M">3M</th><th data-sort="6M">6M</th><th data-sort="9M">9M</th><th data-sort="1Y">1Y</th><th data-sort="2Y">2Y</th><th data-sort="3Y">3Y</th></tr></thead><tbody></tbody></table></div></section>
+      <section class="page-section"><h2>定期儲蓄存款</h2><div class="deposit-table-wrap"><table id="timeSavingsTable"><thead><tr><th data-sort="bank_code">銀行代號</th><th data-sort="bank_name">銀行</th><th data-sort="1Y">1Y</th><th data-sort="2Y">2Y</th><th data-sort="3Y">3Y</th></tr></thead><tbody></tbody></table></div></section>
       <footer class="deposit-source"><p>資料日期：<time id="sourceDate">—</time></p><p>資料來源：<a href="https://cpx.cbc.gov.tw/BIRWEB/" target="_blank" rel="noopener noreferrer">中央銀行牌告利率資訊網</a></p><p>註記：本頁為銀行牌告利率；實際利率以各銀行最新公告為準。</p></footer>
     </div>
   </div></main>

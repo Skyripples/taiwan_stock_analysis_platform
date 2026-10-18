@@ -62,8 +62,12 @@ class DepositPageSmokeTests(unittest.TestCase):
         for value in ("銀行存款牌告利率比較", "bankSearch", "demandTable", "timeDepositTable", "timeSavingsTable", "fixed", "variable"):
             self.assertIn(value, html)
         self.assertIn("中央銀行牌告利率資訊網", html)
+        self.assertEqual(html.count('data-sort="bank_code"'), 3)
+        self.assertIn("銀行名稱或代號搜尋", html)
         self.assertIn('header.addEventListener("click"', script)
         self.assertIn('search.addEventListener("input"', script)
+        self.assertIn('key === "bank_code"', script)
+        self.assertIn("bank.bank_code", script)
         self.assertIn("bank_rates.json", script)
 
 

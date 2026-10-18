@@ -6,13 +6,19 @@
   const sourceDate = document.getElementById("sourceDate");
   const formatRate = (value) => Number.isFinite(value) ? `${value.toFixed(3)}%` : "—";
   const valueFor = (bank, table, key) => {
+    if (key === "bank_code") return bank.bank_code || "";
     if (key === "bank_name") return bank.bank_name;
     if (table === "demandTable") return bank.demand?.[key] ?? null;
     const group = table === "timeDepositTable" ? bank.time_deposit : bank.time_savings_deposit;
     return group?.[key]?.[state.rateType] ?? null;
   };
+  const matchesQuery = (bank) => {
+    const query = state.query.toLocaleLowerCase("zh-Hant");
+    return bank.bank_name.toLocaleLowerCase("zh-Hant").includes(query)
+      || String(bank.bank_code || "").toLocaleLowerCase("zh-Hant").includes(query);
+  };
   const visibleBanks = (table) => {
-    const filtered = state.banks.filter((bank) => bank.bank_name.includes(state.query));
+    const filtered = state.banks.filter(matchesQuery);
     const sort = state.sorts[table];
     if (!sort) return filtered;
     return [...filtered].sort((left, right) => {
@@ -26,11 +32,11 @@
   const renderTable = (id) => {
     const table = document.getElementById(id);
     const keys = [...table.querySelectorAll("th")].map((header) => header.dataset.sort);
-    table.querySelector("tbody").innerHTML = visibleBanks(id).map((bank) => `<tr>${keys.map((key) => `<td>${key === "bank_name" ? bank.bank_name : formatRate(valueFor(bank, id, key))}</td>`).join("")}</tr>`).join("");
+    table.querySelector("tbody").innerHTML = visibleBanks(id).map((bank) => `<tr>${keys.map((key) => `<td>${key === "bank_name" ? bank.bank_name : key === "bank_code" ? bank.bank_code || "—" : formatRate(valueFor(bank, id, key))}</td>`).join("")}</tr>`).join("");
   };
   const render = () => {
     ["demandTable", "timeDepositTable", "timeSavingsTable"].forEach(renderTable);
-    status.textContent = `顯示 ${state.banks.filter((bank) => bank.bank_name.includes(state.query)).length} 家銀行`;
+    status.textContent = `顯示 ${state.banks.filter(matchesQuery).length} 家銀行`;
   };
   document.querySelectorAll("th[data-sort]").forEach((header) => header.addEventListener("click", () => {
     const table = header.closest("table").id;
