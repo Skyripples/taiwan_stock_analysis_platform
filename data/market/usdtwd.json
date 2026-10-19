@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T04:10:14.345971Z",
+  "updated_at": "2026-10-19T04:19:14.334151Z",
   "provider": "Yahoo",
   "dataset": "usdtwd",
   "version": "1.0",
@@ -17,13 +17,13 @@
           "source": "https://finance.yahoo.com/quote/TWD%3DX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX"
         },
-        "open": 32.356,
-        "high": 32.533,
-        "low": 32.25,
-        "close": 32.428,
-        "previous_close": 32.3269,
-        "change": 0.1011,
-        "change_percent": 0.3127,
+        "open": 32.327,
+        "high": 32.528,
+        "low": 32.3062,
+        "close": 32.3269,
+        "previous_close": 32.1899,
+        "change": 0.137,
+        "change_percent": 0.4256,
         "volume": 0
       }
     ]
