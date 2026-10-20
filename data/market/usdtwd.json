@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-19T04:19:14.334151Z",
+  "updated_at": "2026-10-20T04:30:40.183722Z",
   "provider": "Yahoo",
   "dataset": "usdtwd",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-16",
+        "trade_date": "2026-10-19",
         "metadata": {
           "symbol": "TWD=X",
           "security_name": "USD/TWD Exchange Rate",
@@ -17,13 +17,13 @@
           "source": "https://finance.yahoo.com/quote/TWD%3DX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/TWD%3DX"
         },
-        "open": 32.327,
-        "high": 32.528,
-        "low": 32.3062,
-        "close": 32.3269,
-        "previous_close": 32.1899,
-        "change": 0.137,
-        "change_percent": 0.4256,
+        "open": 32.3868,
+        "high": 32.5393,
+        "low": 32.378,
+        "close": 32.387,
+        "previous_close": 32.3269,
+        "change": 0.0601,
+        "change_percent": 0.1859,
         "volume": 0
       }
     ]
