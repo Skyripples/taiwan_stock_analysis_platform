@@ -191,6 +191,108 @@ def row_map(table: Mapping[str, Any], code_index: int = 0) -> dict[str, list[Any
     return {str(row[code_index]).strip(): row for row in table.get("data", []) if isinstance(row, list) and len(row) > code_index}
 
 
+CHIPS_COMPONENTS = ("institutional", "margin")
+
+
+def _table_rows(payload: Any, title: str) -> tuple[list[str], list[list[Any]]]:
+    table = find_table(payload, title)
+    return list(table.get("fields") or []), [row for row in table.get("data") or [] if isinstance(row, list)]
+
+
+def parse_twse_institutional(payload: Any, day: str) -> dict[str, dict[str, Any]]:
+    """Parse the official full-market T86 response without converting NULL to zero."""
+    if not isinstance(payload, dict):
+        raise ValueError("TWSE institutional response is not an object")
+    if payload.get("stat") not in {None, "OK"} and not payload.get("data"):
+        return {}
+    fields = list(payload.get("fields") or [])
+    rows = [row for row in payload.get("data") or [] if isinstance(row, list)]
+    aliases = {
+        "foreign_buy": ("外陸資買進股數(不含外資自營商)",),
+        "foreign_sell": ("外陸資賣出股數(不含外資自營商)",),
+        "foreign_net": ("外陸資買賣超股數(不含外資自營商)",),
+        "investment_trust_buy": ("投信買進股數",), "investment_trust_sell": ("投信賣出股數",),
+        "investment_trust_net": ("投信買賣超股數",),
+        "dealer_buy": ("自營商買進股數",), "dealer_sell": ("自營商賣出股數",),
+        "dealer_net": ("自營商買賣超股數",), "institutional_total": ("三大法人買賣超股數",),
+    }
+    indexes: dict[str, int] = {}
+    for key, names in aliases.items():
+        for name in names:
+            if name in fields: indexes[key] = fields.index(name); break
+    required = {"foreign_net", "investment_trust_net", "dealer_net", "institutional_total"}
+    if not required.issubset(indexes): raise ValueError("TWSE institutional fields changed")
+    result = {}
+    for row in rows:
+        if not row: continue
+        symbol = str(row[0]).strip()
+        result[symbol] = {"trade_date": day, **{key: integer(row[index]) if index < len(row) else None for key,index in indexes.items()}}
+    return result
+
+
+def parse_twse_margin(payload: Any, day: str) -> dict[str, dict[str, Any]]:
+    if not isinstance(payload, dict):
+        raise ValueError("TWSE margin response is not an object")
+    if payload.get("stat") not in {None, "OK"} and not payload.get("tables"):
+        return {}
+    _, rows = _table_rows(payload, "融資融券彙總")
+    result = {}
+    for row in rows:
+        if len(row) < 13: continue
+        margin_balance, previous_margin = integer(row[6]), integer(row[5])
+        short_balance, previous_short = integer(row[12]), integer(row[11])
+        result[str(row[0]).strip()] = {
+            "trade_date": day, "margin_balance": margin_balance,
+            "margin_change": margin_balance-previous_margin if margin_balance is not None and previous_margin is not None else None,
+            "short_balance": short_balance,
+            "short_change": short_balance-previous_short if short_balance is not None and previous_short is not None else None,
+        }
+    return result
+
+
+def parse_tpex_institutional(payload: Any, day: str) -> dict[str, dict[str, Any]]:
+    _, rows = _table_rows(payload, "三大法人買賣明細")
+    result = {}
+    for row in rows:
+        if len(row) < 24: continue
+        result[str(row[0]).strip()] = {
+            "trade_date": day, "foreign_buy": integer(row[2]), "foreign_sell": integer(row[3]), "foreign_net": integer(row[4]),
+            "investment_trust_buy": integer(row[11]), "investment_trust_sell": integer(row[12]), "investment_trust_net": integer(row[13]),
+            "dealer_buy": integer(row[20]), "dealer_sell": integer(row[21]), "dealer_net": integer(row[22]), "institutional_total": integer(row[23]),
+        }
+    return result
+
+
+def parse_tpex_margin(payload: Any, day: str) -> dict[str, dict[str, Any]]:
+    _, rows = _table_rows(payload, "融資融券餘額")
+    result = {}
+    for row in rows:
+        if len(row) < 15: continue
+        margin_balance, previous_margin = integer(row[6]), integer(row[5])
+        short_balance, previous_short = integer(row[14]), integer(row[13])
+        result[str(row[0]).strip()] = {
+            "trade_date": day, "margin_balance": margin_balance,
+            "margin_change": margin_balance-previous_margin if margin_balance is not None and previous_margin is not None else None,
+            "short_balance": short_balance,
+            "short_change": short_balance-previous_short if short_balance is not None and previous_short is not None else None,
+        }
+    return result
+
+
+def fetch_chips_component(client: OfficialClient, market: str, component: str, day: str) -> dict[str, dict[str, Any]]:
+    """Fetch one official full-market/date component; callers filter symbols afterwards."""
+    compact, slash = day.replace("-", ""), day.replace("-", "/")
+    if (market, component) == ("TWSE", "institutional"):
+        return parse_twse_institutional(client.json(f"{TWSE_DAILY}/fund/T86", params={"date":compact,"selectType":"ALLBUT0999","response":"json"}), day)
+    if (market, component) == ("TWSE", "margin"):
+        return parse_twse_margin(client.json(f"{TWSE_DAILY}/marginTrading/MI_MARGN", params={"date":compact,"selectType":"ALL","response":"json"}), day)
+    if (market, component) == ("TPEx", "institutional"):
+        return parse_tpex_institutional(client.json(f"{TPEX_DAILY}/insti/dailyTrade", params={"date":slash,"type":"Daily","response":"json"}), day)
+    if (market, component) == ("TPEx", "margin"):
+        return parse_tpex_margin(client.json(f"{TPEX_DAILY}/margin/balance", params={"date":slash,"response":"json"}), day)
+    raise ValueError(f"unsupported chips component: {market}/{component}")
+
+
 def fetch_chips_history(client: OfficialClient, dates: Iterable[str], symbols: set[str], markets: Mapping[str, str]) -> dict[str, list[dict[str, Any]]]:
     output = {symbol: [] for symbol in symbols}
     listed = {symbol for symbol in symbols if markets.get(symbol) == "TWSE"}

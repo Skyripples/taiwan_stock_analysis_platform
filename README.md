@@ -2,6 +2,8 @@
 
 以原生 HTML、CSS、JavaScript 建立的台股分析平台，整合市場資料、事件、籌碼、個股基本面與研究型預測流程。網站可直接部署至 GitHub Pages；全市場個股資料由 Linode PostgreSQL 與 REST API 提供。
 
+目前版本：**V4.5.0 — Stock Historical Data & Research Foundation**
+
 ## 功能
 
 ### 平台介面
@@ -55,6 +57,16 @@
 - 規則式綜合分析摘要、主要優勢、風險與觀察項目
 - 個股內容統一由 Linode REST API 提供；服務無法使用時顯示明確狀態，不讀取過期的 GitHub 個股快取
 
+### Stock Historical Research
+
+- 個股詳細頁以「歷史研究」頁籤整合月營收、財務、估值與籌碼歷史資料
+- 月營收提供營收、YoY、MoM 趨勢；財務優先呈現 EPS、營收、稅後淨利、毛利率、營業利益率與 ROE
+- 估值提供 PE、PB、殖利率最新值與歷史趨勢；籌碼分開呈現法人流向與融資／融券餘額，避免不同量級共用 Y 軸
+- 各頁籤切換時才透過 Production REST API 載入，同一股票與資料集於頁面 session 內快取；單一 API 錯誤不影響其他頁籤
+- Production endpoints：`/api/v1/stocks/{symbol}/revenue`、`/financials`、`/valuation`、`/chips`
+- 歷史資料 importer 採 gzip JSONL streaming → PostgreSQL TEMP table → COPY → JOIN stocks → bulk UPSERT，支援 Revenue、Financials、Valuation、Chips
+- Chips Production benchmark：2,080,151 rows 約 166 秒；匯入保留 canonical key、來源 metadata 與更新優先規則
+
 ### 條件選股
 
 - 透過 Linode REST API 與 PostgreSQL 進行全市場 server-side 條件篩選
@@ -65,9 +77,9 @@
 ### 期貨
 
 - 提供 TX 臺股期貨、MTX 小型臺指與 TMF 微型臺指最近五年日行情
-- 顯示近月／次月契約、到期資訊、OHLC、結算價、成交量、未平倉量與價格 × OI 狀態
+- 顯示近月／次月契約、到期資訊、OHLC、結算價、成交量與未平倉量
 - 支援商品與 1M／3M／6M／1Y／3Y／5Y 歷史範圍切換；資料來自臺灣期貨交易所官方每日行情
-- 預留 TX／MTX／TMF 官方逐筆成交資料重建的 5 分鐘歷史行情、日夜盤區分及每日增量更新
+- TX／MTX／TMF 5 分鐘行情已由 TAIFEX 官方逐筆成交資料重建，區分日盤／夜盤並支援每日增量更新
 
 ### 基金／ETF
 

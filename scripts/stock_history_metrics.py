@@ -66,18 +66,43 @@ def chips_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
         if len(values) < 20 or not pstdev(values): return None
         return round((values[-1] - fmean(values)) / pstdev(values), 6)
     output: dict[str, Any] = {}
-    for field, prefix, windows in (("foreign_net", "foreign", (5,20,60)), ("investment_trust_net", "investment_trust", (5,20)), ("institutional_total", "institutional", (5,20))):
+    for field, prefix, windows in (("foreign_net", "foreign", (1,5,20,60)), ("investment_trust_net", "investment_trust", (5,20)), ("dealer_net", "dealer", (5,20)), ("institutional_total", "institutional", (5,20))):
         for days in windows: output[f"{prefix}_{days}d"] = window_sum(field, days)
         output[f"{prefix}_consecutive_days"] = streak(field)
+        output[f"{prefix}_consecutive_buy_days"] = max(output[f"{prefix}_consecutive_days"],0)
+        output[f"{prefix}_consecutive_sell_days"] = abs(min(output[f"{prefix}_consecutive_days"],0))
         output[f"{prefix}_zscore"] = zscore(field)
     for field, prefix in (("margin_balance", "margin"), ("short_balance", "short")):
         for days in (1,5,20): output[f"{prefix}_{days}d_change"] = balance_change(field, days)
         previous = ordered[-2].get(field) if len(ordered) > 1 else None
         output[f"{prefix}_balance_change_percent"] = percent_change(ordered[-1].get(field), previous) if ordered else None
+    latest = ordered[-1] if ordered else {}
+    margin, short = latest.get("margin_balance"), latest.get("short_balance")
+    output["margin_short_ratio"] = round(float(margin) / float(short), 6) if margin is not None and short not in {None, 0} else None
     return output
 
 
-def valuation_percentiles(rows: list[dict[str, Any]]) -> dict[str, float | None]:
+def valuation_percentiles(rows: list[dict[str, Any]], minimum_observations: int = 20) -> dict[str, float | None]:
     if not rows: return {"pe": None, "pb": None, "dividend_yield": None}
     latest = max(rows, key=lambda row: str(row["valuation_date"]))
-    return {field: percentile([row.get(field) for row in rows], latest.get(field)) for field in ("pe", "pb", "dividend_yield")}
+    output={}
+    for field in ("pe", "pb", "dividend_yield"):
+        values=[row.get(field) for row in rows if row.get(field) is not None]
+        output[field]=percentile(values,latest.get(field)) if len(values)>=minimum_observations else None
+    return output
+
+
+def financial_metrics(row: dict[str, Any]) -> dict[str, Any]:
+    """Recompute deterministic quarterly ratios without filling missing data."""
+    result=dict(row)
+    def ratio_value(numerator: Any,denominator: Any)->float|None:
+        return round(float(numerator)/float(denominator)*100,6) if numerator is not None and denominator not in {None,0} else None
+    result["gross_margin"]=ratio_value(result.get("gross_profit"),result.get("revenue"))
+    result["operating_margin"]=ratio_value(result.get("operating_income"),result.get("revenue"))
+    result["net_margin"]=ratio_value(result.get("net_income"),result.get("revenue"))
+    result["debt_ratio"]=ratio_value(result.get("total_liabilities"),result.get("total_assets"))
+    annual_net=float(result["net_income"])*4 if result.get("net_income") is not None else None
+    result["roe"]=ratio_value(annual_net,result.get("equity",result.get("total_equity")))
+    result["roa"]=ratio_value(annual_net,result.get("total_assets"))
+    result["free_cash_flow"]=(result["operating_cash_flow"]-result["capital_expenditure"] if result.get("operating_cash_flow") is not None and result.get("capital_expenditure") is not None else None)
+    return result

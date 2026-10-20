@@ -132,10 +132,27 @@
       });
     }
 
+    async getRevenueHistory(symbol, limit = 60) {
+      const normalized = this.symbol(symbol), safeLimit = Math.max(1, Math.min(240, Number(limit) || 60));
+      return this.cached(`history:revenue:${normalized}:${safeLimit}`, () => this.readThrough(
+        async () => [...((await this.api(`/stocks/${encodeURIComponent(normalized)}/revenue?limit=${safeLimit}`)).revenue || [])]
+          .reverse().map((row) => ({ ...row, yoy: row.yoy ?? row.revenue_yoy ?? null, mom: row.mom ?? row.revenue_mom ?? null })),
+        null
+      ));
+    }
+
     async getFinancials(symbol, limit = 12) {
       const normalized = this.symbol(symbol), safeLimit = Math.max(1, Math.min(20, Number(limit) || 12));
       return this.cached(`financials:${normalized}:${safeLimit}`, () => this.readThrough(
         async () => [...((await this.api(`/stocks/${encodeURIComponent(normalized)}/financials?limit=${safeLimit}`)).financials || [])].reverse(),
+        null
+      ));
+    }
+
+    async getValuationHistory(symbol, limit = 252) {
+      const normalized = this.symbol(symbol), safeLimit = Math.max(1, Math.min(1300, Number(limit) || 252));
+      return this.cached(`history:valuation:${normalized}:${safeLimit}`, () => this.readThrough(
+        async () => [...((await this.api(`/stocks/${encodeURIComponent(normalized)}/valuation?limit=${safeLimit}`)).valuations || [])].reverse(),
         null
       ));
     }

@@ -125,7 +125,7 @@ def revenue_history(symbol: str = Path(...), start: date | None = None, end: dat
     return result
 
 
-@router.get("/stocks/{symbol}/valuation/history")
+@router.get("/stocks/{symbol}/valuation")
 def valuation_history(symbol: str = Path(...), start: date | None = None, end: date | None = None, limit: int = Query(default=252, ge=1, le=1300)) -> dict:
     symbol = valid_symbol(symbol)
     if start and end and start > end: raise HTTPException(status_code=422, detail={"code":"INVALID_RANGE","message":"start cannot exceed end"})

@@ -15,7 +15,7 @@ import time
 from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import requests
 
@@ -73,6 +73,7 @@ def atomic_json(path: Path, payload: Any) -> None:
 def number(value: Any) -> int | float | None:
     text = str(value or "").replace(",", "").strip()
     if text in {"", "--", "-"}: return None
+    if text.startswith("(") and text.endswith(")"): text=f"-{text[1:-1]}"
     try:
         result = round(float(text), 6)
         return int(result) if result.is_integer() else result
@@ -143,6 +144,7 @@ ALIASES = {
     "total_equity": ("權益總計", "權益總額"),
     "operating_cash_flow_cumulative": ("營業活動之淨現金流入（流出）", "營業活動之淨現金流量"),
     "investing_cash_flow_cumulative": ("投資活動之淨現金流入（流出）", "投資活動之淨現金流量"),
+    "financing_cash_flow_cumulative": ("籌資活動之淨現金流入（流出）", "籌資活動之淨現金流量"),
     "capital_expenditure_cumulative_raw": ("取得不動產、廠房及設備", "購置不動產、廠房及設備"),
 }
 
@@ -151,28 +153,139 @@ def ratio(numerator: int | float | None, denominator: int | float | None) -> flo
     return round(numerator / denominator * 100, 6) if numerator is not None and denominator not in {None, 0} else None
 
 
-def fetch_symbol(client: MopsClient, symbol: str, quarters: list[tuple[int, int]], cached: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+class FinancialParserSchemaError(ValueError):
+    def __init__(self, symbol: str, year: int, quarter: int, missing_fields: list[str]):
+        self.missing_fields = missing_fields
+        super().__init__(f"{symbol} {year}Q{quarter} missing required fields: {', '.join(missing_fields)}")
+
+
+class FinancialDependencyMissing(ValueError):
+    def __init__(self, symbol: str, year: int, quarter: int, dependencies: list[str]):
+        self.dependencies = dependencies
+        super().__init__(f"{symbol} {year}Q{quarter} missing dependencies: {', '.join(dependencies)}")
+
+
+def parse_quarter_statements(symbol: str, year: int, quarter: int,
+                             statements: dict[str, list[list[str]]]) -> tuple[dict[str, Any], list[str]]:
+    """Parse one quarter without discarding partial values needed by later quarters."""
+    values = {
+        key: find(
+            statements["income" if key in {"revenue", "gross_profit", "operating_income", "net_income", "eps"}
+                       else "balance" if key in {"current_assets", "total_assets", "current_liabilities", "total_liabilities", "total_equity"}
+                       else "cash_flow"],
+            aliases,
+        )
+        for key, aliases in ALIASES.items()
+    }
+    required = ("revenue", "gross_profit", "operating_income", "net_income", "eps", "total_assets", "total_liabilities")
+    missing = [key for key in required if values[key] is None]
+    record = {
+        "fiscal_year": year, "quarter": quarter, "period_end": quarter_end(year, quarter),
+        # These statement endpoints do not expose the actual filing time.
+        # Keep PIT availability unknown rather than substituting period-end
+        # or a statutory deadline.
+        "published_date": None, "available_date": None, "available_at": None,
+        "source_date": quarter_end(year, quarter),
+        "source": "MOPS consolidated IFRS statements",
+        "unit": {"monetary": "thousand_TWD", "eps": "TWD", "ratio": "percent"},
+        "income_period_basis": "year_to_date" if quarter == 4 else "standalone_quarter",
+        **values,
+        "equity": values["total_equity"],
+        "gross_margin": ratio(values["gross_profit"], values["revenue"]),
+        "operating_margin": ratio(values["operating_income"], values["revenue"]),
+        "net_margin": ratio(values["net_income"], values["revenue"]),
+        "debt_ratio": ratio(values["total_liabilities"], values["total_assets"]),
+        "current_ratio": ratio(values["current_assets"], values["current_liabilities"]),
+    }
+    return record, missing
+
+
+def derive_quarter(symbol: str, record: dict[str, Any],
+                   context: dict[tuple[int, int], dict[str, Any]]) -> tuple[dict[str, Any], list[str]]:
+    """Derive one canonical quarter using only explicit preceding-quarter context."""
+    result = dict(record)
+    year, quarter = int(result["fiscal_year"]), int(result["quarter"])
+    missing: list[str] = []
+
+    if quarter == 4 and result.get("income_period_basis") != "standalone_quarter":
+        earlier = [context.get((year, prior)) for prior in (1, 2, 3)]
+        for prior, dependency in zip((1, 2, 3), earlier):
+            if dependency is None:
+                missing.append(f"{year}Q{prior}:income")
+        for field in ("revenue", "gross_profit", "operating_income", "net_income", "eps"):
+            if not isinstance(result.get(field), (int, float)) or any(
+                dependency is None or not isinstance(dependency.get(field), (int, float)) for dependency in earlier
+            ):
+                missing.append(f"{year}Q1-Q3:{field}")
+        if missing:
+            raise FinancialDependencyMissing(symbol, year, quarter, sorted(set(missing)))
+        for field in ("revenue", "gross_profit", "operating_income", "net_income", "eps"):
+            result[field] = round(result[field] - sum(dependency[field] for dependency in earlier if dependency), 6)
+        result["income_period_basis"] = "standalone_quarter"
+
+    prior_period = (year, quarter - 1) if quarter > 1 else (year - 1, 4)
+    prior = context.get(prior_period)
+    for cumulative, standalone in (
+        ("operating_cash_flow_cumulative", "operating_cash_flow"),
+        ("investing_cash_flow_cumulative", "investing_cash_flow"),
+        ("financing_cash_flow_cumulative", "financing_cash_flow"),
+    ):
+        current = result.get(cumulative)
+        if current is None:
+            result[standalone] = None
+        elif quarter == 1:
+            result[standalone] = current
+        elif prior is None or not isinstance(prior.get(cumulative), (int, float)):
+            missing.append(f"{prior_period[0]}Q{prior_period[1]}:{cumulative}")
+            result[standalone] = None
+        else:
+            result[standalone] = current - prior[cumulative]
+
+    current_capex = result.get("capital_expenditure_cumulative_raw")
+    if current_capex is None:
+        result["capital_expenditure"] = None
+    elif quarter == 1:
+        result["capital_expenditure"] = abs(current_capex)
+    elif prior is None or not isinstance(prior.get("capital_expenditure_cumulative_raw"), (int, float)):
+        missing.append(f"{prior_period[0]}Q{prior_period[1]}:capital_expenditure_cumulative_raw")
+        result["capital_expenditure"] = None
+    else:
+        result["capital_expenditure"] = abs(current_capex - prior["capital_expenditure_cumulative_raw"])
+
+    if missing:
+        raise FinancialDependencyMissing(symbol, year, quarter, sorted(set(missing)))
+
+    result["free_cash_flow"] = (
+        result["operating_cash_flow"] - result["capital_expenditure"]
+        if result.get("operating_cash_flow") is not None and result.get("capital_expenditure") is not None else None
+    )
+    result["gross_margin"] = ratio(result.get("gross_profit"), result.get("revenue"))
+    result["operating_margin"] = ratio(result.get("operating_income"), result.get("revenue"))
+    result["net_margin"] = ratio(result.get("net_income"), result.get("revenue"))
+    equity = result.get("equity", result.get("total_equity")); result["equity"] = equity
+    previous_equity = prior.get("equity", prior.get("total_equity")) if prior else None
+    average_equity = (equity + previous_equity) / 2 if equity is not None and previous_equity is not None else None
+    result["roe"] = ratio(result["net_income"] * 4 if result.get("net_income") is not None else None, average_equity)
+    result["roa"] = ratio(result["net_income"] * 4 if result.get("net_income") is not None else None, result.get("total_assets"))
+    if prior is None or previous_equity is None:
+        result["quality_flags"] = sorted(set([*(result.get("quality_flags") or []), "previous_equity_unavailable"]))
+    return result, missing
+
+
+def fetch_symbol(client: MopsClient, symbol: str, quarters: list[tuple[int, int]], cached: list[dict[str, Any]] | None = None,
+                 component_loader: Callable[[MopsClient,str,int,int,str,str],list[list[str]]] | None = None) -> list[dict[str, Any]]:
     cached_by_period = {(row.get("fiscal_year"), row.get("quarter")): row for row in (cached or [])}
     records: list[dict[str, Any]] = []
     for year, quarter in quarters:
         if (year, quarter) in cached_by_period:
             records.append(dict(cached_by_period[(year, quarter)])); LOGGER.info("Reused %s %sQ%s", symbol, year, quarter); continue
-        statements = {name: client.rows(endpoint, symbol, year, quarter) for name, endpoint in ENDPOINTS.items()}
-        values = {key: find(statements["income" if key in {"revenue", "gross_profit", "operating_income", "net_income", "eps"} else "balance" if key in {"current_assets", "total_assets", "current_liabilities", "total_liabilities", "total_equity"} else "cash_flow"], aliases) for key, aliases in ALIASES.items()}
-        required = ("revenue", "gross_profit", "operating_income", "net_income", "eps", "total_assets", "total_liabilities")
-        if any(values[key] is None for key in required): raise ValueError(f"{symbol} {year}Q{quarter} missing required fields")
-        records.append({
-            "fiscal_year": year, "quarter": quarter, "period_end": quarter_end(year, quarter),
-            "published_date": None, "available_date": conservative_available_date(year, quarter),
-            "source": "MOPS consolidated IFRS statements", "unit": {"monetary": "thousand_TWD", "eps": "TWD", "ratio": "percent"},
-            "income_period_basis": "year_to_date" if quarter == 4 else "standalone_quarter",
-            **values,
-            "gross_margin": ratio(values["gross_profit"], values["revenue"]),
-            "operating_margin": ratio(values["operating_income"], values["revenue"]),
-            "net_margin": ratio(values["net_income"], values["revenue"]),
-            "debt_ratio": ratio(values["total_liabilities"], values["total_assets"]),
-            "current_ratio": ratio(values["current_assets"], values["current_liabilities"]),
-        })
+        statements = {
+            name:(component_loader(client,symbol,year,quarter,name,endpoint) if component_loader else client.rows(endpoint,symbol,year,quarter))
+            for name,endpoint in ENDPOINTS.items()
+        }
+        record, missing = parse_quarter_statements(symbol, year, quarter, statements)
+        if missing: raise FinancialParserSchemaError(symbol, year, quarter, missing)
+        records.append(record)
         LOGGER.info("Fetched %s %sQ%s", symbol, year, quarter)
 
     # MOPS displays standalone income for Q1-Q3, but the annual cumulative
@@ -192,21 +305,22 @@ def fetch_symbol(client: MopsClient, symbol: str, quarters: list[tuple[int, int]
     previous_cumulative: dict[str, int | float] = {}
     for record in records:
         if record["quarter"] == 1: previous_cumulative = {}
-        for cumulative, standalone in (("operating_cash_flow_cumulative", "operating_cash_flow"), ("investing_cash_flow_cumulative", "investing_cash_flow")):
-            current = record[cumulative]; prior = previous_cumulative.get(cumulative, 0)
+        for cumulative, standalone in (("operating_cash_flow_cumulative", "operating_cash_flow"), ("investing_cash_flow_cumulative", "investing_cash_flow"), ("financing_cash_flow_cumulative", "financing_cash_flow")):
+            current = record.get(cumulative); prior = previous_cumulative.get(cumulative, 0)
             record[standalone] = current - prior if current is not None else None
             if current is not None: previous_cumulative[cumulative] = current
-        current_capex = record["capital_expenditure_cumulative_raw"]
+        current_capex = record.get("capital_expenditure_cumulative_raw")
         prior_capex = previous_cumulative.get("capital_expenditure_cumulative_raw", 0)
-        record["capital_expenditure"] = -(current_capex - prior_capex) if current_capex is not None else None
+        record["capital_expenditure"] = abs(current_capex - prior_capex) if current_capex is not None else None
         if current_capex is not None: previous_cumulative["capital_expenditure_cumulative_raw"] = current_capex
-        record["free_cash_flow"] = record["operating_cash_flow"] - record["capital_expenditure"] if record["operating_cash_flow"] is not None and record["capital_expenditure"] is not None else None
-        record["gross_margin"] = ratio(record["gross_profit"], record["revenue"])
-        record["operating_margin"] = ratio(record["operating_income"], record["revenue"])
-        record["net_margin"] = ratio(record["net_income"], record["revenue"])
-        equity = record["total_equity"]
+        record["free_cash_flow"] = record["operating_cash_flow"] - record["capital_expenditure"] if record.get("operating_cash_flow") is not None and record.get("capital_expenditure") is not None else None
+        record["gross_margin"] = ratio(record.get("gross_profit"), record.get("revenue"))
+        record["operating_margin"] = ratio(record.get("operating_income"), record.get("revenue"))
+        record["net_margin"] = ratio(record.get("net_income"), record.get("revenue"))
+        equity = record.get("equity",record.get("total_equity"));record["equity"]=equity
         average_equity = (equity + previous_equity) / 2 if equity is not None and previous_equity is not None else equity
-        record["roe"] = ratio(record["net_income"] * 4 if record["net_income"] is not None else None, average_equity)
+        record["roe"] = ratio(record["net_income"] * 4 if record.get("net_income") is not None else None, average_equity)
+        record["roa"] = ratio(record["net_income"] * 4 if record.get("net_income") is not None else None, record.get("total_assets"))
         previous_equity = equity
     return records
 

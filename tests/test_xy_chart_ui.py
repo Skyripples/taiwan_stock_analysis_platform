@@ -19,6 +19,23 @@ class XYChartUiTests(unittest.TestCase):
             self.assertIn("xy-chart.js", html)
             self.assertIn("PlatformXYChart", script)
 
+    def test_stock_historical_research_tabs_are_lazy_and_isolated(self):
+        html = (ROOT / "stock-analysis.html").read_text(encoding="utf-8")
+        script = (ROOT / "stock-analysis.js").read_text(encoding="utf-8")
+        service = (ROOT / "stock-data-service.js").read_text(encoding="utf-8")
+        methods = {"revenue": "getRevenueHistory", "financials": "getFinancials", "valuation": "getValuationHistory", "chips": "getChips"}
+        for dataset, label in (("revenue", "月營收"), ("financials", "財務"), ("valuation", "估值"), ("chips", "籌碼")):
+            self.assertIn(f'data-history-tab="{dataset}"', html)
+            self.assertIn(label, html)
+            self.assertIn(methods[dataset], script)
+        self.assertIn("historyCache", script)
+        self.assertIn("Promise.allSettled([dataService.getIndustryPeers", script)
+        self.assertNotIn("Promise.allSettled([\n        profile.instrument_type", script)
+        self.assertIn("其他頁籤仍可使用", script)
+        self.assertIn("'—'", script)
+        self.assertIn("getRevenueHistory", service)
+        self.assertIn("getValuationHistory", service)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -7,13 +7,11 @@
   const sourceState = new Map();
   let searchSequence = 0;
   let searchTimer = null;
-  let currentChips = null;
-  let chipsRange = 20;
-  let currentFinancial = null;
-  let financialRange = 8;
   let currentPeer = null;
   let peerSnapshot = null;
   let currentStock = null;
+  let currentHistoryTab = 'revenue';
+  const historyCache = new Map();
 
   const missing = (value) => value === null || value === undefined || value === '';
   const signed = (value, digits = 0) => missing(value) ? '資料不足' : `${value > 0 ? '+' : ''}${Number(value).toLocaleString('zh-TW', { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
@@ -195,6 +193,98 @@
     PlatformXYChart.svg(chart, { width: 640, height: 220, compact: true, series, xValues: labels, xLabel: '期間', yLabel: '數值' });
     return chart.outerHTML;
   }
+  const historyValue = (value, unit = '') => missing(value) ? '—' : `${Number(value).toLocaleString('zh-TW', { maximumFractionDigits: 2 })}${unit}`;
+  const historyMoney = (value) => missing(value) ? '—' : `${Number(value / 1000).toLocaleString('zh-TW', { maximumFractionDigits: 1 })} 百萬元`;
+  const historyMetric = (label, value, meta = '') => `<article class="widget metric"><span>${label}</span><strong>${value}</strong><small>${meta || '—'}</small></article>`;
+  const historyChart = (title, rows, key, className, unit = '') => `<article class="widget chart-card"><h3>${title}</h3><div class="stock-chart">${svgChart([{ className, values: rows.map((row) => row[key]) }], rows.map((row) => row.revenue_month || row.valuation_date || row.trade_date || `${row.fiscal_year}Q${row.quarter}`))}</div><small class="history-chart-latest">最新：${historyValue(rows.at(-1)?.[key], unit)}</small></article>`;
+
+  function renderRevenueHistory(rows) {
+    if (!rows.length) return '<p class="health-notice">目前沒有月營收歷史資料。</p>';
+    const latest = rows.at(-1);
+    const millions = rows.map((row) => ({ ...row, revenue: missing(row.revenue) ? null : row.revenue / 1000 }));
+    return `<div class="stock-grid stock-grid-3">${historyMetric('最新月營收', historyMoney(latest.revenue), latest.revenue_month)}${historyMetric('年增率 YoY', historyValue(latest.yoy, '%'), latest.revenue_month)}${historyMetric('月增率 MoM', historyValue(latest.mom, '%'), latest.revenue_month)}</div><div class="history-chart-grid">${historyChart('月營收趨勢（百萬元）', millions, 'revenue', 'line-total', ' 百萬元')}${`<article class="widget chart-card"><h3>YoY／MoM 趨勢</h3><div class="stock-chart">${svgChart([{ className: 'line-foreign', values: rows.map((row) => row.yoy) }, { className: 'line-trust', values: rows.map((row) => row.mom) }], rows.map((row) => row.revenue_month))}</div><div class="chart-legend"><span class="foreign">YoY</span><span class="trust">MoM</span></div></article>`}</div>`;
+  }
+
+  function renderFinancialHistory(rows) {
+    if (!rows.length) return '<p class="health-notice">目前沒有財務歷史資料。</p>';
+    const priority = [
+      ['eps', 'EPS', ' 元'], ['revenue', '營業收入'], ['net_income', '稅後淨利'],
+      ['gross_margin', '毛利率', '%'], ['operating_margin', '營業利益率', '%'], ['roe', 'ROE', '%']
+    ];
+    const more = [
+      ['net_margin', '稅後淨利率', '%'], ['debt_ratio', '負債比', '%'], ['current_ratio', '流動比率', '%'],
+      ['operating_cash_flow', '營業現金流'], ['free_cash_flow', '自由現金流'], ['total_assets', '總資產']
+    ];
+    const moneyKeys = new Set(['revenue', 'net_income', 'operating_cash_flow', 'free_cash_flow', 'total_assets']);
+    const card = ([key, label, unit = '']) => moneyKeys.has(key)
+      ? historyChart(`${label}（百萬元）`, rows.map((row) => ({ ...row, [key]: missing(row[key]) ? null : row[key] / 1000 })), key, 'line-total', ' 百萬元')
+      : historyChart(label, rows, key, 'line-total', unit);
+    return `<div class="financial-priority-grid">${priority.map(card).join('')}</div><details class="history-more"><summary>更多財務指標</summary><div class="financial-priority-grid">${more.map(card).join('')}</div></details>`;
+  }
+
+  function renderValuationHistory(rows) {
+    if (!rows.length) return '<p class="health-notice">目前沒有估值歷史資料。</p>';
+    const latest = rows.at(-1);
+    return `<div class="stock-grid stock-grid-3">${historyMetric('本益比 PE', historyValue(latest.pe), latest.valuation_date)}${historyMetric('股價淨值比 PB', historyValue(latest.pb), latest.valuation_date)}${historyMetric('殖利率', historyValue(latest.dividend_yield, '%'), latest.valuation_date)}</div><div class="financial-priority-grid">${historyChart('PE 歷史趨勢', rows, 'pe', 'line-foreign')}${historyChart('PB 歷史趨勢', rows, 'pb', 'line-total')}${historyChart('殖利率歷史趨勢', rows, 'dividend_yield', 'line-trust', '%')}</div>`;
+  }
+
+  function renderChipsHistory(chips) {
+    const rows = chips?.history || [];
+    if (!rows.length) return '<p class="health-notice">目前沒有籌碼歷史資料。</p>';
+    const latest = rows.at(-1);
+    const tableRows = [...rows].reverse().slice(0, 60).map((row) => `<tr><td>${row.trade_date}</td>${['foreign_net', 'investment_trust_net', 'dealer_net'].map((key) => `<td class="${row[key] > 0 ? 'tone-positive' : row[key] < 0 ? 'tone-negative' : 'tone-neutral'}">${missing(row[key]) ? '—' : signed(row[key])}</td>`).join('')}<td>${historyValue(row.margin_balance)}</td><td>${historyValue(row.short_balance)}</td></tr>`).join('');
+    return `<div class="stock-grid stock-grid-4">${historyMetric('外資買賣超', historyValue(latest.foreign_net), latest.trade_date)}${historyMetric('投信買賣超', historyValue(latest.investment_trust_net), latest.trade_date)}${historyMetric('自營商買賣超', historyValue(latest.dealer_net), latest.trade_date)}${historyMetric('融資／融券餘額', `${historyValue(latest.margin_balance)}／${historyValue(latest.short_balance)}`, latest.trade_date)}</div><div class="history-chart-grid"><article class="widget chart-card"><h3>法人買賣超</h3><div class="stock-chart">${svgChart([{ className: 'line-foreign', values: rows.map((row) => row.foreign_net) }, { className: 'line-trust', values: rows.map((row) => row.investment_trust_net) }, { className: 'line-total', values: rows.map((row) => row.dealer_net) }], rows.map((row) => row.trade_date))}</div><div class="chart-legend"><span class="foreign">外資</span><span class="trust">投信</span><span class="total">自營商</span></div></article><article class="widget chart-card"><h3>融資餘額</h3><div class="stock-chart">${svgChart([{ className: 'line-margin', values: rows.map((row) => row.margin_balance) }], rows.map((row) => row.trade_date))}</div></article><article class="widget chart-card"><h3>融券餘額</h3><div class="stock-chart">${svgChart([{ className: 'line-short', values: rows.map((row) => row.short_balance) }], rows.map((row) => row.trade_date))}</div></article></div><div class="table-wrap"><table><thead><tr><th>日期</th><th>外資</th><th>投信</th><th>自營商</th><th>融資</th><th>融券</th></tr></thead><tbody>${tableRows}</tbody></table></div>`;
+  }
+
+  function resetHistoryPanels() {
+    document.querySelectorAll('[data-history-panel]').forEach((panel) => {
+      panel.querySelector('.history-panel-state').textContent = `切換至${{ revenue: '月營收', financials: '財務', valuation: '估值', chips: '籌碼' }[panel.dataset.historyPanel]}後載入。`;
+      panel.querySelector('.history-panel-state').hidden = false;
+      panel.querySelector('.history-panel-content').innerHTML = '';
+      delete panel.dataset.loadedSymbol;
+    });
+  }
+
+  async function loadHistory(dataset) {
+    if (!currentStock) return;
+    const symbol = currentStock.symbol, panel = document.querySelector(`[data-history-panel="${dataset}"]`);
+    if (!panel || panel.dataset.loadedSymbol === symbol) return;
+    const state = panel.querySelector('.history-panel-state'), content = panel.querySelector('.history-panel-content');
+    state.hidden = false; state.textContent = '載入中…'; content.innerHTML = '';
+    const key = `${symbol}:${dataset}`;
+    try {
+      if (!historyCache.has(key)) {
+        const request = dataset === 'revenue' ? dataService.getRevenueHistory(symbol, 60)
+          : dataset === 'financials' ? dataService.getFinancials(symbol, 20)
+            : dataset === 'valuation' ? dataService.getValuationHistory(symbol, 252)
+              : dataService.getChips(symbol, 120);
+        historyCache.set(key, request);
+      }
+      const result = await historyCache.get(key);
+      if (currentStock?.symbol !== symbol) return;
+      content.innerHTML = dataset === 'revenue' ? renderRevenueHistory(result.data)
+        : dataset === 'financials' ? renderFinancialHistory(result.data)
+          : dataset === 'valuation' ? renderValuationHistory(result.data)
+            : renderChipsHistory(result.data);
+      panel.dataset.loadedSymbol = symbol;
+      state.hidden = true;
+      source(`history:${dataset}`, result); renderSourceStatus();
+    } catch (error) {
+      historyCache.delete(key);
+      state.textContent = '此歷史資料暫時無法取得，其他頁籤仍可使用。';
+      content.innerHTML = '';
+    }
+  }
+
+  function activateHistoryTab(dataset) {
+    currentHistoryTab = dataset;
+    document.querySelectorAll('[data-history-tab]').forEach((button) => {
+      const active = button.dataset.historyTab === dataset;
+      button.classList.toggle('is-active', active); button.setAttribute('aria-selected', String(active));
+    });
+    document.querySelectorAll('[data-history-panel]').forEach((panel) => { panel.hidden = panel.dataset.historyPanel !== dataset; });
+    loadHistory(dataset);
+  }
   function renderChipsTrend() {
     if (!currentChips?.history?.length) return;
     const rows = currentChips.history.slice(-chipsRange);
@@ -253,25 +343,11 @@
       $(`${id}Date`).textContent = item.data_date || '日期不足';
     }
     renderAnalysisSummary(data.analysis_summary);
-    renderHistorical(data.historical_valuation);
     $('reportPeriod').textContent = fundamentals.report_period ? `${fundamentals.report_period}｜${fundamentals.report_date}` : '不適用／資料不足';
     const labels = { eps: 'EPS', roe: 'ROE', revenue: '月營收', revenue_yoy: '營收 YoY', revenue_mom: '營收 MoM', gross_margin: '毛利率', operating_margin: '營業利益率', net_margin: '稅後淨利率', book_value_per_share: '每股淨值', debt_ratio: '負債比', current_ratio: '流動比率' };
     $('fundamentalsGrid').innerHTML = profile.instrument_type === 'company' ? Object.entries(labels).map(([key, label]) => metricCard(label, fundamentals[key])).join('') : '<p class="health-notice">ETF／非一般公司不套用公司財報指標。</p>';
-    renderFinancialTrend();
     renderHealth(data.health_v2);
     renderIndustry(data.peer_analysis);
-    $('chipsDate').textContent = chips.trade_date || '日期不足';
-    $('foreignFlow').textContent = sumText(analysis.foreign_sum);
-    $('foreignStreak').textContent = streak(analysis.foreign_streak);
-    $('trustFlow').textContent = sumText(analysis.investment_trust_sum);
-    $('trustStreak').textContent = streak(analysis.investment_trust_streak);
-    $('totalFlow').textContent = sumText(analysis.institutional_sum);
-    $('marginChanges').textContent = `5日 ${signed(analysis.margin_change?.['5d'])}｜20日 ${signed(analysis.margin_change?.['20d'])}`;
-    const last = chips.history.at(-1);
-    $('stockMargin').textContent = last && !missing(last.margin_balance) ? whole.format(last.margin_balance) : '資料不足';
-    $('stockShort').textContent = last && !missing(last.short_balance) ? whole.format(last.short_balance) : '資料不足';
-    currentChips = chips;
-    renderChipsTrend();
     $('pageState').hidden = true;
     $('stockContent').hidden = false;
   }
@@ -284,19 +360,15 @@
     sourceState.clear();
     try {
       const detail = await dataService.getStock(symbol), payload = detail.data;
-      source('detail', detail); currentFinancial = null;
+      source('detail', detail);
       const profile = payload.data?.profile || {};
-      const [financial, chips, peers] = await Promise.allSettled([
-        profile.instrument_type === 'company' ? dataService.getFinancials(symbol, 12) : Promise.resolve({ data: [], source: 'api' }),
-        dataService.getChips(symbol, 60),
-        dataService.getIndustryPeers(profile.industry, symbol)
-      ]);
-      if (financial.status === 'fulfilled') { currentFinancial = financial.value.data; source('financials', financial.value); }
-      if (chips.status === 'fulfilled') { payload.data.chips = chips.value.data; source('chips', chips.value); }
+      const [peers] = await Promise.allSettled([dataService.getIndustryPeers(profile.industry, symbol)]);
       if (peers.status === 'fulfilled') { payload.data.peer_analysis = peers.value.data; source('peers', peers.value); }
       else payload.data.peer_analysis = { applicable: false, reason: '同業資料暫時無法使用' };
+      resetHistoryPanels();
       render(payload);
       renderSourceStatus();
+      activateHistoryTab(currentHistoryTab);
       history.replaceState(null, '', `?symbol=${encodeURIComponent(symbol)}`);
     } catch (error) {
       $('pageState').textContent = error.code === 'NOT_FOUND' ? `查無 ${symbol} 的個股資料` : '目前無法取得資料';
@@ -316,8 +388,7 @@
   $('stockSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(search, 180); });
   $('stockSearch').addEventListener('keydown', (event) => { if (event.key === 'Enter') submitSearch(); });
   $('searchButton').onclick = submitSearch;
-  document.querySelectorAll('[data-chips-range]').forEach((button) => { button.addEventListener('click', () => { chipsRange = Number(button.dataset.chipsRange); document.querySelectorAll('[data-chips-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderChipsTrend(); }); });
-  document.querySelectorAll('[data-financial-range]').forEach((button) => { button.addEventListener('click', () => { financialRange = Number(button.dataset.financialRange); document.querySelectorAll('[data-financial-range]').forEach((item) => item.classList.toggle('is-active', item === button)); renderFinancialTrend(); }); });
+  document.querySelectorAll('[data-history-tab]').forEach((button) => { button.addEventListener('click', () => activateHistoryTab(button.dataset.historyTab)); });
   $('peerRankingMetric').addEventListener('change', renderPeerRanking);
   $('stockWatchlistToggle').addEventListener('click', () => { if (currentStock) preferences.toggle(currentStock); });
   $('watchlistItems').addEventListener('click', (event) => { const button = event.target.closest('[data-remove-watchlist]'); if (button) preferences.removeStock(button.dataset.removeWatchlist); });
