@@ -2,7 +2,7 @@
 
 以原生 HTML、CSS、JavaScript 建立的台股分析平台，整合市場資料、事件、籌碼、個股基本面與研究型預測流程。網站可直接部署至 GitHub Pages；全市場個股資料由 Linode PostgreSQL 與 REST API 提供。
 
-目前版本：**V4.5.0 — Stock Historical Data & Research Foundation**
+目前版本：**V4.5.1 — Futures Summary Dependency Fix**
 
 ## 功能
 

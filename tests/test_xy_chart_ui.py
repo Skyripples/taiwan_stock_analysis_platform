@@ -36,6 +36,12 @@ class XYChartUiTests(unittest.TestCase):
         self.assertIn("getRevenueHistory", service)
         self.assertIn("getValuationHistory", service)
 
+    def test_home_loads_api_base_before_product_summaries(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        service = html.index('<script src="./stock-data-service.js"></script>')
+        integration = html.index('<script src="./product-integration.js"></script>')
+        self.assertLess(service, integration)
+
 
 if __name__ == "__main__":
     unittest.main()
