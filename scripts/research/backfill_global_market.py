@@ -35,11 +35,14 @@ from research.global_market_alignment import (
 
 LOGGER = logging.getLogger("global_market_backfill")
 REPORT = PROJECT_ROOT / "data" / "analysis" / "current" / "global_market_backfill_report.json"
+LAKE_ROOT = PROJECT_ROOT / "data_lake" / "global_market"
+LOCAL_CHECKPOINT = LAKE_ROOT / "_checkpoints" / "global_market_backfill.json"
 YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
 VIX_CSV = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
 FRED_CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv"
 COINBASE = "https://api.exchange.coinbase.com/products/{product}/candles"
 MAX_START = date.today() - timedelta(days=365 * 20 + 7)
+RESUME_OVERLAP_DAYS = 3
 
 
 @dataclass(frozen=True)
@@ -59,6 +62,10 @@ class Instrument:
 
 
 INSTRUMENTS = (
+    Instrument("SOX", "^SOX", "PHLX Semiconductor Sector Index", "market", "yahoo", "US", "US", "Nasdaq GIDS", "USD", "America/New_York", date(1993, 12, 1), "us"),
+    Instrument("TSM_ADR", "TSM", "Taiwan Semiconductor Manufacturing ADR", "market", "yahoo", "US", "US", "NYSE", "USD", "America/New_York", date(1997, 10, 9), "us"),
+    Instrument("NASDAQ", "^IXIC", "Nasdaq Composite", "market", "yahoo", "US", "US", "Nasdaq GIDS", "USD", "America/New_York", date(1971, 2, 5), "us"),
+    Instrument("SP500", "^GSPC", "S&P 500", "market", "yahoo", "US", "US", "S&P Dow Jones Indices", "USD", "America/New_York", date(1957, 3, 4), "us"),
     Instrument("NDX", "^NDX", "Nasdaq 100", "market", "yahoo", "US", "US", "Nasdaq GIDS", "USD", "America/New_York", date(1985, 1, 31), "us"),
     Instrument("RUT", "^RUT", "Russell 2000", "market", "yahoo", "US", "US", "Russell", "USD", "America/New_York", date(1987, 9, 10), "us"),
     Instrument("EWT", "EWT", "iShares MSCI Taiwan ETF", "market", "yahoo", "US", "US", "NYSE Arca", "USD", "America/New_York", date(2000, 6, 20), "us"),
@@ -69,11 +76,13 @@ INSTRUMENTS = (
     Instrument("USDJPY", "JPY=X", "USD/JPY", "fx", "yahoo", "OTC FX", "Global", "OTC", "JPY per USD", "America/New_York", date(1971, 1, 1), "fx"),
     Instrument("USDKRW", "KRW=X", "USD/KRW", "fx", "yahoo", "OTC FX", "Global", "OTC", "KRW per USD", "America/New_York", date(1981, 1, 1), "fx"),
     Instrument("USDCNH", "CNH=X", "USD/CNH", "fx", "yahoo", "OTC FX", "Global", "OTC", "CNH per USD", "America/New_York", date(2010, 8, 23), "fx"),
+    Instrument("USDTWD", "TWD=X", "USD/TWD", "fx", "yahoo", "OTC FX", "Global", "OTC", "TWD per USD", "America/New_York", date(1983, 10, 3), "fx"),
     Instrument("BTCUSD", "BTC-USD", "Bitcoin / US Dollar", "crypto", "coinbase", "Crypto", "Global", "Coinbase", "USD", "UTC", date(2015, 7, 20), "crypto"),
     Instrument("ETHUSD", "ETH-USD", "Ethereum / US Dollar", "crypto", "coinbase", "Crypto", "Global", "Coinbase", "USD", "UTC", date(2016, 5, 18), "crypto"),
 )
 SERIES = {
     "DGS5": ("US Treasury 5-Year", "rates", "Percent", date(1962, 1, 2)),
+    "DGS10": ("US Treasury 10-Year", "rates", "Percent", date(1962, 1, 2)),
     "DGS30": ("US Treasury 30-Year", "rates", "Percent", date(1977, 2, 15)),
     "T10Y3M": ("10-Year minus 3-Month Treasury Spread", "rates", "Percentage points", date(1982, 1, 4)),
     "ICSA": ("Initial Jobless Claims", "macro", "Number", date(1967, 1, 7)),
@@ -95,10 +104,14 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--end", type=lambda x: date.today() if x == "today" else date.fromisoformat(x), default=date.today())
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--storage", choices=("local", "postgres"), default="local",
+                        help="local writes canonical Parquet; postgres is an explicit database backfill")
     parser.add_argument("--init-schema", action="store_true")
     args = parser.parse_args()
     if not (args.all or args.category or args.symbol or args.init_schema):
         parser.error("choose --all, --category, --symbol, or --init-schema")
+    if args.storage == "local" and args.init_schema:
+        parser.error("--init-schema is only valid with --storage postgres")
     return args
 
 
@@ -164,12 +177,16 @@ def _sanitize_ohlc(values: dict[str, float | None]) -> tuple[dict[str, float | N
     }
 
 
-def fetch_yahoo(client: Client, instrument: Instrument, start: date, end: date) -> list[dict[str, Any]]:
+def fetch_yahoo(
+    client: Client, instrument: Instrument, start: date, end: date,
+    skipped: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
     response = client.get(YAHOO.format(symbol=requests.utils.quote(instrument.source_symbol, safe="")), params={
         "period1": int(datetime.combine(start, dt_time(), UTC).timestamp()),
         "period2": int(datetime.combine(end + timedelta(days=1), dt_time(), UTC).timestamp()),
         "interval": "1d", "events": "history",
     }, min_interval=0.55)
+    fetched_at = datetime.now(UTC)
     payload = response.json()["chart"]["result"][0]
     quote = payload["indicators"]["quote"][0]
     adjusted = (payload["indicators"].get("adjclose") or [{}])[0].get("adjclose") or []
@@ -188,31 +205,50 @@ def fetch_yahoo(client: Client, instrument: Instrument, start: date, end: date) 
             available = commodity_available_at(trade_date, instrument.source_symbol)
         else:
             available = fx_available_at(trade_date)
+        if fetched_at < available.astimezone(UTC):
+            if skipped is not None:
+                skipped.append({"trade_date": trade_date.isoformat(), "status": "current_session",
+                    "reason": "not_closed", "fetched_at": _iso(fetched_at), "available_at": _iso(available)})
+            continue
         values, flags = _sanitize_ohlc(values)
         output.append({"trade_date": trade_date.isoformat(), **values,
             "adjusted_close": _number(adjusted[index]) if index < len(adjusted) else values["close"],
             "available_at": _iso(available), "source_updated_at": None,
-            "quality_flags": flags, "metadata": {"source_symbol": instrument.source_symbol, "availability_rule": instrument.availability, **flags}})
+            "quality_flags": flags, "metadata": {"source": instrument.source, "source_symbol": instrument.source_symbol,
+                "availability_rule": instrument.availability, "fetched_at": _iso(fetched_at), **flags}})
     return output
 
 
-def fetch_vix(client: Client, start: date, end: date) -> list[dict[str, Any]]:
-    rows = csv.DictReader(io.StringIO(client.get(VIX_CSV, min_interval=0).text))
+def fetch_vix(
+    client: Client, start: date, end: date, skipped: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    response = client.get(VIX_CSV, min_interval=0)
+    fetched_at = datetime.now(UTC)
+    rows = csv.DictReader(io.StringIO(response.text))
     output = []
     for row in rows:
         trade_date = datetime.strptime(row["DATE"], "%m/%d/%Y").date()
         if not start <= trade_date <= end:
             continue
+        available = us_session_available_at(trade_date)
+        if fetched_at < available.astimezone(UTC):
+            if skipped is not None:
+                skipped.append({"trade_date": trade_date.isoformat(), "status": "current_session",
+                    "reason": "not_closed", "fetched_at": _iso(fetched_at), "available_at": _iso(available)})
+            continue
         values = {key.lower(): _number(row[key]) for key in ("OPEN", "HIGH", "LOW", "CLOSE")}
         values, flags = _sanitize_ohlc(values)
         output.append({"trade_date": trade_date.isoformat(), **values, "adjusted_close": values["close"], "volume": None,
-            "available_at": _iso(us_session_available_at(trade_date)), "source_updated_at": None,
-            "quality_flags": flags, "metadata": {"official_file": VIX_CSV, **flags}})
+            "available_at": _iso(available), "source_updated_at": None,
+            "quality_flags": flags, "metadata": {"source": "cboe", "official_file": VIX_CSV,
+                "fetched_at": _iso(fetched_at), **flags}})
     return output
 
 
 def fetch_fred(client: Client, series: str, start: date, end: date) -> list[dict[str, Any]]:
-    text = client.get(FRED_CSV, params={"id": series, "cosd": start.isoformat(), "coed": end.isoformat()}, min_interval=0.3).text
+    response = client.get(FRED_CSV, params={"id": series, "cosd": start.isoformat(), "coed": end.isoformat()}, min_interval=0.3)
+    fetched_at = datetime.now(UTC)
+    text = response.text
     output = []
     for row in csv.DictReader(io.StringIO(text)):
         value = _number(row.get(series))
@@ -227,7 +263,8 @@ def fetch_fred(client: Client, series: str, start: date, end: date) -> list[dict
         output.append({"observation_date": observation.isoformat(), "available_at": _iso(available), "value": value,
             "value_text": None, "unit": SERIES[series][2], "vintage_date": available.date().isoformat(),
             "preliminary": series == "ICSA", "source_updated_at": None,
-            "metadata": {"availability_rule": "Thursday 08:30 ET release" if series == "ICSA" else "conservative 16:00 ET same-day publication"}})
+            "metadata": {"source": "fred", "source_series_id": series, "fetched_at": _iso(fetched_at),
+                "availability_rule": "Thursday 08:30 ET release" if series == "ICSA" else "conservative 16:00 ET same-day publication"}})
     return output
 
 
@@ -276,6 +313,227 @@ def _atomic_report(payload: dict[str, Any]) -> None:
     try:
         temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         os.replace(temporary, REPORT)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _utc_datetime(value: Any) -> datetime | None:
+    if value is None:
+        return None
+    parsed = value if isinstance(value, datetime) else datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError(f"Timestamp must be timezone-aware: {value}")
+    return parsed.astimezone(UTC)
+
+
+def _json_value(value: Any) -> str:
+    if isinstance(value, str):
+        return value
+    return json.dumps(value or {}, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+
+
+def _metadata(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        return value
+    if isinstance(value, str) and value:
+        parsed = json.loads(value)
+        return parsed if isinstance(parsed, dict) else {}
+    return {}
+
+
+def daily_row_is_closed(row: dict[str, Any]) -> bool:
+    """Only completed daily candles are eligible for canonical ingestion."""
+
+    metadata = _metadata(row.get("metadata"))
+    fetched = row.get("fetched_at") or metadata.get("fetched_at") or row.get("created_at")
+    available = row.get("available_at")
+    if fetched is None or available is None:
+        return False
+    return _utc_datetime(fetched) >= _utc_datetime(available)
+
+
+def resume_start(base_start: date, checkpoint: dict[str, Any] | None, *, local: bool) -> date:
+    if not checkpoint or not checkpoint.get("last_cursor"):
+        return base_start
+    cursor = date.fromisoformat(str(checkpoint["last_cursor"])[:10])
+    if local:
+        cursor -= timedelta(days=RESUME_OVERLAP_DAYS)
+    return max(base_start, cursor)
+
+
+def _parquet_rows(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    import pyarrow.parquet as pq
+    return pq.ParquetFile(path).read().to_pylist()
+
+
+def _write_parquet_atomic(path: Path, rows: list[dict[str, Any]], schema: Any, dictionary: list[str]) -> None:
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    try:
+        table = pa.Table.from_pylist(rows, schema=schema)
+        pq.write_table(table, temporary, compression="zstd", compression_level=6,
+                       use_dictionary=[name for name in dictionary if name in table.column_names])
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _daily_schema() -> Any:
+    import pyarrow as pa
+    timestamp = pa.timestamp("us", tz="UTC")
+    return pa.schema([
+        ("category", pa.string()), ("partition_year", pa.int64()), ("canonical_symbol", pa.string()),
+        ("instrument_id", pa.int64()), ("trade_date", pa.date32()),
+        ("open", pa.float64()), ("high", pa.float64()), ("low", pa.float64()),
+        ("close", pa.float64()), ("adjusted_close", pa.float64()), ("volume", pa.float64()),
+        ("currency", pa.string()), ("session", pa.string()), ("timezone", pa.string()),
+        ("available_at", timestamp), ("source_updated_at", timestamp),
+        ("source", pa.string()), ("fetched_at", timestamp),
+        ("quality_flags", pa.string()), ("metadata", pa.string()),
+        ("created_at", timestamp), ("updated_at", timestamp),
+    ])
+
+
+def _macro_schema() -> Any:
+    import pyarrow as pa
+    timestamp = pa.timestamp("us", tz="UTC")
+    return pa.schema([
+        ("series_key", pa.string()), ("partition_year", pa.int64()), ("macro_series_id", pa.int64()),
+        ("observation_date", pa.date32()), ("available_at", timestamp), ("value", pa.float64()),
+        ("value_text", pa.string()), ("unit", pa.string()), ("vintage_date", pa.date32()),
+        ("preliminary", pa.bool_()), ("source_updated_at", timestamp),
+        ("source", pa.string()), ("fetched_at", timestamp), ("metadata", pa.string()),
+        ("created_at", timestamp), ("updated_at", timestamp),
+    ])
+
+
+def _existing_local_row(row: dict[str, Any]) -> dict[str, Any]:
+    output = dict(row)
+    metadata = _metadata(output.get("metadata"))
+    fetched = output.get("fetched_at") or metadata.get("fetched_at") or output.get("created_at")
+    output["source"] = output.get("source") or metadata.get("source")
+    output["fetched_at"] = _utc_datetime(fetched) if fetched else None
+    output["metadata"] = _json_value(metadata)
+    if "quality_flags" in output:
+        output["quality_flags"] = _json_value(output.get("quality_flags"))
+    return output
+
+
+def _daily_key(row: dict[str, Any]) -> tuple[str, date]:
+    return str(row["canonical_symbol"]), date.fromisoformat(str(row["trade_date"])[:10])
+
+
+def write_local_daily(
+    instrument: Instrument, rows: list[dict[str, Any]], root: Path | None = None,
+    cleanup_start: date | None = None, cleanup_end: date | None = None,
+) -> dict[str, Any]:
+    root = root or LAKE_ROOT
+    groups: dict[int, list[dict[str, Any]]] = {}
+    skipped: list[dict[str, Any]] = []
+    for source in rows:
+        trade_date = date.fromisoformat(str(source["trade_date"])[:10])
+        metadata = _metadata(source.get("metadata"))
+        fetched = _utc_datetime(metadata["fetched_at"])
+        candidate = {
+            "category": instrument.category, "partition_year": trade_date.year,
+            "canonical_symbol": instrument.symbol, "instrument_id": None, "trade_date": trade_date,
+            "open": source.get("open"), "high": source.get("high"), "low": source.get("low"),
+            "close": source.get("close"), "adjusted_close": source.get("adjusted_close"), "volume": source.get("volume"),
+            "currency": instrument.currency, "session": "regular", "timezone": instrument.timezone,
+            "available_at": _utc_datetime(source["available_at"]),
+            "source_updated_at": _utc_datetime(source.get("source_updated_at")),
+            "source": instrument.source, "fetched_at": fetched,
+            "quality_flags": _json_value(source.get("quality_flags")), "metadata": _json_value(metadata),
+            "created_at": fetched, "updated_at": fetched,
+        }
+        if not daily_row_is_closed(candidate):
+            skipped.append({"trade_date": trade_date.isoformat(), "status": "current_session",
+                "reason": "not_closed", "fetched_at": fetched.isoformat(),
+                "available_at": candidate["available_at"].isoformat()})
+            continue
+        groups.setdefault(trade_date.year, []).append(candidate)
+    years = set(groups)
+    if cleanup_start and cleanup_end:
+        years.update(range(cleanup_start.year, cleanup_end.year + 1))
+    files = 0
+    removed = 0
+    for year in sorted(years):
+        new_rows = groups.get(year, [])
+        path = root / "daily_prices" / f"category={instrument.category}" / f"partition_year={year}" / "part-00000.parquet"
+        existing = [_existing_local_row(row) for row in _parquet_rows(path)]
+        kept = []
+        for row in existing:
+            row_date = date.fromisoformat(str(row["trade_date"])[:10])
+            in_cleanup = (row.get("canonical_symbol") == instrument.symbol and cleanup_start is not None
+                          and cleanup_end is not None and cleanup_start <= row_date <= cleanup_end)
+            if in_cleanup and not daily_row_is_closed(row):
+                removed += 1
+                continue
+            kept.append(row)
+        if not new_rows and len(kept) == len(existing):
+            continue
+        merged = {_daily_key(row): row for row in kept}
+        merged.update({_daily_key(row): row for row in new_rows})
+        ordered = sorted(merged.values(), key=lambda row: (row["canonical_symbol"], row["trade_date"]))
+        _write_parquet_atomic(path, ordered, _daily_schema(), ["category", "canonical_symbol", "source"])
+        files += 1
+    return {"rows": sum(len(values) for values in groups.values()), "files": files,
+            "skipped": skipped, "removed_ineligible": removed}
+
+
+def _macro_key(row: dict[str, Any]) -> tuple[str, date, datetime]:
+    return (str(row["series_key"]), date.fromisoformat(str(row["observation_date"])[:10]),
+            _utc_datetime(row["available_at"]))
+
+
+def write_local_macro(series: str, rows: list[dict[str, Any]], root: Path | None = None) -> dict[str, Any]:
+    root = root or LAKE_ROOT
+    groups: dict[int, list[dict[str, Any]]] = {}
+    for source in rows:
+        observation = date.fromisoformat(str(source["observation_date"])[:10])
+        metadata = _metadata(source.get("metadata"))
+        fetched = _utc_datetime(metadata["fetched_at"])
+        groups.setdefault(observation.year, []).append({
+            "series_key": series, "partition_year": observation.year, "macro_series_id": None,
+            "observation_date": observation, "available_at": _utc_datetime(source["available_at"]),
+            "value": source.get("value"), "value_text": source.get("value_text"), "unit": source.get("unit"),
+            "vintage_date": date.fromisoformat(str(source["vintage_date"])[:10]) if source.get("vintage_date") else None,
+            "preliminary": source.get("preliminary"), "source_updated_at": _utc_datetime(source.get("source_updated_at")),
+            "source": "fred", "fetched_at": fetched, "metadata": _json_value(metadata),
+            "created_at": fetched, "updated_at": fetched,
+        })
+    files = 0
+    for year, new_rows in sorted(groups.items()):
+        path = root / "macro_observations" / f"series_key={series}" / f"partition_year={year}" / "part-00000.parquet"
+        merged = {_macro_key(row): _existing_local_row(row) for row in _parquet_rows(path)}
+        merged.update({_macro_key(row): row for row in new_rows})
+        ordered = sorted(merged.values(), key=lambda row: (row["observation_date"], row["available_at"]))
+        _write_parquet_atomic(path, ordered, _macro_schema(), ["series_key", "source"])
+        files += 1
+    return {"rows": len(rows), "files": files}
+
+
+def load_local_checkpoints(path: Path | None = None) -> dict[str, Any]:
+    path = path or LOCAL_CHECKPOINT
+    if not path.exists():
+        return {"version": "1.0", "tasks": {}}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) and isinstance(payload.get("tasks"), dict) else {"version": "1.0", "tasks": {}}
+
+
+def save_local_checkpoints(payload: dict[str, Any], path: Path | None = None) -> None:
+    path = path or LOCAL_CHECKPOINT
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    payload["updated_at"] = datetime.now(UTC).isoformat()
+    try:
+        temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        os.replace(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)
 
@@ -366,9 +624,9 @@ def main() -> int:
     client = Client()
     connection = None
     repository = None
-    if not args.dry_run:
+    if not args.dry_run and args.storage == "postgres":
         if not configured():
-            raise RuntimeError("Database environment is required unless --dry-run is used")
+            raise RuntimeError("Database environment is required for --storage postgres")
         connection = connect()
         if args.init_schema:
             applied = apply_migrations(connection)
@@ -379,11 +637,14 @@ def main() -> int:
     if args.init_schema and not (args.all or args.category or args.symbol):
         return 0
     instruments, series = selected(args)
-    report: dict[str, Any] = {"version": "1.0", "generated_at": datetime.now(UTC).isoformat(), "dry_run": args.dry_run,
+    if args.storage == "local" and any(item.category == "crypto" for item in instruments):
+        raise ValueError("Crypto local history uses scripts/backfill_crypto_history.py")
+    local_checkpoints = load_local_checkpoints() if args.storage == "local" and args.resume else {"version": "1.0", "tasks": {}}
+    report: dict[str, Any] = {"version": "1.1", "generated_at": datetime.now(UTC).isoformat(), "dry_run": args.dry_run,
+        "storage": args.storage,
         "requested_start": args.start.isoformat() if args.start else None, "requested_end": args.end.isoformat(),
         "datasets": {}, "failures": [], "table_counts": {}, "total_duration_seconds": None}
     try:
-        source_ids = repository.source_ids() if repository else {}
         instrument_ids = repository.instrument_ids() if repository else {}
         series_ids = repository.series_ids() if repository else {}
         for item in instruments:
@@ -391,10 +652,8 @@ def main() -> int:
             if item.symbol != "VIX":
                 start = max(start, MAX_START)
             task = f"{item.category}:{item.symbol}"
-            checkpoint = repository.checkpoint(task) if repository and args.resume else None
-            if checkpoint and checkpoint.get("last_cursor"):
-                cursor_date = date.fromisoformat(str(checkpoint["last_cursor"])[:10])
-                start = max(start, cursor_date)
+            checkpoint = repository.checkpoint(task) if repository and args.resume else local_checkpoints["tasks"].get(task) if args.storage == "local" and args.resume else None
+            start = resume_start(start, checkpoint, local=args.storage == "local")
             tick = time.monotonic()
             try:
                 if item.category == "crypto":
@@ -417,37 +676,72 @@ def main() -> int:
                         feature_rows = 0
                     report["datasets"][item.symbol] = {**_quality(all_rows, "timestamp_utc", item.source, time.monotonic()-tick), "feature_rows_upserted": feature_rows}
                 else:
-                    rows = fetch_vix(client, start, args.end) if item.symbol == "VIX" else fetch_yahoo(client, item, start, args.end)
+                    skipped: list[dict[str, Any]] = []
+                    rows = fetch_vix(client, start, args.end, skipped) if item.symbol == "VIX" else fetch_yahoo(client, item, start, args.end, skipped)
                     if repository:
                         iid = instrument_ids[item.symbol]
                         repository.upsert_many("market_daily_prices", [dict(row, instrument_id=iid, currency=item.currency, session="regular", timezone=item.timezone) for row in rows])
                         repository.save_checkpoint(task, "complete", args.end.isoformat(), len(rows))
                         connection.commit()
-                    report["datasets"][item.symbol] = _quality(rows, "trade_date", item.source, time.monotonic()-tick)
+                        local_stats = {"files": 0, "skipped": [], "removed_ineligible": 0}
+                    elif args.storage == "local" and not args.dry_run:
+                        local_stats = write_local_daily(item, rows, cleanup_start=start, cleanup_end=args.end)
+                        local_checkpoints["tasks"][task] = {"status": "complete", "last_cursor": args.end.isoformat(),
+                            "rows_written": local_stats["rows"], "skipped_current_session": len(skipped) + len(local_stats["skipped"]),
+                            "resume_overlap_days": RESUME_OVERLAP_DAYS if args.resume else 0,
+                            "updated_at": datetime.now(UTC).isoformat()}
+                        save_local_checkpoints(local_checkpoints)
+                    else:
+                        local_stats = {"files": 0, "skipped": [], "removed_ineligible": 0}
+                    report["datasets"][item.symbol] = {**_quality(rows, "trade_date", item.source, time.monotonic()-tick),
+                        "files_written": local_stats["files"], "skipped_current_session": [*skipped, *local_stats["skipped"]],
+                        "removed_ineligible": local_stats["removed_ineligible"]}
                 LOGGER.info("Completed %s | rows=%d", item.symbol, report["datasets"][item.symbol]["rows"])
             except Exception as exc:
                 if connection:
                     connection.rollback()
                     repository.save_checkpoint(task, "failed", None, 0, str(exc))
                     connection.commit()
+                elif args.storage == "local" and not args.dry_run:
+                    previous = local_checkpoints["tasks"].get(task, {})
+                    local_checkpoints["tasks"][task] = {**previous, "status": "failed", "error": str(exc),
+                        "updated_at": datetime.now(UTC).isoformat()}
+                    save_local_checkpoints(local_checkpoints)
                 report["failures"].append({"dataset": item.symbol, "error": str(exc)})
                 LOGGER.exception("Failed %s", item.symbol)
         for key in series:
             spec = SERIES[key]
             start = max(args.start or spec[3], spec[3], MAX_START)
+            task = f"{spec[1]}:{key}"
+            checkpoint = repository.checkpoint(task) if repository and args.resume else local_checkpoints["tasks"].get(task) if args.storage == "local" and args.resume else None
+            start = resume_start(start, checkpoint, local=args.storage == "local")
             tick = time.monotonic()
             try:
                 rows = fetch_fred(client, key, start, args.end)
                 if repository:
                     sid = series_ids[key]
                     repository.upsert_many("macro_observations", [dict(row, macro_series_id=sid) for row in rows])
-                    repository.save_checkpoint(f"{spec[1]}:{key}", "complete", args.end.isoformat(), len(rows))
+                    repository.save_checkpoint(task, "complete", args.end.isoformat(), len(rows))
                     connection.commit()
-                report["datasets"][key] = _quality(rows, "observation_date", "fred", time.monotonic()-tick)
+                    local_stats = {"files": 0}
+                elif args.storage == "local" and not args.dry_run:
+                    local_stats = write_local_macro(key, rows)
+                    local_checkpoints["tasks"][task] = {"status": "complete", "last_cursor": args.end.isoformat(),
+                        "rows_written": len(rows), "updated_at": datetime.now(UTC).isoformat()}
+                    save_local_checkpoints(local_checkpoints)
+                else:
+                    local_stats = {"files": 0}
+                report["datasets"][key] = {**_quality(rows, "observation_date", "fred", time.monotonic()-tick),
+                    "files_written": local_stats["files"]}
                 LOGGER.info("Completed %s | rows=%d", key, len(rows))
             except Exception as exc:
                 if connection:
                     connection.rollback()
+                elif args.storage == "local" and not args.dry_run:
+                    previous = local_checkpoints["tasks"].get(task, {})
+                    local_checkpoints["tasks"][task] = {**previous, "status": "failed", "error": str(exc),
+                        "updated_at": datetime.now(UTC).isoformat()}
+                    save_local_checkpoints(local_checkpoints)
                 report["failures"].append({"dataset": key, "error": str(exc)})
                 LOGGER.exception("Failed %s", key)
         if repository:

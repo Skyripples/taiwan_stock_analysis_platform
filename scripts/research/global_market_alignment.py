@@ -25,6 +25,14 @@ def is_available_before_target(available_at: datetime, target_date: date) -> boo
     return available_at < target_cutoff(target_date)
 
 
+def is_available_at_prediction(available_at: datetime, prediction_at: datetime) -> bool:
+    """Return whether a datum may participate in a point-in-time join."""
+
+    if available_at.tzinfo is None or prediction_at.tzinfo is None:
+        raise ValueError("PIT timestamps must be timezone-aware")
+    return available_at <= prediction_at
+
+
 def us_session_available_at(trade_date: date, hour: int = 16, minute: int = 30) -> datetime:
     """Conservative availability after a completed US cash session."""
 

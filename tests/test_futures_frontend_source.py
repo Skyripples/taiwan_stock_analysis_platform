@@ -43,6 +43,21 @@ class FuturesFrontendSourceTests(unittest.TestCase):
         self.assertIn(".chart-wrap p[hidden]{display:none}", self.css)
         self.assertIn("empty.hidden = points.length > 1", self.dashboard)
 
+    def test_research_section_is_lazy_loaded_and_keeps_public_research_scope(self):
+        self.assertIn('id="futuresResearch"', self.html)
+        self.assertIn("歷史次交易日結果／research target", self.html)
+        self.assertIn("IntersectionObserver", self.dashboard)
+        self.assertIn("/futures/research/summary", self.dashboard)
+        self.assertIn("/futures/research/daily?limit=1500", self.dashboard)
+        for field in ("foreign_net_oi", "investment_trust_net_oi", "dealer_net_oi", "volume_pcr", "oi_pcr", "tx_front_next_spread_pct", "tx_basis_pct", "sox", "tsm_adr", "nasdaq", "sp500", "usdtwd", "us10y"):
+            self.assertIn(field, self.dashboard)
+        self.assertNotIn("available_at", self.dashboard)
+        self.assertNotIn("source_date", self.dashboard)
+
+    def test_research_layout_is_responsive(self):
+        self.assertIn(".research-content{display:grid", self.css)
+        self.assertIn(".research-content{grid-template-columns:1fr}", self.css)
+
 
 if __name__ == "__main__":
     unittest.main()

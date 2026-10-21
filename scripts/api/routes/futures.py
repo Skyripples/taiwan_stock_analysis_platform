@@ -2,13 +2,32 @@ from datetime import date
 
 from fastapi import APIRouter, HTTPException, Query
 
-from api.services.futures import get_futures_history, get_futures_intraday, get_futures_summary
+from api.services.futures import (
+    get_futures_history, get_futures_intraday, get_futures_research_daily,
+    get_futures_research_summary, get_futures_summary,
+)
 
 router = APIRouter(prefix="/futures", tags=["futures"])
 
 @router.get("/summary")
 def futures_summary() -> dict:
     return get_futures_summary()
+
+
+@router.get("/research/summary")
+def futures_research_summary() -> dict:
+    return get_futures_research_summary()
+
+
+@router.get("/research/daily")
+def futures_research_daily(
+    start: date | None = None,
+    end: date | None = None,
+    limit: int = Query(500, ge=1, le=1500),
+) -> dict:
+    if start and end and start > end:
+        raise HTTPException(422, {"code": "INVALID_RANGE", "message": "start cannot exceed end"})
+    return get_futures_research_daily(start, end, limit)
 
 
 @router.get("/history")

@@ -3,15 +3,57 @@ from __future__ import annotations
 
 from datetime import date, datetime, timedelta, timezone
 from decimal import Decimal
+import json
+from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
 from api.db import pool
+from config import PROJECT_ROOT
 from futures_market import basis, price_oi_state
 
 RANGE_MONTHS = {"1M": 1, "3M": 3, "6M": 6, "1Y": 12, "3Y": 36, "5Y": 60}
 INTRADAY_RANGES = {"1H": timedelta(hours=1), "4H": timedelta(hours=4),
                    "1D": timedelta(days=1), "3D": timedelta(days=3), "7D": timedelta(days=7)}
+RESEARCH_DATASET_ROOT = PROJECT_ROOT / "data_lake" / "futures_prediction" / "research_dataset"
+
+# This is deliberately a public schema, not a passthrough of the research parquet.
+RESEARCH_PUBLIC_COLUMNS = {
+    "prediction_date": "prediction_date",
+    "prediction_at": "prediction_at",
+    "tx_contract": "tx_contract",
+    "tx_return": "tx_previous_day_return",
+    "tx_open_to_close_return": "tx_open_to_close_return",
+    "tx_intraday_range": "tx_intraday_range_pct",
+    "tx_true_range": "tx_true_range_pct",
+    "tx_return_volatility_5d": "tx_return_volatility_5d",
+    "tx_volume": "tx_volume",
+    "tx_open_interest": "tx_open_interest",
+    "tx_front_next_spread": "tx_front_next_spread",
+    "tx_front_next_spread_pct": "tx_front_next_spread_pct",
+    "tx_basis": "tx_basis",
+    "tx_basis_pct": "tx_basis_pct",
+    "days_to_expiry": "tx_days_to_expiry",
+    "expiry_week": "tx_expiry_week",
+    "roll_regime": "tx_roll_regime",
+    "foreign_net_oi": "foreign_net_oi",
+    "foreign_net_oi_change": "foreign_net_oi_change",
+    "investment_trust_net_oi": "investment_trust_net_oi",
+    "investment_trust_net_oi_change": "investment_trust_net_oi_change",
+    "dealer_net_oi": "dealer_net_oi",
+    "dealer_net_oi_change": "dealer_net_oi_change",
+    "volume_pcr": "volume_pcr",
+    "oi_pcr": "oi_pcr",
+    "sox": "sox_value",
+    "tsm_adr": "tsm_adr_value",
+    "nasdaq": "nasdaq_value",
+    "sp500": "sp500_value",
+    "usdtwd": "usdtwd_value",
+    "us10y": "dgs10_value",
+    "target_trading_date": "target_trading_date",
+    "next_trading_day_regular_return": "next_trading_day_regular_return",
+    "direction_class": "direction_class",
+}
 
 
 def _clean(value: Any) -> Any:
@@ -32,6 +74,69 @@ def _decorate(item: dict[str, Any], spot: float | None) -> dict[str, Any]:
     clean.update({"basis": b, "basis_pct": bp,
                   "price_oi_state": price_oi_state(clean.get("change"), clean.get("oi_change"))})
     return clean
+
+
+def _research_rows(root: Path = RESEARCH_DATASET_ROOT) -> list[dict[str, Any]]:
+    """Read local research data and reject duplicate canonical prediction dates."""
+    import pyarrow.parquet as pq
+
+    rows: list[dict[str, Any]] = []
+    seen: set[date] = set()
+    for path in sorted(root.glob("partition_year=*/part-00000.parquet")):
+        for row in pq.ParquetFile(path).read().to_pylist():
+            prediction_date = row["prediction_date"]
+            if prediction_date in seen:
+                raise ValueError(f"Duplicate futures research prediction_date: {prediction_date}")
+            seen.add(prediction_date)
+            rows.append(row)
+    return sorted(rows, key=lambda item: item["prediction_date"])
+
+
+def _public_research_row(row: dict[str, Any]) -> dict[str, Any]:
+    public = {name: _clean(row.get(source)) for name, source in RESEARCH_PUBLIC_COLUMNS.items()}
+    flags = row.get("quality_flags")
+    public["quality_flags"] = json.loads(flags) if isinstance(flags, str) else flags
+    return public
+
+
+def get_futures_research_summary() -> dict[str, Any]:
+    rows = _research_rows()
+    versions = {row.get("research_dataset_version") for row in rows if row.get("research_dataset_version")}
+    if len(versions) > 1:
+        raise ValueError("Multiple futures research dataset versions found")
+    coverage_columns = {
+        "tx_front_next_spread": "tx_front_next_spread",
+        "tx_basis": "tx_basis",
+        "foreign_net_oi": "foreign_net_oi",
+        "investment_trust_net_oi": "investment_trust_net_oi",
+        "dealer_net_oi": "dealer_net_oi",
+        "volume_pcr": "volume_pcr",
+        "oi_pcr": "oi_pcr",
+    }
+    counts = {name: sum(row.get(column) is not None for row in rows) for name, column in coverage_columns.items()}
+    direction_counts = {name: sum(row.get("direction_class") == name for row in rows)
+                        for name in ("up", "neutral", "down")}
+    return {
+        "research_dataset_version": next(iter(versions), None),
+        "rows": len(rows),
+        "first_prediction_date": _clean(rows[0]["prediction_date"]) if rows else None,
+        "last_prediction_date": _clean(rows[-1]["prediction_date"]) if rows else None,
+        "target_available": sum(row.get("next_trading_day_regular_return") is not None for row in rows),
+        "target_missing": sum(row.get("next_trading_day_regular_return") is None for row in rows),
+        "class_distribution": direction_counts,
+        "feature_coverage": {
+            name: {"available": available, "missing": len(rows) - available}
+            for name, available in counts.items()
+        },
+    }
+
+
+def get_futures_research_daily(start: date | None, end: date | None, limit: int) -> dict[str, Any]:
+    rows = _research_rows()
+    filtered = [row for row in rows if (start is None or row["prediction_date"] >= start)
+                and (end is None or row["prediction_date"] <= end)]
+    results = [_public_research_row(row) for row in filtered[:limit]]
+    return {"count": len(results), "start": _clean(start), "end": _clean(end), "limit": limit, "results": results}
 
 
 def get_futures_summary() -> dict[str, Any]:

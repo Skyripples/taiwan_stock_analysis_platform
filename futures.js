@@ -59,5 +59,62 @@
   document.querySelectorAll('#rangeSelector button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('#rangeSelector button').forEach(x => x.classList.toggle('active', x === button)); selectedRange = button.dataset.range; loadHistory(); }));
   document.querySelectorAll('#intradayProductSelector button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('#intradayProductSelector button').forEach(x => x.classList.toggle('active', x === button)); intradayProduct = button.dataset.product; loadIntraday(); }));
   document.querySelectorAll('#intradayRangeSelector button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('#intradayRangeSelector button').forEach(x => x.classList.toggle('active', x === button)); intradayRange = button.dataset.range; loadIntraday(); }));
-  let resizeTimer; addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { loadHistory(); loadIntraday(); }, 150); }); load(); loadIntraday();
+  const research = $('futuresResearch'), researchNumber = (v, digits = 0) => v == null ? '—' : Number(v).toLocaleString('zh-TW', { maximumFractionDigits: digits });
+  let researchRows = [], researchGlobalField = 'sox', researchLoaded = false;
+  const researchLabels = { sox: 'SOX', tsm_adr: 'TSM ADR', nasdaq: 'NASDAQ', sp500: 'S&P500', usdtwd: 'USD/TWD', us10y: 'US10Y' };
+  function researchChart(canvasId, emptyId, series, yLabel) {
+    const canvas = $(canvasId), empty = $(emptyId), hasData = series.some(item => item.values.filter(Number.isFinite).length > 1);
+    empty.hidden = hasData;
+    if (!hasData) { PlatformXYChart.canvas(canvas, { series: [] }); empty.textContent = '—'; return; }
+    PlatformXYChart.canvas(canvas, { series, xValues: researchRows.map(row => row.prediction_date), xLabel: 'prediction date', yLabel });
+  }
+  const series = (field, color) => ({ values: researchRows.map(row => row[field] == null ? NaN : Number(row[field])), color });
+  function drawResearch() {
+    if (!researchRows.length) return;
+    researchChart('researchInstitutionalChart', 'researchInstitutionalEmpty', [series('foreign_net_oi', '#3b82f6'), series('investment_trust_net_oi', '#f59e0b'), series('dealer_net_oi', '#10b981')], 'net OI');
+    researchChart('researchPcrChart', 'researchPcrEmpty', [series('volume_pcr', '#3b82f6'), series('oi_pcr', '#f59e0b')], 'ratio');
+    researchChart('researchStructureChart', 'researchStructureEmpty', [
+      { values: researchRows.map(row => row.tx_front_next_spread_pct == null ? NaN : Number(row.tx_front_next_spread_pct) * 100), color: '#3b82f6' },
+      { values: researchRows.map(row => row.tx_basis_pct == null ? NaN : Number(row.tx_basis_pct) * 100), color: '#f59e0b' },
+    ], '%');
+    researchChart('researchGlobalChart', 'researchGlobalEmpty', [series(researchGlobalField, '#3b82f6')], researchLabels[researchGlobalField]);
+  }
+  function renderResearchSummary(summary) {
+    const classes = summary.class_distribution || {}, coverage = summary.feature_coverage || {};
+    $('researchSummary').innerHTML = [
+      ['資料期間', `${summary.first_prediction_date || '—'} ～ ${summary.last_prediction_date || '—'}`],
+      ['研究樣本數', researchNumber(summary.rows)], ['Target available', researchNumber(summary.target_available)],
+      ['歷史次交易日結果', `up ${researchNumber(classes.up)} / neutral ${researchNumber(classes.neutral)} / down ${researchNumber(classes.down)}`],
+    ].map(([label, number]) => `<div><small>${label}</small><strong>${number}</strong></div>`).join('');
+    const labels = { tx_front_next_spread: 'Front-next spread', tx_basis: 'Basis', foreign_net_oi: '外資 OI', investment_trust_net_oi: '投信 OI', dealer_net_oi: '自營商 OI', volume_pcr: 'Volume PCR', oi_pcr: 'OI PCR' };
+    $('researchCoverage').innerHTML = Object.entries(labels).map(([field, label]) => `<div><small>${label}</small><strong>${researchNumber(coverage[field]?.available)} / ${researchNumber(summary.rows)}</strong></div>`).join('');
+    $('researchSummary').hidden = false; $('researchCoverage').hidden = false;
+  }
+  async function loadResearch() {
+    if (researchLoaded || !research) return;
+    researchLoaded = true; $('researchState').textContent = '載入研究資料中…';
+    try {
+      const [summaryResponse, dailyResponse] = await Promise.all([
+        fetch(`${api}/futures/research/summary`, { headers: { Accept: 'application/json' }, cache: 'no-store' }),
+        fetch(`${api}/futures/research/daily?limit=1500`, { headers: { Accept: 'application/json' }, cache: 'no-store' }),
+      ]);
+      if (!summaryResponse.ok || !dailyResponse.ok) throw Error('research API unavailable');
+      const [summaryData, dailyData] = await Promise.all([summaryResponse.json(), dailyResponse.json()]);
+      researchRows = dailyData.results || [];
+      renderResearchSummary(summaryData); drawResearch(); $('researchContent').hidden = false;
+      $('researchState').textContent = `${researchNumber(researchRows.length)} 筆歷史研究資料`;
+    } catch {
+      $('researchState').textContent = '目前無法取得研究資料';
+      $('researchContent').hidden = true;
+    }
+  }
+  if (research && 'IntersectionObserver' in globalThis) {
+    const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); loadResearch(); } }, { rootMargin: '240px 0px' });
+    observer.observe(research);
+  } else if (research) { setTimeout(loadResearch, 0); }
+  document.querySelectorAll('#researchGlobalSelector button').forEach(button => button.addEventListener('click', () => {
+    document.querySelectorAll('#researchGlobalSelector button').forEach(item => item.classList.toggle('active', item === button));
+    researchGlobalField = button.dataset.field; drawResearch();
+  }));
+  let resizeTimer; addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { loadHistory(); loadIntraday(); drawResearch(); }, 150); }); load(); loadIntraday();
 })();
