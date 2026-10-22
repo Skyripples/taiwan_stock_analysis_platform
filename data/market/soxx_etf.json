@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-19T04:19:14.082470Z",
+  "updated_at": "2026-10-21T04:22:33.280974Z",
   "provider": "Yahoo",
   "dataset": "soxx_etf",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-16",
+        "trade_date": "2026-10-20",
         "metadata": {
           "symbol": "SOXX",
           "security_name": "iShares Semiconductor ETF",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/SOXX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX"
         },
-        "open": 505.01,
-        "high": 509.6,
-        "low": 492.83,
-        "close": 493.39,
-        "previous_close": 514.71,
-        "change": -21.32,
-        "change_percent": -4.1421,
-        "volume": 14646400
+        "open": 494.99,
+        "high": 508.89,
+        "low": 489.7,
+        "close": 500.01,
+        "previous_close": 501.93,
+        "change": -1.92,
+        "change_percent": -0.3825,
+        "volume": 10141400
       }
     ]
   }
