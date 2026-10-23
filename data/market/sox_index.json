@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-22T04:21:38.778906Z",
+  "updated_at": "2026-10-23T04:26:06.647450Z",
   "provider": "Yahoo",
   "dataset": "sox_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-21",
+        "trade_date": "2026-10-22",
         "metadata": {
           "symbol": "^SOX",
           "security_name": "Philadelphia Semiconductor Index",
@@ -17,13 +17,13 @@
           "source": "https://finance.yahoo.com/quote/%5ESOX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX"
         },
-        "open": 11494.4297,
-        "high": 11562.25,
-        "low": 11355.29,
-        "close": 11505.5596,
-        "previous_close": 11283.8096,
-        "change": 221.75,
-        "change_percent": 1.9652,
+        "open": 11049.0703,
+        "high": 11140.3301,
+        "low": 10666.4102,
+        "close": 10731.9805,
+        "previous_close": 11505.5596,
+        "change": -773.5791,
+        "change_percent": -6.7235,
         "volume": 0
       }
     ]

@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-22T04:22:08+00:00",
+  "updated_at": "2026-10-23T04:26:42+00:00",
   "version": "2.0",
-  "active_count": 2399,
-  "company_count": 1985,
+  "active_count": 2400,
+  "company_count": 1986,
   "stocks": [
     {
       "symbol": "00400A",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -3722,7 +3722,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "02001L",
@@ -3742,7 +3742,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020025",
@@ -3862,7 +3862,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020039",
@@ -4332,7 +4332,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1313",
@@ -6929,6 +6929,16 @@
       "name": "華勝-KY",
       "market": "TWSE",
       "industry": "汽車工業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "2249",
+      "name": "湧盛",
+      "market": "TPEx",
+      "industry": "電機機械",
       "instrument_type": "company",
       "active": true,
       "cached": true,
@@ -9612,7 +9622,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2891C",
@@ -9622,7 +9632,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2892",
@@ -23972,7 +23982,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "9942",
