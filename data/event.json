@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-10-24 04:15:14 UTC",
-  "updated_at_taipei": "2026-10-24 12:15:14 UTC+8",
+  "updated_at_utc": "2026-10-24 16:58:07 UTC",
+  "updated_at_taipei": "2026-10-25 00:58:07 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -100923,6 +100923,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3167",
+      "stock_name": "大量",
+      "type": "disposition",
+      "title": "3167 大量（處置中，預計出關 2026-10-27）",
+      "date": "2026-10-20",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-20",
+      "disposition_end_date": "2026-10-27"
+    },
+    {
       "stock_id": "3325",
       "stock_name": "旭品",
       "type": "earnings_call",
@@ -100960,6 +100975,21 @@
       "ex_date": "2026-09-15",
       "pay_date": "2026-10-20",
       "cash_dividend": "0.30"
+    },
+    {
+      "stock_id": "6716",
+      "stock_name": "應廣",
+      "type": "disposition",
+      "title": "6716 應廣（處置中，預計出關 2026-10-27）",
+      "date": "2026-10-20",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-20",
+      "disposition_end_date": "2026-10-27"
     },
     {
       "stock_id": "00408A",
@@ -101040,6 +101070,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "2424",
+      "stock_name": "隴華",
+      "type": "disposition",
+      "title": "2424 隴華（處置中，預計出關 2026-10-28）",
+      "date": "2026-10-21",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-21",
+      "disposition_end_date": "2026-10-28"
+    },
+    {
       "stock_id": "3052",
       "stock_name": "夆典",
       "type": "earnings_call",
@@ -101051,6 +101096,21 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "3354",
+      "stock_name": "律勝",
+      "type": "disposition",
+      "title": "3354 律勝（處置中，預計出關 2026-10-28）",
+      "date": "2026-10-21",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-21",
+      "disposition_end_date": "2026-10-28"
     },
     {
       "stock_id": "3712",
@@ -101337,6 +101397,21 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "3287",
+      "stock_name": "廣寰科",
+      "type": "disposition",
+      "title": "3287 廣寰科（處置中，預計出關 2026-10-29）",
+      "date": "2026-10-22",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-22",
+      "disposition_end_date": "2026-10-29"
     },
     {
       "stock_id": "4541",

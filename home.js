@@ -164,6 +164,64 @@
 
   renderNextMarketHoliday();
 
+  const dispositionState = document.getElementById("dispositionReminderState");
+  const dispositionList = document.getElementById("dispositionReminderList");
+  const dispositionCount = document.getElementById("dispositionReminderCount");
+
+  const renderDispositionReminders = async () => {
+    if (!dispositionState || !dispositionList || !dispositionCount) return;
+    try {
+      const [eventResponse, stockIndexResponse] = await Promise.all([
+        fetch("./data/event.json", { cache: "no-cache" }),
+        fetch("./data/stocks/index.json", { cache: "no-cache" }),
+      ]);
+      if (!eventResponse.ok) throw new Error(`event status ${eventResponse.status}`);
+      if (!stockIndexResponse.ok) throw new Error(`stock index status ${stockIndexResponse.status}`);
+      const [eventData, stockIndex] = await Promise.all([eventResponse.json(), stockIndexResponse.json()]);
+      const companyBySymbol = new Map((Array.isArray(stockIndex.stocks) ? stockIndex.stocks : [])
+        .filter((stock) => stock.active !== false && stock.instrument_type === "company")
+        .map((stock) => [String(stock.symbol), stock]));
+      const current = (Array.isArray(eventData.events) ? eventData.events : [])
+        .filter((event) => event.type === "disposition" && companyBySymbol.has(String(event.stock_id)))
+        .map((event) => ({
+          event,
+          start: new Date(`${event.disposition_start_date}T00:00:00Z`),
+          end: new Date(`${event.disposition_end_date}T00:00:00Z`),
+        }))
+        .filter(({ start, end }) => !Number.isNaN(start.getTime()) && !Number.isNaN(end.getTime()) && start <= today && today <= end)
+        .sort((left, right) => left.end - right.end || left.event.stock_id.localeCompare(right.event.stock_id));
+
+      dispositionCount.textContent = `${current.length} 檔`;
+      dispositionList.replaceChildren();
+      if (!current.length) {
+        dispositionState.textContent = "目前沒有官方公告處置中的公司股票。";
+        dispositionList.hidden = true;
+        return;
+      }
+
+      const shortDate = new Intl.DateTimeFormat("zh-TW", { timeZone: "UTC", month: "2-digit", day: "2-digit" });
+      current.forEach(({ event, start, end }) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `./stock-analysis.html?symbol=${encodeURIComponent(event.stock_id)}`;
+        const stock = companyBySymbol.get(String(event.stock_id));
+        link.textContent = `${event.stock_id} ${stock?.name || event.stock_name || ""}`.trim();
+        const detail = document.createElement("span");
+        detail.textContent = `處置期間 ${shortDate.format(start)}–${shortDate.format(end)} · 預計出關 ${shortDate.format(end)}`;
+        item.append(link, detail);
+        dispositionList.append(item);
+      });
+      dispositionState.textContent = `共有 ${current.length} 檔公司股票目前處置中。`;
+      dispositionList.hidden = false;
+    } catch (error) {
+      dispositionCount.textContent = "讀取失敗";
+      dispositionState.textContent = "目前無法取得處置股票資訊。";
+      dispositionList.hidden = true;
+    }
+  };
+
+  renderDispositionReminders();
+
   const dividendState = document.getElementById("dividendReminderState");
   const dividendList = document.getElementById("dividendReminderList");
   const dividendCount = document.getElementById("dividendReminderCount");

@@ -22,6 +22,8 @@ DEFAULT_TARGET_YEAR = 2026
 TAIPEI_TZ = timezone(timedelta(hours=8))
 
 TWSE_EXRIGHT_OPENAPI_URL = "https://openapi.twse.com.tw/v1/exchangeReport/TWT48U_ALL"
+TWSE_DISPOSITION_URL = "https://www.twse.com.tw/announcement/punish?response=json"
+TPEX_DISPOSITION_URL = "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json"
 YAHOO_DIVIDEND_URL = "https://tw.stock.yahoo.com/calendar/dividend"
 YAHOO_EARNINGS_URL = "https://tw.stock.yahoo.com/calendar/earnings-call"
 YAHOO_DELISTING_URL = "https://tw.stock.yahoo.com/calendar/delisting"
@@ -71,6 +73,8 @@ class EventItem:
     ex_date: str = ""
     pay_date: str = ""
     cash_dividend: str = ""
+    disposition_start_date: str = ""
+    disposition_end_date: str = ""
 
 
 def parse_args() -> argparse.Namespace:
@@ -103,6 +107,114 @@ def roc_to_iso(roc: str) -> Optional[str]:
         return f"{y:04d}-{m:02d}-{d:02d}"
     except Exception:
         return None
+
+
+def roc_slash_to_iso(value: Any) -> Optional[str]:
+    """Convert a ROC date such as ``115/10/28`` to an ISO date."""
+    match = re.fullmatch(r"\s*(\d{2,3})/(\d{1,2})/(\d{1,2})\s*", clean_text(value))
+    if not match:
+        return None
+    try:
+        return date(int(match.group(1)) + 1911, int(match.group(2)), int(match.group(3))).isoformat()
+    except ValueError:
+        return None
+
+
+def parse_disposition_period(value: Any) -> Optional[Tuple[str, str]]:
+    """Extract the official ROC start/end dates from a disposition period."""
+    dates = re.findall(r"\d{2,3}/\d{1,2}/\d{1,2}", clean_text(value))
+    if len(dates) < 2:
+        return None
+    start_date = roc_slash_to_iso(dates[0])
+    end_date = roc_slash_to_iso(dates[-1])
+    if not start_date or not end_date or end_date < start_date:
+        return None
+    return start_date, end_date
+
+
+def _disposition_event(
+    *,
+    stock_id: Any,
+    stock_name: Any,
+    period: Any,
+    source: str,
+    url: str,
+    today: date,
+) -> Optional[EventItem]:
+    """Map one official disposition row, retaining only currently active stocks."""
+    symbol = clean_text(stock_id)
+    name = clean_text(stock_name)
+    parsed_period = parse_disposition_period(period)
+    if not re.fullmatch(r"\d{4}", symbol) or not name or not parsed_period:
+        return None
+
+    start_date, end_date = parsed_period
+    if not (start_date <= today.isoformat() <= end_date):
+        return None
+
+    return EventItem(
+        stock_id=symbol,
+        stock_name=name,
+        type="disposition",
+        title=f"{symbol} {name}（處置中，預計出關 {end_date}）",
+        date=start_date,
+        source=source,
+        url=url,
+        disposition_start_date=start_date,
+        disposition_end_date=end_date,
+    )
+
+
+def fetch_twse_disposition_events(today: Optional[date] = None) -> List[EventItem]:
+    """Fetch currently active listed-company dispositions from TWSE."""
+    response = SESSION.get(TWSE_DISPOSITION_URL, timeout=30)
+    response.raise_for_status()
+    payload = response.json()
+    active_on = today or datetime.now(TAIPEI_TZ).date()
+    events: List[EventItem] = []
+
+    for row in payload.get("data", []):
+        if not isinstance(row, list) or len(row) < 7:
+            continue
+        event = _disposition_event(
+            stock_id=row[2],
+            stock_name=row[3],
+            period=row[6],
+            source="TWSE",
+            url=TWSE_DISPOSITION_URL,
+            today=active_on,
+        )
+        if event:
+            events.append(event)
+    return events
+
+
+def fetch_tpex_disposition_events(today: Optional[date] = None) -> List[EventItem]:
+    """Fetch currently active OTC-company dispositions from TPEx."""
+    response = SESSION.get(TPEX_DISPOSITION_URL, timeout=30)
+    response.raise_for_status()
+    payload = response.json()
+    active_on = today or datetime.now(TAIPEI_TZ).date()
+    events: List[EventItem] = []
+
+    for table in payload.get("tables", []):
+        if not isinstance(table, dict):
+            continue
+        for row in table.get("data", []):
+            if not isinstance(row, list) or len(row) < 6:
+                continue
+            stock_name = clean_text(row[3]).split("(", 1)[0].strip()
+            event = _disposition_event(
+                stock_id=row[2],
+                stock_name=stock_name,
+                period=row[5],
+                source="TPEx",
+                url=TPEX_DISPOSITION_URL,
+                today=active_on,
+            )
+            if event:
+                events.append(event)
+    return events
 
 
 def fetch_dividend(year: int) -> List[EventItem]:
@@ -571,8 +683,18 @@ def build(events: List[EventItem], year: int) -> Dict[str, Any]:
     for e in events:
         unique[(e.stock_id, e.date, e.type, e.time, e.title)] = e
 
+    final = []
+    for event in unique.values():
+        item = asdict(event)
+        # Keep the existing event schema stable. These fields are meaningful
+        # only for an active disposition and are intentionally absent elsewhere.
+        if event.type != "disposition":
+            item.pop("disposition_start_date", None)
+            item.pop("disposition_end_date", None)
+        final.append(item)
+
     final = sorted(
-        [asdict(v) for v in unique.values()],
+        final,
         key=lambda x: (x["date"], x["stock_id"], x["type"], x.get("time", ""), x["stock_name"]),
     )
 
@@ -634,6 +756,15 @@ def main() -> None:
         events += fetch_yahoo_delisting(year)
     except Exception as e:
         print(f"[warn] yahoo delisting failed: {e}")
+
+    for source_name, fetcher in (
+        ("TWSE disposition", fetch_twse_disposition_events),
+        ("TPEx disposition", fetch_tpex_disposition_events),
+    ):
+        try:
+            events += fetcher()
+        except Exception as e:
+            print(f"[warn] {source_name} failed: {e}")
 
     data = build(events, year)
 

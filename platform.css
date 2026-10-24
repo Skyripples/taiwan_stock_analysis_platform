@@ -200,7 +200,8 @@ h1 {
   flex: 1;
 }
 
-.dividend-reminder-list {
+.dividend-reminder-list,
+.disposition-reminder-list {
   display: grid;
   max-height: 240px;
   gap: 0;
@@ -210,7 +211,8 @@ h1 {
   list-style: none;
 }
 
-.dividend-reminder-list li {
+.dividend-reminder-list li,
+.disposition-reminder-list li {
   display: grid;
   grid-template-columns: minmax(150px, .8fr) minmax(240px, 1.2fr);
   gap: 16px;
@@ -218,19 +220,23 @@ h1 {
   border-top: 1px solid rgba(118, 132, 151, .22);
 }
 
-.dividend-reminder-list a {
+.dividend-reminder-list a,
+.disposition-reminder-list a {
   color: #fff;
   font-weight: 700;
   text-decoration: none;
 }
 
 .dividend-reminder-list a:hover,
-.dividend-reminder-list a:focus-visible {
+.dividend-reminder-list a:focus-visible,
+.disposition-reminder-list a:hover,
+.disposition-reminder-list a:focus-visible {
   color: #7eb2f5;
   text-decoration: underline;
 }
 
-.dividend-reminder-list span {
+.dividend-reminder-list span,
+.disposition-reminder-list span {
   color: #aeb7c3;
   line-height: 1.5;
 }
@@ -305,16 +311,19 @@ body.theme-light .reminder-date-block {
   border-left-color: #d0d9e6;
 }
 
-body.theme-light .dividend-reminder-list li {
+body.theme-light .dividend-reminder-list li,
+body.theme-light .disposition-reminder-list li {
   border-top-color: rgba(88, 108, 137, .18);
 }
 
 body.theme-light .dividend-reminder-list a,
+body.theme-light .disposition-reminder-list a,
 body.theme-light .dividend-reminder-card .reminder-date-block strong {
   color: #243247;
 }
 
-body.theme-light .dividend-reminder-list span {
+body.theme-light .dividend-reminder-list span,
+body.theme-light .disposition-reminder-list span {
   color: #647186;
 }
 
@@ -605,7 +614,8 @@ body.theme-light .status-paid {
     text-align: left;
   }
 
-  .dividend-reminder-list li {
+  .dividend-reminder-list li,
+  .disposition-reminder-list li {
     grid-template-columns: 1fr;
     gap: 4px;
   }
