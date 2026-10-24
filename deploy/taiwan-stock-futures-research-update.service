@@ -1,0 +1,27 @@
+[Unit]
+Description=Taiwan Stock Platform Futures research daily pipeline
+After=network-online.target postgresql.service
+Wants=network-online.target
+Requires=postgresql.service
+
+[Service]
+Type=oneshot
+User=stock-sync
+Group=stock-sync
+WorkingDirectory=/opt/taiwan_stock_analysis_platform
+EnvironmentFile=/etc/taiwan-stock-analysis/sync.env
+Environment=PYTHONPATH=/opt/taiwan_stock_analysis_platform/scripts
+RuntimeDirectory=taiwan-stock-futures-research
+RuntimeDirectoryMode=0750
+ExecStart=/usr/bin/flock --nonblock --conflict-exit-code 0 /run/taiwan-stock-futures-research/update.lock /opt/taiwan_stock_analysis_platform/.venv/bin/python scripts/research/update_futures_research_daily.py --lookback-days 7 --end today
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/taiwan_stock_analysis_platform/data_lake
+ReadWritePaths=/opt/taiwan_stock_analysis_platform/data/analysis/current
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true

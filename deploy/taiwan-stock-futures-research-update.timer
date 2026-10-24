@@ -1,0 +1,12 @@
+[Unit]
+Description=Run the Futures research pipeline after each Taiwan trading day
+
+[Timer]
+OnCalendar=Tue..Sat *-*-* 06:30:00 Asia/Taipei
+AccuracySec=1min
+RandomizedDelaySec=5min
+Persistent=true
+Unit=taiwan-stock-futures-research-update.service
+
+[Install]
+WantedBy=timers.target
