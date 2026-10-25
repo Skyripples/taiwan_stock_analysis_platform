@@ -42,6 +42,7 @@ def arguments() -> argparse.Namespace:
     modes.add_argument("--daily", action="store_true")
     modes.add_argument("--monthly", action="store_true")
     modes.add_argument("--quarterly", action="store_true")
+    modes.add_argument("--industry-groups-only", action="store_true", help="sync only canonical industry group tables")
     parser.add_argument("--symbol", action="append", help="limit to a symbol; repeatable")
     parser.add_argument("--dry-run", action="store_true", help="parse/count JSON without a DB connection")
     return parser.parse_args()
@@ -276,10 +277,12 @@ def materialize_stock_ids(batches: dict[str, list[dict[str, Any]]], ids: dict[st
         batches[table] = kept
 
 
-def sync_industry_groups(connection, repository: StockRepository) -> int:
+def sync_industry_groups(connection, repository: StockRepository, *, required: bool = False) -> int:
     """Atomically reconcile only a verified complete official TPEx snapshot."""
     payload = read_json(INDUSTRY_GROUPS)
     if not payload or not payload.get("complete_snapshot"):
+        if required:
+            raise RuntimeError(f"Complete canonical industry group snapshot is required: {INDUSTRY_GROUPS}")
         return 0
     groups = [{"group_key": item["key"], "group_name": item["name"], "aliases": item.get("aliases", []),
                "source": item.get("source", "TPEx Industry Value Chain"), "source_url": "https://ic.tpex.org.tw/", "is_official": True,
@@ -310,6 +313,15 @@ def sync_industry_groups(connection, repository: StockRepository) -> int:
     return len(rows)
 
 
+def sync_industry_groups_only(connection) -> int:
+    """Sync only the normalized group dimension and associations.
+
+    This deliberately bypasses build_batches(), pipeline_runs and every stock
+    fact table so it is safe for a production classification-only deployment.
+    """
+    return sync_industry_groups(connection, StockRepository(connection), required=True)
+
+
 def sync(connection, batches: dict[str, list[dict[str, Any]]], mode: str, source_updated_at: str | None) -> dict[str, int]:
     repository = StockRepository(connection)
     run_id = repository.start_run(mode, source_updated_at)
@@ -334,6 +346,7 @@ def selected_mode(options: argparse.Namespace) -> str | None:
     if options.daily: return "daily"
     if options.monthly: return "monthly"
     if options.quarterly: return "quarterly"
+    if options.industry_groups_only: return "industry-groups-only"
     return None
 
 
@@ -341,13 +354,18 @@ def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
     options = arguments(); mode = selected_mode(options)
     if not mode and not options.init_schema:
-        LOGGER.error("Choose --full, --daily, --monthly, --quarterly, or --init-schema")
+        LOGGER.error("Choose --full, --daily, --monthly, --quarterly, --industry-groups-only, or --init-schema")
         return 2
     started = time.monotonic()
     batches: dict[str, list[dict[str, Any]]] | None = None; updated_at = None
-    if mode:
+    if mode and mode != "industry-groups-only":
         batches, updated_at = build_batches(mode, set(options.symbol or []) or None)
         LOGGER.info("JSON mapping complete | %s", " | ".join(f"{k}={len(v)}" for k, v in batches.items()))
+    if mode == "industry-groups-only":
+        # Validate before opening a transaction (and also for --dry-run).
+        payload = read_json(INDUSTRY_GROUPS)
+        if not payload or not payload.get("complete_snapshot"):
+            raise RuntimeError(f"Complete canonical industry group snapshot is required: {INDUSTRY_GROUPS}")
     if options.dry_run:
         LOGGER.info("Dry run complete; PostgreSQL was not contacted | duration=%.2fs", time.monotonic() - started)
         return 0
@@ -360,6 +378,9 @@ def main() -> int:
             if batches is not None and mode:
                 counts = sync(connection, batches, mode, updated_at)
                 LOGGER.info("PostgreSQL sync complete | %s", " | ".join(f"{k}={v}" for k, v in counts.items()))
+            elif mode == "industry-groups-only":
+                count = sync_industry_groups_only(connection)
+                LOGGER.info("Industry group PostgreSQL sync complete | stock_industry_groups=%s", count)
     finally:
         connection.close()
     LOGGER.info("Duration: %.2fs", time.monotonic() - started)
