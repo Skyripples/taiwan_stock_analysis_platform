@@ -75,6 +75,21 @@ class StockScreenerTests(unittest.TestCase):
         self.assertEqual(filters["industry"], "半導體業")
         self.assertEqual((screen.call_args.args[1], screen.call_args.args[2]), ("roe", "desc"))
 
+    @patch("api.routes.stocks.screen_stocks")
+    def test_industry_group_filter_is_forwarded_as_canonical_key(self, screen):
+        screen.return_value = {"total": 3, "count": 3, "limit": 50, "offset": 0, "results": FIXTURE}
+        response = self.client.get("/api/v1/stocks/screener?industry_group=abf_substrate")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(screen.call_args.args[0]["industry_group"], "abf_substrate")
+
+    @patch("api.routes.stocks.get_industry_group_stocks")
+    def test_group_member_route_and_invalid_group(self, members):
+        members.return_value = {"group": {"key": "abf_substrate", "name": "ABF"}, "total": 3, "stocks": FIXTURE}
+        self.assertEqual(self.client.get("/api/v1/industry-groups/abf_substrate/stocks?exclude_symbol=3037").status_code, 200)
+        self.assertEqual(members.call_args.args[0], "abf_substrate")
+        members.return_value = None
+        self.assertEqual(self.client.get("/api/v1/industry-groups/not_real/stocks").status_code, 404)
+
     def test_invalid_ranges_and_parameters_return_422(self):
         for query in ("pe_min=30&pe_max=10", "sort=drop_table", "limit=101", "market=NYSE"):
             with self.subTest(query=query):
@@ -103,6 +118,14 @@ class StockScreenerTests(unittest.TestCase):
         self.assertIn("ORDER BY foreign_5d DESC", fake.cursor.query)
         # SQL comparisons naturally exclude NULL only for enabled filters.
         self.assertNotIn("coalesce(pe", fake.cursor.query.lower())
+
+    def test_group_filter_uses_exists_without_duplicate_producing_join(self):
+        fake = FakePool()
+        with patch.object(service, "pool", fake):
+            service.screen_stocks({"industry_group": "abf_substrate"}, "symbol", "asc", 50, 0)
+        self.assertIn("EXISTS (SELECT 1 FROM stock_industry_groups", fake.cursor.query)
+        self.assertIn("ig.group_key=%s", fake.cursor.query)
+        self.assertIn("abf_substrate", fake.cursor.parameters)
 
 
 if __name__ == "__main__":

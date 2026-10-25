@@ -16,6 +16,7 @@ from api.services.stocks import (
     get_valuation_history,
     get_chips_history,
     get_industry_peers,
+    get_industry_group_stocks,
     get_screener_options,
     get_stock,
     screen_stocks,
@@ -82,6 +83,7 @@ def screener(
     search: str | None = Query(default=None, min_length=1, max_length=40),
     market: str | None = Query(default=None, pattern="^(TWSE|TPEx)$"),
     industry: str | None = Query(default=None, min_length=1, max_length=60),
+    industry_group: str | None = Query(default=None, pattern="^[a-z0-9_]{1,60}$"),
     instrument_type: str | None = Query(default=None, min_length=1, max_length=30),
     price_min: float | None = None, price_max: float | None = None,
     change_percent_min: float | None = None, change_percent_max: float | None = None,
@@ -104,6 +106,19 @@ def screener(
     if sort not in SCREENER_SORT_COLUMNS:
         raise HTTPException(status_code=422, detail={"code": "INVALID_SORT", "message": "Invalid sort field"})
     return screen_stocks(filters, sort, order, limit, offset)
+
+
+@router.get("/industry-groups/{group_key}/stocks")
+def industry_group_stocks(
+    group_key: str = Path(..., pattern="^[a-z0-9_]{1,60}$"),
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    exclude_symbol: str | None = Query(default=None, pattern="^[0-9A-Z]{2,10}$"),
+) -> dict:
+    result = get_industry_group_stocks(group_key, limit, offset, exclude_symbol.upper() if exclude_symbol else None)
+    if result is None:
+        raise HTTPException(status_code=404, detail={"code": "INDUSTRY_GROUP_NOT_FOUND", "message": "Industry group was not found"})
+    return result
 
 
 @router.get("/stocks/{symbol}/financials")

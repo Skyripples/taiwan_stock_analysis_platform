@@ -27,7 +27,8 @@ class StockPreferencesFrontendTests(unittest.TestCase):
         self.assertIn("addEventListener?.('storage'", self.preferences)
 
     def test_screener_restores_after_options_and_prevents_stale_response(self):
-        self.assertIn("await loadOptions(); restoreSettings(); await load()", self.screener)
+        self.assertIn("await loadOptions(); restoreSettings();", self.screener)
+        self.assertIn("industry_group", self.preferences)
         self.assertIn("const requestId = ++state.requestId", self.screener)
         self.assertGreaterEqual(self.screener.count("requestId !== state.requestId"), 2)
         self.assertIn("clearScreenerSettings", self.screener)
@@ -37,6 +38,11 @@ class StockPreferencesFrontendTests(unittest.TestCase):
         self.assertIn("event.target.closest('a,button,input,select')", self.screener)
         self.assertIn("data-watchlist-symbol", self.screener)
         self.assertIn("stockWatchlistToggle", self.stock)
+
+    def test_stock_detail_groups_are_optional_and_lazy_member_loaded(self):
+        self.assertIn("profile.industry_groups || []", self.stock)
+        self.assertIn("getIndustryGroupStocks", self.stock)
+        self.assertIn("industry-group-members", self.stock)
 
     def test_stock_pages_are_public_without_admin_access(self):
         self.assertIn('const publicFeatures = new Set(["stock_analysis"])', self.sidebar)

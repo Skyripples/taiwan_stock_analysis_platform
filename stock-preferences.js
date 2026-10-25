@@ -11,7 +11,7 @@
   const SORTS = new Set(['symbol', 'close', 'change_percent', 'pe', 'pb', 'dividend_yield', 'revenue_yoy', 'roe', 'debt_ratio', 'foreign_5d']);
   const ORDERS = new Set(['asc', 'desc']);
   const FILTER_KEYS = new Set([
-    'search', 'market', 'industry', 'instrument_type', 'price_min', 'price_max',
+    'search', 'market', 'industry', 'industry_group', 'instrument_type', 'price_min', 'price_max',
     'change_percent_min', 'change_percent_max', 'pe_min', 'pe_max', 'pb_min', 'pb_max',
     'dividend_yield_min', 'dividend_yield_max', 'revenue_yoy_min', 'revenue_yoy_max',
     'roe_min', 'roe_max', 'debt_ratio_min', 'debt_ratio_max', 'foreign_5d_min', 'foreign_5d_max'

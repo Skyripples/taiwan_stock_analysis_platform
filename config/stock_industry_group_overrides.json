@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "overrides": [
+    {"symbol":"3037","group":"abf_substrate","source":"Unimicron official product information","source_type":"official_company_or_exchange","evidence":"Official product materials identify ABF carrier-board capability.","verified_at":"2026-10-25"},
+    {"symbol":"8046","group":"abf_substrate","source":"Nan Ya PCB official product information","source_type":"official_company_or_exchange","evidence":"Official product materials identify ABF substrate capability.","verified_at":"2026-10-25"},
+    {"symbol":"3189","group":"abf_substrate","source":"Kinsus official product information","source_type":"official_company_or_exchange","evidence":"Official product materials identify ABF substrate capability.","verified_at":"2026-10-25"}
+  ]
+}

@@ -23,6 +23,7 @@ class ScreenerFrontendSmokeTests(unittest.TestCase):
             "roe_min", "roe_max", "debt_ratio_min", "debt_ratio_max", "foreign_5d_min", "foreign_5d_max",
         ):
             self.assertIn(f'name="{name}"', self.html)
+        self.assertIn("industry_group", self.script)
 
     def test_submit_reset_sort_and_pagination_handlers_exist(self):
         for token in ("addEventListener('submit'", "addEventListener('reset'", "previous.addEventListener", "next.addEventListener", "th[data-sort]"):
@@ -37,6 +38,11 @@ class ScreenerFrontendSmokeTests(unittest.TestCase):
         self.assertIn("async screenStocks", self.service)
         self.assertIn("async getScreenerOptions", self.service)
         self.assertEqual(self.script.count("172-238-20-217"), 0)
+        self.assertIn("async getIndustryGroupStocks", self.service)
+
+    def test_canonical_group_options_and_tags_are_rendered(self):
+        self.assertIn("result.data.industry_groups", self.script)
+        self.assertIn("industry-group-tag", self.script)
 
     def test_watchlist_and_preferences_are_loaded(self):
         self.assertIn("stock-preferences.js", self.html)

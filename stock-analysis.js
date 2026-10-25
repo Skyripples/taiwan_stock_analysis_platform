@@ -330,6 +330,25 @@
     $('stockSymbol').textContent = profile.symbol;
     $('stockName').textContent = profile.name;
     currentStock = { symbol: profile.symbol, name: profile.name || profile.symbol };
+    let groupPanel = document.getElementById('stockIndustryGroups');
+    if (!groupPanel) {
+      groupPanel = document.createElement('div'); groupPanel.id = 'stockIndustryGroups'; groupPanel.className = 'stock-industry-groups';
+      document.querySelector('.stock-identity')?.append(groupPanel);
+    }
+    const groups = profile.industry_groups || [];
+    groupPanel.hidden = !groups.length;
+    groupPanel.innerHTML = groups.length ? `<div class="industry-group-tags">${groups.map((group) => `<a class="industry-group-tag" href="./screener.html?industry_group=${encodeURIComponent(group.key)}">${escapeHtml(group.name)}</a>`).join('')}</div><label class="industry-group-members-label">同族群成員<select>${groups.map((group) => `<option value="${escapeHtml(group.key)}">${escapeHtml(group.name)}</option>`).join('')}</select></label><div class="industry-group-members" hidden></div>` : '';
+    const groupSelect = groupPanel.querySelector('select'), groupMembers = groupPanel.querySelector('.industry-group-members');
+    const loadGroupMembers = async () => {
+      if (!groupSelect || !groupMembers) return;
+      groupMembers.hidden = false; groupMembers.textContent = '載入同族群成員…';
+      try {
+        const response = await dataService.getIndustryGroupStocks(groupSelect.value, { excludeSymbol: profile.symbol, limit: 8 });
+        const stocks = response.stocks || [];
+        groupMembers.innerHTML = stocks.length ? stocks.map((item) => `<a href="./stock-analysis.html?symbol=${encodeURIComponent(item.symbol)}">${escapeHtml(item.symbol)} ${escapeHtml(item.name)}</a>`).join('') : '目前沒有其他成員。';
+      } catch { groupMembers.textContent = '目前無法取得同族群成員。'; }
+    };
+    groupSelect?.addEventListener('change', loadGroupMembers, { once: false });
     renderWatchlist();
     $('stockMeta').textContent = `${profile.market === 'TWSE' ? '上市' : '上櫃'}｜${profile.industry}｜${profile.instrument_type === 'company' ? '一般公司' : 'ETF／其他證券'}`;
     $('quoteDate').textContent = quote.trade_date || '日期不足';

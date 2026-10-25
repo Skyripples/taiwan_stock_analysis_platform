@@ -138,7 +138,10 @@ def _screener_cte(universe_where: str = "") -> str:
                    v.pe,v.pb,v.dividend_yield,v.valuation_date,
                    r.revenue_yoy,r.revenue_month,
                    h.roe,h.roe_date,h.debt_ratio,h.debt_ratio_date,
-                   f.foreign_5d,f.foreign_5d_start_date,f.foreign_5d_end_date
+                   f.foreign_5d,f.foreign_5d_start_date,f.foreign_5d_end_date,
+                   COALESCE((SELECT jsonb_agg(jsonb_build_object('key',ig.group_key,'name',ig.group_name,'provenance',sig.provenance) ORDER BY ig.group_name)
+                             FROM stock_industry_groups sig JOIN industry_groups ig USING(group_id)
+                             WHERE sig.stock_id=u.stock_id AND ig.active=true), '[]'::jsonb) AS industry_groups
             FROM universe u
             LEFT JOIN latest_quote q USING(stock_id)
             LEFT JOIN latest_valuation v USING(stock_id)
@@ -160,6 +163,10 @@ def _build_screener_where(filters: dict[str, Any], *, basic: bool) -> tuple[str,
         if filters.get(key):
             clauses.append(f"{key}=%s")
             parameters.append(filters[key])
+    if basic and filters.get("industry_group"):
+        # EXISTS avoids duplicate stock rows for companies in multiple groups.
+        clauses.append("EXISTS (SELECT 1 FROM stock_industry_groups sig JOIN industry_groups ig USING(group_id) WHERE sig.stock_id=stocks.stock_id AND ig.group_key=%s AND ig.active=true)")
+        parameters.append(filters["industry_group"])
     for prefix, column in (SCREENER_FILTER_COLUMNS.items() if not basic else ()):
         minimum = filters.get(f"{prefix}_min")
         maximum = filters.get(f"{prefix}_max")
@@ -209,16 +216,22 @@ def screen_stocks(filters: dict[str, Any], sort: str, order: str, limit: int, of
     }
 
 
-def get_screener_options() -> dict[str, list[str]]:
+def get_screener_options() -> dict[str, Any]:
     with pool.connection() as connection, connection.cursor() as cursor:
         cursor.execute(
             """SELECT
                  ARRAY(SELECT DISTINCT market FROM stocks WHERE active=true AND market IS NOT NULL ORDER BY market) AS markets,
                  ARRAY(SELECT DISTINCT industry FROM stocks WHERE active=true AND industry IS NOT NULL ORDER BY industry) AS industries,
-                 ARRAY(SELECT DISTINCT instrument_type FROM stocks WHERE active=true AND instrument_type IS NOT NULL ORDER BY instrument_type) AS instrument_types"""
+                 ARRAY(SELECT DISTINCT instrument_type FROM stocks WHERE active=true AND instrument_type IS NOT NULL ORDER BY instrument_type) AS instrument_types,
+                 COALESCE((SELECT jsonb_agg(jsonb_build_object('key',group_key,'name',group_name,'stock_count',stock_count) ORDER BY group_name)
+                           FROM (SELECT ig.group_key,ig.group_name,count(*) AS stock_count
+                                 FROM industry_groups ig JOIN stock_industry_groups sig USING(group_id)
+                                 JOIN stocks s ON s.stock_id=sig.stock_id
+                                 WHERE ig.active=true AND s.active=true
+                                 GROUP BY ig.group_id,ig.group_key,ig.group_name HAVING count(*) > 0) groups), '[]'::jsonb) AS industry_groups"""
         )
         row = cursor.fetchone()
-    return {key: list(row.get(key) or []) for key in ("markets", "industries", "instrument_types")}
+    return {**{key: list(row.get(key) or []) for key in ("markets", "industries", "instrument_types")}, "industry_groups": row.get("industry_groups") or []}
 
 
 def stock_exists(cursor, symbol: str) -> dict[str, Any] | None:
@@ -338,6 +351,12 @@ def get_stock(symbol: str) -> dict[str, Any] | None:
         financials = financial_rows(cursor, stock_id, 1)
         chips = chips_rows(cursor, stock_id, 60)
         cursor.execute(
+            """SELECT ig.group_key AS key,ig.group_name AS name,sig.provenance
+               FROM stock_industry_groups sig JOIN industry_groups ig USING(group_id)
+               WHERE sig.stock_id=%s AND ig.active=true ORDER BY ig.group_name""", (stock_id,),
+        )
+        industry_groups = [clean(row) for row in cursor.fetchall()]
+        cursor.execute(
             """SELECT category,metric_key,source_date,value_numeric,value_text,threshold_text,status,unit,note,rules_version,
                       source_payload->>'label' AS label
                FROM stock_health WHERE stock_id=%s ORDER BY as_of_date DESC,category,metric_key""", (stock_id,),
@@ -382,7 +401,7 @@ def get_stock(symbol: str) -> dict[str, Any] | None:
                          "institutional_20d": total("institutional_total", 20),
                          "available_days": len(chips)}
         result = {
-            "profile": {key: stock.get(key) for key in ("symbol","name","market","industry","instrument_type","active")},
+            "profile": {**{key: stock.get(key) for key in ("symbol","name","market","industry","instrument_type","active")}, "industry_groups": industry_groups},
             "quote": quote, "valuation": valuation,
             "valuation_history_observations": valuation_observations,
             "fundamentals": fundamentals,
@@ -396,6 +415,25 @@ def get_stock(symbol: str) -> dict[str, Any] | None:
         peer_snapshot = get_industry_peers(result["profile"]["industry"])["stocks"]
     result["analysis_summary"] = build_analysis_summary(result, SUMMARY_RULES, peer_snapshot)
     return result
+
+
+def get_industry_group_stocks(group_key: str, limit: int, offset: int, exclude_symbol: str | None = None) -> dict[str, Any] | None:
+    """Return canonical group members with only their latest basic quote."""
+    with pool.connection() as connection, connection.cursor() as cursor:
+        cursor.execute("SELECT group_id,group_key,group_name FROM industry_groups WHERE group_key=%s AND active=true", (group_key,))
+        group = clean(cursor.fetchone())
+        if not group:
+            return None
+        cursor.execute("SELECT count(*) AS total FROM stock_industry_groups sig JOIN stocks s USING(stock_id) WHERE sig.group_id=%s AND s.active=true AND (%s IS NULL OR s.symbol<>%s)", (group["group_id"], exclude_symbol, exclude_symbol))
+        total = int(cursor.fetchone()["total"])
+        cursor.execute(
+            """SELECT s.symbol,s.name,s.market,s.industry,q.close,q.change_percent
+               FROM stock_industry_groups sig JOIN stocks s USING(stock_id)
+               LEFT JOIN LATERAL (SELECT close,change_percent FROM stock_quotes WHERE stock_id=s.stock_id ORDER BY trade_date DESC LIMIT 1) q ON true
+               WHERE sig.group_id=%s AND s.active=true AND (%s IS NULL OR s.symbol<>%s)
+               ORDER BY s.symbol LIMIT %s OFFSET %s""", (group["group_id"], exclude_symbol, exclude_symbol, limit, offset),
+        )
+        return {"group": {"key": group["group_key"], "name": group["group_name"]}, "total": total, "limit": limit, "offset": offset, "stocks": [clean(row) for row in cursor.fetchall()]}
 
 
 def get_industry_peers(industry: str) -> dict[str, Any]:

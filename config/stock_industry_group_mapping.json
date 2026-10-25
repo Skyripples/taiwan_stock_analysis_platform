@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "root_mappings": {
+    "半導體": ["semiconductor"], "印刷電路板": ["pcb"], "被動元件": ["passive_components"],
+    "連接器": ["connectors"], "平面顯示器": ["displays"], "觸控面板": ["touch_panels"],
+    "電腦及週邊設備": ["computers_peripherals"], "通信網路": ["networking"], "雲端運算": ["cloud"],
+    "資通訊安全": ["cybersecurity"], "軟體服務": ["software_services"], "人工智慧": ["ai"],
+    "大數據": ["big_data"], "自動化": ["automation"], "汽車": ["automotive"], "電動車": ["electric_vehicles"],
+    "太陽能": ["solar"], "風力發電": ["wind_power"], "智慧電網": ["smart_grid"], "能源元件": ["energy_components"],
+    "LED照明": ["led"], "再生醫療": ["biotech"], "醫療器材": ["medical_devices"], "製藥": ["pharmaceuticals"],
+    "金融科技": ["fintech"], "區塊鏈": ["blockchain"], "太空衛星科技": ["satellite"],
+    "交通運輸及航運": ["transport_shipping"], "休閒娛樂": ["leisure"], "建材營造": ["construction"],
+    "文化創意": ["culture_creative"], "水泥": ["cement"], "石化及塑橡膠": ["petrochemicals"],
+    "紡織": ["textiles"], "貿易百貨": ["retail"], "造紙": ["paper"], "運動科技": ["sports_tech"],
+    "金融": ["finance"], "鋼鐵": ["steel"], "電子商務": ["ecommerce"], "電機機械": ["electrical_machinery"],
+    "食品": ["food"], "食品生技": ["food_biotech"], "體驗科技": ["experience_tech"], "汽電共生": ["automotive_electronics"],
+    "油電燃氣": ["oil_gas"], "LED 照明": ["led"], "太陽能": ["solar"], "電動車": ["electric_vehicles"], "電腦週邊": ["computers_peripherals"]
+  },
+  "path_mappings": {
+    "印刷電路板 > 硬板、軟板、IC載板製造": ["pcb", "ic_substrate"],
+    "半導體 > 基板": ["semiconductor", "ic_substrate"],
+    "被動元件 > 電容器": ["passive_components", "capacitors"],
+    "被動元件 > 電感器": ["passive_components", "inductors"],
+    "被動元件 > 電阻器": ["passive_components", "resistors"],
+    "被動元件 > 濾波器、振盪器": ["passive_components", "filters_oscillators"]
+  },
+  "contains_mappings": [
+    {"contains": "IC設計", "groups": ["ic_design"]}, {"contains": "晶圓製造", "groups": ["ic_manufacturing"]},
+    {"contains": "封裝測試", "groups": ["packaging_testing"]}, {"contains": "IC載板", "groups": ["ic_substrate"]}
+  ]
+}

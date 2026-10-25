@@ -174,6 +174,14 @@
       ));
     }
 
+    async getIndustryGroupStocks(groupKey, options = {}) {
+      const key = String(groupKey || '').trim();
+      if (!/^[a-z0-9_]{1,60}$/.test(key)) throw new DataServiceError('INVALID_GROUP', 'Invalid industry group', 422);
+      const params = new URLSearchParams({ limit: String(Math.min(100, Math.max(1, options.limit || 50))), offset: String(Math.max(0, options.offset || 0)) });
+      if (options.excludeSymbol) params.set('exclude_symbol', this.symbol(options.excludeSymbol));
+      return this.cached(`industry-group:${key}:${params}`, () => this.api(`/industry-groups/${encodeURIComponent(key)}/stocks?${params}`));
+    }
+
     symbol(value) {
       const symbol = String(value || '').trim().toUpperCase();
       if (!/^[0-9A-Z]{2,10}$/.test(symbol)) throw new DataServiceError('INVALID_SYMBOL', '請輸入有效股票代號', 422);

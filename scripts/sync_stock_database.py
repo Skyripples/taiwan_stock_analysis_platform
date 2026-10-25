@@ -27,6 +27,7 @@ INDEX = STOCKS / "index.json"
 FINANCIALS = STOCKS / "financials"
 VALUATIONS = STOCKS / "history"
 PEER_RANKINGS = STOCKS / "peer_rankings.json"
+INDUSTRY_GROUPS = STOCKS / "stock-groups.json"
 TABLES = (
     "stocks", "stock_quotes", "stock_valuations", "stock_monthly_revenue",
     "stock_financials", "stock_chips", "stock_health", "industry_rankings",
@@ -275,6 +276,40 @@ def materialize_stock_ids(batches: dict[str, list[dict[str, Any]]], ids: dict[st
         batches[table] = kept
 
 
+def sync_industry_groups(connection, repository: StockRepository) -> int:
+    """Atomically reconcile only a verified complete official TPEx snapshot."""
+    payload = read_json(INDUSTRY_GROUPS)
+    if not payload or not payload.get("complete_snapshot"):
+        return 0
+    groups = [{"group_key": item["key"], "group_name": item["name"], "aliases": item.get("aliases", []),
+               "source": item.get("source", "TPEx Industry Value Chain"), "source_url": "https://ic.tpex.org.tw/", "is_official": True,
+               "active": bool(item.get("active", True))} for item in payload.get("registry", [])]
+    if not groups:
+        raise RuntimeError("Industry group snapshot is marked complete but has no groups")
+    repository.upsert_many("industry_groups", groups)
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT group_id, group_key FROM industry_groups")
+        group_ids = {row["group_key"]: row["group_id"] for row in cursor.fetchall()}
+    stock_ids = repository.stock_ids()
+    fetched_at = payload.get("updated_at") or datetime.now(timezone.utc).isoformat()
+    rows = []
+    for symbol, item in (payload.get("by_symbol") or {}).items():
+        for association in item.get("groups", []):
+            key = association["key"]
+            if symbol in stock_ids and key in group_ids:
+                rows.append({"stock_id": stock_ids[symbol], "group_id": group_ids[key],
+                             "source": association.get("source", "TPEx Industry Value Chain"),
+                             "source_url": association.get("source_url"), "provenance": association["provenance"],
+                             "evidence": association.get("evidence"), "source_paths": association.get("source_paths", []),
+                             "fetched_at": fetched_at})
+    # This deletion is safe only after the complete_snapshot guard above.  The
+    # canonical snapshot includes both official-derived and curated rows.
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM stock_industry_groups")
+    repository.upsert_many("stock_industry_groups", rows)
+    return len(rows)
+
+
 def sync(connection, batches: dict[str, list[dict[str, Any]]], mode: str, source_updated_at: str | None) -> dict[str, int]:
     repository = StockRepository(connection)
     run_id = repository.start_run(mode, source_updated_at)
@@ -285,6 +320,8 @@ def sync(connection, batches: dict[str, list[dict[str, Any]]], mode: str, source
         materialize_stock_ids(batches, ids)
         for table in TABLES[1:]:
             counts[table] = repository.upsert_many(table, batches[table])
+        if mode == "full":
+            counts["stock_industry_groups"] = sync_industry_groups(connection, repository)
         repository.finish_run(run_id, "success", counts)
         return counts
     except Exception as exc:

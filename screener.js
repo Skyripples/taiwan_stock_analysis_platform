@@ -7,6 +7,13 @@
   const count = document.getElementById('resultCount'), message = document.getElementById('resultState'), wrap = document.getElementById('resultTableWrap');
   const previous = document.getElementById('previousPage'), next = document.getElementById('nextPage'), pageInfo = document.getElementById('pageInfo'), error = document.getElementById('filterError');
   const watchlistItems = document.getElementById('watchlistItems'), watchlistEmpty = document.getElementById('watchlistEmpty'), storageStatus = document.getElementById('preferenceStorageStatus');
+  const industrySelect = form.elements.industry;
+  if (industrySelect && !form.elements.industry_group) {
+    const label = document.createElement('label'); label.textContent = '產業族群';
+    const select = document.createElement('select'); select.name = 'industry_group';
+    select.append(new Option('全部產業族群', '')); label.append(select);
+    industrySelect.closest('label')?.insertAdjacentElement('afterend', label);
+  }
   const text = (value, digits = 2) => value === null || value === undefined || value === '' ? '—' : Number(value).toLocaleString('zh-TW', { maximumFractionDigits: digits });
   const percent = (value) => value === null || value === undefined ? '—' : `${Number(value) > 0 ? '+' : ''}${text(value)}%`;
   const signed = (value) => value === null || value === undefined ? '—' : `${Number(value) > 0 ? '+' : ''}${text(value, 0)}`;
@@ -28,9 +35,9 @@
     });
   }
 
-  function renderOptions(name, items) { const select = form.elements[name]; (items || []).forEach((item) => select.append(new Option(item, item))); }
+  function renderOptions(name, items) { const select = form.elements[name]; (items || []).forEach((item) => { const value = typeof item === 'object' ? item.key : item; const label = typeof item === 'object' ? `${item.name} (${item.stock_count})` : item; select.append(new Option(label, value)); }); }
   async function loadOptions() {
-    try { const result = await service.getScreenerOptions(); renderOptions('market', result.data.markets); renderOptions('industry', result.data.industries); renderOptions('instrument_type', result.data.instrument_types); }
+    try { const result = await service.getScreenerOptions(); renderOptions('market', result.data.markets); renderOptions('industry', result.data.industries); renderOptions('industry_group', result.data.industry_groups); renderOptions('instrument_type', result.data.instrument_types); }
     catch { /* Existing filters remain usable if options are temporarily unavailable. */ }
   }
   function restoreSettings() {
@@ -47,7 +54,18 @@
   function saveSettings() { preferences.saveScreenerSettings(state.filters, state.sort, state.order); storageStatus.textContent = preferences.statusMessage(); }
   function validateRanges(filters) { for (const prefix of ['price', 'change_percent', 'pe', 'pb', 'dividend_yield', 'revenue_yoy', 'roe', 'debt_ratio', 'foreign_5d']) { const min = filters[`${prefix}_min`], max = filters[`${prefix}_max`]; if (min !== undefined && max !== undefined && Number(min) > Number(max)) return '最低值不可大於最高值。'; } return ''; }
 
+  function renderGroupTags(payload) {
+    [...rows.querySelectorAll('tr')].forEach((row, index) => {
+      const groups = payload.results?.[index]?.industry_groups || [];
+      if (!groups.length) return;
+      const container = document.createElement('span'); container.className = 'industry-group-tags';
+      groups.slice(0, 3).forEach((group) => { const tag = document.createElement('span'); tag.className = 'industry-group-tag'; tag.textContent = group.name; container.append(tag); });
+      if (groups.length > 3) { const tag = document.createElement('span'); tag.className = 'industry-group-tag'; tag.textContent = `+${groups.length - 3}`; container.append(tag); }
+      row.cells[1]?.append(container);
+    });
+  }
   function render(payload) {
+    queueMicrotask(() => renderGroupTags(payload));
     state.total = payload.total || 0; count.textContent = `符合 ${state.total.toLocaleString('zh-TW')} 檔`;
     rows.innerHTML = (payload.results || []).map((item) => `<tr data-symbol="${escapeHtml(item.symbol)}" tabindex="0"><td><a class="stock-link" href="./stock-analysis.html?symbol=${encodeURIComponent(item.symbol)}">${escapeHtml(item.symbol)}</a><span class="stock-name">${escapeHtml(item.name || '—')}</span></td><td>${escapeHtml(item.market || '—')}<span class="stock-meta">${escapeHtml(item.industry || '—')}</span></td><td>${text(item.close)}</td><td class="${tone(item.change_percent)}">${percent(item.change_percent)}</td><td>${text(item.pe)}</td><td>${text(item.pb)}</td><td>${percent(item.dividend_yield)}</td><td class="${tone(item.revenue_yoy)}">${percent(item.revenue_yoy)}</td><td>${percent(item.roe)}</td><td>${percent(item.debt_ratio)}</td><td class="${tone(item.foreign_5d)}">${signed(item.foreign_5d)}</td><td>${watchButton(item)}</td></tr>`).join('');
     const empty = !payload.results?.length; wrap.hidden = empty; message.hidden = !empty; message.textContent = '沒有符合目前條件的股票。';
@@ -81,5 +99,10 @@
   watchlistItems.addEventListener('click', (event) => { const button = event.target.closest('[data-remove-watchlist]'); if (button) preferences.removeStock(button.dataset.removeWatchlist); });
   preferences.subscribe(renderWatchlist);
 
-  (async () => { renderWatchlist(); await loadOptions(); restoreSettings(); await load(); })();
+  (async () => {
+    renderWatchlist(); await loadOptions(); restoreSettings();
+    const group = new URLSearchParams(location.search).get('industry_group');
+    if (group && form.elements.industry_group) { form.elements.industry_group.value = group; state.filters = fields(); }
+    await load();
+  })();
 })();

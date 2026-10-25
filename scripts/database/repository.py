@@ -15,6 +15,8 @@ CONFLICT_KEYS = {
     "stock_chips": ("stock_id", "trade_date"),
     "stock_health": ("stock_id", "as_of_date", "rules_version", "category", "metric_key"),
     "industry_rankings": ("industry", "metric_key", "comparison_period", "stock_id"),
+    "industry_groups": ("group_key",),
+    "stock_industry_groups": ("stock_id", "group_id"),
 }
 
 
@@ -27,7 +29,7 @@ class StockRepository:
         from psycopg.types.json import Jsonb
 
         return {
-            key: Jsonb(value) if key in {"source_payload", "row_counts"} and value is not None else value
+            key: Jsonb(value) if key in {"source_payload", "row_counts", "aliases", "source_paths"} and value is not None else value
             for key, value in row.items()
         }
 
