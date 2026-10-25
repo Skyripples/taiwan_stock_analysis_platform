@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-10-24 16:58:07 UTC",
-  "updated_at_taipei": "2026-10-25 00:58:07 UTC+8",
+  "updated_at_utc": "2026-10-25 04:18:11 UTC",
+  "updated_at_taipei": "2026-10-25 12:18:11 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -101687,6 +101687,19 @@
       "cash_dividend": "0.12"
     },
     {
+      "stock_id": "7715",
+      "stock_name": "裕山",
+      "type": "earnings_call",
+      "title": "7715 裕山(法說會)",
+      "date": "2026-10-23",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "00888",
       "stock_name": "永豐台灣ESG",
       "type": "dividend",
@@ -101726,6 +101739,45 @@
       "cash_dividend": "0.04"
     },
     {
+      "stock_id": "1303",
+      "stock_name": "南亞",
+      "type": "earnings_call",
+      "title": "1303 南亞(法說會)",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "1440",
+      "stock_name": "南紡",
+      "type": "earnings_call",
+      "title": "1440 南紡(法說會)",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "2008",
+      "stock_name": "高興昌",
+      "type": "earnings_call",
+      "title": "2008 高興昌(法說會)",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "2337",
       "stock_name": "旺宏",
       "type": "earnings_call",
@@ -101747,6 +101799,19 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
       "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "3264",
+      "stock_name": "欣銓",
+      "type": "earnings_call",
+      "title": "3264 欣銓(法說會)",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
@@ -101921,6 +101986,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3105",
+      "stock_name": "穩懋",
+      "type": "earnings_call",
+      "title": "3105 穩懋(法說會)",
+      "date": "2026-10-28",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "3317",
       "stock_name": "尼克森",
       "type": "earnings_call",
@@ -101977,6 +102055,32 @@
       "stock_name": "訊連",
       "type": "earnings_call",
       "title": "5203 訊連(法說會)",
+      "date": "2026-10-28",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "5469",
+      "stock_name": "瀚宇博",
+      "type": "earnings_call",
+      "title": "5469 瀚宇博(法說會)",
+      "date": "2026-10-28",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "6191",
+      "stock_name": "精成科",
+      "type": "earnings_call",
+      "title": "6191 精成科(法說會)",
       "date": "2026-10-28",
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
@@ -102969,6 +103073,19 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/holders-meeting",
       "time": "09:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "6269",
+      "stock_name": "台郡",
+      "type": "earnings_call",
+      "title": "6269 台郡(法說會)",
+      "date": "2026-11-04",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "15:00",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
@@ -104113,6 +104230,19 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/holders-meeting",
       "time": "10:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "7765",
+      "stock_name": "中華資安",
+      "type": "earnings_call",
+      "title": "7765 中華資安(法說會)",
+      "date": "2026-11-12",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "15:00",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
