@@ -110,7 +110,7 @@ def screener(
 
 @router.get("/industry-groups/{group_key}/stocks")
 def industry_group_stocks(
-    group_key: str = Path(..., pattern="^[a-z0-9_]{1,60}$"),
+    group_key: str = Path(..., min_length=1, max_length=60),
     limit: int = Query(default=50, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
     exclude_symbol: str | None = Query(default=None, pattern="^[0-9A-Z]{2,10}$"),

@@ -47,6 +47,32 @@ class FakePool:
     def connection(self): return FakeConnection(self.cursor)
 
 
+class GroupCursor:
+    def __init__(self):
+        self.calls = []
+        self._rows = [
+            {"group_id": 17, "group_key": "abf_substrate", "group_name": "ABF"},
+            {"total": len(FIXTURE)},
+        ]
+
+    def execute(self, query, parameters=()):
+        self.calls.append((query, parameters))
+
+    def fetchone(self):
+        return self._rows.pop(0)
+
+    def fetchall(self):
+        return FIXTURE
+
+    def __enter__(self): return self
+    def __exit__(self, *_): return False
+
+
+class GroupPool:
+    def __init__(self, cursor): self.cursor = cursor
+    def connection(self): return FakeConnection(self.cursor)
+
+
 class StockScreenerTests(unittest.TestCase):
     def setUp(self):
         app = FastAPI()
@@ -85,10 +111,14 @@ class StockScreenerTests(unittest.TestCase):
     @patch("api.routes.stocks.get_industry_group_stocks")
     def test_group_member_route_and_invalid_group(self, members):
         members.return_value = {"group": {"key": "abf_substrate", "name": "ABF"}, "total": 3, "stocks": FIXTURE}
+        self.assertEqual(self.client.get("/api/v1/industry-groups/abf_substrate/stocks").status_code, 200)
+        self.assertIsNone(members.call_args.args[3])
         self.assertEqual(self.client.get("/api/v1/industry-groups/abf_substrate/stocks?exclude_symbol=3037").status_code, 200)
         self.assertEqual(members.call_args.args[0], "abf_substrate")
+        self.assertEqual(members.call_args.args[3], "3037")
         members.return_value = None
         self.assertEqual(self.client.get("/api/v1/industry-groups/not_real/stocks").status_code, 404)
+        self.assertEqual(self.client.get("/api/v1/industry-groups/not-a-real-group/stocks").status_code, 404)
 
     def test_invalid_ranges_and_parameters_return_422(self):
         for query in ("pe_min=30&pe_max=10", "sort=drop_table", "limit=101", "market=NYSE"):
@@ -126,6 +156,31 @@ class StockScreenerTests(unittest.TestCase):
         self.assertIn("EXISTS (SELECT 1 FROM stock_industry_groups", fake.cursor.query)
         self.assertIn("ig.group_key=%s", fake.cursor.query)
         self.assertIn("abf_substrate", fake.cursor.parameters)
+
+    def test_group_member_sql_omits_nullable_exclude_parameter(self):
+        cursor = GroupCursor()
+        with patch.object(service, "pool", GroupPool(cursor)):
+            result = service.get_industry_group_stocks("abf_substrate", 50, 0)
+        self.assertEqual(result["total"], len(FIXTURE))
+        count_query, count_parameters = cursor.calls[1]
+        member_query, member_parameters = cursor.calls[2]
+        self.assertNotIn("IS NULL", count_query)
+        self.assertNotIn("IS NULL", member_query)
+        self.assertEqual(count_parameters, [17])
+        self.assertEqual(member_parameters, [17, 50, 0])
+        self.assertNotIn(None, count_parameters)
+        self.assertNotIn(None, member_parameters)
+
+    def test_group_member_sql_binds_requested_exclusion(self):
+        cursor = GroupCursor()
+        with patch.object(service, "pool", GroupPool(cursor)):
+            service.get_industry_group_stocks("abf_substrate", 50, 0, "3037")
+        count_query, count_parameters = cursor.calls[1]
+        member_query, member_parameters = cursor.calls[2]
+        self.assertIn("AND s.symbol<>%s", count_query)
+        self.assertIn("AND s.symbol<>%s", member_query)
+        self.assertEqual(count_parameters, [17, "3037"])
+        self.assertEqual(member_parameters, [17, "3037", 50, 0])
 
 
 if __name__ == "__main__":

@@ -424,14 +424,25 @@ def get_industry_group_stocks(group_key: str, limit: int, offset: int, exclude_s
         group = clean(cursor.fetchone())
         if not group:
             return None
-        cursor.execute("SELECT count(*) AS total FROM stock_industry_groups sig JOIN stocks s USING(stock_id) WHERE sig.group_id=%s AND s.active=true AND (%s IS NULL OR s.symbol<>%s)", (group["group_id"], exclude_symbol, exclude_symbol))
+        exclude_clause = ""
+        parameters: list[Any] = [group["group_id"]]
+        if exclude_symbol:
+            # The fragment is fixed; the caller-controlled symbol remains bound.
+            exclude_clause = " AND s.symbol<>%s"
+            parameters.append(exclude_symbol)
+        cursor.execute(
+            "SELECT count(*) AS total FROM stock_industry_groups sig JOIN stocks s USING(stock_id) "
+            "WHERE sig.group_id=%s AND s.active=true" + exclude_clause,
+            parameters,
+        )
         total = int(cursor.fetchone()["total"])
         cursor.execute(
             """SELECT s.symbol,s.name,s.market,s.industry,q.close,q.change_percent
                FROM stock_industry_groups sig JOIN stocks s USING(stock_id)
                LEFT JOIN LATERAL (SELECT close,change_percent FROM stock_quotes WHERE stock_id=s.stock_id ORDER BY trade_date DESC LIMIT 1) q ON true
-               WHERE sig.group_id=%s AND s.active=true AND (%s IS NULL OR s.symbol<>%s)
-               ORDER BY s.symbol LIMIT %s OFFSET %s""", (group["group_id"], exclude_symbol, exclude_symbol, limit, offset),
+               WHERE sig.group_id=%s AND s.active=true""" + exclude_clause +
+            " ORDER BY s.symbol LIMIT %s OFFSET %s",
+            [*parameters, limit, offset],
         )
         return {"group": {"key": group["group_key"], "name": group["group_name"]}, "total": total, "limit": limit, "offset": offset, "stocks": [clean(row) for row in cursor.fetchall()]}
 
