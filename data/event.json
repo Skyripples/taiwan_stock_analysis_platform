@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-10-25 04:18:11 UTC",
-  "updated_at_taipei": "2026-10-25 12:18:11 UTC+8",
+  "updated_at_utc": "2026-10-26 04:21:51 UTC",
+  "updated_at_taipei": "2026-10-26 12:21:51 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -93496,7 +93496,7 @@
       "url": "https://tw.stock.yahoo.com/calendar/dividend",
       "time": "",
       "ex_date": "2026-09-21",
-      "pay_date": "2026-10-23",
+      "pay_date": "2026-10-27",
       "cash_dividend": "18.01"
     },
     {
@@ -93808,7 +93808,7 @@
       "url": "https://tw.stock.yahoo.com/calendar/dividend",
       "time": "",
       "ex_date": "2026-09-23",
-      "pay_date": "2026-10-23",
+      "pay_date": "2026-10-27",
       "cash_dividend": "2.40"
     },
     {
@@ -93964,7 +93964,7 @@
       "url": "https://tw.stock.yahoo.com/calendar/dividend",
       "time": "",
       "ex_date": "2026-09-23",
-      "pay_date": "2026-10-23",
+      "pay_date": "2026-10-27",
       "cash_dividend": "0.20"
     },
     {
@@ -94029,7 +94029,7 @@
       "url": "https://tw.stock.yahoo.com/calendar/dividend",
       "time": "",
       "ex_date": "2026-09-23",
-      "pay_date": "2026-10-23",
+      "pay_date": "2026-10-27",
       "cash_dividend": "1.01"
     },
     {
@@ -101765,6 +101765,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "1442",
+      "stock_name": "名軒",
+      "type": "dividend_payment",
+      "title": "1442 名軒 現金股利2.40",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-23",
+      "pay_date": "2026-10-27",
+      "cash_dividend": "2.40"
+    },
+    {
       "stock_id": "2008",
       "stock_name": "高興昌",
       "type": "earnings_call",
@@ -101804,6 +101817,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3260",
+      "stock_name": "威剛",
+      "type": "dividend_payment",
+      "title": "3260 威剛 現金股利18.01",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-21",
+      "pay_date": "2026-10-27",
+      "cash_dividend": "18.01"
+    },
+    {
       "stock_id": "3264",
       "stock_name": "欣銓",
       "type": "earnings_call",
@@ -101817,6 +101843,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "4109",
+      "stock_name": "加捷生醫",
+      "type": "dividend_payment",
+      "title": "4109 加捷生醫 現金股利0.20",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-23",
+      "pay_date": "2026-10-27",
+      "cash_dividend": "0.20"
+    },
+    {
       "stock_id": "4169",
       "stock_name": "泰宗",
       "type": "earnings_call",
@@ -101828,6 +101867,19 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "5258",
+      "stock_name": "虹堡",
+      "type": "dividend_payment",
+      "title": "5258 虹堡 現金股利1.01",
+      "date": "2026-10-27",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-09-23",
+      "pay_date": "2026-10-27",
+      "cash_dividend": "1.01"
     },
     {
       "stock_id": "6125",

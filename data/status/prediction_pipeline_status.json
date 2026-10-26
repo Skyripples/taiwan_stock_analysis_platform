@@ -1,8 +1,7 @@
 {
-  "checked_at": "2026-10-25T04:20:16.710724+00:00",
+  "checked_at": "2026-10-26T04:24:21.468081+00:00",
   "status": "skipped",
   "ready": false,
-  "reason": "prediction_input_validation_failed",
-  "detail": "Invalid prediction source date for tsm_adr: 2026-10-23 (feature=2026-10-22, target=2026-10-23)",
+  "reason": "required_market_provider_failed",
   "feature_count": 15
 }
