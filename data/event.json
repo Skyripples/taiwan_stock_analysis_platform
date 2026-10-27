@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-10-26 04:21:51 UTC",
-  "updated_at_taipei": "2026-10-26 12:21:51 UTC+8",
+  "updated_at_utc": "2026-10-27 04:41:06 UTC",
+  "updated_at_taipei": "2026-10-27 12:41:06 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -101622,6 +101622,36 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "4542",
+      "stock_name": "科嶠",
+      "type": "disposition",
+      "title": "4542 科嶠（處置中，預計出關 2026-11-03）",
+      "date": "2026-10-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-23",
+      "disposition_end_date": "2026-11-03"
+    },
+    {
+      "stock_id": "5205",
+      "stock_name": "中茂",
+      "type": "disposition",
+      "title": "5205 中茂（處置中，預計出關 2026-10-30）",
+      "date": "2026-10-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-23",
+      "disposition_end_date": "2026-10-30"
+    },
+    {
       "stock_id": "5258",
       "stock_name": "虹堡",
       "type": "dividend_payment",
@@ -101698,6 +101728,36 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "8358",
+      "stock_name": "金居",
+      "type": "disposition",
+      "title": "8358 金居（處置中，預計出關 2026-10-30）",
+      "date": "2026-10-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-23",
+      "disposition_end_date": "2026-10-30"
+    },
+    {
+      "stock_id": "8437",
+      "stock_name": "大地-KY",
+      "type": "disposition",
+      "title": "8437 大地-KY（處置中，預計出關 2026-10-30）",
+      "date": "2026-10-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-23",
+      "disposition_end_date": "2026-10-30"
     },
     {
       "stock_id": "00888",
