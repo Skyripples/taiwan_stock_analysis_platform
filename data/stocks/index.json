@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-27T04:43:18+00:00",
+  "updated_at": "2026-10-28T05:17:16+00:00",
   "version": "2.0",
-  "active_count": 2400,
-  "company_count": 1986,
+  "active_count": 2406,
+  "company_count": 1991,
   "stocks": [
     {
       "symbol": "00400A",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00683L",
@@ -1972,7 +1972,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00875",
@@ -3702,7 +3702,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020011",
@@ -3762,7 +3762,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020029",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020035",
@@ -4332,7 +4332,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "1313",
@@ -5070,7 +5070,7 @@
       "market": "TWSE",
       "industry": "其他",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -6606,7 +6606,7 @@
     },
     {
       "symbol": "2072",
-      "name": "世紀風電",
+      "name": "世紀能源",
       "market": "TWSE",
       "industry": "綠能環保",
       "instrument_type": "company",
@@ -9632,7 +9632,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2892",
@@ -17030,7 +17030,7 @@
       "market": "TWSE",
       "industry": "通信網路業",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -20575,6 +20575,16 @@
       "cache_status": "partial"
     },
     {
+      "symbol": "6898",
+      "name": "程曦資訊",
+      "market": "TPEx",
+      "industry": "資訊服務業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
       "symbol": "6899",
       "name": "創為精密",
       "market": "TPEx",
@@ -20843,6 +20853,16 @@
       "active": true,
       "cached": true,
       "cache_status": "partial"
+    },
+    {
+      "symbol": "6938",
+      "name": "藍新資訊",
+      "market": "TPEx",
+      "industry": "ETF／其他",
+      "instrument_type": "other",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
     },
     {
       "symbol": "6944",
@@ -21219,6 +21239,16 @@
       "name": "榮田",
       "market": "TPEx",
       "industry": "電機機械",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "7710",
+      "name": "東擎科技",
+      "market": "TWSE",
+      "industry": "電腦及週邊設備業",
       "instrument_type": "company",
       "active": true,
       "cached": true,
@@ -22040,7 +22070,7 @@
       "market": "TPEx",
       "industry": "其他電子業",
       "instrument_type": "company",
-      "active": false,
+      "active": true,
       "cached": true,
       "cache_status": "partial"
     },
@@ -22812,7 +22842,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "8354",

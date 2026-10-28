@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-27T04:41:10+00:00",
+  "updated_at": "2026-10-28T05:15:21+00:00",
   "provider": "CBC",
   "dataset": "bank_deposit_rates",
   "version": "1.0",
   "status": "success",
-  "source_date": "2026-10-27",
-  "fetched_at": "2026-10-27T04:41:10+00:00",
+  "source_date": "2026-10-28",
+  "fetched_at": "2026-10-28T05:15:21+00:00",
   "source": "https://cpx.cbc.gov.tw/BIRWEB/",
   "unit": "percent_per_annum",
   "banks": [
@@ -74,7 +74,7 @@
           "variable": null
         },
         "3M": {
-          "fixed": 0.07,
+          "fixed": 1.33,
           "variable": null
         },
         "6M": {
