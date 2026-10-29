@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-10-28T05:16:43.504316Z",
+  "updated_at": "2026-10-29T05:27:26.074001Z",
   "provider": "Yahoo",
   "dataset": "smh_etf",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-27",
+        "trade_date": "2026-10-28",
         "metadata": {
           "symbol": "SMH",
           "security_name": "VanEck Semiconductor ETF",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/SMH/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/SMH"
         },
-        "open": 549.17,
-        "high": 559.81,
-        "low": 546.67,
-        "close": 557.98,
-        "previous_close": 541.62,
-        "change": 16.36,
-        "change_percent": 3.0206,
-        "volume": 8037700
+        "open": 564.32,
+        "high": 571,
+        "low": 560.52,
+        "close": 567.67,
+        "previous_close": 557.98,
+        "change": 9.69,
+        "change_percent": 1.7366,
+        "volume": 6471900
       }
     ]
   }
