@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T05:27:55+00:00",
+  "updated_at": "2026-10-30T05:27:18+00:00",
   "version": "2.0",
-  "active_count": 2406,
-  "company_count": 1992,
+  "active_count": 2405,
+  "company_count": 1989,
   "stocks": [
     {
       "symbol": "00400A",
@@ -302,7 +302,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00631L",
@@ -452,7 +452,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00645",
@@ -482,7 +482,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00648R",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00683L",
@@ -872,7 +872,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00690",
@@ -1972,7 +1972,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00875",
@@ -3305,6 +3305,26 @@
       "cache_status": "complete"
     },
     {
+      "symbol": "009831",
+      "name": "FT核心AI電力算力",
+      "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "009832",
+      "name": "兆豐美國黃金",
+      "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
       "symbol": "00983A",
       "name": "主動中信ARK創新",
       "market": "TWSE",
@@ -3692,7 +3712,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020001",
@@ -3722,7 +3742,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "02001L",
@@ -3752,7 +3772,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020028",
@@ -3762,7 +3782,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020029",
@@ -3802,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020033",
@@ -3832,7 +3852,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020036",
@@ -3852,7 +3872,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020038",
@@ -3912,7 +3932,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1102",
@@ -4332,7 +4352,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "1313",
@@ -7252,7 +7272,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2349",
@@ -9632,7 +9652,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2892",
@@ -13530,7 +13550,7 @@
       "market": "TPEx",
       "industry": "食品工業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -15780,7 +15800,7 @@
       "market": "TPEx",
       "industry": "電子零組件業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -19162,7 +19182,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6592B",
@@ -22590,7 +22610,7 @@
       "market": "TPEx",
       "industry": "通信網路業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -22842,7 +22862,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "8354",
@@ -24012,7 +24032,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "9942",
