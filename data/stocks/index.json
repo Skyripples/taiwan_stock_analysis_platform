@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-30T05:27:18+00:00",
+  "updated_at": "2026-10-31T05:11:31+00:00",
   "version": "2.0",
-  "active_count": 2405,
-  "company_count": 1989,
+  "active_count": 2407,
+  "company_count": 1991,
   "stocks": [
     {
       "symbol": "00400A",
@@ -302,7 +302,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00631L",
@@ -452,7 +452,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00645",
@@ -792,7 +792,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -872,7 +872,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00690",
@@ -1002,7 +1002,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00708L",
@@ -2962,7 +2962,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "009808",
@@ -3432,7 +3432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00986D",
@@ -3772,7 +3772,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020028",
@@ -3782,7 +3782,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020029",
@@ -3852,7 +3852,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020036",
@@ -3872,7 +3872,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020038",
@@ -4352,7 +4352,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1313",
@@ -7272,7 +7272,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2349",
@@ -9642,7 +9642,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2891C",
@@ -20265,6 +20265,16 @@
       "cache_status": "partial"
     },
     {
+      "symbol": "6825",
+      "name": "和暢科技",
+      "market": "TPEx",
+      "industry": "電腦及週邊設備業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
       "symbol": "6829",
       "name": "千附精密",
       "market": "TPEx",
@@ -21909,6 +21919,16 @@
       "name": "漢測",
       "market": "TPEx",
       "industry": "半導體業",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "7867",
+      "name": "特力屋",
+      "market": "TWSE",
+      "industry": "居家生活",
       "instrument_type": "company",
       "active": true,
       "cached": true,
