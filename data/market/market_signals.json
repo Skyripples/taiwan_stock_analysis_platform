@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T05:45:17.215712Z",
+  "updated_at": "2026-11-02T05:40:38.743728Z",
   "version": "2.0",
   "signals": {
     "foreign_cash_flow": {
@@ -19,7 +19,7 @@
       "weighted_score": -1
     },
     "night_futures": {
-      "value": -643,
+      "value": -867,
       "status": "bearish",
       "score": -1,
       "enabled": true,
@@ -118,15 +118,15 @@
       "rule_id": "night_futures",
       "category": "futures",
       "display_name": "台指期夜盤",
-      "value": -1.38,
+      "value": -1.91,
       "score": -2,
       "weight": 100.0,
       "status": "strong_bearish",
-      "rationale": "台指期夜盤=-1.38，依設定門檻評為 strong_bearish（-2）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.0}",
+      "rationale": "台指期夜盤=-1.91，依設定門檻評為 strong_bearish（-2）；門檻={'strong_bearish_max': -1.0, 'bearish_max': -0.3, 'bullish_min': 0.3, 'strong_bullish_min': 1.0}",
       "enabled": true,
       "available": true,
       "stale": false,
-      "source_trade_date": "2026-10-30"
+      "source_trade_date": "2026-11-02"
     },
     "tsm_adr": {
       "rule_id": "tsm_adr",

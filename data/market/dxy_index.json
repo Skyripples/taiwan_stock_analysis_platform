@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-01T05:41:52.178115Z",
+  "updated_at": "2026-11-02T05:39:55.003571Z",
   "provider": "Yahoo",
   "dataset": "dxy_index",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-10-30",
+        "trade_date": "2026-10-29",
         "metadata": {
           "symbol": "DX-Y.NYB",
           "security_name": "U.S. Dollar Index",

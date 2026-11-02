@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-11-01 05:40:22 UTC",
-  "updated_at_taipei": "2026-11-01 13:40:22 UTC+8",
+  "updated_at_utc": "2026-11-02 05:38:29 UTC",
+  "updated_at_taipei": "2026-11-02 13:38:29 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -103177,6 +103177,36 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3374",
+      "stock_name": "精材",
+      "type": "disposition",
+      "title": "3374 精材（處置中，預計出關 2026-11-10）",
+      "date": "2026-11-02",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-02",
+      "disposition_end_date": "2026-11-10"
+    },
+    {
+      "stock_id": "3691",
+      "stock_name": "碩禾",
+      "type": "disposition",
+      "title": "3691 碩禾（處置中，預計出關 2026-11-06）",
+      "date": "2026-11-02",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-02",
+      "disposition_end_date": "2026-11-06"
+    },
+    {
       "stock_id": "4967",
       "stock_name": "十銓",
       "type": "earnings_call",
@@ -103201,6 +103231,21 @@
       "ex_date": "2026-11-02",
       "pay_date": "2026-12-08",
       "cash_dividend": "5.00"
+    },
+    {
+      "stock_id": "8099",
+      "stock_name": "大世科",
+      "type": "disposition",
+      "title": "8099 大世科（處置中，預計出關 2026-11-06）",
+      "date": "2026-11-02",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-02",
+      "disposition_end_date": "2026-11-06"
     },
     {
       "stock_id": "00406A",
