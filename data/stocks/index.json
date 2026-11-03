@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T05:40:38+00:00",
+  "updated_at": "2026-11-03T06:20:26+00:00",
   "version": "2.0",
   "active_count": 2407,
   "company_count": 1991,
@@ -302,7 +302,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00631L",
@@ -452,7 +452,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00645",
@@ -812,7 +812,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00685L",
@@ -1002,7 +1002,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00708L",
@@ -2962,7 +2962,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "009808",
@@ -3282,7 +3282,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00982D",
@@ -3432,7 +3432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00986D",
@@ -3712,7 +3712,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020001",
@@ -3802,7 +3802,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020031",
@@ -3862,7 +3862,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020037",
@@ -3882,7 +3882,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020039",
@@ -4352,7 +4352,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "1313",
@@ -6262,7 +6262,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2006",
@@ -9642,7 +9642,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2891C",
@@ -9652,7 +9652,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2892",
@@ -19182,7 +19182,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6592B",
@@ -22882,7 +22882,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "8354",
@@ -24052,7 +24052,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "9942",
