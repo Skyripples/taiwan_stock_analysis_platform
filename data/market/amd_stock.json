@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-03T06:19:47.836749Z",
+  "updated_at": "2026-11-04T05:55:28.166551Z",
   "provider": "Yahoo",
   "dataset": "amd_stock",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-11-02",
+        "trade_date": "2026-11-03",
         "metadata": {
           "symbol": "AMD",
           "security_name": "Advanced Micro Devices, Inc.",
@@ -17,14 +17,14 @@
           "source": "https://finance.yahoo.com/quote/AMD/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/AMD"
         },
-        "open": 510.71,
-        "high": 512.82,
-        "low": 466.07,
-        "close": 466.84,
-        "previous_close": 504.8,
-        "change": -37.96,
-        "change_percent": -7.5198,
-        "volume": 31990800
+        "open": 479.99,
+        "high": 497.4,
+        "low": 473.54,
+        "close": 483.9,
+        "previous_close": 466.84,
+        "change": 17.06,
+        "change_percent": 3.6544,
+        "volume": 34179800
       }
     ]
   }
