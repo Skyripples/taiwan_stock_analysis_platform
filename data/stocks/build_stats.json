@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-07T05:46:16+00:00",
+  "updated_at": "2026-11-08T05:43:37+00:00",
   "mode": "daily",
   "selected": 2406,
   "universe": {
@@ -14,24 +14,24 @@
     "unchanged": 0
   },
   "source_timings_seconds": {
-    "latest_chips_twse_tpex": 3.434,
-    "tpex_profile": 2.623,
-    "twse_profile": 2.061,
-    "tpex_revenue": 1.029,
-    "tpex_quote": 0.805,
-    "tpex_valuation": 0.589,
-    "twse_revenue": 0.395,
-    "twse_quote": 0.364,
-    "twse_valuation": 0.344
+    "latest_chips_twse_tpex": 2.699,
+    "tpex_profile": 2.04,
+    "twse_profile": 1.161,
+    "tpex_revenue": 0.892,
+    "tpex_quote": 0.669,
+    "tpex_valuation": 0.466,
+    "twse_revenue": 0.344,
+    "twse_quote": 0.319,
+    "twse_valuation": 0.304
   },
   "storage": {
     "stock_json_files": 2406,
-    "total_bytes": 65755945,
-    "average_bytes": 27329.99,
-    "build_increment_bytes": 65755945,
+    "total_bytes": 65753060,
+    "average_bytes": 27328.79,
+    "build_increment_bytes": 65753060,
     "build_increment_files": 2406,
-    "estimated_annual_full_rewrite_upper_bound_bytes": 16438986250,
+    "estimated_annual_full_rewrite_upper_bound_bytes": 16438265000,
     "note": "Git delta compression normally uses less than the full-rewrite upper bound"
   },
-  "duration_seconds": 18.518
+  "duration_seconds": 14.85
 }

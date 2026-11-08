@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-11-07 05:40:16 UTC",
-  "updated_at_taipei": "2026-11-07 13:40:16 UTC+8",
+  "updated_at_utc": "2026-11-08 05:41:38 UTC",
+  "updated_at_taipei": "2026-11-08 13:41:38 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -102873,6 +102873,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "4526",
+      "stock_name": "東台",
+      "type": "disposition",
+      "title": "4526 東台（處置中，預計出關 2026-11-09）",
+      "date": "2026-10-30",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-10-30",
+      "disposition_end_date": "2026-11-09"
+    },
+    {
       "stock_id": "4919",
       "stock_name": "新唐",
       "type": "earnings_call",
@@ -103540,6 +103555,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "2466",
+      "stock_name": "冠西電",
+      "type": "disposition",
+      "title": "2466 冠西電（處置中，預計出關 2026-11-10）",
+      "date": "2026-11-04",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-04",
+      "disposition_end_date": "2026-11-10"
+    },
+    {
       "stock_id": "2472",
       "stock_name": "立隆電",
       "type": "earnings_call",
@@ -103928,6 +103958,21 @@
       "ex_date": "2026-11-05",
       "pay_date": "2026-12-04",
       "cash_dividend": "0.50"
+    },
+    {
+      "stock_id": "6213",
+      "stock_name": "聯茂",
+      "type": "disposition",
+      "title": "6213 聯茂（處置中，預計出關 2026-11-11）",
+      "date": "2026-11-05",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-05",
+      "disposition_end_date": "2026-11-11"
     },
     {
       "stock_id": "6219",
