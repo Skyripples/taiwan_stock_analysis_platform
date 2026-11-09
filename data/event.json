@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-11-08 05:41:38 UTC",
-  "updated_at_taipei": "2026-11-08 13:41:38 UTC+8",
+  "updated_at_utc": "2026-11-09 05:51:28 UTC",
+  "updated_at_taipei": "2026-11-09 13:51:28 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -104694,6 +104694,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "2360",
+      "stock_name": "致茂",
+      "type": "disposition",
+      "title": "2360 致茂（處置中，預計出關 2026-11-13）",
+      "date": "2026-11-09",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-09",
+      "disposition_end_date": "2026-11-13"
+    },
+    {
       "stock_id": "2881",
       "stock_name": "富邦金",
       "type": "earnings_call",
@@ -104718,6 +104733,21 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "3532",
+      "stock_name": "台勝科",
+      "type": "disposition",
+      "title": "3532 台勝科（處置中，預計出關 2026-11-13）",
+      "date": "2026-11-09",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-09",
+      "disposition_end_date": "2026-11-13"
     },
     {
       "stock_id": "3703",
