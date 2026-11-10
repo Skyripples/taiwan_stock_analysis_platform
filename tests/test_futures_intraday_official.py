@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import backfill_futures_intraday_5m as backfill
 from futures_intraday import FuturesTick
-from futures_intraday_reconstruction import aggregate_ticks, session_for_file_tick
+from futures_intraday_reconstruction import aggregate_ticks, session_for_file_tick, trading_date_for_file_tick
 
 
 def item(stamp, product="TX", contract="TX202610", price="100", volume=1):
@@ -58,6 +58,24 @@ class OfficialReconstructionTests(unittest.TestCase):
         self.assertEqual(session_for_file_tick(item("2026-09-25T05:00:00+08:00"), day), "after_hours")
         with self.assertRaises(ValueError):
             session_for_file_tick(item("2026-09-28T15:00:00+08:00"), day)
+
+    def test_temporary_closure_maps_prior_night_to_next_taifex_session(self):
+        """10/23 is closed; 10/22 night is attributed to 10/27, not TWSE's 10/23."""
+        prior_evening = item("2026-10-22T15:00:00+08:00", contract="TX202611")
+        prior_dawn = item("2026-10-23T04:59:59+08:00", contract="TX202611")
+        target_regular = item("2026-10-27T08:45:00+08:00", contract="TX202611")
+        self.assertEqual(trading_date_for_file_tick(prior_evening), (date(2026, 10, 27), "after_hours"))
+        self.assertEqual(trading_date_for_file_tick(prior_dawn), (date(2026, 10, 27), "after_hours"))
+        with self.assertRaises(ValueError):
+            trading_date_for_file_tick(item("2026-10-23T08:45:00+08:00", contract="TX202611"))
+        self.assertEqual(trading_date_for_file_tick(target_regular), (date(2026, 10, 27), "regular"))
+        candles = aggregate_ticks(
+            [prior_evening, prior_dawn, target_regular], date(2026, 10, 27),
+            available_at=datetime.now(timezone.utc),
+        )
+        self.assertEqual(len(candles), 3)
+        self.assertEqual(candles[0].trading_date, date(2026, 10, 27))
+        self.assertEqual({candle.session for candle in candles}, {"regular", "after_hours"})
 
     def test_six_failed_dates_resolve_their_previous_session(self):
         expected = {

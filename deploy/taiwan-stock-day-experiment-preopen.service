@@ -1,0 +1,24 @@
+[Unit]
+Description=Taiwan Stock independent DAY 08:15 shadow prediction
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=stock-sync
+Group=stock-sync
+Environment=DAY_EXPERIMENT_ROOT=/opt/taiwan-stock-day-experiment
+WorkingDirectory=/opt/taiwan-stock-day-experiment/current
+ExecStart=/opt/taiwan-stock-day-experiment/current/deploy/day-experiment-preopen.sh
+StandardOutput=journal
+StandardError=journal
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/taiwan-stock-day-experiment
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true

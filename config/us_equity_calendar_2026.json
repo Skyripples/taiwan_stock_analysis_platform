@@ -1,0 +1,24 @@
+{
+  "version": "2026.1",
+  "market": "NYSE",
+  "timezone": "America/New_York",
+  "source": {
+    "name": "NYSE Holidays & Trading Hours",
+    "url": "https://www.nyse.com/trade/hours-calendars",
+    "retrieved_at": "2026-10-27",
+    "calendar_document": "ICE_NYSE_2026_Yearly_Trading_Calendar.pdf"
+  },
+  "years": {
+    "2026": {
+      "coverage_start": "2026-01-01",
+      "coverage_end": "2026-12-31",
+      "regular_trading_weekdays": [1, 2, 3, 4, 5],
+      "closed_dates": [
+        "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03",
+        "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07",
+        "2026-11-26", "2026-12-25"
+      ],
+      "early_close_dates": ["2026-11-27", "2026-12-24"]
+    }
+  }
+}

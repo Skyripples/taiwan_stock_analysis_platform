@@ -224,6 +224,19 @@ class FuturesDailyPitAlignmentTests(unittest.TestCase):
         )[0]
         self.assertEqual(row["tx_source_trading_date"], before_holiday)
 
+    def test_taifex_temporary_closure_maps_1027_to_1022_not_1023(self):
+        before_closure = date(2026, 10, 22)
+        after_closure = date(2026, 10, 27)
+        rows = module.align_rows(
+            [before_closure, after_closure], after_closure, after_closure,
+            [tx_row(before_closure, "TX202611")],
+            factors(before_closure, datetime(2026, 10, 22, 21, 30, tzinfo=UTC)),
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["prediction_date"], after_closure)
+        self.assertEqual(rows[0]["tx_source_trading_date"], before_closure)
+        self.assertEqual(rows[0]["tx_contract"], "TX202611")
+
     def test_external_asof_join_rejects_same_day_us_close_in_est(self):
         prior = date(2026, 1, 9)
         prediction = date(2026, 1, 12)

@@ -92,6 +92,20 @@ class FuturesDailyUpdaterTests(unittest.TestCase):
         self.assertEqual([row["trade_date"] for row in rows], ["2026-10-20", "2026-10-21"])
         self.assertEqual(rows[-1]["close"], 102.0)
 
+    def test_missing_only_sync_preserves_partial_existing_contract_rows(self):
+        existing = self.staging_row("2026-10-21", "TX202611", "next", close=100.0)
+        incoming_existing_key = self.staging_row("2026-10-21", "TX202611", "next", close=999.0)
+        missing_front = self.staging_row("2026-10-21", "TX202610", "front", close=101.0)
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            module.sync_tx_staging([existing], staging_root=root)
+            result = module.sync_tx_staging([incoming_existing_key, missing_front], staging_root=root, preserve_existing=True)
+            rows = module.read_staged_rows(root / "product=TX" / "year=2026" / "daily.jsonl.gz")
+        self.assertEqual(result["rows"], 1)
+        by_contract = {row["contract"]: row for row in rows}
+        self.assertEqual(by_contract["TX202611"]["close"], 100.0)
+        self.assertEqual(by_contract["TX202610"]["close"], 101.0)
+
     def test_empty_tx_sync_does_not_create_a_non_trading_day_file(self):
         with TemporaryDirectory() as temporary:
             result = module.sync_tx_staging([], staging_root=Path(temporary))
@@ -144,6 +158,26 @@ class FuturesDailyUpdaterTests(unittest.TestCase):
         self.assertEqual(result["skipped_not_yet_published"], [{"product": "TX", "date": latest.isoformat(), "reason": "not_yet_published"}])
         self.assertEqual(result["staging_updated_dates"], [prior.isoformat()])
         self.assertEqual(sync.call_count, 1)
+
+    def test_missing_only_bounded_repair_skips_existing_front_and_taifex_closure(self):
+        days = [date(2026, 10, 21), date(2026, 10, 22), date(2026, 10, 27), date(2026, 10, 28), date(2026, 10, 29), date(2026, 10, 30)]
+        options = argparse.Namespace(lookback_days=14, delay=0, dry_run=True,
+                                     start=days[0], end=days[-1], missing_only=True)
+        with patch.object(module, "latest_completed_trading_day", return_value=days[-1]), \
+             patch.object(module, "get_trading_days_in_range", return_value=(days, [date(2026, 10, 23)])), \
+             patch.object(module, "tx_staging_front_regular_dates", return_value={days[0]}):
+            result = module.run_staging_only(options)
+        self.assertTrue(result["missing_only"])
+        self.assertEqual(result["planned_dates"], [item.isoformat() for item in days[1:]])
+        self.assertEqual(result["skipped_existing"], 1)
+        self.assertEqual(result["network_requests"], 0)
+
+    def test_missing_only_repair_rejects_uncompleted_range(self):
+        options = argparse.Namespace(lookback_days=14, delay=0, dry_run=True,
+                                     start=date(2026, 10, 21), end=date(2026, 10, 22), missing_only=True)
+        with patch.object(module, "latest_completed_trading_day", return_value=date(2026, 10, 21)):
+            with self.assertRaisesRegex(ValueError, "not yet complete"):
+                module.run_staging_only(options)
 
     def test_historical_or_internal_official_empty_remains_failure(self):
         missing, latest = date(2026, 10, 22), date(2026, 10, 23)

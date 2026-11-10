@@ -4,11 +4,13 @@ from __future__ import annotations
 import os
 import tempfile
 from datetime import date, datetime, time, timedelta, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable
 
 from futures_intraday import FuturesCandle, FuturesTick, INTERVAL_SECONDS, TAIPEI, bucket_start
-from trading_calendar import get_previous_trading_day, get_trading_days_in_range
+from taifex_trading_calendar import get_next_taifex_trading_day, is_taifex_trading_day
+from trading_calendar import get_trading_days_in_range
 
 SOURCE = "TAIFEX official daily tick CSV"
 REGULAR_START, REGULAR_END = time(8, 45), time(13, 45, 59)
@@ -25,32 +27,78 @@ def contract_expiry(contract: str) -> date:
     return sessions[-1]
 
 
+@lru_cache(maxsize=4096)
+def _is_official_trading_day(value: date) -> bool:
+    return is_taifex_trading_day(value)
+
+
+@lru_cache(maxsize=4096)
+def _next_official_trading_day(value: date) -> date | None:
+    return get_next_taifex_trading_day(value)
+
+
+def trading_date_for_file_tick(tick: FuturesTick) -> tuple[date, str]:
+    """Resolve a raw tick to its official TAIFEX trading session.
+
+    TAIFEX ZIPs can contain a prior completed session together with the target
+    session after a long holiday.  Classify each timestamp from the official
+    calendar before selecting rows for a requested partition; never relabel a
+    prior session as the ZIP's requested date.
+    """
+    local = tick.timestamp.astimezone(TAIPEI)
+    local_date = local.date()
+    wall = local.time().replace(tzinfo=None)
+    if REGULAR_START <= wall <= REGULAR_END:
+        if _is_official_trading_day(local_date):
+            return local_date, "regular"
+    elif wall >= AFTER_START:
+        # An evening session starts only after an official day session.  Its
+        # label is the next official session, including a Monday after a
+        # weekend or the first session after a holiday.
+        if _is_official_trading_day(local_date):
+            resolved = _next_official_trading_day(local_date)
+            if resolved is not None:
+                return resolved, "after_hours"
+    elif wall <= AFTER_END:
+        # A pre-dawn tick belongs to the same session as the previous
+        # calendar day's official evening session.  This keeps Saturday
+        # pre-dawn ticks attached to Monday and long-holiday ticks attached
+        # to the next official session without accepting a holiday evening.
+        evening_date = local_date - timedelta(days=1)
+        if _is_official_trading_day(evening_date):
+            resolved = _next_official_trading_day(evening_date)
+            if resolved is not None:
+                return resolved, "after_hours"
+    raise ValueError(f"tick timestamp is outside a verified TAIFEX session: {local.isoformat()}")
+
+
 def session_for_file_tick(tick: FuturesTick, trading_date: date, previous_trading_day: date | None = None) -> str:
-    local = tick.timestamp.astimezone(TAIPEI); wall = local.time().replace(tzinfo=None)
-    if local.date() == trading_date and REGULAR_START <= wall <= REGULAR_END:
-        return "regular"
-    if previous_trading_day is None:
-        resolved = get_previous_trading_day(trading_date)
-        if resolved is None:
-            raise ValueError(f"trading calendar cannot resolve previous session for {trading_date}")
-        previous_trading_day = date.fromisoformat(resolved)
-    after_hours_end_date = previous_trading_day + timedelta(days=1)
-    if ((local.date() == previous_trading_day and wall >= AFTER_START) or
-            (local.date() == after_hours_end_date and wall <= AFTER_END)):
-        return "after_hours"
-    raise ValueError(f"tick timestamp is inconsistent with TAIFEX trading date {trading_date}")
+    """Return the session only when a raw tick belongs to ``trading_date``.
+
+    ``previous_trading_day`` remains accepted for callers using the former
+    signature, but session assignment now comes from the calendar per row.
+    """
+    del previous_trading_day
+    resolved_date, session = trading_date_for_file_tick(tick)
+    if resolved_date != trading_date:
+        raise ValueError(
+            f"tick timestamp belongs to TAIFEX trading date {resolved_date}, not {trading_date}"
+        )
+    return session
 
 
 def aggregate_ticks(ticks: Iterable[FuturesTick], trading_date: date, *,
                     available_at: datetime, fetched_at: datetime | None = None) -> list[FuturesCandle]:
     fetched = (fetched_at or datetime.now(timezone.utc)).astimezone(timezone.utc)
-    resolved = get_previous_trading_day(trading_date)
-    if resolved is None:
-        raise ValueError(f"trading calendar cannot resolve previous session for {trading_date}")
-    previous_trading_day = date.fromisoformat(resolved)
     buckets: dict[tuple, dict] = {}
     for sequence, tick in enumerate(ticks):
-        session = session_for_file_tick(tick, trading_date, previous_trading_day); stamp = bucket_start(tick.timestamp)
+        tick_trading_date, session = trading_date_for_file_tick(tick)
+        # A long-holiday ZIP may include fully valid rows for an earlier
+        # official session.  They are deliberately excluded from this
+        # partition only after their own calendar-derived date is verified.
+        if tick_trading_date != trading_date:
+            continue
+        stamp = bucket_start(tick.timestamp)
         key = (tick.product, tick.contract, session, stamp); item = buckets.get(key)
         if tick.volume is None: raise ValueError("TAIFEX tick volume is unavailable")
         if item is None:

@@ -24,7 +24,7 @@ from backfill_futures_history import (
 )
 from database.connection import connect
 from import_futures_history import FIELDS, normalized
-from trading_calendar import get_trading_days_in_range
+from taifex_trading_calendar import get_taifex_trading_days_in_range as get_trading_days_in_range
 
 TAIPEI = ZoneInfo("Asia/Taipei")
 PRODUCTS = ("TX", "MTX", "TMF")
@@ -36,6 +36,10 @@ def arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--products", nargs="+", choices=PRODUCTS, default=list(PRODUCTS))
     parser.add_argument("--lookback-days", type=int, default=14)
+    parser.add_argument("--start", type=date.fromisoformat, help="Bounded historical repair start (inclusive)")
+    parser.add_argument("--end", type=date.fromisoformat, help="Bounded historical repair end (inclusive)")
+    parser.add_argument("--missing-only", action="store_true",
+                        help="For --staging-only, fetch only dates lacking a TX front regular staging row")
     parser.add_argument("--delay", type=float, default=2.5)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--staging-only", action="store_true",
@@ -130,7 +134,7 @@ def fetch_with_retry(controller: RequestController, day: date, product: str, *, 
     raise RuntimeError("unreachable")
 
 
-def sync_tx_staging(rows: list[dict], *, staging_root=FUTURES_DAILY_STAGING) -> dict:
+def sync_tx_staging(rows: list[dict], *, staging_root=FUTURES_DAILY_STAGING, preserve_existing: bool = False) -> dict:
     """Atomically merge freshly confirmed TX rows into PIT daily staging.
 
     ``backfill_futures_history.write_rows`` owns the canonical key and atomic
@@ -145,13 +149,20 @@ def sync_tx_staging(rows: list[dict], *, staging_root=FUTURES_DAILY_STAGING) -> 
         by_year.setdefault(year, []).append(row)
 
     updated_dates: set[str] = set()
+    written_rows = 0
     for year, year_rows in by_year.items():
         path = staging_root / "product=TX" / f"year={year}" / "daily.jsonl.gz"
-        write_staged_rows(path, read_staged_rows(path) + year_rows)
-        updated_dates.update(str(row["trade_date"]) for row in year_rows)
+        existing_rows = read_staged_rows(path)
+        if preserve_existing:
+            keys = {(row["trade_date"], row["product"], row["contract"], row["session"]) for row in existing_rows}
+            year_rows = [row for row in year_rows if (row["trade_date"], row["product"], row["contract"], row["session"]) not in keys]
+        if year_rows:
+            write_staged_rows(path, existing_rows + year_rows)
+            updated_dates.update(str(row["trade_date"]) for row in year_rows)
+            written_rows += len(year_rows)
 
     return {
-        "rows": len(tx_rows),
+        "rows": written_rows,
         "updated_dates": sorted(updated_dates),
         "partitions": len(by_year),
     }
@@ -162,6 +173,17 @@ def tx_staging_dates(*, staging_root=FUTURES_DAILY_STAGING) -> set[date]:
     dates: set[date] = set()
     for path in staging_root.glob("product=TX/year=*/daily.jsonl.gz"):
         dates.update(date.fromisoformat(str(row["trade_date"])) for row in read_staged_rows(path))
+    return dates
+
+
+def tx_staging_front_regular_dates(*, staging_root=FUTURES_DAILY_STAGING) -> set[date]:
+    """Dates whose PIT staging already contains the required TX front bar."""
+    dates: set[date] = set()
+    for path in staging_root.glob("product=TX/year=*/daily.jsonl.gz"):
+        dates.update(
+            date.fromisoformat(str(row["trade_date"])) for row in read_staged_rows(path)
+            if row.get("product") == "TX" and row.get("session") == "regular" and row.get("contract_rank") == "front"
+        )
     return dates
 
 
@@ -183,15 +205,29 @@ def run_staging_only(options: argparse.Namespace, *, now: datetime | None = None
     TX rows into staging.
     """
     completed = latest_completed_trading_day(now)
-    start = completed - timedelta(days=max(1, options.lookback_days))
-    sessions, _ = get_trading_days_in_range(start, completed)
-    jobs, _, skipped_persistent = plan_jobs(["TX"], sessions, set(), refresh_products={"TX"})
-    staged_tx_dates = tx_staging_dates()
+    requested_start = getattr(options, "start", None)
+    requested_end = getattr(options, "end", None)
+    if bool(requested_start) != bool(requested_end):
+        raise ValueError("--start and --end must be supplied together")
+    start = requested_start or completed - timedelta(days=max(1, options.lookback_days))
+    end = requested_end or completed
+    if start > end:
+        raise ValueError("--start cannot exceed --end")
+    if end > completed:
+        raise ValueError("requested staging range includes a session not yet complete")
+    sessions, _ = get_trading_days_in_range(start, end)
+    missing_only = bool(getattr(options, "missing_only", False))
+    staged_tx_dates = tx_staging_front_regular_dates() if missing_only else tx_staging_dates()
+    existing = {("TX", day) for day in staged_tx_dates} if missing_only else set()
+    jobs, skipped_existing, skipped_persistent = plan_jobs(
+        ["TX"], sessions, existing, refresh_products=set() if missing_only else {"TX"},
+    )
     summary = {
         "mode": "staging_only", "latest_completed_trading_day": completed.isoformat(),
+        "start": start.isoformat(), "end": end.isoformat(), "missing_only": missing_only,
         "planned_dates": [day.isoformat() for _, day in jobs], "staging_rows": 0,
         "staging_updated_dates": [], "skipped_persistent_official_empty": skipped_persistent,
-        "skipped_not_yet_published": [],
+        "skipped_not_yet_published": [], "skipped_existing": skipped_existing,
         "failures": [],
     }
     if options.dry_run:
@@ -200,7 +236,9 @@ def run_staging_only(options: argparse.Namespace, *, now: datetime | None = None
     controller = RequestController(history_client(), options.delay)
     for _, day in jobs:
         try:
-            staging = sync_tx_staging(fetcher(controller, day, "TX"))
+            fetched_rows = fetcher(controller, day, "TX")
+            staging = (sync_tx_staging(fetched_rows, preserve_existing=True)
+                       if missing_only else sync_tx_staging(fetched_rows))
             summary["staging_rows"] += staging["rows"]
             summary["staging_updated_dates"].extend(staging["updated_dates"])
         except OfficialEmpty as exc:

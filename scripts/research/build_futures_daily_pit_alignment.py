@@ -15,7 +15,7 @@ from typing import Any, Iterable
 from zoneinfo import ZoneInfo
 
 from config import PROJECT_ROOT
-from trading_calendar import get_trading_days_in_range
+from taifex_trading_calendar import get_taifex_trading_days_in_range as get_trading_days_in_range
 
 
 UTC = timezone.utc

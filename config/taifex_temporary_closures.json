@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "market": "TAIFEX",
+  "timezone": "Asia/Taipei",
+  "closures": [
+    {
+      "date": "2026-10-23",
+      "sessions": ["regular", "after_hours"],
+      "reason": "Typhoon temporary market closure",
+      "source": "TAIFEX emergency announcement",
+      "source_url": "https://www.taifex.com.tw/cht/courses/trains?id=C420F4202603",
+      "published_date": "2026-10-22",
+      "published_at": null,
+      "available_at": "2026-10-22T23:59:59+08:00",
+      "availability_note": "TAIFEX published a date but no verifiable time; availability is conservatively end-of-day Taipei time.",
+      "announcement": "因薔琵颱風來襲，115年10月23日臺灣期貨交易所集中交易市場休市1日（包含一般交易時段及盤後交易時段）。"
+    }
+  ]
+}
