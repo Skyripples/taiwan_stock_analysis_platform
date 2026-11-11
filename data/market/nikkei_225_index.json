@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T06:59:03.146543Z",
+  "updated_at": "2026-11-11T05:49:09.150799Z",
   "provider": "Yahoo",
   "dataset": "nikkei_225_index",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 58775.5,
         "change": 1684.0781,
         "change_percent": 2.8653,
-        "volume": 0
+        "volume": 176100000
       }
     ]
   }
