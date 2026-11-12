@@ -39,9 +39,9 @@
   const categoryPermissions = {
     market: ["calendar", "prediction", "market_overview", "chips_analysis"],
     stocks: ["stock_analysis"],
-    futures: [], funds: [], bonds: [], forex: [], deposits: [], crypto: [],
+    futures: [], funds: [], bonds: [], forex: [], deposits: [], crypto: [], market_prediction: [],
   };
-  const publicCategories = new Set(["stocks"]);
+  const publicCategories = new Set(["stocks", "market_prediction"]);
   const applyCategoryAccess = (isAdmin, permissions = {}) => {
     categoryCards.forEach((card) => {
       const status = card.querySelector(".status");
@@ -163,6 +163,75 @@
   };
 
   renderNextMarketHoliday();
+
+  // US Election Day is 2028-11-07 in the United States.  The market-facing
+  // reminder is deliberately stored as its UTC+8 calendar date, 2028-11-08.
+  const US_PRESIDENTIAL_ELECTION_TAIPEI_DATE = "2028-11-08";
+  const usPresidentialElectionCard = document.getElementById("usPresidentialElectionCard");
+  const usPresidentialElectionDate = document.getElementById("usPresidentialElectionDate");
+  const usPresidentialElectionCountdown = document.getElementById("usPresidentialElectionCountdown");
+  const usPresidentialElectionState = document.getElementById("usPresidentialElectionState");
+  const renderUsPresidentialElection = () => {
+    if (!usPresidentialElectionCard || !usPresidentialElectionDate
+      || !usPresidentialElectionCountdown || !usPresidentialElectionState) return;
+    usPresidentialElectionCard.hidden = true;
+    const electionDate = new Date(`${US_PRESIDENTIAL_ELECTION_TAIPEI_DATE}T00:00:00Z`);
+    const windowEnd = new Date(today);
+    windowEnd.setUTCMonth(windowEnd.getUTCMonth() + 3);
+    // Strictly less than three calendar months; past events remain hidden.
+    if (electionDate < today || electionDate >= windowEnd) return;
+    const remainingDays = Math.round((electionDate - today) / 86400000);
+    usPresidentialElectionDate.dateTime = US_PRESIDENTIAL_ELECTION_TAIPEI_DATE;
+    usPresidentialElectionDate.textContent = new Intl.DateTimeFormat("zh-TW", {
+      timeZone: "UTC", year: "numeric", month: "2-digit", day: "2-digit", weekday: "short",
+    }).format(electionDate);
+    usPresidentialElectionCountdown.textContent = remainingDays === 0
+      ? "今天舉行（UTC+8）"
+      : `還有 ${remainingDays} 天（UTC+8）`;
+    usPresidentialElectionState.textContent = "美國選舉日 2028-11-07；已換算為台灣 UTC+8 日期";
+    usPresidentialElectionCard.hidden = false;
+  };
+
+  renderUsPresidentialElection();
+
+  const earningsCallDate = document.getElementById("tsmcEarningsCallDate");
+  const earningsCallCountdown = document.getElementById("tsmcEarningsCallCountdown");
+  const earningsCallState = document.getElementById("tsmcEarningsCallState");
+  const earningsCallCard = document.getElementById("tsmcEarningsCallCard");
+  const renderTsmcEarningsCall = async () => {
+    if (!earningsCallCard || !earningsCallDate || !earningsCallCountdown || !earningsCallState) return;
+    earningsCallCard.hidden = true;
+    try {
+      const response = await fetch("./data/event.json", { cache: "no-cache" });
+      if (!response.ok) throw new Error(`event status ${response.status}`);
+      const payload = await response.json();
+      const windowEnd = new Date(today);
+      windowEnd.setUTCDate(windowEnd.getUTCDate() + 15);
+      const upcoming = (Array.isArray(payload.events) ? payload.events : [])
+        .filter((event) => String(event.stock_id) === "2330" && event.type === "earnings_call" && event.date)
+        .map((event) => ({ event, date: new Date(`${event.date}T00:00:00Z`) }))
+        .filter(({ date }) => !Number.isNaN(date.getTime()) && date >= today && date <= windowEnd)
+        .sort((left, right) => left.date - right.date)[0];
+      if (!upcoming) {
+        return;
+      }
+      const remaining = Math.round((upcoming.date - today) / 86400000);
+      const display = new Intl.DateTimeFormat("zh-TW", {
+        timeZone: "UTC", year: "numeric", month: "2-digit", day: "2-digit", weekday: "short",
+      }).format(upcoming.date);
+      earningsCallDate.dateTime = upcoming.event.date;
+      earningsCallDate.textContent = upcoming.event.time ? `${display} ${upcoming.event.time}` : display;
+      earningsCallCountdown.textContent = remaining === 0 ? "今天舉行" : `還剩 ${remaining} 天`;
+      earningsCallState.textContent = upcoming.event.source
+        ? `已公告 · 資料來源：${upcoming.event.source}`
+        : "法說會日期已公告";
+      earningsCallCard.hidden = false;
+    } catch (error) {
+      earningsCallCard.hidden = true;
+    }
+  };
+
+  renderTsmcEarningsCall();
 
   const dispositionState = document.getElementById("dispositionReminderState");
   const dispositionList = document.getElementById("dispositionReminderList");

@@ -48,7 +48,7 @@
         <span class="sidebar-item-icon" aria-hidden="true">▦</span>
         <span>事件日曆</span>
       </a>
-      <a class="sidebar-item" href="./prediction.html">
+      <a class="sidebar-item" href="./ml-prediction.html?source=day-real">
         <span class="sidebar-item-icon" aria-hidden="true">⌁</span>
         <span>行情預測</span>
       </a>
@@ -94,6 +94,28 @@
           <span id="nextMarketHolidayCountdown">讀取官方行事曆中</span>
         </div>
       </article>
+      <article id="usPresidentialElectionCard" class="widget reminder-card" hidden>
+        <div>
+          <p class="reminder-type">全球重要事件 · UTC+8</p>
+          <h2>美國總統大選</h2>
+          <p id="usPresidentialElectionState" class="reminder-note" role="status">僅在未來三個月內顯示</p>
+        </div>
+        <div class="reminder-date-block">
+          <time id="usPresidentialElectionDate" datetime="">載入中</time>
+          <span id="usPresidentialElectionCountdown">計算日期中</span>
+        </div>
+      </article>
+      <article id="tsmcEarningsCallCard" class="widget reminder-card" hidden>
+        <div>
+          <p class="reminder-type">提前 15 日提醒</p>
+          <h2>台積電法說會</h2>
+          <p id="tsmcEarningsCallState" class="reminder-note" role="status">載入法說會資訊中</p>
+        </div>
+        <div class="reminder-date-block">
+          <time id="tsmcEarningsCallDate" datetime="">載入中</time>
+          <span id="tsmcEarningsCallCountdown">讀取日期中</span>
+        </div>
+      </article>
       <article class="widget reminder-card disposition-reminder-card">
         <div class="dividend-reminder-body">
           <p class="reminder-type">TWSE／TPEx 官方處置公告</p>
@@ -129,14 +151,15 @@
       </div>
 
       <div class="feature-grid category-grid" aria-label="平台八大分類">
-        <a class="widget feature-card feature-card-available category-card" href="./market.html" data-category="market" data-product-summary="market"><span class="status status-available">可使用</span><h3>市場</h3><p>掌握台股、籌碼、全球市場、事件與行情預測。</p><span class="category-summary"><span data-summary-a-label>TAIEX</span><strong data-summary-a>載入中</strong><span data-summary-b-label>Market State</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
-        <a class="widget feature-card feature-card-available category-card" href="./stocks.html" data-category="stocks" data-product-summary="stocks"><span class="status status-available">可使用</span><h3>股票</h3><p>搜尋股票、研究個股，並依條件篩選全市場標的。</p><span class="category-summary"><span data-summary-a-label>可搜尋商品</span><strong data-summary-a>載入中</strong><span data-summary-b-label>普通股票</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./market-overview.html" data-category="market" data-product-summary="market"><span class="status status-available">可使用</span><h3>市場</h3><p>掌握台股盤勢、籌碼與事件日曆。</p><span class="category-summary"><span data-summary-a-label>TAIEX</span><strong data-summary-a>載入中</strong><span data-summary-b-label>Market State</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./stock-analysis.html" data-category="stocks" data-product-summary="stocks"><span class="status status-available">可使用</span><h3>股票</h3><p>研究個股，並依條件篩選全市場標的。</p><span class="category-summary"><span data-summary-a-label>可搜尋商品</span><strong data-summary-a>載入中</strong><span data-summary-b-label>普通股票</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./futures.html" data-category="futures" data-product-summary="futures"><span class="status status-available">可使用</span><h3>期貨</h3><p>查看台指期 TX 近月與次月完成行情。</p><span class="category-summary"><span data-summary-a-label>TX 近月</span><strong data-summary-a>載入中</strong><span data-summary-b-label>漲跌幅</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./funds.html" data-category="funds" data-product-summary="funds"><span class="status status-available">可使用</span><h3>基金</h3><p>搜尋並比較臺灣上市、上櫃 ETF。</p><span class="category-summary"><span data-summary-a-label>ETF 數量</span><strong data-summary-a>載入中</strong><span data-summary-b-label>資料範圍</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./bonds.html" data-category="bonds" data-product-summary="bonds"><span class="status status-available">可使用</span><h3>債券</h3><p>比較台灣與美國政府公債殖利率。</p><span class="category-summary"><span data-summary-a-label>台灣 10Y</span><strong data-summary-a>載入中</strong><span data-summary-b-label>美國 10Y</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./forex.html" data-category="forex" data-product-summary="forex"><span class="status status-available">可使用</span><h3>外匯</h3><p>查詢主要貨幣對新台幣匯率與換算。</p><span class="category-summary"><span data-summary-a-label>USD / TWD</span><strong data-summary-a>載入中</strong><span data-summary-b-label>支援貨幣</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./deposits.html" data-category="deposits" data-product-summary="deposits"><span class="status status-available">可使用</span><h3>定存</h3><p>比較臺灣銀行存款牌告利率。</p><span class="category-summary"><span data-summary-a-label>銀行數量</span><strong data-summary-a>載入中</strong><span data-summary-b-label>1Y 固定最高</span><strong data-summary-b>—</strong><small data-summary-state class="product-data-state is-loading">載入中</small><i hidden data-summary-date></i><i hidden data-summary-source></i></span></a>
         <a class="widget feature-card feature-card-available category-card" href="./crypto.html" data-category="crypto"><span class="status status-available">可使用</span><h3>加密貨幣</h3><p>查看 BTC 與 ETH 美元現貨行情。</p><span class="category-summary"><span>支援市場</span><strong>BTC-USD / ETH-USD</strong><span>主要粒度</span><strong>5 分鐘</strong><small class="product-data-state is-ready">正式功能</small></span></a>
+        <a class="widget feature-card feature-card-available category-card" href="./ml-prediction.html#stocks" data-category="market_prediction"><span class="status status-available">介面預覽</span><h3>行情預測</h3><p>查看股票與期貨的研究型行情預測介面。</p><span class="category-summary"><span>目前項目</span><strong>股票／期貨</strong><span>期貨日盤</span><strong>B4 三模型</strong><small class="product-data-state is-ready">示範資料</small></span></a>
       </div>
      </section>
 

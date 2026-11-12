@@ -2,7 +2,14 @@
 
 以原生 HTML、CSS、JavaScript 建立的台股分析平台，整合市場資料、事件、籌碼、個股基本面與研究型預測流程。網站可直接部署至 GitHub Pages；全市場個股資料由 Linode PostgreSQL 與 REST API 提供。
 
-目前版本：**V4.5.1 — Futures Summary Dependency Fix**
+目前版本：**V5.0.0 - DAY Shadow Predictions**
+
+### V5.0.0 DAY Shadow Predictions
+
+- 新增「行情預測」頁面與首頁、側邊欄入口，可區分股票預測與期貨預測。
+- DAY 實驗於 08:15 前，以 13 項 TX Core 特徵預測同日 08:45 開盤至日盤收盤方向；Dummy、Logistic 與 HGB 並列展示。
+- GitHub Pages 的 `ml-prediction.html?source=day-real` 可透過唯讀 HTTPS JSON 顯示 DAY 預測與已揭曉評估。
+- 前瞻紀錄區分 early、on-time、late、replay 與 unavailable；實驗結果不是交易指令，亦不宣稱已有穩定預測優勢。
 
 ## 功能
 

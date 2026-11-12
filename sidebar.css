@@ -343,8 +343,23 @@ body.theme-light .sidebar-group-toggle:focus-visible {
   text-decoration: none;
 }
 
+button.sidebar-category-button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
 a.sidebar-item:hover,
 a.sidebar-item:focus-visible {
+  color: #eef5ff;
+  background: #22252a;
+  outline: none;
+}
+
+button.sidebar-category-button:hover,
+button.sidebar-category-button:focus-visible {
   color: #eef5ff;
   background: #22252a;
   outline: none;
@@ -480,6 +495,12 @@ body.theme-light .sidebar-item {
 
 body.theme-light a.sidebar-item:hover,
 body.theme-light a.sidebar-item:focus-visible {
+  color: #1d365a;
+  background: #e9eff7;
+}
+
+body.theme-light button.sidebar-category-button:hover,
+body.theme-light button.sidebar-category-button:focus-visible {
   color: #1d365a;
   background: #e9eff7;
 }

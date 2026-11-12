@@ -14,48 +14,41 @@ class NavigationArchitectureTests(unittest.TestCase):
     def test_home_has_market_and_seven_financial_product_entries(self):
         html = self.read("index.html")
         for label, href in (
-            ("市場", "market.html"), ("股票", "stocks.html"),
+            ("市場", "market-overview.html"), ("股票", "stock-analysis.html"),
             ("期貨", "futures.html"), ("基金", "funds.html"),
             ("債券", "bonds.html"), ("外匯", "forex.html"),
             ("定存", "deposits.html"), ("加密貨幣", "crypto.html"),
+            ("行情預測", "ml-prediction.html#stocks"),
         ):
             self.assertIn(f'href="./{href}"', html)
             self.assertIn(f"<h3>{label}</h3>", html)
-        self.assertEqual(html.count("category-card"), 8)
-        self.assertEqual(html.count("data-category="), 8)
+        self.assertEqual(html.count("category-card"), 9)
+        self.assertEqual(html.count("data-category="), 9)
         self.assertNotIn("進入分類", html)
-        self.assertEqual(html.count("status status-available"), 8)
+        self.assertEqual(html.count("status status-available"), 9)
 
     def test_sidebar_defines_hierarchy_and_existing_links(self):
         script = self.read("sidebar.js")
-        for hub in ("market", "stocks", "futures", "funds", "bonds", "forex", "deposits", "crypto"):
-            self.assertIn(f'./{hub}.html', script)
-        for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "prediction.html", "stock-analysis.html", "screener.html"):
+        for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "stock-analysis.html", "screener.html", "ml-prediction.html"):
             self.assertIn(page, script)
-        for label in ("市場總覽", "籌碼分析", "國際市場", "事件日曆", "行情預測"):
+        for label in ("市場總覽", "籌碼分析", "事件日曆", "個股分析", "條件選股", "股票預測", "期貨預測"):
             self.assertIn(label, script)
+        self.assertNotIn('"國際市場"', script)
+        self.assertNotIn('["行情預測", "./prediction.html"', script)
+        self.assertIn("sidebar-category-button", script)
         self.assertIn("sidebar-group-toggle", script)
+        self.assertIn('"ml-prediction.html": "ml_prediction"', script)
+        self.assertIn('new Set(["stock_analysis", "ml_prediction"])', script)
+        self.assertIn('new Set(["stocks", "machine_learning"])', script)
         self.assertIn('toggleButton.textContent = "▼"', script)
         self.assertIn("aria-expanded", script)
         self.assertIn("taiwan_stock_navigation_groups", script)
         self.assertIn("navigationState[group.key] = isOpen", script)
         self.assertNotIn("querySelectorAll(\".sidebar-group.is-open\")", script)
 
-    def test_market_hub_links_existing_market_features(self):
-        html = self.read("market.html")
-        for label in ("市場總覽", "籌碼分析", "國際市場", "事件日曆", "行情預測"):
-            self.assertIn(label, html)
-        for legacy_label in ("台股市場摘要", "法人／外資", "全球市場", "市場事件", "大盤預測"):
-            self.assertNotIn(f"<h2>{legacy_label}</h2>", html)
-        for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "prediction.html"):
-            self.assertIn(page, html)
-
-    def test_stocks_hub_links_search_analysis_and_screener(self):
-        html = self.read("stocks.html")
-        for label in ("股票搜尋", "個股分析", "條件選股"):
-            self.assertIn(label, html)
-        self.assertIn("stock-analysis.html", html)
-        self.assertIn("screener.html", html)
+    def test_removed_market_and_stock_hubs_are_not_retained(self):
+        self.assertFalse((ROOT / "market.html").exists())
+        self.assertFalse((ROOT / "stocks.html").exists())
 
     def test_all_product_hubs_have_formal_content(self):
         expected = {
@@ -66,6 +59,7 @@ class NavigationArchitectureTests(unittest.TestCase):
             "deposits.html": "銀行存款牌告利率比較",
             "crypto.html": "BTC-USD",
         }
+        expected["futures.html"] = "TX"
         for name, content in expected.items():
             html = self.read(name)
             self.assertIn(content, html)
@@ -88,7 +82,7 @@ class NavigationArchitectureTests(unittest.TestCase):
             self.assertIn(f"{category}:[", script)
         for label in ("外資現貨", "TX 近月漲跌", "市場狀態", "美國 2Y–10Y", "USD / TWD", "1Y 定存最高"):
             self.assertIn(label, script)
-        self.assertIn('href="./market.html">查看市場詳情', script)
+        self.assertIn('href="./market-overview.html">查看市場總覽', script)
         self.assertIn("market-context.css", script)
         self.assertIn("is-stale", self.read("product-integration.css"))
 

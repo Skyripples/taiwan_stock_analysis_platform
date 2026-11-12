@@ -53,20 +53,18 @@
 
     const path = window.location.pathname.split("/").pop() || "index.html";
     const categoryByPage = {
-      "market.html": ["市場", "market.html"],
-      "market-overview.html": ["市場", "market.html"],
-      "chips-analysis.html": ["市場", "market.html"],
-      "calendar.html": ["市場", "market.html"],
-      "prediction.html": ["市場", "market.html"],
-      "stocks.html": ["股票", "stocks.html"],
-      "stock-analysis.html": ["股票", "stocks.html"],
-      "screener.html": ["股票", "stocks.html"],
+      "market-overview.html": ["市場", "market-overview.html"],
+      "chips-analysis.html": ["市場", "market-overview.html"],
+      "calendar.html": ["市場", "market-overview.html"],
+      "stock-analysis.html": ["股票", "stock-analysis.html"],
+      "screener.html": ["股票", "stock-analysis.html"],
       "futures.html": ["期貨", "futures.html"],
       "funds.html": ["基金", "funds.html"],
       "bonds.html": ["債券", "bonds.html"],
       "forex.html": ["外匯", "forex.html"],
       "deposits.html": ["定存", "deposits.html"],
       "crypto.html": ["加密貨幣", "crypto.html"],
+      "ml-prediction.html": ["行情預測", "ml-prediction.html"],
     };
     const category = categoryByPage[path];
     if (!category) return;
@@ -97,19 +95,17 @@
 
   const navigationGroups = [
     {
-      key: "market", label: "市場", href: "./market.html",
+      key: "market", label: "市場", href: "./market-overview.html",
       children: [
         ["市場總覽", "./market-overview.html", "market_overview"],
         ["籌碼分析", "./chips-analysis.html", "chips_analysis"],
-        ["國際市場", "./market-overview.html#internationalMarket", "market_overview"],
         ["事件日曆", "./calendar.html", "calendar"],
-        ["行情預測", "./prediction.html", "prediction"],
       ],
     },
     {
-      key: "stocks", label: "股票", href: "./stocks.html",
+      key: "stocks", label: "股票", href: "./stock-analysis.html",
       children: [
-        ["股票搜尋／個股分析", "./stock-analysis.html", "stock_analysis"],
+        ["個股分析", "./stock-analysis.html", "stock_analysis"],
         ["條件選股", "./screener.html", "stock_analysis"],
       ],
     },
@@ -119,9 +115,17 @@
     { key: "forex", label: "外匯", href: "./forex.html", children: [] },
     { key: "deposits", label: "定存", href: "./deposits.html", children: [] },
     { key: "crypto", label: "加密貨幣", href: "./crypto.html", children: [] },
+    {
+      key: "machine_learning", label: "行情預測", href: "./ml-prediction.html",
+      children: [
+        ["股票預測", "./ml-prediction.html#stocks", "ml_prediction"],
+        ["期貨預測", "./ml-prediction.html#futures", "ml_prediction"],
+      ],
+    },
   ];
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const currentRoute = `${currentPage}${window.location.hash}`;
   const loadNavigationState = () => {
     try {
       const value = JSON.parse(localStorage.getItem(navigationStateStorageKey) || "{}");
@@ -141,7 +145,7 @@
     nav.innerHTML = `<a class="sidebar-item${homeActive ? " is-active" : ""}" href="./index.html"${homeActive ? ' aria-current="page"' : ""}>首頁</a>`;
     navigationGroups.forEach((group) => {
       const groupPage = group.href.slice(2);
-      const childActive = group.children.some(([, href]) => href.slice(2) === currentPage);
+      const childActive = group.children.some(([, href]) => href.slice(2) === currentRoute);
       const groupActive = groupPage === currentPage;
       const open = Object.prototype.hasOwnProperty.call(navigationState, group.key)
         ? Boolean(navigationState[group.key])
@@ -150,20 +154,27 @@
       wrapper.className = `sidebar-group${open ? " is-open" : ""}`;
       const heading = document.createElement("div");
       heading.className = "sidebar-group-heading";
-      heading.innerHTML = `<a class="sidebar-item sidebar-category${groupActive ? " is-active" : ""}" href="${group.href}" data-category="${group.key}"${groupActive ? ' aria-current="page"' : ""}>${group.label}</a>`;
+      const categoryActive = groupActive || childActive;
+      heading.innerHTML = group.children.length
+        ? `<button type="button" class="sidebar-item sidebar-category sidebar-category-button${categoryActive ? " is-active" : ""}" data-category="${group.key}" aria-expanded="${open}">${group.label}</button>`
+        : `<a class="sidebar-item sidebar-category${groupActive ? " is-active" : ""}" href="${group.href}" data-category="${group.key}"${groupActive ? ' aria-current="page"' : ""}>${group.label}</a>`;
       if (group.children.length) {
+        const categoryButton = heading.querySelector(".sidebar-category-button");
+        const setOpen = (isOpen) => {
+          wrapper.classList.toggle("is-open", isOpen);
+          navigationState[group.key] = isOpen;
+          saveNavigationState();
+          categoryButton?.setAttribute("aria-expanded", String(isOpen));
+          toggleButton?.setAttribute("aria-expanded", String(isOpen));
+        };
         const toggleButton = document.createElement("button");
         toggleButton.type = "button";
         toggleButton.className = "sidebar-group-toggle";
         toggleButton.setAttribute("aria-label", `展開或收合${group.label}功能`);
         toggleButton.setAttribute("aria-expanded", String(open));
         toggleButton.textContent = "▼";
-        toggleButton.addEventListener("click", () => {
-          const isOpen = wrapper.classList.toggle("is-open");
-          navigationState[group.key] = isOpen;
-          saveNavigationState();
-          toggleButton.setAttribute("aria-expanded", String(isOpen));
-        });
+        categoryButton?.addEventListener("click", () => setOpen(!wrapper.classList.contains("is-open")));
+        toggleButton.addEventListener("click", () => setOpen(!wrapper.classList.contains("is-open")));
         heading.append(toggleButton);
       }
       wrapper.append(heading);
@@ -171,7 +182,7 @@
         const children = document.createElement("div");
         children.className = "sidebar-subnav";
         group.children.forEach(([label, href, feature]) => {
-          const active = href.slice(2) === currentPage;
+          const active = href.slice(2) === currentRoute;
           children.insertAdjacentHTML("beforeend", `<a class="sidebar-item sidebar-subitem${active ? " is-active" : ""}" href="${href}" data-feature="${feature}"${active ? ' aria-current="page"' : ""}>${label}</a>`);
         });
         wrapper.append(children);
@@ -209,6 +220,7 @@
     "calendar.html": "calendar", "prediction.html": "prediction",
     "market-overview.html": "market_overview", "chips-analysis.html": "chips_analysis",
     "stock-analysis.html": "stock_analysis", "screener.html": "stock_analysis",
+    "ml-prediction.html": "ml_prediction",
   };
   const previewGeneralPermissions = Object.freeze({
     calendar: true,
@@ -216,11 +228,12 @@
     market_overview: true,
     chips_analysis: true,
     stock_analysis: true,
+    ml_prediction: true,
   });
   const protectedItems = [...sidebar.querySelectorAll(".sidebar-item[data-feature]")];
   const protectedCategories = [...sidebar.querySelectorAll(".sidebar-category[data-category]")];
-  const publicFeatures = new Set(["stock_analysis"]);
-  const publicCategories = new Set(["stocks"]);
+  const publicFeatures = new Set(["stock_analysis", "ml_prediction"]);
+  const publicCategories = new Set(["stocks", "machine_learning"]);
   const categoryPermissions = Object.freeze({
     market: ["calendar", "prediction", "market_overview", "chips_analysis"],
     stocks: ["stock_analysis"],
@@ -230,6 +243,7 @@
     forex: [],
     deposits: [],
     crypto: [],
+    machine_learning: ["ml_prediction"],
   });
 
   const renderAccountMenu = (username = "", token = "", isAdmin = false) => {
