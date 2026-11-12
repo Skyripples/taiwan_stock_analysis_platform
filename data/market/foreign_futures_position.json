@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-11T05:48:57.020725Z",
+  "updated_at": "2026-11-12T06:55:42.921931Z",
   "provider": "TAIFEX",
   "dataset": "foreign_futures_position",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-11-10",
+        "trade_date": "2026-11-12",
         "metadata": {
           "market": "TAIFEX",
           "product_name": "臺股期貨",
@@ -18,16 +18,16 @@
           "source": "https://www.taifex.com.tw/cht/3/futContractsDate"
         },
         "long_position": {
-          "open_interest": 9875,
-          "contract_amount": 84238258
+          "open_interest": 7218,
+          "contract_amount": 62273914
         },
         "short_position": {
-          "open_interest": 113348,
-          "contract_amount": 966831234
+          "open_interest": 106791,
+          "contract_amount": 921223884
         },
         "net_position": {
-          "open_interest": -103473,
-          "contract_amount": -882592976
+          "open_interest": -99573,
+          "contract_amount": -858949970
         }
       }
     ]
