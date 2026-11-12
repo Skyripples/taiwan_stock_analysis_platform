@@ -53,9 +53,9 @@
 
     const path = window.location.pathname.split("/").pop() || "index.html";
     const categoryByPage = {
-      "market-overview.html": ["市場", "market-overview.html"],
-      "chips-analysis.html": ["市場", "market-overview.html"],
-      "calendar.html": ["市場", "market-overview.html"],
+      "market-overview.html": ["市場數據", "market-overview.html"],
+      "chips-analysis.html": ["市場數據", "market-overview.html"],
+      "calendar.html": ["市場數據", "market-overview.html"],
       "stock-analysis.html": ["股票", "stock-analysis.html"],
       "screener.html": ["股票", "stock-analysis.html"],
       "futures.html": ["期貨", "futures.html"],
@@ -95,9 +95,9 @@
 
   const navigationGroups = [
     {
-      key: "market", label: "市場", href: "./market-overview.html",
+      key: "market", label: "市場數據", href: "./market-overview.html",
       children: [
-        ["市場總覽", "./market-overview.html", "market_overview"],
+        ["總攬", "./market-overview.html", "market_overview"],
         ["籌碼分析", "./chips-analysis.html", "chips_analysis"],
         ["事件日曆", "./calendar.html", "calendar"],
       ],
@@ -118,7 +118,6 @@
     {
       key: "machine_learning", label: "行情預測", href: "./ml-prediction.html",
       children: [
-        ["股票預測", "./ml-prediction.html#stocks", "ml_prediction"],
         ["期貨預測", "./ml-prediction.html#futures", "ml_prediction"],
       ],
     },

@@ -31,8 +31,9 @@ class NavigationArchitectureTests(unittest.TestCase):
         script = self.read("sidebar.js")
         for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "stock-analysis.html", "screener.html", "ml-prediction.html"):
             self.assertIn(page, script)
-        for label in ("市場總覽", "籌碼分析", "事件日曆", "個股分析", "條件選股", "股票預測", "期貨預測"):
+        for label in ("市場數據", "總攬", "籌碼分析", "事件日曆", "個股分析", "條件選股", "期貨預測"):
             self.assertIn(label, script)
+        self.assertNotIn('["股票預測", "./ml-prediction.html#stocks"', script)
         self.assertNotIn('"國際市場"', script)
         self.assertNotIn('["行情預測", "./prediction.html"', script)
         self.assertIn("sidebar-category-button", script)
@@ -49,6 +50,20 @@ class NavigationArchitectureTests(unittest.TestCase):
     def test_removed_market_and_stock_hubs_are_not_retained(self):
         self.assertFalse((ROOT / "market.html").exists())
         self.assertFalse((ROOT / "stocks.html").exists())
+
+    def test_market_prediction_shows_futures_and_model_basics_only(self):
+        html = self.read("ml-prediction.html")
+        script = self.read("ml-prediction.js")
+        self.assertIn('id="dayRecordsBody"', html)
+        self.assertIn('id="nightRecordsBody"', html)
+        self.assertNotIn("股票預測尚未啟用", html)
+        self.assertNotIn("尚未啟用的研究區塊", html)
+        self.assertNotIn("期貨歷史回測", html)
+        self.assertNotIn("期貨實際前瞻績效", html)
+        self.assertIn("modelDescription", script)
+        self.assertIn("renderRecords('DAY'", script)
+        self.assertIn("renderRecords('NIGHT'", script)
+        self.assertNotIn("?.hidden =", script)
 
     def test_all_product_hubs_have_formal_content(self):
         expected = {

@@ -21,6 +21,11 @@
     recordsAria: 'DAY 08:15 期貨預測紀錄'
   };
   const modelName = label => `${label}\u6a21\u578b`;
+  const modelDescription = Object.freeze({
+    logistic: '用特徵的加權組合估算上漲機率，再依機率分類；適合當簡單基準。',
+    hist_gradient_boosting: '逐步疊加決策樹，學習非線性門檻與特徵交互關係。',
+    dummy: '不看特徵，只依訓練資料的漲跌比例預測，作為比較基準。',
+  });
   let loadedData = null;
   const factorTemplates = {
     DAY: ['NQ', 'ES', 'TSM ADR', 'TX價量／OI'],
@@ -96,7 +101,7 @@
     if (dayRealMode) {
       $('experimentSubtitle').textContent = dayTaskCopy.subtitle;
       $('modelTaskLabel').textContent = dayTaskCopy.label;
-      $('predictionRecordsTable').setAttribute('aria-label', dayTaskCopy.recordsAria);
+      $('dayPredictionRecordsTable').setAttribute('aria-label', dayTaskCopy.recordsAria);
     }
     const sourceLabel = data.data_mode === 'real' ? `\u771f\u5be6\u8cc7\u6599\uff08\u540c\u6b65 ${dateTime(data.synced_at)}\uff09` : '\u4ecb\u9762\u9810\u89bd\uff0f\u793a\u7bc4\u8cc7\u6599';
     const badge = document.querySelector('.preview-badge');
@@ -107,27 +112,35 @@
     $('modelCards').innerHTML = order.map(model => current.find(row => row.model === model)).filter(Boolean).map(row => {
       const status = displayStatus(row, data), direction = row.direction || '\u2014', directionClass = direction === 'UP' ? 'up' : direction === 'DOWN' ? 'down' : 'muted';
       const result = row.actual_direction ? `${row.actual_direction} / ${row.hit ? '\u547d\u4e2d' : '\u672a\u547d\u4e2d'}` : '\u5f85\u6536\u76e4\u8a55\u4f30';
-      return `<article class="ml-model-card"><header><h3>${esc(modelName(row.label))}</h3>${row.baseline ? '<span class="model-baseline">\u57fa\u6e96</span>' : ''}<span class="status-pill ${status}">${labels[status] || status}</span></header><p class="ml-direction ${directionClass}">${direction}</p><p class="ml-probability">\u4e0a\u6f32\u6a5f\u7387\uff1a<strong>${pct(row.probability_up)}</strong></p><div class="ml-model-meta"><span>\u9810\u6e2c\u65e5\uff1a<b>${date(row.prediction_date)}</b></span><span>\u7522\u751f\u6642\u9593\uff1a<b>${dateTime(row.generated_at)}</b></span><span>\u6a21\u578b\u7248\u672c\uff1a<b>${esc(row.model_version)}</b></span><span>\u5408\u7d04\uff1a<b>${esc(row.contract)}</b></span><span>\u5be6\u969b\u7d50\u679c\uff1a<b>${result}</b></span></div></article>`;
+      return `<article class="widget ml-model-card"><header><h3>${esc(modelName(row.label))}</h3>${row.baseline ? '<span class="model-baseline">\u57fa\u6e96</span>' : ''}<span class="status-pill ${status}">${labels[status] || status}</span></header><p class="ml-direction ${directionClass}">${direction}</p><p class="ml-probability">\u4e0a\u6f32\u6a5f\u7387\uff1a<strong>${pct(row.probability_up)}</strong></p><div class="ml-model-meta"><span>\u9810\u6e2c\u65e5\uff1a<b>${date(row.prediction_date)}</b></span><span>\u7522\u751f\u6642\u9593\uff1a<b>${dateTime(row.generated_at)}</b></span><span>\u6a21\u578b\u7248\u672c\uff1a<b>${esc(row.model_version)}</b></span><span>\u5408\u7d04\uff1a<b>${esc(row.contract)}</b></span><span>\u5be6\u969b\u7d50\u679c\uff1a<b>${result}</b></span></div></article>`;
     }).join('') || '<p class="ml-empty">\u5c1a\u7121\u6700\u65b0\u524d\u77bb\u9810\u6e2c\u3002</p>';
-    $('backtestMetrics').innerHTML = renderHistorical(data); $('forwardMetrics').innerHTML = renderMetricRows(data.forward_performance);
+    document.querySelectorAll('#modelCards .ml-model-card').forEach((card, index) => {
+      const row = order.map(model => current.find(item => item.model === model)).filter(Boolean)[index];
+      const description = document.createElement('p');
+      description.className = 'ml-model-description';
+      description.textContent = modelDescription[row?.model] || '模型說明尚未提供。';
+      card.querySelector('header')?.after(description);
+    });
     renderFactors(data);
-    const head = document.querySelector('.ml-records thead');
-    if (head) head.innerHTML = '<tr><th>\u9810\u6e2c\u65e5</th><th>\u6a21\u578b</th><th>\u65b9\u5411</th><th>\u4e0a\u6f32\u6a5f\u7387</th><th>\u5be6\u969b\u65b9\u5411\uff0f\u547d\u4e2d</th><th>\u7522\u751f\u6642\u9593</th><th>\u72c0\u614b</th><th>\u539f\u56e0</th></tr>';
     const rows = [...data.predictions].sort((a, b) => `${b.prediction_date}${b.generated_at}`.localeCompare(`${a.prediction_date}${a.generated_at}`));
-    $('recordsEmpty').hidden = Boolean(rows.length);
-    $('recordsBody').innerHTML = rows.map(row => {
-      const status = displayStatus(row, data), actual = row.actual_direction ? `${row.actual_direction} / ${row.hit ? '\u547d\u4e2d' : '\u672a\u547d\u4e2d'}` : '\u5f85\u8a55\u4f30';
-      return `<tr class="${status === 'expired' ? 'record-old' : ''}"><td>${date(row.prediction_date)}</td><td>${esc(modelName(row.label))}${row.baseline ? '\uff08\u57fa\u6e96\uff09' : ''}</td><td>${esc(row.direction)}</td><td>${pct(row.probability_up)}</td><td>${actual}</td><td>${dateTime(row.generated_at)}</td><td><span class="status-pill ${status}">${labels[status] || status}</span></td><td>${esc(row.reason || '\u2014')}</td></tr>`;
-    }).join('');
-    $('comingSoonList').innerHTML = (data.coming_soon || []).map(item => `<li>${esc(item)}\uff08\u5c1a\u672a\u555f\u7528\uff09</li>`).join('');
+    const taskFor = row => String(row.task || row.prediction_task || row.dataset_task || 'DAY').toUpperCase();
+    const renderRecords = (task, bodyId, emptyId) => {
+      const taskRows = rows.filter(row => taskFor(row) === task);
+      $(emptyId).hidden = Boolean(taskRows.length);
+      $(bodyId).innerHTML = taskRows.map(row => {
+        const status = displayStatus(row, data);
+        const actual = row.actual_direction ? `${row.actual_direction} / ${row.hit ? '\u547d\u4e2d' : '\u672a\u547d\u4e2d'}` : '\u5f85\u8a55\u4f30';
+        return `<tr class="${status === 'expired' ? 'record-old' : ''}"><td>${date(row.prediction_date)}</td><td>${esc(modelName(row.label))}${row.baseline ? '\uff08\u57fa\u6e96\uff09' : ''}</td><td>${esc(row.direction)}</td><td>${pct(row.probability_up)}</td><td>${actual}</td><td>${dateTime(row.generated_at)}</td><td><span class="status-pill ${status}">${labels[status] || status}</span></td><td>${esc(row.reason || '\u2014')}</td></tr>`;
+      }).join('');
+    };
+    renderRecords('DAY', 'dayRecordsBody', 'dayRecordsEmpty');
+    renderRecords('NIGHT', 'nightRecordsBody', 'nightRecordsEmpty');
     state.textContent = `\u5df2\u8f09\u5165${sourceLabel}`; state.className = 'ml-state is-ready';
   }
 
-  function selectCategoryFromHash() { const category = window.location.hash === '#futures' ? 'futures' : 'stocks'; document.querySelectorAll('[data-ml-panel]').forEach(panel => { panel.hidden = panel.dataset.mlPanel !== category; }); }
-  addEventListener('hashchange', selectCategoryFromHash); selectCategoryFromHash();
   $('factorTaskSelect')?.addEventListener('change', () => { if (loadedData) renderFactors(loadedData); });
   fetch(DATA_URL, { cache: 'no-store' }).then(response => { if (!response.ok) throw Error(`http_${response.status}`); return response.json(); }).then(normalize).then(data => { loadedData = data; render(data); }).catch(error => {
     const prefix = realMode ? '\u771f\u5be6\u8cc7\u6599\u8b80\u53d6\u5931\u6557\uff1b\u4e0d\u6703\u81ea\u52d5\u6539\u7528\u793a\u7bc4\u8cc7\u6599' : '\u793a\u7bc4\u8cc7\u6599\u8b80\u53d6\u5931\u6557';
-    state.textContent = `${prefix}\uff1a${error.message}`; state.className = 'ml-state is-error'; $('modelCards').innerHTML = '<p class="ml-empty">\u7121\u6cd5\u986f\u793a\u9810\u6e2c\u3002</p>'; $('recordsEmpty').hidden = false;
+    state.textContent = `${prefix}\uff1a${error.message}`; state.className = 'ml-state is-error'; $('modelCards').innerHTML = '<p class="ml-empty">\u7121\u6cd5\u986f\u793a\u9810\u6e2c\u3002</p>'; $('dayRecordsEmpty').hidden = false; $('nightRecordsEmpty').hidden = false;
   });
 })();

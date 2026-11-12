@@ -106,9 +106,30 @@
   function setToneValue(id, text, value) { const node = byId(id); node.textContent = text; tone(node, value); }
   function actionText(value) { return ({ increasing_shorts: '外資正在增加空單', covering_shorts: '外資正在回補空單', increasing_longs: '外資正在增加多單' })[value] || '狀態缺漏'; }
 
-  let chipsSummary = null; let activeRange = 20;
+  let chipsSummary = null; let activeRange = 5;
+  function dailyRows() {
+    const rows = chipsSummary?.history?.last_60;
+    if (!Array.isArray(rows) || rows.length < 5) throw new DataError('最近 5 日籌碼資料缺漏');
+    return rows.slice(-5);
+  }
+  function renderDailyTable(rows) {
+    byId('dailyChipsRows').replaceChildren(...rows.slice().reverse().map(row => {
+      const date = typeof row.trade_date === 'string' ? row.trade_date : null;
+      const foreign = requireInteger(row.foreign_net, 'history.foreign_net');
+      const trust = requireInteger(row.investment_trust_net, 'history.investment_trust_net');
+      const futuresNet = requireInteger(row.foreign_futures_net, 'history.foreign_futures_net');
+      const marginChange = requireInteger(row.margin_change, 'history.margin_change');
+      if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new DataError('history.trade_date 缺漏');
+      const tr = document.createElement('tr');
+      const values = [date, billions(foreign), billions(trust), units(futuresNet, '口'), hundredMillionsFromThousands(marginChange)];
+      values.forEach((value, index) => { const cell = document.createElement('td'); cell.textContent = value; if (index > 0) tone(cell, [foreign, trust, futuresNet, marginChange][index - 1]); tr.append(cell); });
+      return tr;
+    }));
+  }
   function renderTrends() {
-    const rows = chipsSummary?.history?.[`last_${activeRange}`];
+    const history = chipsSummary?.history;
+    const sourceRows = activeRange === 5 ? dailyRows() : history?.last_60;
+    const rows = Array.isArray(sourceRows) ? sourceRows : null;
     if (!Array.isArray(rows) || !rows.length) throw new DataError('歷史趨勢缺漏');
     drawLines(byId('institutionalChart'), [
       { className: 'foreign', values: rows.map(row => row.foreign_net / 100000000) },
@@ -123,29 +144,10 @@
     try {
       const payload = await loadJson('./data/analysis/current/chips_summary.json');
       if (!payload || payload.version !== '1.0') throw new DataError('chips_summary 格式錯誤');
-      const institutional = requireObject(payload.institutional, 'institutional');
       const futures = requireObject(payload.futures, 'futures');
-      const margin = requireObject(payload.margin, 'margin');
-      const statuses = requireObject(payload.statuses, 'statuses');
       chipsSummary = payload;
-      const streak = requireObject(institutional.foreign_streak, 'foreign_streak');
-      const streakLabel = streak.direction === 'buy' ? `連買 ${streak.days} 日` : streak.direction === 'sell' ? `連賣 ${streak.days} 日` : `中性 ${streak.days} 日`;
-      setToneValue('foreignStreak', streakLabel, streak.direction === 'buy' ? 1 : streak.direction === 'sell' ? -1 : 0);
-      byId('foreignFlowSummary').textContent = `${billions(institutional.foreign_5d_sum)}／${billions(institutional.foreign_20d_sum)}`;
-      tone(byId('foreignFlowSummary'), institutional.foreign_5d_sum);
-      byId('trustFlowSummary').textContent = `${billions(institutional.investment_trust_5d_sum)}／${billions(institutional.investment_trust_20d_sum)}`;
-      tone(byId('trustFlowSummary'), institutional.investment_trust_5d_sum);
-      setToneValue('futures5dSummary', units(futures.net_change_5d, '口'), futures.net_change_5d);
-      setToneValue('margin5dSummary', hundredMillionsFromThousands(margin.margin_change_5d), margin.margin_change_5d);
-      for (const [prefix, key, zscore] of [['institutional', 'institutional_status', institutional.foreign_20d_zscore], ['futures', 'futures_status', futures.net_position_20d_zscore], ['margin', 'margin_status', margin.margin_balance_20d_zscore]]) {
-        const status = statuses[key]; const signal = byId(`${prefix}Signal`);
-        signal.textContent = statusText(status); tone(signal, status === 'bullish' ? 1 : status === 'bearish' ? -1 : 0);
-        byId(`${prefix}Zscore`).textContent = `20 日 Z-score：${Number(zscore).toFixed(2)}`;
-      }
       byId('futuresAction').textContent = actionText(futures.position_action);
-      for (const [id, value] of [['futuresChange1d', futures.net_change_1d], ['futuresChange5d', futures.net_change_5d], ['futuresChange20d', futures.net_change_20d]]) setToneValue(id, units(value, '口'), value);
-      byId('marginChanges').textContent = [margin.margin_change_1d, margin.margin_change_5d, margin.margin_change_20d].map(hundredMillionsFromThousands).join('／');
-      byId('shortChanges').textContent = [margin.short_change_1d, margin.short_change_5d, margin.short_change_20d].map(value => units(value)).join('／');
+      renderDailyTable(dailyRows());
       renderTrends();
       byId('summaryContent').hidden = false; byId('summaryMessage').hidden = true; setStatus('summary', `更新至 ${payload.trade_date}`);
     } catch (error) { fail('summary', error); }

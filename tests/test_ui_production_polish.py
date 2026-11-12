@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = (
-    "index.html", "market.html", "stocks.html", "futures.html", "funds.html",
+    "index.html", "ml-prediction.html", "futures.html", "funds.html",
     "bonds.html", "forex.html", "deposits.html", "crypto.html", "market-overview.html",
     "chips-analysis.html", "calendar.html", "prediction.html",
     "stock-analysis.html", "screener.html",
@@ -91,6 +91,17 @@ class ProductionUxPolishTests(unittest.TestCase):
         self.assertIn('windowEnd.setUTCDate(windowEnd.getUTCDate() + 5)', script)
         self.assertIn('previousTradingDay(exDate)', script)
         self.assertIn('.dividend-reminder-list', css)
+
+    def test_home_shows_tsmc_earnings_call_with_fifteen_day_window(self):
+        html = self.read("index.html")
+        script = self.read("home.js")
+        for element_id in ("tsmcEarningsCallState", "tsmcEarningsCallDate", "tsmcEarningsCallCountdown"):
+            self.assertIn(f'id="{element_id}"', html)
+        self.assertIn('String(event.stock_id) === "2330"', script)
+        self.assertIn('event.type === "earnings_call"', script)
+        self.assertIn('windowEnd.setUTCDate(windowEnd.getUTCDate() + 15)', script)
+        self.assertIn('earningsCallCard.hidden = true;', script)
+        self.assertIn('if (!upcoming) {', script)
 
 
 if __name__ == "__main__":

@@ -164,36 +164,6 @@
 
   renderNextMarketHoliday();
 
-  // US Election Day is 2028-11-07 in the United States.  The market-facing
-  // reminder is deliberately stored as its UTC+8 calendar date, 2028-11-08.
-  const US_PRESIDENTIAL_ELECTION_TAIPEI_DATE = "2028-11-08";
-  const usPresidentialElectionCard = document.getElementById("usPresidentialElectionCard");
-  const usPresidentialElectionDate = document.getElementById("usPresidentialElectionDate");
-  const usPresidentialElectionCountdown = document.getElementById("usPresidentialElectionCountdown");
-  const usPresidentialElectionState = document.getElementById("usPresidentialElectionState");
-  const renderUsPresidentialElection = () => {
-    if (!usPresidentialElectionCard || !usPresidentialElectionDate
-      || !usPresidentialElectionCountdown || !usPresidentialElectionState) return;
-    usPresidentialElectionCard.hidden = true;
-    const electionDate = new Date(`${US_PRESIDENTIAL_ELECTION_TAIPEI_DATE}T00:00:00Z`);
-    const windowEnd = new Date(today);
-    windowEnd.setUTCMonth(windowEnd.getUTCMonth() + 3);
-    // Strictly less than three calendar months; past events remain hidden.
-    if (electionDate < today || electionDate >= windowEnd) return;
-    const remainingDays = Math.round((electionDate - today) / 86400000);
-    usPresidentialElectionDate.dateTime = US_PRESIDENTIAL_ELECTION_TAIPEI_DATE;
-    usPresidentialElectionDate.textContent = new Intl.DateTimeFormat("zh-TW", {
-      timeZone: "UTC", year: "numeric", month: "2-digit", day: "2-digit", weekday: "short",
-    }).format(electionDate);
-    usPresidentialElectionCountdown.textContent = remainingDays === 0
-      ? "今天舉行（UTC+8）"
-      : `還有 ${remainingDays} 天（UTC+8）`;
-    usPresidentialElectionState.textContent = "美國選舉日 2028-11-07；已換算為台灣 UTC+8 日期";
-    usPresidentialElectionCard.hidden = false;
-  };
-
-  renderUsPresidentialElection();
-
   const earningsCallDate = document.getElementById("tsmcEarningsCallDate");
   const earningsCallCountdown = document.getElementById("tsmcEarningsCallCountdown");
   const earningsCallState = document.getElementById("tsmcEarningsCallState");

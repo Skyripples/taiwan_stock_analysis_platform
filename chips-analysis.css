@@ -39,6 +39,13 @@
 .chip-values > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 11px; border-top: 1px solid #30343a; }
 .chip-values dt, .summary-grid dt { color: #aeb7c3; font-size: .78rem; }
 .chip-values dd, .summary-grid dd { margin: 0; overflow-wrap: anywhere; color: #fff; font-weight: 750; }
+.chips-table-note { margin: 0 0 10px; color: #aeb7c3; font-size: .84rem; line-height: 1.55; }
+.chips-table-wrap { overflow-x: auto; border: 1px solid #30343a; border-radius: 10px; background: #111317; }
+.chips-daily-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .88rem; }
+.chips-daily-table th, .chips-daily-table td { padding: .76rem .85rem; border-bottom: 1px solid #30343a; text-align: right; white-space: nowrap; }
+.chips-daily-table th { color: #aeb7c3; font-weight: 700; }
+.chips-daily-table th:first-child, .chips-daily-table td:first-child { text-align: left; }
+.chips-daily-table tbody tr:last-child td { border-bottom: 0; }
 .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .summary-grid > div { padding: 15px; border: 1px solid #30343a; border-radius: 11px; background: #191c20; }
 .summary-grid dd { margin-top: 8px; font-size: 1.05rem; }

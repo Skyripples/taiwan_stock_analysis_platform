@@ -50,27 +50,17 @@
           <div class="chips-section-heading"><div><p>CHIPS SUMMARY</p><h2 id="summaryTitle">籌碼摘要</h2></div><span id="summaryStatus" class="widget-status" role="status">載入中</span></div>
           <p id="summaryMessage" class="chips-message" role="status">正在讀取籌碼歷史分析…</p>
           <div id="summaryContent" hidden>
-            <div class="chips-grid chips-summary-grid">
-              <article class="widget metric-widget"><span>外資連續動向</span><strong id="foreignStreak">--</strong></article>
-              <article class="widget metric-widget"><span>外資 5 日／20 日</span><strong id="foreignFlowSummary">--</strong></article>
-              <article class="widget metric-widget"><span>投信 5 日／20 日</span><strong id="trustFlowSummary">--</strong></article>
-              <article class="widget metric-widget"><span>外資期貨 5 日變化</span><strong id="futures5dSummary">--</strong></article>
-              <article class="widget metric-widget"><span>融資 5 日變化</span><strong id="margin5dSummary">--</strong></article>
-            </div>
-            <div class="chips-status-grid" aria-label="籌碼狀態">
-              <article class="widget status-card"><span>法人</span><strong id="institutionalSignal">--</strong><small id="institutionalZscore">--</small></article>
-              <article class="widget status-card"><span>期貨</span><strong id="futuresSignal">--</strong><small id="futuresZscore">--</small></article>
-              <article class="widget status-card"><span>融資</span><strong id="marginSignal">--</strong><small id="marginZscore">--</small></article>
-            </div>
+            <p class="chips-table-note">最近 5 個交易日的單日數據；外資、投信為當日買賣超，外資期貨為當日淨未平倉，融資為當日增減，不做跨日加總。</p>
+            <div class="chips-table-wrap" tabindex="0" role="region" aria-label="最近五個交易日籌碼單日資料"><table class="chips-daily-table"><thead><tr><th>交易日</th><th>外資買賣超</th><th>投信買賣超</th><th>外資期貨淨未平倉</th><th>融資增減</th></tr></thead><tbody id="dailyChipsRows"></tbody></table></div>
           </div>
         </section>
 
         <section class="page-section" aria-labelledby="trendTitle">
-          <div class="chips-section-heading"><div><p>HISTORICAL TRENDS</p><h2 id="trendTitle">籌碼趨勢</h2></div><div class="range-switch" role="group" aria-label="趨勢期間"><button class="is-active" type="button" data-range="20">20 日</button><button type="button" data-range="60">60 日</button></div></div>
+          <div class="chips-section-heading"><div><p>HISTORICAL TRENDS</p><h2 id="trendTitle">籌碼趨勢</h2></div><div class="range-switch" role="group" aria-label="趨勢期間"><button class="is-active" type="button" data-range="5">5 日</button><button type="button" data-range="60">60 日</button></div></div>
           <div class="trend-grid">
             <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">三大法人趨勢</h3><p class="widget-subtitle">外資／投信／自營商每日買賣超</p></div></header><div id="institutionalChart" class="svg-chart" role="img" aria-label="三大法人買賣超趨勢">載入中</div><div class="chart-legend"><span class="foreign">外資</span><span class="trust">投信</span><span class="dealer">自營商</span></div></article>
-            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">外資期貨趨勢</h3><p id="futuresAction" class="widget-subtitle">--</p></div></header><div id="futuresChart" class="svg-chart" role="img" aria-label="外資期貨淨部位趨勢">載入中</div><dl class="trend-stats"><div><dt>1 日</dt><dd id="futuresChange1d">--</dd></div><div><dt>5 日</dt><dd id="futuresChange5d">--</dd></div><div><dt>20 日</dt><dd id="futuresChange20d">--</dd></div></dl></article>
-            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">融資融券趨勢</h3><p class="widget-subtitle">融資金額與融券交易單位</p></div></header><div id="marginChart" class="svg-chart" role="img" aria-label="融資餘額趨勢">載入中</div><dl class="trend-stats"><div><dt>融資 1／5／20 日</dt><dd id="marginChanges">--</dd></div><div><dt>融券 1／5／20 日</dt><dd id="shortChanges">--</dd></div></dl></article>
+            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">外資期貨趨勢</h3><p id="futuresAction" class="widget-subtitle">--</p></div></header><div id="futuresChart" class="svg-chart" role="img" aria-label="外資期貨淨部位趨勢">載入中</div></article>
+            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">融資融券趨勢</h3><p class="widget-subtitle">融資金額與融券交易單位</p></div></header><div id="marginChart" class="svg-chart" role="img" aria-label="融資餘額趨勢">載入中</div></article>
           </div>
         </section>
 
