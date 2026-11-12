@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-11T05:49:51+00:00",
+  "updated_at": "2026-11-12T06:56:42+00:00",
   "last_database_sync": "2026-11-11T05:49:51+00:00",
-  "database_sync_status": "success",
-  "universe_count": 2409,
+  "database_sync_status": "failed",
+  "universe_count": 2410,
   "api_version": "3.11.0"
 }
