@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-12T06:55:56.315294Z",
+  "updated_at": "2026-11-13T06:14:58.424893Z",
   "provider": "TWSE",
   "dataset": "margin_trading",
   "version": "1.0",
   "data": {
     "records": [
       {
-        "trade_date": "2026-11-11",
+        "trade_date": "2026-11-12",
         "metadata": {
           "market": "TWSE",
           "currency": "TWD",
@@ -18,30 +18,30 @@
         },
         "margin_financing": {
           "amount": {
-            "buy": 27383665,
-            "sell": 22419063,
-            "repayment": 485241,
-            "previous_balance": 536678732,
-            "balance": 541158093,
-            "change": 4479361
+            "buy": 28539560,
+            "sell": 35637367,
+            "repayment": 585657,
+            "previous_balance": 541158093,
+            "balance": 533474629,
+            "change": -7683464
           },
           "trading_units": {
-            "buy": 365295,
-            "sell": 363238,
-            "repayment": 12289,
-            "previous_balance": 9096064,
-            "balance": 9085832,
-            "change": -10232
+            "buy": 435089,
+            "sell": 497809,
+            "repayment": 6901,
+            "previous_balance": 9085828,
+            "balance": 9016207,
+            "change": -69621
           }
         },
         "short_selling": {
           "trading_units": {
-            "buy": 30904,
-            "sell": 39835,
-            "repayment": 11043,
-            "previous_balance": 211131,
-            "balance": 209019,
-            "change": -2112
+            "buy": 29846,
+            "sell": 32055,
+            "repayment": 706,
+            "previous_balance": 209019,
+            "balance": 210522,
+            "change": 1503
           }
         }
       }

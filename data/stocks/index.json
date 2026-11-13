@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-12T06:56:42+00:00",
+  "updated_at": "2026-11-13T06:15:47+00:00",
   "version": "2.0",
-  "active_count": 2410,
-  "company_count": 1992,
+  "active_count": 2409,
+  "company_count": 1991,
   "stocks": [
     {
       "symbol": "00400A",
@@ -812,7 +812,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00682U",
@@ -822,7 +822,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00683L",
@@ -2002,7 +2002,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00875",
@@ -3462,7 +3462,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00986D",
@@ -3772,7 +3772,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "02001L",
@@ -3882,7 +3882,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020036",
@@ -3902,7 +3902,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020038",
@@ -3912,7 +3912,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020039",
@@ -3932,7 +3932,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020041",
@@ -6160,7 +6160,7 @@
       "market": "TWSE",
       "industry": "建材營造",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -9512,7 +9512,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2883",
@@ -9682,7 +9682,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2892",
@@ -21032,7 +21032,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6961",
