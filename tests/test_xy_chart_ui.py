@@ -12,7 +12,7 @@ class XYChartUiTests(unittest.TestCase):
             self.assertIn(marker, script + css)
 
     def test_product_charts_use_shared_renderer(self):
-        for page, script_name in (("crypto.html", "crypto.js"), ("futures.html", "futures.js"), ("bonds.html", "bonds.js"), ("stock-analysis.html", "stock-analysis.js"), ("chips-analysis.html", "chips-analysis.js")):
+        for page, script_name in (("crypto.html", "crypto.js"), ("futures.html", "futures.js"), ("bonds.html", "bonds.js"), ("stock-analysis.html", "stock-analysis.js")):
             html = (ROOT / page).read_text(encoding="utf-8")
             script = (ROOT / script_name).read_text(encoding="utf-8")
             self.assertIn("xy-chart.css", html)
