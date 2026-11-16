@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="./widget.css" />
   <link rel="stylesheet" href="./platform.css" />
   <link rel="stylesheet" href="./sidebar.css" />
-  <link rel="stylesheet" href="./xy-chart.css" />
   <link rel="stylesheet" href="./chips-analysis.css" />
 </head>
 <body class="has-sidebar chips-page">
@@ -46,56 +45,36 @@
         <p class="page-description">彙整三大法人、外資台指期與融資融券，快速掌握台股整體市場籌碼。</p>
       </header>
       <div class="page-body">
-        <section class="page-section" aria-labelledby="summaryTitle">
-          <div class="chips-section-heading"><div><p>CHIPS SUMMARY</p><h2 id="summaryTitle">籌碼摘要</h2></div><span id="summaryStatus" class="widget-status" role="status">載入中</span></div>
-          <p id="summaryMessage" class="chips-message" role="status">正在讀取籌碼歷史分析…</p>
-          <div id="summaryContent" hidden>
-            <p class="chips-table-note">最近 5 個交易日的單日數據；外資、投信為當日買賣超，外資期貨為當日淨未平倉，融資為當日增減，不做跨日加總。</p>
-            <div class="chips-table-wrap" tabindex="0" role="region" aria-label="最近五個交易日籌碼單日資料"><table class="chips-daily-table"><thead><tr><th>交易日</th><th>外資買賣超</th><th>投信買賣超</th><th>外資期貨淨未平倉</th><th>融資增減</th></tr></thead><tbody id="dailyChipsRows"></tbody></table></div>
-          </div>
-        </section>
-
-        <section class="page-section" aria-labelledby="trendTitle">
-          <div class="chips-section-heading"><div><p>HISTORICAL TRENDS</p><h2 id="trendTitle">籌碼趨勢</h2></div><div class="range-switch" role="group" aria-label="趨勢期間"><button class="is-active" type="button" data-range="5">5 日</button><button type="button" data-range="60">60 日</button></div></div>
-          <div class="trend-grid">
-            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">三大法人趨勢</h3><p class="widget-subtitle">外資／投信／自營商每日買賣超</p></div></header><div id="institutionalChart" class="svg-chart" role="img" aria-label="三大法人買賣超趨勢">載入中</div><div class="chart-legend"><span class="foreign">外資</span><span class="trust">投信</span><span class="dealer">自營商</span></div></article>
-            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">外資期貨趨勢</h3><p id="futuresAction" class="widget-subtitle">--</p></div></header><div id="futuresChart" class="svg-chart" role="img" aria-label="外資期貨淨部位趨勢">載入中</div></article>
-            <article class="widget trend-widget"><header class="widget-header"><div><h3 class="widget-title">融資融券趨勢</h3><p class="widget-subtitle">融資金額與融券交易單位</p></div></header><div id="marginChart" class="svg-chart" role="img" aria-label="融資餘額趨勢">載入中</div></article>
-          </div>
-        </section>
-
         <section class="page-section" aria-labelledby="institutionalTitle">
           <div class="chips-section-heading"><div><p>INSTITUTIONAL INVESTORS</p><h2 id="institutionalTitle">三大法人</h2></div><span id="institutionalStatus" class="widget-status" role="status">載入中</span></div>
           <p id="institutionalMessage" class="chips-message" role="status">正在讀取三大法人資料…</p>
-          <div id="institutionalContent" class="chips-grid chips-grid-wide" hidden>
-            <article class="widget chip-widget"><header class="widget-header"><h3 class="widget-title">外資及陸資</h3><span class="chip-date" data-date="institutional">--</span></header><dl class="chip-values"><div><dt>買進</dt><dd id="foreignBuy">--</dd></div><div><dt>賣出</dt><dd id="foreignSell">--</dd></div><div><dt>淨額</dt><dd id="foreignNet">--</dd></div></dl></article>
-            <article class="widget chip-widget"><header class="widget-header"><h3 class="widget-title">投信</h3><span class="chip-date" data-date="institutional">--</span></header><dl class="chip-values"><div><dt>買進</dt><dd id="trustBuy">--</dd></div><div><dt>賣出</dt><dd id="trustSell">--</dd></div><div><dt>淨額</dt><dd id="trustNet">--</dd></div></dl></article>
-            <article class="widget chip-widget"><header class="widget-header"><h3 class="widget-title">自營商合計</h3><span class="chip-date" data-date="institutional">--</span></header><dl class="chip-values"><div><dt>買進</dt><dd id="dealerBuy">--</dd></div><div><dt>賣出</dt><dd id="dealerSell">--</dd></div><div><dt>淨額</dt><dd id="dealerNet">--</dd></div></dl></article>
-            <article class="widget chip-widget"><header class="widget-header"><h3 class="widget-title">自營商明細</h3><span class="chip-date" data-date="institutional">--</span></header><dl class="chip-values"><div><dt>自行買賣</dt><dd id="dealerProprietaryNet">--</dd></div><div><dt>避險</dt><dd id="dealerHedgingNet">--</dd></div><div><dt>三大法人合計</dt><dd id="institutionalTotalNet">--</dd></div></dl></article>
+          <div id="institutionalContent" hidden>
+            <p class="chips-table-note">最近 10 個交易日的單日買賣超；各欄均為當日數據，不做跨日加總。</p>
+            <div class="chips-table-wrap" tabindex="0" role="region" aria-label="最近十個交易日三大法人買賣超"><table class="chips-daily-table"><thead><tr><th>交易日</th><th>外資買賣超</th><th>投信買賣超</th><th>自營商買賣超</th><th>三大法人合計</th></tr></thead><tbody id="institutionalRows"></tbody></table></div>
           </div>
         </section>
 
         <section class="page-section" aria-labelledby="futuresTitle">
           <div class="chips-section-heading"><div><p>FOREIGN FUTURES</p><h2 id="futuresTitle">外資台指期</h2></div><span id="futuresStatus" class="widget-status" role="status">載入中</span></div>
           <p id="futuresMessage" class="chips-message" role="status">正在讀取外資台指期資料…</p>
-          <article id="futuresContent" class="widget chip-summary" hidden>
-            <header class="widget-header"><div><h3 class="widget-title">外資臺股期貨未平倉</h3><p id="futuresMeta" class="widget-subtitle">--</p></div><span id="futuresTradeDate" class="chip-date">--</span></header>
-            <dl class="summary-grid"><div><dt>多方未平倉</dt><dd id="futuresLong">--</dd></div><div><dt>空方未平倉</dt><dd id="futuresShort">--</dd></div><div><dt>淨未平倉</dt><dd id="futuresNet">--</dd></div><div><dt>淨契約金額</dt><dd id="futuresNetAmount">--</dd></div></dl>
-          </article>
+          <div id="futuresContent" hidden>
+            <p class="chips-table-note">最近 10 個交易日的外資臺股期貨未平倉口數。</p>
+            <div class="chips-table-wrap" tabindex="0" role="region" aria-label="最近十個交易日外資台指期未平倉"><table class="chips-daily-table"><thead><tr><th>交易日</th><th>多方未平倉</th><th>空方未平倉</th><th>淨未平倉</th></tr></thead><tbody id="futuresRows"></tbody></table></div>
+          </div>
         </section>
 
         <section class="page-section" aria-labelledby="marginTitle">
           <div class="chips-section-heading"><div><p>MARGIN TRADING</p><h2 id="marginTitle">融資融券</h2></div><span id="marginStatus" class="widget-status" role="status">載入中</span></div>
           <p id="marginMessage" class="chips-message" role="status">正在讀取融資融券資料…</p>
-          <article id="marginContent" class="widget chip-summary" hidden>
-            <header class="widget-header"><div><h3 class="widget-title">市場信用交易餘額</h3><p class="widget-subtitle">TWSE 集中市場</p></div><span id="marginTradeDate" class="chip-date">--</span></header>
-            <dl class="summary-grid"><div><dt>融資餘額</dt><dd id="marginBalance">--</dd></div><div><dt>融資增減</dt><dd id="marginChange">--</dd></div><div><dt>融券餘額</dt><dd id="shortBalance">--</dd></div><div><dt>融券增減</dt><dd id="shortChange">--</dd></div></dl>
-          </article>
+          <div id="marginContent" hidden>
+            <p class="chips-table-note">最近 10 個交易日的 TWSE 集中市場信用交易餘額與單日增減。</p>
+            <div class="chips-table-wrap" tabindex="0" role="region" aria-label="最近十個交易日融資融券"><table class="chips-daily-table"><thead><tr><th>交易日</th><th>融資餘額</th><th>融資增減</th><th>融券餘額</th><th>融券增減</th></tr></thead><tbody id="marginRows"></tbody></table></div>
+          </div>
         </section>
       </div>
     </div>
   </main>
   <script src="./sidebar.js"></script>
-  <script src="./xy-chart.js"></script><script src="./chips-analysis.js"></script>
+  <script src="./chips-analysis.js"></script>
 </body>
 </html>
