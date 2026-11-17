@@ -1,8 +1,7 @@
 {
-  "checked_at": "2026-11-16T06:09:43.653728+00:00",
+  "checked_at": "2026-11-17T07:42:28.567981+00:00",
   "status": "skipped",
   "ready": false,
-  "reason": "prediction_input_validation_failed",
-  "detail": "Invalid prediction source date for kospi: 2026-11-16 (feature=2026-11-13, target=2026-11-16)",
+  "reason": "required_market_provider_failed",
   "feature_count": 15
 }
