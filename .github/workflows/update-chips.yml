@@ -1,0 +1,42 @@
+name: Update Taiwan Market Chips
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 22:00 Asia/Taipei (UTC+8), after the official end-of-day margin data
+    # is normally available. GitHub Actions cron is evaluated in UTC.
+    - cron: "0 14 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  update-chips:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Update chips history and analysis
+        run: |
+          python scripts/backfill_chips_history.py
+          python scripts/analyze_chips.py
+
+      - name: Commit updated chips data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history/chips_daily.csv data/analysis/current/chips_summary.json
+          git diff --cached --quiet || git commit -m "chore: update market chips data"
+          git push

@@ -59,11 +59,6 @@ jobs:
         run: |
           python scripts/update_market_data.py
 
-      - name: Update chips history and analysis
-        run: |
-          python scripts/backfill_chips_history.py
-          python scripts/analyze_chips.py
-
       - name: Update stock analysis caches
         run: |
           python scripts/build_all_stocks.py --daily
