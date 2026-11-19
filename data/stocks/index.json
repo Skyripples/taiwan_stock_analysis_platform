@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-18T07:07:20+00:00",
+  "updated_at": "2026-11-19T07:03:25+00:00",
   "version": "2.0",
-  "active_count": 2413,
-  "company_count": 1994,
+  "active_count": 2412,
+  "company_count": 1993,
   "stocks": [
     {
       "symbol": "00400A",
@@ -1252,7 +1252,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00735",
@@ -1432,7 +1432,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00759B",
@@ -1442,7 +1442,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00760B",
@@ -2982,7 +2982,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "009807",
@@ -3792,7 +3792,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020025",
@@ -3802,7 +3802,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020028",
@@ -3822,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020030",
@@ -3872,7 +3872,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020035",
@@ -3882,7 +3882,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020036",
@@ -3912,7 +3912,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020039",
@@ -9682,7 +9682,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "2892",
@@ -22350,7 +22350,7 @@
       "market": "TPEx",
       "industry": "電子通路業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
@@ -22922,7 +22922,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "8354",
