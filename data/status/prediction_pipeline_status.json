@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-11-19T07:03:26.158023+00:00",
+  "checked_at": "2026-11-20T06:54:13.065108+00:00",
   "status": "skipped",
   "ready": false,
   "reason": "prediction_input_validation_failed",
-  "detail": "Invalid prediction source date for foreign_futures: 2026-11-19 (feature=2026-11-18, target=2026-11-19)",
+  "detail": "Invalid prediction source date for foreign_futures: 2026-11-20 (feature=2026-11-19, target=2026-11-20)",
   "feature_count": 15
 }

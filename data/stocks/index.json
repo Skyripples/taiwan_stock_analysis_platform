@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-19T07:03:25+00:00",
+  "updated_at": "2026-11-20T06:54:12+00:00",
   "version": "2.0",
-  "active_count": 2412,
-  "company_count": 1993,
+  "active_count": 2413,
+  "company_count": 1992,
   "stocks": [
     {
       "symbol": "00400A",
@@ -167,6 +167,16 @@
     {
       "symbol": "00418A",
       "name": "主動復華台灣新星",
+      "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "00420A",
+      "name": "主動野村亞洲科技",
       "market": "TWSE",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
@@ -822,7 +832,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -1252,7 +1262,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00735",
@@ -2982,7 +2992,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "009807",
@@ -3347,6 +3357,16 @@
     {
       "symbol": "009832",
       "name": "兆豐美國黃金",
+      "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "009833",
+      "name": "野村韓國科技30",
       "market": "TWSE",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
@@ -3742,7 +3762,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020001",
@@ -3792,7 +3812,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020025",
@@ -3802,7 +3822,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020028",
@@ -3812,7 +3832,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020029",
@@ -3822,7 +3842,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020030",
@@ -3872,7 +3892,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020035",
@@ -22870,7 +22890,7 @@
       "market": "TPEx",
       "industry": "電子零組件業",
       "instrument_type": "company",
-      "active": true,
+      "active": false,
       "cached": true,
       "cache_status": "partial"
     },
