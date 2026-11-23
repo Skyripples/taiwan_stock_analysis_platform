@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-15T06:05:53.598288Z",
+  "updated_at": "2026-11-22T06:19:06.426072Z",
   "version": "1.0",
   "forecast_type": "statistical_next_day_rule_forecast",
-  "feature_date": "2026-11-13",
-  "target_date": "2026-11-16",
-  "feature_close": 43675.12,
-  "score": 25.10779554527959,
+  "feature_date": "2026-11-20",
+  "target_date": "2026-11-23",
+  "feature_close": 36033.29,
+  "score": 0.0,
   "max_score": 100,
-  "direction": "Neutral",
-  "confidence_status": "low_confidence",
+  "direction": "Strong Bearish",
+  "confidence_status": "extreme",
   "training": {
     "sample_size": 756,
     "latest_completed_target_date": "2026-10-30",
@@ -48,9 +48,9 @@
   },
   "contributions": {
     "night_futures_direction": {
-      "signal": 1,
+      "signal": -1,
       "weight": 25.107795545279593,
-      "weighted_vote": 25.107795545279593,
+      "weighted_vote": -25.107795545279593,
       "display_name": "夜盤方向"
     },
     "us_market_direction": {
@@ -73,13 +73,13 @@
     }
   },
   "source_dates": {
-    "market": "2026-11-13",
-    "night": "2026-11-13",
-    "sp500": "2026-11-13",
-    "nasdaq": "2026-11-13",
-    "sox": "2026-11-13",
-    "tsm": "2026-11-13",
-    "vix": "2026-11-13"
+    "market": "2026-11-20",
+    "night": "2026-11-20",
+    "sp500": "2026-11-20",
+    "nasdaq": "2026-11-20",
+    "sox": "2026-11-20",
+    "tsm": "2026-11-20",
+    "vix": "2026-11-20"
   },
   "historical_validation": {
     "oos_samples": 472,
