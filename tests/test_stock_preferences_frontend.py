@@ -46,7 +46,7 @@ class StockPreferencesFrontendTests(unittest.TestCase):
 
     def test_stock_and_prediction_pages_are_public_without_admin_access(self):
         self.assertIn('const publicFeatures = new Set(["stock_analysis", "ml_prediction"])', self.sidebar)
-        self.assertIn('const publicCategories = new Set(["stocks", "machine_learning"])', self.sidebar)
+        self.assertIn('const publicCategories = new Set(["stocks", "futures"])', self.sidebar)
 
 
 if __name__ == "__main__":

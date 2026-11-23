@@ -18,20 +18,22 @@ class NavigationArchitectureTests(unittest.TestCase):
             ("期貨", "futures.html"), ("基金", "funds.html"),
             ("債券", "bonds.html"), ("外匯", "forex.html"),
             ("定存", "deposits.html"), ("加密貨幣", "crypto.html"),
-            ("行情預測", "ml-prediction.html#stocks"),
         ):
             self.assertIn(f'href="./{href}"', html)
             self.assertIn(f"<h3>{label}</h3>", html)
-        self.assertEqual(html.count("category-card"), 9)
-        self.assertEqual(html.count("data-category="), 9)
+        self.assertEqual(html.count("category-card"), 8)
+        self.assertEqual(html.count("data-category="), 8)
         self.assertNotIn("進入分類", html)
-        self.assertEqual(html.count("status status-available"), 9)
+        self.assertEqual(html.count("status status-available"), 8)
 
     def test_sidebar_defines_hierarchy_and_existing_links(self):
         script = self.read("sidebar.js")
         for page in ("market-overview.html", "chips-analysis.html", "calendar.html", "stock-analysis.html", "screener.html", "ml-prediction.html"):
             self.assertIn(page, script)
-        for label in ("市場數據", "總攬", "籌碼分析", "事件日曆", "個股分析", "條件選股", "期貨預測"):
+        self.assertIn('key: "futures"', script)
+        self.assertIn('"./ml-prediction.html#futures", "ml_prediction"', script)
+        self.assertNotIn('key: "machine_learning"', script)
+        for label in ("市場數據", "總攬", "籌碼分析", "事件日曆", "個股分析", "條件選股", "期貨總覽", "行情預測"):
             self.assertIn(label, script)
         self.assertNotIn('["股票預測", "./ml-prediction.html#stocks"', script)
         self.assertNotIn('"國際市場"', script)
@@ -40,7 +42,9 @@ class NavigationArchitectureTests(unittest.TestCase):
         self.assertIn("sidebar-group-toggle", script)
         self.assertIn('"ml-prediction.html": "ml_prediction"', script)
         self.assertIn('new Set(["stock_analysis", "ml_prediction"])', script)
-        self.assertIn('new Set(["stocks", "machine_learning"])', script)
+        self.assertIn('new Set(["stocks", "futures"])', script)
+        self.assertIn('["行情預測", "./ml-prediction.html#futures", "ml_prediction"]', script)
+        self.assertNotIn('key: "machine_learning"', script)
         self.assertIn('toggleButton.textContent = "▼"', script)
         self.assertIn("aria-expanded", script)
         self.assertIn("taiwan_stock_navigation_groups", script)

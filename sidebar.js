@@ -109,18 +109,18 @@
         ["條件選股", "./screener.html", "stock_analysis"],
       ],
     },
-    { key: "futures", label: "期貨", href: "./futures.html", children: [] },
+    {
+      key: "futures", label: "期貨", href: "./futures.html",
+      children: [
+        ["期貨總覽", "./futures.html", "futures"],
+        ["行情預測", "./ml-prediction.html#futures", "ml_prediction"],
+      ],
+    },
     { key: "funds", label: "基金", href: "./funds.html", children: [] },
     { key: "bonds", label: "債券", href: "./bonds.html", children: [] },
     { key: "forex", label: "外匯", href: "./forex.html", children: [] },
     { key: "deposits", label: "定存", href: "./deposits.html", children: [] },
     { key: "crypto", label: "加密貨幣", href: "./crypto.html", children: [] },
-    {
-      key: "machine_learning", label: "行情預測", href: "./ml-prediction.html",
-      children: [
-        ["期貨預測", "./ml-prediction.html#futures", "ml_prediction"],
-      ],
-    },
   ];
 
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
@@ -232,17 +232,16 @@
   const protectedItems = [...sidebar.querySelectorAll(".sidebar-item[data-feature]")];
   const protectedCategories = [...sidebar.querySelectorAll(".sidebar-category[data-category]")];
   const publicFeatures = new Set(["stock_analysis", "ml_prediction"]);
-  const publicCategories = new Set(["stocks", "machine_learning"]);
+  const publicCategories = new Set(["stocks", "futures"]);
   const categoryPermissions = Object.freeze({
     market: ["calendar", "prediction", "market_overview", "chips_analysis"],
     stocks: ["stock_analysis"],
-    futures: [],
+    futures: ["ml_prediction"],
     funds: [],
     bonds: [],
     forex: [],
     deposits: [],
     crypto: [],
-    machine_learning: ["ml_prediction"],
   });
 
   const renderAccountMenu = (username = "", token = "", isAdmin = false) => {
