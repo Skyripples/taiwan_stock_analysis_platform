@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-11-22 06:17:19 UTC",
-  "updated_at_taipei": "2026-11-22 14:17:19 UTC+8",
+  "updated_at_utc": "2026-11-23 07:08:46 UTC",
+  "updated_at_taipei": "2026-11-23 15:08:46 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -110530,6 +110530,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "2305",
+      "stock_name": "全友",
+      "type": "disposition",
+      "title": "2305 全友（處置中，預計出關 2026-11-27）",
+      "date": "2026-11-23",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-23",
+      "disposition_end_date": "2026-11-27"
+    },
+    {
       "stock_id": "2324",
       "stock_name": "仁寶",
       "type": "earnings_call",
@@ -110829,6 +110844,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3532",
+      "stock_name": "台勝科",
+      "type": "disposition",
+      "title": "3532 台勝科（處置中，預計出關 2026-11-27）",
+      "date": "2026-11-23",
+      "source": "TWSE",
+      "url": "https://www.twse.com.tw/announcement/punish?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-23",
+      "disposition_end_date": "2026-11-27"
+    },
+    {
       "stock_id": "3533",
       "stock_name": "嘉澤",
       "type": "earnings_call",
@@ -110866,6 +110896,21 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "4577",
+      "stock_name": "達航科技",
+      "type": "disposition",
+      "title": "4577 達航科技（處置中，預計出關 2026-11-27）",
+      "date": "2026-11-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-23",
+      "disposition_end_date": "2026-11-27"
     },
     {
       "stock_id": "4736",
@@ -111011,6 +111056,21 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "6538",
+      "stock_name": "倉和",
+      "type": "disposition",
+      "title": "6538 倉和（處置中，預計出關 2026-11-27）",
+      "date": "2026-11-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-23",
+      "disposition_end_date": "2026-11-27"
+    },
+    {
       "stock_id": "6584",
       "stock_name": "南俊國際",
       "type": "earnings_call",
@@ -111048,6 +111108,21 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "7584",
+      "stock_name": "樂意",
+      "type": "disposition",
+      "title": "7584 樂意（處置中，預計出關 2026-11-27）",
+      "date": "2026-11-23",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-23",
+      "disposition_end_date": "2026-11-27"
     },
     {
       "stock_id": "8028",

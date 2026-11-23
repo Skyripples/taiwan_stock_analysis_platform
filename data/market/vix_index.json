@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22T06:18:48.803116Z",
+  "updated_at": "2026-11-23T07:10:18.565732Z",
   "provider": "Yahoo",
   "dataset": "vix_index",
   "version": "1.0",
@@ -10,9 +10,9 @@
         "metadata": {
           "symbol": "^VIX",
           "security_name": "CBOE Volatility Index",
-          "market": "Cboe Indices",
+          "market": "Chicago Options",
           "currency": "USD",
-          "market_timezone": "America/Chicago",
+          "market_timezone": "America/New_York",
           "interval": "1d",
           "source": "https://finance.yahoo.com/quote/%5EVIX/history/",
           "api_source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX"
