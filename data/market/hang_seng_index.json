@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T09:35:33.688283Z",
+  "updated_at": "2026-11-25T08:05:09.293277Z",
   "provider": "Yahoo",
   "dataset": "hang_seng_index",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 22383.7402,
         "change": -164.0898,
         "change_percent": -0.7331,
-        "volume": 0
+        "volume": 3603100000
       }
     ]
   }

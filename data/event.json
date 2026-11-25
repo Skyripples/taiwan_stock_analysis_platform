@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "updated_at_utc": "2026-11-24 09:32:49 UTC",
-  "updated_at_taipei": "2026-11-24 17:32:49 UTC+8",
+  "updated_at_utc": "2026-11-25 08:03:09 UTC",
+  "updated_at_taipei": "2026-11-25 16:03:09 UTC+8",
   "events": [
     {
       "stock_id": "00939",
@@ -108829,21 +108829,6 @@
       "cash_dividend": ""
     },
     {
-      "stock_id": "4174",
-      "stock_name": "浩鼎",
-      "type": "disposition",
-      "title": "4174 浩鼎（處置中，預計出關 2026-11-24）",
-      "date": "2026-11-18",
-      "source": "TPEx",
-      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-18",
-      "disposition_end_date": "2026-11-24"
-    },
-    {
       "stock_id": "4903",
       "stock_name": "聯光通",
       "type": "dividend_payment",
@@ -108855,21 +108840,6 @@
       "ex_date": "2026-10-14",
       "pay_date": "2026-11-18",
       "cash_dividend": "0.30"
-    },
-    {
-      "stock_id": "6140",
-      "stock_name": "訊達",
-      "type": "disposition",
-      "title": "6140 訊達（處置中，預計出關 2026-11-24）",
-      "date": "2026-11-18",
-      "source": "TPEx",
-      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-18",
-      "disposition_end_date": "2026-11-24"
     },
     {
       "stock_id": "6548",
@@ -108898,36 +108868,6 @@
       "cash_dividend": "",
       "disposition_start_date": "2026-11-18",
       "disposition_end_date": "2026-11-26"
-    },
-    {
-      "stock_id": "7717",
-      "stock_name": "萊德光電-KY",
-      "type": "disposition",
-      "title": "7717 萊德光電-KY（處置中，預計出關 2026-11-24）",
-      "date": "2026-11-18",
-      "source": "TPEx",
-      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-18",
-      "disposition_end_date": "2026-11-24"
-    },
-    {
-      "stock_id": "8084",
-      "stock_name": "巨虹",
-      "type": "disposition",
-      "title": "8084 巨虹（處置中，預計出關 2026-11-24）",
-      "date": "2026-11-18",
-      "source": "TPEx",
-      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-18",
-      "disposition_end_date": "2026-11-24"
     },
     {
       "stock_id": "01007T",
@@ -110314,21 +110254,6 @@
       "cash_dividend": ""
     },
     {
-      "stock_id": "7610",
-      "stock_name": "聯友金屬-創",
-      "type": "disposition",
-      "title": "7610 聯友金屬-創（處置中，預計出關 2026-11-26）",
-      "date": "2026-11-20",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-20",
-      "disposition_end_date": "2026-11-26"
-    },
-    {
       "stock_id": "7703",
       "stock_name": "銳澤",
       "type": "earnings_call",
@@ -110483,21 +110408,6 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
-    },
-    {
-      "stock_id": "2305",
-      "stock_name": "全友",
-      "type": "disposition",
-      "title": "2305 全友（處置中，預計出關 2026-11-27）",
-      "date": "2026-11-23",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-23",
-      "disposition_end_date": "2026-11-27"
     },
     {
       "stock_id": "2324",
@@ -110797,21 +110707,6 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
-    },
-    {
-      "stock_id": "3532",
-      "stock_name": "台勝科",
-      "type": "disposition",
-      "title": "3532 台勝科（處置中，預計出關 2026-11-27）",
-      "date": "2026-11-23",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-23",
-      "disposition_end_date": "2026-11-27"
     },
     {
       "stock_id": "3533",
@@ -111779,21 +111674,6 @@
       "cash_dividend": ""
     },
     {
-      "stock_id": "3653",
-      "stock_name": "健策",
-      "type": "disposition",
-      "title": "3653 健策（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
-    },
-    {
       "stock_id": "3711",
       "stock_name": "日月光投控",
       "type": "earnings_call",
@@ -111831,36 +111711,6 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
-    },
-    {
-      "stock_id": "4526",
-      "stock_name": "東台",
-      "type": "disposition",
-      "title": "4526 東台（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
-    },
-    {
-      "stock_id": "4927",
-      "stock_name": "泰鼎-KY",
-      "type": "disposition",
-      "title": "4927 泰鼎-KY（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
     },
     {
       "stock_id": "4931",
@@ -112045,21 +111895,6 @@
       "cash_dividend": ""
     },
     {
-      "stock_id": "6451",
-      "stock_name": "訊芯-KY",
-      "type": "disposition",
-      "title": "6451 訊芯-KY（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
-    },
-    {
       "stock_id": "6510",
       "stock_name": "精測",
       "type": "earnings_call",
@@ -112138,21 +111973,6 @@
       "cash_dividend": ""
     },
     {
-      "stock_id": "6715",
-      "stock_name": "嘉基",
-      "type": "disposition",
-      "title": "6715 嘉基（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
-    },
-    {
       "stock_id": "6811",
       "stock_name": "宏碁資訊",
       "type": "earnings_call",
@@ -112194,21 +112014,6 @@
       "disposition_end_date": "2026-11-30"
     },
     {
-      "stock_id": "8021",
-      "stock_name": "尖點",
-      "type": "disposition",
-      "title": "8021 尖點（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
-    },
-    {
       "stock_id": "8042",
       "stock_name": "金山電",
       "type": "disposition",
@@ -112216,21 +112021,6 @@
       "date": "2026-11-24",
       "source": "TPEx",
       "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
-      "time": "",
-      "ex_date": "",
-      "pay_date": "",
-      "cash_dividend": "",
-      "disposition_start_date": "2026-11-24",
-      "disposition_end_date": "2026-11-30"
-    },
-    {
-      "stock_id": "8996",
-      "stock_name": "高力",
-      "type": "disposition",
-      "title": "8996 高力（處置中，預計出關 2026-11-30）",
-      "date": "2026-11-24",
-      "source": "TWSE",
-      "url": "https://www.twse.com.tw/announcement/punish?response=json",
       "time": "",
       "ex_date": "",
       "pay_date": "",
@@ -112315,6 +112105,51 @@
       "ex_date": "2026-11-03",
       "pay_date": "2026-11-25",
       "cash_dividend": "0.09"
+    },
+    {
+      "stock_id": "3287",
+      "stock_name": "廣寰科",
+      "type": "disposition",
+      "title": "3287 廣寰科（處置中，預計出關 2026-12-01）",
+      "date": "2026-11-25",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-25",
+      "disposition_end_date": "2026-12-01"
+    },
+    {
+      "stock_id": "3693",
+      "stock_name": "營邦",
+      "type": "disposition",
+      "title": "3693 營邦（處置中，預計出關 2026-12-01）",
+      "date": "2026-11-25",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-25",
+      "disposition_end_date": "2026-12-01"
+    },
+    {
+      "stock_id": "4716",
+      "stock_name": "大立",
+      "type": "disposition",
+      "title": "4716 大立（處置中，預計出關 2026-12-01）",
+      "date": "2026-11-25",
+      "source": "TPEx",
+      "url": "https://www.tpex.org.tw/www/zh-tw/bulletin/disposal?response=json",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": "",
+      "disposition_start_date": "2026-11-25",
+      "disposition_end_date": "2026-12-01"
     },
     {
       "stock_id": "009817",
@@ -112616,6 +112451,19 @@
       "cash_dividend": "0.50"
     },
     {
+      "stock_id": "7889",
+      "stock_name": "騰勢",
+      "type": "delisting",
+      "title": "7889 騰勢(終止掛牌)",
+      "date": "2026-12-01",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/delisting",
+      "time": "",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "00400A",
       "stock_name": "主動國泰動能高息",
       "type": "dividend_payment",
@@ -112819,6 +112667,32 @@
       "source": "Yahoo",
       "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
       "time": "10:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "2461",
+      "stock_name": "光群雷",
+      "type": "earnings_call",
+      "title": "2461 光群雷(法說會)",
+      "date": "2026-12-03",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
+      "stock_id": "3189",
+      "stock_name": "景碩",
+      "type": "earnings_call",
+      "title": "3189 景碩(法說會)",
+      "date": "2026-12-03",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "10:40",
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
@@ -113136,6 +113010,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3189",
+      "stock_name": "景碩",
+      "type": "earnings_call",
+      "title": "3189 景碩(法說會)",
+      "date": "2026-12-04",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "13:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "3701",
       "stock_name": "大眾控",
       "type": "dividend",
@@ -113186,6 +113073,19 @@
       "ex_date": "2026-11-05",
       "pay_date": "2026-12-04",
       "cash_dividend": "0.50"
+    },
+    {
+      "stock_id": "6140",
+      "stock_name": "訊達",
+      "type": "earnings_call",
+      "title": "6140 訊達(法說會)",
+      "date": "2026-12-04",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
     },
     {
       "stock_id": "7780",
@@ -113409,6 +113309,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "3189",
+      "stock_name": "景碩",
+      "type": "earnings_call",
+      "title": "3189 景碩(法說會)",
+      "date": "2026-12-09",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "11:00",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "3533",
       "stock_name": "嘉澤",
       "type": "earnings_call",
@@ -113617,6 +113530,19 @@
       "cash_dividend": "7.00"
     },
     {
+      "stock_id": "3363",
+      "stock_name": "上詮",
+      "type": "earnings_call",
+      "title": "3363 上詮(法說會)",
+      "date": "2026-12-10",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
+    },
+    {
       "stock_id": "6438",
       "stock_name": "迅得",
       "type": "dividend",
@@ -113628,6 +113554,19 @@
       "ex_date": "2026-12-10",
       "pay_date": "2027-01-07",
       "cash_dividend": "3.00"
+    },
+    {
+      "stock_id": "8409",
+      "stock_name": "商之器",
+      "type": "earnings_call",
+      "title": "8409 商之器(法說會)",
+      "date": "2026-12-10",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/earnings-call",
+      "time": "14:30",
+      "ex_date": "",
+      "pay_date": "",
+      "cash_dividend": ""
     },
     {
       "stock_id": "8942",
@@ -114241,6 +114180,19 @@
       "cash_dividend": ""
     },
     {
+      "stock_id": "6994",
+      "stock_name": "富威電力",
+      "type": "dividend",
+      "title": "6994 富威電力(除權息)",
+      "date": "2026-12-11",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-12-11",
+      "pay_date": "2027-03-17",
+      "cash_dividend": "0.61"
+    },
+    {
       "stock_id": "00731",
       "stock_name": "復華富時高息低波",
       "type": "dividend_payment",
@@ -114811,6 +114763,19 @@
       "ex_date": "",
       "pay_date": "",
       "cash_dividend": ""
+    },
+    {
+      "stock_id": "2753",
+      "stock_name": "八方雲集",
+      "type": "dividend",
+      "title": "2753 八方雲集(除權息)",
+      "date": "2026-12-23",
+      "source": "Yahoo",
+      "url": "https://tw.stock.yahoo.com/calendar/dividend",
+      "time": "",
+      "ex_date": "2026-12-23",
+      "pay_date": "2027-01-20",
+      "cash_dividend": "4.95"
     },
     {
       "stock_id": "00959B",

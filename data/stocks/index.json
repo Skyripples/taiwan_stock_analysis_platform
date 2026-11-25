@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T09:36:50+00:00",
+  "updated_at": "2026-11-25T08:06:25+00:00",
   "version": "2.0",
   "active_count": 2414,
   "company_count": 1993,
@@ -832,7 +832,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -3762,7 +3762,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020001",
@@ -3902,7 +3902,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020036",
@@ -3922,7 +3922,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020038",
@@ -3932,7 +3932,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020039",
@@ -3982,7 +3982,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "1102",
@@ -20976,7 +20976,7 @@
     },
     {
       "symbol": "6949",
-      "name": "沛爾生醫*-創",
+      "name": "沛爾*-創",
       "market": "TWSE",
       "industry": "生技醫療業",
       "instrument_type": "company",
@@ -21052,7 +21052,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6961",
