@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-25T08:03:31.338627+00:00",
-  "fetched_at": "2026-11-25T08:03:31.338627+00:00",
+  "updated_at": "2026-11-26T07:55:58.767333+00:00",
+  "fetched_at": "2026-11-26T07:55:58.767333+00:00",
   "data_date": "2026-11-25",
   "provider": "TWSE / TPEx",
   "dataset": "taiwan_etf_comparison",
@@ -27,12 +27,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.09,
-      "data_date": "2026-11-24",
+      "price": 10.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -23.0396,
-        "3m": -22.879,
-        "6m": -23.8847,
+        "1m": -27.1339,
+        "3m": -26.9819,
+        "6m": -27.9341,
         "1y": null
       },
       "return_base_dates": {
@@ -54,12 +54,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.32,
-      "data_date": "2026-11-24",
+      "price": 10.64,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -15.9614,
-        "3m": -14.6305,
-        "6m": -16.7035,
+        "1m": -21.0097,
+        "3m": -19.7587,
+        "6m": -21.7071,
         "1y": null
       },
       "return_base_dates": {
@@ -81,11 +81,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.46,
-      "data_date": "2026-11-24",
+      "price": 7.99,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.9667,
-        "3m": -10.5708,
+        "1m": -16.8574,
+        "3m": -15.5391,
         "6m": null,
         "1y": null
       },
@@ -108,12 +108,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.04,
-      "data_date": "2026-11-24",
+      "price": 7.48,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.9203,
-        "3m": -19.1147,
-        "6m": -24.0076,
+        "1m": -25.498,
+        "3m": -24.7485,
+        "6m": -29.3006,
         "1y": null
       },
       "return_base_dates": {
@@ -135,11 +135,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.85,
-      "data_date": "2026-11-24",
+      "price": 7.38,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -16.222,
-        "3m": -17.019,
+        "1m": -21.238,
+        "3m": -21.9873,
         "6m": null,
         "1y": null
       },
@@ -162,11 +162,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.48,
-      "data_date": "2026-11-24",
+      "price": 6.08,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -23.4947,
-        "3m": -22.2089,
+        "1m": -28.2172,
+        "3m": -27.0108,
         "6m": null,
         "1y": null
       },
@@ -189,11 +189,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.67,
-      "data_date": "2026-11-24",
+      "price": 6.26,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -26.3797,
-        "3m": -29.118,
+        "1m": -30.9051,
+        "3m": -33.475,
         "6m": null,
         "1y": null
       },
@@ -216,11 +216,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.25,
-      "data_date": "2026-11-24",
+      "price": 6.79,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -22.2937,
-        "3m": -23.1992,
+        "1m": -27.224,
+        "3m": -28.072,
         "6m": null,
         "1y": null
       },
@@ -243,11 +243,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.7,
-      "data_date": "2026-11-24",
+      "price": 7.16,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.9584,
-        "3m": -24.8047,
+        "1m": -25.5717,
+        "3m": -30.0781,
         "6m": null,
         "1y": null
       },
@@ -270,10 +270,10 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.83,
-      "data_date": "2026-11-24",
+      "price": 6.41,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.5304,
+        "1m": -29.1713,
         "3m": null,
         "6m": null,
         "1y": null
@@ -297,11 +297,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.29,
-      "data_date": "2026-11-24",
+      "price": 8.66,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.2876,
-        "3m": -17.7148,
+        "1m": -24.7611,
+        "3m": -23.295,
         "6m": null,
         "1y": null
       },
@@ -351,10 +351,10 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.05,
-      "data_date": "2026-11-24",
+      "price": 6.47,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -20.6081,
+        "1m": -27.1396,
         "3m": null,
         "6m": null,
         "1y": null
@@ -378,8 +378,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.07,
-      "data_date": "2026-11-24",
+      "price": 8.5,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -405,10 +405,10 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.85,
-      "data_date": "2026-11-24",
+      "price": 6.43,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -26.3441,
+        "1m": -30.8602,
         "3m": null,
         "6m": null,
         "1y": null
@@ -432,8 +432,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.66,
-      "data_date": "2026-11-24",
+      "price": 7.17,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -459,8 +459,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.5,
-      "data_date": "2026-11-24",
+      "price": 7.99,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -486,8 +486,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.0,
-      "data_date": "2026-11-24",
+      "price": 9.11,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -513,13 +513,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 95.7,
-      "data_date": "2026-11-24",
+      "price": 90.3,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.4771,
-        "3m": -8.3333,
-        "6m": -5.0595,
-        "1y": 58.575
+        "1m": -15.5285,
+        "3m": -13.5057,
+        "6m": -10.4167,
+        "1y": 49.6272
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -540,13 +540,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 116.5,
-      "data_date": "2026-11-24",
+      "price": 109.85,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -20.856,
-        "3m": -18.1019,
-        "6m": -17.1703,
-        "1y": 33.4479
+        "1m": -25.3736,
+        "3m": -22.7768,
+        "6m": -21.8983,
+        "1y": 25.8305
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -567,12 +567,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 55.15,
-      "data_date": "2026-11-24",
+      "price": 52.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.7605,
-        "3m": -9.5902,
-        "6m": -7.4664,
+        "1m": -15.6149,
+        "3m": -14.5082,
+        "6m": -12.5,
         "1y": null
       },
       "return_base_dates": {
@@ -594,13 +594,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 205.7,
-      "data_date": "2026-11-24",
+      "price": 195.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.5896,
-        "3m": -12.8943,
-        "6m": -12.5983,
-        "1y": 58.4746
+        "1m": -18.0844,
+        "3m": -17.4254,
+        "6m": -17.1447,
+        "1y": 50.2311
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -621,13 +621,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 44.7,
-      "data_date": "2026-11-24",
+      "price": 41.71,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.8728,
-        "3m": 0.472,
-        "6m": 31.6642,
-        "1y": 51.4228
+        "1m": -19.6339,
+        "3m": -6.2486,
+        "6m": 22.8571,
+        "1y": 41.294
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -648,13 +648,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 49.94,
-      "data_date": "2026-11-24",
+      "price": 45.66,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.2966,
-        "3m": -4.9667,
-        "6m": 3.2885,
-        "1y": 42.0768
+        "1m": -18.8988,
+        "3m": -13.1113,
+        "6m": -5.5636,
+        "1y": 29.9004
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -675,13 +675,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 283.05,
-      "data_date": "2026-11-24",
+      "price": 269.05,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.9346,
-        "3m": -9.0456,
-        "6m": -5.1282,
-        "1y": 59.825
+        "1m": -15.3398,
+        "3m": -13.5443,
+        "6m": -9.8207,
+        "1y": 51.9198
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -702,13 +702,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.86,
-      "data_date": "2026-11-24",
+      "price": 21.62,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -1.6644,
-        "3m": -9.8185,
-        "6m": -11.9613,
-        "1y": -1.1307
+        "1m": -2.744,
+        "3m": -10.8086,
+        "6m": -12.9279,
+        "1y": -2.2162
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -756,13 +756,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 171.35,
-      "data_date": "2026-11-24",
+      "price": 163.45,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.3783,
-        "3m": -9.1222,
-        "6m": -6.6975,
-        "1y": 56.2699
+        "1m": -15.4642,
+        "3m": -13.3121,
+        "6m": -10.9992,
+        "1y": 49.0652
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -783,13 +783,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 205.1,
-      "data_date": "2026-11-24",
+      "price": 193.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.728,
-        "3m": -7.9443,
-        "6m": -5.9174,
-        "1y": 50.698
+        "1m": -16.7205,
+        "3m": -13.1508,
+        "6m": -11.2385,
+        "1y": 42.1749
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -810,13 +810,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 38.49,
-      "data_date": "2026-11-24",
+      "price": 38.14,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.4961,
-        "3m": -4.4676,
-        "6m": -6.2591,
-        "1y": 1.8254
+        "1m": -0.4178,
+        "3m": -5.3363,
+        "6m": -7.1115,
+        "1y": 0.8995
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -837,13 +837,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 37.31,
-      "data_date": "2026-11-24",
+      "price": 37.1,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.8842,
-        "3m": -0.3206,
-        "6m": 1.6344,
-        "1y": 5.0394
+        "1m": 1.3108,
+        "3m": -0.8816,
+        "6m": 1.0624,
+        "1y": 4.4482
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -864,13 +864,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 29.13,
-      "data_date": "2026-11-24",
+      "price": 28.87,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -1.5546,
-        "3m": -9.5342,
-        "6m": -12.7322,
-        "1y": -0.2397
+        "1m": -2.4333,
+        "3m": -10.3416,
+        "6m": -13.5111,
+        "1y": -1.1301
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -891,13 +891,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 215.1,
-      "data_date": "2026-11-24",
+      "price": 203.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.1503,
-        "3m": -10.1691,
-        "6m": -7.7418,
-        "1y": 55.644
+        "1m": -17.0308,
+        "3m": -15.1597,
+        "6m": -12.8673,
+        "1y": 46.9971
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -918,13 +918,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 27.0,
-      "data_date": "2026-11-24",
+      "price": 23.78,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.1786,
-        "3m": -22.1453,
-        "6m": -21.875,
-        "1y": -91.4299
+        "1m": -33.221,
+        "3m": -31.4302,
+        "6m": -31.1921,
+        "1y": -92.452
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -945,13 +945,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.95,
-      "data_date": "2026-11-24",
+      "price": 11.71,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 10.83,
-        "3m": 7.7756,
-        "6m": 2.5281,
-        "1y": -38.2403
+        "1m": 18.5223,
+        "3m": 15.2559,
+        "6m": 9.6442,
+        "1y": -33.9538
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -972,13 +972,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 38.21,
-      "data_date": "2026-11-24",
+      "price": 37.29,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.7017,
-        "3m": -20.3294,
-        "6m": -25.8778,
-        "1y": -19.71
+        "1m": -3.0925,
+        "3m": -22.2477,
+        "6m": -27.6625,
+        "1y": -21.6432
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -999,13 +999,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 3.5,
-      "data_date": "2026-11-24",
+      "price": 3.54,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.2849,
-        "3m": 11.1111,
-        "6m": 13.2686,
-        "1y": 5.4217
+        "1m": 0.8547,
+        "3m": 12.381,
+        "6m": 14.5631,
+        "1y": 6.6265
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1026,13 +1026,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 37.25,
-      "data_date": "2026-11-24",
+      "price": 36.32,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.4781,
-        "3m": -22.5088,
-        "6m": -21.8422,
-        "1y": -16.5547
+        "1m": -13.6882,
+        "3m": -24.4435,
+        "6m": -23.7935,
+        "1y": -18.638
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1053,13 +1053,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 25.04,
-      "data_date": "2026-11-24",
+      "price": 24.77,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.5165,
-        "3m": -9.6355,
-        "6m": -11.6131,
-        "1y": -3.8402
+        "1m": -1.5892,
+        "3m": -10.6099,
+        "6m": -12.5662,
+        "1y": -4.8771
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1080,13 +1080,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.64,
-      "data_date": "2026-11-24",
+      "price": 7.55,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.5263,
-        "3m": -11.7783,
-        "6m": -15.859,
-        "1y": -8.3933
+        "1m": -0.6579,
+        "3m": -12.8176,
+        "6m": -16.8502,
+        "1y": -9.4724
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1107,13 +1107,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 15.95,
-      "data_date": "2026-11-24",
+      "price": 15.59,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.6231,
-        "3m": -19.5257,
-        "6m": -24.6931,
-        "1y": -18.2051
+        "1m": -2.866,
+        "3m": -21.3421,
+        "6m": -26.3928,
+        "1y": -20.0513
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1134,13 +1134,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.56,
-      "data_date": "2026-11-24",
+      "price": 7.68,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.3984,
-        "3m": 12.3328,
-        "6m": 14.8936,
-        "1y": 6.7797
+        "1m": 1.992,
+        "3m": 14.1159,
+        "6m": 16.7173,
+        "1y": 8.4746
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1161,13 +1161,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.1,
-      "data_date": "2026-11-24",
+      "price": 12.75,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -3.9589,
-        "3m": -20.9415,
-        "6m": -26.9788,
-        "1y": -9.0909
+        "1m": -6.5249,
+        "3m": -23.0537,
+        "6m": -28.9298,
+        "1y": -11.5198
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1188,13 +1188,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 91.4,
-      "data_date": "2026-11-24",
+      "price": 89.7,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.9461,
-        "3m": -15.0163,
-        "6m": -10.0394,
-        "1y": 26.156
+        "1m": -13.5838,
+        "3m": -16.5969,
+        "6m": -11.7126,
+        "1y": 23.8095
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1215,13 +1215,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 3.89,
-      "data_date": "2026-11-24",
+      "price": 3.94,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 4.0107,
-        "3m": 5.4201,
-        "6m": 1.3021,
-        "1y": -18.6192
+        "1m": 5.3476,
+        "3m": 6.7751,
+        "6m": 2.6042,
+        "1y": -17.5732
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1242,13 +1242,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 28.25,
-      "data_date": "2026-11-24",
+      "price": 28.72,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -18.5879,
-        "3m": 0.0,
-        "6m": -1.3617,
-        "1y": 84.3995
+        "1m": -17.2334,
+        "3m": 1.6637,
+        "6m": 0.2793,
+        "1y": 87.4674
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1269,46 +1269,19 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.99,
-      "data_date": "2026-11-24",
+      "price": 14.65,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.5451,
-        "3m": -18.5326,
-        "6m": -26.2666,
-        "1y": -5.7233
+        "1m": -7.6875,
+        "3m": -20.3804,
+        "6m": -27.939,
+        "1y": -7.8616
       },
       "return_base_dates": {
         "1m": "2026-10-22",
         "3m": "2026-08-25",
         "6m": "2026-05-25",
         "1y": "2025-11-25"
-      },
-      "source": "TWSE"
-    },
-    {
-      "symbol": "00643K",
-      "fund_code": "00643K",
-      "name": "群益深証中小+R",
-      "market": "TWSE",
-      "category": "上市 ETF",
-      "asset_type": "ETF",
-      "issuer": null,
-      "nav": null,
-      "expense_ratio": null,
-      "management_fee": null,
-      "price": 3.08,
-      "data_date": "2026-11-24",
-      "returns": {
-        "1m": null,
-        "3m": -19.7917,
-        "6m": -29.0323,
-        "1y": null
-      },
-      "return_base_dates": {
-        "1m": null,
-        "3m": "2026-08-25",
-        "6m": "2026-05-25",
-        "1y": null
       },
       "source": "TWSE"
     },
@@ -1323,13 +1296,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 53.65,
-      "data_date": "2026-11-24",
+      "price": 53.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.5458,
-        "3m": -7.0996,
-        "6m": -3.2462,
-        "1y": 16.6812
+        "1m": -6.4261,
+        "3m": -7.9654,
+        "6m": -4.1479,
+        "1y": 15.5937
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1350,13 +1323,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 75.4,
-      "data_date": "2026-11-24",
+      "price": 74.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -4.4965,
-        "3m": -2.0143,
-        "6m": 1.0047,
-        "1y": 13.9834
+        "1m": -5.9531,
+        "3m": -3.5088,
+        "6m": -0.5358,
+        "1y": 12.2449
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1377,13 +1350,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 125.1,
-      "data_date": "2026-11-24",
+      "price": 121.1,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.8339,
-        "3m": -9.6751,
-        "6m": -8.0823,
-        "1y": 11.1012
+        "1m": -13.685,
+        "3m": -12.5632,
+        "6m": -11.0213,
+        "1y": 7.5488
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1404,13 +1377,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 4.15,
-      "data_date": "2026-11-24",
+      "price": 4.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 5.3299,
-        "3m": 5.8673,
-        "6m": 5.0633,
-        "1y": -6.9507
+        "1m": 7.868,
+        "3m": 8.4184,
+        "6m": 7.5949,
+        "1y": -4.7085
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1431,13 +1404,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.39,
-      "data_date": "2026-11-24",
+      "price": 13.31,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.3041,
-        "3m": -22.2867,
-        "6m": -21.9242,
-        "1y": -24.8597
+        "1m": -5.8699,
+        "3m": -22.751,
+        "6m": -22.3907,
+        "1y": -25.3086
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1458,13 +1431,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 5.83,
-      "data_date": "2026-11-24",
+      "price": 5.87,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 2.2807,
-        "3m": 12.9845,
-        "6m": 10.8365,
-        "1y": 10.0
+        "1m": 2.9825,
+        "3m": 13.7597,
+        "6m": 11.597,
+        "1y": 10.7547
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1485,13 +1458,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 36.7,
-      "data_date": "2026-11-24",
+      "price": 37.6,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 14.3302,
-        "3m": 10.5422,
-        "6m": 12.9926,
-        "1y": -2.1333
+        "1m": 17.134,
+        "3m": 13.253,
+        "6m": 15.7635,
+        "1y": 0.2667
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1512,13 +1485,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 50.8,
-      "data_date": "2026-11-24",
+      "price": 52.8,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 23.8722,
-        "3m": 8.7794,
-        "6m": 9.7192,
-        "1y": -13.1624
+        "1m": 28.7491,
+        "3m": 13.0621,
+        "6m": 14.0389,
+        "1y": -9.7436
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1539,13 +1512,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.5,
-      "data_date": "2026-11-24",
+      "price": 6.4,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.7222,
-        "3m": -3.1297,
-        "6m": -3.7037,
-        "1y": 4.5016
+        "1m": -11.1111,
+        "3m": -4.62,
+        "6m": -5.1852,
+        "1y": 2.8939
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1566,13 +1539,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 26.62,
-      "data_date": "2026-11-24",
+      "price": 25.94,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.6346,
-        "3m": -20.1799,
-        "6m": -25.7254,
-        "1y": -19.7951
+        "1m": -3.1728,
+        "3m": -22.2189,
+        "6m": -27.6228,
+        "1y": -21.8439
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1593,13 +1566,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.67,
-      "data_date": "2026-11-24",
+      "price": 6.77,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.4518,
-        "3m": 13.0508,
-        "6m": 14.6048,
-        "1y": 7.0626
+        "1m": 1.9578,
+        "3m": 14.7458,
+        "6m": 16.323,
+        "1y": 8.6677
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1620,13 +1593,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 69.75,
-      "data_date": "2026-11-24",
+      "price": 67.95,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -7.1238,
-        "3m": -9.8837,
-        "6m": -8.8831,
-        "1y": 22.0472
+        "1m": -9.5206,
+        "3m": -12.2093,
+        "6m": -11.2345,
+        "1y": 18.8976
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1647,13 +1620,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.18,
-      "data_date": "2026-11-24",
+      "price": 20.67,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.6675,
-        "3m": -13.0185,
-        "6m": -13.2678,
-        "1y": 16.3097
+        "1m": -10.8668,
+        "3m": -15.1129,
+        "6m": -15.3563,
+        "1y": 13.5091
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1674,13 +1647,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 44.25,
-      "data_date": "2026-11-24",
+      "price": 43.89,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.0801,
-        "3m": -5.0633,
-        "6m": 0.591,
-        "1y": 11.0972
+        "1m": -2.8767,
+        "3m": -5.8357,
+        "6m": -0.2273,
+        "1y": 10.1933
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1701,13 +1674,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 76.1,
-      "data_date": "2026-11-24",
+      "price": 74.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -7.3646,
-        "3m": -10.7855,
-        "6m": -9.62,
-        "1y": 21.4685
+        "1m": -9.9209,
+        "3m": -13.2474,
+        "6m": -12.114,
+        "1y": 18.1165
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1728,13 +1701,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.65,
-      "data_date": "2026-11-24",
+      "price": 21.86,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -81.5704,
-        "3m": -81.0302,
-        "6m": -81.25,
-        "1y": -77.4739
+        "1m": -82.2132,
+        "3m": -81.6918,
+        "6m": -81.904,
+        "1y": -78.2596
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1755,13 +1728,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 75.05,
-      "data_date": "2026-11-24",
+      "price": 66.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -26.9942,
-        "3m": -24.3448,
-        "6m": -25.5456,
-        "1y": 82.4702
+        "1m": -35.7977,
+        "3m": -33.4677,
+        "6m": -34.5238,
+        "1y": 60.4668
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1782,13 +1755,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 1.76,
-      "data_date": "2026-11-24",
+      "price": 1.89,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 10.6918,
-        "3m": 6.6667,
-        "6m": 1.7341,
-        "1y": -38.676
+        "1m": 18.8679,
+        "3m": 14.5455,
+        "6m": 9.2486,
+        "1y": -34.1463
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1809,13 +1782,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 7.46,
-      "data_date": "2026-11-24",
+      "price": 7.43,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.2097,
-        "3m": -20.6383,
-        "6m": -22.4532,
-        "1y": -33.9823
+        "1m": -5.5909,
+        "3m": -20.9574,
+        "6m": -22.7651,
+        "1y": -34.2478
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1836,13 +1809,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.2,
-      "data_date": "2026-11-24",
+      "price": 10.21,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 3.0303,
-        "3m": 12.7072,
-        "6m": 12.3348,
-        "1y": 17.3763
+        "1m": 3.1313,
+        "3m": 12.8177,
+        "6m": 12.4449,
+        "1y": 17.4914
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1863,13 +1836,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 59.75,
-      "data_date": "2026-11-24",
+      "price": 60.1,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -4.7049,
-        "3m": -4.17,
-        "6m": 2.3116,
-        "1y": 12.4177
+        "1m": -4.1467,
+        "3m": -3.6087,
+        "6m": 2.911,
+        "1y": 13.0762
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1890,13 +1863,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.11,
-      "data_date": "2026-11-24",
+      "price": 18.28,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.2144,
-        "3m": -7.3183,
-        "6m": -2.0022,
-        "1y": 6.9699
+        "1m": -5.334,
+        "3m": -6.4483,
+        "6m": -1.0823,
+        "1y": 7.974
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1918,7 +1891,7 @@
       "expense_ratio": null,
       "management_fee": null,
       "price": 5.65,
-      "data_date": "2026-11-24",
+      "data_date": "2026-11-25",
       "returns": {
         "1m": 6.0038,
         "3m": 9.0734,
@@ -1944,13 +1917,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 159.05,
-      "data_date": "2026-11-24",
+      "price": 147.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -18.5612,
-        "3m": -18.852,
-        "6m": -25.7816,
-        "1y": 0.9841
+        "1m": -24.4752,
+        "3m": -24.7449,
+        "6m": -31.1713,
+        "1y": -6.3492
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1971,13 +1944,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 2.64,
-      "data_date": "2026-11-24",
+      "price": 2.75,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 8.1967,
-        "3m": 7.7551,
-        "6m": 9.0909,
-        "1y": -9.589
+        "1m": 12.7049,
+        "3m": 12.2449,
+        "6m": 13.6364,
+        "1y": -5.8219
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -1998,13 +1971,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.79,
-      "data_date": "2026-11-24",
+      "price": 11.64,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 20.5521,
-        "3m": -3.5188,
-        "6m": -6.7247,
-        "1y": -58.2211
+        "1m": 19.0184,
+        "3m": -4.7463,
+        "6m": -7.9114,
+        "1y": -58.7527
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2025,13 +1998,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 33.68,
-      "data_date": "2026-11-24",
+      "price": 34.6,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 11.8937,
-        "3m": 27.7209,
-        "6m": 24.4642,
-        "1y": 448.5342
+        "1m": 14.9502,
+        "3m": 31.2097,
+        "6m": 27.864,
+        "1y": 463.5179
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2052,13 +2025,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 226.65,
-      "data_date": "2026-11-24",
+      "price": 198.7,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -27.1222,
-        "3m": -24.6008,
-        "6m": -25.5176,
-        "1y": 81.3926
+        "1m": -36.1093,
+        "3m": -33.8989,
+        "6m": -34.7026,
+        "1y": 59.0236
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2079,13 +2052,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.03,
-      "data_date": "2026-11-24",
+      "price": 6.46,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 10.4396,
-        "3m": 7.1048,
-        "6m": 2.3769,
-        "1y": -38.0903
+        "1m": 18.315,
+        "3m": 14.7425,
+        "6m": 9.6774,
+        "1y": -33.6756
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2106,13 +2079,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 44.8,
-      "data_date": "2026-11-24",
+      "price": 46.76,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.2887,
-        "3m": 0.6515,
-        "6m": 24.6869,
-        "1y": 29.4424
+        "1m": 5.7201,
+        "3m": 5.055,
+        "6m": 30.1419,
+        "1y": 35.1055
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2160,13 +2133,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.4,
-      "data_date": "2026-11-24",
+      "price": 6.39,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 3.7277,
-        "3m": -0.7752,
-        "6m": -5.6047,
-        "1y": -15.9001
+        "1m": 3.5656,
+        "3m": -0.9302,
+        "6m": -5.7522,
+        "1y": -16.0315
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2187,19 +2160,46 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.15,
-      "data_date": "2026-11-24",
+      "price": 22.1,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.8505,
-        "3m": 2.1679,
-        "6m": 4.3335,
-        "1y": 8.8987
+        "1m": -1.0743,
+        "3m": 1.9373,
+        "6m": 4.098,
+        "1y": 8.6529
       },
       "return_base_dates": {
         "1m": "2026-10-22",
         "3m": "2026-08-25",
         "6m": "2026-05-25",
         "1y": "2025-11-25"
+      },
+      "source": "TWSE"
+    },
+    {
+      "symbol": "00682U",
+      "fund_code": "00682U",
+      "name": "期元大美元指數",
+      "market": "TWSE",
+      "category": "上市 ETF",
+      "asset_type": "ETF",
+      "issuer": null,
+      "nav": null,
+      "expense_ratio": null,
+      "management_fee": null,
+      "price": 21.47,
+      "data_date": "2026-11-25",
+      "returns": {
+        "1m": null,
+        "3m": 5.4519,
+        "6m": null,
+        "1y": null
+      },
+      "return_base_dates": {
+        "1m": null,
+        "3m": "2026-08-25",
+        "6m": null,
+        "1y": null
       },
       "source": "TWSE"
     },
@@ -2214,13 +2214,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 23.71,
-      "data_date": "2026-11-24",
+      "price": 23.59,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 5.5185,
-        "3m": 11.524,
-        "6m": 12.5297,
-        "1y": 10.2791
+        "1m": 4.9844,
+        "3m": 10.9595,
+        "6m": 11.9601,
+        "1y": 9.7209
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2241,13 +2241,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.46,
-      "data_date": "2026-11-24",
+      "price": 14.45,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.6918,
-        "3m": -5.1803,
+        "1m": -2.7591,
+        "3m": -5.2459,
         "6m": null,
-        "1y": -5.3045
+        "1y": -5.37
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2268,13 +2268,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.61,
-      "data_date": "2026-11-24",
+      "price": 7.62,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -26.91,
-        "3m": -24.0741,
-        "6m": -96.8742,
-        "1y": -92.3228
+        "1m": -35.3141,
+        "3m": -32.8042,
+        "6m": -97.2336,
+        "1y": -93.2055
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2295,13 +2295,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 1.08,
-      "data_date": "2026-11-24",
+      "price": 1.17,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 11.3402,
-        "3m": 6.9307,
-        "6m": 1.8868,
-        "1y": -38.2857
+        "1m": 20.6186,
+        "3m": 15.8416,
+        "6m": 10.3774,
+        "1y": -33.1429
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2376,13 +2376,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.36,
-      "data_date": "2026-11-24",
+      "price": 6.35,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 3.0794,
-        "3m": -1.0886,
-        "6m": -6.0561,
-        "1y": -16.2055
+        "1m": 2.9173,
+        "3m": -1.2442,
+        "6m": -6.2038,
+        "1y": -16.3373
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2403,13 +2403,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 23.13,
-      "data_date": "2026-11-24",
+      "price": 23.19,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -1.1961,
-        "3m": 1.715,
-        "6m": 4.6606,
-        "1y": 9.4134
+        "1m": -0.9398,
+        "3m": 1.9789,
+        "6m": 4.9321,
+        "1y": 9.6973
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2430,13 +2430,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 63.25,
-      "data_date": "2026-11-24",
+      "price": 59.1,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -16.9402,
-        "3m": -15.6667,
-        "6m": -18.3871,
-        "1y": 53.4449
+        "1m": -22.39,
+        "3m": -21.2,
+        "6m": -23.7419,
+        "1y": 43.377
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2457,13 +2457,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 81.1,
-      "data_date": "2026-11-24",
+      "price": 76.55,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.4663,
-        "3m": -9.5875,
-        "6m": -7.4201,
-        "1y": 52.015
+        "1m": -17.3772,
+        "3m": -14.66,
+        "6m": -12.6142,
+        "1y": 43.4864
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2484,13 +2484,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.26,
-      "data_date": "2026-11-24",
+      "price": 22.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -1.8519,
-        "3m": -0.3135,
-        "6m": 1.7833,
-        "1y": 2.439
+        "1m": -2.3369,
+        "3m": -0.8061,
+        "6m": 1.2803,
+        "1y": 1.9328
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2619,13 +2619,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 15.95,
-      "data_date": "2026-11-24",
+      "price": 15.94,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -1.8462,
-        "3m": -8.0692,
-        "6m": -6.2316,
-        "1y": -14.2473
+        "1m": -1.9077,
+        "3m": -8.1268,
+        "6m": -6.2904,
+        "1y": -14.3011
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2646,13 +2646,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 40.56,
-      "data_date": "2026-11-24",
+      "price": 38.76,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -4.9226,
-        "3m": 7.0467,
-        "6m": 25.0308,
-        "1y": 47.3837
+        "1m": -9.1421,
+        "3m": 2.2961,
+        "6m": 19.4821,
+        "1y": 40.843
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2673,13 +2673,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 25.5,
-      "data_date": "2026-11-24",
+      "price": 25.72,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 5.198,
-        "3m": 0.5124,
-        "6m": 6.1174,
-        "1y": 10.8696
+        "1m": 6.1056,
+        "3m": 1.3796,
+        "6m": 7.0329,
+        "1y": 11.8261
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2700,13 +2700,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.21,
-      "data_date": "2026-11-24",
+      "price": 17.2,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -3.1514,
-        "3m": -11.7436,
-        "6m": -12.5508,
-        "1y": -21.7727
+        "1m": -3.2077,
+        "3m": -11.7949,
+        "6m": -12.6016,
+        "1y": -21.8182
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2727,13 +2727,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.72,
-      "data_date": "2026-11-24",
+      "price": 18.63,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.3983,
-        "3m": -1.2658,
-        "6m": -3.0052,
-        "1y": -9.434
+        "1m": -2.8676,
+        "3m": -1.7405,
+        "6m": -3.4715,
+        "1y": -9.8694
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2754,13 +2754,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 53.55,
-      "data_date": "2026-11-24",
+      "price": 50.9,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -22.2787,
-        "3m": -41.0242,
-        "6m": -41.1538,
-        "1y": -36.212
+        "1m": -26.1248,
+        "3m": -43.9427,
+        "6m": -44.0659,
+        "1y": -39.3687
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2781,13 +2781,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 39.1,
-      "data_date": "2026-11-24",
+      "price": 39.03,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.7866,
-        "3m": -5.3269,
-        "6m": 0.3851,
-        "1y": 13.7951
+        "1m": -0.9642,
+        "3m": -5.4964,
+        "6m": 0.2054,
+        "1y": 13.5914
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2808,13 +2808,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.93,
-      "data_date": "2026-11-24",
+      "price": 18.92,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.7987,
-        "3m": -0.9937,
-        "6m": 0.7451,
-        "1y": -0.6299
+        "1m": 0.7455,
+        "3m": -1.046,
+        "6m": 0.6919,
+        "1y": -0.6824
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2835,13 +2835,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 15.42,
-      "data_date": "2026-11-24",
+      "price": 15.43,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.3141,
-        "3m": -1.5326,
-        "6m": -2.59,
-        "1y": -7.3317
+        "1m": 1.3798,
+        "3m": -1.4687,
+        "6m": -2.5268,
+        "1y": -7.2716
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2862,13 +2862,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.54,
-      "data_date": "2026-11-24",
+      "price": 6.76,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.4378,
-        "3m": -26.2683,
-        "6m": -25.2571,
-        "1y": -27.2525
+        "1m": -3.2904,
+        "3m": -23.788,
+        "6m": -22.7429,
+        "1y": -24.8053
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2889,13 +2889,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 61.4,
-      "data_date": "2026-11-24",
+      "price": 59.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.8285,
-        "3m": -0.4055,
-        "6m": 9.545,
-        "1y": 22.6773
+        "1m": -10.4704,
+        "3m": -4.2985,
+        "6m": 5.2632,
+        "1y": 17.8821
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2916,13 +2916,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.77,
-      "data_date": "2026-11-24",
+      "price": 22.04,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 3.2732,
-        "3m": -2.4642,
-        "6m": 0.7404,
-        "1y": 7.8791
+        "1m": 4.5541,
+        "3m": -1.2545,
+        "6m": 1.9898,
+        "1y": 9.217
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2943,13 +2943,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 55.1,
-      "data_date": "2026-11-24",
+      "price": 57.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -33.8932,
-        "3m": 6.5764,
-        "6m": 1.1938,
-        "1y": 440.1961
+        "1m": -31.6137,
+        "3m": 10.2515,
+        "6m": 4.6832,
+        "1y": 458.8235
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -2970,13 +2970,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.86,
-      "data_date": "2026-11-24",
+      "price": 13.73,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.9412,
-        "3m": -6.2246,
-        "6m": -7.291,
-        "1y": -5.7784
+        "1m": -3.8515,
+        "3m": -7.1042,
+        "6m": -8.1605,
+        "1y": -6.6621
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3213,13 +3213,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 52.15,
-      "data_date": "2026-11-24",
+      "price": 49.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.1473,
-        "3m": -22.3958,
-        "6m": -14.7876,
-        "1y": 46.3654
+        "1m": -23.7984,
+        "3m": -26.8601,
+        "6m": -19.6895,
+        "1y": 37.9456
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3240,13 +3240,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 26.2,
-      "data_date": "2026-11-24",
+      "price": 24.74,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.6552,
-        "3m": -8.679,
-        "6m": -6.0595,
-        "1y": 20.3491
+        "1m": -14.6897,
+        "3m": -13.7679,
+        "6m": -11.2944,
+        "1y": 13.6426
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3267,13 +3267,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 91.05,
-      "data_date": "2026-11-24",
+      "price": 86.7,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.9971,
-        "3m": -1.461,
-        "6m": 20.198,
-        "1y": 37.6417
+        "1m": -15.2493,
+        "3m": -6.1688,
+        "6m": 14.4554,
+        "1y": 31.0658
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3294,13 +3294,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 52.6,
-      "data_date": "2026-11-24",
+      "price": 47.58,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -26.3305,
-        "3m": -19.4487,
-        "6m": -30.4233,
-        "1y": 18.0166
+        "1m": -33.3613,
+        "3m": -27.1363,
+        "6m": -37.0635,
+        "1y": 6.7534
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3321,13 +3321,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 83.85,
-      "data_date": "2026-11-24",
+      "price": 76.7,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.3366,
-        "3m": -17.3484,
-        "6m": -20.1429,
-        "1y": 79.9356
+        "1m": -19.8118,
+        "3m": -24.3963,
+        "6m": -26.9524,
+        "1y": 64.5923
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3348,13 +3348,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 29.34,
-      "data_date": "2026-11-24",
+      "price": 28.8,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.1406,
-        "3m": -6.4712,
-        "6m": -3.8663,
-        "1y": 7.5908
+        "1m": -6.8865,
+        "3m": -8.1925,
+        "6m": -5.6356,
+        "1y": 5.6106
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3375,13 +3375,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 36.28,
-      "data_date": "2026-11-24",
+      "price": 35.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.3312,
-        "3m": -10.6404,
-        "6m": -6.6872,
-        "1y": 4.8252
+        "1m": -13.1241,
+        "3m": -13.4236,
+        "6m": -9.5936,
+        "1y": 1.5602
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3402,13 +3402,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 33.47,
-      "data_date": "2026-11-24",
+      "price": 31.88,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.6171,
-        "3m": -38.361,
-        "6m": -46.448,
-        "1y": -21.7991
+        "1m": -28.1982,
+        "3m": -41.2891,
+        "6m": -48.992,
+        "1y": -25.514
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3429,13 +3429,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 24.46,
-      "data_date": "2026-11-24",
+      "price": 24.05,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.16,
-        "3m": -11.6968,
-        "6m": -15.1578,
-        "1y": -2.898
+        "1m": -3.8,
+        "3m": -13.1769,
+        "6m": -16.58,
+        "1y": -4.5256
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3618,13 +3618,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 20.34,
-      "data_date": "2026-11-24",
+      "price": 20.18,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -4.0566,
-        "3m": -12.0242,
-        "6m": -11.8718,
-        "1y": -23.9057
+        "1m": -4.8113,
+        "3m": -12.7163,
+        "6m": -12.565,
+        "1y": -24.5043
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3645,13 +3645,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 6.82,
-      "data_date": "2026-11-24",
+      "price": 6.73,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.5791,
-        "3m": -27.6776,
-        "6m": -31.1111,
-        "1y": -46.5098
+        "1m": -9.7855,
+        "3m": -28.632,
+        "6m": -32.0202,
+        "1y": -47.2157
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3753,13 +3753,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 128.0,
-      "data_date": "2026-11-24",
+      "price": 123.75,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.2069,
-        "3m": -6.7395,
-        "6m": -1.1583,
-        "1y": 4.7463
+        "1m": -13.1884,
+        "3m": -9.8361,
+        "6m": -4.4402,
+        "1y": 1.2684
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3888,13 +3888,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 92.5,
-      "data_date": "2026-11-24",
+      "price": 86.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -17.3,
-        "3m": -16.4786,
-        "6m": -18.717,
-        "1y": 12.5304
+        "1m": -22.8878,
+        "3m": -22.1219,
+        "6m": -24.2091,
+        "1y": 4.927
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3915,13 +3915,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 28.82,
-      "data_date": "2026-11-24",
+      "price": 28.09,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -15.2353,
-        "3m": -17.7042,
-        "6m": -16.1234,
-        "1y": 2.0177
+        "1m": -17.3824,
+        "3m": -19.7887,
+        "6m": -18.248,
+        "1y": -0.5664
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -3996,13 +3996,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 56.6,
-      "data_date": "2026-11-24",
+      "price": 53.6,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.7959,
-        "3m": -15.015,
-        "6m": -14.566,
-        "1y": 0.177
+        "1m": -15.524,
+        "3m": -19.5195,
+        "6m": -19.0943,
+        "1y": -5.1327
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4023,13 +4023,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.59,
-      "data_date": "2026-11-24",
+      "price": 14.51,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.408,
-        "3m": -5.4439,
-        "6m": -7.8914,
-        "1y": -9.2097
+        "1m": -2.9431,
+        "3m": -5.9624,
+        "6m": -8.3965,
+        "1y": -9.7075
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4104,13 +4104,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 31.35,
-      "data_date": "2026-11-24",
+      "price": 31.33,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.8039,
-        "3m": 1.5878,
-        "6m": -1.97,
-        "1y": -4.7981
+        "1m": 0.7395,
+        "3m": 1.523,
+        "6m": -2.0325,
+        "1y": -4.8588
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4293,13 +4293,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 23.42,
-      "data_date": "2026-11-24",
+      "price": 22.74,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.3737,
-        "3m": -15.9971,
-        "6m": -22.4503,
-        "1y": -1.098
+        "1m": -8.1212,
+        "3m": -18.4362,
+        "6m": -24.702,
+        "1y": -3.9696
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4563,13 +4563,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 71.1,
-      "data_date": "2026-11-24",
+      "price": 63.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.1137,
-        "3m": -13.5562,
-        "6m": -19.0205,
-        "1y": 30.8188
+        "1m": -21.8171,
+        "3m": -23.1003,
+        "6m": -27.9613,
+        "1y": 16.3753
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4860,13 +4860,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 79.5,
-      "data_date": "2026-11-24",
+      "price": 74.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.257,
-        "3m": -10.473,
-        "6m": -8.0925,
-        "1y": 53.6232
+        "1m": -19.258,
+        "3m": -16.6667,
+        "6m": -14.4509,
+        "1y": 42.9952
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4887,13 +4887,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 62.1,
-      "data_date": "2026-11-24",
+      "price": 59.35,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.4071,
-        "3m": -10.9039,
-        "6m": -7.8635,
-        "1y": 14.8936
+        "1m": -12.4631,
+        "3m": -14.8494,
+        "6m": -11.9436,
+        "1y": 9.8057
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -4914,13 +4914,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 30.74,
-      "data_date": "2026-11-24",
+      "price": 30.73,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.1304,
-        "3m": -14.038,
-        "6m": -7.0175,
-        "1y": 7.108
+        "1m": -11.1593,
+        "3m": -14.066,
+        "6m": -7.0478,
+        "1y": 7.0732
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5103,13 +5103,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 74.1,
-      "data_date": "2026-11-24",
+      "price": 69.95,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.3488,
-        "3m": -12.5664,
-        "6m": -16.2712,
-        "1y": 40.3409
+        "1m": -13.4818,
+        "3m": -17.4631,
+        "6m": -20.9605,
+        "1y": 32.4811
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5211,13 +5211,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 50.85,
-      "data_date": "2026-11-24",
+      "price": 51.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.3958,
-        "3m": 4.009,
-        "6m": 6.1365,
-        "1y": 8.1455
+        "1m": 1.6949,
+        "3m": 4.3158,
+        "6m": 6.4496,
+        "1y": 8.4645
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5265,13 +5265,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 59.8,
-      "data_date": "2026-11-24",
+      "price": 58.6,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.9283,
-        "3m": 12.1951,
-        "6m": 27.0178,
-        "1y": 54.084
+        "1m": -1.097,
+        "3m": 9.9437,
+        "6m": 24.469,
+        "1y": 50.992
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5292,13 +5292,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 71.2,
-      "data_date": "2026-11-24",
+      "price": 66.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.4872,
-        "3m": -17.1611,
-        "6m": -21.108,
-        "1y": 50.9434
+        "1m": -19.8056,
+        "3m": -23.2112,
+        "6m": -26.8698,
+        "1y": 39.9194
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5346,13 +5346,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 30.81,
-      "data_date": "2026-11-24",
+      "price": 28.6,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.6453,
-        "3m": -5.6066,
-        "6m": 4.5115,
-        "1y": 50.0
+        "1m": -18.9113,
+        "3m": -12.3775,
+        "6m": -2.9851,
+        "1y": 39.2405
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5373,13 +5373,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 41.7,
-      "data_date": "2026-11-24",
+      "price": 39.05,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -14.5492,
-        "3m": -14.0206,
-        "6m": -21.9832,
-        "1y": 38.5382
+        "1m": -19.9795,
+        "3m": -19.4845,
+        "6m": -26.9411,
+        "1y": 29.7342
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5400,13 +5400,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 15.07,
-      "data_date": "2026-11-24",
+      "price": 15.09,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.9621,
-        "3m": -0.0663,
-        "6m": -4.1349,
-        "1y": -2.3331
+        "1m": 2.0974,
+        "3m": 0.0663,
+        "6m": -4.0076,
+        "1y": -2.2035
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5454,13 +5454,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.67,
-      "data_date": "2026-11-24",
+      "price": 17.6,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.5372,
-        "3m": -4.4865,
-        "6m": -6.951,
-        "1y": 5.1786
+        "1m": -2.9233,
+        "3m": -4.8649,
+        "6m": -7.3196,
+        "1y": 4.7619
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5589,13 +5589,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 28.19,
-      "data_date": "2026-11-24",
+      "price": 26.12,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -18.3135,
-        "3m": -16.2756,
-        "6m": -19.6637,
-        "1y": 55.574
+        "1m": -24.3118,
+        "3m": -22.4235,
+        "6m": -25.5628,
+        "1y": 44.1501
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5616,13 +5616,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 28.58,
-      "data_date": "2026-11-24",
+      "price": 26.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -28.299,
-        "3m": -27.0918,
-        "6m": -35.948,
-        "1y": 39.2788
+        "1m": -33.5173,
+        "3m": -32.398,
+        "6m": -40.6096,
+        "1y": 29.1423
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5643,13 +5643,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 39.16,
-      "data_date": "2026-11-24",
+      "price": 36.45,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.4985,
-        "3m": -6.917,
-        "6m": -15.3846,
-        "1y": 26.8957
+        "1m": -15.7615,
+        "3m": -13.3587,
+        "6m": -21.2403,
+        "1y": 18.1141
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5670,13 +5670,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 36.04,
-      "data_date": "2026-11-24",
+      "price": 33.89,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -21.5498,
-        "3m": -20.2655,
-        "6m": -27.1183,
-        "1y": 41.7224
+        "1m": -26.2299,
+        "3m": -25.0221,
+        "6m": -31.4661,
+        "1y": 33.2678
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5697,13 +5697,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 45.12,
-      "data_date": "2026-11-24",
+      "price": 42.3,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.3976,
-        "3m": -8.4787,
-        "6m": -11.875,
-        "1y": 21.519
+        "1m": -15.0602,
+        "3m": -14.1988,
+        "6m": -17.3828,
+        "1y": 13.9241
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5724,13 +5724,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 23.26,
-      "data_date": "2026-11-24",
+      "price": 21.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.4028,
-        "3m": -14.1381,
-        "6m": -16.4511,
-        "1y": 23.7234
+        "1m": -19.9553,
+        "3m": -20.6349,
+        "6m": -22.773,
+        "1y": 14.3617
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5751,13 +5751,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.4,
-      "data_date": "2026-11-24",
+      "price": 13.82,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.5551,
-        "3m": 0.9036,
-        "6m": 36.4562,
-        "1y": 51.9274
+        "1m": -3.6262,
+        "3m": 4.0663,
+        "6m": 40.7332,
+        "1y": 56.6893
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5778,13 +5778,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.51,
-      "data_date": "2026-11-24",
+      "price": 10.65,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.0171,
-        "3m": -4.3676,
-        "6m": 28.799,
-        "1y": 34.399
+        "1m": -8.8185,
+        "3m": -3.0937,
+        "6m": 30.5147,
+        "1y": 36.1893
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5805,13 +5805,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 19.61,
-      "data_date": "2026-11-24",
+      "price": 19.2,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.7976,
-        "3m": -15.6922,
-        "6m": -31.0478,
-        "1y": -0.3557
+        "1m": -11.6835,
+        "3m": -17.4549,
+        "6m": -32.4895,
+        "1y": -2.439
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5832,13 +5832,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.62,
-      "data_date": "2026-11-24",
+      "price": 16.56,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.83,
-        "3m": -5.9765,
-        "6m": -2.7057,
-        "1y": 34.6066
+        "1m": -16.1943,
+        "3m": -11.6329,
+        "6m": -8.5588,
+        "1y": 26.5088
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5859,13 +5859,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 29.89,
-      "data_date": "2026-11-24",
+      "price": 28.16,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -32.7408,
-        "3m": -32.7408,
-        "6m": -33.9009,
-        "1y": 28.6145
+        "1m": -36.6337,
+        "3m": -36.6337,
+        "6m": -37.7267,
+        "1y": 21.1704
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5886,13 +5886,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.42,
-      "data_date": "2026-11-24",
+      "price": 9.88,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.2334,
-        "3m": -22.8148,
-        "6m": -37.4174,
-        "1y": -17.8233
+        "1m": -13.9373,
+        "3m": -26.8148,
+        "6m": -40.6607,
+        "1y": -22.082
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5913,13 +5913,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.04,
-      "data_date": "2026-11-24",
+      "price": 17.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -14.7045,
-        "3m": -14.2586,
-        "6m": -18.371,
-        "1y": 5.4354
+        "1m": -18.9125,
+        "3m": -18.4886,
+        "6m": -22.3982,
+        "1y": 0.2338
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5940,13 +5940,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 32.27,
-      "data_date": "2026-11-24",
+      "price": 30.06,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -14.1755,
-        "3m": -18.0132,
-        "6m": -21.4268,
-        "1y": 55.3683
+        "1m": -20.0532,
+        "3m": -23.628,
+        "6m": -26.8079,
+        "1y": 44.728
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5967,13 +5967,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.91,
-      "data_date": "2026-11-24",
+      "price": 20.43,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.7402,
-        "3m": -14.8465,
-        "6m": -17.4765,
-        "1y": 35.0801
+        "1m": -19.5669,
+        "3m": -20.5985,
+        "6m": -23.0508,
+        "1y": 25.9556
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -5994,13 +5994,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.17,
-      "data_date": "2026-11-24",
+      "price": 16.4,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -7.7873,
-        "3m": -0.7514,
-        "6m": 15.3898,
-        "1y": 13.935
+        "1m": -11.9227,
+        "3m": -5.2023,
+        "6m": 10.2151,
+        "1y": 8.8255
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6021,13 +6021,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.75,
-      "data_date": "2026-11-24",
+      "price": 14.83,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.4443,
-        "3m": -5.9911,
-        "6m": 2.6444,
-        "1y": 8.5357
+        "1m": 1.9945,
+        "3m": -5.4812,
+        "6m": 3.2011,
+        "1y": 9.1244
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6048,13 +6048,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 30.99,
-      "data_date": "2026-11-24",
+      "price": 28.58,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.8545,
-        "3m": -33.1536,
-        "6m": -37.7461,
-        "1y": -22.7182
+        "1m": -30.6984,
+        "3m": -38.352,
+        "6m": -42.5874,
+        "1y": -28.7282
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6075,13 +6075,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 45.67,
-      "data_date": "2026-11-24",
+      "price": 43.38,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.5503,
-        "3m": -22.3299,
-        "6m": -46.1439,
-        "1y": 21.7867
+        "1m": -13.1358,
+        "3m": -26.2245,
+        "6m": -48.8443,
+        "1y": 15.68
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6102,13 +6102,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 44.7,
-      "data_date": "2026-11-24",
+      "price": 39.61,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.5397,
-        "3m": -14.0385,
-        "6m": -24.4294,
-        "1y": 45.3186
+        "1m": -23.3849,
+        "3m": -23.8269,
+        "6m": -33.0347,
+        "1y": 28.7711
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6129,13 +6129,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 27.39,
-      "data_date": "2026-11-24",
+      "price": 25.95,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -15.3061,
-        "3m": -19.6539,
-        "6m": -13.7051,
-        "1y": 35.4599
+        "1m": -19.7588,
+        "3m": -23.878,
+        "6m": -18.242,
+        "1y": 28.3383
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6156,13 +6156,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 37.97,
-      "data_date": "2026-11-24",
+      "price": 34.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -18.6415,
-        "3m": -17.3847,
-        "6m": -20.8464,
-        "1y": 64.0173
+        "1m": -26.0767,
+        "3m": -24.9347,
+        "6m": -28.0801,
+        "1y": 49.0281
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6183,13 +6183,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 30.3,
-      "data_date": "2026-11-24",
+      "price": 28.55,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.7139,
-        "3m": -3.962,
-        "6m": 8.7191,
-        "1y": 38.3562
+        "1m": -14.9285,
+        "3m": -9.5087,
+        "6m": 2.4399,
+        "1y": 30.3653
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6210,13 +6210,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 27.39,
-      "data_date": "2026-11-24",
+      "price": 27.15,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -1.8983,
-        "3m": 1.8594,
-        "6m": -3.0099,
-        "1y": 2.8926
+        "1m": -2.7579,
+        "3m": 0.9669,
+        "6m": -3.8598,
+        "1y": 1.991
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6237,13 +6237,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.99,
-      "data_date": "2026-11-24",
+      "price": 22.8,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.393,
-        "3m": -5.1959,
-        "6m": 5.5071,
-        "1y": -2.5847
+        "1m": -0.4367,
+        "3m": -5.9794,
+        "6m": 4.6352,
+        "1y": -3.3898
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6264,13 +6264,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 31.38,
-      "data_date": "2026-11-24",
+      "price": 29.43,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.9379,
-        "3m": -7.4063,
-        "6m": 12.756,
-        "1y": 42.7012
+        "1m": -14.5966,
+        "3m": -13.1602,
+        "6m": 5.7492,
+        "1y": 33.8336
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6291,13 +6291,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 29.5,
-      "data_date": "2026-11-24",
+      "price": 27.87,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.0068,
-        "3m": -5.0531,
-        "6m": 7.3899,
-        "1y": 38.044
+        "1m": -14.0345,
+        "3m": -10.2993,
+        "6m": 1.4561,
+        "1y": 30.4165
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6318,13 +6318,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.05,
-      "data_date": "2026-11-24",
+      "price": 20.24,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.0351,
-        "3m": -12.474,
-        "6m": -22.6956,
-        "1y": 19.5344
+        "1m": -15.42,
+        "3m": -15.842,
+        "6m": -25.6702,
+        "1y": 14.9347
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6345,13 +6345,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 20.74,
-      "data_date": "2026-11-24",
+      "price": 19.75,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.9694,
-        "3m": -13.0763,
-        "6m": -6.8284,
-        "1y": 21.4997
+        "1m": -16.1715,
+        "3m": -17.2255,
+        "6m": -11.2758,
+        "1y": 15.7001
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6372,13 +6372,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 34.63,
-      "data_date": "2026-11-24",
+      "price": 32.39,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.1066,
-        "3m": -14.2185,
-        "6m": -10.0286,
-        "1y": 44.2917
+        "1m": -17.7919,
+        "3m": -19.7672,
+        "6m": -15.8483,
+        "1y": 34.9583
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6399,13 +6399,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 34.24,
-      "data_date": "2026-11-24",
+      "price": 32.06,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.3175,
-        "3m": -11.4788,
-        "6m": -15.5194,
-        "1y": 42.0747
+        "1m": -17.9001,
+        "3m": -17.1148,
+        "6m": -20.8981,
+        "1y": 33.029
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6426,13 +6426,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 31.2,
-      "data_date": "2026-11-24",
+      "price": 30.36,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -7.8014,
-        "3m": -5.1672,
-        "6m": -3.674,
-        "1y": 9.0909
+        "1m": -10.2837,
+        "3m": -7.7204,
+        "6m": -6.2674,
+        "1y": 6.1538
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6453,13 +6453,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 26.42,
-      "data_date": "2026-11-24",
+      "price": 26.06,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -3.8923,
-        "3m": 1.5373,
-        "6m": 3.8114,
-        "1y": 9.4903
+        "1m": -5.2019,
+        "3m": 0.1537,
+        "6m": 2.3969,
+        "1y": 7.9983
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6480,13 +6480,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 29.86,
-      "data_date": "2026-11-24",
+      "price": 27.39,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -14.2447,
-        "3m": -16.662,
-        "6m": -23.4359,
-        "1y": 49.1508
+        "1m": -21.3383,
+        "3m": -23.5557,
+        "6m": -29.7692,
+        "1y": 36.8132
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6534,13 +6534,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 23.8,
-      "data_date": "2026-11-24",
+      "price": 22.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -17.3611,
-        "3m": -16.579,
-        "6m": -17.3611,
-        "1y": 36.0778
+        "1m": -23.6111,
+        "3m": -22.8882,
+        "6m": -23.6111,
+        "1y": 25.7862
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6561,13 +6561,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 20.82,
-      "data_date": "2026-11-24",
+      "price": 19.55,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.4516,
-        "3m": -11.8544,
-        "6m": -10.6438,
-        "1y": 23.8548
+        "1m": -15.914,
+        "3m": -17.2312,
+        "6m": -16.0944,
+        "1y": 16.2998
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6615,13 +6615,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 15.4,
-      "data_date": "2026-11-24",
+      "price": 14.77,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.7479,
-        "3m": -11.9497,
-        "6m": -7.3963,
-        "1y": 10.1574
+        "1m": -16.3173,
+        "3m": -15.5517,
+        "6m": -11.1846,
+        "1y": 5.6509
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6669,13 +6669,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 26.01,
-      "data_date": "2026-11-24",
+      "price": 24.65,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.5306,
-        "3m": -9.2463,
-        "6m": -3.3804,
-        "1y": 28.89
+        "1m": -16.1565,
+        "3m": -13.9916,
+        "6m": -8.4324,
+        "1y": 22.1506
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6696,13 +6696,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 46.44,
-      "data_date": "2026-11-24",
+      "price": 43.26,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -15.7169,
-        "3m": -16.9973,
-        "6m": -22.3411,
-        "1y": 68.2609
+        "1m": -21.4882,
+        "3m": -22.681,
+        "6m": -27.6589,
+        "1y": 56.7391
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6723,13 +6723,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.51,
-      "data_date": "2026-11-24",
+      "price": 17.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.5236,
-        "3m": -12.976,
-        "6m": -8.9523,
-        "1y": 20.6649
+        "1m": -18.4783,
+        "3m": -18.8999,
+        "6m": -15.15,
+        "1y": 12.4511
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6777,13 +6777,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 24.55,
-      "data_date": "2026-11-24",
+      "price": 23.1,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.336,
-        "3m": -1.5243,
-        "6m": 15.7473,
-        "1y": 51.0769
+        "1m": -15.6318,
+        "3m": -7.3406,
+        "6m": 8.9109,
+        "1y": 42.1538
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6804,13 +6804,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.69,
-      "data_date": "2026-11-24",
+      "price": 21.31,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.4573,
-        "3m": 0.0882,
-        "6m": 17.0795,
-        "1y": 64.3012
+        "1m": -14.9641,
+        "3m": -5.9991,
+        "6m": 9.9587,
+        "1y": 54.3085
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6831,13 +6831,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.65,
-      "data_date": "2026-11-24",
+      "price": 11.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.406,
-        "3m": -7.0231,
-        "6m": -0.682,
-        "1y": 27.8814
+        "1m": -17.2932,
+        "3m": -12.2107,
+        "6m": -6.2234,
+        "1y": 20.7464
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6858,13 +6858,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.75,
-      "data_date": "2026-11-24",
+      "price": 21.64,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.7241,
-        "3m": -10.9937,
-        "6m": -10.924,
-        "1y": 40.6057
+        "1m": -11.2751,
+        "3m": -15.3365,
+        "6m": -15.2702,
+        "1y": 33.7454
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6912,13 +6912,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.98,
-      "data_date": "2026-11-24",
+      "price": 16.94,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -14.7059,
-        "3m": -15.2287,
-        "6m": -17.0664,
-        "1y": 26.6197
+        "1m": -19.6395,
+        "3m": -20.132,
+        "6m": -21.8635,
+        "1y": 19.2958
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6939,13 +6939,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 19.22,
-      "data_date": "2026-11-24",
+      "price": 18.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.0317,
-        "3m": -7.4627,
-        "6m": -1.2333,
-        "1y": 37.6791
+        "1m": -17.4208,
+        "3m": -12.1329,
+        "6m": -6.2179,
+        "1y": 30.7307
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6966,13 +6966,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.52,
-      "data_date": "2026-11-24",
+      "price": 14.51,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.8333,
-        "3m": 0.4149,
-        "6m": 1.1847,
-        "1y": 0.554
+        "1m": 0.7639,
+        "3m": 0.3458,
+        "6m": 1.115,
+        "1y": 0.4848
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -6993,13 +6993,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.26,
-      "data_date": "2026-11-24",
+      "price": 12.56,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -14.2303,
-        "3m": -13.5593,
-        "6m": -5.9574,
-        "1y": 36.5602
+        "1m": -18.7581,
+        "3m": -18.1226,
+        "6m": -10.922,
+        "1y": 29.3512
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7020,13 +7020,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 27.55,
-      "data_date": "2026-11-24",
+      "price": 24.83,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.1608,
-        "3m": -23.6207,
-        "6m": -26.7482,
-        "1y": 63.8905
+        "1m": -27.142,
+        "3m": -31.1616,
+        "6m": -33.9803,
+        "1y": 47.7097
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7074,13 +7074,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.95,
-      "data_date": "2026-11-24",
+      "price": 18.97,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -17.1766,
-        "3m": -12.713,
-        "6m": -7.1534,
-        "1y": 5.4535
+        "1m": -17.0892,
+        "3m": -12.6209,
+        "6m": -7.0554,
+        "1y": 5.5648
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7128,13 +7128,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.85,
-      "data_date": "2026-11-24",
+      "price": 9.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -30.0,
-        "3m": -36.5868,
-        "6m": -37.3557,
-        "1y": 5.1357
+        "1m": -38.7097,
+        "3m": -44.4769,
+        "6m": -45.1501,
+        "1y": -7.9457
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7155,13 +7155,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.24,
-      "data_date": "2026-11-24",
+      "price": 13.03,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.1827,
-        "3m": -19.8649,
-        "6m": -23.5231,
-        "1y": 25.9063
+        "1m": -26.0499,
+        "3m": -26.6742,
+        "6m": -30.0215,
+        "1y": 15.2078
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7182,13 +7182,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.62,
-      "data_date": "2026-11-24",
+      "price": 9.63,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.4175,
-        "3m": -0.6198,
-        "6m": 0.6276,
-        "1y": -0.8247
+        "1m": 0.5219,
+        "3m": -0.5165,
+        "6m": 0.7322,
+        "1y": -0.7216
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7209,13 +7209,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.72,
-      "data_date": "2026-11-24",
+      "price": 11.94,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -16.3415,
-        "3m": -24.8219,
-        "6m": -25.7977,
-        "1y": 23.8267
+        "1m": -27.1951,
+        "3m": -34.5753,
+        "6m": -35.4246,
+        "1y": 7.7617
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7263,13 +7263,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.26,
-      "data_date": "2026-11-24",
+      "price": 13.34,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.0679,
-        "3m": -1.0448,
-        "6m": 7.6299,
-        "1y": 22.7778
+        "1m": -1.4771,
+        "3m": -0.4478,
+        "6m": 8.2792,
+        "1y": 23.5185
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7371,13 +7371,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.05,
-      "data_date": "2026-11-24",
+      "price": 21.0,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.518,
-        "3m": -2.7264,
-        "6m": 20.0114,
-        "1y": 51.1127
+        "1m": -8.7353,
+        "3m": -2.9575,
+        "6m": 19.7263,
+        "1y": 50.7538
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7398,13 +7398,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.35,
-      "data_date": "2026-11-24",
+      "price": 11.75,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.4507,
-        "3m": -5.8689,
-        "6m": 3.5205,
-        "1y": 32.0856
+        "1m": -12.8984,
+        "3m": -10.4421,
+        "6m": -1.5088,
+        "1y": 25.6684
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7425,13 +7425,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.92,
-      "data_date": "2026-11-24",
+      "price": 11.04,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -17.5087,
-        "3m": -20.0,
-        "6m": -17.6227,
-        "1y": 12.9858
+        "1m": -23.5986,
+        "3m": -25.906,
+        "6m": -23.7042,
+        "1y": 4.6445
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7453,7 +7453,7 @@
       "expense_ratio": null,
       "management_fee": null,
       "price": 12.04,
-      "data_date": "2026-11-24",
+      "data_date": "2026-11-25",
       "returns": {
         "1m": -4.5959,
         "3m": -9.3373,
@@ -7479,13 +7479,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.95,
-      "data_date": "2026-11-24",
+      "price": 12.64,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.5663,
-        "3m": -12.4408,
-        "6m": -9.7561,
-        "1y": 15.1111
+        "1m": -12.7072,
+        "3m": -14.5368,
+        "6m": -11.9164,
+        "1y": 12.3556
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7506,13 +7506,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.81,
-      "data_date": "2026-11-24",
+      "price": 21.14,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.6148,
-        "3m": -15.1032,
-        "6m": -14.7047,
-        "1y": -0.1831
+        "1m": -13.3607,
+        "3m": -17.7112,
+        "6m": -17.325,
+        "1y": -3.2494
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7668,13 +7668,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.11,
-      "data_date": "2026-11-24",
+      "price": 16.71,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.2602,
-        "3m": -2.4515,
-        "6m": 1.1827,
-        "1y": 1.3025
+        "1m": -7.4751,
+        "3m": -4.732,
+        "6m": -1.1827,
+        "1y": -1.0657
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7695,13 +7695,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 21.98,
-      "data_date": "2026-11-24",
+      "price": 22.21,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.2677,
-        "3m": 0.228,
-        "6m": 14.1818,
-        "1y": 27.865
+        "1m": -1.245,
+        "3m": 1.2768,
+        "6m": 15.3766,
+        "1y": 29.203
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7722,13 +7722,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.3,
-      "data_date": "2026-11-24",
+      "price": 11.85,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -7.7269,
-        "3m": -4.8724,
-        "6m": -5.8193,
-        "1y": 13.0515
+        "1m": -11.1028,
+        "3m": -8.3527,
+        "6m": -9.2649,
+        "1y": 8.9154
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7749,13 +7749,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.35,
-      "data_date": "2026-11-24",
+      "price": 9.86,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.4488,
-        "3m": -6.25,
-        "6m": -15.6479,
-        "1y": -6.5041
+        "1m": -13.7358,
+        "3m": -10.6884,
+        "6m": -19.6414,
+        "1y": -10.9304
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7776,13 +7776,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 16.74,
-      "data_date": "2026-11-24",
+      "price": 15.52,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.7113,
-        "3m": -10.2413,
-        "6m": -14.7658,
-        "1y": 61.4272
+        "1m": -20.0,
+        "3m": -16.7828,
+        "6m": -20.9776,
+        "1y": 49.6625
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7803,13 +7803,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.93,
-      "data_date": "2026-11-24",
+      "price": 16.94,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.7918,
-        "3m": -15.3447,
-        "6m": -15.94,
-        "1y": 46.4869
+        "1m": -17.607,
+        "3m": -20.0189,
+        "6m": -20.5813,
+        "1y": 38.3987
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7830,13 +7830,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 19.67,
-      "data_date": "2026-11-24",
+      "price": 18.44,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.6523,
-        "3m": -10.0183,
-        "6m": -12.1875,
-        "1y": 44.42
+        "1m": -19.0518,
+        "3m": -15.645,
+        "6m": -17.6786,
+        "1y": 35.3891
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7857,13 +7857,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.98,
-      "data_date": "2026-11-24",
+      "price": 13.47,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.7816,
-        "3m": -8.3279,
-        "6m": -17.7647,
-        "1y": 12.3794
+        "1m": -6.3282,
+        "3m": -11.6721,
+        "6m": -20.7647,
+        "1y": 8.2797
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7938,13 +7938,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 26.96,
-      "data_date": "2026-11-24",
+      "price": 25.27,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -12.8072,
-        "3m": -10.253,
-        "6m": -8.2993,
-        "1y": 47.4836
+        "1m": -18.273,
+        "3m": -15.8788,
+        "6m": -14.0476,
+        "1y": 38.2385
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7965,13 +7965,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 16.15,
-      "data_date": "2026-11-24",
+      "price": 15.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.8772,
-        "3m": -7.5558,
-        "6m": -0.7985,
-        "1y": 61.8236
+        "1m": -14.8996,
+        "3m": -12.7075,
+        "6m": -6.3268,
+        "1y": 52.8056
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -7992,13 +7992,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 17.87,
-      "data_date": "2026-11-24",
+      "price": 16.76,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.7579,
-        "3m": -25.0419,
-        "6m": -25.4485,
-        "1y": 26.2898
+        "1m": -29.4316,
+        "3m": -29.698,
+        "6m": -30.0793,
+        "1y": 18.4452
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8100,13 +8100,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 20.55,
-      "data_date": "2026-11-24",
+      "price": 20.25,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.7339,
-        "3m": -3.385,
-        "6m": -1.3442,
-        "1y": 12.7263
+        "1m": -7.1101,
+        "3m": -4.7955,
+        "6m": -2.7844,
+        "1y": 11.0806
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8127,13 +8127,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.8,
-      "data_date": "2026-11-24",
+      "price": 12.5,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.5693,
-        "3m": -2.9568,
-        "6m": -1.6897,
-        "1y": 10.44
+        "1m": -8.7591,
+        "3m": -5.2312,
+        "6m": -3.9939,
+        "1y": 7.8516
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8154,13 +8154,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.34,
-      "data_date": "2026-11-24",
+      "price": 12.23,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -5.4406,
-        "3m": -3.5938,
-        "6m": 1.2305,
-        "1y": 19.9223
+        "1m": -6.2835,
+        "3m": -4.4531,
+        "6m": 0.3281,
+        "1y": 18.8533
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8181,13 +8181,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.96,
-      "data_date": "2026-11-24",
+      "price": 10.69,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -6.1644,
-        "3m": -2.0554,
-        "6m": -3.606,
-        "1y": 5.2834
+        "1m": -8.476,
+        "3m": -4.4683,
+        "6m": -5.9807,
+        "1y": 2.6897
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8262,12 +8262,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.16,
-      "data_date": "2026-11-24",
+      "price": 13.32,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.1111,
-        "3m": -6.9034,
-        "6m": -4.065,
+        "1m": -16.3842,
+        "3m": -12.426,
+        "6m": -9.7561,
         "1y": null
       },
       "return_base_dates": {
@@ -8289,12 +8289,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.74,
-      "data_date": "2026-11-24",
+      "price": 8.8,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.2746,
-        "3m": -4.2716,
-        "6m": -1.1312,
+        "1m": 1.9699,
+        "3m": -3.6145,
+        "6m": -0.4525,
         "1y": null
       },
       "return_base_dates": {
@@ -8316,12 +8316,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 18.31,
-      "data_date": "2026-11-24",
+      "price": 17.56,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.3746,
-        "3m": -6.3906,
-        "6m": -5.2277,
+        "1m": -15.0048,
+        "3m": -10.2249,
+        "6m": -9.1097,
         "1y": null
       },
       "return_base_dates": {
@@ -8343,12 +8343,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.78,
-      "data_date": "2026-11-24",
+      "price": 8.44,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.159,
-        "3m": -10.4082,
-        "6m": -14.425,
+        "1m": -11.7155,
+        "3m": -13.8776,
+        "6m": -17.7388,
         "1y": null
       },
       "return_base_dates": {
@@ -8370,13 +8370,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 22.04,
-      "data_date": "2026-11-24",
+      "price": 20.53,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -21.8162,
-        "3m": -23.3924,
-        "6m": -30.2752,
-        "1y": 44.7144
+        "1m": -27.1728,
+        "3m": -28.6409,
+        "6m": -35.0522,
+        "1y": 34.7997
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8451,13 +8451,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.3,
-      "data_date": "2026-11-24",
+      "price": 11.11,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -2.2491,
-        "3m": -3.8298,
-        "6m": -4.7218,
-        "1y": 9.3901
+        "1m": -3.8927,
+        "3m": -5.4468,
+        "6m": -6.3238,
+        "1y": 7.5508
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8478,12 +8478,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.99,
-      "data_date": "2026-11-24",
+      "price": 8.57,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -11.166,
-        "3m": -6.8394,
-        "6m": -13.1401,
+        "1m": -15.3162,
+        "3m": -11.1917,
+        "6m": -17.1981,
         "1y": null
       },
       "return_base_dates": {
@@ -8505,11 +8505,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.24,
-      "data_date": "2026-11-24",
+      "price": 9.97,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -15.9278,
-        "3m": -34.8186,
+        "1m": -18.1445,
+        "3m": -36.5372,
         "6m": null,
         "1y": null
       },
@@ -8586,11 +8586,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.25,
-      "data_date": "2026-11-24",
+      "price": 8.8,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -9.8441,
-        "3m": -6.0914,
+        "1m": -14.23,
+        "3m": -10.6599,
         "6m": null,
         "1y": null
       },
@@ -8640,11 +8640,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.69,
-      "data_date": "2026-11-24",
+      "price": 9.57,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -4.4379,
-        "3m": -4.4379,
+        "1m": -5.6213,
+        "3m": -5.6213,
         "6m": null,
         "1y": null
       },
@@ -8667,10 +8667,10 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.16,
-      "data_date": "2026-11-24",
+      "price": 8.63,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.4,
+        "1m": -13.7,
         "3m": null,
         "6m": null,
         "1y": null
@@ -8694,10 +8694,10 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.05,
-      "data_date": "2026-11-24",
+      "price": 6.21,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -17.0103,
+        "1m": -35.9794,
         "3m": null,
         "6m": null,
         "1y": null
@@ -8721,11 +8721,11 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.08,
-      "data_date": "2026-11-24",
+      "price": 7.4,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.286,
-        "3m": -21.7812,
+        "1m": -16.0045,
+        "3m": -28.364,
         "6m": null,
         "1y": null
       },
@@ -8748,13 +8748,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 16.17,
-      "data_date": "2026-11-24",
+      "price": 14.88,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.6154,
-        "3m": -25.3118,
-        "6m": -31.8297,
-        "1y": 22.6859
+        "1m": -30.6294,
+        "3m": -31.2702,
+        "6m": -37.2681,
+        "1y": 12.8983
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8803,7 +8803,7 @@
       "expense_ratio": null,
       "management_fee": null,
       "price": 9.61,
-      "data_date": "2026-11-24",
+      "data_date": "2026-11-25",
       "returns": {
         "1m": 1.0515,
         "3m": -1.0299,
@@ -8829,12 +8829,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 13.1,
-      "data_date": "2026-11-24",
+      "price": 12.35,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -8.6471,
-        "3m": -11.9624,
-        "6m": -13.4171,
+        "1m": -13.8773,
+        "3m": -17.0027,
+        "6m": -18.3741,
         "1y": null
       },
       "return_base_dates": {
@@ -8856,8 +8856,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.69,
-      "data_date": "2026-11-24",
+      "price": 8.31,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -8883,8 +8883,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.8,
-      "data_date": "2026-11-24",
+      "price": 8.53,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -8910,8 +8910,8 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.08,
-      "data_date": "2026-11-24",
+      "price": 9.25,
+      "data_date": "2026-11-25",
       "returns": {
         "1m": null,
         "3m": null,
@@ -8937,13 +8937,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.77,
-      "data_date": "2026-11-24",
+      "price": 10.41,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -15.0631,
-        "3m": -13.771,
-        "6m": -7.87,
-        "1y": -8.6514
+        "1m": -17.9022,
+        "3m": -16.6533,
+        "6m": -10.9495,
+        "1y": -11.7048
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -8991,13 +8991,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.88,
-      "data_date": "2026-11-24",
+      "price": 9.86,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 0.8163,
-        "3m": -0.6036,
-        "6m": -1.4955,
-        "1y": -3.7037
+        "1m": 0.6122,
+        "3m": -0.8048,
+        "6m": -1.6949,
+        "1y": -3.8986
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9018,13 +9018,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.2,
-      "data_date": "2026-11-24",
+      "price": 11.29,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -18.9907,
-        "3m": -19.9475,
-        "6m": -22.5397,
-        "1y": 18.3317
+        "1m": -25.0332,
+        "3m": -25.9186,
+        "6m": -28.3175,
+        "1y": 9.5053
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9072,12 +9072,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.64,
-      "data_date": "2026-11-24",
+      "price": 9.63,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -0.4132,
-        "3m": -3.9841,
-        "6m": -4.175,
+        "1m": -0.5165,
+        "3m": -4.0837,
+        "6m": -4.2744,
         "1y": null
       },
       "return_base_dates": {
@@ -9099,13 +9099,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 16.84,
-      "data_date": "2026-11-24",
+      "price": 15.95,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -16.7573,
-        "3m": -25.222,
-        "6m": -23.2102,
-        "1y": 36.4668
+        "1m": -21.1567,
+        "3m": -29.1741,
+        "6m": -27.2686,
+        "1y": 29.2545
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9126,13 +9126,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 10.4,
-      "data_date": "2026-11-24",
+      "price": 10.42,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": 1.4634,
-        "3m": 1.4634,
-        "6m": 2.5641,
-        "1y": 0.7752
+        "1m": 1.6585,
+        "3m": 1.6585,
+        "6m": 2.7613,
+        "1y": 0.969
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9180,13 +9180,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.55,
-      "data_date": "2026-11-24",
+      "price": 11.95,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -10.7397,
-        "3m": -11.5574,
-        "6m": -15.4882,
-        "1y": 12.254
+        "1m": -15.0071,
+        "3m": -15.7858,
+        "6m": -19.5286,
+        "1y": 6.8873
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9261,12 +9261,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 11.75,
-      "data_date": "2026-11-24",
+      "price": 11.08,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -25.5387,
-        "3m": -25.302,
-        "6m": -34.867,
+        "1m": -29.7845,
+        "3m": -29.5613,
+        "6m": -38.5809,
         "1y": null
       },
       "return_base_dates": {
@@ -9342,13 +9342,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.2,
-      "data_date": "2026-11-24",
+      "price": 11.61,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -19.2588,
-        "3m": -24.3645,
-        "6m": -44.7464,
-        "1y": 26.8191
+        "1m": -23.1635,
+        "3m": -28.0223,
+        "6m": -47.4185,
+        "1y": 20.6861
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9396,13 +9396,13 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 14.84,
-      "data_date": "2026-11-24",
+      "price": 14.28,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -13.7209,
-        "3m": -11.0312,
-        "6m": -16.6292,
-        "1y": 0.7468
+        "1m": -16.9767,
+        "3m": -14.3885,
+        "6m": -19.7753,
+        "1y": -3.055
       },
       "return_base_dates": {
         "1m": "2026-10-22",
@@ -9450,12 +9450,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.29,
-      "data_date": "2026-11-24",
+      "price": 11.79,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -17.0155,
-        "3m": -18.6093,
-        "6m": -36.9744,
+        "1m": -20.3916,
+        "3m": -21.9205,
+        "6m": -39.5385,
         "1y": null
       },
       "return_base_dates": {
@@ -9504,12 +9504,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.36,
-      "data_date": "2026-11-24",
+      "price": 11.67,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -25.8548,
-        "3m": -29.8922,
-        "6m": -35.8588,
+        "1m": -29.994,
+        "3m": -33.806,
+        "6m": -39.4395,
         "1y": null
       },
       "return_base_dates": {
@@ -9532,7 +9532,7 @@
       "expense_ratio": null,
       "management_fee": null,
       "price": 15.11,
-      "data_date": "2026-11-24",
+      "data_date": "2026-11-25",
       "returns": {
         "1m": 1.5457,
         "3m": 1.6824,
@@ -9558,12 +9558,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.41,
-      "data_date": "2026-11-24",
+      "price": 11.66,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -26.6982,
-        "3m": -29.887,
-        "6m": -34.1645,
+        "1m": -31.1282,
+        "3m": -34.1243,
+        "6m": -38.1432,
         "1y": null
       },
       "return_base_dates": {
@@ -9612,12 +9612,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.37,
-      "data_date": "2026-11-24",
+      "price": 8.71,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -27.0817,
-        "3m": -28.7452,
-        "6m": -31.2041,
+        "1m": -32.2179,
+        "3m": -33.7643,
+        "6m": -36.0499,
         "1y": null
       },
       "return_base_dates": {
@@ -9639,12 +9639,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.28,
-      "data_date": "2026-11-24",
+      "price": 11.44,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -22.2293,
-        "3m": -26.9048,
-        "6m": -33.8718,
+        "1m": -27.5491,
+        "3m": -31.9048,
+        "6m": -38.3953,
         "1y": null
       },
       "return_base_dates": {
@@ -9666,12 +9666,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 12.1,
-      "data_date": "2026-11-24",
+      "price": 11.27,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -23.4177,
-        "3m": -27.5015,
-        "6m": -33.1861,
+        "1m": -28.6709,
+        "3m": -32.4745,
+        "6m": -37.7692,
         "1y": null
       },
       "return_base_dates": {
@@ -9693,12 +9693,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 9.72,
-      "data_date": "2026-11-24",
+      "price": 8.91,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -24.8841,
-        "3m": -28.2127,
-        "6m": -36.3041,
+        "1m": -31.1437,
+        "3m": -34.195,
+        "6m": -41.6121,
         "1y": null
       },
       "return_base_dates": {
@@ -9720,12 +9720,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.87,
-      "data_date": "2026-11-24",
+      "price": 8.3,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -16.0833,
-        "3m": -19.6558,
-        "6m": -32.1865,
+        "1m": -21.4759,
+        "3m": -24.8188,
+        "6m": -36.5443,
         "1y": null
       },
       "return_base_dates": {
@@ -9774,12 +9774,12 @@
       "nav": null,
       "expense_ratio": null,
       "management_fee": null,
-      "price": 8.63,
-      "data_date": "2026-11-24",
+      "price": 8.05,
+      "data_date": "2026-11-25",
       "returns": {
-        "1m": -18.2765,
-        "3m": -22.2523,
-        "6m": -18.9671,
+        "1m": -23.7689,
+        "3m": -27.4775,
+        "6m": -24.4131,
         "1y": null
       },
       "return_base_dates": {
