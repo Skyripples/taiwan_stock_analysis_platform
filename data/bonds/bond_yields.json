@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26T07:55:21.895743+00:00",
-  "fetched_at": "2026-11-26T07:55:21.895743+00:00",
+  "updated_at": "2026-11-27T07:56:04.796038+00:00",
+  "fetched_at": "2026-11-27T07:56:04.796038+00:00",
   "provider": "TPEx / U.S. Treasury",
   "dataset": "government_bond_yields",
   "version": "1.0",
@@ -8,39 +8,39 @@
   "markets": {
     "taiwan": {
       "name": "台灣政府公債",
-      "data_date": "2026-11-25",
+      "data_date": "2026-11-26",
       "source": "https://www.tpex.org.tw/zh-tw/bond/info/statistics-gb/day/yield.html",
-      "download": "https://www.tpex.org.tw/storage/bond_zone/tradeinfo/govbond/2026/202611/Curve.20261125-C.xls",
+      "download": "https://www.tpex.org.tw/storage/bond_zone/tradeinfo/govbond/2026/202611/Curve.20261126-C.xls",
       "yields": [
         {
           "tenor": "2Y",
           "tenor_months": 24,
           "yield": 1.509,
-          "source_date": "2026-11-25"
+          "source_date": "2026-11-26"
         },
         {
           "tenor": "5Y",
           "tenor_months": 60,
           "yield": 1.6943,
-          "source_date": "2026-11-25"
+          "source_date": "2026-11-26"
         },
         {
           "tenor": "10Y",
           "tenor_months": 120,
           "yield": 1.93,
-          "source_date": "2026-11-25"
+          "source_date": "2026-11-26"
         },
         {
           "tenor": "20Y",
           "tenor_months": 240,
           "yield": 2.07,
-          "source_date": "2026-11-25"
+          "source_date": "2026-11-26"
         },
         {
           "tenor": "30Y",
           "tenor_months": 360,
           "yield": 2.2506,
-          "source_date": "2026-11-25"
+          "source_date": "2026-11-26"
         }
       ],
       "spread_10y_2y": 0.421

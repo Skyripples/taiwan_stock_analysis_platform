@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-26T07:57:22+00:00",
+  "updated_at": "2026-11-27T07:59:09+00:00",
   "version": "2.0",
-  "active_count": 2414,
-  "company_count": 1993,
+  "active_count": 2416,
+  "company_count": 1994,
   "stocks": [
     {
       "symbol": "00400A",
@@ -167,6 +167,16 @@
     {
       "symbol": "00418A",
       "name": "主動復華台灣新星",
+      "market": "TWSE",
+      "industry": "ETF／其他",
+      "instrument_type": "ETF",
+      "active": true,
+      "cached": true,
+      "cache_status": "complete"
+    },
+    {
+      "symbol": "00419A",
+      "name": "主動施羅德AI台股",
       "market": "TWSE",
       "industry": "ETF／其他",
       "instrument_type": "ETF",
@@ -832,7 +842,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "00683L",
@@ -1262,7 +1272,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00735",
@@ -2012,7 +2022,7 @@
       "instrument_type": "ETF",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "00875",
@@ -3702,7 +3712,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "01002T",
@@ -3712,7 +3722,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "01004T",
@@ -3782,7 +3792,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020012",
@@ -3842,7 +3852,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "020030",
@@ -3922,7 +3932,7 @@
       "instrument_type": "ETN",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "020038",
@@ -3982,7 +3992,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "1102",
@@ -9702,7 +9712,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "2892",
@@ -19242,7 +19252,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "6593",
@@ -21052,7 +21062,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "partial"
+      "cache_status": "complete"
     },
     {
       "symbol": "6961",
@@ -21989,6 +21999,16 @@
       "name": "特力屋",
       "market": "TWSE",
       "industry": "居家生活",
+      "instrument_type": "company",
+      "active": true,
+      "cached": true,
+      "cache_status": "partial"
+    },
+    {
+      "symbol": "7869",
+      "name": "宏于電機",
+      "market": "TPEx",
+      "industry": "電機機械",
       "instrument_type": "company",
       "active": true,
       "cached": true,
@@ -24112,7 +24132,7 @@
       "instrument_type": "warrant",
       "active": true,
       "cached": true,
-      "cache_status": "complete"
+      "cache_status": "partial"
     },
     {
       "symbol": "9942",

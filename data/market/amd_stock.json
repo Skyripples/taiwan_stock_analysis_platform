@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T07:56:59.798886Z",
+  "updated_at": "2026-11-27T07:58:45.769174Z",
   "provider": "Yahoo",
   "dataset": "amd_stock",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 413.27,
         "change": -7.24,
         "change_percent": -1.7519,
-        "volume": 51340800
+        "volume": 51632000
       }
     ]
   }
