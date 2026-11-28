@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-11-27T07:59:09.631783+00:00",
-  "status": "skipped",
-  "ready": false,
-  "reason": "prediction_input_validation_failed",
-  "detail": "Invalid prediction source date for institutional: 2026-11-27 (feature=2026-11-26, target=2026-11-27)",
+  "checked_at": "2026-11-28T07:27:27.373525+00:00",
+  "status": "ready",
+  "ready": true,
+  "reason": null,
+  "feature_date": "2026-11-27",
   "feature_count": 15
 }

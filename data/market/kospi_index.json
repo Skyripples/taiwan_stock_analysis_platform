@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T07:58:46.350099Z",
+  "updated_at": "2026-11-28T07:27:06.543196Z",
   "provider": "Yahoo",
   "dataset": "kospi_index",
   "version": "1.0",
@@ -24,7 +24,7 @@
         "previous_close": 4711.21,
         "change": 204.4702,
         "change_percent": 4.3401,
-        "volume": 175941
+        "volume": 187600
       }
     ]
   }
